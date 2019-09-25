@@ -1,0 +1,186 @@
+#-----------------------------------------------------------------------
+# AVR project Makefile
+# wykys 2018, Tomas Fryza 2019
+#
+# TODO: (https://github.com/arduino/ArduinoCore-avr/blob/master/bootloaders/stk500v2/Makefile)
+#-----------------------------------------------------------------------
+# In command line terminal:
+# Compiling the project, equivalent to make
+#   make all
+#
+# Clean out built project files
+#   make clean
+#
+# Compile and download the software to the device
+#   make build_and_flash
+#
+# Prints memory usage info
+#   make size
+#-----------------------------------------------------------------------
+
+
+# MCU name
+CHIP = atmega328p
+# MCU name for avrdude programmer tool
+CHIPDUDE = m328p
+# Target file name (without extension)
+TARGET = DEMO
+# Processor frequency
+F_CPU = 16000000
+# AVR 8-bit toolchain
+#TOOLCHAIN_PATH = /opt/avr8-gnu-toolchain-linux_x86_64
+TOOLCHAIN_PATH = c:\APPZ\AVR\avr8-gnu-toolchain-win32_x86
+# Port of programmer
+#USBPORT = /dev/ttyUSB0
+#WINDOWS
+USBPORT = COM5
+
+
+#----- Add libraries you are using from lib/ folder --------------------
+#  lcd.c   HD44780U LCD library
+#  uart.c  Interrupt UART library with receive/transmit circular buffers
+#  twi.c   TWI library
+#  Example: C_SOURCES += $(LIB_DIR)/lcd.c uart.c
+C_SOURCES += $(LIB_DIR)/lcd.c uart.c twi.c
+#TODO: DOES NOT WORK IN WINDOWS !!!!!!!!!!!!!
+
+
+#----- Optimization level ----------------------------------------------
+#  Can be [0, 1, 2, 3, s]
+#    0: turn off optimization
+#    s: optimize for size
+#  Note: 3 is not always the best optimization level.
+OPT = -Os
+
+
+#----- Folders and source files ----------------------------------------
+# build dir
+BUILD_DIR = build
+# source dir
+SRC_DIR = .
+# library dir
+LIB_DIR = ../library
+# includes
+ILIB_DIR = -I$(LIB_DIR)
+# List C source files
+C_SOURCES = $(wildcard $(SRC_DIR)/*.c)
+# List Assembler source files
+ASM_SOURCES = $(wildcard $(SRC_DIR)/*.S)
+
+
+#----- Programming tool avrdude ----------------------------------------
+#  -p:  type of part (MCU) connected to the programmer
+#  -c:  programmer id
+#  -b:  baudrate
+#  -P:  port
+#  Details: https://www.nongnu.org/avrdude/user-manual/avrdude_4.html
+#AVRDUDE = avrdude -p $(CHIPDUDE) -c arduino -b 115200 -P $(USBPORT)
+AVRDUDE = c:\APPZ\AVR\avrdude.exe -p $(CHIPDUDE) -c arduino -b 115200 -P $(USBPORT)
+
+
+#----- Compiler Options ------------------------------------------------
+#  -g*:          generate debugging information
+#  -O*:          optimization level
+#  -f...:        tuning, see GCC manual and avr-libc documentation
+#  -Wall...:     warning level
+#  -Wa,...:      tell GCC to pass this to the assembler.
+#    -adhlns...: create assembler listing
+#  -D or -U      xx
+MCU = -mmcu=$(CHIP)
+AFLAGS = $(MCU) -Wall $(ILIB_DIR)
+CDEFS = -DF_CPU=$(F_CPU)UL
+# Compiler flag to set the C Standard level.
+#     c89   = "ANSI" C
+#     gnu89 = c89 plus GCC extensions
+#     c99   = ISO C99 standard (not yet fully implemented)
+#     gnu99 = c99 plus GCC extensions
+CFLAGS = $(MCU) -Wall -std=c99 $(CDEFS) $(ILIB_DIR) $(OPT)
+LDFLAGS = $(MCU) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map -Wl,--cref
+
+# generate dependency information
+CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)" -MT"$(@:%.o=%.d)"
+
+# list of objects
+OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
+vpath %.c $(sort $(dir $(C_SOURCES)))
+
+# add ASM to objects
+OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.S=.o)))
+vpath %.S $(sort $(dir $(ASM_SOURCES)))
+
+
+export LC_ALL=C
+CC = $(TOOLCHAIN_PATH)/bin/avr-gcc.exe -fdiagnostics-color=always
+AS = $(TOOLCHAIN_PATH)/bin/avr-gcc.exe -fdiagnostics-color=always -x assembler-with-cpp
+CP = $(TOOLCHAIN_PATH)/bin/avr-objcopy.exe
+DP = $(TOOLCHAIN_PATH)/bin/avr-objdump.exe
+AR = $(TOOLCHAIN_PATH)/bin/avr-ar.exe
+SZ = $(TOOLCHAIN_PATH)/bin/avr-size.exe
+HEX = $(CP) -O ihex
+BIN = $(CP) -O binary -S
+#RM = rm -rf
+# Windows
+RM = rd /s /q
+
+
+#----- Build the application -------------------------------------------
+# default action: build all
+all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/EEPROM.hex $(BUILD_DIR)/$(TARGET).lss size
+
+# create object files from C files
+$(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR)
+	@echo 'Compiling C source: $<'
+	@$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
+
+# create object files from ASM files
+$(BUILD_DIR)/%.o: %.S Makefile | $(BUILD_DIR)
+	@echo 'Compiling ASM source: $<'
+	@$(AS) -c $(AFLAGS) $< -o $@
+
+# create aplication ELF file
+$(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
+	@echo 'Building target: $@'
+	@$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+
+# create aplication FLASH intel HEX file
+$(BUILD_DIR)/$(TARGET).hex: $(BUILD_DIR)/$(TARGET).elf
+	@$(HEX) -R .eeprom $< $@
+
+# create aplication EEPROM intel HEX file
+$(BUILD_DIR)/EEPROM.hex: $(BUILD_DIR)/$(TARGET).elf
+#	@$(HEX) -j .eeprom --change-section-lma .eeprom=0 $< $@ 2> /dev/null
+#TODO: DOES NOT WORK IN WINDOWS !!!!!!!!!!!!!
+	@$(HEX) -j .eeprom --change-section-lma .eeprom=0 $< $@ 2>nul
+
+# disassembly EFL
+$(BUILD_DIR)/$(TARGET).lss: $(BUILD_DIR)/$(TARGET).elf
+	@echo 'Invoking: AVR Create Extended Listing $@'
+	@$(DP) -h -S $< > $@
+
+# Create build directory
+$(BUILD_DIR):
+	@mkdir $@
+
+# Prints memory usage info
+size:
+	@echo ' '
+	@$(SZ) --format=avr --mcu=$(CHIP) $(BUILD_DIR)/$(TARGET).elf
+
+# Avrdude
+dump_eeprom:
+	@echo "dump eeprom" | $(AVRDUDE) -t
+
+flash:
+	@$(AVRDUDE) -U flash:w:$(BUILD_DIR)/$(TARGET).elf:e
+
+flash_all:
+	@$(AVRDUDE) -U flash:w:$(BUILD_DIR)/$(TARGET).elf:e -U eeprom:w:$(BUILD_DIR)/$(TARGET).elf:e
+
+chip_test:
+	@$(AVRDUDE)
+
+build_and_flash: all flash
+
+# Clean up
+clean:
+	@$(RM) $(BUILD_DIR)
