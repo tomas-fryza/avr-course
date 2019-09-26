@@ -18,7 +18,7 @@
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
-#define LED_PIN     PB5
+#define LED_GREEN   PB5
 #define BLINK_DELAY 25
 
 /* Variables ---------------------------------------------------------*/
@@ -33,16 +33,16 @@
 int main(void)
 {
     /* Set output pin */
-    DDRB |= _BV(LED_PIN);           /* DDRB = DDRB or (0010 0000) */
+    DDRB |= _BV(LED_GREEN);         /* DDRB = DDRB or (0010 0000) */
 
     /* Turn LED off */
-    PORTB &= ~_BV(LED_PIN);         /* PORTB = PORTB and (0010 0000) */
+    PORTB &= ~_BV(LED_GREEN);       /* PORTB = PORTB and (0010 0000) */
 
     /* Infinite loop */
     for (;;)
     {
         /* Invert LED and delay */
-        PORTB ^= _BV(LED_PIN);      /* PORTB = PORTB xor (0010 0000) */
+        PORTB ^= _BV(LED_GREEN);    /* PORTB = PORTB xor (0010 0000) */
         _delay_ms(BLINK_DELAY);     /* Wait for several milisecs */
     }
 
