@@ -3,13 +3,13 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-11-28
- * Last update: 2019-09-26
+ * Last update: 2019-09-27
  * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Alternately switch two LEDs with a push button.
- * TODO: On a breadboard, connect a push button and a second LED 
+ * TODO: On a breadboard, connect push button and second LED 
  *       including the corresponding resistor.
- * NOTE: 
+ * NOTE: Use internal pull-up resistor for push button.
  */
 
 /* Includes ----------------------------------------------------------*/
@@ -33,14 +33,14 @@
 int main(void)
 {
     /* Set output pin to low level */
-    DDRB |= _BV(LED_GREEN);         /* or */
-    PORTB &= ~_BV(LED_GREEN);       /* and */
+    DDRB |= _BV(LED_GREEN);         /* or: Set to 1 */
+    PORTB &= ~_BV(LED_GREEN);       /* and: Clear to 0 */
 
     /* Infinite loop */
     for (;;)
     {
         /* Invert LED and delay */
-        PORTB ^= _BV(LED_GREEN);    /* xor */
+        PORTB ^= _BV(LED_GREEN);    /* xor: Invert bit */
         _delay_ms(BLINK_DELAY);     /* Wait for several milisecs */
     }
 
