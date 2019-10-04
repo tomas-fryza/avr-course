@@ -33,16 +33,46 @@
 #include "gpio.h"
 
 /* Define ------------------------------------------------------------*/
-/* Address of data direction register of port x */
-#define DDR(x) (*(&x - 1))
 
 /* Functions ---------------------------------------------------------*/
-void GPIO_init_pin(xxx)
+void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 {
+    // Body of the function
+    *reg_name |= _BV(pin_num);
 }
-
 
 /*--------------------------------------------------------------------*/
-void GPIO_write_pin(uint8_t ...)
+//void GPIO_config_input_nopull(volatile uint8_t *reg_name, uint8_t pin_num)
+//{
+    // Body of the function
+//}
+
+/*--------------------------------------------------------------------*/
+//void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
+//{
+    // Body of the function
+//}
+
+/*--------------------------------------------------------------------*/
+void GPIO_write(volatile uint8_t *reg_name, uint8_t pin_num, uint8_t pin_val)
 {
+    // Body of the function
+    if (pin_val == PIN_LOW) {
+        *reg_name = *reg_name & ~_BV(pin_num);
+    }
+    else {
+        *reg_name = *reg_name | _BV(pin_num);
+    }
 }
+
+/*--------------------------------------------------------------------*/
+//void GPIO_toggle(volatile uint8_t *reg_name, uint8_t pin_num)
+//{
+    // Body of the function
+//}
+
+/*--------------------------------------------------------------------*/
+//uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num)
+//{
+    // Body of the function
+//}

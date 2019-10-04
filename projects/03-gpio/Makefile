@@ -19,6 +19,7 @@ SRCS := $(wildcard *.c)
 #SRCS += $(LIBRARY_DIR)/src/lcd.c
 #SRCS += $(LIBRARY_DIR)/src/uart.c
 #SRCS += $(LIBRARY_DIR)/src/twi.c
+SRCS += $(LIBRARY_DIR)/src/gpio.c
 ASSRC := $(wildcard *.S)
 
 

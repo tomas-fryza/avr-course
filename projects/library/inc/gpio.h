@@ -37,10 +37,10 @@
  *  @brief     GPIO library for AVR-GCC.
  *
  *  @details   The library contains functions for controlling the gpio 
- *             pin
+ *             pin(s)
  *
  *  @author    Tomas Fryza, Brno University of Technology, Czechia
- *  @date      2019-09-26
+ *  @date      2019-10-04
  *  @version   v1.0
  *  @copyright (c) 2019 Tomas Fryza, MIT License
  *
@@ -48,18 +48,32 @@
  */
 
 /* Includes ----------------------------------------------------------*/
- #include <avr/io.h>
+#include <avr/io.h>
 
 /* Define ------------------------------------------------------------*/
-/** @brief ... */
-#define PIN_RESET 0
+/** @brief Defines logical values of IO pin */
+#define PIN_LOW 0
+#define PIN_HIGH 1
 
 /* Function prototypes -----------------------------------------------*/
+/**
+ *  @brief Configures one output pin
+ *  @param *reg_name - Data Direction Register name of IO port, such as 
+ *                     DDRB, DDRD, ...
+ *  @param pin_num - Pin designation in the interval 0 to 7
+ *  @retval None
+ */
+void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num);
+
 /**
  *  @brief ...
  *  @param ... - 
  *  @retval ... - 
  */
-void GPIO_init_pin(xxx);
+void GPIO_config_input_nopull(volatile uint8_t *reg_name, uint8_t pin_num);
+void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num);
+void GPIO_write(volatile uint8_t *reg_name, uint8_t pin_num, uint8_t pin_val);
+void GPIO_toggle(volatile uint8_t *reg_name, uint8_t pin_num);
+uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num);
 
 #endif /* GPIO_H_INCLUDED */
