@@ -34,24 +34,27 @@
   */
 int main(void)
 {
-    /* Set output pins (two LEDs) to low level */
-    DDRB |= _BV(LED_GREEN);         /* or: Set direction to 1 */
-    DDRB |= _BV(LED_RED);
-    PORTB &= ~_BV(LED_GREEN);       /* and: Clear value to 0 */
-    PORTB &= ~_BV(LED_RED);
+    /* Set output pins of two LEDs to low level */
+    /* LED_GREEN */
+    DDRB = DDRB | _BV(LED_GREEN);       /* or: Set bit to 1 */
+    PORTB = PORTB & ~_BV(LED_GREEN);    /* and: Clear bit to 0 */
+    /* LED_RED */
+    DDRB = DDRB | _BV(LED_RED);
+    PORTB = PORTB & ~_BV(LED_RED);
 
-    /* Activate internal pull-up resistor */
-    DDRD &= ~_BV(BTN_BLUE);         /* DDRD2 = 0 */
-    PORTD |= _BV(BTN_BLUE);         /* PORTD2 = 1 */
+    /* Configure input pin of push button and enable internal pull-up
+       resistor */
+    DDRD = DDRD & ~_BV(BTN_BLUE);       /* DDRD2 = 0 */
+    PORTD = PORTD | _BV(BTN_BLUE);      /* PORTD2 = 1 */
 
     /* Infinite loop */
-    for (;;)
-    {                               /* Test if input value is low */
+    for (;;) {
+        /* Test if push button value is low */
         if (bit_is_clear(PIND, BTN_BLUE)) {
             /* Invert LED and delay */
-            PORTB ^= _BV(LED_GREEN);    /* xor: Invert bit */
-            PORTB ^= _BV(LED_RED);
-            _delay_ms(BLINK_DELAY);     /* Wait for several milisecs */
+            PORTB = PORTB ^ _BV(LED_GREEN); /* xor: Invert bit */
+            PORTB = PORTB ^ _BV(LED_RED);
+            _delay_ms(BLINK_DELAY);
         }
     }
 

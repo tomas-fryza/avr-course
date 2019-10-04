@@ -3,7 +3,7 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-09-27
- * Last update: 2019-07-16
+ * Last update: 2019-10-04
  * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Blink a LED with delay function.
@@ -33,16 +33,15 @@
 int main(void)
 {
     /* Set output pin */
-    DDRB = DDRB | _BV(LED_GREEN);   /* DDRB = DDRB or (0010 0000) */
+    DDRB = DDRB | _BV(LED_GREEN);       /* DDRB or 0010 0000 */
 
-    /* Turn LED off */
-    PORTB = PORTB & ~_BV(LED_GREEN);/* PORTB = PORTB and (0010 0000) */
+    /* Set pin low, ie turn LED off */
+    PORTB = PORTB & ~_BV(LED_GREEN);    /* PORTB and 1101 1111 */
 
     /* Infinite loop */
-    for (;;)
-    {
+    for (;;) {
         /* Invert LED and delay */
-        PORTB = PORTB ^ _BV(LED_GREEN); /* PORTB = PORTB xor (0010 0000) */
+        PORTB = PORTB ^ _BV(LED_GREEN); /* PORTB xor 0010 0000 */
         _delay_ms(BLINK_DELAY);         /* Wait for several milisecs */
     }
 

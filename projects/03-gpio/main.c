@@ -41,11 +41,11 @@ int main(void)
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
     /* LED_RED */
 
-    /* Configure push button with internal pull-up resistor */
+    /* Configure input pin of push button and enable internal pull-up
+       resistor */
 
     /* Infinite loop */
-    for (;;)
-    {
+    for (;;) {
         /* Test if push button value is low */
             /* Invert LED and delay */
             _delay_ms(BLINK_DELAY);
