@@ -38,7 +38,7 @@
 void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     // Body of the function
-    *reg_name |= _BV(pin_num);
+    *reg_name = *reg_name | _BV(pin_num);
 }
 
 /*--------------------------------------------------------------------*/
