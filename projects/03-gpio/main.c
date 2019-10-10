@@ -7,7 +7,7 @@
  * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Control LEDs using functions from GPIO library.
- * TODO: Create and test functions to control GPIO pin.
+ * TODO: Create and test functions to control GPIO pins.
  * NOTE: Store gpio.c and gpio.h files in library/src and library/inc
  *       folders.
  */
@@ -29,10 +29,10 @@
 
 /* Functions ---------------------------------------------------------*/
 /**
-  * Brief:  Main program. Blink two LEDs with a push button.
-  * Input:  None
-  * Return: None
-  */
+ *  Brief:  Main program. Toggle two LEDs with the push button.
+ *  Input:  None
+ *  Return: None
+ */
 int main(void)
 {
     /* Set output pins of two LEDs to low level */

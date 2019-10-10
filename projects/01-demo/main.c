@@ -6,10 +6,10 @@
  * Last update: 2019-10-04
  * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
- * Description: Blink a LED with delay function.
+ * Description: Blink a LED with the delay function.
  * TODO: Verify functionality of LED blinker.
  * NOTE: Macro _BV converts a bit number into a byte value (see AVR Libc
- * Reference Manual).
+ *       Reference Manual).
  */
 
 /* Includes ----------------------------------------------------------*/
@@ -26,22 +26,22 @@
 
 /* Functions ---------------------------------------------------------*/
 /**
-  * Brief:  Main program. Blink a LED with delay function.
-  * Input:  None
-  * Return: None
-  */
+ *  Brief:  Main program. Toggle a LED with the delay function.
+ *  Input:  None
+ *  Return: None
+ */
 int main(void)
 {
     /* Set output pin */
-    DDRB = DDRB | _BV(LED_GREEN);       /* DDRB or 0010 0000 */
+    DDRB = DDRB | _BV(LED_GREEN);       /* DDRB OR 0010 0000 */
 
     /* Set pin low, ie turn LED off */
-    PORTB = PORTB & ~_BV(LED_GREEN);    /* PORTB and 1101 1111 */
+    PORTB = PORTB & ~_BV(LED_GREEN);    /* PORTB AND 1101 1111 */
 
     /* Infinite loop */
     for (;;) {
         /* Invert LED and delay */
-        PORTB = PORTB ^ _BV(LED_GREEN); /* PORTB xor 0010 0000 */
+        PORTB = PORTB ^ _BV(LED_GREEN); /* PORTB XOR 0010 0000 */
         _delay_ms(BLINK_DELAY);         /* Wait for several milisecs */
     }
 

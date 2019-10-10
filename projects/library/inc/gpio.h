@@ -51,33 +51,42 @@
 #include <avr/io.h>
 
 /* Define ------------------------------------------------------------*/
-/** @brief Defines logical values of IO pin */
+/** @brief Defines logical values of IO pin. */
 #define PIN_LOW 0
 #define PIN_HIGH 1
 
 /* Function prototypes -----------------------------------------------*/
 /**
- *  @brief Configures one output pin
- *  @param *reg_name - Data Direction Register name of IO port, such as 
- *                     DDRB, DDRD, ...
+ *  @brief Configures one output pin.
+ *  @param reg_name - Data Direction Register name of IO port, such as 
+ *                    DDRB, DDRD, ...
  *  @param pin_num - Pin designation in the interval 0 to 7
  *  @retval None
  */
-void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num);
+void GPIO_config_output(volatile uint8_t *reg_name,
+                        uint8_t pin_num);
 
 /**
  *  @brief ...
  *  @param ... - 
  *  @retval ... - 
  */
-void GPIO_write(volatile uint8_t *reg_name, uint8_t pin_num, uint8_t pin_val);
-void GPIO_toggle(volatile uint8_t *reg_name, uint8_t pin_num);
+void GPIO_write(volatile uint8_t *reg_name,
+                uint8_t pin_num,
+                uint8_t pin_val);
+
+void GPIO_toggle(volatile uint8_t *reg_name,
+                 uint8_t pin_num);
+
 void GPIO_config_input_nopull(volatile uint8_t *ddr_reg_name, 
                               volatile uint8_t *port_reg_name,
                               uint8_t pin_num);
+
 void GPIO_config_input_pullup(volatile uint8_t *ddr_reg_name,
                               volatile uint8_t *port_reg_name,
                               uint8_t pin_num);
-uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num);
+
+uint8_t GPIO_read(volatile uint8_t *reg_name,
+                  uint8_t pin_num);
 
 #endif /* GPIO_H_INCLUDED */
