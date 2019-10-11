@@ -60,7 +60,7 @@ void GPIO_write(volatile uint8_t *reg_name,
 /*void GPIO_toggle(volatile uint8_t *reg_name,
                  uint8_t pin_num)
 {
-    // Body of the function
+    // TODO: Body of the function
 }
 */
 
@@ -69,7 +69,7 @@ void GPIO_write(volatile uint8_t *reg_name,
                               volatile uint8_t *port_reg_name,
                               uint8_t pin_num)
 {
-    // Body of the function
+    // TODO: Body of the function
 }
 */
 
@@ -78,7 +78,7 @@ void GPIO_write(volatile uint8_t *reg_name,
                               volatile uint8_t *port_reg_name,
                               uint8_t pin_num)
 {
-    // Body of the function
+    // TODO: Body of the function
 }
 */
 
@@ -86,6 +86,6 @@ void GPIO_write(volatile uint8_t *reg_name,
 /*uint8_t GPIO_read(volatile uint8_t *reg_name,
                   uint8_t pin_num)
 {
-    // Body of the function
+    // TODO: Body of the function
 }
 */
