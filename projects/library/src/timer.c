@@ -45,31 +45,31 @@ void TIM_config_prescaler(uint8_t timer_name,
                 /* 001 */
                 TCCR0B = TCCR0B & ~_BV(CS02);
                 TCCR0B = TCCR0B & ~_BV(CS01);
-                TCCR0B = TCCR0B | _BV(CS00);
+                TCCR0B = TCCR0B |  _BV(CS00);
                 break;
             case TIM_PRESC_8:
                 /* 010 */
                 TCCR0B = TCCR0B & ~_BV(CS02);
-                TCCR0B = TCCR0B | _BV(CS01);
+                TCCR0B = TCCR0B |  _BV(CS01);
                 TCCR0B = TCCR0B & ~_BV(CS00);
                 break;
             case TIM_PRESC_64:
                 /* 011 */
                 TCCR0B = TCCR0B & ~_BV(CS02);
-                TCCR0B = TCCR0B | _BV(CS01);
-                TCCR0B = TCCR0B | _BV(CS00);
+                TCCR0B = TCCR0B |  _BV(CS01);
+                TCCR0B = TCCR0B |  _BV(CS00);
                 break;
             case TIM_PRESC_256:
                 /* 100 */
-                TCCR0B = TCCR0B | _BV(CS02);
+                TCCR0B = TCCR0B |  _BV(CS02);
                 TCCR0B = TCCR0B & ~_BV(CS01);
                 TCCR0B = TCCR0B & ~_BV(CS00);
                 break;
             case TIM_PRESC_1024:
                 /* 101 */
-                TCCR0B = TCCR0B | _BV(CS02);
+                TCCR0B = TCCR0B |  _BV(CS02);
                 TCCR0B = TCCR0B & ~_BV(CS01);
-                TCCR0B = TCCR0B | _BV(CS00);
+                TCCR0B = TCCR0B |  _BV(CS00);
                 break;
             default:
                 /* 000: No clock source (Timer/Counter stopped) */
