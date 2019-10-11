@@ -18,6 +18,7 @@
 #include <avr/io.h>
 #include "gpio.h"
 #include "timer.h"
+#include <avr/interrupt.h>
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
@@ -36,7 +37,6 @@
  */
 int main(void)
 {
-    /* Set output pins of two LEDs to low level */
     /* LED_GREEN */
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
@@ -44,10 +44,11 @@ int main(void)
     // TODO: Configure red LED
 
     /* Set Timer0 */
-    // TODO: Configure Timer0 clock source and enable overflow interrupt
+    TIM_config_prescaler(TIM0, TIM_PRESC_1024);
+    TIM_config_interrupt(TIM0, TIM_OVERFLOW_ENABLE);
 
     /* Set Timer1 */
-    // TODO: Configure Timer0 clock source and enable overflow interrupt
+    // TODO: Configure Timer1 clock source and enable overflow interrupt
 
     /* Enable interrupts by setting the global interrupt mask */
     sei();
@@ -70,7 +71,8 @@ ISR(TIMER0_OVF_vect)
 /**
  *  Brief: Timer/Counter1 overflow interrupt routine. Toggle red LED.
  */
-ISR(TIMER1_OVF_vect)
+/*ISR(TIMER1_OVF_vect)
 {
     // TODO: Toggle red LED
 }
+*/
