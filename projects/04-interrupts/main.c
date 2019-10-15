@@ -55,6 +55,7 @@ int main(void)
 
     /* Infinite loop */
     for (;;) {
+        ;stage
     }
 
     return (0);
