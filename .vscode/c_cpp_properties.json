@@ -1,0 +1,9 @@
+{"configurations":
+    [{  "name": "AVR",
+        "includePath": ["${workspaceFolder}/**", "/opt/avr8-gnu-toolchain-linux_x86_64/avr/include/**"],
+        "defines": ["__AVR_ATmega328P__"],
+        "compilerPath": "/opt/avr8-gnu-toolchain-linux_x86_64/bin/avr-gcc",
+        "cStandard": "c99",
+        "cppStandard": "c++11",
+        "intelliSenseMode": "gcc-x64"}],
+"version": 4}
