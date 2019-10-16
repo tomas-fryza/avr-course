@@ -8,8 +8,8 @@
  * ---------------------------------------------------------------------
  * Description: Control LEDs using functions from GPIO and Timer 
  *              libraries. Do not use delay library any more.
- * TODO: Create and test functions to control 8-bit Timer/Counter0 and 
- *       16-bit Timer/Counter1 modules.
+ * TODO: Create and test functions to control 8-bit Timer/Counter0, 
+ *       16-bit Timer/Counter1, and 8-bit Timer/Counter2 modules.
  * NOTE: Store timer.c and timer.h files in library/src and library/inc
  *       folders.
  */
@@ -23,6 +23,7 @@
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
 #define LED_GREEN   PB5
+#define LED_BLUE    PB3
 #define LED_RED     PB0
 
 /* Variables ---------------------------------------------------------*/
@@ -30,7 +31,7 @@
 
 /* Functions ---------------------------------------------------------*/
 /**
- *  Brief:  Main program. Toggle two LEDs with the modules of internal 
+ *  Brief:  Main program. Toggle three LEDs with the modules of internal 
  *          8- and 16-bit timers.
  *  Input:  None
  *  Return: None
@@ -40,6 +41,8 @@ int main(void)
     /* LED_GREEN */
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
+    /* LED_BLUE */
+    // TODO: Configure blue LED
     /* LED_RED */
     // TODO: Configure red LED
 
@@ -49,6 +52,9 @@ int main(void)
 
     /* Set Timer1 */
     // TODO: Configure Timer1 clock source and enable overflow interrupt
+
+    /* Set Timer2 */
+    // TODO: Configure Timer2 clock source and enable overflow interrupt
 
     /* Enable interrupts by setting the global interrupt mask */
     sei();
@@ -69,9 +75,18 @@ ISR(TIMER0_OVF_vect)
 }
 
 /**
- *  Brief: Timer/Counter1 overflow interrupt routine. Toggle red LED.
+ *  Brief: Timer/Counter1 overflow interrupt routine. Toggle blue LED.
  */
 /*ISR(TIMER1_OVF_vect)
+{
+    // TODO: Toggle blue LED
+}
+*/
+
+/**
+ *  Brief: Timer/Counter2 overflow interrupt routine. Toggle red LED.
+ */
+/*ISR(TIMER2_OVF_vect)
 {
     // TODO: Toggle red LED
 }
