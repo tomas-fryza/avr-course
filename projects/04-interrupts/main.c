@@ -3,7 +3,7 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-11-28
- * Last update: 2019-10-11
+ * Last update: 2019-10-16
  * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Control LEDs using functions from GPIO and Timer 
