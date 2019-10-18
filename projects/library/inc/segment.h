@@ -40,7 +40,7 @@
  *             segment display using shift registers 74HC595.
  *
  *  @author    Tomas Fryza, Brno University of Technology, Czechia
- *  @date      2019-10-16
+ *  @date      2019-10-18
  *  @version   v1.0
  *  @copyright (c) 2019 Tomas Fryza, MIT License
  */
@@ -49,16 +49,25 @@
 #include <avr/io.h>
 
 /* Define ------------------------------------------------------------*/
-/** @brief Defines the xxx. */
-//#define TIM0 0
+/** @brief Defines the interface of 7-segment display. */
+#define SEGMENT_DATA    PB0
+#define SEGMENT_CLK     PD7
+#define SEGMENT_LATCH   PD4
 
 /* Function prototypes -----------------------------------------------*/
 /**
  *  @brief Xxx.
  *  @param xxx - Xxxx
+ *  @param xxx - Xxxx
  *  @retval None
  */
-//void SEG_xxx(uint8_t xxx,
-//             uint8_t xxx);
+void SEG_putc(uint8_t digit,
+              uint8_t position);
+
+/**
+ *  @brief Xxx.
+ *  @retval None
+ */
+void SEG_toggle_clk(void);
 
 #endif /* SEGMENT_H_INCLUDED */
