@@ -53,7 +53,7 @@ int main(void)
     /* Infinite loop */
     for (;;) {
         // TODO: Use function to display digit 1 at position 0
-        // SEG_putc(1, 0);
+        SEG_putc(1, 0);
     }
 
     return (0);
