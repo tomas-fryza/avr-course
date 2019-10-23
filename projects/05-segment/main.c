@@ -22,10 +22,10 @@
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
-#define LED_D1          PB5
-#define BTN_S1          PC1 // PCINT 9
-#define BTN_S2          PC2 // PCINT 10
-#define BTN_S3          PC3 // PCINT 11
+#define LED_D1      PB5
+#define BTN_S1      PC1     // PCINT 9
+#define BTN_S2      PC2     // PCINT 10
+#define BTN_S3      PC3     // PCINT 11
 
 /* Variables ---------------------------------------------------------*/
 /* Function prototypes -----------------------------------------------*/
@@ -53,7 +53,7 @@ int main(void)
     /* Infinite loop */
     for (;;) {
         // TODO: Use function to display digit 1 at position 0
-        SEG_putc(1, 0);
+        //SEG_putc(1, 0);
     }
 
     return (0);
