@@ -6,11 +6,13 @@
  * Last update: 2019-10-16
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
- * Description: Decimal counter with data display on 7-segment display.
- * TODO: Create and test functions to operate a 7-segment display using
- *       shift registers.
- * NOTE: Store segment.c and segment.h files in library/src and 
- *       library/inc folders.
+ * Description:
+ *    Decimal counter with 7-segment display output.
+ * 
+ * TODO:
+ *    Create and test 7-segment display control functions using shift 
+ *    registers. Save the created library in library/src/segment.c and 
+ *    library/inc/segment.h files.
  */
 
 /* Includes ----------------------------------------------------------*/

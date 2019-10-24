@@ -7,7 +7,7 @@
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description:
- *    Decimal counter with data display on LCD display.
+ *    Decimal counter with data output on LCD display.
  * 
  * Note:
  *    Modified version of Peter Fleury's LCD library with R/W pin 
@@ -38,7 +38,7 @@ int main(void)
      * TODO: Initialize display and test different types of cursor */
     lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
-    // Display string without auto linefeed
+    // Display string
     lcd_puts("LCD testing");
 
     /* Timer1

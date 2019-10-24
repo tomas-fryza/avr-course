@@ -6,10 +6,12 @@
  * Last update: 2019-10-04
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
- * Description: Control LEDs using functions from GPIO library.
- * TODO: Create and test functions to control GPIO pins.
- * NOTE: Store gpio.c and gpio.h files in library/src and library/inc
- *       folders.
+ * Description:
+ *    Control LEDs using functions from GPIO library.
+ * 
+ * TODO:
+ *    Create and test functions to control GPIO pins. Store the created
+ *    library in library/src/gpio.c and library/inc/gpio.h files.
  */
 
 /* Includes ----------------------------------------------------------*/

@@ -6,10 +6,13 @@
  * Last update: 2019-10-02
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
- * Description: Alternately toggle two LEDs with the push button.
- * TODO: On a breadboard, connect push button and second LED 
- *       including the corresponding resistor.
- * NOTE: Use internal pull-up resistor for push button.
+ * Description:
+ *    Alternately toggle two LEDs with the push button.
+ * 
+ * TODO:
+ *    On a breadboard, connect push button and second LED including 
+ *    the corresponding resistor. Use internal pull-up resistor for 
+ *    push button.
  */
 
 /* Includes ----------------------------------------------------------*/

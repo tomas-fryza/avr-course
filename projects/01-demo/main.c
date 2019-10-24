@@ -6,10 +6,12 @@
  * Last update: 2019-10-04
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
- * Description: Blink a LED with the delay function.
- * TODO: Verify functionality of LED blinker.
- * NOTE: Macro _BV converts a bit number into a byte value (see AVR Libc
- *       Reference Manual).
+ * Description:
+ *    Blink a LED with the delay function.
+ * 
+ * Note:
+ *    Macro _BV() converts a bit number into a byte value (see AVR Libc
+ *    Reference Manual).
  */
 
 /* Includes ----------------------------------------------------------*/
