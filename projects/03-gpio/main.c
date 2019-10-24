@@ -4,7 +4,7 @@
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2019-09-26
  * Last update: 2019-10-04
- * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
+ * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Control LEDs using functions from GPIO library.
  * TODO: Create and test functions to control GPIO pins.
@@ -35,19 +35,19 @@
  */
 int main(void)
 {
-    /* Set output pins of two LEDs to low level */
-    /* LED_GREEN */
+    // Set output pins of two LEDs to low level
+    // LED_GREEN
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
-    /* LED_RED */
+    // LED_RED
 
     /* Configure input pin of push button and enable internal pull-up
        resistor */
 
-    /* Infinite loop */
+    // Infinite loop
     for (;;) {
-        /* Test if push button value is low */
-            /* Invert LED and delay */
+        // Test if push button value is low
+            // Invert LED and delay
             _delay_ms(BLINK_DELAY);
     }
 

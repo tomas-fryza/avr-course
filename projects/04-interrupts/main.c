@@ -4,7 +4,7 @@
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-11-28
  * Last update: 2019-10-16
- * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
+ * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Control LEDs using functions from GPIO and Timer 
  *              libraries. Do not use delay library any more.
@@ -38,28 +38,32 @@
  */
 int main(void)
 {
-    /* LED_GREEN */
+    // LED_GREEN
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
-    /* LED_BLUE */
-    // TODO: Configure blue LED
-    /* LED_RED */
-    // TODO: Configure red LED
+    /* LED_BLUE
+     * TODO: Configure blue LED */
 
-    /* Set Timer0 */
+    /* LED_RED
+     * TODO: Configure red LED */
+
+    /* Set Timer1
+     * Configure Timer1 clock source and enable overflow  interrupt */
     TIM_config_prescaler(TIM0, TIM_PRESC_1024);
     TIM_config_interrupt(TIM0, TIM_OVERFLOW_ENABLE);
 
-    /* Set Timer1 */
-    // TODO: Configure Timer1 clock source and enable overflow interrupt
+    /* Set Timer1
+     * TODO: Configure Timer1 clock source and enable overflow 
+     *       interrupt */
 
-    /* Set Timer2 */
-    // TODO: Configure Timer2 clock source and enable overflow interrupt
+    /* Set Timer2
+     * TODO: Configure Timer2 clock source and enable overflow 
+     *       interrupt */
 
-    /* Enable interrupts by setting the global interrupt mask */
+    // Enables interrupts by setting the global interrupt mask
     sei();
 
-    /* Infinite loop */
+    // Infinite loop
     for (;;) {
     }
 

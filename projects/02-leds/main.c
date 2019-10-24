@@ -4,7 +4,7 @@
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-11-28
  * Last update: 2019-10-02
- * Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
+ * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description: Alternately toggle two LEDs with the push button.
  * TODO: On a breadboard, connect push button and second LED 
@@ -34,25 +34,25 @@
  */
 int main(void)
 {
-    /* Set output pins of two LEDs to low level */
-    /* LED_GREEN */
-    DDRB = DDRB | _BV(LED_GREEN);       /* or: Set bit to 1 */
-    PORTB = PORTB & ~_BV(LED_GREEN);    /* and: Clear bit to 0 */
-    /* LED_RED */
+    // Set output pins of two LEDs to low level
+    // LED_GREEN
+    DDRB = DDRB | _BV(LED_GREEN);       // or: Set bit to 1
+    PORTB = PORTB & ~_BV(LED_GREEN);    // and: Clear bit to 0
+    // LED_RED
     DDRB = DDRB | _BV(LED_RED);
     PORTB = PORTB & ~_BV(LED_RED);
 
     /* Configure input pin of push button and enable internal pull-up
        resistor */
-    DDRD = DDRD & ~_BV(BTN_BLUE);       /* DDRD2 = 0 */
-    PORTD = PORTD | _BV(BTN_BLUE);      /* PORTD2 = 1 */
+    DDRD = DDRD & ~_BV(BTN_BLUE);       // DDRD2 = 0
+    PORTD = PORTD | _BV(BTN_BLUE);      // PORTD2 = 1
 
-    /* Infinite loop */
+    // Infinite loop
     for (;;) {
-        /* Test if push button value is low */
+        // Test if push button value is low
         if (bit_is_clear(PIND, BTN_BLUE)) {
-            /* Invert LED and delay */
-            PORTB = PORTB ^ _BV(LED_GREEN); /* xor: Invert bit */
+            // Invert LED and delay
+            PORTB = PORTB ^ _BV(LED_GREEN); // xor: Invert bit
             PORTB = PORTB ^ _BV(LED_RED);
             _delay_ms(BLINK_DELAY);
         }
