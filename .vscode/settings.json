@@ -2,6 +2,7 @@
     "files.associations": {
         "*.S": "avr",
         "*.lss": "avr",
-        "timer.h": "c"
+        "timer.h": "c",
+        "interrupt.h": "c"
     }
 }
