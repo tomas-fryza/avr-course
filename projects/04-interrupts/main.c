@@ -67,6 +67,7 @@ int main(void)
     for (;;) {
     }
 
+    // Will never reach this
     return (0);
 }
 

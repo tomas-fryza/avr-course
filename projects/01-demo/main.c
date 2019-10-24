@@ -45,5 +45,6 @@ int main(void)
         _delay_ms(BLINK_DELAY);         // Wait for several milisecs
     }
 
+    // Will never reach this
     return (0);
 }

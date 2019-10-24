@@ -56,6 +56,7 @@ int main(void)
         //SEG_putc(1, 0);
     }
 
+    // Will never reach this
     return (0);
 }
 
