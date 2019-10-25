@@ -3,7 +3,7 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-10-16
- * Last update: 2019-10-24
+ * Last update: 2019-10-25
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description:
@@ -18,6 +18,7 @@
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include <stdlib.h>             // itoa() function
 #include "timer.h"
 #include "lcd.h"
 
@@ -35,15 +36,22 @@
 int main(void)
 {
     /* LCD display
-     * TODO: Initialize display and test different types of cursor */
-    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
+     * TODO: See Peter Fleury's online manual for LCD library 
+     * http://homepage.hispeed.ch/peterfleury/avr-software.html
+     * Initialize display and test different types of cursor */
+    lcd_init(LCD_DISP_ON);
 
-    // Display string
+    // Display string without auto linefeed
     lcd_puts("LCD testing");
+
+    // TODO: Display variable value in decimal, binary, and hexadecimal
 
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
      *       interrupt */
+
+    /* TODO: Design at least two user characters and store them in 
+     *       the display memory */
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -61,5 +69,5 @@ int main(void)
  */
 ISR(TIMER1_OVF_vect)
 {
-    // TODO: Increment counter value form 0 to 99
+    // TODO: Increment counter value form 0 to 255
 }
