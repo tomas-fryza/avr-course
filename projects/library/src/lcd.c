@@ -189,8 +189,10 @@ static void lcd_write(uint8_t data, uint8_t rs)
         LCD_DATA2_PORT |= _BV(LCD_DATA2_PIN);
         LCD_DATA3_PORT |= _BV(LCD_DATA3_PIN);
 
-        /* FRYZA: EXPERIMENTALLY ADDED FOR ARDUINO UNO */
-        _delay_ms(2);
+        /* FRYZA: EXPERIMENTALLY ADDED FOR ARDUINO UNO
+         * Delay MUST be greater than 679 us
+         */
+        _delay_us(750);
     }
 } /* lcd_write */
 
