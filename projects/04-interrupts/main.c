@@ -16,9 +16,9 @@
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "gpio.h"
 #include "timer.h"
-#include <avr/interrupt.h>
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/

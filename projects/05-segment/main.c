@@ -1,4 +1,4 @@
-/*
+﻿/*
  * ---------------------------------------------------------------------
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
@@ -17,10 +17,10 @@
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "gpio.h"
 #include "timer.h"
 #include "segment.h"
-#include <avr/interrupt.h>
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
