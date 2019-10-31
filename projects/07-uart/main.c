@@ -7,8 +7,8 @@
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description:
- *    Analog-to-Digital Conversion with data output on LCD display and
- *    UART.
+ *    Analog-to-digital conversion with displaying result on LCD and 
+ *    transmitting via UART.
  * 
  * Note:
  *    Peter Fleury's UART library.
@@ -24,7 +24,6 @@
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
-/** @brief Define UART buad rate. */
 #define UART_BAUD_RATE 9600
 
 /* Variables ---------------------------------------------------------*/
@@ -32,7 +31,7 @@
 
 /* Functions ---------------------------------------------------------*/
 /**
- *  Brief:  Main program. Read ADC value and transmit via UART.
+ *  Brief:  Main program. Read ADC result and transmit via UART.
  *  Input:  None
  *  Return: None
  */
@@ -50,7 +49,7 @@ int main(void)
     // Display string without auto linefeed
     lcd_puts("LCD testing");
     // Put string to ringbuffer for transmitting via UART.
-    uart_puts("UART testing");
+    uart_puts("UART testing\r\n");
 
     /* ADC
      * TODO: Configure ADC reference, clock source and enable 
