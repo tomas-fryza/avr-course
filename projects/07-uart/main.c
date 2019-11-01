@@ -50,11 +50,11 @@ int main(void)
     // Display string without auto linefeed
     lcd_puts("LCD testing");
     // Put string to ringbuffer for transmitting via UART.
-    uart_puts("UART testing");
+    uart_puts("UART testing\r\n");
 
     /* ADC
-     * TODO: Configure ADC reference, clock source and enable 
-     *       conversion complete interrupt */
+     * TODO: Configure ADC reference, clock source, enable ADC module, 
+     *       and enable conversion complete interrupt */
 
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
@@ -82,5 +82,11 @@ ISR(TIMER1_OVF_vect)
  */
 ISR(ADC_vect)
 {
-    // TODO: Read ADC value, update LCD and UART transmiter
+//    uint16_t value = 0;
+//    char uart_string[4];
+
+	// Read 10-bit ACD value
+//    value = ADC;
+
+    // TODO: Update LCD and UART transmiter
 }
