@@ -47,8 +47,8 @@ int main(void)
     /* LED_RED
      * TODO: Configure red LED */
 
-    /* Set Timer1
-     * Configure Timer1 clock source and enable overflow  interrupt */
+    /* Set Timer0
+     * Configure Timer0 clock source and enable overflow  interrupt */
     TIM_config_prescaler(TIM0, TIM_PRESC_1024);
     TIM_config_interrupt(TIM0, TIM_OVERFLOW_ENABLE);
 
