@@ -15,9 +15,9 @@
  */
 
 /* Includes ----------------------------------------------------------*/
+#include <stdlib.h>             // itoa() function
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include <stdlib.h>             // itoa() function
 #include "timer.h"
 #include "lcd.h"
 #include "uart.h"
