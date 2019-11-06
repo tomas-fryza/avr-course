@@ -39,17 +39,7 @@ int main(void)
 {
     // LCD display
     lcd_init(LCD_DISP_ON);
-
-    // UART: asynchronous, 8-bit data, no parity, 1-bit stop
-    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
-
-    // Enables interrupts by setting the global interrupt mask
-    sei();
-
-    // Display string without auto linefeed
     lcd_puts("LCD testing");
-    // Put string to ringbuffer for transmitting via UART.
-    uart_puts("UART testing\r\n");
 
     /* ADC
      * TODO: Configure ADC reference, clock source, enable ADC module, 
@@ -58,6 +48,15 @@ int main(void)
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
      *       interrupt */
+
+    // UART: asynchronous, 8-bit data, no parity, 1-bit stop
+    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
+
+    // Enables interrupts by setting the global interrupt mask
+    sei();
+
+    // Put string to ringbuffer for transmitting via UART.
+    uart_puts("UART testing\r\n");
 
     // Infinite loop
     for (;;) {
