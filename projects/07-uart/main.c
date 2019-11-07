@@ -3,19 +3,16 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2018-10-23
- * Last update: 2019-11-01
+ * Last update: 2019-11-07
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description:
  *    Analog-to-digital conversion with displaying result on LCD and 
  *    transmitting via UART.
- * 
- * Note:
- *    Peter Fleury's UART library.
  */
 
 /* Includes ----------------------------------------------------------*/
-#include <stdlib.h>             // itoa() function
+#include <stdlib.h>         // itoa() function
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "timer.h"
