@@ -3,6 +3,7 @@
         "*.S": "avr",
         "*.lss": "avr",
         "timer.h": "c",
-        "interrupt.h": "c"
+        "interrupt.h": "c",
+        "twi.h": "c"
     }
 }
