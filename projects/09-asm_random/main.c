@@ -21,6 +21,7 @@
 /* Typedef -----------------------------------------------------------*/
 typedef enum {
     IDLE_STATE = 1,
+    RAND4_STATE,
     RAND8_STATE,
     RAND16_STATE
 } state_t;
@@ -31,7 +32,6 @@ typedef enum {
 
 /* Variables ---------------------------------------------------------*/
 state_t current_state = IDLE_STATE;
-uint8_t number_of_values = 0;
 
 /* Function prototypes -----------------------------------------------*/
 void fsm_random(void);
@@ -57,7 +57,7 @@ int main(void)
 
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt every 33 msecs. */
+     *       interrupt every 33 msec. */
     TCCR1B |= _BV(CS11);
     TIMSK1 |= _BV(TOIE1);
 
@@ -88,31 +88,35 @@ ISR(TIMER1_OVF_vect)
  */
 void fsm_random(void)
 {
-    static uint8_t current_value = 0;
-    static uint8_t updated_value = 0;
+    static uint8_t values = 0;
+    static uint8_t last = 0;
+    static uint8_t new = 0;
     char uart_string[5];
 
     switch (current_state) {
     case IDLE_STATE:
-        if (number_of_values < N_GEN) {
-            uart_puts("\r\n8-bit LFSR-based values:\r\n");
+        if (values < N_GEN) {
             current_state = RAND8_STATE;
         }
         break;
 
     // Call 8-bit LFSR generator
     case RAND8_STATE:
-        updated_value = rand8_asm(current_value);
-        // TODO: Send updated value to UART
-        itoa(updated_value, uart_string, 10);
-        uart_puts(" ");
-        uart_puts(uart_string);
-        current_value = updated_value;
+        new = rand8_asm(last);
+        itoa(new, uart_string, 10);
+        uart_puts(" "); uart_puts(uart_string);
+        last = new;
 
-        number_of_values++;
-        if (number_of_values > N_GEN) {
+        values++;
+        if (values > N_GEN) {
             current_state = IDLE_STATE;
         }
+        break;
+
+    // Call 4-bit LFSR generator
+    case RAND4_STATE:
+        // TODO: Program 4-bit generator
+        current_state = IDLE_STATE;
         break;
 
     // Call 16-bit LFSR generator

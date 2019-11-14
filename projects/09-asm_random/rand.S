@@ -3,13 +3,12 @@
 ;* Author:      Tomas Fryza, Wykys
 ;*              Dept. of Radio Electronics, Brno Univ. of Technology
 ;* Created:     2017-11-09
-;* Last update: 2019-07-16
+;* Last update: 2019-11-14
 ;* Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
 ;* ---------------------------------------------------------------------
-;* Description: Implementation of 8- and 16-bit LFSR-based (Linear
-;* Feedback Shift Register) pseudo-random generators.
-;* TODO: Verify functionality of 8-bit pseudo-random generator and
-;* complete 16-bit generator.
+;* Description:
+;*    Implementation of 4-, 8- and 16-bit LFSR-based (Linear Feedback 
+;*    Shift Register) pseudo-random generators.
 ;*
 
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
@@ -19,6 +18,23 @@
 #define result  r16
 #define temp    r17
 #define input   r24
+
+;**
+; * Brief:  LFSR-based 4-bit pseudo-random generator.
+; * Input:  r24 - Last value of shift register
+; * Return: r24 - New value of shift register
+; * Note:   LFSR taps positions are: 3, 2
+; *
+.global rand4_asm
+rand4_asm:
+    push result         ; Save result on the Stack
+    push temp           ; Save temp on the Stack
+
+    ; WRITE YOUR CODE HERE
+
+    pop temp            ; Restore temp from Stack
+    pop result          ; Restore result from Stack
+    ret                 ; Return from subroutine
 
 ;**
 ; * Brief:  LFSR-based 8-bit pseudo-random generator.
@@ -68,7 +84,7 @@ rand8_asm:
 ; * Brief:  LFSR-based 16-bit pseudo-random generator.
 ; * Input:  r25:r24 - Current value of 16-bit shift register
 ; * Return: r25:r24 - Updated value of 16-bit shift register
-; * Note:   LFSR taps positions are: WRITE YOUR CODE HERE
+; * Note:   LFSR taps positions are: 15, 13, 12, 10
 ; *
 .global rand16_asm
 rand16_asm:
