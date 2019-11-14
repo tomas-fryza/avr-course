@@ -52,7 +52,7 @@ int main(void)
 
     /* Timer1
      * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt */
+     *       interrupt every 33 msec. */
 
     // Enables interrupts by setting the global interrupt mask
     sei();
