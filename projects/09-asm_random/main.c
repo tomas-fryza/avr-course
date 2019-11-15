@@ -23,12 +23,12 @@ typedef enum {
     IDLE_STATE = 1,
     RAND4_STATE,
     RAND8_STATE,
-    RAND16_STATE
+    RAND16_STATE,
+    UART_STATE
 } state_t;
 
 /* Define ------------------------------------------------------------*/
 #define UART_BAUD_RATE 9600
-#define N_GEN   30
 
 /* Variables ---------------------------------------------------------*/
 state_t current_state = IDLE_STATE;
@@ -36,12 +36,20 @@ state_t current_state = IDLE_STATE;
 /* Function prototypes -----------------------------------------------*/
 void fsm_random(void);
 /**
+ *  Brief:  LFSR-based 4-bit pseudo-random generator.
+ *  Input:  current - Current value of 4-bit shift register
+ *  Return: Updated value of 4-bit shift register
+ *  Note:   Function is implemented in AVR assembly.
+ */
+extern uint8_t rand4_asm(uint8_t current);
+
+/**
  *  Brief:  LFSR-based 8-bit pseudo-random generator.
- *  Input:  current_value - Current value of 8-bit shift register
+ *  Input:  current - Current value of 8-bit shift register
  *  Return: Updated value of 8-bit shift register
  *  Note:   Function is implemented in AVR assembly.
  */
-extern uint8_t rand8_asm(uint8_t current_value);
+extern uint8_t rand8_asm(uint8_t current);
 
 /* Functions ---------------------------------------------------------*/
 /**
@@ -88,40 +96,47 @@ ISR(TIMER1_OVF_vect)
  */
 void fsm_random(void)
 {
-    static uint8_t values = 0;
+    static uint16_t values = 0;
     static uint8_t last = 0;
     static uint8_t new = 0;
     char uart_string[5];
 
     switch (current_state) {
     case IDLE_STATE:
-        if (values < N_GEN) {
+        if (values == 0) {
+            uart_puts("\r\n4-bit:\r\n");
+            last = 0;
+            current_state = RAND4_STATE;
+        } else if (values < 30) {
+            current_state = RAND4_STATE;
+        } else if (values == 30) {
+            uart_puts("\r\n8-bit:\r\n");
+            last = 0;
             current_state = RAND8_STATE;
-        }
-        break;
-
-    // Call 8-bit LFSR generator
-    case RAND8_STATE:
-        new = rand8_asm(last);
-        itoa(new, uart_string, 10);
-        uart_puts(" "); uart_puts(uart_string);
-        last = new;
-
-        values++;
-        if (values > N_GEN) {
-            current_state = IDLE_STATE;
+        } else if (values < 130) {
+            current_state = RAND8_STATE;
         }
         break;
 
     // Call 4-bit LFSR generator
     case RAND4_STATE:
-        // TODO: Program 4-bit generator
-        current_state = IDLE_STATE;
+        new = rand4_asm(last);
+        values++;
+        current_state = UART_STATE;
         break;
 
-    // Call 16-bit LFSR generator
-    case RAND16_STATE:
-        // TODO: Program 16-bit generator
+    // Call 8-bit LFSR generator
+    case RAND8_STATE:
+        new = rand8_asm(last);
+        values++;
+        current_state = UART_STATE;
+        break;
+
+    // Send pseudo-random value to UART
+    case UART_STATE:
+        itoa(new, uart_string, 10);
+        uart_puts(" "); uart_puts(uart_string);
+        last = new;
         current_state = IDLE_STATE;
         break;
 
