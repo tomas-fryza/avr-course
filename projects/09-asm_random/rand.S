@@ -3,7 +3,7 @@
 ;* Author:      Tomas Fryza, Wykys
 ;*              Dept. of Radio Electronics, Brno Univ. of Technology
 ;* Created:     2017-11-09
-;* Last update: 2019-11-14
+;* Last update: 2019-11-15
 ;* Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
 ;* ---------------------------------------------------------------------
 ;* Description:
@@ -27,10 +27,20 @@
 ; *
 .global rand4_asm
 rand4_asm:
-    push result         ; Save result on the Stack
-    push temp           ; Save temp on the Stack
+    push result         ; Save Result on the Stack
+    push temp           ; Save Temp on the Stack
 
-    ; WRITE YOUR CODE HERE
+    bst input, 3        ; Copy Input bit 3 to T Flag...
+    bld result, 0       ; ...and then to Result bit 0
+    bst input, 2        ; Copy Input bit 2 to T Flag
+    bld temp, 0         ; ...and then to Temp bit 0
+    eor result, temp    ; Xor Input bits 3 and 2
+
+    com result          ; Invert Result
+    lsl input           ; Shift all Input bits to left
+    andi input, 0b11101111  ; Make sure bit 4 is cleared
+    bst result, 0       ; Copy Result bit 0 to T Flag...
+    bld input, 0        ; ...and then to Input bit 0
 
     pop temp            ; Restore temp from Stack
     pop result          ; Restore result from Stack
@@ -46,53 +56,45 @@ rand4_asm:
 ; *
 .global rand8_asm
 rand8_asm:
-    push result         ; Save result on the Stack
-    push temp           ; Save temp on the Stack
+    push result         ; Save Result on the Stack
+    push temp           ; Save Temp on the Stack
 
-    ; Copy input bit 7
-    bst input, 7        ; Store bit 7 of input in T Flag
-    bld result, 0       ; Load T Flag into bit 0 of result
-    ; Copy input bit 5
-    bst input, 5        ; Store bit 5 of input in T Flag
-    bld temp, 0         ; Load T Flag into bit 0 of temp
-    ; Xor input bits 7 and 5
-    eor result, temp
+    bst input, 7        ; Copy Input bit 7 to T Flag...
+    bld result, 0       ; ...and then to Result bit 0
+    bst input, 5        ; Copy Input bit 5 to T Flag
+    bld temp, 0         ; ...and then to Temp bit 0
+    eor result, temp    ; Xor Input bits 7 and 5
 
-    ; Copy input bit 4 and xor with previous result
-    bst input, 4        ; Store bit 4 of input in T Flag
-    bld temp, 0         ; Load T Flag into bit 0 of temp
-    eor result, temp
+    bst input, 4        ; Copy Input bit 4 to T Flag
+    bld temp, 0         ; ...and then to Temp bit 0
+    eor result, temp    ; Xor Input bit 4 and previous result
 
-    ; Copy input bit 3 and xor with previous result
-    bst input, 3        ; Store bit 3 of input in T Flag
-    bld temp, 0         ; Load T Flag into bit 0 of temp
-    eor result, temp
+    bst input, 3        ; Copy Input bit 3 to T Flag
+    bld temp, 0         ; ...and then to Temp bit 0
+    eor result, temp    ; Xor Input bit 3 and previous result
 
-    ; Invert result
-    com result
-    ; Shift all input bits to left
-    lsl input
-    ; Copy result as a new bit at LSB position
-    bst result, 0       ; Store bit 0 of result in T Flag
-    bld input, 0        ; Load T Flag into bit 0 of input
+    com result          ; Invert Result
+    lsl input           ; Shift all Input bits to left
+    bst result, 0       ; Copy Result bit 0 to T Flag...
+    bld input, 0        ; ...and then to Input bit 0
 
-    pop temp            ; Restore temp from Stack
-    pop result          ; Restore result from Stack
+    pop temp            ; Restore Temp from Stack
+    pop result          ; Restore Result from Stack
     ret                 ; Return from subroutine
 
 ;**
 ; * Brief:  LFSR-based 16-bit pseudo-random generator.
 ; * Input:  r25:r24 - Current value of 16-bit shift register
 ; * Return: r25:r24 - Updated value of 16-bit shift register
-; * Note:   LFSR taps positions are: 15, 13, 12, 10
+; * Note:   LFSR taps positions are: 15, 14, 12, 3
 ; *
 .global rand16_asm
 rand16_asm:
-    push result         ; Save result on the Stack
-    push temp           ; Save temp on the Stack
+    push result         ; Save Result on the Stack
+    push temp           ; Save Temp on the Stack
 
-    ; WRITE YOUR CODE HERE
+    ; TODO: Program 16-LFSR counter
 
-    pop temp            ; Restore temp from Stack
-    pop result          ; Restore result from Stack
+    pop temp            ; Restore Temp from Stack
+    pop result          ; Restore Result from Stack
     ret                 ; Return from subroutine
