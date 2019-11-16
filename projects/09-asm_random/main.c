@@ -3,12 +3,12 @@
  * Author:      Tomas Fryza
  *              Dept. of Radio Electronics, Brno Univ. of Technology
  * Created:     2017-11-09
- * Last update: 2019-11-14
+ * Last update: 2019-11-16
  * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
  * ---------------------------------------------------------------------
  * Description:
- *    Implementations of 8- and 16-bit LFSR-based (Linear Feedback Shift
- *    Register) pseudo-random generators in AVR assembly.
+ *    Implementation of LFSR-based (Linear Feedback Shift Register) 
+ *    pseudo-random generator in AVR assembly.
  */
 
 /* Includes ----------------------------------------------------------*/
@@ -23,7 +23,6 @@ typedef enum {
     IDLE_STATE = 1,
     RAND4_STATE,
     RAND8_STATE,
-    RAND16_STATE,
     UART_STATE
 } state_t;
 
@@ -35,51 +34,27 @@ state_t current_state = IDLE_STATE;
 
 /* Function prototypes -----------------------------------------------*/
 void fsm_random(void);
-/**
- *  Brief:  LFSR-based 4-bit pseudo-random generator.
- *  Input:  current - Current value of 4-bit shift register
- *  Return: Updated value of 4-bit shift register
- *  Note:   Function is implemented in AVR assembly.
- */
 extern uint8_t rand4_asm(uint8_t current);
-
-/**
- *  Brief:  LFSR-based 8-bit pseudo-random generator.
- *  Input:  current - Current value of 8-bit shift register
- *  Return: Updated value of 8-bit shift register
- *  Note:   Function is implemented in AVR assembly.
- */
 extern uint8_t rand8_asm(uint8_t current);
 
 /* Functions ---------------------------------------------------------*/
 /**
- *  Brief:  Main program. Generate a sequence of preudo-random values 
- *          using 8-bit and 16-bit functions.
- *  Input:  None
- *  Return: None
+ *  Brief:  Main program. Generate a sequence of LFSR preudo-random 
+ *          values using 4- and 8-bit structure.
  */
 int main(void)
 {
-    // UART: asynchronous, 8-bit data, no parity, 1-bit stop
-    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
+    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU)); // 8N1
 
     /* Timer1
-     * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt every 33 msec. */
-    TCCR1B |= _BV(CS11);
-    TIMSK1 |= _BV(TOIE1);
+     * TODO: Enable overflow interrupt every 33 msec. */
 
-    // Enables interrupts by setting the global interrupt mask
     sei();
+    uart_puts("\r\n---LFSR pseudo-random generator---\r\n");
 
-    // Put strings to ringbuffer for transmitting via UART.
-    uart_puts("\r\n---Pseudo random generator---");
-
-    // Infinite loop
     for (;;) {
     }
 
-    // Will never reach this
     return (0);
 }
 
@@ -103,17 +78,13 @@ void fsm_random(void)
 
     switch (current_state) {
     case IDLE_STATE:
-        if (values == 0) {
-            uart_puts("\r\n4-bit:\r\n");
-            last = 0;
+        if (values < 20) {
             current_state = RAND4_STATE;
-        } else if (values < 30) {
-            current_state = RAND4_STATE;
-        } else if (values == 30) {
-            uart_puts("\r\n8-bit:\r\n");
-            last = 0;
-            current_state = RAND8_STATE;
-        } else if (values < 130) {
+        } else if (values < 100) {
+            if (values == 20) {
+                last = 0;
+                uart_puts("\r\n\r\n");
+            }
             current_state = RAND8_STATE;
         }
         break;
