@@ -4,7 +4,7 @@
 ;*              Dept. of Radio Electronics, Brno Univ. of Technology
 ;* Created:     2017-11-09
 ;* Last update: 2019-11-15
-;* Platform:    ATmega328P, AVR 8-bit Toolchain 3.6.2
+;* Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
 ;* ---------------------------------------------------------------------
 ;* Description:
 ;*    Assembly implementation of 4- and 8--bit LFSR-based (Linear
