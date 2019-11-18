@@ -1,34 +1,32 @@
+;* ---------------------------------------------------------------------
+;*
+;* Assembly implementation of 4- and 8--bit LFSR-based (Linear Feedback
+;* Shift Register) pseudo-random generators.
+;* ATmega328P (Arduino Uno), 16MHz, AVR 8-bit Toolchain 3.6.2
+;*
+;* Copyright (c) 2017-2019 Tomas Fryza
+;* Dept. of Radio Electronics, Brno University of Technology, Czechia
+;* This work is licensed under the terms of the MIT license.
+;*
+;* https://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
+;* http://courses.cse.tamu.edu/walker/csce680/lfsr_table.pdf
 ;*
 ;* ---------------------------------------------------------------------
-;* Author:      Tomas Fryza, Wykys
-;*              Dept. of Radio Electronics, Brno Univ. of Technology
-;* Created:     2017-11-09
-;* Last update: 2019-11-15
-;* Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
-;* ---------------------------------------------------------------------
-;* Description:
-;*    Assembly implementation of 4- and 8--bit LFSR-based (Linear
-;*    Feedback Shift Register) pseudo-random generators.
-;*
-;* Note:
-;*    https://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
-;*    http://courses.cse.tamu.edu/walker/csce680/lfsr_table.pdf
-;*
 
+;* Includes ------------------------------------------------------------
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
-#define __SFR_OFFSET 0
-
+#define __SFR_OFFSET    0
 #include <avr/io.h>
+
+;* Define --------------------------------------------------------------
 #define result  r16
 #define temp    r17
 #define input   r24
 
-;**
-;*  Brief:  LFSR-based 4-bit pseudo-random generator.
-;*  Input:  r24 - Current value of shift register
-;*  Return: r24 - New value of shift register
-;*  Note:   LFSR taps positions are: 3, 2
-;*
+;* Functions -----------------------------------------------------------
+;* LFSR-based 4-bit pseudo-random generator.
+;* Input:  r24 - Current value of shift register
+;* Return: r24 - New value of shift register
 .global rand4_asm
 rand4_asm:
     push result             ; Save "Result" on Stack
@@ -50,12 +48,10 @@ rand4_asm:
     pop result              ; Restore "Result" from Stack
     ret                     ; Return from subroutine
 
-;**
-;*  Brief:  LFSR-based 8-bit pseudo-random generator.
-;*  Input:  r24 - Current value of shift register
-;*  Return: r24 - New value of shift register
-;*  Note:   LFSR taps positions are: 7, 5, 4, 3
-;*
+;*----------------------------------------------------------------------
+;* LFSR-based 8-bit pseudo-random generator.
+;* Input:  r24 - Current value of shift register
+;* Return: r24 - New value of shift register
 .global rand8_asm
 rand8_asm:
     push result             ; Backup values to Stack
