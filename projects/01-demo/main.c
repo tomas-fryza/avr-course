@@ -1,18 +1,13 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-09-27
- * Last update: 2019-10-04
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Blink a LED with the delay function.
+/***********************************************************************
  * 
- * Note:
- *    Macro _BV() converts a bit number into a byte value (see AVR Libc
- *    Reference Manual).
- */
+ * Blink a LED with the delay function.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -27,11 +22,8 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Toggle a LED with the delay function.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Toggle a LED with the delay function. */
 int main(void)
 {
     // Set output pin
@@ -44,9 +36,11 @@ int main(void)
     for (;;) {
         // Invert LED and delay
         PORTB = PORTB ^ _BV(LED_GREEN); // PORTB XOR 0010 0000
-        _delay_ms(BLINK_DELAY);         // Wait for several milisecs
+        _delay_ms (BLINK_DELAY);        // Wait for several milisecs
     }
 
     // Will never reach this
     return (0);
 }
+
+/* Interrupts --------------------------------------------------------*/

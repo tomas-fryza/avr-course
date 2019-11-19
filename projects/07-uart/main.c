@@ -1,15 +1,14 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-10-23
- * Last update: 2019-11-07
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Analog-to-digital conversion with displaying result on LCD and 
- *    transmitting via UART.
- */
+/***********************************************************************
+ * 
+ * Analog-to-digital conversion with displaying result on LCD and 
+ * transmitting via UART.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <stdlib.h>         // itoa() function
@@ -27,11 +26,8 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Read ADC result and transmit via UART.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Read ADC result and transmit via UART. */
 int main(void)
 {
     // LCD display
@@ -63,18 +59,17 @@ int main(void)
     return (0);
 }
 
-/**
- *  Brief: Timer1 overflow interrupt routine. Start ADC conversion.
- */
+/* Interrupts --------------------------------------------------------*/
+/* Timer1 overflow interrupt routine.
+ * Start ADC conversion. */
 ISR(TIMER1_OVF_vect)
 {
     // TODO: Start ADC conversion
 }
 
-/**
- *  Brief: ADC complete interrupt routine. Update LCD and UART 
- *         transmiter.
- */
+/* -------------------------------------------------------------------*/
+/* ADC complete interrupt routine.
+ * Update LCD and UART transmiter. */
 ISR(ADC_vect)
 {
 //    uint16_t value = 0;

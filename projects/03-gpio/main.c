@@ -1,18 +1,13 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2019-09-26
- * Last update: 2019-10-04
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Control LEDs using functions from GPIO library.
+/***********************************************************************
  * 
- * TODO:
- *    Create and test functions to control GPIO pins. Store the created
- *    library in library/src/gpio.c and library/inc/gpio.h files.
- */
+ * Control LEDs using functions from GPIO library.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -30,17 +25,14 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Toggle two LEDs with the push button.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Toggle two LEDs with the push button. */
 int main(void)
 {
     // Set output pins of two LEDs to low level
     // LED_GREEN
     GPIO_config_output(&DDRB, LED_GREEN);
-    GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
+    GPIO_write(&PORTB, LED_GREEN, LOW);
     // LED_RED
 
     /* Configure input pin of push button and enable internal pull-up
@@ -56,3 +48,5 @@ int main(void)
     // Will never reach this
     return (0);
 }
+
+/* Interrupts --------------------------------------------------------*/

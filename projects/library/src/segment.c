@@ -1,10 +1,10 @@
 /***********************************************************************
- * Title:    Seven-segment display library
- * Author:   Tomas Fryza, Brno University of Technology, Czechia
- * Software: avr-gcc, tested with avr-gcc 4.9.2
- * Hardware: Any AVR
+ * 
+ * Seven-segment display library for AVR-GCC.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
  **********************************************************************/

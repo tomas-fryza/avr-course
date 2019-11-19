@@ -1,18 +1,14 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-11-28
- * Last update: 2019-10-16
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description: Control LEDs using functions from GPIO and Timer 
- *              libraries. Do not use delay library any more.
- * TODO: Create and test functions to control 8-bit Timer/Counter0, 
- *       16-bit Timer/Counter1, and 8-bit Timer/Counter2 modules.
- * NOTE: Store timer.c and timer.h files in library/src and library/inc
- *       folders.
- */
+/***********************************************************************
+ * 
+ * Control LEDs using functions from GPIO and Timer libraries. Do not 
+ * use delay library any more.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -30,17 +26,13 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Toggle three LEDs with the modules of internal 
- *          8- and 16-bit timers.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Toggle three LEDs with internal 8- and 16-bit timer modules. */
 int main(void)
 {
     // LED_GREEN
     GPIO_config_output(&DDRB, LED_GREEN);
-    GPIO_write(&PORTB, LED_GREEN, PIN_LOW);
+    GPIO_write(&PORTB, LED_GREEN, LOW);
     /* LED_BLUE
      * TODO: Configure blue LED */
 
@@ -48,13 +40,13 @@ int main(void)
      * TODO: Configure red LED */
 
     /* Set Timer0
-     * Configure Timer0 clock source and enable overflow  interrupt */
-    TIM_config_prescaler(TIM0, TIM_PRESC_1024);
-    TIM_config_interrupt(TIM0, TIM_OVERFLOW_ENABLE);
+     * TODO: Configure Timer0 clock source and enable overflow 
+     *       interrupt */
 
     /* Set Timer1
-     * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt */
+     * Configure Timer1 clock source and enable overflow interrupt */
+    TIM1_overflow_262ms();
+    TIM1_overflow_interrupt_enable();
 
     /* Set Timer2
      * TODO: Configure Timer2 clock source and enable overflow 
@@ -71,26 +63,25 @@ int main(void)
     return (0);
 }
 
-/**
- *  Brief: Timer/Counter0 overflow interrupt routine. Toggle green LED.
- */
-ISR(TIMER0_OVF_vect)
+/* Interrupts --------------------------------------------------------*/
+/* Timer/Counter0 overflow interrupt routine.
+ * Toggle green LED. */
+/*ISR(TIMER0_OVF_vect)
 {
     // TODO: Toggle green LED
 }
-
-/**
- *  Brief: Timer/Counter1 overflow interrupt routine. Toggle blue LED.
- */
-/*ISR(TIMER1_OVF_vect)
+*/
+/* -------------------------------------------------------------------*/
+/* Timer/Counter1 overflow interrupt routine.
+ * Toggle blue LED. */
+ISR(TIMER1_OVF_vect)
 {
     // TODO: Toggle blue LED
 }
-*/
 
-/**
- *  Brief: Timer/Counter2 overflow interrupt routine. Toggle red LED.
- */
+/* -------------------------------------------------------------------*/
+/* Timer/Counter2 overflow interrupt routine.
+ * Toggle red LED. */
 /*ISR(TIMER2_OVF_vect)
 {
     // TODO: Toggle red LED

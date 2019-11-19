@@ -1,15 +1,14 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2017-11-09
- * Last update: 2019-11-16
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Implementation of LFSR-based (Linear Feedback Shift Register) 
- *    pseudo-random generator in AVR assembly.
- */
+/***********************************************************************
+ * 
+ * Implementation of LFSR-based (Linear Feedback Shift Register) 
+ * pseudo-random generator in AVR assembly.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2017-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <stdlib.h>         // itoa() function
@@ -38,37 +37,7 @@ extern uint8_t rand4_asm(uint8_t current);
 extern uint8_t rand8_asm(uint8_t current);
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Generate a sequence of LFSR preudo-random 
- *          values using 4- and 8-bit structure.
- */
-int main(void)
-{
-    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU)); // 8N1
-
-    /* Timer1
-     * TODO: Enable overflow interrupt every 33 msec. */
-
-    sei();
-    uart_puts("\r\n---LFSR pseudo-random generator---\r\n");
-
-    for (;;) {
-    }
-
-    return (0);
-}
-
-/**
- *  Brief: Timer1 overflow interrupt routine. Update state of the FSM.
- */
-ISR(TIMER1_OVF_vect)
-{
-    fsm_random();
-}
-
-/**
- *  Brief: Call functions to generate psudo-random values.
- */
+/* Call assembly functions to generate psudo-random values. */
 void fsm_random(void)
 {
     static uint16_t values = 0;
@@ -114,4 +83,31 @@ void fsm_random(void)
     default:
         current_state = IDLE_STATE;
     }
+}
+
+/* Main --------------------------------------------------------------*/
+/* Generate a sequence of LFSR preudo-random values using 4- and 8-bit
+ * structure. */
+int main(void)
+{
+    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU)); // 8N1
+
+    /* Timer1
+     * TODO: Enable overflow interrupt every 33 msec. */
+
+    sei();
+    uart_puts("\r\n---LFSR pseudo-random generator---\r\n");
+
+    for (;;) {
+    }
+
+    return (0);
+}
+
+/* Interrupts --------------------------------------------------------*/
+/* Timer1 overflow interrupt routine.
+ * Update state of the FSM. */
+ISR(TIMER1_OVF_vect)
+{
+    fsm_random();
 }

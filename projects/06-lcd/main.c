@@ -1,19 +1,13 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-10-16
- * Last update: 2019-10-25
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Decimal counter with data output on LCD display.
+/***********************************************************************
  * 
- * Note:
- *    Modified version of Peter Fleury's LCD library with R/W pin 
- *    connected to GND. Newline symbol "\n" is not implemented, use
- *    lcd_gotoxy() function instead.
- */
+ * Decimal counter with data output on LCD display.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2017-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -28,11 +22,8 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Shows decimal values ​​on LCD display.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Shows decimal values ​​on LCD display. */
 int main(void)
 {
     /* LCD display
@@ -64,9 +55,9 @@ int main(void)
     return (0);
 }
 
-/**
- *  Brief: Timer1 overflow interrupt routine. Increment counter value.
- */
+/* Interrupts --------------------------------------------------------*/
+/* Timer1 overflow interrupt routine.
+ * Increment counter value. */
 ISR(TIMER1_OVF_vect)
 {
     // TODO: Increment counter value form 0 to 255

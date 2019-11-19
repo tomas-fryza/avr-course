@@ -2,7 +2,7 @@
 ;*
 ;* Assembly implementation of 4- and 8--bit LFSR-based (Linear Feedback
 ;* Shift Register) pseudo-random generators.
-;* ATmega328P (Arduino Uno), 16MHz, AVR 8-bit Toolchain 3.6.2
+;* ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
 ;*
 ;* Copyright (c) 2017-2019 Tomas Fryza
 ;* Dept. of Radio Electronics, Brno University of Technology, Czechia

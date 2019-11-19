@@ -1,15 +1,14 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2017-10-27
- * Last update: 2019-11-08
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Scan TWI bus for all connected slave devices and transmit info
- *    to UART.
- */
+/***********************************************************************
+ * 
+ * Scan TWI bus for all connected slave devices and transmit info to 
+ * UART.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2017-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <stdlib.h>         // itoa() function
@@ -36,51 +35,7 @@ state_t current_state = IDLE_STATE;
 void fsm_twi_scanner(void);
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Test all TWI slave addresses and scan 
- *          connected devices.
- *  Input:  None
- *  Return: None
- */
-int main(void)
-{
-    // UART: asynchronous, 8-bit data, no parity, 1-bit stop
-    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
-
-    // TWI
-    twi_init();
-
-    /* Timer1
-     * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt every 33 msec. */
-
-    // Enables interrupts by setting the global interrupt mask
-    sei();
-
-    // Put strings to ringbuffer for transmitting via UART.
-    uart_puts("\r\n---TWI scanner---");
-//    uart_puts("\r\n     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f");
-
-    // Infinite loop
-    for (;;) {
-    }
-
-    // Will never reach this
-    return (0);
-}
-
-/**
- *  Brief: Timer1 overflow interrupt routine. Update state of TWI Finite
- *         State Machine.
- */
-ISR(TIMER1_OVF_vect)
-{
-    fsm_twi_scanner();
-}
-
-/**
- *  Brief: Test one TWI address.
- */
+/* Test one TWI address. */
 void fsm_twi_scanner(void)
 {
     static uint8_t addr = 0;
@@ -120,4 +75,41 @@ void fsm_twi_scanner(void)
     default:
         current_state = IDLE_STATE;
     }
+}
+
+/* Main --------------------------------------------------------------*/
+/* Test all TWI slave addresses and scan connected devices. */
+int main(void)
+{
+    // UART: asynchronous, 8-bit data, no parity, 1-bit stop
+    uart_init(UART_BAUD_SELECT(UART_BAUD_RATE, F_CPU));
+
+    // TWI
+    twi_init();
+
+    /* Timer1
+     * TODO: Configure Timer1 clock source and enable overflow 
+     *       interrupt every 33 msec. */
+
+    // Enables interrupts by setting the global interrupt mask
+    sei();
+
+    // Put strings to ringbuffer for transmitting via UART.
+    uart_puts("\r\n---TWI scanner---");
+//    uart_puts("\r\n     0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f");
+
+    // Infinite loop
+    for (;;) {
+    }
+
+    // Will never reach this
+    return (0);
+}
+
+/* Interrupts --------------------------------------------------------*/
+/* Timer1 overflow interrupt routine.
+ * Update state of TWI Finite State Machine. */
+ISR(TIMER1_OVF_vect)
+{
+    fsm_twi_scanner();
 }

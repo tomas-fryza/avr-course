@@ -1,19 +1,13 @@
-﻿/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-10-11
- * Last update: 2019-10-16
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Decimal counter with 7-segment display output.
+﻿/***********************************************************************
  * 
- * TODO:
- *    Create and test 7-segment display control functions using shift 
- *    registers. Save the created library in library/src/segment.c and 
- *    library/inc/segment.h files.
- */
+ * Decimal counter with 7-segment display output.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -33,11 +27,8 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Shows decimal values ​​on 7-segment display.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Shows decimal values ​​on 7-segment display. */
 int main(void)
 {
     /* D1 led
@@ -62,9 +53,9 @@ int main(void)
     return (0);
 }
 
-/**
- *  Brief: Pin Change Interrupt 11:9 routine. Toggle a LED.
- */
+/* Interrupts --------------------------------------------------------*/
+/* Pin Change Interrupt 11:9 routine.
+ * Toggle a LED. */
 /*ISR(???)
 {
     // TODO: Toggle a led

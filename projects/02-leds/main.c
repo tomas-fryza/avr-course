@@ -1,19 +1,13 @@
-/*
- * ---------------------------------------------------------------------
- * Author:      Tomas Fryza
- *              Dept. of Radio Electronics, Brno Univ. of Technology
- * Created:     2018-11-28
- * Last update: 2019-10-02
- * Platform:    ATmega328P, 16 MHz, AVR 8-bit Toolchain 3.6.2
- * ---------------------------------------------------------------------
- * Description:
- *    Alternately toggle two LEDs with the push button.
+/***********************************************************************
  * 
- * TODO:
- *    On a breadboard, connect push button and second LED including 
- *    the corresponding resistor. Use internal pull-up resistor for 
- *    push button.
- */
+ * Alternately toggle two LEDs with the push button.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ *
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
+ * 
+ **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
@@ -30,11 +24,8 @@
 /* Function prototypes -----------------------------------------------*/
 
 /* Functions ---------------------------------------------------------*/
-/**
- *  Brief:  Main program. Toggle two LEDs with the push button.
- *  Input:  None
- *  Return: None
- */
+/* Main --------------------------------------------------------------*/
+/* Toggle two LEDs with the push button. */
 int main(void)
 {
     // Set output pins of two LEDs to low level
@@ -64,3 +55,5 @@ int main(void)
     // Will never reach this
     return (0);
 }
+
+/* Interrupts --------------------------------------------------------*/
