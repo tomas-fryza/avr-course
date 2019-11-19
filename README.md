@@ -1,5 +1,6 @@
 [![university](https://img.shields.io/badge/university-Brno%20University%20of%20Technology-red.svg)](https://www.vutbr.cz/en/)
 [![department](https://img.shields.io/badge/department-Dept.%20of%20Radio%20Electronics-blue)](https://www.facebook.com/URELBrno)
+[![activity](https://img.shields.io/github/last-commit/tomas-fryza/Digital-electronics-2)](https://github.com/tomas-fryza/Digital-electronics-2/commits/master)
 
 # Digital electronics
 
