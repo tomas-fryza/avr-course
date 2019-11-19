@@ -1,43 +1,21 @@
 /***********************************************************************
- * Title:    TWI library
- * Author:   Tomas Fryza, Brno University of Technology, Czechia
- * Software: avr-gcc, tested with avr-gcc 4.9.2
- * Hardware: Any AVR with built-in TWI unit
+ * 
+ * TWI library for AVR-GCC.
+ * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * MIT License
- *
- * Copyright (c) 2018 Tomas Fryza
- *
- * Permission is hereby granted, free of charge, to any person obtaining
- * a copy of this software and associated documentation files (the
- * "Software"), to deal in the Software without restriction, including
- * without limitation the rights to use, copy, modify, merge, publish,
- * distribute, sublicense, and/or sell copies of the Software, and to
- * permit persons to whom the Software is furnished to do so, subject to
- * the following conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
- * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
- * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
- * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ * Copyright (c) 2018-2019 Tomas Fryza
+ * Dept. of Radio Electronics, Brno University of Technology, Czechia
+ * This work is licensed under the terms of the MIT license.
  *
  **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
 #include "twi.h"
-
-/* Define ------------------------------------------------------------*/
-/* Address of data direction register of port x */
-#define DDR(x) (*(&x - 1))
+#include "common.h"
 
 /* Functions ---------------------------------------------------------*/
-void twi_init(void)
+void
+twi_init (void)
 {
     /* Enable internal pull-up resistors */
     DDR(TWI_PORT) &= ~(_BV(TWI_SDA_PIN) | _BV(TWI_SCL_PIN));
@@ -48,9 +26,9 @@ void twi_init(void)
     TWBR = TWI_BIT_RATE_REG;
 }
 
-
 /*--------------------------------------------------------------------*/
-uint8_t twi_start(uint8_t slave_address)
+uint8_t
+twi_start (uint8_t slave_address)
 {
     uint8_t twi_response;
 
@@ -75,36 +53,36 @@ uint8_t twi_start(uint8_t slave_address)
     }
 }
 
-
 /*--------------------------------------------------------------------*/
-void twi_write(uint8_t data)
+void
+twi_write (uint8_t data)
 {
     TWDR = data;
     TWCR = _BV(TWINT) | _BV(TWEN);
     while ((TWCR & _BV(TWINT)) == 0);
 }
 
-
 /*--------------------------------------------------------------------*/
-uint8_t twi_read_ack(void)
+uint8_t
+twi_read_ack (void)
 {
 	TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
     while ((TWCR & _BV(TWINT)) == 0);
 	return (TWDR);
 }
 
-
 /*--------------------------------------------------------------------*/
-uint8_t twi_read_nack(void)
+uint8_t
+twi_read_nack (void)
 {
-	TWCR = _BV(TWINT) | _BV(TWEN);
+    TWCR = _BV(TWINT) | _BV(TWEN);
     while ((TWCR & _BV(TWINT)) == 0);
 	return (TWDR);
 }
 
-
 /*--------------------------------------------------------------------*/
-void twi_stop(void)
+void
+twi_stop (void)
 {
     TWCR = _BV(TWINT) | _BV(TWSTO) | _BV(TWEN);
 }
