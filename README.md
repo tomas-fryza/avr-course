@@ -20,17 +20,16 @@ The repository contains AVR template for bachelor course *Digital Electronics 2*
 ├── docs
 │   └── hw
 ├── LICENSE
-├── projects
+├── firmware
 │   ├── 01-demo
-│   ├── 09-asm_random
 │   ├── library
-│   │   ├── inc
-│   │   └── src
+│   │   ├── include
+│   │   └── source
 │   └── projects.in
 └── README.md
 ```
 
-In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All projects are located within `projects` folder. The `01-demo` example contains default C-code source file `main.c`, `README.md`, and `Makefile`. Default example of ASM source file `rand.S` is located in the `09-asm_random` folder. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
+In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All projects are located within `firmware` folder. The `01-demo` example contains default C-code source file `main.c`, `README.md`, and `Makefile`. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
 
 
 ## Hardware Components
