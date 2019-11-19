@@ -5,15 +5,14 @@
 
 1. [GitHub](#GitHub)
 2. [Linux Terminal](#Linux-Terminal)
-3. [Software](#software)
+3. [Test toolchain](#Test-toolchain)
+4. [Clean folder and synchronize git](#Clean-folder-and-synchronize-git)
 4. [References](#references)
 
 
 ## GitHub
 
-Create your account on the server [https://github.com/](https://github.com/). Create a new public repository titled `Digital-electronics-2`. Initialize a README, .gitignore, and MIT license ([Licenses & Standards](https://opensource.org/licenses/)).
-
-Modify README file according to [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax) or [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
+Create your account on the server [https://github.com/](https://github.com/). Create a new public repository titled **Digital-electronics-2**. Initialize a README, .gitignore, and MIT license ([Licenses & Standards](https://opensource.org/licenses/)). Modify README file according to [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax) or [Mastering Markdown](https://guides.github.com/features/mastering-markdown/).
 
 
 ## Linux Terminal
@@ -97,10 +96,12 @@ Use `cd ..` command in VS Code terminal and change the working directory to `Dig
 ```console
 $ pwd
 /home/lab661/Documents/your-name/Digital-electronics-2/firmware/01-demo
+
 $ cd ..
 $ cd ..
 $ pwd
 /home/lab661/Documents/your-name/Digital-electronics-2
+
 $ git status
 $ git add <your-modified-files>
 $ git commit -m "First project added"
