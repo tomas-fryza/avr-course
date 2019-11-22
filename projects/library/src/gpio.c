@@ -27,12 +27,10 @@ GPIO_write (volatile uint8_t *reg_name,
                      uint8_t  pin_num,
                      uint8_t  pin_val)
 {
-    if (pin_val == LOW) {
+    if (pin_val == LOW)
         *reg_name = *reg_name & ~_BV(pin_num);
-    }
-    else {
+    else
         *reg_name = *reg_name | _BV(pin_num);
-    }
 }
 
 /*--------------------------------------------------------------------*/

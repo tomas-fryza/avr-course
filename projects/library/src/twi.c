@@ -45,12 +45,10 @@ twi_start (uint8_t slave_address)
     twi_response = TWSR & 0xf8;
     /* Status Code 0x18: SLA+W has been transmitted and ACK received
                    0x40: SLA+R has been transmitted and ACK received */
-        if (twi_response == 0x18 || twi_response == 0x40) {
+    if (twi_response == 0x18 || twi_response == 0x40)
         return 0;   /* Slave device accessible */
-    }
-    else {
+    else
         return 1;   /* Failed to access slave device */
-    }
 }
 
 /*--------------------------------------------------------------------*/
@@ -66,9 +64,9 @@ twi_write (uint8_t data)
 uint8_t
 twi_read_ack (void)
 {
-	TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
+    TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
     while ((TWCR & _BV(TWINT)) == 0);
-	return (TWDR);
+    return (TWDR);
 }
 
 /*--------------------------------------------------------------------*/
@@ -77,7 +75,7 @@ twi_read_nack (void)
 {
     TWCR = _BV(TWINT) | _BV(TWEN);
     while ((TWCR & _BV(TWINT)) == 0);
-	return (TWDR);
+    return (TWDR);
 }
 
 /*--------------------------------------------------------------------*/

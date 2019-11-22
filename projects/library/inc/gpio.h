@@ -42,8 +42,8 @@
  *                    DDRB, DDRD, ...
  *  @param pin_num - Pin designation in the interval 0 to 7
  */
-void    GPIO_config_output  (volatile uint8_t *reg_name,
-                                      uint8_t  pin_num);
+void GPIO_config_output(volatile uint8_t *reg_name,
+                                 uint8_t pin_num);
 
 /**
  *  @brief Xxx.
@@ -51,33 +51,33 @@ void    GPIO_config_output  (volatile uint8_t *reg_name,
  *  @param xxx - Xxx
  *  @param xxx - Xxx
  */
-void    GPIO_write  (volatile uint8_t *reg_name,
-                              uint8_t  pin_num,
-                              uint8_t  pin_val);
+void GPIO_write(volatile uint8_t *reg_name,
+                         uint8_t pin_num,
+                         uint8_t pin_val);
 
 /**
  *  @brief Xxx.
  *  @param xxx - Xxx
  *  @param xxx - Xxx
  */
-void    GPIO_toggle (volatile uint8_t *reg_name,
-                              uint8_t  pin_num);
+void GPIO_toggle(volatile uint8_t *reg_name,
+                          uint8_t pin_num);
 
 /**
  *  @brief Xxx.
  *  @param xxx - Xxx
  *  @param xxx - Xxx
  */
-void    GPIO_config_input_nopull    (volatile uint8_t *reg_name,
-                                              uint8_t  pin_num);
+void GPIO_config_input_nopull(volatile uint8_t *reg_name,
+                                       uint8_t pin_num);
 
 /**
  *  @brief Xxx.
  *  @param xxx - Xxx
  *  @param xxx - Xxx
  */
-void    GPIO_config_input_pullup(volatile uint8_t *reg_name,
-                                          uint8_t  pin_num);
+void GPIO_config_input_pullup(volatile uint8_t *reg_name,
+                                       uint8_t pin_num);
 
 /**
  *  @brief  Xxx.
@@ -85,7 +85,7 @@ void    GPIO_config_input_pullup(volatile uint8_t *reg_name,
  *  @param  xxx - Xxx
  *  @return Xxx
  */
-uint8_t GPIO_read   (volatile uint8_t *reg_name,
-                              uint8_t  pin_num);
+uint8_t GPIO_read(volatile uint8_t *reg_name,
+                           uint8_t pin_num);
 
 #endif /* GPIO_H_INCLUDED */

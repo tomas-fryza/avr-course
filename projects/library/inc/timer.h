@@ -33,7 +33,7 @@
 /* Define ------------------------------------------------------------*/
 /** @brief Defines prescaler values for Timer0.
  *  @note  F_CPU = 16 MHz */
-// TODO: Define Prescaler values for Timer1
+// TODO: Define Prescaler values for Timer0
 
 /** @brief Defines prescaler values for Timer1.
  *  @note  F_CPU = 16 MHz */
