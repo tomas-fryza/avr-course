@@ -35,7 +35,7 @@ USBPORT = /dev/ttyUSB0
 
 Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`
 
-```shell
+```bash
 cd firmware/01-demo
 ls
 ```
@@ -52,21 +52,7 @@ make clean
 
 To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
-```console
-cd ..
-mkdir name_of_new_project
-cd name_of_new_project
-cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
-```
-
 ```bash
-cd ..
-mkdir name_of_new_project
-cd name_of_new_project
-cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
-```
-
-```shell
 cd ..
 mkdir name_of_new_project
 cd name_of_new_project
