@@ -4,7 +4,7 @@
 ![GitHub](https://img.shields.io/github/license/tomas-fryza/Digital-electronics-2)
 [![activity](https://img.shields.io/github/last-commit/tomas-fryza/Digital-electronics-2)](https://github.com/tomas-fryza/Digital-electronics-2/commits/master)
 
-# Digital electronics
+# Digital electronics 2
 
 #### Table of Contents
 
@@ -80,7 +80,7 @@ The following hardware components are mainly used in the lab.
 | [Infrared receiver](https://www.hwkitchen.cz/user/related_files/infrared-prijimac-1838b.pdf) | Infrared receiver VS1838B |
 
 
-## References
+#### References
 
 1. [Git, free and open source distributed version control system](https://git-scm.com/)
 2. [GNU Make tool for Linux](https://www.gnu.org/software/make/)
