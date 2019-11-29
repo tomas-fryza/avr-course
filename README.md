@@ -6,11 +6,11 @@
 
 # Digital electronics 2
 
-#### Table of Contents
+#### Table of contents
 
 1. [Introduction](#introduction)
-2. [Hardware Components](#hardware-components)
-3. [How to Use AVR Template on Linux](docs/HOWTO_linux.md)
+2. [Hardware components](#hardware-components)
+3. [How to use AVR template on Linux](docs/HOWTO_linux.md)
 4. [References](#references)
 
 
@@ -35,7 +35,7 @@ The repository contains AVR template for bachelor course *Digital Electronics 2*
 In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All projects are located within `firmware` folder. The `01-demo` example contains default C-code source file `main.c`, `README.md`, and `Makefile`. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
 
 
-## Hardware Components
+## Hardware components
 
 The following hardware components are mainly used in the lab.
 
