@@ -51,8 +51,8 @@ In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of
 
 | **Example** | **Description** |
 | ----------- | --------------- |
-| [01-demo](firmware/01-demo) | Xxx
-| [02-leds](firmware/02-leds) | Xxx
+| [01-demo](firmware/01-demo) | Lab 1. Git version-control system, AVR toolchain
+| [02-leds](firmware/02-leds) | Lab 2. Control of GPIO, LED, push button
 | [03-gpio](firmware/03-gpio) | Xxx
 | [04-interrupts](firmware/04-interrupts) | Xxx
 | [05-segment](firmware/05-segment) | Xxx
