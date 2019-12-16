@@ -27,6 +27,7 @@ AVRDUDE = avrdude
 RM      = rm -f
 # See "dmesg" command output
 USBPORT = /dev/ttyUSB0
+
 ## Windows
 #PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
 #AVRDUDE = C:\Appz\Avr\avrdude.exe
