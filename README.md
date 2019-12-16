@@ -1,6 +1,5 @@
 [![university](https://img.shields.io/badge/university-Brno%20University%20of%20Technology-red.svg)](https://www.vutbr.cz/en/)
 [![department](https://img.shields.io/badge/department-Dept.%20of%20Radio%20Electronics-blue)](https://www.facebook.com/URELBrno)
-
 ![GitHub](https://img.shields.io/github/license/tomas-fryza/Digital-electronics-2)
 [![activity](https://img.shields.io/github/last-commit/tomas-fryza/Digital-electronics-2)](https://github.com/tomas-fryza/Digital-electronics-2/commits/master)
 
@@ -20,29 +19,6 @@
 ## Introduction
 
 The repository contains AVR template for bachelor course *Digital Electronics 2* ([Winter 2019/2020](https://www.vutbr.cz/en/students/courses/detail/210896)) at Brno University of Technology, Czechia.
-
-```bash
-.
-├── docs
-│   └── hw
-├── firmware
-│   ├── 01-demo
-│   ├── 02-leds
-│   ├── 03-gpio
-│   ├── 04-interrupts
-│   ├── 05-segment
-│   ├── 06-lcd
-│   ├── 07-uart
-│   ├── 08-twi_scan
-│   ├── 09-asm_random
-│   ├── firmware.in
-│   └── library
-│       ├── include
-│       └── source
-├── images
-├── LICENSE
-└── README.md
-```
 
 In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All examples are located within `firmware` folder. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
 
