@@ -8,6 +8,7 @@
 4. [Push button](#Push-button)
 5. [Switch debouncing](#Switch-debouncing)
 6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
+7. [Ideas for other tasks](#Ideas-for-other-tasks)
 
 
 ## Lab prerequisites
@@ -65,8 +66,8 @@ TBD
     ```C
     if (bit_is_set(PINA, 0)) {...}      // Only if PINA bit number 0 is 1 (set)
     if (bit_is_clear(PINB, 5)) {...}    // Only if PINB bit number 5 is 0 (clear)
-    loop_until_bit_is_set(PINC, 2);     // Stay here until PIN2 bit become 1
-    loop_until_bit_is_clear(PINA, 7);   // Stay here until PINA7 bit become 0
+    loop_until_bit_is_set(PINC, 2);     // Stay here until PIN2 bit becomes 1
+    loop_until_bit_is_clear(PINA, 7);   // Stay here until PINA7 bit becomes 0
     ```
 
 

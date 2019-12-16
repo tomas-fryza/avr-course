@@ -7,6 +7,7 @@
 3. [Linux terminal](#Linux-terminal)
 4. [Test toolchain](#Test-toolchain)
 5. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
+6. [Ideas for other tasks](#Ideas-for-other-tasks)
 
 
 ## Lab prerequisites
@@ -111,3 +112,8 @@
     $ git commit -m "[PROJECT] Adding 01-demo project"
     $ git push
     ```
+
+
+## Ideas for other tasks
+
+1. Follow the [Linux](../../docs/HOWTO_linux.md) or [Windows](../../docs/HOWTO_windows.md) instructions and try to install all the development tools on your computer.
