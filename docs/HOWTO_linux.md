@@ -1,22 +1,24 @@
 ## How to use AVR template on Linux
 
-1. AVR template requires the following packages to be installed correctly:
+1. Download and install [Visual Studio Code](https://code.visualstudio.com/) source code editor.
+
+2. AVR template requires the following packages to be installed correctly:
 
 ```bash
 sudo apt-get install git make avrdude putty
 ```
 
-2. Download and install [Visual Studio Code](https://code.visualstudio.com/) text editor.
+3. Download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
-3. Download the latest toolchain [AVR 8-bit Toolchain 3.6.2 - Linux 64-bit](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `/opt` directory:
+4. Download the latest toolchain [AVR 8-bit Toolchain 3.6.2 - Linux 64-bit](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `/opt` directory:
 
 ```bash
 sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64.tar.gz -C /opt/
 ```
 
-4. [Download this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.tar.gz) to local computer and use it to start your own repository.
+5. Download and extract [this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.tar.gz) to local computer and use it to start your own repository.
 
-5. Start VS Code editor, open template folder, and in `firmware/firmware.in` file, enable Linux parameters, and modify them according to your local settings:
+6. Start Visual Studio Code source code editor, open template folder, and in `firmware/firmware.in` file enable and/or modify Linux parameters according to your local settings:
 
 ```Makefile
 ## Linux
@@ -33,14 +35,17 @@ USBPORT = /dev/ttyUSB0
 #USBPORT = COM3
 ```
 
-Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`
+> If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
+>
+
+Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
 
 ```bash
 cd firmware/01-demo
 ls
 ```
 
-All processes are done with help of `Makefile` script file. The following commands allow compilation and programming of the application:
+All processes are done with help of `Makefile` script file. The following commands allow compilation and programming:
 
 ```bash
 make all
@@ -59,17 +64,8 @@ cd name_of_new_project
 cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
 ```
 
----
-
-> **Note:**
-If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
+> If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
 >
-
-> **Note:**
-If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
->
-
----
 
 #### Tested on operating systems
 
