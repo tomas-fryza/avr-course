@@ -88,7 +88,7 @@ TBD
     ...
     ```
 
-2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`:
+2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`;
 
     ```Makefile
     # Add or comment libraries you are using in the project
