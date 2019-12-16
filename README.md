@@ -69,7 +69,7 @@ The following hardware components are mainly used in the lab.
 ![vscode](images/screenshot_vscode.png)
 
 
-#### References
+## References
 
 1. [Git, free and open source distributed version control system](https://git-scm.com/)
 2. [GNU Make tool for Linux](https://www.gnu.org/software/make/)
@@ -83,3 +83,8 @@ The following hardware components are mainly used in the lab.
 10. Peter Fleury, [AVR-GCC libraries](http://homepage.hispeed.ch/peterfleury/avr-software.html)
 11. Saleae, [Saleae logic analyser](https://www.saleae.com/downloads/)
 12. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
