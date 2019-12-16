@@ -4,69 +4,70 @@
 
 2. AVR template requires the following packages to be installed correctly:
 
-```bash
-sudo apt-get install git make avrdude putty
-```
+    ```bash
+    sudo apt-get install git make avrdude putty
+    ```
 
 3. Download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
 4. Download the latest toolchain [AVR 8-bit Toolchain 3.6.2 - Linux 64-bit](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `/opt` directory:
 
-```bash
-sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64.tar.gz -C /opt/
-```
+    ```bash
+    sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64.tar.gz -C /opt/
+    ```
 
 5. Download and extract [this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.tar.gz) to local computer and use it to start your own repository.
 
 6. Start Visual Studio Code source code editor, open template folder, and in `firmware/firmware.in` file enable and/or modify Linux parameters according to your local settings:
 
-```Makefile
-## Linux
-PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
-AVRDUDE = avrdude
-RM      = rm -f
-# See "dmesg" command output
-USBPORT = /dev/ttyUSB0
+    ```Makefile
+    ## Linux
+    PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
+    AVRDUDE = avrdude
+    RM      = rm -f
+    # See "dmesg" command output
+    USBPORT = /dev/ttyUSB0
 
-## Windows
-#PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
-#AVRDUDE = C:\Appz\Avr\avrdude.exe
-#RM      = del
-## See USB-SERIAL CH340 port in Device Manager
-#USBPORT = COM3
-```
+    ## Windows
+    #PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
+    #AVRDUDE = C:\Appz\Avr\avrdude.exe
+    #RM      = del
+    ## See USB-SERIAL CH340 port in Device Manager
+    #USBPORT = COM3
+    ```
 
-> If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
->
+    > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
+    >
 
-Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
+7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
 
-```bash
-cd firmware/01-demo
-ls
-```
+    ```bash
+    cd firmware/01-demo
+    ls
+    ```
 
-All processes are done with help of `Makefile` script file. The following commands allow compilation and programming:
+    All processes are done with help of `Makefile` script file. The following commands allow compilation and programming:
 
-```bash
-make all
-make flash
-make size
-make list
-make clean
-```
+    ```bash
+    make all
+    make flash
+    make size
+    make list
+    make clean
+    ```
 
-To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+8. To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
-```bash
-cd ..
-mkdir name_of_new_project
-cd name_of_new_project
-cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
-```
+    ```bash
+    cd ..
+    mkdir name_of_new_project
+    cd name_of_new_project
+    cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
+    ```
 
-> If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
->
+    > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
+    >
+
 
 #### Tested on operating systems
 

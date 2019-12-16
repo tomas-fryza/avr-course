@@ -6,9 +6,9 @@
 
 3. Download and run [MinGW Installation Manager](https://osdn.net/projects/mingw/downloads/68260/mingw-get-setup.exe/). During installation keep installation directory as `C:\MinGW`.
 
-   In MinGW Installation Manager, mark **mingw32-base-bin** package for installation and apply changes in menu **Installation > Apply Changes**.
+    In MinGW Installation Manager, mark **mingw32-base-bin** package for installation and apply changes in menu **Installation > Apply Changes**.
 
-   Add `C:\MinGW\bin` to your **Path** environment variable: **This PC > Properties > Advanced system settings > Environment Variables...**
+    Add `C:\MinGW\bin` to your **Path** environment variable: **This PC > Properties > Advanced system settings > Environment Variables...**
 
 4. Download the latest version of Avrdude, such as [avrdude-6.3-mingw32.zip](http://download.savannah.gnu.org/releases/avrdude/) and extract **avrdude.conf** and **avrdude.exe** files to `C:\Appz\Avr` (Do NOT use any space in filepath). Copy [libusb0.dll](libusb0.dll) dynamic link library to `C:\Appz\Avr`. You can find the dll as part of Arduino IDE as well.
 
@@ -22,52 +22,53 @@
 
 9. Start Visual Studio Code source code editor, open template folder, in `firmware/firmware.in` file enable and/or modify Windows parameters according to your local settings:
 
-```Makefile
-## Linux
-#PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
-#AVRDUDE = avrdude
-#RM      = rm -f
-## See "dmesg" command output
-#USBPORT = /dev/ttyUSB0
+    ```Makefile
+    ## Linux
+    #PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
+    #AVRDUDE = avrdude
+    #RM      = rm -f
+    ## See "dmesg" command output
+    #USBPORT = /dev/ttyUSB0
 
-## Windows
-PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
-AVRDUDE = C:\Appz\Avr\avrdude.exe
-RM      = del
-# See USB-SERIAL CH340 port in Device Manager
-USBPORT = COM3
-```
+    ## Windows
+    PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
+    AVRDUDE = C:\Appz\Avr\avrdude.exe
+    RM      = del
+    # See USB-SERIAL CH340 port in Device Manager
+    USBPORT = COM3
+    ```
 
-> If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
->
+    > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
+    >
 
-Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
+10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
 
-```bash
-cd firmware
-cd 01-demo
-ls
-```
+    ```bash
+    cd firmware
+    cd 01-demo
+    ls
+    ```
 
-> Instead of `ls` command you can try `dir`.
->
+    > Instead of `ls` command you can try `dir`.
+    >
 
-All processes are done with help of `Makefile` script file. The following commands allow project compilation and programming:
+    All processes are done with help of `Makefile` script file. The following commands allow project compilation and programming:
 
-```bash
-mingw32-make.exe all
-mingw32-make.exe flash
-mingw32-make.exe size
-mingw32-make.exe list
-mingw32-make.exe clean
-```
+    ```bash
+    mingw32-make.exe all
+    mingw32-make.exe flash
+    mingw32-make.exe size
+    mingw32-make.exe list
+    mingw32-make.exe clean
+    ```
 
-To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+11. To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
-> If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
->
-> For Windows 10, you can install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then follow the AVR installation notes for Linux.
->
+    > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
+    >
+    > For Windows 10, you can install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then follow the AVR installation notes for Linux.
+    >
+
 
 #### Tested on operating systems
 
