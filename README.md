@@ -79,6 +79,8 @@ The following hardware components are mainly used in the lab.
 | [ESP8266](https://arduino-shop.cz/arduino/911-internet-veci-je-tady-tcp-ip-wifi-esp8266-1420990568.html) | Wi-Fi module | [AT commands](docs/esp8266_at_instruction_set.pdf)
 | [Joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html) | Analog Joystick PS2 |
 
+![uno](images/arduino_uno_water.jpg)
+
 
 ## Software components
 
@@ -88,7 +90,7 @@ The following hardware components are mainly used in the lab.
 | [Saleae](https://www.saleae.com/downloads/) | Saleae logic analyser |
 | [Linux Mint](https://linuxmint.com/download_all.php) | Linux Mint 18.2 "Sonya" - Xfce (64-bit) |
 
-![vscode](images/screenshot_saleae.png)
+![vscode](images/screenshot_vscode.png)
 
 
 #### References
