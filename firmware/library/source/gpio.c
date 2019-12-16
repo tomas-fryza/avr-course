@@ -14,47 +14,40 @@
 #include "common.h"
 
 /* Functions ---------------------------------------------------------*/
-void GPIO_config_output(volatile uint8_t *reg_name,
-                                 uint8_t  pin_num) {
+void GPIO_output(volatile uint8_t *reg, uint8_t pin) {
 
-    *reg_name = *reg_name | _BV(pin_num);
+    *reg = *reg | _BV(pin);
 }
 
 /*--------------------------------------------------------------------*/
-void GPIO_write(volatile uint8_t *reg_name,
-                         uint8_t  pin_num,
-                         uint8_t  pin_val) {
+void GPIO_write(volatile uint8_t *reg, uint8_t pin, uint8_t val) {
 
-    if (pin_val == LOW)
-        *reg_name = *reg_name & ~_BV(pin_num);
+    if (val == LOW)
+        *reg = *reg & ~_BV(pin);
     else
-        *reg_name = *reg_name | _BV(pin_num);
+        *reg = *reg | _BV(pin);
 }
 
 /*--------------------------------------------------------------------*/
-/*void GPIO_toggle(volatile uint8_t *reg_name,
-                          uint8_t  pin_num) {
-
-    // TODO: Body of the function
-}
-*/
-/*--------------------------------------------------------------------*/
-/*void GPIO_config_input_nopull(volatile uint8_t *reg_name,
-                                       uint8_t  pin_num) {
+/*void GPIO_toggle(volatile uint8_t *reg, uint8_t pin) {
 
     // TODO: Body of the function
 }
 */
 /*--------------------------------------------------------------------*/
-/*void GPIO_config_input_pullup(volatile uint8_t *reg_name,
-                                       uint8_t  pin_num) {
+/*void GPIO_input_nopull(volatile uint8_t *reg, uint8_t pin) {
 
     // TODO: Body of the function
 }
 */
 /*--------------------------------------------------------------------*/
-/*uint8_t GPIO_read(volatile uint8_t *reg_name,
-                           uint8_t  pin_num) {
+/*void GPIO_input_pullup(volatile uint8_t *reg, uint8_t pin) {
+
+    // TODO: Body of the function
+}
+*/
+/*--------------------------------------------------------------------*/
+/*uint8_t GPIO_read(volatile uint8_t *reg, uint8_t pin) {
 
     // TODO: Body of the function
 }

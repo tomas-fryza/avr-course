@@ -31,7 +31,7 @@ int main(void) {
 
     // Set output pins of two LEDs to low level
     // LED_GREEN
-    GPIO_config_output(&DDRB, LED_GREEN);
+    GPIO_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, LOW);
     // LED_RED
 

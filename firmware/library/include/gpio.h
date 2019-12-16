@@ -38,54 +38,46 @@
 /* Function prototypes -----------------------------------------------*/
 /**
  *  @brief Configures one output pin.
- *  @param reg_name Data Direction Register name of IO port, such as 
- *                  DDRB, DDRD, ...
- *  @param pin_num Pin designation in the interval 0 to 7
+ *  @param reg Data Direction Register name of IO port, such as DDRB, ...
+ *  @param pin Pin designation in the interval 0 to 7
  */
-void GPIO_config_output(volatile uint8_t *reg_name,
-                                 uint8_t pin_num);
+void GPIO_output(volatile uint8_t *reg, uint8_t pin);
 
 /**
  *  @brief Xxx.
- *  @param reg_name Xxx
- *  @param pin_num Xxx
- *  @param pin_val Xxx
+ *  @param reg Xxx
+ *  @param pin Xxx
+ *  @param val Xxx
  */
-void GPIO_write(volatile uint8_t *reg_name,
-                         uint8_t pin_num,
-                         uint8_t pin_val);
+void GPIO_write(volatile uint8_t *reg, uint8_t pin, uint8_t val);
 
 /**
  *  @brief Xxx.
- *  @param reg_name Xxx
- *  @param pin_num Xxx
+ *  @param reg Xxx
+ *  @param pin Xxx
  */
-void GPIO_toggle(volatile uint8_t *reg_name,
-                          uint8_t pin_num);
+void GPIO_toggle(volatile uint8_t *reg, uint8_t pin);
 
 /**
  *  @brief Xxx.
- *  @param reg_name Xxx
- *  @param pin_num Xxx
+ *  @param reg Xxx
+ *  @param pin Xxx
  */
-void GPIO_config_input_nopull(volatile uint8_t *reg_name,
-                                       uint8_t pin_num);
+void GPIO_input_nopull(volatile uint8_t *reg, uint8_t pin);
 
 /**
  *  @brief Xxx.
- *  @param reg_name Xxx
- *  @param pin_num Xxx
+ *  @param reg Xxx
+ *  @param pin Xxx
  */
-void GPIO_config_input_pullup(volatile uint8_t *reg_name,
-                                       uint8_t pin_num);
+void GPIO_input_pullup(volatile uint8_t *reg, uint8_t pin);
 
 /**
  *  @brief  Xxx.
- *  @param reg_name Xxx
- *  @param pin_num Xxx
+ *  @param reg Xxx
+ *  @param pin Xxx
  *  @return Xxx
  */
-uint8_t GPIO_read(volatile uint8_t *reg_name,
-                           uint8_t pin_num);
+uint8_t GPIO_read(volatile uint8_t *reg, uint8_t pin);
 
 #endif /* GPIO_H_INCLUDED */
