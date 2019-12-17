@@ -107,7 +107,7 @@
     ```C
     #include "gpio.h"
 
-    /* Functions ---------------------------------------------------------*/
+    /* Configures one output pin */
     void GPIO_output(volatile uint8_t *reg, uint8_t pin) {
 
         *reg = *reg | _BV(pin);
