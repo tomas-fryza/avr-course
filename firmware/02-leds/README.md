@@ -3,22 +3,35 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
-3. [Control two LEDs](#Control-two-LEDs)
-4. [Push button](#Push-button)
-5. [Switch debouncing](#Switch-debouncing)
-6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
-7. [Ideas for other tasks](#Ideas-for-other-tasks)
+2. [Hardware components](#Hardware-components)
+3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
+4. [Control two LEDs](#Control-two-LEDs)
+5. [Push button](#Push-button)
+6. [Switch debouncing](#Switch-debouncing)
+7. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
+8. [Ideas for other tasks](#Ideas-for-other-tasks)
 
 
 ## Lab prerequisites
 
-TBD
+1. Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, active-high.
+
+2. Determine the value of resistor with respect to the [required LED current](https://electronicsclub.info/leds.htm).
+
+3. Draw the basic ways to connect a push button to the microcontroller input pin: pull-down switch, pull-up switch.
+
+
+## Hardware components
+
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
+2. [Arduino Uno](../../docs/arduino_shield.pdf) board
+3. [300-pin breadboard](https://www.gme.cz/nepajive-kontaktni-pole-zy-60)
+4. [Male-male wires](https://arduino-shop.cz/arduino/1063-arduino-vodice-samec-samec-40-kusu-1500635966.html) for interconnections
 
 
 ## Synchronize Git and create a new project
 
-1. In Visual Studio Code editor (VS Code) open your Digital-electronics-2 working directory and synchronize the contents with [GitHub](https://github.com/joshnh/Git-Commands).
+1. In Visual Studio Code editor (VS Code) open your Digital-electronics-2 working directory and [synchronize the contents](https://github.com/joshnh/Git-Commands) with GitHub.
 
     ```bash
     $ pwd
@@ -43,15 +56,11 @@ TBD
 
 ## Control two LEDs
 
-1. Use [ATmega328P reference manual](https://www.microchip.com/wwwproducts/en/ATmega328p) to find out the meaning of control registers DDRB, PORTB, PINB.
+1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) to find out the meaning of control registers DDRB, PORTB, PINB.
 
-2. Draw the basic ways to connect a LED to the output pin of the microcontroller.
+2. See [schematic of Arduino Uno board](../../docs/arduino_shield.pdf) in docs folder of Digital-electronics-2 repository and find out which pins can be used as output pins.
 
-3. See [schematic of Arduino Uno board](../../docs/arduino_shield.pdf) in docs folder of Digital-electronics-2 repository and find out which pins can be used as output pins.
-
-4. Determine the value of resistor with respect to the required [LED current](https://electronicsclub.info/leds.htm).
-
-5. Use breadboard, connect resistor and second LED to Arduino output pin and program an application that blinks alternately with a pair of LEDs. Use the delay library as in the previous exercise.
+3. Use breadboard, connect resistor and second LED to Arduino output pin and program an application that blinks alternately with a pair of LEDs. Use the delay library as in the previous exercise.
 
     > In VS Code terminal use commands `make all` and `make flash` to compile and download the code to AVR flash program memory.
     >
@@ -59,9 +68,7 @@ TBD
 
 ## Push button
 
-1. Draw the basic ways to connect a push button to the microcontroller input pin.
-
-2. Use breadboard, connect push button to Arduino input pin and program an application that toggles the LEDs each time the push button is pressed. Use the [AVR Libc library macros](https://www.microchip.com/webdoc/AVRLibcReferenceManual/ch20s22s02.html) to test bit values in control register:
+1. Use breadboard, connect push button to Arduino input pin and program an application that toggles the LEDs each time the push button is pressed. Use the [AVR Libc library macros](https://www.microchip.com/webdoc/AVRLibcReferenceManual/ch20s22s02.html) to test bit values in control register:
 
     ```C
     if (bit_is_set(PINA, 0)) {...}      // Only if PINA bit number 0 is 1 (set)

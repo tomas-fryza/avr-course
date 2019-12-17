@@ -3,22 +3,51 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
-3. [Header file](#Header-file)
-4. [Source file](#Source-file)
-5. [Final application](#Final-application)
-6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
-7. [Ideas for other tasks](#Ideas-for-other-tasks)
+2. [Hardware components](#Hardware-components)
+3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
+4. [Header file](#Header-file)
+5. [Source file](#Source-file)
+6. [Final application](#Final-application)
+7. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
+8. [Ideas for other tasks](#Ideas-for-other-tasks)
 
 
 ## Lab prerequisites
 
-TBD
+1. What is the meaning of `volatile` keyword in C? What is the difference between operators `*` and `&`, such as `*reg` and `&DDRB`?
+
+2. Complete the following table with C data types.
+
+    | **Data type** | **Number of bits** | **Range** |
+    | :-: | :-: | :-: |
+    | `uint8_t` | 8 | 0, 1, ..., 255 |
+    | `int8_t` |  |  |
+    | `uint16_t` |  |  |
+    | `int16_t` |  |  |
+    | `float` |  | -3.4e+38, ..., 3.4e+38 |
+    | `void` |  |  |
+
+3. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and complete the following table with I/O ports. Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.
+
+    | **DDRB5** | **PORTB5** | **I/O** | **Pull-up** | **Description** |
+    | :-: | :-: | :-: | :-: | :-- |
+    | 0 | 0 | Input | No | Three-state, high impedance |
+    | 0 | 1 |  |  |  |
+    | 1 | 0 |  |  |  |
+    | 1 | 1 |  |  |  |
+
+
+## Hardware components
+
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
+2. [Arduino Uno](../../docs/arduino_shield.pdf) board
+3. [300-pin breadboard](https://www.gme.cz/nepajive-kontaktni-pole-zy-60)
+4. [Male-male wires](https://arduino-shop.cz/arduino/1063-arduino-vodice-samec-samec-40-kusu-1500635966.html) for interconnections
 
 
 ## Synchronize Git and create a new project
 
-1. In Visual Studio Code editor (VS Code) open your Digital-electronics-2 working directory and synchronize the contents with [GitHub](https://github.com/joshnh/Git-Commands).
+1. In Visual Studio Code editor (VS Code) open your Digital-electronics-2 working directory and [synchronize the contents](https://github.com/joshnh/Git-Commands) with GitHub.
 
     ```bash
     $ pwd
@@ -45,7 +74,7 @@ TBD
 1. Create a new library header file `library/include/gpio.h` and define function prototypes according to the following table.
 
     | **Return** | **Function name** | **Function parameters** |
-    |---|---|---|
+    | :-: | :-- | :-- |
     | `void` | `GPIO_output` | `volatile uint8_t *reg, uint8_t pin` |
     | `void` | `GPIO_write` | `volatile uint8_t *reg, uint8_t pin, uint8_t val` |
     | `void` | `GPIO_toggle` | `volatile uint8_t *reg, uint8_t pin` |
@@ -53,9 +82,7 @@ TBD
     | `void` | `GPIO_input_pullup` | `volatile uint8_t *reg, uint8_t pin` |
     | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` |
 
-2. What is the meaning of `void` and `uint8_t` datatypes? What is the meaning of `volatile` keyword? What is the meaning of `*` symbol?
-
-3. Why is it necessary to use guard directives `#ifndef`, `#define`, `#endif` in header file?
+2. Why is it necessary to use guard directives `#ifndef`, `#define`, `#endif` in header file?
 
     ```C
     #ifndef GPIO_H_INCLUDED
@@ -101,7 +128,7 @@ TBD
 
 ## Final application
 
-1. Rewrite the LED switching application from the previous exercise using the library functions.
+1. Rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`.
 
 
 ## Clean project and synchronize git
