@@ -12,7 +12,7 @@
 
 ## Lab prerequisites
 
-1. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) what is the meaning of Timer/Counter prescaler block? By equation ![equation](https://latex.codecogs.com/gif.latex?t_%7Bovf%7D%20%3D%20%5Cfrac%7B1%7D%7Bf_%7BCPU%7D%7D%5Ccdot%202%5En%5Ccdot%20N) where $n$ represents number of bits, $N$ is prescaler value, and $f_{CPU}=16$ MHz is CPU clock frequency, calculate overflow times for ATmega328P timers and complete the following table for all prescaler values.
+1. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) what is the meaning of Timer/Counter prescaler block? By equation ![equation](https://latex.codecogs.com/gif.latex?t_%7Bovf%7D%20%3D%201/f_%7BCPU%7D%5Ccdot%202%5En%5Ccdot%20N) where ![equation](https://latex.codecogs.com/gif.latex?n) represents number of bits, ![equation](https://latex.codecogs.com/gif.latex?N) is prescaler value, and ![equation](https://latex.codecogs.com/gif.latex?f_%7BCPU%7D%3D16) MHz is CPU clock frequency, calculate overflow times for ATmega328P timers and complete the following table for all prescaler values.
 
     | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
     | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
