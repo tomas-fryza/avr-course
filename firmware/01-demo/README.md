@@ -3,16 +3,24 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [GitHub](#GitHub)
-3. [Linux terminal](#Linux-terminal)
-4. [Test toolchain](#Test-toolchain)
-5. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
-6. [Ideas for other tasks](#Ideas-for-other-tasks)
+2. [Hardware components](#Hardware-components)
+3. [GitHub](#GitHub)
+4. [Linux terminal](#Linux-terminal)
+5. [Test toolchain](#Test-toolchain)
+6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
+7. [Ideas for other tasks](#Ideas-for-other-tasks)
 
 
 ## Lab prerequisites
 
 1. Create an account on [GitHub](https://github.com/) server.
+
+
+## Hardware components
+
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
+2. [Arduino Uno](../../docs/arduino_shield.pdf) board
+3. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
 
 
 ## GitHub
@@ -25,7 +33,7 @@
 1. Try basic commands in the Linux terminal:
 
 | **Command** | **Description** |
-| ----------- | --------------- |
+| :-: | --------------- |
 | `Ctrl+Alt+T` | Open Linux terminal in Ubuntu based distributions
 | `Tab` | Automatic completion what you are typing or suggest options to you
 | `Up/Down` | Browse command history
