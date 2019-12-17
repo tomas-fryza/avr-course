@@ -12,7 +12,7 @@
 
 ## Lab prerequisites
 
-1. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) what is the meaning of Timer/Counter prescaler block? By equation $t_{ovf} = \frac{1}{f_{CPU}}\cdot 2^n\cdot N$ where $n$ represents number of bits, $N$ is prescaler value, and $f_{CPU}=16$ MHz is CPU clock frequency, calculate overflow times for ATmega328P timers and complete the following table for all prescaler values.
+1. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) what is the meaning of Timer/Counter prescaler block? By equation $`t_{ovf} = \frac{1}{f_{CPU}}\cdot 2^n\cdot N`$ where $n$ represents number of bits, $N$ is prescaler value, and $f_{CPU}=16$ MHz is CPU clock frequency, calculate overflow times for ATmega328P timers and complete the following table for all prescaler values.
 
     | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
     | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
