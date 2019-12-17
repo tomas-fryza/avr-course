@@ -52,8 +52,8 @@
 // TODO: Define interrupt modes for Timer0
 
 /** @brief Defines interrupt modes for Timer1. */
-#define TIM1_overflow_interrupt_enable()    TIMSK1 |= _BV(TOIE1);
-#define TIM1_overflow_interrupt_disable()   TIMSK1 &= ~_BV(TOIE1);
+#define TIM1_overflow_enable()  TIMSK1 |= _BV(TOIE1);
+#define TIM1_overflow_disable() TIMSK1 &= ~_BV(TOIE1);
 
 /** @brief Defines interrupt modes for Timer2. */
 // TODO: Define interrupt modes for Timer2

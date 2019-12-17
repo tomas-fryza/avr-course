@@ -31,7 +31,7 @@
 int main(void) {
 
     // LED_GREEN
-    GPIO_config_output(&DDRB, LED_GREEN);
+    GPIO_output(&DDRB, LED_GREEN);
     GPIO_write(&PORTB, LED_GREEN, LOW);
     /* LED_BLUE
      * TODO: Configure blue LED */
@@ -46,7 +46,7 @@ int main(void) {
     /* Set Timer1
      * Configure Timer1 clock source and enable overflow interrupt */
     TIM1_overflow_262ms();
-    TIM1_overflow_interrupt_enable();
+    TIM1_overflow_enable();
 
     /* Set Timer2
      * TODO: Configure Timer2 clock source and enable overflow 
