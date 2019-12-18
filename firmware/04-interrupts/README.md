@@ -22,8 +22,6 @@
 
 2. See schematic of [Multi-function shield](../../docs/arduino_shield.pdf) and find out the connection of D1, D2, D3, D4 LEDs and S1-A1, S2-A2, S3-A3 push buttons.
 
-![mf_shield](../../images/multi_funct_shield.png "Multi-function shield")
-
 
 ## Hardware components
 
@@ -31,6 +29,8 @@
 2. [Arduino Uno](../../docs/arduino_shield.pdf) board
 3. [Multi-function shield](../../docs/arduino_shield.pdf) with four LEDs, three push buttons, four seven-segment displays
 4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
+
+![mf_shield](../../images/multi_funct_shield.png "Multi-function shield")
 
 
 ## Synchronize Git and create a new project
