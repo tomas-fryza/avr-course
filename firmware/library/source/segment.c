@@ -33,21 +33,19 @@ uint8_t segment_position[] = {
     0b00000001};  // Position 3
 
 /* Functions ---------------------------------------------------------*/
-void SEG_putc(uint8_t digit,
-              uint8_t position) {
-    uint8_t i;
+void SEG_putc(uint8_t digit, uint8_t position) {
 
     /* Read values from look-up tables */
     digit    = segment_digit[digit];
     position = segment_position[position];
 
     /* Put 1st byte to serial data */
-    for (i = 0; i < 8; i++) {
+    for (uint8_t i = 0; i < 8; i++) {
         // TODO: Test and send 8 individual "digit" bits
         SEG_toggle_clk();
     }
     /* Put 2nd byte to serial data */
-    for (i = 0; i < 8; i++) {
+    for (uint8_t i = 0; i < 8; i++) {
         // TODO: Test and send 8 individual "position" bits
         SEG_toggle_clk();
     }
@@ -57,5 +55,6 @@ void SEG_putc(uint8_t digit,
 
 /*--------------------------------------------------------------------*/
 void SEG_toggle_clk(void) {
+
     /* TODO: Generate 2 us clock period */
 }

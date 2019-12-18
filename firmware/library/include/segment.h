@@ -36,16 +36,13 @@
 
 /* Function prototypes -----------------------------------------------*/
 /**
- *  @brief Xxx.
- *  @param xxx Xxx
- *  @param xxx Xxx
+ * @brief Xxx.
+ * @param xxx Xxx
+ * @param xxx Xxx
  */
-void SEG_putc(uint8_t digit,
-              uint8_t position);
+void SEG_putc(uint8_t digit, uint8_t position);
 
-/**
- *  @brief Xxx.
- */
+/** @brief Xxx. */
 void SEG_toggle_clk(void);
 
 #endif /* SEGMENT_H_INCLUDED */

@@ -13,8 +13,8 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "gpio.h"
-#include "timer.h"
-#include "segment.h"
+//#include "timer.h"
+//#include "segment.h"
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
