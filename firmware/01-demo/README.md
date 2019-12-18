@@ -91,7 +91,7 @@
 
     connect Channel 0 to Arduino board pin 13, and use logical analyzer to verify duration of `_delay_ms()` function.
 
-![logic](../../images/screenshot_saleae.png "Saleae Logic software")
+    ![logic](../../images/screenshot_saleae.png "Saleae Logic software")
 
 3. What is the meaning of `|`, `&`, `^`, `~`, `<<`, `_BV()` operations in C source file? See [AVR Libc Reference Manual](https://www.microchip.com/webdoc/AVRLibcReferenceManual/) for answer.
 
