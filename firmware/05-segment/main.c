@@ -1,6 +1,6 @@
 ﻿/***********************************************************************
  * 
- * Decimal counter with 7-segment display output.
+ * Control LED(s) using Pin Change Interrupts.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2018-2019 Tomas Fryza
@@ -28,25 +28,21 @@
 
 /* Functions ---------------------------------------------------------*/
 /* Main --------------------------------------------------------------*/
-/* Shows decimal values ​​on 7-segment display. */
+/* Toggle LED(s) using push buttons and Pin Chang Interrupts. */
 int main(void) {
 
-    /* D1 led
-     * TODO: Configure D1 led at Multi-Function Shield */
+    // TODO: Configure LED_D1
+    // TODO: Configure Pin Change Interrupts number 11, 10, and 9
 
-    /* Pin Change Interrupts 11:9
-     * TODO: Configure Pin Change Interrupts 11, 10, and 9 */
-
-    /* 7-segment display interface
-     * TODO: Configure 7-segment display pins */
+    // TODO: Configure 7-segment display pins
 
     // Enable interrupts by setting the global interrupt mask
     sei();
 
     // Infinite loop
     for (;;) {
-        // TODO: Use function to display digit 1 at position 0
-        //SEG_putc(1, 0);
+        // TODO: Use function to display digit "3" at position 0
+        //SEG_putc(3, 0);
     }
 
     // Will never reach this
@@ -55,9 +51,9 @@ int main(void) {
 
 /* Interrupts --------------------------------------------------------*/
 /* Pin Change Interrupt 11:9 routine.
- * Toggle a LED. */
+ * Toggle a LED(s). */
 /*ISR(???) {
 
-    // TODO: Toggle a led
+    // TODO: Toggle LED(s)
 }
 */
