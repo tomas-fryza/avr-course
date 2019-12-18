@@ -18,9 +18,9 @@
 
 /* Typedef -----------------------------------------------------------*/
 /* Define ------------------------------------------------------------*/
-#define LED_GREEN   PB5
-#define LED_BLUE    PB3
-#define LED_RED     PB0
+#define LED_D1  PB5
+#define LED_D2  PB4
+#define LED_D3  PB3
 
 /* Variables ---------------------------------------------------------*/
 /* Function prototypes -----------------------------------------------*/
@@ -30,27 +30,17 @@
 /* Toggle three LEDs with internal 8- and 16-bit timer modules. */
 int main(void) {
 
-    // LED_GREEN
-    GPIO_output(&DDRB, LED_GREEN);
-    GPIO_write(&PORTB, LED_GREEN, LOW);
-    /* LED_BLUE
-     * TODO: Configure blue LED */
+    // TODO: Configure LED_D1
+    // Configure LED_D2
+    GPIO_output(&DDRB, LED_D2);
+    GPIO_write(&PORTB, LED_D2, LOW);
+    // TODO: Configure LED_D3
 
-    /* LED_RED
-     * TODO: Configure red LED */
-
-    /* Set Timer0
-     * TODO: Configure Timer0 clock source and enable overflow 
-     *       interrupt */
-
-    /* Set Timer1
-     * Configure Timer1 clock source and enable overflow interrupt */
+    // TODO: Configure Timer0 clock and enable overflow interrupt
+    // Configure Timer1 clock and enable overflow interrupt
     TIM1_overflow_262ms();
     TIM1_overflow_enable();
-
-    /* Set Timer2
-     * TODO: Configure Timer2 clock source and enable overflow 
-     *       interrupt */
+    // TODO: Configure Timer2 clock and enable overflow interrupt
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -65,25 +55,25 @@ int main(void) {
 
 /* Interrupts --------------------------------------------------------*/
 /* Timer/Counter0 overflow interrupt routine.
- * Toggle green LED. */
+ * Toggle LED_D1. */
 /*ISR(TIMER0_OVF_vect) {
 
-    // TODO: Toggle green LED
+    // TODO: Toggle LED_D1
 }
 */
 /* -------------------------------------------------------------------*/
 /* Timer/Counter1 overflow interrupt routine.
- * Toggle blue LED. */
+ * Toggle LED_D2. */
 ISR(TIMER1_OVF_vect) {
 
-    // TODO: Toggle blue LED
+    // TODO: Toggle LED_D2
 }
 
 /* -------------------------------------------------------------------*/
 /* Timer/Counter2 overflow interrupt routine.
- * Toggle red LED. */
+ * Toggle LED_D3. */
 /*ISR(TIMER2_OVF_vect) {
 
-    // TODO: Toggle red LED
+    // TODO: Toggle LED_D3
 }
 */
