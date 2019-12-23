@@ -30,7 +30,7 @@
 3. [Multi-function shield](../../docs/arduino_shield.pdf) with four LEDs, three push buttons, four seven-segment displays
 4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
 
-    ![mf_shield](../../images/multi_funct_shield.png "Multi-function shield")
+![mf_shield](../../images/multi_funct_shield.png "Multi-function shield")
 
 
 ## Synchronize Git and create a new project
