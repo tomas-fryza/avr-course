@@ -32,6 +32,7 @@
 3. [Multi-function shield](../../docs/arduino_shield.pdf) with four LEDs, three push buttons, four seven-segment displays
 4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
 
+    &nbsp;
     ![mf_shield](../../images/multi_funct_shield.png "Multi-function shield")
 
 
@@ -53,7 +54,9 @@
 
 1. Use schematic of the [Multi-function shield](../../docs/arduino_shield.pdf) and analyze timing of serial communication between ATmega328P and seven-segment displays via two shift registers 74HC595.
 
+    &nbsp;
     ![segment_timing](../../images/segment_example.png "Timing of seven-segment displays")
+    &nbsp;
 
 > The figure above was created in [WaveDrom](https://wavedrom.com/) digital timing diagram online tool. The source of the figure is as follows:
 >
@@ -82,9 +85,12 @@
 
 2. Create a new library header file `library/include/segment.h` and define function prototypes for communication with shift registers according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/firmware/library/include).
 
-3. Create `library/source/segment.c` source file according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/firmware/library/source). Complete look-up tables and body of `SEG_putc()` and `SEG_toggle_clk()` functions. Verify the reliability of functions you have created and the correct settings for all digits.
+3. Create `library/source/segment.c` source file according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/firmware/library/source):
+    * complete look-up table `segment_digit[]` specifies active-low digits 0 to 9,
+    * program body of `SEG_putc(uint8_t digit, uint8_t position)` function where `digit` represents value to display at specific `position`, and
+    * program body of `SEG_toggle_clk(void)` function which generates 2&nbsp;us clock pulse at `SEGMENT_CLK` pin.
 
-4. Add the source file of seven-segment library between the compiled files in `05-segment/Makefile`.
+4. Add the source file of seven-segment library between the compiled files in `05-segment/Makefile` and verify functions' reliability and correct settings for all digits.
 
 
 ## Decimal counter

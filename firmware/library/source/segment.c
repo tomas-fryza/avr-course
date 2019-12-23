@@ -16,7 +16,7 @@
 
 /* Define ------------------------------------------------------------*/
 /* Variables ---------------------------------------------------------*/
-/* Active low digit 0 to 9 */
+/* Active-low digit 0 to 9 */
 uint8_t segment_digit[] = {
    //DPgfedcba
     0b11000000,      // Digit 0
@@ -25,7 +25,7 @@ uint8_t segment_digit[] = {
     // TODO: Set segments for other digits
     0b10011000};     // Digit 9
 
-/* Active high position 0 to 3 */
+/* Active-high position 0 to 3 */
 uint8_t segment_position[] = {
     0b00001000,   // Position 0
     0b00000100,   // Position 1
