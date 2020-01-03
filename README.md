@@ -32,7 +32,7 @@ In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of
 | [03-gpio](firmware/03-gpio) | Lab 3. Creation of user library for GPIO control |
 | [04-interrupts](firmware/04-interrupts) | Lab 4. Interrupts, Timers |
 | [05-segment](firmware/05-segment) | Lab 5. Display devices, 7-segment display |
-| [06-lcd](firmware/06-lcd) | Xxx |
+| [06-lcd](firmware/06-lcd) | Lab 6. Display devices, LCD display |
 | [07-uart](firmware/07-uart) | Xxx |
 | [08-twi_scan](firmware/08-twi_scan) | Xxx |
 | [09-asm_random](firmware/09-asm_random) | Xxx |
@@ -48,7 +48,7 @@ The following hardware components are mainly used in the lab.
 | [Arduino Uno board](https://arduino-shop.cz/arduino/1353-klon-arduino-uno-r3-atmega328p-ch340-mini-usb-1466635561.html) | Low-cost clone of Arduino UNO R3 CH340 mini USB | [Schematic](docs/arduino_shield.pdf) |
 | [Logic analyzer](https://www.ebay.com/sch/i.html?LH_CAds=&_ex_kw=&_fpos=&_fspt=1&_mPrRngCbx=1&_nkw=24mhz%20logic%20analyzer&_sacat=&_sadis=&_sop=12&_udhi=&_udlo=) | 24MHz 8-channel logic analyzer | [Software](https://www.saleae.com/) |
 | [Multi-function shield](https://www.gme.cz/experiment-shield-pro-arduino) | Multi-function shield with four LEDs, three push buttons, four seven-segment displays, and others | [Schematic](docs/arduino_shield.pdf) |
-| [Arduino LCD Shield](https://arduino-shop.cz/en/arduino-platform/899-arduino-lcd-shield-1420670167.html) | LCD and keypad shield with LCD and five push buttons | [Schematic](docs/arduino_shield.pdf) |
+| [LCD keypad hield](https://arduino-shop.cz/en/arduino-platform/899-arduino-lcd-shield-1420670167.html) | LCD and keypad shield with LCD and five push buttons | [Schematic](docs/arduino_shield.pdf) |
 | [DHT12](https://arduino-shop.cz/arduino/1977-i2c-teplomer-a-vlhkomer-dht12-digitalni.html) | I2C humidity and temperature sensor | [Data sheet](docs/dht12_manual.pdf) |
 | [DS3231](https://arduino-shop.cz/hledani.php?q=DS3231&n_q=) | I2C real time clock | [Data sheet](docs/ds3231_manual.pdf) |
 | [Ultrasonic HC-SR04](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) | HC-SR04 ultrasonic sensor |
