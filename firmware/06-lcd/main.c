@@ -27,9 +27,8 @@
 int main(void) {
 
     /* LCD display
-     * TODO: See Peter Fleury's online manual for LCD library 
-     * http://homepage.hispeed.ch/peterfleury/avr-software.html
-     * Initialize display and test different types of cursor */
+     * TODO: See Peter Fleury's online manual for LCD library, 
+     *       initialize display, and test different types of cursor */
     lcd_init(LCD_DISP_ON);
 
     // Display string without auto linefeed
