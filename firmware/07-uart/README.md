@@ -85,7 +85,7 @@
     | `uart_putc` |  |  |
     | `uart_puts` |  |  |
 
-4. Use template from [teacher's GitHub]((https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/07-uart/main.c)) and configure ADC (AVcc with external capacitor voltage reference, channel ADC0, prescaler 128, enable interrupt), Timer1 (start ADC conversion every second), and UART (mode 8N1, baud rate 9600) modules.
+4. Use template from [teacher's GitHub](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/07-uart/main.c) and configure ADC (AVcc with external capacitor voltage reference, channel ADC0, prescaler 128, enable interrupt), Timer1 (start ADC conversion every second), and UART (mode 8N1, baud rate 9600) modules.
 
     Read voltage level of push buttons and transmit it to UART. Use PuTTY SSH Client to receive values from Arduino board. Setup the application as follows:
 
