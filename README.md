@@ -34,7 +34,7 @@ In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of
 | [05-segment](firmware/05-segment) | Lab 5. Display devices, 7-segment display |
 | [06-lcd](firmware/06-lcd) | Lab 6. Display devices, LCD display |
 | [07-uart](firmware/07-uart) | Lab 7. ADC, serial communication, UART |
-| [08-twi_scan](firmware/08-twi_scan) | Xxx |
+| [08-twi_scan](firmware/08-twi_scan) | Lab 8. Serial communication, I2C/TWI |
 | [09-asm_random](firmware/09-asm_random) | Xxx |
 
 
