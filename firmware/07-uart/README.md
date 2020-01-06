@@ -48,7 +48,7 @@
 
     | **Operation** | **Code** | **Description** |
     | :-: | :-- | :-- |
-    | Voltage reference | `ADMUX |= _BV(REFS0);`<br>`ADMUX |= _BV(REFS1) | _BV(REFS0);` | AVcc voltage reference (5V)<br>Internal 1.1V reference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+    | Voltage reference | `ADMUX \|= _BV(REFS0);`<br>`ADMUX \|= _BV(REFS1) \| _BV(REFS0);` | AVcc voltage reference (5V)<br>Internal 1.1V reference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
     | Analog input |  | Channel ADC0 |
     | ADC clock divider |  | Division factor = 64, fadc =<br>Division factor = 128, fadc =   |
     | ADC enable |  |  |
