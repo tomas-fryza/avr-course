@@ -34,6 +34,13 @@
     | `sbi A, b` |  |  |  |
 
 
+## Hardware components
+
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
+2. [Arduino Uno](../../docs/arduino_shield.pdf) board
+3. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
+
+
 ## Synchronize Git and create a new project
 
 1. In VS Code open your Digital-electronics-2 working directory and synchronize the contents with single git command `git pull` or sequence of two commands `git fetch` followed by `git merge`.
