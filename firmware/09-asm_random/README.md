@@ -50,7 +50,7 @@
 
 ## LFSR-based pseudo random generator
 
-1. Create a new source file [09-asm_random/rand.S](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/09-asm_random/rand.S), use template from [teacher's GitHub](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/09-asm/main.c), , explore the use of FSM in the application, set Timer1 overflow to 33 msec, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client.
+1. Create a new source file [09-asm_random/rand.S](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/09-asm_random/rand.S), use template from [teacher's GitHub](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/firmware/09-asm_random/main.c), explore the use of FSM in the application, set Timer1 overflow to 33 msec, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client.
 
 2. Verify that feedback taps generate the maximum-length LFSR (Linear-feedback shift register) sequence for 4- and 8-bit structure.
 
