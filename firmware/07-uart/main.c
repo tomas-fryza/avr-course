@@ -15,7 +15,6 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "timer.h"
-#include "lcd.h"
 #include "uart.h"
 
 /* Typedef -----------------------------------------------------------*/
@@ -29,10 +28,6 @@
 /* Main --------------------------------------------------------------*/
 /* Read ADC result and transmit via UART. */
 int main(void) {
-
-    // LCD display
-    lcd_init(LCD_DISP_ON);
-    lcd_puts("LCD testing");
 
     /* ADC
      * TODO: Configure ADC reference, clock source, enable ADC module, 

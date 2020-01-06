@@ -25,7 +25,7 @@ LIBRARY_DIR = ../library
 # existing files that match the pattern.
 SRCS := $(wildcard *.c)
 # Add or comment libraries you are using in the project
-SRCS += $(LIBRARY_DIR)/source/lcd.c
+#SRCS += $(LIBRARY_DIR)/source/lcd.c
 SRCS += $(LIBRARY_DIR)/source/uart.c
 #SRCS += $(LIBRARY_DIR)/source/twi.c
 #SRCS += $(LIBRARY_DIR)/source/gpio.c
