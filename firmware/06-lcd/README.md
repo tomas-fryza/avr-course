@@ -54,7 +54,7 @@
 
 ## LCD library
 
-*In the lab, we are using [LCD library for HD44780 based LCDs](www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury*
+*In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury*
 
 1. Use online manual of LCD library and add the input parameters and description of the functions to the following table.
 
@@ -75,6 +75,8 @@
 1. According to the listing bellow, verify how you can convert a variable value to string and then display it on LCD. Display one variable value in decimal, binary, and hexadecimal. What are the parameters of standard C function `itoa`?
 
     ```C
+    #include <stdlib.h>
+
     uint8_t value = 31;
     char lcd_string[3];
     ...
