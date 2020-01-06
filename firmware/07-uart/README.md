@@ -6,7 +6,7 @@
 2. [Hardware components](#Hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [Analog-to-Digital Conversion](#Analog-to-Digital-Conversion)
-5. [UART (Universal asynchronous receiver-transmitter) communication](#UART-(Universal-asynchronous-receiver-transmitter)-communication)
+5. [UART communication](#UART-communication)
 6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
 7. [Ideas for other tasks](#Ideas-for-other-tasks)
 
@@ -57,9 +57,9 @@
     | ADC result |  |  |
 
 
-## UART (Universal asynchronous receiver-transmitter) communication
+## UART communication
 
-1. What ASCII code/character is transmitting in UART 8N1 mode? According to bit period (one bit duration), estimate the symbol rate.
+1. What ASCII code/character is transmitting in UART (Universal asynchronous receiver-transmitter) 8N1 mode? According to bit period (one bit duration), estimate the symbol rate.
 
     &nbsp;
     ![uart_example](../../images/uart_capture_E.png "UART signal")
