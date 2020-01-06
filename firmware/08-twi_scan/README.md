@@ -6,7 +6,7 @@
 2. [Hardware components](#Hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [TWI scanner](#TWI-scanner)
-5. [xxx](#xxx)
+5. [DHT12 temperature/humidity sensor](#DHT12-temperature/humidity-sensor)
 6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
 7. [Ideas for other tasks](#Ideas-for-other-tasks)
 
