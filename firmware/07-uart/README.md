@@ -158,3 +158,5 @@ Remove all binaries and object files from the working directory and push all loc
     ```
 
 3. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the baudrate be equal to 9600 Bd. Consider also the possibility of calculating the parity bit.
+
+4. Verify the UART communication with logic analyzer.
