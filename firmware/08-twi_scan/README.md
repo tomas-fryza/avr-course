@@ -6,7 +6,7 @@
 2. [Hardware components](#Hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [TWI scanner](#TWI-scanner)
-5. [DHT12 temperature/humidity sensor](#DHT12-temperature/humidity-sensor)
+5. [DHT12 temperature and humidity sensor](#DHT12-temperature-and-humidity-sensor)
 6. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
 7. [Ideas for other tasks](#Ideas-for-other-tasks)
 
@@ -99,7 +99,7 @@
     ```
 
 
-## DHT12 temperature/humidity sensor
+## DHT12 temperature and humidity sensor
 
 1. Create a new project folder `08-twi_temperature` and copy three files from `08-twi_scan` project.
 
