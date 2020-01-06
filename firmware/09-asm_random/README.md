@@ -56,7 +56,6 @@
 
 3. Explore the LFSR algorithm within `rand4_asm` function. What the taps positions mean?
 
-    &nbsp;
     > Use the following structure of 8-bit LFSR to derive the connection for 4-bit algorithm.
     >
     ![rand8](../../images/lfsr.png "8-bit LFSR")
