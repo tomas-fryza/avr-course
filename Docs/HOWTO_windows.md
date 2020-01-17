@@ -41,7 +41,7 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
+10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Labs/01-demo`.
 
     ```bash
     cd Labs
@@ -62,7 +62,7 @@
     mingw32-make.exe clean
     ```
 
-11. To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+11. To create a new project, make a new directory within `Labs;` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
