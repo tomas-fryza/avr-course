@@ -1,4 +1,4 @@
-# Lab 3. Creation of user library for GPIO control
+# Lab 3: Creation of user library for GPIO control
 
 #### Table of contents
 
