@@ -1,4 +1,4 @@
-# Lab 6. Display devices, LCD display
+# Lab 6: Display devices, LCD display
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Hardware components](#Hardware-components)
