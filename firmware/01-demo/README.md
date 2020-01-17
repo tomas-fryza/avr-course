@@ -129,6 +129,7 @@
     $ git commit -m "[LAB] Adding 01-demo lab"
     $ git status
     $ git push
+    $ git status
     ```
 
 
