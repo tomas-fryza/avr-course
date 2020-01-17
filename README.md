@@ -25,17 +25,17 @@ In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of
 
 ## List of examples
 
-| **Example** | **Description** |
+| **Lab exercises** | **Description** |
 | :-- | :-- |
-| [01-demo](firmware/01-demo) | Lab 1. Git version-control system, AVR toolchain |
-| [02-leds](firmware/02-leds) | Lab 2. Control of GPIO, LED, push button |
-| [03-gpio](firmware/03-gpio) | Lab 3. Creation of user library for GPIO control |
-| [04-interrupts](firmware/04-interrupts) | Lab 4. Interrupts, Timers |
-| [05-segment](firmware/05-segment) | Lab 5. Display devices, 7-segment display |
-| [06-lcd](firmware/06-lcd) | Lab 6. Display devices, LCD display |
-| [07-uart](firmware/07-uart) | Lab 7. ADC, serial communication, UART |
-| [08-twi_scan](firmware/08-twi_scan) | Lab 8. Serial communication, I2C/TWI |
-| [09-asm_random](firmware/09-asm_random) | Lab 9. Combining C and assembly source files |
+| [01-demo](firmware/01-demo) | Lab 1: Git version-control system, AVR toolchain |
+| [02-leds](firmware/02-leds) | Lab 2: Control of GPIO, LED, push button |
+| [03-gpio](firmware/03-gpio) | Lab 3: Creation of user library for GPIO control |
+| [04-interrupts](firmware/04-interrupts) | Lab 4: Interrupts, Timers |
+| [05-segment](firmware/05-segment) | Lab 5: Display devices, 7-segment display |
+| [06-lcd](firmware/06-lcd) | Lab 6: Display devices, LCD display |
+| [07-uart](firmware/07-uart) | Lab 7: ADC, serial communication, UART |
+| [08-twi_scan](firmware/08-twi_scan) | Lab 8: Serial communication, I2C/TWI |
+| [09-asm_random](firmware/09-asm_random) | Lab 9: Combining C and assembly source files |
 
 
 ## Hardware components
