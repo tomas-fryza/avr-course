@@ -1,4 +1,4 @@
-# Lab 1. Git version-control system, AVR toolchain
+# Lab 1: Git version-control system, AVR toolchain
 
 #### Table of contents
 
