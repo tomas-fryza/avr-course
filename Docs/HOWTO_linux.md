@@ -18,7 +18,7 @@
 
 5. Download and extract [this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.tar.gz) to local computer and use it to start your own repository.
 
-6. Start Visual Studio Code source code editor, open template folder, and in `firmware/firmware.in` file enable and/or modify Linux parameters according to your local settings:
+6. Start Visual Studio Code source code editor, open template folder, and in `Labs/firmware.in` file enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -42,7 +42,7 @@
 7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
 
     ```bash
-    cd firmware/01-demo
+    cd Labs/01-demo
     ls
     ```
 
