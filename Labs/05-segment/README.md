@@ -83,9 +83,9 @@
 }
 ```
 
-2. Create a new library header file `library/include/segment.h` and define function prototypes for communication with shift registers according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/firmware/library/include).
+2. Create a new library header file `library/include/segment.h` and define function prototypes for communication with shift registers according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/Labs/library/include).
 
-3. Create `library/source/segment.c` source file according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/firmware/library/source):
+3. Create `library/source/segment.c` source file according to [DE2 repository](https://github.com/tomas-fryza/Digital-electronics-2/tree/master/Labs/library/source):
     * complete look-up table `segment_digit[]` specifies active-low digits 0 to 9,
     * program body of `SEG_putc(uint8_t digit, uint8_t position)` function where `digit` represents value to display at specific `position`, and
     * program body of `SEG_toggle_clk(void)` function which generates 2&nbsp;us clock pulse at `SEGMENT_CLK` pin.
