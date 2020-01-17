@@ -20,7 +20,7 @@
 
 The repository contains AVR template for bachelor course *Digital Electronics 2* ([Winter 2019/2020](https://www.vutbr.cz/en/students/courses/detail/210896)) at Brno University of Technology, Czechia.
 
-In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All examples are located within `firmware` folder. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
+In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All examples are located within `firmware` folder and all screenshots and images are located in `images` folder. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
 
 
 ## List of examples
