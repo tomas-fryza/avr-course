@@ -7,12 +7,12 @@
 
 #### Table of contents
 
-1. [Introduction](#introduction)
-2. [Hardware components](#hardware-components)
+1. [Introduction](#Introduction)
+2. [Hardware components](#Hardware-components)
 3. [Software components](#Software-components)
 4. [How to use AVR template on Linux](docs/HOWTO_linux.md)
 5. [How to use AVR template on Windows](docs/HOWTO_windows.md)
-6. [References](#references)
+6. [References](#References)
 
 
 ## Introduction
@@ -21,7 +21,7 @@ The repository contains AVR template for bachelor course *Digital Electronics 2*
 
 In folder `docs` all manuals are stored. Folder `hw` contains KiCad schematic of Arduino shields used in the course. All examples are located within `firmware` folder and all screenshots and images are located in `images` folder. Source and header files of LCD, TWI, and UART libraries are located in the `library` folder.
 
-| **Lab exercises** | **Description** |
+| **Lab exercise** | **Description** |
 | :-- | :-- |
 | [01-demo](firmware/01-demo) | Lab 1: Git version-control system, AVR toolchain |
 | [02-leds](firmware/02-leds) | Lab 2: Control of GPIO, LED, push button |
