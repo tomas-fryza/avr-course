@@ -1,4 +1,4 @@
-# Lab 5. Display devices, 7-segment display
+# Lab 5: Display devices, 7-segment display
 
 #### Table of contents
 
