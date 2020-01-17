@@ -39,7 +39,7 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `firmware/01-demo`.
+7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Labs/01-demo`.
 
     ```bash
     cd Labs/01-demo
@@ -56,7 +56,7 @@
     make clean
     ```
 
-8. To create a new project, make a new directory within `firmware` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
     ```bash
     cd ..
