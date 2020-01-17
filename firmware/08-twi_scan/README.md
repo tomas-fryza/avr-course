@@ -1,4 +1,4 @@
-# Lab 8. Serial communication, I2C/TWI
+# Lab 8: Serial communication, I2C/TWI
 
 #### Table of contents
 
