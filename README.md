@@ -55,13 +55,10 @@ The following hardware components are mainly used in the lab.
 | [ESP8266](https://arduino-shop.cz/arduino/911-internet-veci-je-tady-tcp-ip-wifi-esp8266-1420990568.html) | Wi-Fi module | [AT commands](docs/esp8266_at_instruction_set.pdf) |
 | [Joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html) | Analog Joystick PS2 |
 
-![vscode](images/screenshot_vscode.png "Visual Studio Code")
 ![uno](images/arduino_uno_water.jpg "Ultrasonic sensor, temperature/humidity sensor, WiFi module")
 
 
 ## Software components
-
-zcfb
 
 | **Component** | **Description** | **Manual** |
 | :-: | :-- | :-: |
