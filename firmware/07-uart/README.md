@@ -1,4 +1,4 @@
-# Lab 7. ADC, serial communication, UART
+# Lab 7: ADC, serial communication, UART
 
 #### Table of contents
 
