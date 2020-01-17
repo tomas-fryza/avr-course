@@ -1,4 +1,4 @@
-# Lab 4. Interrupts, Timers
+# Lab 4: Interrupts, Timers
 
 #### Table of contents
 
