@@ -71,12 +71,12 @@
 
 #### Tested on operating systems
 
-**Name**   | **Version**                | **Result**      | **Note**
----------- | -------------------------- | --------------- | -----------
-Linux Mint | 18.3, Sylvia               | OK (2019-06-13) | Laptop
-Linux Mint | 18.2, Sonya                | OK (2019-05-17) | Lab SC 6.61
-Ubuntu     | 18.04.1 LTS, Bionic Beaver | OK (2019-05-15) | Office
-Ubuntu     | 16.04, Xenial Xerus        | OK (2018-09-15) | Office
+| **Name** | **Version** | **Result** | **Note** |
+| :-: | :-- | :-: | :-: |
+| Linux Mint | 18.3, Sylvia | OK (2019-06-13) | Laptop |
+| Linux Mint | 18.2, Sonya | OK (2019-05-17) | Lab SC 6.61 |
+| Ubuntu | 18.04.1 LTS, Bionic Beaver | OK (2019-05-15) | Office |
+| Ubuntu | 16.04, Xenial Xerus | OK (2018-09-15) | Office |
 
 ```bash
 # FYI: How to check OS version in Linux
