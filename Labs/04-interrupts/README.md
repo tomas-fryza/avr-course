@@ -3,7 +3,7 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Hardware components](#Hardware-components)
+2. [Used hardware components](#Used-hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [Timers](#Timers)
 5. [Clean project and synchronize git](#Clean-project-and-synchronize-git)
@@ -26,12 +26,12 @@
 2. See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of D1, D2, D3, D4 LEDs and S1-A1, S2-A2, S3-A3 push buttons.
 
 
-## Hardware components
+## Used hardware components
 
-1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
-2. [Arduino Uno](../../Docs/arduino_shield.pdf) board
-3. [Multi-function shield](../../Docs/arduino_shield.pdf) with four LEDs, three push buttons, four seven-segment displays
-4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller.
+2. [Arduino Uno](../../Docs/arduino_shield.pdf) board.
+3. [Multi-function shield](../../Docs/arduino_shield.pdf) with four LEDs, three push buttons, four seven-segment displays.
+4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/).
 
 &nbsp;
 ![mf_shield](../../Images/multi_funct_shield.png "Multi-function shield")
