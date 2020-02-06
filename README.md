@@ -31,7 +31,7 @@ The repository contains AVR examples for bachelor course [*Digital Electronics 2
 | [07-uart](Labs/07-uart) | Lab 7: ADC, serial communication, UART |
 | [08-twi_scan](Labs/08-twi_scan) | Lab 8: Serial communication, I2C/TWI |
 | [09-asm_random](Labs/09-asm_random) | Lab 9: Combining C and assembly source files |
-| [project](Labs/project) | Lab 10--13: Project |
+| [project](Labs/project) | Lab 10-13: Project |
 
 
 ## Hardware components
