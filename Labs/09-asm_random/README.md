@@ -3,7 +3,7 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Hardware components](#Hardware-components)
+2. [Used hardware components](#Used-hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [LFSR-based pseudo random generator](#LFSR-based-pseudo-random-generator)
 5. [Variable-length burst generator](#Variable-length-burst-generator)
@@ -35,11 +35,11 @@
     | `nop` |  |  |  |
 
 
-## Hardware components
+## Used hardware components
 
-1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
-2. [Arduino Uno](../../Docs/arduino_shield.pdf) board
-3. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller.
+2. [Arduino Uno](../../Docs/arduino_shield.pdf) board.
+3. 24MHz 8-channel [logic analyzer](https://www.saleae.com/).
 
 
 ## Synchronize Git and create a new project
