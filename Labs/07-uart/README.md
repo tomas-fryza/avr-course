@@ -3,7 +3,7 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Hardware components](#Hardware-components)
+2. [Used hardware components](#Used-hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [Analog-to-Digital Conversion](#Analog-to-Digital-Conversion)
 5. [UART communication](#UART-communication)
@@ -27,12 +27,12 @@
     >
 
 
-## Hardware components
+## Used hardware components
 
-1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
-2. [Arduino Uno](../../Docs/arduino_shield.pdf) board
-3. [LCD keypad shield](../../Docs/arduino_shield.pdf) with LCD and five push buttons
-4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/)
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller.
+2. [Arduino Uno](../../Docs/arduino_shield.pdf) board.
+3. [LCD keypad shield](../../Docs/arduino_shield.pdf) with LCD and five push buttons.
+4. 24MHz 8-channel [logic analyzer](https://www.saleae.com/).
 
 &nbsp;
 ![lcd_shield](../../Images/lcd_shield.jpg "LCD keypad shield")
