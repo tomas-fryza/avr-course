@@ -13,6 +13,7 @@
 4. [How to use AVR template on Linux](Docs/HOWTO_linux.md)
 5. [How to use AVR template on Windows](Docs/HOWTO_windows.md)
 6. [References](#References)
+7. [License](#License)
 
 
 ## Introduction
