@@ -3,7 +3,7 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Hardware components](#Hardware-components)
+2. [Used hardware components](#Used-hardware-components)
 3. [GitHub](#GitHub)
 4. [Linux terminal](#Linux-terminal)
 5. [Test toolchain](#Test-toolchain)
@@ -16,7 +16,7 @@
 1. Create an account on [GitHub](https://github.com/) server.
 
 
-## Hardware components
+## Used hardware components
 
 1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller.
 2. [Arduino Uno](../../Docs/arduino_shield.pdf) board.
