@@ -3,7 +3,7 @@
 #### Table of contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
-2. [Hardware components](#Hardware-components)
+2. [Used hardware components](#Used-hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
 4. [Header file](#Header-file)
 5. [Source file](#Source-file)
@@ -37,12 +37,12 @@
     | 1 | 1 |  |  |  |
 
 
-## Hardware components
+## Used hardware components
 
-1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller
-2. [Arduino Uno](../../Docs/arduino_shield.pdf) board
-3. [300-pin breadboard](https://www.gme.cz/nepajive-kontaktni-pole-zy-60)
-4. [Male-male wires](https://arduino-shop.cz/arduino/1063-arduino-vodice-samec-samec-40-kusu-1500635966.html) for interconnections
+1. [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit AVR microcontroller.
+2. [Arduino Uno](../../Docs/arduino_shield.pdf) board.
+3. [300-pin breadboard](https://www.gme.cz/nepajive-kontaktni-pole-zy-60).
+4. [Male-male wires](https://arduino-shop.cz/arduino/1063-arduino-vodice-samec-samec-40-kusu-1500635966.html) for interconnections.
 
 
 ## Synchronize Git and create a new project
