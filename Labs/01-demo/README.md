@@ -32,6 +32,7 @@
     * Headers
     * Emphasis
     * List
+    * Link
     * Table
 
 
