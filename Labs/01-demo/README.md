@@ -72,7 +72,7 @@
     LICENSE  README.md
     ```
 
-3. Download `Docs` and `Labs` folders from [teacher's template](https://gitlab.com/tomas.fryza/avr-template) and copy them to your `Digital-electronics-2` local repository.
+3. Download `Docs`, `Labs`, and `.vscode` folders from [teacher's template](https://github.com/tomas-fryza/avr-template) and copy them to your `Digital-electronics-2` local repository.
 
     ```bash
     $ ls
