@@ -1,6 +1,6 @@
 # Lab 5: Display devices, 7-segment display
 
-#### Table of contents
+#### Contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
