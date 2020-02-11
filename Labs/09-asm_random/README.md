@@ -1,6 +1,6 @@
 # Lab 9: Combining C and assembly source files
 
-#### Table of contents
+#### Contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
