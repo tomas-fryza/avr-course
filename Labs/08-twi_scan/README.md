@@ -1,6 +1,6 @@
 # Lab 8: Serial communication, I2C/TWI
 
-#### Table of contents
+#### Contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
