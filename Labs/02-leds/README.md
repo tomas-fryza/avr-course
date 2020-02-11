@@ -1,6 +1,6 @@
 # Lab 2: Control of GPIO, LED, push button
 
-#### Table of contents
+#### Contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
