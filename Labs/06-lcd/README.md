@@ -1,5 +1,7 @@
 # Lab 6: Display devices, LCD display
 
+#### Contents
+
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
 3. [Synchronize Git and create a new project](#Synchronize-Git-and-create-a-new-project)
