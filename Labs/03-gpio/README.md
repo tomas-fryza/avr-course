@@ -1,6 +1,6 @@
 # Lab 3: Creation of user library for GPIO control
 
-#### Table of contents
+#### Contents
 
 1. [Lab prerequisites](#Lab-prerequisites)
 2. [Used hardware components](#Used-hardware-components)
