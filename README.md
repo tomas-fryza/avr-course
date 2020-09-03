@@ -1,42 +1,25 @@
-[![university](https://img.shields.io/badge/university-Brno%20University%20of%20Technology-red.svg)](https://www.vutbr.cz/en/)
-[![department](https://img.shields.io/badge/department-Dept.%20of%20Radio%20Electronics-blue)](https://www.facebook.com/URELBrno)
-[![GitHub](https://img.shields.io/github/license/tomas-fryza/Digital-electronics-2)](https://choosealicense.com/licenses/mit/)
-[![activity](https://img.shields.io/github/last-commit/tomas-fryza/Digital-electronics-2)](https://github.com/tomas-fryza/Digital-electronics-2/commits/master)
-
 # Digital electronics 2
 
-#### Contents
+The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vutbr.cz/en/students/courses/detail/224132) at Brno University of Technology, Czechia.
 
-1. [Introduction](#Introduction)
-2. [Hardware components](#Hardware-components)
-3. [Software components](#Software-components)
-4. [How to use AVR template on Linux](Docs/HOWTO_linux.md)
-5. [How to use AVR template on Windows](Docs/HOWTO_windows.md)
-6. [References](#References)
-7. [License](#License)
+## Exercises
 
-
-## Introduction
-
-The repository contains AVR examples for bachelor course [*Digital Electronics 2*](https://www.vutbr.cz/en/students/courses/detail/210896) at Brno University of Technology, Czechia. In folder `Docs` all manuals are stored. Folder `Docs/Hw` contains KiCad schematic of Arduino shields used in the course. All lab exercises are located within `Labs` folder and all screenshots and images are located in `Images` folder. Source and header files of LCD, TWI, and UART libraries are located in the `Labs/library` folder.
-
-| **Lab exercise** | **Description** |
-| :-- | :-- |
-| [01-demo](Labs/01-demo) | Lab 1: Git version-control system, AVR toolchain |
-| [02-leds](Labs/02-leds) | Lab 2: Control of GPIO, LED, push button |
-| [03-gpio](Labs/03-gpio) | Lab 3: Creation of user library for GPIO control |
-| [04-interrupts](Labs/04-interrupts) | Lab 4: Interrupts, Timers |
-| [05-segment](Labs/05-segment) | Lab 5: Display devices, 7-segment display |
-| [06-lcd](Labs/06-lcd) | Lab 6: Display devices, LCD display |
-| [07-uart](Labs/07-uart) | Lab 7: ADC, serial communication, UART |
-| [08-twi_scan](Labs/08-twi_scan) | Lab 8: Serial communication, I2C/TWI |
-| [09-asm_random](Labs/09-asm_random) | Lab 9: Combining C and assembly source files |
-| [project](Labs/project) | Lab 10-13: Final project |
+* [Git version-control system, AVR toolchain](Labs/01-intro)
+* Control of GPIO, LED, push button
+* Creation of user library for GPIO control
+* Interrupts, Timers
+* Display devices, 7-segment display
+* Display devices, LCD display
+* ADC, serial communication, UART
+* Serial communication, I2C/TWI
+* Project, general instructions
 
 
-## Hardware components
+## Materials
 
-The following hardware components are mainly used in the lab.
+The following hardware and software components are mainly used in the lab.
+
+### Hardware
 
 | **Component** | **Description** | **Manual** |
 | :-: | :-- | :-: |
@@ -51,18 +34,14 @@ The following hardware components are mainly used in the lab.
 | [ESP8266](https://arduino-shop.cz/arduino/911-internet-veci-je-tady-tcp-ip-wifi-esp8266-1420990568.html) | Wi-Fi module | [AT commands](Docs/esp8266_at_instruction_set.pdf) |
 | [Joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html) | Analog Joystick PS2 |
 
-![uno](Images/arduino_uno_water.jpg "Ultrasonic sensor, temperature/humidity sensor, WiFi module")
 
-
-## Software components
+### Software
 
 | **Component** | **Description** | **Manual** |
 | :-: | :-- | :-: |
 | [VS Code](https://code.visualstudio.com/) | Visual Studio Code |
 | [Saleae](https://www.saleae.com/downloads/) | Saleae logic analyser |
 | [Linux Mint](https://linuxmint.com/download_all.php) | Linux Mint 18.2 "Sonya" - Xfce (64-bit) |
-
-![vscode](Images/screenshot_vscode.png "Visual Studio Code")
 
 
 ## References
@@ -79,8 +58,3 @@ The following hardware components are mainly used in the lab.
 10. Peter Fleury, [AVR-GCC libraries](http://homepage.hispeed.ch/peterfleury/avr-software.html)
 11. Saleae, [Saleae logic analyser](https://www.saleae.com/downloads/)
 12. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
-
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)

@@ -25,9 +25,9 @@ LIBRARY_DIR = ../library
 # existing files that match the pattern.
 SRCS := $(wildcard *.c)
 # Add or comment libraries you are using in the project
-#SRCS += $(LIBRARY_DIR)/Source/lcd.c
-#SRCS += $(LIBRARY_DIR)/Source/uart.c
-#SRCS += $(LIBRARY_DIR)/Source/twi.c
+SRCS += $(LIBRARY_DIR)/lcd.c
+SRCS += $(LIBRARY_DIR)/uart.c
+SRCS += $(LIBRARY_DIR)/twi.c
 ASSRC := $(wildcard *.S)
 
 
@@ -61,7 +61,7 @@ all : $(TARGET).hex
 	@$(CC) -c $(CFLAGS) $< -o $@
 
 ## Rule for object files from libraries
-%.o : $(LIBRARY_DIR)/Source/%.c
+%.o : $(LIBRARY_DIR)/%.c
 	@echo "Compiling \t$< --> $@"
 	@$(CC) -c $(CFLAGS) $< -o $@
 

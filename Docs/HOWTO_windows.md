@@ -18,7 +18,7 @@
 
 7. Download the latest toolchain [AVR 8-bit Toolchain v3.62 - Windows](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
-8. Download and extract [this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.zip) to local computer and use it to start your own repository.
+8. Download and extract [this template](https://github.com/tomas-fryza/avr-template/archive/master.zip) to local computer and use it to start your own repository.
 
 9. Start Visual Studio Code source code editor, open template folder, in `Labs/firmware.in` file enable and/or modify Windows parameters according to your local settings:
 
@@ -62,7 +62,7 @@
     mingw32-make.exe clean
     ```
 
-11. To create a new project, make a new directory within `Labs;` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+11. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
@@ -74,5 +74,6 @@
 
 **Name**   | **Version**                | **Result**      | **Note**
 ---------- | -------------------------- | --------------- | -----------
+Windows    | Windows 10                 | OK (2020-09-03) | Lab SC 6.61
 Windows    | Windows 10                 | OK (2019-11-26) | Lab SC 6.66
 Windows    | Windows 7                  | OK (2019-05-17) | Lab SC 6.61
