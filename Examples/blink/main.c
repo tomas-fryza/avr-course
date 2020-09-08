@@ -16,7 +16,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // Pin name where green LED is connected
-#define BLINK_DELAY 125     // Number of miliseconds
+#define BLINK_DELAY 125     // Delay in miliseconds
 
 /* Variables ---------------------------------------------------------*/
 
