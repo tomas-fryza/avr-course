@@ -2,11 +2,18 @@
 # 
 # AVR project Makefile.
 #
-# Copyright (c) 2018-2019 Wykys, Tomas Fryza
+# Copyright (c) 2018-2020 Wykys, Tomas Fryza
 # Dept. of Radio Electronics, Brno University of Technology, Czechia
 # This work is licensed under the terms of the MIT license.
 #
-# Usage:
+# Windows usage:
+#    mingw32-make.exe all    # Compile all binary
+#    mingw32-make.exe clean  # Remove ALL binaries and object files from the directory
+#    mingw32-make.exe flash  # Write compiled file to the Flash memory
+#    mingw32-make.exe list   # Generate extended listing file
+#    mingw32-make.exe size   # Display the sizes of sections inside binary file
+#
+# Linux usage:
 #    make        # Compile all binary
 #    make all    # Same as make
 #    make clean  # Remove ALL binaries and object files from the directory
