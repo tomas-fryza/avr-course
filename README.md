@@ -41,7 +41,6 @@ The following hardware and software components are mainly used in the lab.
 | :-: | :-- | :-: |
 | [VS Code](https://code.visualstudio.com/) | Visual Studio Code |
 | [Saleae](https://www.saleae.com/downloads/) | Saleae logic analyser |
-| [Linux Mint](https://linuxmint.com/download_all.php) | Linux Mint 18.2 "Sonya" - Xfce (64-bit) |
 
 
 ## References
