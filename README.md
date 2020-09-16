@@ -4,7 +4,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 ## Exercises
 
-* [Git version-control system, AVR toolchain](Labs/01-intro)
+* Git version-control system, AVR tools
 * Control of GPIO, LED, push button
 * Creation of user library for GPIO control
 * Interrupts, Timers
