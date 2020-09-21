@@ -40,9 +40,6 @@ Use manuals [How to make the perfect Readme.md on GitHub](https://medium.com/swl
 
 In the lab, make your own home folder within `Documents`, and with help of `git` command of any Git GUI client clone a local copy of your public repository:
 
-
-
-
 ```bash
 $ cd
 $ pwd
@@ -68,6 +65,11 @@ Docs  Labs  LICENSE  README.md
 ```
 
 
+
+
+
+```
+TBD
 ## Part 3: Test toolchain(s)
 
 1. Run Visual Studio Code source code editor, open `Digital-electronics-2` folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `Labs/01-demo`. What is the meaning of each part of source file `main.c`? What is the meaning of the following commands?
@@ -91,6 +93,7 @@ Docs  Labs  LICENSE  README.md
     ![logic](../../Images/screenshot_saleae.png "Saleae Logic software")
 
 3. What is the meaning of `|`, `&`, `^`, `~`, `<<` operations in C source file? See [AVR Libc Reference Manual](https://www.microchip.com/webdoc/AVRLibcReferenceManual/) for answer.
+```
 
 
 ## Synchronize git
