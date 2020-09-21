@@ -45,6 +45,7 @@ The following hardware and software components are mainly used in the lab.
 
 ## References
 
-1. Peter Fleury, [AVR-GCC libraries](http://homepage.hispeed.ch/peterfleury/avr-software.html)
-2. Saleae, [Saleae logic analyser](https://www.saleae.com/downloads/)
-3. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
+1. [How to use AVR template on Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md)
+2. [How to use AVR template on Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md)
+3. Peter Fleury, [AVR-GCC libraries](http://homepage.hispeed.ch/peterfleury/avr-software.html)
+4. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
