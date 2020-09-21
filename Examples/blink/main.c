@@ -15,7 +15,7 @@
 #include <util/delay.h>     // Convenience functions for busy-wait delay loops
 
 /* Defines -----------------------------------------------------------*/
-#define LED_GREEN   PB5     // Pin name where green LED is connected
+#define LED_GREEN   PB5     // Pin where green LED is connected
 #define BLINK_DELAY 250     // Delay in miliseconds
 
 /* Variables ---------------------------------------------------------*/
