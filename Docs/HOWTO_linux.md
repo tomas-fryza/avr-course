@@ -16,9 +16,9 @@
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64.tar.gz -C /opt/
     ```
 
-5. Download and extract [this template](https://gitlab.com/tomas.fryza/avr-template/-/archive/master/avr-template-master.tar.gz) to local computer and use it to start your own repository.
+5. Download and extract [this template](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer and use it to start your own repository.
 
-6. Start Visual Studio Code source code editor, open template folder, and in `Labs/firmware.in` file enable and/or modify Linux parameters according to your local settings:
+6. Start Visual Studio Code source code editor, open template folder, and in `Examples/firmware.in` file enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -39,10 +39,10 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Labs/01-demo`.
+7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
-    cd Labs/01-demo
+    cd Examples/blink
     ls
     ```
 
@@ -56,14 +56,7 @@
     make clean
     ```
 
-8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
-
-    ```bash
-    cd ..
-    mkdir name_of_new_project
-    cd name_of_new_project
-    cp ../01-demo/main.c ../01-demo/Makefile ../01-demo/README.md .
-    ```
+8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
