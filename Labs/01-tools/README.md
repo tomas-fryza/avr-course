@@ -149,6 +149,8 @@ $ make flash
 
 Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), create circuit with ATmega328 AVR microcontroller, resistor/LED/GND connected to pin B5, load `.hex` firmware from `Labs/01-tools`, and simulate the project.
 
+![SimulIDE](Images/screenshot_simulide.png)
+
 
 ## Part 5: Logic analyzer
 
