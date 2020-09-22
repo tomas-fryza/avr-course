@@ -8,18 +8,18 @@ MCU_DUDE = m328p
 F_CPU    = 16000000
 
 ## Linux
-PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
-AVRDUDE = avrdude
-RM      = rm -f
-# See "dmesg" command output
-USBPORT = /dev/ttyUSB0
+#PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
+#AVRDUDE = avrdude
+#RM      = rm -f
+## See "dmesg" command output
+#USBPORT = /dev/ttyUSB0
 
 ## Windows
-#PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
-#AVRDUDE = C:\APPZ\avrdude\avrdude.exe
-#RM      = del
-## See USB-SERIAL CH340 port in Device Manager
-#USBPORT = COM3
+PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
+AVRDUDE = C:\APPZ\avrdude\avrdude.exe
+RM      = del
+# See USB-SERIAL CH340 port in Device Manager
+USBPORT = COM3
 
 
 
