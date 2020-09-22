@@ -38,9 +38,10 @@ Use manuals [How to make the perfect Readme.md on GitHub](https://medium.com/swl
 
 ## Part 2: Local repository
 
-In the lab, make your own home folder within `Documents`, and with help of `git` command of any Git GUI client clone a local copy of your public repository:
+In the lab, make your own home folder within `Documents`, and with help of `git` command or any Git GUI client clone a local copy of your public repository:
 
 ```bash
+## Linux:
 $ cd
 $ pwd
 /home/lab661
@@ -60,40 +61,107 @@ LICENSE  README.md
 Download `Docs` and `Examples` folders from [this repository](https://github.com/tomas-fryza/Digital-electronics-2) and copy them to your `Digital-electronics-2` local repository.
 
 ```bash
+## Linux:
 $ ls
-Docs  Labs  LICENSE  README.md
+Docs  Examples  LICENSE  README.md
+```
+
+Create a new working folder `Labs/01-tools` for this exercise.
+
+```bash
+## Linux:
+$ mkdir Labs
+$ cd Labs/
+$ mkdir 01-tools
 ```
 
 
+## Part 3: Test AVR tools
+
+### Version: Atmel Studio 7
+
+Follow any online tutorial, such as [this](https://unboxing-tomorrow.com/programming-atmel-microcontrollers-with-atmel-studio-7/), create a new project for ATmega328P within `01-tools` working folder and copy/paste [blink example code](../../Examples/blink/main.c) to your `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+
+Compile the project.
+
+Simulate the project in Atmel Studio 7.
+
+Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. (Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).)
 
 
+### Version: Windows command-line toolchain
 
+Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
+
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder.
+
+Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+
+Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in the `Makefile` file.
+
+```bash
+$ mingw32-make.exe all
+$ mingw32-make.exe clean
+$ mingw32-make.exe size
+$ mingw32-make.exe flash
 ```
-TBD
-## Part 3: Test toolchain(s)
 
-1. Run Visual Studio Code source code editor, open `Digital-electronics-2` folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `Labs/01-demo`. What is the meaning of each part of source file `main.c`? What is the meaning of the following commands?
 
-    ```bash
-    $ cd Labs/01-demo/
-    $ make all
-    $ make size
-    $ make flash
-    $ make clean
-    ```
+### Version: Linux command-line toolchain
 
-2. Run Saleae Logic software from VS Code terminal
+Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
-    ```bash
-    $ Logic &
-    ```
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file.
 
-    connect Channel 0 to Arduino board pin 13, and use logical analyzer to verify duration of `_delay_ms()` function.
+```Makefile
+## Linux
+PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
+AVRDUDE = avrdude
+RM      = rm -f
+# See "dmesg" command output
+USBPORT = /dev/ttyUSB0
 
-    ![logic](../../Images/screenshot_saleae.png "Saleae Logic software")
-
-3. What is the meaning of `|`, `&`, `^`, `~`, `<<` operations in C source file? See [AVR Libc Reference Manual](https://www.microchip.com/webdoc/AVRLibcReferenceManual/) for answer.
+## Windows
+#PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
+#AVRDUDE = C:\APPZ\avrdude\avrdude.exe
+#RM      = del
+## See USB-SERIAL CH340 port in Device Manager
+#USBPORT = COM3
 ```
+
+Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+
+```bash
+$ cd Labs/01-tools/
+```
+
+Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in the `Makefile` file.
+
+```bash
+$ make all
+$ make clean
+$ make size
+$ make flash
+```
+
+
+## Part 4: SimulIDE
+
+Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), create circuit with ATmega328 AVR microcontroller, resistor/LED/GND connected to pin B5, load `.hex` firmware from `Labs/01-tools`, and simulate the project.
+
+
+## Part 5: Logic analyzer
+
+Run Saleae Logic software
+
+```bash
+## Linux:
+$ Logic &
+```
+
+connect Channel 0 to Arduino board pin 13, and use logical analyzer to verify duration of `_delay_ms()` function.
+
+![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
 
 ## Synchronize git
@@ -101,21 +169,15 @@ TBD
 Remove all binaries and object files from the working directory by command
 
 ```bash
+## Linux:
 $ make clean
 ```
 
-Use `cd ..` command in Linux console terminal and change the working directory to `Digital-electronics-2`. Then use [git commands](https://github.com/joshnh/Git-Commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+Use [git commands](https://github.com/joshnh/Git-Commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
 ```bash
-$ pwd
-/home/lab661/Documents/your-name/Digital-electronics-2/Examples/blink
-
-$ cd ..
-$ cd ..
-$ pwd
-/home/lab661/Documents/your-name/Digital-electronics-2
-
+## Linux:
 $ git status
 $ git add <your-modified-files>
 $ git status
@@ -124,9 +186,6 @@ $ git status
 $ git push
 $ git status
 ```
-
-
-
 
 
 ## Experiments on your own
