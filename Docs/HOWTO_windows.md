@@ -18,9 +18,9 @@
 
 7. Download the latest toolchain [AVR 8-bit Toolchain v3.62 - Windows](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
-8. Download and extract [this template](https://github.com/tomas-fryza/avr-template/archive/master.zip) to local computer and use it to start your own repository.
+8. Download and extract `Examples` folder from [this repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-9. Start Visual Studio Code source code editor, open template folder, in `Labs/firmware.in` file enable and/or modify Windows parameters according to your local settings:
+9. Start Visual Studio Code source code editor, open template folder, in `Examples/firmware.in` file enable and/or modify Windows parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -41,11 +41,11 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Labs/01-demo`.
+10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
-    cd Labs
-    cd 01-demo
+    cd Examples
+    cd blink
     ls
     ```
 
@@ -62,7 +62,7 @@
     mingw32-make.exe clean
     ```
 
-11. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `01-demo` project.
+11. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
