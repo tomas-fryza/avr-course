@@ -8,7 +8,7 @@
     sudo apt-get install git make avrdude putty
     ```
 
-3. Download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
+3. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
 4. Download the latest toolchain [AVR 8-bit Toolchain 3.6.2 - Linux 64-bit](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `/opt` directory:
 
