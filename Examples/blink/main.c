@@ -9,14 +9,16 @@
  * 
  **********************************************************************/
 
-/* Includes ----------------------------------------------------------*/
-#include <avr/io.h>         // AVR device-specific IO definitions
-//#define F_CPU 16000000      // CPU frequency in Hz for delay loops
-#include <util/delay.h>     // Convenience functions for busy-wait delay loops
-
 /* Defines -----------------------------------------------------------*/
-#define LED_GREEN   PB5     // Pin where green LED is connected
-#define BLINK_DELAY 250     // Delay in miliseconds
+#define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define SHORT_DELAY 50      // Delay in miliseconds
+#ifndef F_CPU
+#define F_CPU 16000000      // CPU frequency in Hz required for delay func
+#endif
+
+/* Includes ----------------------------------------------------------*/
+#include <util/delay.h>     // Functions for busy-wait delay loops
+#include <avr/io.h>         // AVR device-specific IO definitions
 
 /* Variables ---------------------------------------------------------*/
 
@@ -28,18 +30,23 @@
  */
 int main(void)
 {
-    // Set output pin
-    DDRB = DDRB | (1<<LED_GREEN);           // DDRB   OR 0010 0000
+    // Set pin as output in Data Direction Register
+    // DDRB = DDRB or 0010 0000
+    DDRB = DDRB | (1<<LED_GREEN);
 
-    // Set pin LOW, i.e. turn LED off
-    PORTB = PORTB & ~(1<<LED_GREEN);        // PORTB AND 1101 1111
+    // Set pin LOW in Data Register (LED off)
+    // PORTB = PORTB and 1101 1111
+    PORTB = PORTB & ~(1<<LED_GREEN);
 
     // Infinite loop
-    for (;;)
+    while (1)
     {
-        // Invert LED and delay
-        PORTB = PORTB ^ (1<<LED_GREEN);     // PORTB XOR 0010 0000
-        _delay_ms(BLINK_DELAY);             // Wait several miliseconds
+        // Pause several miliseconds
+        _delay_ms(SHORT_DELAY);
+
+        // Invert LED in Data Register
+        // PORTB = PORTB xor 0010 0000
+        PORTB = PORTB ^ (1<<LED_GREEN);
     }
 
     // Will never reach this
