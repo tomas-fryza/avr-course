@@ -14,7 +14,7 @@
 
 5. Download and install [PuTTy](https://www.putty.org/) client for serial communication between Arduino Uno board and your computer.
 
-6. Download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
+6. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
 7. Download the latest toolchain [AVR 8-bit Toolchain v3.62 - Windows](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
