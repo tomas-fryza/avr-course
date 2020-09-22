@@ -16,9 +16,9 @@
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1759-linux.any.x86_64.tar.gz -C /opt/
     ```
 
-5. Download and extract [this template](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer and use it to start your own repository.
+5. Download and extract `Examples` folder from [this repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-6. Start Visual Studio Code source code editor, open template folder, and in `Examples/firmware.in` file enable and/or modify Linux parameters according to your local settings:
+6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/firmware.in` file enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -56,7 +56,7 @@
     make clean
     ```
 
-8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project.
+8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
