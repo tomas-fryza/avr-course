@@ -12,7 +12,7 @@ Create an account on [GitHub](https://github.com/). Optionally, you can prepare 
 
 ### Windows
 
-Download [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7) and [SimulIDE](https://www.simulide.com/p/home.html). Alternatively, follow the instructions for [Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio. Install [GitHub Desktop](https://desktop.github.com/) or [GitKraken](https://www.gitkraken.com/) to make working with git easier.
+Download [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7), [git](https://git-scm.com/), and [SimulIDE](https://www.simulide.com/p/home.html). Alternatively, follow the instructions for [Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio. Optionally, you can install [GitHub Desktop](https://desktop.github.com/) or [GitKraken](https://www.gitkraken.com/) to make working with git easier.
 
 
 ### Ubuntu-based Linux distributions
