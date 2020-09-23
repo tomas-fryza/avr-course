@@ -16,23 +16,23 @@ According to your preferences, choose one of the variants below and prepare the 
 
 Download and install:
 * [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7),
-* [git](https://git-scm.com/),
-* and [SimulIDE](https://www.simulide.com/p/home.html).
+* [git](https://git-scm.com/), and
+* [SimulIDE](https://www.simulide.com/p/home.html).
 
 If you have the option to use Arduino Uno board and logic analyzer, also download and install:
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
 * [Saleae logic](https://www.saleae.com/downloads/).
 
-Yo make it easier to work with git, you can install a graphical client:
-* [GitKraken](https://www.gitkraken.com/)
-* or [GitHub Desktop](https://desktop.github.com/).
+To make it easier to work with git, you can install a graphical client:
+* [GitKraken](https://www.gitkraken.com/) or
+* [GitHub Desktop](https://desktop.github.com/).
 
 
 ### Windows and command-lin toolchain
 
 Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio.
 
-Yo make it easier to work with git, you can install a graphical client:
+To make it easier to work with git, you can install a graphical client:
 * [GitKraken](https://www.gitkraken.com/) or
 * [GitHub Desktop](https://desktop.github.com/).
 
@@ -43,7 +43,7 @@ Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-elect
 
 Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
-Yo make it easier to work with git, you can install a graphical client [GitKraken](https://www.gitkraken.com/).
+To make it easier to work with git, you can install a graphical client [GitKraken](https://www.gitkraken.com/).
 
 
 ## Part 1: GitHub
