@@ -121,7 +121,7 @@ Run external programmer in menu **Tools > Send to Arduino UNO** and download the
 
 Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
-Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file.
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths.
 
 ```Makefile
 ## Linux
@@ -141,7 +141,7 @@ USBPORT = COM3
 
 Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
 
-Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in the `Makefile` file.
+Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in `Makefile`.
 
 ```bash
 mingw32-make.exe all
@@ -155,7 +155,7 @@ mingw32-make.exe flash
 
 Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
-Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file.
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths.
 
 ```Makefile
 ## Linux
@@ -179,7 +179,7 @@ Run Visual Studio Code source code editor, open your `Digital-electronics-2` wor
 $ cd Labs/01-tools/
 ```
 
-Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in the `Makefile` file.
+Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in `Makefile`.
 
 ```bash
 $ make all
@@ -191,7 +191,7 @@ $ make flash
 
 ## Part 4: SimulIDE
 
-Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), create circuit with ATmega328 AVR microcontroller, resistor/LED/GND connected to pin B5, load `.hex` firmware from `Labs/01-tools`, and simulate the project.
+Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), create circuit with ATmega328 AVR microcontroller, resistor, LED, and GND connected to pin B5, load `.hex` firmware from `Labs/01-tools`, and simulate the project.
 
 ![SimulIDE](Images/screenshot_simulide.png)
 
@@ -248,9 +248,9 @@ $ git status
 1. Link to your GitHub repository.
 
 2. Blink example. Submit:
-    * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` operations in C source file?
+    * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` operators in C source file? Explain with examples.
 
-3. Morse code. Submit:
+3. Morse code application. Submit:
     * C code (`main.c`).
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
