@@ -248,7 +248,7 @@ $ git status
 1. Link to your GitHub repository.
 
 2. Blink example. Submit:
-    * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` binary operators? Write a truth table and explain operators with examples.
+    * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` binary operators? Write a truth table and explain the use of operators with examples.
 
 3. Morse code application. Submit:
     * C code (`main.c`).
