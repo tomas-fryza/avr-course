@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- * Blink a LED and use the function from the delay library.
+ * Blink a LED and use function from the delay library.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2018-2020 Tomas Fryza
@@ -13,20 +13,17 @@
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
 #define SHORT_DELAY 50      // Delay in miliseconds
 #ifndef F_CPU
-#define F_CPU 16000000      // CPU frequency in Hz required for delay func
+#define F_CPU 16000000      // CPU frequency in Hz required for delay
 #endif
 
 /* Includes ----------------------------------------------------------*/
 #include <util/delay.h>     // Functions for busy-wait delay loops
 #include <avr/io.h>         // AVR device-specific IO definitions
 
-/* Variables ---------------------------------------------------------*/
-
-/* Function prototypes -----------------------------------------------*/
-
 /* Functions ---------------------------------------------------------*/
 /**
- * Toggle one LED and use the function from the delay library.
+ * Main function where the program execution begins. Toggle one LED 
+ * and use function from the delay library.
  */
 int main(void)
 {
@@ -52,5 +49,3 @@ int main(void)
     // Will never reach this
     return 0;
 }
-
-/* Interrupt routines ------------------------------------------------*/
