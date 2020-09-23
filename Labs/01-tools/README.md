@@ -43,8 +43,7 @@ Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-elect
 
 Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
-Yo make it easier to work with git, you can install a graphical client:
-* [GitKraken](https://www.gitkraken.com/).
+Yo make it easier to work with git, you can install a graphical client [GitKraken](https://www.gitkraken.com/).
 
 
 ## Part 1: GitHub
