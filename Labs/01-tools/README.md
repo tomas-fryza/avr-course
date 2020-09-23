@@ -9,7 +9,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 Create an account on [GitHub](https://github.com/).
 
-According to your preferences, choose one of the variants below prepare the development chain on your own computer.
+According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
 
 ### Windows and Atmel Studio 7
