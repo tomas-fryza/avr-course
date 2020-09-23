@@ -144,10 +144,10 @@ Run Visual Studio Code source code editor, open your `Digital-electronics-2` wor
 Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in the `Makefile` file.
 
 ```bash
-$ mingw32-make.exe all
-$ mingw32-make.exe clean
-$ mingw32-make.exe size
-$ mingw32-make.exe flash
+mingw32-make.exe all
+mingw32-make.exe clean
+mingw32-make.exe size
+mingw32-make.exe flash
 ```
 
 
