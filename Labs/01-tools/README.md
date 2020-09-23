@@ -16,16 +16,16 @@ According to your preferences, choose one of the variants below and prepare the 
 
 Download and install:
 * [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7),
-* [git](https://git-scm.com/), and
-* [SimulIDE](https://www.simulide.com/p/home.html).
+* [git](https://git-scm.com/),
+* and [SimulIDE](https://www.simulide.com/p/home.html).
 
 If you have the option to use Arduino Uno board and logic analyzer, also download and install:
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
 * [Saleae logic](https://www.saleae.com/downloads/).
 
 Yo make it easier to work with git, you can install a graphical client:
-* [GitKraken](https://www.gitkraken.com/) or
-* [GitHub Desktop](https://desktop.github.com/).
+* [GitKraken](https://www.gitkraken.com/)
+* or [GitHub Desktop](https://desktop.github.com/).
 
 
 ### Windows and command-lin toolchain
