@@ -32,6 +32,8 @@ To make it easier to work with git, you can install a graphical client:
 
 Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio.
 
+Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+
 To make it easier to work with git, you can install a graphical client:
 * [GitKraken](https://www.gitkraken.com/) or
 * [GitHub Desktop](https://desktop.github.com/).
