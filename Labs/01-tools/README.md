@@ -7,17 +7,44 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 ## Preparation tasks (done before the lab at home)
 
-Create an account on [GitHub](https://github.com/). Optionally, you can prepare the development chain on your own computer as follows.
+Create an account on [GitHub](https://github.com/).
+
+According to your preferences, choose one of the variants below prepare the development chain on your own computer.
 
 
-### Windows
+### Windows and Atmel Studio 7
 
-Download [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7), [git](https://git-scm.com/), and [SimulIDE](https://www.simulide.com/p/home.html). Alternatively, follow the instructions for [Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio. Optionally, you can install [GitHub Desktop](https://desktop.github.com/) or [GitKraken](https://www.gitkraken.com/) to make working with git easier.
+Download and install:
+* [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7),
+* [git](https://git-scm.com/), and
+* [SimulIDE](https://www.simulide.com/p/home.html).
+
+If you have the option to use Arduino Uno board and logic analyzer, also download and install:
+* [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
+* [Saleae logic](https://www.saleae.com/downloads/).
+
+Yo make it easier to work with git, you can install a graphical client:
+* [GitKraken](https://www.gitkraken.com/) or
+* [GitHub Desktop](https://desktop.github.com/).
+
+
+### Windows and command-lin toolchain
+
+Follow the instructions for [Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio.
+
+Yo make it easier to work with git, you can install a graphical client:
+* [GitKraken](https://www.gitkraken.com/) or
+* [GitHub Desktop](https://desktop.github.com/).
 
 
 ### Ubuntu-based Linux distributions
 
-Download [SimulIDE](https://www.simulide.com/p/home.html). Follow the instructions for [Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain. Install [GitKraken](https://www.gitkraken.com/) to make working with git easier.
+Follow the instructions for [Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain.
+
+Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+
+Yo make it easier to work with git, you can install a graphical client:
+* [GitKraken](https://www.gitkraken.com/).
 
 
 ## Part 1: GitHub
@@ -78,7 +105,7 @@ $ mkdir 01-tools
 
 ## Part 3: Test AVR tools
 
-### Version: Atmel Studio 7
+### Version: Windows and Atmel Studio 7
 
 Follow any online tutorial, such as [this](https://unboxing-tomorrow.com/programming-atmel-microcontrollers-with-atmel-studio-7/), create a new project for ATmega328P within `01-tools` working folder and copy/paste [blink example code](../../Examples/blink/main.c) to your `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
 
@@ -89,11 +116,27 @@ Simulate the project in Atmel Studio 7.
 Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. (Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).)
 
 
-### Version: Windows command-line toolchain
+### Version: Windows and command-lin toolchain
 
 Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
-Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder.
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file.
+
+```Makefile
+## Linux
+#PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
+#AVRDUDE = avrdude
+#RM      = rm -f
+## See "dmesg" command output
+#USBPORT = /dev/ttyUSB0
+
+## Windows
+PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
+AVRDUDE = C:\APPZ\avrdude\avrdude.exe
+RM      = del
+# See USB-SERIAL CH340 port in Device Manager
+USBPORT = COM3
+```
 
 Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
 
@@ -107,7 +150,7 @@ $ mingw32-make.exe flash
 ```
 
 
-### Version: Linux command-line toolchain
+### Version: Ubuntu-based Linux distributions
 
 Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
