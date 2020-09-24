@@ -68,20 +68,24 @@ Use manuals [How to make the perfect Readme.md on GitHub](https://medium.com/swl
 
 ## Part 2: Local repository
 
-In the lab, make your own home folder within `Documents`, and with help of `git` command or any Git GUI client clone a local copy of your public repository:
+In the lab, make your own home folder within `Documents`, and with help of `git` command clone a local copy of your public repository. Start Git Bash application and change path to your local repository.
+
+```bash
+## Windows Git Bash:
+$ cd d:/Documents/
+$ mkdir your-name
+$ cd your-name/
+$ git clone https://github.com/your-github-account/Digital-electronics-2
+$ cd Digital-electronics-2/
+$ ls
+LICENSE  README.md
+```
 
 ```bash
 ## Linux:
-$ cd
-$ pwd
-/home/lab661
-
 $ cd Documents/
 $ mkdir your-name
 $ cd your-name/
-$ pwd
-/home/lab661/Documents/your-name
-
 $ git clone https://github.com/your-github-account/Digital-electronics-2
 $ cd Digital-electronics-2/
 $ ls
@@ -91,7 +95,7 @@ LICENSE  README.md
 Download `Docs` and `Examples` folders from [this repository](https://github.com/tomas-fryza/Digital-electronics-2) and copy them to your `Digital-electronics-2` local repository.
 
 ```bash
-## Linux:
+## Windows Git Bash or Linux:
 $ ls
 Docs  Examples  LICENSE  README.md
 ```
@@ -99,7 +103,7 @@ Docs  Examples  LICENSE  README.md
 Create a new working folder `Labs/01-tools` for this exercise.
 
 ```bash
-## Linux:
+## Windows Git Bash or Linux:
 $ mkdir Labs
 $ cd Labs/
 $ mkdir 01-tools
@@ -152,6 +156,8 @@ mingw32-make.exe size
 mingw32-make.exe flash
 ```
 
+![Visual Studio Code](Images/screenshot_vscode.png)
+
 
 ### Version: Ubuntu-based Linux distributions
 
@@ -200,32 +206,18 @@ Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html),
 
 ## Part 5: Logic analyzer
 
-Run Saleae Logic software
-
-```bash
-## Linux:
-$ Logic &
-```
-
-connect Channel 0 to Arduino board pin 13, and use logical analyzer to verify duration of `_delay_ms()` function.
+Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13, and verify the duration of `_delay_ms()` function.
 
 ![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
 
 ## Synchronize git
 
-Remove all binaries and object files from the working directory by command
-
-```bash
-## Linux:
-$ make clean
-```
-
 Use [git commands](https://github.com/joshnh/Git-Commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
 ```bash
-## Linux:
+## Windows Git Bash or Linux:
 $ git status
 $ git add <your-modified-files>
 $ git status
