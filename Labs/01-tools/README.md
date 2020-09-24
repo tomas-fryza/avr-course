@@ -227,6 +227,8 @@ $ git push
 $ git status
 ```
 
+![Git Bash](Images/screenshot_git?bash.png)
+
 
 ## Experiments on your own
 
