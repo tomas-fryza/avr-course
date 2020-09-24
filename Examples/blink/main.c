@@ -38,7 +38,7 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        // Pause several miliseconds
+        // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
 
         // Invert LED in Data Register
