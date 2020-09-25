@@ -229,7 +229,7 @@ The properties of each component can be found/changed in the **Properties** tab.
 
 Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
 
-To start sampling, press the green button with two arrows, set the sampling rate to 1 MS/s and the recording time to 1 second. Click the Start button.
+To start sampling, press the green button with two arrows, set the sampling rate to 1&nbsp;MS/s and the recording time to 1 second. Click the Start button.
 
 ![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
