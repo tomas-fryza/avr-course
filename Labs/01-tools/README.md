@@ -56,36 +56,37 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 In GitHub, create a new public repository titled **Digital-electronics-2**. Initialize a README, .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
 
-Use manuals [How to make the perfect Readme.md on GitHub](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061), [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax) or [Mastering Markdown](https://guides.github.com/features/mastering-markdown/) and add the following parts in your README file.
+Use one of the available git manuals, such as [1](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061), [2](https://help.github.com/en/articles/basic-writing-and-formatting-syntax), or [3](https://guides.github.com/features/mastering-markdown/), and add the following sections to your README file.
 
-   * Headers
-   * Emphasis (italics, bold)
-   * Lists (ordered, unordered)
-   * Links
-   * Table
-   * Listing of C source code
+ * Headers
+ * Emphasis (italics, bold)
+ * Lists (ordered, unordered)
+ * Links
+ * Table
+ * Listing of C source code
 
 
 ## Part 2: Local repository
 
-In the lab, make your own home folder within `Documents`, and with help of `git` command clone a local copy of your public repository. Start Git Bash application and change path to your local repository.
+Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`
 
 ```bash
 ## Windows Git Bash:
 $ cd d:/Documents/
 $ mkdir your-name
 $ cd your-name/
-$ git clone https://github.com/your-github-account/Digital-electronics-2
-$ cd Digital-electronics-2/
-$ ls
-LICENSE  README.md
-```
 
-```bash
 ## Linux:
+$ cd
 $ cd Documents/
 $ mkdir your-name
 $ cd your-name/
+```
+
+With help of `git` command clone a local copy of your public repository.
+
+```bash
+## Windows Git Bash or Linux:
 $ git clone https://github.com/your-github-account/Digital-electronics-2
 $ cd Digital-electronics-2/
 $ ls
