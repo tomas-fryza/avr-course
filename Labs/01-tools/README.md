@@ -83,7 +83,7 @@ $ mkdir your-name
 $ cd your-name/
 ```
 
-With help of `git` command clone a local copy of your public repository.
+With help of `git` command, clone a local copy of your public repository.
 
 ```bash
 ## Windows Git Bash or Linux:
@@ -121,7 +121,7 @@ Compile the project.
 
 Simulate the project in Atmel Studio 7.
 
-Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. (Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).)
+Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).
 
 
 ### Version: Windows and command-lin toolchain
