@@ -266,7 +266,7 @@ $ git status
 
 ## Lab assignment
 
-1. Give me a link to your `Digital-electronics-2` repository on GitHub.
+1. Submit the link to your `Digital-electronics-2` repository on GitHub.
 
 2. Blink example. Submit:
     * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` binary operators? Write a truth table and explain the use of operators with examples.
