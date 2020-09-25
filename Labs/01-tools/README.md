@@ -68,7 +68,7 @@ Use one of the available git manuals, such as [1](https://medium.com/swlh/how-to
 
 ## Part 2: Local repository
 
-Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`
+Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`.
 
 ```bash
 ## Windows Git Bash:
@@ -126,9 +126,9 @@ Run external programmer in menu **Tools > Send to Arduino UNO** and download the
 
 ### Version: Windows and command-lin toolchain
 
-Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
+Copy `main.c` and `Makefile` files from blink example to `Labs\01-tools` folder.
 
-Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths.
+Copy `Example\firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths and `USBPORT` contains port where Arduino board is connected.
 
 ```Makefile
 ## Linux
@@ -146,9 +146,15 @@ RM      = del
 USBPORT = COM3
 ```
 
-Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `Labs\01-tools`.
 
-Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in `Makefile`.
+```bash
+cd Labs\01-tools\
+```
+
+Open `main.c` source file. What is the meaning of each line of this source code?
+
+Use the following commands step by step in the internal terminal to find out what they mean. Note: these commands are defined in `Makefile`.
 
 ```bash
 mingw32-make.exe all
@@ -164,7 +170,7 @@ mingw32-make.exe flash
 
 Copy `main.c` and `Makefile` files from blink example to `Labs/01-tools` folder.
 
-Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths.
+Copy `Example/firmware.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file. Make sure the values for `PREFIX` and` AVRDUDE` contain the correct paths and `USBPORT` contains port where Arduino board is connected.
 
 ```Makefile
 ## Linux
@@ -182,13 +188,15 @@ USBPORT = /dev/ttyUSB0
 #USBPORT = COM3
 ```
 
-Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, change path to `Labs/01-tools`, and open `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+Run Visual Studio Code source code editor, open your `Digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `Labs/01-tools`.
 
 ```bash
-$ cd Labs/01-tools/
+cd Labs/01-tools/
 ```
 
-Use the following commands sequentially in the internal terminal. What is their meaning? Note: these commands are defined in `Makefile`.
+Open `main.c` source file. What is the meaning of each line of this source code?
+
+Use the following commands step by step in the internal terminal to find out what they mean. Note: these commands are defined in `Makefile`.
 
 ```bash
 $ make all
@@ -200,21 +208,37 @@ $ make flash
 
 ## Part 4: SimulIDE
 
-Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), create circuit with ATmega328 AVR microcontroller, resistor, LED, and GND connected to pin B5, load `.hex` firmware from `Labs/01-tools`, and simulate the project.
+Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
+
+All circuit and control elements are available in the **Components** tab. Use the following components ATmega328 (**Micro > AVR > atmega > atmega328**), resistor (**Passive > Resistor**), LED (**Outputs > Led**), and GND (**Sources > Ground (0 V)**) and connect them as shown.
 
 ![SimulIDE](Images/screenshot_simulide.png)
+
+Right-click on the ATmega package and select **Load firmware**. In your project folder, find the `*.hex` file that was created by compiling in the previous point.
+
+Register values can be displayed in the **RamTable** tab. In the **Reg.** column, type `DDRB` on the first line and `PORTB` on the second.
+
+Click to **Power Circuit** button, simulate the project, and monitor the LED status and register values. The simulation can be paused with the **Pause Simulation** button and stopped by pressing the **Power Circuit** button again.
+
+You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope**), or a voltmeter (**Meters > Voltimeter**) to output B5 and observe the voltage.
+
+The properties of each component can be found/changed in the **Properties** tab.
 
 
 ## Part 5: Logic analyzer
 
-Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13, and verify the duration of `_delay_ms()` function.
+Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
+
+To start sampling, press the green button with two arrows, set the sampling rate to 1 MS/s and the recording time to 1 second. Click the Start button.
 
 ![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
 
 ## Synchronize git
 
-Use [git commands](https://github.com/joshnh/Git-Commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
+
+Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Note that, a detailed description of all git commands can be found [here](https://github.com/joshnh/Git-Commands). Check the repository at GitHub web page for changes.
 
 
 ```bash
@@ -233,16 +257,16 @@ $ git status
 
 ## Experiments on your own
 
-1. Install AVR development tools on your computer.
+1. Choose one variant and install the AVR development tools on your computer.
 
-2. Modify the blink example to repeatedly display the `DE2` string on the LED in Morse code.
+2. Modify the `01-tools` application so that the string `DE2` is repeatedly displayed on the LED in the Morse code.
 
-3. Simulate the previous task in SimulIDE.
+3. Simulate the Morse code application in SimulIDE.
 
 
 ## Lab assignment
 
-1. Link to your GitHub repository.
+1. Give me a link to your `Digital-electronics-2` repository on GitHub.
 
 2. Blink example. Submit:
     * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` binary operators? Write a truth table and explain the use of operators with examples.
