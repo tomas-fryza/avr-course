@@ -3,7 +3,7 @@
 
 ### Learning objectives
 
-The purpose of this laboratory exercise is to learn how to use basic input/output devices push buttons and LEDs (Light Emitting Diodes)), and how to control a GPIO (General Purpose Input Output) pin with help of control registers.
+The purpose of this laboratory exercise is to learn how to use basic input/output devices push buttons and LEDs (Light Emitting Diodes), and how to control a GPIO (General Purpose Input Output) pin with help of control registers.
 
 
 
@@ -65,12 +65,14 @@ Run Git Bash (Windows) of Terminal (Linux) and synchronize repositories.
 ## Windows Git Bash:
 $ cd d:/Documents/
 $ cd your-name/
+$ cd Digital-electronics-2/
 $ git pull
 
 ## Linux:
 $ cd
 $ cd Documents/
 $ cd your-name/
+$ cd Digital-electronics-2/
 $ git pull
 ```
 
