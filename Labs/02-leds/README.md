@@ -122,7 +122,7 @@ $ mkdir 02-leds
     ```C
     if (bit_is_set(PINA, 0)) {...}      // Only if PINA bit number 0 is 1 (set)
     if (bit_is_clear(PINB, 5)) {...}    // Only if PINB bit number 5 is 0 (clear)
-    loop_until_bit_is_set(PINC, 2);     // Stay here until PIN2 bit becomes 1
+    loop_until_bit_is_set(PINC, 2);     // Stay here until PINC2 bit becomes 1
     loop_until_bit_is_clear(PINA, 7);   // Stay here until PINA7 bit becomes 0
     ```
 
