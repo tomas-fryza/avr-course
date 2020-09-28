@@ -172,7 +172,7 @@ Download the compiled code to Arduino Uno board with `mingw32-make.exe flash` (W
 
 ## Part 3: Push button
 
-Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and push button to Arduino input pin in active-low way. **Let the push button is connected to port D.**
+Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor (if internal pull-up resistor is not used) and push button to Arduino input pin in active-low way. **Let the push button is connected to port D.**
 
 Use code from previous part and program an application that toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. 
 
