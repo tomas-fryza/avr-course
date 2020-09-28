@@ -8,7 +8,7 @@ The purpose of this laboratory exercise is to learn how to use basic input/outpu
 
 ## Preparation tasks (done before the lab at home)
 
-Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high. Which pin of the LED is connected to the microcontroller in each case?
+Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high. What is the name of the LED pin that is connected to the microcontroller in each case?
 
 &nbsp;
 
