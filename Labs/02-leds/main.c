@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- * Alternately toggle two LEDs with the push button.
+ * Alternately toggle two LEDs when a push button is pressed.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2018-2020 Tomas Fryza
@@ -23,7 +23,7 @@
 /* Functions ---------------------------------------------------------*/
 /**
  * Main function where the program execution begins. Toggle two LEDs 
- * with the push button.
+ * when a push button is pressed.
  */
 int main(void)
 {
@@ -48,25 +48,3 @@ int main(void)
     // Will never reach this
     return 0;
 }
-
-
-
-
-
-
-
-    /* Configure input pin of push button and enable internal pull-up
-       resistor */
-    DDRD = DDRD & ~_BV(BTN_BLUE);       // DDRD2 = 0
-    PORTD = PORTD | _BV(BTN_BLUE);      // PORTD2 = 1
-
-    // Infinite loop
-    for (;;) {
-        // Test if push button value is low
-        if (bit_is_clear(PIND, BTN_BLUE)) {
-            // Invert LED and delay
-            PORTB = PORTB ^ _BV(LED_GREEN); // xor: Invert bit
-            PORTB = PORTB ^ _BV(LED_RED);
-            _delay_ms(BLINK_DELAY);
-        }
-    }

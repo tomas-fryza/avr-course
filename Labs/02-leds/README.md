@@ -3,13 +3,12 @@
 
 ### Learning objectives
 
-The purpose of this laboratory exercise is to learn how to use basic input/output devices push buttons and LEDs (Light Emitting Diodes), and how to control a GPIO (General Purpose Input Output) pin with help of control registers.
-
+The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control a GPIO (General Purpose Input Output) pin with help of control registers.
 
 
 ## Preparation tasks (done before the lab at home)
 
-Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high.
+Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high. Which pin of the LED is connected to the microcontroller in each case?
 
 &nbsp;
 
@@ -144,7 +143,7 @@ See [schematic of Arduino Uno board](../../Docs/arduino_shield.pdf) in docs fold
 |   | 6 |  |
 |   | 7 |  |
 
-Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and second LED to Arduino output pin in active-low way. **Restriction: use other than port B!**
+Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and second LED to Arduino output pin in active-low way. **Let the second LED is connected to port C.**
 
 
 ### Version: Windows and Atmel Studio 7
@@ -155,7 +154,7 @@ Complete the control register settings according to the pin to which you have co
 
 Compile the project. Simulate the project in Atmel Studio 7.
 
-Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit.
+Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs.
 
 
 ### Version: Command-line toolchain
@@ -168,48 +167,36 @@ Complete the control register settings according to the pin to which you have co
 
 Compile the project with the `mingw32-make.exe all` (Windows) or `make all` (Linux).
 
-Download the compiled code to Arduino Uno board with `mingw32-make.exe flash` (Windows) or `make flash` (Linux) or load `*.hex` firmware to SimulIDE circuit.
-
-
-
-
-
-
-
-
-
-
+Download the compiled code to Arduino Uno board with `mingw32-make.exe flash` (Windows) or `make flash` (Linux) or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs.
 
 
 ## Part 3: Push button
 
-1. Use breadboard, connect push button to Arduino input pin and program an application that toggles the LEDs each time the push button is pressed. Use the [AVR Libc library macros](https://www.microchip.com/webdoc/AVRLibcReferenceManual/ch20s22s02.html) to test bit values in control register:
+Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and push button to Arduino input pin in active-low way. **Let the push button is connected to port D.**
 
-    ```C
-    if (bit_is_set(PINA, 0)) {...}      // Only if PINA bit number 0 is 1 (set)
-    if (bit_is_clear(PINB, 5)) {...}    // Only if PINB bit number 5 is 0 (clear)
-    loop_until_bit_is_set(PINC, 2);     // Stay here until PINC2 bit becomes 1
-    loop_until_bit_is_clear(PINA, 7);   // Stay here until PINA7 bit becomes 0
-    ```
+Use code from previous part and program an application that toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. 
+
+Configure the pin to which the push button is connected as an input and enable the internal pull-up resistor.
+
+Use the [AVR Libc library macros](https://www.microchip.com/webdoc/AVRLibcReferenceManual/ch20s22s02.html) to test bit values in control registers:
+
+| **Function** | **Example** | **Description** |
+| :-- | :-- | :-- |
+| `bit_is_set(reg, pin)` | `if (bit_is_set(PINA, 3)) {...}` | Perform the code only if bit number 3 in register PINA is 1 (set) |
+| `bit_is_clear(reg, pin)` | `if (bit_is_clear(PINB, 5)) {...}` | Perform the code only if bit number 5 in register PINB is 0 (clear) |
+| `loop_until_bit_is_set(reg, pin)` | `loop_until_bit_is_set(PIND, 0);` | Stay here until bit number 0 in register PIND becomes 1 |
+| `loop_until_bit_is_clear(reg, pin)` | `loop_until_bit_is_clear(PINA, 7);` | Stay here until bit number 7 in register PINA becomes 0 |
+
+Complete the code, compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
 
-## Switch debouncing
+## Part 4: Switch debouncing (hardware implementation only)
 
 *[Bouncing](https://whatis.techtarget.com/definition/debouncing) is the tendency of any two metal contacts in an electronic device to generate multiple signals as the contacts close or open; debouncing is any kind of hardware device or software that ensures that only a single signal will be acted upon for a single opening or closing of a contact.*
 
-![debouncing](Images/debouncer.png "Sampled push button signal")
+![Real push button signal with bouncing](Images/debouncer.png "Sampled push button signal")
 
-1. Use AVR Libc and time delay library functions to debounce a push button. Create an application that samples the input signal and decides that the push button was pressed based on a series of the same values, eg. four zero bits consecutively present on the input pin.
-
-
-
-
-
-
-
-
-
-
+Use AVR Libc and time delay library functions to debounce a push button. Create an application that samples the input signal and decides that the push button was pressed based on a series of the same values, eg. four zero bits consecutively present on the input pin.
 
 
 ## Clean project and synchronize git
@@ -231,7 +218,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 1. LED example. Submit:
     * Tables for DDRB, PORTB, and their combination,
     * Table with input/output available pins,
-    * Xxx.
+    * C code with two LEDs and a push button.
 
 2. Knight Rider application. Submit:
     * C code.
