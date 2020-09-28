@@ -217,7 +217,7 @@ Bonus. Program the [PWM generator](https://www.analogictips.com/pulse-width-modu
 
 1. LED example. Submit:
     * Tables for DDRB, PORTB, and their combination,
-    * Table with input/output available pins,
+    * Table with input/output pins available on ATmega328P,
     * C code with two LEDs and a push button.
 
 2. Knight Rider application. Submit:
