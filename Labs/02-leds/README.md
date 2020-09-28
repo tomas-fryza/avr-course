@@ -22,7 +22,7 @@ Draw two basic ways to connect a LED to the output pin of the microcontroller: L
 
 &nbsp;
 
-[Calculate LED resistor values](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
+[Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
 
 &nbsp;
 ![Clock period](Images/ohms_law.png)
