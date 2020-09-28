@@ -3,38 +3,57 @@
  * Alternately toggle two LEDs with the push button.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2019 Tomas Fryza
+ * Copyright (c) 2018-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
 
+/* Defines -----------------------------------------------------------*/
+#define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define BLINK_DELAY 250
+#ifndef F_CPU
+#define F_CPU 16000000      // CPU frequency in Hz required for delay
+#endif
+
 /* Includes ----------------------------------------------------------*/
-#include <avr/io.h>
-#include <util/delay.h>
-
-/* Typedef -----------------------------------------------------------*/
-/* Define ------------------------------------------------------------*/
-#define LED_GREEN   PB5
-#define LED_RED     PB0
-#define BTN_BLUE    PD2
-#define BLINK_DELAY 500
-
-/* Variables ---------------------------------------------------------*/
-/* Function prototypes -----------------------------------------------*/
+#include <util/delay.h>     // Functions for busy-wait delay loops
+#include <avr/io.h>         // AVR device-specific IO definitions
 
 /* Functions ---------------------------------------------------------*/
-/* Main --------------------------------------------------------------*/
-/* Toggle two LEDs with the push button. */
-int main(void) {
+/**
+ * Main function where the program execution begins. Toggle two LEDs 
+ * with the push button.
+ */
+int main(void)
+{
+    /* GREEN LED */
+    // Set pin as output in Data Direction Register...
+    DDRB = DDRB | (1<<LED_GREEN);
+    // ...and turn LED off in Data Register
+    PORTB = PORTB & ~(1<<LED_GREEN);
 
-    // Set output pins of two LEDs to low level
-    // LED_GREEN
-    DDRB = DDRB | _BV(LED_GREEN);       // or: Set bit to 1
-    PORTB = PORTB & ~_BV(LED_GREEN);    // and: Clear bit to 0
-    // LED_RED
-    DDRB = DDRB | _BV(LED_RED);
-    PORTB = PORTB & ~_BV(LED_RED);
+    /* second LED */
+    // WRITE YOUR CODE HERE
+
+    // Infinite loop
+    while (1)
+    {
+        // Pause several milliseconds
+        _delay_ms(BLINK_DELAY);
+
+        // WRITE YOUR CODE HERE
+    }
+
+    // Will never reach this
+    return 0;
+}
+
+
+
+
+
+
 
     /* Configure input pin of push button and enable internal pull-up
        resistor */
@@ -51,9 +70,3 @@ int main(void) {
             _delay_ms(BLINK_DELAY);
         }
     }
-
-    // Will never reach this
-    return 0;
-}
-
-/* Interrupts --------------------------------------------------------*/
