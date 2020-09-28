@@ -88,7 +88,7 @@ $ mkdir 02-leds
 
 AVR microcontroller associates pins into so-called ports, which are marked with the letters A, B, C, etc. Each of the pins is controlled separately and can function as an input (entry) or output (exit) point of the microcontroller. Control is possible exclusively by software via control registers.
 
-There are exactly three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port B these are registers DDRB, PORTB and PINB, for port A registers DDRA, PORTA, PINA, etc.
+There are exactly three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port A these are registers DDRA, PORTA and PINA, for port B registers DDRB, PORTB, PINB, etc.
 
 DDR (Data Direction Register) is used to set the input/output direction of port communication, PORT is the output data port and PIN works for reading input values from the port.
 
