@@ -3,7 +3,7 @@
 
 ### Learning objectives
 
-The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control a GPIO (General Purpose Input Output) pin with help of control registers.
+The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
 
 
 ## Preparation tasks (done before the lab at home)
