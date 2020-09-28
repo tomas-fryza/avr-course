@@ -146,7 +146,7 @@ See [schematic of Arduino Uno board](../../Docs/arduino_shield.pdf) in docs fold
 Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and second LED to Arduino output pin in active-low way. **Let the second LED is connected to port C.**
 
 
-### Version: Windows and Atmel Studio 7
+### Version: Atmel Studio 7
 
 Create a new project for ATmega328P within `02-leds` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
