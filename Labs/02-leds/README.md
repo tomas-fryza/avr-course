@@ -178,7 +178,7 @@ Use code from previous part and program an application that toggles LEDs only if
 
 Configure the pin to which the push button is connected as an input and enable the internal pull-up resistor.
 
-Use the [AVR Libc library macros](https://www.microchip.com/webdoc/AVRLibcReferenceManual/ch20s22s02.html) to test bit values in control registers:
+Use Special function registers from [AVR Libc](https://onlinedocs.microchip.com/) to test bit values in control registers:
 
 | **Function** | **Example** | **Description** |
 | :-- | :-- | :-- |
