@@ -30,7 +30,7 @@ To make it easier to work with git, you can install a graphical client:
 * [GitHub Desktop](https://desktop.github.com/).
 
 
-### Windows and command-lin toolchain
+### Windows and command-line toolchain
 
 Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio.
 
@@ -124,7 +124,7 @@ Simulate the project in Atmel Studio 7.
 Run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).
 
 
-### Version: Windows and command-lin toolchain
+### Version: Windows and command-line toolchain
 
 Copy `main.c` and `Makefile` files from blink example to `Labs\01-tools` folder.
 
