@@ -208,7 +208,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Connect five LEDs to the microcontroller, modify `02-leds` code, and program an application that will ensure that only one of LED is switched on at a time according in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
+1. Connect five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application that will--after you press the button--ensure that only one of LED is switched on at a time according in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
 
 2. Simulate the Knight Rider application in SimulIDE.
 
