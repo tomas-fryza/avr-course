@@ -196,19 +196,22 @@ Complete the code, compile it and download to Arduino Uno board or load `*.hex` 
 
 *[Bouncing](https://whatis.techtarget.com/definition/debouncing) is the tendency of any two metal contacts in an electronic device to generate multiple signals as the contacts close or open; debouncing is any kind of hardware device or software that ensures that only a single signal will be acted upon for a single opening or closing of a contact.*
 
-![Real push button signal with bouncing](Images/debouncer.png "Sampled push button signal")
+![Real push button signal with bouncing](Images/debouncer.png)
+
 
 Use AVR Libc and time delay library functions to debounce a push button. Create an application that samples the input signal and decides that the push button was pressed based on a series of the same values, eg. four zero bits consecutively present on the input pin.
 
+![Decouncer](Images/debouncer_algo.png)
 
-## Clean project and synchronize git
+
+## Synchronize git
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
 ## Experiments on your own
 
-1. Connect five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application that will--after you press the button--ensure that only one of LED is switched on at a time according in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
+1. Connect five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application that will--after you press the button--ensure that only one of LED is switched on at a time in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
 
 2. Simulate the Knight Rider application in SimulIDE.
 
