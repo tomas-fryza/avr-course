@@ -5,6 +5,8 @@
 
 The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
 
+![Arduino Uno](Images/arduino_uno_leds.jpg)
+
 
 ## Preparation tasks (done before the lab at home)
 
@@ -218,7 +220,8 @@ Extra. Program the [PWM generator](https://www.analogictips.com/pulse-width-modu
 1. LED example. Submit:
     * Tables for DDRB, PORTB, and their combination,
     * Table with input/output pins available on ATmega328P,
-    * C code with two LEDs and a push button.
+    * C code with two LEDs and a push button,
+    * Screenshot of SimulIDE circuit.
 
 2. Knight Rider application. Submit:
     * C code.
