@@ -11,6 +11,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define LED_RED     PC0
 #define BLINK_DELAY 250
 #ifndef F_CPU
 #define F_CPU 16000000      // CPU frequency in Hz required for delay
