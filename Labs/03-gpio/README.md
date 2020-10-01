@@ -18,14 +18,36 @@ Fill in the following table and specify the number of bits and numeric range for
 | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
 | `void`     |  |  |  |
 
+Any function in C contains a declaration (function prototype), a definition (block of code, body of the function) and we can call such function.
 
+Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
+```C
+#include <avr/io.h>
 
+uint16_t calculate(uint8_t, ...    );   // Function prototype
 
-TBD:
-Example of function declaration (prototype) and definition (body).
+int main(void)
+{
+    uint8_t a = 156;
+    uint8_t b = 14;
+    uint16_t c;
 
+    c = ...      (a, b);    // Function call
 
+    return 0;
+}
+
+...      calculate(uint8_t x, uint8_t y)    // Function definition
+{
+    uint16_t result;    // result = x^2 + 2xy + y^2
+
+    result = x*x;
+    ...
+    ...
+    return result;
+}
+```
 
 
 ## Part 1: Synchronize repositories and create a new folder
@@ -56,49 +78,82 @@ $ mkdir 03-gpio
 ```
 
 
+## Part 2: Introduction and header file
 
+For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
 
+**Header file** is a file with extension `.h` and generally contains definitions of data types, function prototypes and C preprocessor commands. **Source file** is a file with extension `.c` and is used for implementations and source code. It is bad practice to mix usage of the two although it is possible.
 
+C programs are highly dependent on functions. Functions are the basic building blocks of C programs and every C program is combination of one or more functions. There are two types of functions in C: **built-in functions** which are the part of C compiler and **user defined functions** which are written by programmers according to their requirement.
 
+To use user defined function, three steps are involved:
 
-
-
-
-
-
-## Part 2: Header file
+* Function prototype or Function declaration (`*.h` file)
+* Function definition (`*.c` file)
+* Function call (`*.c` file)
 
 *[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A function prototype gives information to the compiler that the function may later be used in the program.*
 
-1. Create a new library header file `library/Include/gpio.h` and define function prototypes according to the following table.
+***Function definition** contains the block of code to perform a specific task.*
 
-    | **Return** | **Function name** | **Function parameters** |
-    | :-: | :-- | :-- |
-    | `void` | `GPIO_output` | `volatile uint8_t *reg, uint8_t pin` |
-    | `void` | `GPIO_write` | `volatile uint8_t *reg, uint8_t pin, uint8_t val` |
-    | `void` | `GPIO_toggle` | `volatile uint8_t *reg, uint8_t pin` |
-    | `void` | `GPIO_input_nopull` | `volatile uint8_t *reg, uint8_t pin` |
-    | `void` | `GPIO_input_pullup` | `volatile uint8_t *reg, uint8_t pin` |
-    | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` |
+*By **calling the function**, the control of the program is transferred to the function.*
+
+A header file can be shared between several source files by including it with the C preprocessing directive `#include`.
+
+If a header file happens to be included twice, the compiler will process its contents twice and it will result in an error. The standard way to prevent this is to enclose the entire real contents of the file in a conditional, like this:
+
+```C
+#ifndef HEADER_FILE_NAME
+#define HEADER_FILE_NAME
+
+// The body of entire header file
+
+#endif
+```
+
+This construct is commonly known as a wrapper `#ifndef`. When the header is included again, the conditional will be false, because `HEADER_FILE_NAME` is already defined. The preprocessor will skip over the entire contents of the file, and the compiler will not see it twice.
+
+
+### Version: Atmel Studio 7
+
+Create a new project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+
+Create a new `gpio.h` library header file and copy/paste the [template code](xxxx) into it.
+
+
+### Version: Command-line toolchain
+
+If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `firmware.in` settings file exists in `Labs` folder.
+
+```bash
+## Linux:
+$ cp -r ../Examples/library .
+$ ls
+01-tools  02-leds  03-gpio  firmware.in  library
+```
+
+Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.
+
+Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
+
+Create a new `Labs/library/include/gpio.h` library header file and copy/paste the [template code](xxxx) into it.
+
+
+### Both versions
+
+Complete the function prototypes definition in `gpio.h` file according to the following table.
+
+| **Return** | **Function name** | **Function parameters** | **Description** |
+| :-: | :-- | :-- | :-- |
+| `void` | `GPIO_set_output` | `volatile uint8_t *reg, uint8_t pin` | Configure an output pin in Data Direction Register |
+| `void` | `GPIO_set_input_nopull` | `volatile uint8_t *reg, uint8_t pin` | Configure an input pin in DDR without pull-up resistor |
+| `void` | `GPIO_set_input_pullup` | `volatile uint8_t *reg, uint8_t pin` | Configure an input pin in DDR and enable pull-up resistor |
+| `void` | `GPIO_write_low` | `volatile uint8_t *reg, uint8_t pin` | Set output pin in PORT register to low |
+| `void` | `GPIO_write_high` | `volatile uint8_t *reg, uint8_t pin` | Set output pin in PORT register to high |
+| `void` | `GPIO_toggle` | `volatile uint8_t *reg, uint8_t pin` | Toggle output pin value in PORT register |
+| `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Get input pin value from PIN register |
 
 What is the meaning of `volatile` keyword in C? What is the difference between operators `*` and `&`, such as `*reg` and `&DDRB`
-
-2. Why is it necessary to use guard directives `#ifndef`, `#define`, `#endif` in header file?
-
-    ```C
-    #ifndef GPIO_H_INCLUDED
-    #define GPIO_H_INCLUDED
-
-    #include <avr/io.h>
-
-    void GPIO_output(volatile uint8_t *reg, uint8_t pin);
-    ...
-    
-    #endif /* GPIO_H_INCLUDED */
-    ```
-
-    > See [gpio header template](../library/Include/gpio.h) for complete list of declared functions.
-    >
 
 
 ## Part 3: Source file
