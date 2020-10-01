@@ -1,6 +1,5 @@
 # Lab 2: Control of GPIO, LED, push button
 
-
 ### Learning objectives
 
 The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
@@ -56,11 +55,11 @@ Draw the basic ways to connect a push button to the microcontroller input pin: b
 &nbsp;
 
 
-## Part 1: Synchronize Git and create a new folder
+## Part 1: Synchronize repositories and create a new folder
 
 When you start working, always synchronize the contents of your working folder and local repository with remote version at GitHub. This way you are sure that you will not lose any of your changes.
 
-Run Git Bash (Windows) of Terminal (Linux) and synchronize repositories.
+Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repositories.
 
 ```bash
 ## Windows Git Bash:
@@ -96,7 +95,7 @@ DDR (Data Direction Register) is used to set the input/output direction of port 
 
 A detailed description of working with input/output ports can be found in [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) in section I/O-Ports.
 
-Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations.
+Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
 
 | **DDRB** | **Description** |
 | :-: | :-- |
@@ -204,7 +203,7 @@ Use AVR Libc and time delay library functions to debounce a push button. Create 
 ![Decouncer](Images/debouncer_algo.png)
 
 
-## Synchronize git
+## Synchronize repositories
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
