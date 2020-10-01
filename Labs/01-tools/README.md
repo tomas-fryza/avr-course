@@ -234,7 +234,7 @@ To start sampling, press the green button with two arrows, set the sampling rate
 ![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
 
-## Synchronize git
+## Synchronize repositories
 
 When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
 
