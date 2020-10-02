@@ -1,5 +1,5 @@
-#ifndef TWI_H_INCLUDED
-#define TWI_H_INCLUDED
+#ifndef TWI_H
+#define TWI_H
 
 /***********************************************************************
  * 
@@ -97,4 +97,4 @@ uint8_t twi_read_nack(void);
 /** Generates stop condition on TWI bus. */
 void twi_stop(void);
 
-#endif /* TWI_H_INCLUDED */
+#endif

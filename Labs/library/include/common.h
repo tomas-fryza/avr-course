@@ -1,5 +1,5 @@
-#ifndef COMMON_H_INCLUDED
-#define COMMON_H_INCLUDED
+#ifndef COMMON_H
+#define COMMON_H
 
 /***********************************************************************
  * 
@@ -23,7 +23,7 @@
 
 /* Define ------------------------------------------------------------*/
 /**
- * Define address of data direction register of port _x.
+ * Define address of Data Direction Register of port _x.
  */
 #define DDR(_x) (*(&_x - 1))
 
@@ -32,4 +32,4 @@
  */
 #define PIN(_x) (*(&_x - 2))
 
-#endif /* COMMON_H_INCLUDED */
+#endif
