@@ -183,10 +183,10 @@ Use Special function registers from [AVR Libc](https://onlinedocs.microchip.com/
 
 | **Function** | **Example** | **Description** |
 | :-- | :-- | :-- |
-| `bit_is_set(reg, pin)` | `if (bit_is_set(PINA, 3)) {...}` | Perform the code only if bit number 3 in register PINA is 1 (set) |
-| `bit_is_clear(reg, pin)` | `if (bit_is_clear(PINB, 5)) {...}` | Perform the code only if bit number 5 in register PINB is 0 (clear) |
-| `loop_until_bit_is_set(reg, pin)` | `loop_until_bit_is_set(PIND, 0);` | Stay here until bit number 0 in register PIND becomes 1 |
-| `loop_until_bit_is_clear(reg, pin)` | `loop_until_bit_is_clear(PINA, 7);` | Stay here until bit number 7 in register PINA becomes 0 |
+| `bit_is_set(reg_name, pin_num)` | `if (bit_is_set(PINA, 3)) {...}` | Perform the code only if bit number 3 in register PINA is 1 (set) |
+| `bit_is_clear(reg_name, pin_num)` | `if (bit_is_clear(PINB, 5)) {...}` | Perform the code only if bit number 5 in register PINB is 0 (clear) |
+| `loop_until_bit_is_set(reg_name, pin_num)` | `loop_until_bit_is_set(PIND, 0);` | Stay here until bit number 0 in register PIND becomes 1 |
+| `loop_until_bit_is_clear(reg_name, pin_num)` | `loop_until_bit_is_clear(PINA, 7);` | Stay here until bit number 7 in register PINA becomes 0 |
 
 Complete the code, compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
