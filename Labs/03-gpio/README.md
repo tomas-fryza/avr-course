@@ -227,7 +227,11 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Lab assignment
 
-1. GPIO library. Submit:
+1. Preparation tasks. Submit:
+    * Table,
+    * Source code.
+
+2. GPIO library. Submit:
     * Listing of library source file `gpio.c`,
     * C code of the application `main.c`.
 
