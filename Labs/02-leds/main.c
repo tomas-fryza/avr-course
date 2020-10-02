@@ -11,8 +11,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN   PB5     // AVR pin where green LED is connected
-#define LED_RED     PC0
-#define BLINK_DELAY 250
+#define BLINK_DELAY 500
 #ifndef F_CPU
 #define F_CPU 16000000      // CPU frequency in Hz required for delay
 #endif
@@ -35,6 +34,9 @@ int main(void)
     PORTB = PORTB & ~(1<<LED_GREEN);
 
     /* second LED */
+    // WRITE YOUR CODE HERE
+
+    /* push button */
     // WRITE YOUR CODE HERE
 
     // Infinite loop
