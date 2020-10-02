@@ -25,7 +25,8 @@ Study [this article](https://www.programiz.com/c-programming/c-user-defined-func
 ```C
 #include <avr/io.h>
 
-uint16_t calculate(uint8_t, ...    );   // Function prototype
+// Function prototype
+uint16_t calculate(uint8_t, ...    );
 
 int main(void)
 {
@@ -33,12 +34,14 @@ int main(void)
     uint8_t b = 14;
     uint16_t c;
 
-    c = ...      (a, b);    // Function call
+    // Function call
+    c = ...      (a, b);
 
     return 0;
 }
 
-...      calculate(uint8_t x, uint8_t y)    // Function definition
+// Function definition
+...      calculate(uint8_t x, uint8_t y)
 {
     uint16_t result;    // result = x^2 + 2xy + y^2
 
@@ -118,7 +121,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 Create a new project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-Create a new `gpio.h` library header file and copy/paste the [template code](xxxx) into it.
+Create a new `gpio.h` library header file and copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Version: Command-line toolchain
@@ -136,7 +139,7 @@ Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.
 
 Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
 
-Create a new `Labs/library/include/gpio.h` library header file and copy/paste the [template code](xxxx) into it.
+Create a new library header file in `Labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Both versions
@@ -145,54 +148,69 @@ Complete the function prototypes definition in `gpio.h` file according to the fo
 
 | **Return** | **Function name** | **Function parameters** | **Description** |
 | :-: | :-- | :-- | :-- |
-| `void` | `GPIO_set_output` | `volatile uint8_t *reg, uint8_t pin` | Configure an output pin in Data Direction Register |
-| `void` | `GPIO_set_input_nopull` | `volatile uint8_t *reg, uint8_t pin` | Configure an input pin in DDR without pull-up resistor |
-| `void` | `GPIO_set_input_pullup` | `volatile uint8_t *reg, uint8_t pin` | Configure an input pin in DDR and enable pull-up resistor |
-| `void` | `GPIO_write_low` | `volatile uint8_t *reg, uint8_t pin` | Set output pin in PORT register to low |
-| `void` | `GPIO_write_high` | `volatile uint8_t *reg, uint8_t pin` | Set output pin in PORT register to high |
-| `void` | `GPIO_toggle` | `volatile uint8_t *reg, uint8_t pin` | Toggle output pin value in PORT register |
-| `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Get input pin value from PIN register |
+| `void` | `GPIO_config_output` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one output pin in Data Direction Register |
+| `void` | `GPIO_config_input_nopull` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one input pin in DDR without pull-up resistor |
+| `void` | `GPIO_config_input_pullup` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one input pin in DDR and enable pull-up resistor |
+| `void` | `GPIO_write_low` | `volatile uint8_t *reg_name, uint8_t pin_num` | Set one output pin in PORT register to low |
+| `void` | `GPIO_write_high` | `volatile uint8_t *reg_name, uint8_t pin_num` | Set one output pin in PORT register to high |
+| `void` | `GPIO_toggle` | `volatile uint8_t *reg_name, uint8_t pin_num` | Toggle one output pin value in PORT register |
+| `uint8_t` | `GPIO_read` | `volatile uint8_t *reg_name, uint8_t pin_num` | Get input pin value from PIN register |
 
-What is the meaning of `volatile` keyword in C? What is the difference between operators `*` and `&`, such as `*reg` and `&DDRB`
+The register name parameter must be `volatile` to avoid a compiler warning.
+
+Note that the C notation `*variable` representing a pointer to memory location where the value is stored. Notation `&variable` is address-of-operator and gives an address reference of variable.
+
+> [Understanding C Pointers: A Beginner’s Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+>
+> ![Understanding C pointers](Images/pointer-variable-ampersand-and-asterisk.png)
+>
 
 
-## Part 3: Source file
+## Part 3: Library source file
 
-1. Create a source file `library/Source/gpio.c` and define all declared functions. See AVR Libc Reference Manual how to pass an [IO port as a parameter](https://www.microchip.com/webdoc/AVRLibcReferenceManual/FAQ_1faq_port_pass.html) to a function.
+### Version: Atmel Studio 7
 
-    ```C
-    #include "gpio.h"
+Create a new `gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
 
-    /* Configures one output pin */
-    void GPIO_output(volatile uint8_t *reg, uint8_t pin) {
 
-        *reg = *reg | _BV(pin);
-    }
-    ...
-    ```
+### Version: Command-line toolchain
 
-2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
+Create a new `Labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
 
-    ```Makefile
-    # Add or comment libraries you are using in the project
-    #SRCS += $(LIBRARY_DIR)/Source/lcd.c
-    #SRCS += $(LIBRARY_DIR)/Source/uart.c
-    #SRCS += $(LIBRARY_DIR)/Source/twi.c
-    SRCS += $(LIBRARY_DIR)/Source/gpio.c
-    ```
+Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
+
+```Makefile
+# Add or comment libraries you are using in the project
+#SRCS += $(LIBRARY_DIR)/lcd.c
+#SRCS += $(LIBRARY_DIR)/uart.c
+#SRCS += $(LIBRARY_DIR)/twi.c
+SRCS += $(LIBRARY_DIR)/gpio.c
+```
+
+
+### Both versions
+
+Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
+
+Complete the definition of all functions in `gpio.c` file according to the example.
+
+```C
+#include "gpio.h"
+
+/* Functions ---------------------------------------------------------*/
+/* Configure one output pin in Data Direction Register */
+void GPIO_config_output(volatile uint8_t *reg_name, uint8_t  pin_num)
+{
+    *reg_name = *reg_name | (1<<pin_num);
+}
+```
 
 
 ## Part 4: Final application
 
-1. Rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`.
+In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`.
 
-
-
-
-
-
-
-
+Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
 
 ## Synchronize repositories
@@ -202,17 +220,15 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-TBD:
-1. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside C-code comments and prepare your `gpio.h` library for easy PDF manual generation.
+1. Complete declarations (`*.h`) and definitions (`*.c`) of all functions from the GPIO library.
+
+2. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `gpio.h` library for later easy generation of PDF documentation. Get inspired by the `GPIO_config_output` function in the `gpio.h` file.
 
 
 ## Lab assignment
 
-1. GPIO example. Submit:
-    * Xxx,
-    * Screenshot of SimulIDE circuit.
-
-2. Xxxx. Submit:
-    * C code.
+1. GPIO library. Submit:
+    * Listing of library source file `gpio.c`,
+    * C code of the application `main.c`.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
