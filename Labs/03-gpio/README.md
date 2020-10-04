@@ -104,12 +104,12 @@ To use a user-defined function, there are three parts to consider:
 A header file can be shared between several source files by including it with the C preprocessing directive `#include`. If a header file happens to be included twice, the compiler will process its contents twice and it will result in an error. The standard way to prevent this is to enclose the entire real contents of the file in a conditional, like this:
 
 ```C
-#ifndef HEADER_FILE_NAME
-#define HEADER_FILE_NAME
+#ifndef HEADER_FILE_NAME        // Preprocessor directive allows for conditional compilation. If not defined.
+#define HEADER_FILE_NAME        // Definition of constant within your source code.
 
 // The body of entire header file
 
-#endif
+#endif                          // The #ifndef directive must be closed by an #endif
 ```
 
 This construct is commonly known as a wrapper `#ifndef`. When the header is included again, the conditional will be false, because `HEADER_FILE_NAME` is already defined. The preprocessor will skip over the entire contents of the file, and the compiler will not see it twice.
