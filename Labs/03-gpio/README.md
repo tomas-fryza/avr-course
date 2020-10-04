@@ -2,12 +2,12 @@
 
 ### Learning objectives
 
-The purpose of this laboratory exercise is to learn how to create your own user libraries in C. Specifically, it will be a library for controlling GPIO pins.
+The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
 
 
 ## Preparation tasks (done before the lab at home)
 
-Fill in the following table and specify the number of bits and numeric range for the specified data types, defined by C.
+Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
 
 | **Data type** | **Number of bits** | **Range** | **Description** |
 | :-: | :-: | :-: | :-- | 
@@ -18,7 +18,7 @@ Fill in the following table and specify the number of bits and numeric range for
 | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
 | `void`     |  |  |  |
 
-Any function in C contains a declaration (function prototype), a definition (block of code, body of the function) and we can call such function.
+Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called).
 
 Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
