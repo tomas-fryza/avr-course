@@ -195,8 +195,7 @@ Complete the definition of all functions in `gpio.c` file according to the examp
 ```C
 #include "gpio.h"
 
-/* Functions ---------------------------------------------------------*/
-/* Configure one output pin in Data Direction Register */
+/* Function definitions ----------------------------------------------*/
 void GPIO_config_output(volatile uint8_t *reg_name, uint8_t  pin_num)
 {
     *reg_name = *reg_name | (1<<pin_num);
