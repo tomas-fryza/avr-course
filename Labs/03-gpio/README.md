@@ -224,12 +224,13 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Lab assignment
 
-1. Preparation tasks. Submit:
-    * Table,
-    * Source code.
+1. Preparation tasks (done before the lab at home). Submit:
+    * Table with data types,
+    * Completed source code from the example.
 
 2. GPIO library. Submit:
     * Listing of library source file `gpio.c`,
-    * C code of the application `main.c`.
+    * C code of the application `main.c`,
+    * In your words, describe the difference between the declaration and the definition of the function in C. Give an example.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
