@@ -25,7 +25,7 @@ Study [this article](https://www.programiz.com/c-programming/c-user-defined-func
 ```C
 #include <avr/io.h>
 
-// Function prototype
+// Function declaration (prototype)
 uint16_t calculate(uint8_t, ...    );
 
 int main(void)
@@ -40,7 +40,7 @@ int main(void)
     return 0;
 }
 
-// Function definition
+// Function definition (body)
 ...      calculate(uint8_t x, uint8_t y)
 {
     uint16_t result;    // result = x^2 + 2xy + y^2
