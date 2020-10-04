@@ -25,7 +25,7 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t  pin_num)
 void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name & ~(1<<pin_num);  // Data Direction Register
-    *reg_name++;    // Change pointer to Data Register
+    *reg_name++;                    // Change pointer to Data Register
     *reg_name = *reg_name | (1<<pin_num);   // Data Register
 }
 
