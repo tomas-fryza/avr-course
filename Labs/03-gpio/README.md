@@ -89,7 +89,7 @@ For clarity and efficiency of the code, the individual parts of the application 
 
 C programs are highly dependent on functions. Functions are the basic building blocks of C programs and every C program is combination of one or more functions. There are two types of functions in C: **built-in functions** which are the part of C compiler and **user defined functions** which are written by programmers according to their requirement.
 
-To use user defined function, three steps are involved:
+To use a user-defined function, there are three parts to consider:
 
 * Function prototype or Function declaration (`*.h` file)
 * Function definition (`*.c` file)
