@@ -95,15 +95,13 @@ To use a user-defined function, there are three parts to consider:
 * Function definition (`*.c` file)
 * Function call (`*.c` file)
 
-*[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A function prototype gives information to the compiler that the function may later be used in the program.*
+*[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A **function prototype** gives information to the compiler that the function may later be used in the program.*
 
 ***Function definition** contains the block of code to perform a specific task.*
 
 *By **calling the function**, the control of the program is transferred to the function.*
 
-A header file can be shared between several source files by including it with the C preprocessing directive `#include`.
-
-If a header file happens to be included twice, the compiler will process its contents twice and it will result in an error. The standard way to prevent this is to enclose the entire real contents of the file in a conditional, like this:
+A header file can be shared between several source files by including it with the C preprocessing directive `#include`. If a header file happens to be included twice, the compiler will process its contents twice and it will result in an error. The standard way to prevent this is to enclose the entire real contents of the file in a conditional, like this:
 
 ```C
 #ifndef HEADER_FILE_NAME
