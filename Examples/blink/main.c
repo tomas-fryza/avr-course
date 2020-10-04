@@ -33,7 +33,7 @@
 #include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
 
-/* Functions ---------------------------------------------------------*/
+/* Function definitions ----------------------------------------------*/
 /**
  * Main function where the program execution begins. Toggle one LED 
  * and use function from the delay library.
