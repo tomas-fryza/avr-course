@@ -22,7 +22,7 @@
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include "gpio.h"           // GPIO library for AVR-GCC
 
-/* Functions ---------------------------------------------------------*/
+/* Function definitions ----------------------------------------------*/
 /**
  * Main function where the program execution begins. Toggle two LEDs 
  * when a push button is pressed. Functions from user-defined GPIO
