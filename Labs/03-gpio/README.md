@@ -123,7 +123,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-Create a new `gpio.h` library header file and copy/paste the [template code](../library/include/gpio.h) into it.
+In menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Version: Command-line toolchain
