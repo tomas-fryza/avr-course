@@ -164,7 +164,7 @@ Run external programmer in menu **Tools > Send to Arduino UNO** and download the
 
 ### Version: Command-line toolchain
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/02-leds` folder. Check if `firmware.in` settings file exists in `Labs` folder.
+Copy `main.c` and `Makefile` files from previous lab to `Labs/02-leds` folder. Check if `Makefile.in` settings file exists in `Labs` folder.
 
 Copy/paste [template code](main.c) to your `main.c` source file.
 

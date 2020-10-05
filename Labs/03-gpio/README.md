@@ -130,13 +130,13 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 ### Version: Command-line toolchain
 
-If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `firmware.in` settings file exists in `Labs` folder.
+If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `Makefile.in` settings file exists in `Labs` folder.
 
 ```bash
 ## Linux:
 $ cp -r ../Examples/library .
 $ ls
-01-tools  02-leds  03-gpio  firmware.in  library
+01-tools  02-leds  03-gpio  Makefile.in  library
 ```
 
 Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.

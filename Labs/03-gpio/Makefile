@@ -24,7 +24,7 @@
 ########################################################################
 
 SHELL = /bin/sh
-include ../firmware.in
+include ../Makefile.in
 
 LIBRARY_DIR = ../library
 
