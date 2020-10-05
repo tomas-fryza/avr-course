@@ -61,6 +61,8 @@ Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repo
 ## Windows Git Bash:
 $ cd d:/Documents/
 $ cd your-name/
+$ ls
+Digital-electronics-2/
 $ cd Digital-electronics-2/
 $ git pull
 
@@ -68,6 +70,8 @@ $ git pull
 $ cd
 $ cd Documents/
 $ cd your-name/
+$ ls
+Digital-electronics-2/
 $ cd Digital-electronics-2/
 $ git pull
 ```
