@@ -153,7 +153,7 @@ Use breadboard (or SimulIDE real time electronic circuit simulator), connect res
 
 ### Version: Atmel Studio 7
 
-Create a new project for ATmega328P within `02-leds` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+Create a new GCC C Executable Project for ATmega328P within `02-leds` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 Complete the control register settings according to the pin to which you have connected the second LED. Program an application that blinks alternately with a pair of LEDs. Use the delay library as in the previous exercise.
 
