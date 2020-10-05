@@ -123,7 +123,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Version: Command-line toolchain
@@ -172,7 +172,7 @@ Note that the C notation `*variable` representing a pointer to memory location w
 
 ### Version: Atmel Studio 7
 
-Create a new `gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `gpio.c`. Copy/paste the [template code](../library/gpio.c) into it.
 
 
 ### Version: Command-line toolchain
