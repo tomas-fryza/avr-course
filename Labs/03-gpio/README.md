@@ -4,6 +4,8 @@
 
 The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
 
+![Atmel Studio 7](Images/screenshot_atmel_studio_gpio.png)
+
 
 ## Preparation tasks (done before the lab at home)
 
