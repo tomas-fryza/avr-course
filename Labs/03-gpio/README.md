@@ -205,7 +205,12 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t  pin_num)
 
 ## Part 4: Final application
 
-In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`.
+In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
+
+```C
+    /* GREEN LED */
+    GPIO_config_output(&DDRB, LED_GREEN);
+```
 
 Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
