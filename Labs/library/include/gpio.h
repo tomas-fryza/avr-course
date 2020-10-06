@@ -20,7 +20,8 @@
  * The library contains functions for controlling AVRs' gpio pin(s).
  *
  * @note
- * Based on AVR Libc Reference Manual.
+ * Based on AVR Libc Reference Manual. Tested on ATmega328P (Arduino Uno),
+ * 16 MHz, AVR 8-bit Toolchain 3.6.2.
  * 
  * @copyright (c) 2019-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
