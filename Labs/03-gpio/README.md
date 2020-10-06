@@ -205,7 +205,7 @@ Complete the definition of all functions in `gpio.c` file according to the examp
 #include "gpio.h"
 
 /* Function definitions ----------------------------------------------*/
-void GPIO_config_output(volatile uint8_t *reg_name, uint8_t  pin_num)
+void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name | (1<<pin_num);
 }
