@@ -22,9 +22,9 @@
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
 #define SHORT_DELAY 50  // Delay in milliseconds
 #ifndef F_CPU           // Preprocessor directive allows for conditional
-                        // compilation. If not defined.
+                        // compilation. The #ifndef means "if not defined".
 #define F_CPU 16000000  // CPU frequency in Hz required for delay
-#endif                  // The #ifndef directive must be closed by an #endif
+#endif                  // The #ifndef directive must be closed by #endif
 
 /* Includes ----------------------------------------------------------*/
 /* Include another C language file into the current file at the location
