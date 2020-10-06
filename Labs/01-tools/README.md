@@ -2,7 +2,7 @@
 
 ### Learning objectives
 
-The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program a microcontroller on the Arduino Uno.
+The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program a microcontroller on the Arduino Uno board.
 
 ![Atmel Studio 7](Images/screenshot_atmel_studio_blink.png)
 
