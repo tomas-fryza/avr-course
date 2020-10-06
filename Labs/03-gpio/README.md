@@ -39,6 +39,9 @@ int main(void)
     // Function call
     c = ...      (a, b);
 
+    while (1)
+    {
+    }
     return 0;
 }
 
