@@ -9,13 +9,13 @@ The purpose of the laboratory exercise is to understand the function of the inte
 
 ## Preparation tasks (done before the lab at home)
 
-Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increment it, it will be reset. We call this state an overflow. The overflow time depends on the number of bits, the frequency of the clock signal and the value of the prescaler:
+Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increment it, it will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the value of the prescaler:
 
 &nbsp;
 ![Timer overflow](Images/timer_overflow.png)
 &nbsp;
 
-Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given 7 prescaler values.
+Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given 5 prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
 
 | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -47,7 +47,7 @@ Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repo
 
 A timer (or counter) is a hardware block built in the MCU. It is like a clock, and can be used to measure time events. ATmega328P microcontroller has three timers, called:
 * Timer/Counter0,
-* Timer/Counter1 and
+* Timer/Counter1, and
 * Timer/Counter2.
 
 T/C0 and T/C2 are 8bit timers, where T/C1 is a 16bit timer.
