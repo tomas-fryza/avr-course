@@ -47,7 +47,7 @@ Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repo
 
 A timer (or counter) is a hardware block built in the MCU. It is like a clock, and can be used to measure time events. ATmega328P microcontroller has three timers, called:
 * Timer/Counter0,
-* Timer/Counter1 and
+* Timer/Counter1, and
 * Timer/Counter2.
 
 T/C0 and T/C2 are 8bit timers, where T/C1 is a 16bit timer.
