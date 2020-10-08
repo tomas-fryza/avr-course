@@ -4,76 +4,65 @@
  * use delay library any more.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2019 Tomas Fryza
+ * Copyright (c) 2018-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
 
-/* Includes ----------------------------------------------------------*/
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include "gpio.h"
-#include "timer.h"
-
-/* Typedef -----------------------------------------------------------*/
-/* Define ------------------------------------------------------------*/
+/* Defines -----------------------------------------------------------*/
 #define LED_D1  PB5
 #define LED_D2  PB4
 #define LED_D3  PB3
 
-/* Variables ---------------------------------------------------------*/
-/* Function prototypes -----------------------------------------------*/
+/* Includes ----------------------------------------------------------*/
+#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+#include "gpio.h"           // GPIO library for AVR-GCC
+#include "timer.h"          // Timer library for AVR-GCC
 
-/* Functions ---------------------------------------------------------*/
-/* Main --------------------------------------------------------------*/
-/* Toggle three LEDs with internal 8- and 16-bit timer modules. */
-int main(void) {
+/* Function definitions ----------------------------------------------*/
+/**
+ * Main function where the program execution begins. Toggle three LEDs
+ * on Multi-function shield with internal 8- and 16-bit timer modules.
+ */
+int main(void)
+{
+    /* Configuration of three LEDs */
+    GPIO_config_output(&DDRB, LED_D2);
+    GPIO_write_low(&PORTB, LED_D2);
+    // WRITE YOUR CODE HERE
 
-    // TODO: Configure LED_D1
-    // Configure LED_D2
-    GPIO_output(&DDRB, LED_D2);
-    GPIO_write(&PORTB, LED_D2, LOW);
-    // TODO: Configure LED_D3
+    /* Configuration of 8-bit Timer/Counter0 */
+    // WRITE YOUR CODE HERE
 
-    // TODO: Configure Timer0 clock and enable overflow interrupt
-    // Configure Timer1 clock and enable overflow interrupt
+    /* Configuration of 16-bit Timer/Counter1
+     * Set prescaler and enable overflow interrupt */
     TIM1_overflow_262ms();
-    TIM1_overflow_enable();
-    // TODO: Configure Timer2 clock and enable overflow interrupt
+    TIM1_overflow_interrupt_enable();
+
+    /* Configuration of 8-bit Timer/Counter2 */
+    // WRITE YOUR CODE HERE
 
     // Enables interrupts by setting the global interrupt mask
     sei();
 
     // Infinite loop
-    for (;;) {
+    while (1)
+    {
+        /* Empty loop. All subsequent operations are performed exclusively 
+         * inside interrupt service routines ISRs */
     }
 
     // Will never reach this
     return 0;
 }
 
-/* Interrupts --------------------------------------------------------*/
-/* Timer/Counter0 overflow interrupt routine.
- * Toggle LED_D1. */
-/*ISR(TIMER0_OVF_vect) {
-
-    // TODO: Toggle LED_D1
+/* Interrupt service routines ----------------------------------------*/
+/**
+ * ISR starts when Timer/Counter1 overflows. Toggle LED D2 on 
+ * Multi-function shield. */
+ISR(TIMER1_OVF_vect)
+{
+    // WRITE YOUR CODE HERE
 }
-*/
-/* -------------------------------------------------------------------*/
-/* Timer/Counter1 overflow interrupt routine.
- * Toggle LED_D2. */
-ISR(TIMER1_OVF_vect) {
-
-    // TODO: Toggle LED_D2
-}
-
-/* -------------------------------------------------------------------*/
-/* Timer/Counter2 overflow interrupt routine.
- * Toggle LED_D3. */
-/*ISR(TIMER2_OVF_vect) {
-
-    // TODO: Toggle LED_D3
-}
-*/
