@@ -9,7 +9,7 @@ The purpose of the laboratory exercise is to understand the function of the inte
 
 ## Preparation tasks (done before the lab at home)
 
-Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increment it, it will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the value of the prescaler:
+Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increment it, it will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
 &nbsp;
 ![Timer overflow](Images/timer_overflow.png)
@@ -22,6 +22,9 @@ Calculate the overflow times for three Timer/Counter modules that contain ATmega
 | Timer/Counter0 | 8  | 16u | 128u | -- | | -- | | |
 | Timer/Counter1 | 16 |     |      | -- | | -- | | |
 | Timer/Counter2 | 8  |     |      |    | |    | | |
+
+
+**TODO: What is a shield??**
 
 See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of D1, D2, D3, D4 LEDs and S1-A1, S2-A2, S3-A3 push buttons.
 
@@ -45,22 +48,20 @@ Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repo
 
 ## Part 2: Timers
 
-A timer (or counter) is a hardware block built in the MCU. It is like a clock, and can be used to measure time events. ATmega328P microcontroller has three timers, called:
-* Timer/Counter0,
-* Timer/Counter1, and
-* Timer/Counter2.
+A timer (or counter) is a hardware block built in the MCU. It is like a clock, and can be used to measure time events. ATmega328P has three timers, called:
+   * Timer/Counter0,
+   * Timer/Counter1, and
+   * Timer/Counter2.
 
-T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer.
+T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter in microcontroller counts in synchronisation with microcontroller clock upto 256 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer independently using the CPU frequency prescaler to divide by various prescaling numbers such as 8, 64, 256, 1024.
 
-Different clock sources can be selected for each timer independently using the CPU frequency pre-scaler values. The timer modules can be configured with several special purpose registers.
-
-According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) which I/O registers and which bits configure the timer operations?
+The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
 | **Module** | **Operation** | **I/O register(s)** | **Bit(s)** |
-| :-: | :-- | :-: | :-: |
-| Timer/Counter0 | Prescaler value<br>Overflow interrupt enable<br>Data value | TCCR0B<br>TIMSK0<br>TCNT0 | CS02, CS01, CS00<br>TOIE0<br>TCNT0[7:0] |
-| Timer/Counter1 | Prescaler value<br>Overflow interrupt enable<br>Data value | | |
-| Timer/Counter2 | Prescaler value<br>Overflow interrupt enable<br>Data value | | |
+| :-: | :-- | :-: | :-- |
+| Timer/Counter0 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
+| Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
+| Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
 
 ### Version: Atmel Studio 7
@@ -85,27 +86,114 @@ Create a new library header file in `Labs/library/include/timer.h` and copy/past
 
 ### Both versions
 
-In `timer.h` header file, specify new `#define` macros for all three timers according to the table(s) above.
+For easier setting of control registers, in `timer.h` define macros with suitable names, which will ensure low-level setup. In this case, it is no longer necessary to define any functions and therefore not to create the source file `timer.c`.
+
+```C
+#ifndef TIMER_H
+#define TIMER_H
+
+/* Includes ----------------------------------------------------------*/
+#include <avr/io.h>
+
+/* Defines -----------------------------------------------------------*/
+/**
+ * @brief Defines prescaler CPU frequency values for Timer/Counter1.
+ * @note  F_CPU = 16 MHz
+ */
+#define TIM1_stop()             TCCR1B &= ~((1<<CS12) | (1<<CS11) | (1<<CS10));
+#define TIM1_overflow_4ms()     TCCR1B &= ~((1<<CS12) | (1<<CS11)); TCCR1B |= (1<<CS10);
+#define TIM1_overflow_33ms()    TCCR1B &= ~((1<<CS12) | (1<<CS10)); TCCR1B |= (1<<CS11);
+#define TIM1_overflow_262ms()   TCCR1B &= ~(1<<CS12); TCCR1B |= (1<<CS11) | (1<<CS10);
+#define TIM1_overflow_1s()      TCCR1B &= ~((1<<CS11) | (1<<CS10)); TCCR1B |= (1<<CS12);
+#define TIM1_overflow_4s()      TCCR1B &= ~(1<<CS11); TCCR1B |= (1<<CS12) | (1<<CS10);
+
+/**
+ * @brief Defines interrupt enable/disable modes for Timer/Counter1.
+ */
+#define TIM1_overflow_interrupt_enable()    TIMSK1 |= (1<<TOIE1);
+#define TIM1_overflow_interrupt_disable()   TIMSK1 &= ~(1<<TOIE1);
+
+#endif
+```
 
 
-## Part 3: Interrupts
+## Part 3: Polling and Interrupts
+
+The state of continuous monitoring is known as **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[1]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
+
+While polling is a simple way to check for state changes, there's a cost. If the checking interval is too long, there can be a long lag between occurrence and detection and you may miss the change completely, if the state changes back before you check. A shorter interval will get faster and more reliable detection, but also consumes much more processing time and power, since many more checks will come back negative.
+
+An alternative approach is to utilize **interrupts**. With this method, the state change generates an interrupt signal that causes the CPU to suspend its current operation (and save its current state), then execute the processing associated with the interrupt, and then restore its previous state and resume where it left off.
+
+![Interrupts versus polling](Images/interrupts_vs_polling.jpg)
+
+An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[2]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
+
+Interrupts can be established for events such as a counter's number, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
+
+See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Interrupts** section) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
+
+| **Program address** | **Source** | **Vector name** | **Description** |
+| :-: | :-- | :-- | :-- |
+| 0x0000 | RESET | -- | Reset of the system |
+| 0x0002 | INT0  | `INT0_vect`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | External interrupt request number 0 |
+|  | INT1 |  |  |
+|  | PCINT0 |  |  |
+|  | PCINT1 |  |  |
+|  | PCINT2 |  |  |
+|  | TIMER2_OVF |  |  |
+|  | TIMER1_OVF |  |  |
+|  | TIMER0_OVF |  |  |
+|  | ADC |  |  |
+|  | TWI |  |  |
+
+All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
 
+## Part 4: Final application
+
+In `04-interrupts/main.c` file, rewrite the application for flashing LEDs, but this time without using the `delay.h` library.
+
+Use Multi-function shield and toggle three LEDS by internal Timer/Counter0, Timer/Counter1, and Timer/Counter2 with different overflow times. Do not forget to include both gpio abs timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
+
+In addition, if you want to use interrupts in your application, you must:
+   * insert the header file `#include <avr/interrupt.h>`,
+   * make peripheral function settings,
+   * define interrupt handlers such as `ISR(TIMER1_OVF_vect)`, and
+   * allow such handlers to run by `sei()` macro.
 
 
+```C
+#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+...
 
+int main(void)
+{
+    ...
 
-**TBD...**
+    // Enables interrupts by setting the global interrupt mask
+    sei();
 
-3. Program an application that toggles three LEDs from Multi-function shield using internal Timer0, Timer1, and Timer2 with different overflow times. Do not forget to include timer header file to your main application `#include "timer.h"`.
+    // Infinite loop
+    while (1)
+    {
+        /* Empty loop. All subsequent operations are performed exclusively 
+         * inside interrupt service routines ISRs */
+    }
 
-    To use interrupts in your application, you must:
-    
-    * insert the header file `#include <avr/interrupt.h>`,
-    * define interrupt handlers such as `ISR(TIMER1_OVF_vect)`, and
-    * allow such handlers to run by `sei()` macro.
+    // Will never reach this
+    return 0;
+}
 
-4. Verify overflow times by the logic analyzer. To run the analyzer, type `Logic &` to VS Code terminal.
+ISR(TIMER1_OVF_vect)
+{
+    // WRITE YOUR CODE HERE
+}
+```
+
+Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (follow the connection according to the Multi-function shield).
+
+Observe the correct function of the application on the flashing LEDs or measure them using a logic analyzer. Try different overflow times for each counter.
 
 
 ## Synchronize repositories
@@ -115,7 +203,17 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-**TBD...**
+1. **TBD...**
+
+
+
+
+
+
+
+
+
+
 
 1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel A (pin PB1, OC1A). Configure Fast PWM, 10-bit, and non-inverting mode to control a LED at pin PB1. Select the 64 clock prescaler. Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library.
 
