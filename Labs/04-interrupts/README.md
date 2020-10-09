@@ -151,9 +151,9 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 ## Part 4: Final application
 
-In `04-interrupts/main.c` file, rewrite the application for flashing LEDs, but this time without using the `delay.h` library.
+In `04-interrupts/main.c` file, rewrite the application for flashing LEDs but this time without using the `delay.h` library.
 
-Use Multi-function shield and toggle three LEDS by internal Timer/Counter0, Timer/Counter1, and Timer/Counter2 with different overflow times. Do not forget to include both gpio abs timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
+Use Multi-function shield and toggle each of the three LEDs with one of the internal timers. Set a different overflow time for each timer. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
 
 In addition, if you want to use interrupts in your application, you must:
    * insert the header file `#include <avr/interrupt.h>`,
