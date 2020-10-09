@@ -128,7 +128,7 @@ An alternative approach is to utilize **interrupts**. With this method, the stat
 
 An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[2]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
-Interrupts can be established for events such as a counter's number, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
+Interrupts can be established for events such as a counter's value, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
 
 See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Interrupts** section) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
 
