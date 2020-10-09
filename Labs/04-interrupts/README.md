@@ -2,14 +2,14 @@
 
 ### Learning objectives
 
-The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the structure of the timer unit. Another goal is to master the search for information in the MCU manual; specifically setting the timer control registers.
+The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
 ![Multi-function shield](Images/arduino_uno_multi-shield.jpg)
 
 
 ## Preparation tasks (done before the lab at home)
 
-Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increment it, it will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
+Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
 &nbsp;
 ![Timer overflow](Images/timer_overflow.png)
@@ -23,10 +23,7 @@ Calculate the overflow times for three Timer/Counter modules that contain ATmega
 | Timer/Counter1 | 16 |     |      | -- | | -- | | |
 | Timer/Counter2 | 8  |     |      |    | |    | | |
 
-
-**TODO: What is a shield??**
-
-See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of D1, D2, D3, D4 LEDs and S1-A1, S2-A2, S3-A3 push buttons.
+Shields are boards that can be attached to an Arduino board and significantly expand its capabilities and makes prototyping much faster. See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of D1, D2, D3, D4 LEDs and S1-A1, S2-A2, S3-A3 push buttons.
 
 &nbsp;
 
