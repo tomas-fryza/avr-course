@@ -210,7 +210,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
    * non-inverting mode to control a LED at pin PB1,
    * select the 64 clock prescaler.
 
-Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library. Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**).
+Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library. Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
