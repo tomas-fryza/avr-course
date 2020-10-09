@@ -70,7 +70,9 @@ Create a new GCC C Executable Project for ATmega328P within `04-interrupt` worki
 
 In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `timer.h`. Copy/paste the [template code](../library/include/timer.h) into it.
 
-Use **Add XXXXX Item... XXXX** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
+
+![Atmel Studio 7](Images/screenshot_atmel_studio_files.png)
 
 
 ### Version: Command-line toolchain
