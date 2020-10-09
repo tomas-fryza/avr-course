@@ -190,9 +190,9 @@ ISR(TIMER1_OVF_vect)
 }
 ```
 
-Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (follow the connection according to the Multi-function shield).
+Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
 
-Observe the correct function of the application on the flashing LEDs or measure them using a logic analyzer. Try different overflow times for each counter.
+Observe the correct function of the application on the flashing LEDs or display their signals using a logic analyzer. Try different overflow times for each counter.
 
 
 ## Synchronize repositories
@@ -204,26 +204,18 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 1. **TBD...**
 
+2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel A (pin PB1, OC1A). Configure:
+   * Fast PWM,
+   * 10-bit,
+   * non-inverting mode to control a LED at pin PB1,
+   * select the 64 clock prescaler.
 
+Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library. Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**).
 
-
-
-
-
-
-
-
-
-1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel A (pin PB1, OC1A). Configure Fast PWM, 10-bit, and non-inverting mode to control a LED at pin PB1. Select the 64 clock prescaler. Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library.
-
-2. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside C-code comments and prepare your `timer.h` library for easy PDF manual generation.
-
-3. Create a new function using the external and timer interrupts to debounce a push button signal.
+Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
 
 ## Lab assignment
-
-**TBD...**
 
 1. Preparation tasks (done before the lab at home). Submit:
     * Table with overflow times.
@@ -234,5 +226,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
     * C code of the application `main.c`,
     * Screenshot of SimulIDE circuit.
     * In your words, describe the difference between a common C function and interrupt service routine.
+
+**TBD...**
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
