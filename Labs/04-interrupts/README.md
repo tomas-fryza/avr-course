@@ -63,7 +63,7 @@ The timer modules can be configured with several special purpose registers. Acco
 
 ### Version: Atmel Studio 7
 
-Create a new GCC C Executable Project for ATmega328P within `04-interrupt` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+Create a new GCC C Executable Project for ATmega328P within `04-interrupts` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `timer.h`. Copy/paste the [template code](../library/include/timer.h) into it.
 
@@ -76,9 +76,9 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder.
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupt` folder.
+Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupts` folder.
 
-Copy/paste [template code](main.c) to your `04-interrupt/main.c` source file.
+Copy/paste [template code](main.c) to your `04-interrupts/main.c` source file.
 
 Create a new library header file in `Labs/library/include/timer.h` and copy/paste the [template code](../library/include/timer.h) into it.
 
@@ -202,15 +202,24 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. **TBD...**
+1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) and describe the main differences between:
+   * Normal mode,
+   * Clear Timer on Compare mode,
+   * Fast PWM mode, and
+   * Phase Correct PWM Mode.
 
-2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel A (pin PB1, OC1A). Configure:
-   * Fast PWM,
-   * 10-bit,
-   * non-inverting mode to control a LED at pin PB1,
-   * select the 64 clock prescaler.
+2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
+   * Compare output mode, Fast PWM in register TCCR1A: non-inverting mode (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
+   * Waveform generation in registers TCCR1A and TCCR1B: Fast PWM, 10-bit,
+   * Select clock prescaler in TCCR1B: 8 or 64,
+   * Set default duty cycle in OCR1B to 50%: 0x01ff,
+   * Enable Output Compare B Match Interrupt in TIMSK1.
 
-Increment the duty cycle when the timer overflows, ie each PWM signal period. Note: The 16-bit value of the output compare register pair OCR1AH:L is directly accessible using the OCR1A variable defined in the AVR Libc library. Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
+   Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`.
+
+   Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library. 
+
+   Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
@@ -221,12 +230,13 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * Table with overflow times.
 
 2. Timer library. Submit:
-    * Table with Timers control registers and bits,
     * Listing of library header file `timer.h`,
-    * C code of the application `main.c`,
+    * Table with ATmega328P selected interrupt sources,
+    * C code of the final application `main.c`,
     * Screenshot of SimulIDE circuit.
     * In your words, describe the difference between a common C function and interrupt service routine.
 
-**TBD...**
+3. PWM. Submit:
+    * In your words, describe what Fast PWM mode is.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
