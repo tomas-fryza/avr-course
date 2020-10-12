@@ -1,4 +1,4 @@
-# Lab 4: Interrupts, timer
+# Lab 4: Interrupts, timers
 
 ### Learning objectives
 
