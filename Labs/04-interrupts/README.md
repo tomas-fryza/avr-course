@@ -15,7 +15,7 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
 ![Timer overflow](Images/timer_overflow.png)
 &nbsp;
 
-Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given 5 prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
+Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
 
 | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
