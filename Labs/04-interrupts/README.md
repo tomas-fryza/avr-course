@@ -130,7 +130,7 @@ An interrupt is one of the fundamental features in a microcontroller. It is a si
 
 Interrupts can be established for events such as a counter's value, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
 
-See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts**) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
+See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
 
 | **Program address** | **Source** | **Vector name** | **Description** |
 | :-: | :-- | :-- | :-- |
@@ -141,7 +141,8 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 |  | PCINT1 |  |  |
 |  | PCINT2 |  |  |
 |  | TIMER2_OVF |  |  |
-|  | TIMER1_OVF |  |  |
+| 0x0018 | TIMER1_COMPB | `TIMER1_COMPB_vect` | Compare match between Timer/Counter1 value and channel B compare value |
+| 0x001A | TIMER1_OVF | `TIMER1_OVF_vect` | Overflow of Timer/Counter1 value |
 |  | TIMER0_OVF |  |  |
 |  | ADC |  |  |
 |  | TWI |  |  |
