@@ -18,8 +18,8 @@ According to your preferences, choose one of the variants below and prepare the 
 
 Download and install:
 * [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7),
-* [git](https://git-scm.com/), and
-* [SimulIDE](https://www.simulide.com/p/home.html).
+* [SimulIDE](https://www.simulide.com/p/home.html), and
+* [git](https://git-scm.com/).
 
 If you have the option to use Arduino Uno board and logic analyzer, also download and install:
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
