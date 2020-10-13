@@ -212,12 +212,12 @@ Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronic
 
 | **Module** | **Description** | **MCU pin** | **Arduino pin** |
 | :-: | :-: | :-: | :-: |
-| Timer/Counter0 | OC0A | PD6 | 6 |
-|                | OC0B |     |   |
-| Timer/Counter1 | OC1A |     |   |
-|                | OC1B |     |   |
-| Timer/Counter2 | OC2A |     |   |
-|                | OC2B |     |   |
+| Timer/Counter0 | OC0A |     |    |
+|                | OC0B |     |    |
+| Timer/Counter1 | OC1A |     |    |
+|                | OC1B | PB2 | 10 |
+| Timer/Counter2 | OC2A |     |    |
+|                | OC2B |     |    |
 
 Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) and describe the main differences between:
    * Normal mode,
