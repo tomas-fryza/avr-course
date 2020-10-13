@@ -235,15 +235,15 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
    * Compare output mode, Fast PWM in register TCCR1A: non-inverting mode (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
    * Waveform generation in registers TCCR1A and TCCR1B: Fast PWM, 10-bit,
-   * Select clock prescaler in TCCR1B: 8 or 64,
-   * Set default duty cycle in OCR1B to 50%: 0x01ff,
+   * Select clock prescaler in TCCR1B: 8,
+   * Set default duty cycle in OCR1B to 50%: 0x01FF,
    * Enable Output Compare B Match Interrupt in TIMSK1.
 
-   Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`.
+   Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`. Clear the OCR1B value when it reaches its maximum, ie 0x03FF.
 
    Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library. 
 
-   Connect an oscilloscope to this pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
+   Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
