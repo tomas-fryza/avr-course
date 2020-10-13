@@ -198,6 +198,33 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 Observe the correct function of the application on the flashing LEDs or display their signals using a logic analyzer. Try different overflow times for each counter.
 
 
+## Part 5: PWM (Pulse Width Modulation)
+
+Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[3]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
+   * On-Time: duration of time signal is high,
+   * Off-Time: duration of time signal is low,
+   * Period: the sum of on-time and off-time of PWM signal,
+   * Duty Cycle: the percentage of time signal that remains on during the period of the PWM signal.
+
+![PWM](Images/pwm.png)
+
+Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/arduino_shield.pdf) board or [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and in the following table write which Arduino Uno pins can be used to generate the PWM signal by internal timer modules.
+
+| **Module** | **Description** | **MCU pin** | **Arduino pin** |
+| :-: | :-: | :-: | :-: |
+| Timer/Counter0 | OC0A | PD6 | 6 |
+|                | OC0B |     |   |
+| Timer/Counter1 | OC1A |     |   |
+|                |      |     |   |
+| Timer/Counter2 |      |     |   |
+|                |      |     |   |
+
+Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) and describe the main differences between:
+   * Normal mode,
+   * Clear Timer on Compare mode,
+   * Fast PWM mode, and
+   * Phase Correct PWM Mode.
+
 ## Synchronize repositories
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
@@ -205,13 +232,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) and describe the main differences between:
-   * Normal mode,
-   * Clear Timer on Compare mode,
-   * Fast PWM mode, and
-   * Phase Correct PWM Mode.
-
-2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
+1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
    * Compare output mode, Fast PWM in register TCCR1A: non-inverting mode (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
    * Waveform generation in registers TCCR1A and TCCR1B: Fast PWM, 10-bit,
    * Select clock prescaler in TCCR1B: 8 or 64,
@@ -240,6 +261,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * In your words, describe the difference between a common C function and interrupt service routine.
 
 3. PWM. Submit:
+    * Table with PWM channels of ATmega328P,
     * In your words, describe what Fast PWM mode is.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
