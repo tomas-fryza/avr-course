@@ -214,7 +214,7 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 
 ## Part 4: Final application
 
-In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
+In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
 
 ```C
     /* GREEN LED */
