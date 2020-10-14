@@ -85,7 +85,7 @@ Create a new library header file in `Labs/library/include/timer.h` and copy/past
 
 ### Both versions
 
-For easier setting of control registers, define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is not needed.
+For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is not needed.
 
 ```C
 #ifndef TIMER_H
