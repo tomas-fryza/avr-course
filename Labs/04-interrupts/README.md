@@ -219,11 +219,6 @@ Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronic
 | Timer/Counter2 | OC2A |     |    |
 |                | OC2B |     |    |
 
-Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) and describe the main differences between:
-   * Normal mode,
-   * Clear Timer on Compare mode,
-   * Fast PWM mode, and
-   * Phase Correct PWM Mode.
 
 ## Synchronize repositories
 
@@ -244,6 +239,12 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
    Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library. 
 
    Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
+
+2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
+   * Normal mode,
+   * Clear Timer on Compare mode,
+   * Fast PWM mode, and
+   * Phase Correct PWM Mode.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
