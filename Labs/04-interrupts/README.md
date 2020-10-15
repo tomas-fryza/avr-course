@@ -196,7 +196,7 @@ ISR(TIMER1_OVF_vect)
 
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
 
-Observe the correct function of the application on the flashing LED or display their signals using a logic analyzer. Try different overflow times.
+Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
 
 Extend the existing application and control four LEDs in Knight Rider style. Do not use the delay library, but a single Timer/Counter.
 
