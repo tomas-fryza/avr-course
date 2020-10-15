@@ -33,7 +33,6 @@ int main(void)
     /* Configuration of LED(s) */
     GPIO_config_output(&DDRB, LED_D1);
     GPIO_write_low(&PORTB, LED_D1);
-    // WRITE YOUR CODE HERE
 
     /* Configuration of 16-bit Timer/Counter1
      * Set prescaler and enable overflow interrupt */
