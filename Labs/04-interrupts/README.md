@@ -160,7 +160,7 @@ Use Multi-function shield and toggle D1 LED with one of the internal timers. Sel
 
 In addition, if you want to use interrupts in your application, you must:
    * insert the header file `#include <avr/interrupt.h>`,
-   * make peripheral function settings (such as precsaler),
+   * make peripheral function settings (such as prescaler),
    * enable specific interrupts (such as overflow),
    * define interrupt handlers (such as `ISR(TIMER1_OVF_vect)`), and
    * allow such handlers to run by `sei()` macro.
@@ -196,11 +196,11 @@ ISR(TIMER1_OVF_vect)
 
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
 
-Observe the correct function of the application on the flashing LED or display their signals using a logic analyzer. Try different overflow times for the Timer/Counter.
+Observe the correct function of the application on the flashing LED or display their signals using a logic analyzer. Try different overflow times.
 
-Extend the existing application and program Knight Rider with four LEDs. Do not use the delay library, but a single Timer/Counter.
+Extend the existing application and control four LEDs in Knight Rider style. Do not use the delay library, but a single Timer/Counter.
 
-Consider a push button in the application. If the push button is pressed, let the LEDs flash faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
+Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
 
 
 ## Part 5: PWM (Pulse Width Modulation)
