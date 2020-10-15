@@ -246,7 +246,12 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 2. GPIO library. Submit:
     * Listing of library source file `gpio.c`,
-    * C code of the application `main.c`,
+    * Listing of final application `main.c` (blinking of two LEDs),
+    * Screenshot from SimulIDE,
     * In your words, describe the difference between the declaration and the definition of the function in C. Give an example.
+
+3. Knight Rider. Submit:
+    * Listing of `main.c`,
+    * Screenshot from SimulIDE.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
