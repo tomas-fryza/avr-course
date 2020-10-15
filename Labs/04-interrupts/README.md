@@ -262,12 +262,12 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 2. Timer library. Submit:
     * Listing of library header file `timer.h`,
     * Table with ATmega328P selected interrupt sources,
-    * C code of the final application `main.c`,
+    * Listing of the final application `main.c`,
     * Screenshot of SimulIDE circuit.
     * In your words, describe the difference between a common C function and interrupt service routine.
 
 3. PWM. Submit:
     * Table with PWM channels of ATmega328P,
-    * In your words, describe what Fast PWM mode is.
+    * Describe the behavior of Clear Timer on Compare and Fast PWM modes.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
