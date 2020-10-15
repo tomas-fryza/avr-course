@@ -154,14 +154,15 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 ## Part 4: Final application
 
-In `04-interrupts/main.c` file, rewrite the application for flashing LEDs but this time without using the `delay.h` library.
+In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library.
 
-Use Multi-function shield and toggle each of the three LEDs with one of the internal timers. Set a different overflow time for each timer. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
+Use Multi-function shield and toggle D1 LED with one of the internal timers. Select its prescaler value and enable overflow interrupt. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
 
 In addition, if you want to use interrupts in your application, you must:
    * insert the header file `#include <avr/interrupt.h>`,
-   * make peripheral function settings,
-   * define interrupt handlers such as `ISR(TIMER1_OVF_vect)`, and
+   * make peripheral function settings (such as precsaler),
+   * enable specific interrupts (such as overflow),
+   * define interrupt handlers (such as `ISR(TIMER1_OVF_vect)`), and
    * allow such handlers to run by `sei()` macro.
 
 
@@ -195,7 +196,11 @@ ISR(TIMER1_OVF_vect)
 
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
 
-Observe the correct function of the application on the flashing LEDs or display their signals using a logic analyzer. Try different overflow times for each counter.
+Observe the correct function of the application on the flashing LED or display their signals using a logic analyzer. Try different overflow times for the Timer/Counter.
+
+Extend the existing application and program Knight Rider with four LEDs. Do not use the delay library, but a single Timer/Counter.
+
+Consider a push button in the application. If the push button is pressed, let the LEDs flash faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
 
 
 ## Part 5: PWM (Pulse Width Modulation)
@@ -228,11 +233,11 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 ## Experiments on your own
 
 1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
-   * Compare output mode, Fast PWM in register TCCR1A: non-inverting mode (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
-   * Waveform generation in registers TCCR1A and TCCR1B: Fast PWM, 10-bit,
-   * Select clock prescaler in TCCR1B: 8,
-   * Set default duty cycle in OCR1B to 50%: 0x01FF,
-   * Enable Output Compare B Match Interrupt in TIMSK1.
+   * Select Compare output mode, Fast PWM in register TCCR1A: **non-inverting mode** (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
+   * Select Waveform generation in registers TCCR1A and TCCR1B: **Fast PWM, 10-bit**,
+   * Select clock prescaler in TCCR1B: **8**,
+   * Set default duty cycle in OCR1B to 50%: **0x01FF**,
+   * Enable Output Compare B Match Interrupt in TIMSK1: **OCIE1B**.
 
    Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`. Clear the OCR1B value when it reaches its maximum, ie 0x03FF.
 
