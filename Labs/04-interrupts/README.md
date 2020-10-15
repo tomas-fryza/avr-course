@@ -198,7 +198,7 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 
 Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
 
-Extend the existing application and control four LEDs in Knight Rider style. Do not use the delay library, but a single Timer/Counter.
+Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use the delay library, but a single Timer/Counter.
 
 Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
 
