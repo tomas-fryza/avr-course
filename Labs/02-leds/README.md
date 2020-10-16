@@ -226,10 +226,10 @@ Extra. Program the [PWM generator](https://www.analogictips.com/pulse-width-modu
 1. LED example. Submit:
     * Tables for DDRB, PORTB, and their combination,
     * Table with input/output pins available on ATmega328P,
-    * C code with two LEDs and a push button,
+    * Listing of C code with two LEDs and a push button,
     * Screenshot of SimulIDE circuit.
 
 2. Knight Rider application. Submit:
-    * C code.
+    * Listing of C code.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.

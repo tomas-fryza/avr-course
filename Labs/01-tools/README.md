@@ -272,6 +272,6 @@ $ git status
     * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<` binary operators? Write a truth table and explain the use of operators with examples.
 
 3. Morse code application. Submit:
-    * C code (`main.c`).
+    * Listing of C code (`main.c`).
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
