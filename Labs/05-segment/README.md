@@ -156,7 +156,7 @@ Create a look-up table in `segment.c` for getting the segment values given a num
 /* Variables ---------------------------------------------------------*/
 // Active-low digits 0 to 9
 uint8_t segment_value[] = {
-    //abcdefgDP
+    // abcdefgDP
     0b00000011,      // Digit 0
     0b...,           // Digit 1
     0b...,           // Digit 2
@@ -166,6 +166,7 @@ uint8_t segment_value[] = {
 
 // Active-high position 0 to 3
 uint8_t segment_position[] = {
+    // p3p2p1p0....
     0b00010000,   // Position 0
     0b00100000,   // Position 1
     0b...,
