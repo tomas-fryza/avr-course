@@ -142,7 +142,7 @@ Study the function prototypes and macro defines in the `segment.h` header file.
 | `void` | `SEG_init` | `void` | Configure SSD signals LATCH, CLK, and DATA as output |
 | `void` | `SEG_update_shift_regs` | `uint8_t segments, uint8_t position` | Display segments at one position of the SSD |
 | `void` | `SEG_clear` | `void` | Turn off all segments at all positions of the SSD |
-| `void` | `SEG_clk_2us` | `void` | Generate one CLK signal period with a duration of 2&nbsp;us. |
+| `void` | `SEG_clk_2us` | `void` | Generate one CLK signal period with a duration of 2&nbsp;us |
 
 Define a function for updating the shift registers. Let the function takes two 8-bit variables as inputs: segments to be displayed and position of the display. Bit 0 of first input represents segment A, bit 1 segment B, etc. The suggested structure of the subroutine is presented in [`segment.c`](../library/segment.c) source file.
 
