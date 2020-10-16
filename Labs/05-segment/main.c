@@ -1,59 +1,56 @@
 ﻿/***********************************************************************
  * 
- * Control LED(s) using Pin Change Interrupts.
+ * Decimal counter with 7-segment output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2019 Tomas Fryza
+ * Copyright (c) 2018-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include "gpio.h"
-//#include "timer.h"
-//#include "segment.h"
+#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+#include "timer.h"          // Timer library for AVR-GCC
+#include "segment.h"        // Seven-segment display library for AVR-GCC
 
-/* Typedef -----------------------------------------------------------*/
-/* Define ------------------------------------------------------------*/
-#define LED_D1  PB5
-#define BTN_S1  PC1     // PCINT 9
-#define BTN_S2  PC2     // PCINT 10
-#define BTN_S3  PC3     // PCINT 11
+/* Function definitions ----------------------------------------------*/
+/**
+ * Main function where the program execution begins. Display decimal 
+ * counter values on SSD (Seven-segment display) when 16-bit 
+ * Timer/Counter1 overflows.
+ */
+int main(void)
+{
+    // Configure SSD signals
+    SEG_init();
 
-/* Variables ---------------------------------------------------------*/
-/* Function prototypes -----------------------------------------------*/
+    // Test of SSD: display number '3' at position 0
+    SEG_update_shift_regs(0b00001101, 0b00010000);
 
-/* Functions ---------------------------------------------------------*/
-/* Main --------------------------------------------------------------*/
-/* Toggle LED(s) using push buttons and Pin Chang Interrupts. */
-int main(void) {
+    /* Configure 16-bit Timer/Counter1
+     * Set prescaler and enable overflow interrupt */
 
-    // TODO: Configure LED_D1
-    // TODO: Configure Pin Change Interrupts number 11, 10, and 9
-
-    // TODO: Configure 7-segment display pins
-
-    // Enable interrupts by setting the global interrupt mask
-    sei();
+    // Enables interrupts by setting the global interrupt mask
 
     // Infinite loop
-    for (;;) {
-        // TODO: Use function to display digit "3" at position 0
-        //SEG_putc(3, 0);
+    while (1)
+    {
+        /* Empty loop. All subsequent operations are performed exclusively 
+         * inside interrupt service routines ISRs */
     }
 
     // Will never reach this
     return 0;
 }
 
-/* Interrupts --------------------------------------------------------*/
-/* Pin Change Interrupt 11:9 routine.
- * Toggle a LED(s). */
-/*ISR(???) {
-
-    // TODO: Toggle LED(s)
+/* Interrupt service routines ----------------------------------------*/
+/**
+ * ISR starts when Timer/Counter1 overflows. Increment decimal counter
+ * value and display it on SSD.
+ */
+ISR(TIMER1_OVF_vect)
+{
+    // WRITE YOUR CODE HERE
 }
-*/
