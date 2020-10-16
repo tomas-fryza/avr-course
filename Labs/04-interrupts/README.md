@@ -74,7 +74,7 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 ### Version: Command-line toolchain
 
-Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder.
+Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder. If not, copy them from the `Examples` folder.
 
 Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupts` folder.
 
@@ -265,7 +265,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * Listing of library header file `timer.h`,
     * Table with ATmega328P selected interrupt sources,
     * Listing of the final application `main.c`,
-    * Screenshot of SimulIDE circuit.
+    * Screenshot of SimulIDE circuit,
     * In your words, describe the difference between a common C function and interrupt service routine.
 
 3. PWM. Submit:
