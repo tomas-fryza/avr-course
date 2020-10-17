@@ -10,8 +10,8 @@ The purpose of the laboratory exercise is to understand the serial control of fo
 ## Preparation tasks (done before the lab at home)
 
 Read the [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html) and find out what is the difference between:
-   * Common Cathode 7-segment Display
-   * Common Anode 7-segment Display
+   * Common Cathode 7-segment display (CC SSD)
+   * Common Anode 7-segment display (CA SSD)
 
 In the following table, write the binary values of the segments for display 0 to 9 on a common anode 7-segment display.
 
@@ -148,9 +148,11 @@ Define a function for updating the shift registers. Let the function takes two 8
 
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical SSD connection using shift registers according to the Multi-function shield).
 
-Verify that the library function is working correctly and display values 0 to 9 in different positions on the display.
+![SimulIDE](Images/screenshot_simulide_ssd.png)
 
-Create a look-up table in `segment.c` for getting the segment values given a number between 0 and 9.
+Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
+
+Create a look-up tables in `segment.c` for getting the segment values given a number between 0 and 9 and positions between 0 and 3.
 
 ```C
 /* Variables ---------------------------------------------------------*/
@@ -171,26 +173,33 @@ uint8_t segment_position[] = {
     0b00100000,   // Position 1
     0b...,
     0b...};
+
+...
+/*--------------------------------------------------------------------*/
+void SEG_update_shift_regs(uint8_t segments, uint8_t position)
+{
+    uint8_t bit_number;
+    segments = segment_value[segments];     // 0, 1, ..., 9
+    position = segment_position[position];  // 0, 1, 2, 3
+    ...
 ```
 
 
 ## Part 3: Decimal counter
 
-TODO: Přidat T/C1 pro inkrementace stavu dekadického čítače.
+Create a decimal counter from 0 to 9 with output on the 7-segment display. Configure a prescaler of 16-bit Timer/Counter1, enable an interrupt after its overflow, and program the ISR to increment the state of the decimal counter after each overflow. Display the value on the SSD.
 
 
-TODO: Přidat druhý čítač T/C0 pro změnu mezi pozicemi p0 a p1.
-2. Extend the counter and display values from 0 to 99. Use 8-bit internal Timer0 to multiplex the display position.
-    
-3. At what frequency it is necessary to switch between the display positions in order to avoid blinking?
+### Multiple displays
+
+Create a decimal counter from 0 to 99 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
+
+To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display.
+
+![Multiplexing SSD](Images/segment_multiplexing.jpg)
 
 
-
-
-
-
-
-## Part XXXX: Pin Change Interrupts
+## Part 4: Pin Change Interrupts
 
 According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) which I/O registers and which bits configure the Pin Change Interrupts (see External Interrupts)? What vector names have the PCINT [interrupt service routines](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html)? Complete the table below.
 
@@ -200,16 +209,7 @@ According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en
 | Pin Change Interrupt 1 | `PCINT1_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
 | Pin Change Interrupt 2 | `PCINT2_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
 
-1. Use push buttons and Pin Change Interrupt 11:9 to increment value at seven-segment display from 0 to 9.
-
-
-
-Program an application that uses three push buttons on Multi-function shield and Pin Change Interrupts 11:9 to toggle a single LED. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
-
-
-
-
-
+Program an application that uses any push button on Multi-function shield and Pin Change Interrupts 11:9 to reset the decimal counter value. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
 
 
 ## Synchronize repositories
@@ -219,34 +219,27 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on.
+1. Try extending the decimal counter to four positions and display values from 0 to 9999.
 
-2. Modify the look-up table and program a [Snake](https://www.youtube.com/watch?v=5cIfiIujSPs), [2-digit cycling snake](https://www.youtube.com/watch?v=pywOh2YC1ik), or similar application.
+2. Modify the look-up table and program a cycling snake, such as [[2]](https://www.youtube.com/watch?v=5cIfiIujSPs) or [[3]](https://www.youtube.com/watch?v=pywOh2YC1ik).
+
+3. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on, and also the `SEG_clk_2us ()` function, which will generate 1 period of a clock signal with a frequency of 800kHz.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) and revise your `segment.h` comments for later easy generation of PDF documentation.
-
-Extra. Extend the look-up-table and define (some) letters according to ASCII table, such as [[1]](http://www.relaiscomputer.nl/index.php/i-o):
-
-   ![7-segment ASCII table](Images/segment_fonts.png)
-
-   Program a scrolling text application at seven-segment display.
 
 
 ## Lab assignment
 
 1. Preparation tasks (done before the lab at home). Submit:
-    * Xxx.
+    * Table with segments values for display 0 to 9 on a common anode 7-segment display,
+    * In your words, describe the difference between Common Cathode and Common Anode 7-segment display.
 
 2. 7-segment library. Submit:
-    * Listing of library header file `segment.h`,
     * Listing of library source file `segment.c`,
-    * Listing of final application `main.c`,
+    * Listing of decimal counter application `main.c` (at least a decimal counter 0 to 9),
     * Screenshot of SimulIDE circuit.
 
-3. Pin Change Interrupt. Submit:
-    * Table with PCINT control registers.
-
-4. Snake. Submit:
-    * Xxx.
+3. Snake. Submit:
+    * Listing of your snake running application `main.c`.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
