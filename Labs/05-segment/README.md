@@ -240,6 +240,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * Screenshot of SimulIDE circuit.
 
 3. Snake. Submit:
+    * Look-up table with snake definition,
     * Listing of your snake cycling application `main.c`.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
