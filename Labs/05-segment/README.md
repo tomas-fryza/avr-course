@@ -223,7 +223,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 2. Modify the look-up table and program a cycling snake, such as [[2]](https://www.youtube.com/watch?v=5cIfiIujSPs) or [[3]](https://www.youtube.com/watch?v=pywOh2YC1ik).
 
-3. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on, and also the `SEG_clk_2us ()` function, which will generate 1 period of a clock signal with a frequency of 800kHz.
+3. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on, and also the `SEG_clk_2us()` function, which will generate 1 period of a clock signal with a frequency of 800kHz.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) and revise your `segment.h` comments for later easy generation of PDF documentation.
 
