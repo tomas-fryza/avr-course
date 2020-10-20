@@ -192,9 +192,17 @@ Create a decimal counter from 0 to 9 with output on the 7-segment display. Confi
 
 ### Multiple displays
 
-Create a decimal counter from 0 to 99 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
+Create a decimal counter from 0 to 59 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
 
-To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display.
+To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static varuable within the interrupt habler to keep the information about the current position.
+
+```C
+ISR(TIMER0_OVF_vect)
+{
+    static uint8_t pos = 0;
+    ...
+}
+```
 
 ![Multiplexing SSD](Images/segment_multiplexing.jpg)
 
@@ -219,7 +227,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Try extending the decimal counter to four positions and display values from 0 to 9999.
+1. Try extending the decimal counter to four positions and display stopwatch values from 00.00 to 59.59.
 
 2. Modify the look-up table and program a cycling snake, such as [[2]](https://www.youtube.com/watch?v=5cIfiIujSPs) or [[3]](https://www.youtube.com/watch?v=pywOh2YC1ik).
 
