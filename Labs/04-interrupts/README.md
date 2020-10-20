@@ -200,12 +200,27 @@ Observe the correct function of the application on the flashing LED or measure i
 
 Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use the delay library, but a single Timer/Counter.
 
+FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[3]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
+
+```C
+void IRQHandler(){  
+  static uint16_t i=0;
+  if(i>=500){
+    i=0;
+  }else{
+    i++;
+  }
+}
+```
+
+the line `static uint16_t i=0;` will only run the first time.
+
 Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
 
 
 ## Part 5: PWM (Pulse Width Modulation)
 
-Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[3]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
+Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[4]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
    * On-Time: duration of time signal is high,
    * Off-Time: duration of time signal is low,
    * Period: the sum of on-time and off-time of PWM signal,
