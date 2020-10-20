@@ -194,7 +194,7 @@ Create a decimal counter from 0 to 9 with output on the 7-segment display. Confi
 
 Create a decimal counter from 0 to 59 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
 
-To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt habler to keep the information about the current position.
+To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
 
 ```C
 ISR(TIMER0_OVF_vect)
