@@ -192,7 +192,7 @@ Create a decimal counter from 0 to 9 with output on the 7-segment display. Confi
 
 ### Multiple displays
 
-Create a decimal counter from 0 to 59 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
+Create a decimal counter from 00 to 59 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
 
 To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
 
@@ -244,7 +244,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 2. 7-segment library. Submit:
     * Listing of library source file `segment.c`,
-    * Listing of decimal counter application `main.c` (at least one-digit decimal counter, ie. from 0 to 9),
+    * Listing of decimal counter application `main.c` (at least two-digit decimal counter, ie. from 00 to 59),
     * Screenshot of SimulIDE circuit.
 
 3. Snake. Submit:
