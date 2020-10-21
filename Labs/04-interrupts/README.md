@@ -278,8 +278,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 2. Timer library. Submit:
     * Listing of library header file `timer.h`,
-    * Table with ATmega328P selected interrupt sources,
-    * Listing of the final application `main.c`,
+    * Listing of the Knight Rider application `main.c`,
     * Screenshot of SimulIDE circuit,
     * In your words, describe the difference between a common C function and interrupt service routine.
 

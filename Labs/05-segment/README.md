@@ -159,18 +159,18 @@ Create a look-up tables in `segment.c` for getting the segment values given a nu
 // Active-low digits 0 to 9
 uint8_t segment_value[] = {
     // abcdefgDP
-    0b00000011,      // Digit 0
-    0b...,           // Digit 1
-    0b...,           // Digit 2
-    0b00001101       // Digit 3
+    0b00000011,     // Digit 0
+    0b...,          // Digit 1
+    0b...,          // Digit 2
+    0b00001101,     // Digit 3
     0b...,
     0b....};
 
 // Active-high position 0 to 3
 uint8_t segment_position[] = {
     // p3p2p1p0....
-    0b00010000,   // Position 0
-    0b00100000,   // Position 1
+    0b00010000,     // Position 0
+    0b00100000,     // Position 1
     0b...,
     0b...};
 
@@ -207,19 +207,6 @@ ISR(TIMER0_OVF_vect)
 ![Multiplexing SSD](Images/segment_multiplexing.jpg)
 
 
-## Part 4: Pin Change Interrupts
-
-According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) which I/O registers and which bits configure the Pin Change Interrupts (see External Interrupts)? What vector names have the PCINT [interrupt service routines](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html)? Complete the table below.
-
-| **Interrupt** | **Vector name** | **Pins** | **Operation** | **I/O register** | **Bit(s)** |
-| :-: | :-: | :-: | :-- | :-: | :-: |
-| Pin Change Interrupt 0 | `PCINT0_vect` | PB[7:0] | Interrupt enable<br>Select pins | PCICR<br>PCMSK0 | PCIE0<br>PCINT[7:0] |
-| Pin Change Interrupt 1 | `PCINT1_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
-| Pin Change Interrupt 2 | `PCINT2_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
-
-Program an application that uses any push button on Multi-function shield and Pin Change Interrupts 11:9 to reset the decimal counter value. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
-
-
 ## Synchronize repositories
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
@@ -235,6 +222,16 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) and revise your `segment.h` comments for later easy generation of PDF documentation.
 
+Extra. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) which I/O registers and which bits configure the Pin Change Interrupts (see External Interrupts)? What vector names have the PCINT [interrupt service routines](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html)? Complete the table below.
+
+| **Interrupt** | **Vector name** | **Pins** | **Operation** | **I/O register** | **Bit(s)** |
+| :-: | :-: | :-: | :-- | :-: | :-: |
+| Pin Change Interrupt 0 | `PCINT0_vect` | PB[7:0] | Interrupt enable<br>Select pins | PCICR<br>PCMSK0 | PCIE0<br>PCINT[7:0] |
+| Pin Change Interrupt 1 | `PCINT1_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
+| Pin Change Interrupt 2 | `PCINT2_vect`|  | Interrupt enable<br>Select pins | <br> | <br> |
+
+Program an application that uses any push button on Multi-function shield and Pin Change Interrupts 11:9 to reset the decimal counter value. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
+
 
 ## Lab assignment
 
@@ -249,6 +246,6 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 3. Snake. Submit:
     * Look-up table with snake definition,
-    * Listing of your snake cycling application `main.c`.
+    * Listing of your snake cycling application `main.c` (at least one-digit snake).
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
