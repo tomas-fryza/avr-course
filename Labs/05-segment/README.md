@@ -244,7 +244,7 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 2. 7-segment library. Submit:
     * Listing of library source file `segment.c`,
-    * Listing of decimal counter application `main.c` (at least a decimal counter 0 to 9),
+    * Listing of decimal counter application `main.c` (at least one-digit decimal counter, ie. from 0 to 9),
     * Screenshot of SimulIDE circuit.
 
 3. Snake. Submit:
