@@ -159,18 +159,18 @@ Create a look-up tables in `segment.c` for getting the segment values given a nu
 // Active-low digits 0 to 9
 uint8_t segment_value[] = {
     // abcdefgDP
-    0b00000011,      // Digit 0
-    0b...,           // Digit 1
-    0b...,           // Digit 2
-    0b00001101       // Digit 3
+    0b00000011,     // Digit 0
+    0b...,          // Digit 1
+    0b...,          // Digit 2
+    0b00001101,     // Digit 3
     0b...,
     0b....};
 
 // Active-high position 0 to 3
 uint8_t segment_position[] = {
     // p3p2p1p0....
-    0b00010000,   // Position 0
-    0b00100000,   // Position 1
+    0b00010000,     // Position 0
+    0b00100000,     // Position 1
     0b...,
     0b...};
 
@@ -246,6 +246,6 @@ Program an application that uses any push button on Multi-function shield and Pi
 
 3. Snake. Submit:
     * Look-up table with snake definition,
-    * Listing of your snake cycling application `main.c`.
+    * Listing of your snake cycling application `main.c` (at least one-digit snake).
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
