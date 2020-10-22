@@ -65,9 +65,7 @@ The shift register method is used in this laboratory. To control the communicati
 
 Three signals shall be controlled, called LATCH, CLK, and DATA. These are connected to PD4, PD7 and PB0, respectively as shown in schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf).
 
-Analyze timing of serial communication between ATmega328P and seven-segment displays via two shift registers 74HC595.
-
-Example: To display the number `3` at display position 0 (far right position), the following signals must be generated on the three AVR output pins.
+Analyze timing of serial communication between ATmega328P and seven-segment displays via two shift registers 74HC595. Example: To display the number `3` at display position 0 (far right position), the following signals must be generated on the three AVR output pins.
 
 &nbsp;
 ![Example of 7-segment timing](Images/segment_example.png)
