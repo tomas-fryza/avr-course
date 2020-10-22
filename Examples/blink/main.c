@@ -20,7 +20,7 @@
  * directives. This is a common mistake.
  */
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
-#define SHORT_DELAY 50  // Delay in milliseconds
+#define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU           // Preprocessor directive allows for conditional
                         // compilation. The #ifndef means "if not defined".
 #define F_CPU 16000000  // CPU frequency in Hz required for delay
