@@ -162,7 +162,8 @@ uint8_t segment_value[] = {
     0b...,          // Digit 2
     0b00001101,     // Digit 3
     0b...,
-    0b....};
+    0b....0
+};
 
 // Active-high position 0 to 3
 uint8_t segment_position[] = {
@@ -170,7 +171,8 @@ uint8_t segment_position[] = {
     0b00010000,     // Position 0
     0b00100000,     // Position 1
     0b...,
-    0b...};
+    0b...
+};
 
 ...
 /*--------------------------------------------------------------------*/
