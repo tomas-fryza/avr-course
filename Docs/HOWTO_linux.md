@@ -18,7 +18,7 @@
 
 5. Download and extract `Examples` folder from [this repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/firmware.in` file enable and/or modify Linux parameters according to your local settings:
+6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in` file enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
