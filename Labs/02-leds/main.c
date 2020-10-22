@@ -33,10 +33,10 @@ int main(void)
     // ...and turn LED off in Data Register
     PORTB = PORTB & ~(1<<LED_GREEN);
 
-    /* second LED */
+    /* Second LED */
     // WRITE YOUR CODE HERE
 
-    /* push button */
+    /* Push button */
     // WRITE YOUR CODE HERE
 
     // Infinite loop

@@ -34,10 +34,10 @@ int main(void)
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write_low(&PORTB, LED_GREEN);
 
-    /* second LED */
+    /* Second LED */
     // WRITE YOUR CODE HERE
 
-    /* push button */
+    /* Push button */
     // WRITE YOUR CODE HERE
 
     // Infinite loop
