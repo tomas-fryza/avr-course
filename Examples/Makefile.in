@@ -35,7 +35,7 @@ AS      = $(BINDIR)/avr-gcc -fdiagnostics-color=always -x assembler-with-cpp
 OBJDUMP = $(BINDIR)/avr-objdump
 OBJCOPY = $(BINDIR)/avr-objcopy
 SIZE    = $(BINDIR)/avr-size
-RMFILES = *.o *.hex *.map *.elf *.lss
+RMFILES = *.o *.map *.elf *.lss
 
 # Extra flags to give to the C compiler
 # https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
