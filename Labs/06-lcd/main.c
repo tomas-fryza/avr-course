@@ -1,63 +1,57 @@
 /***********************************************************************
  * 
- * Decimal counter with data output on LCD display.
+ * Decimal counter with LCD display output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2019 Tomas Fryza
+ * Copyright (c) 2017-2020 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
-#include <avr/io.h>
-#include <avr/interrupt.h>
-#include <stdlib.h>             // itoa() function
-#include "timer.h"
-#include "lcd.h"
+#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+#include "timer.h"          // Timer library for AVR-GCC
+#include "lcd.h"            // Peter Fleury's LCD library
+#include <stdlib.h>         // C library. Needed for conversion function
 
-/* Typedef -----------------------------------------------------------*/
-/* Define ------------------------------------------------------------*/
-/* Variables ---------------------------------------------------------*/
-/* Function prototypes -----------------------------------------------*/
+/* Function definitions ----------------------------------------------*/
+/**
+ * Main function where the program execution begins. Display decimal 
+ * counter values on LCD display when 16-bit Timer/Counter1 overflows.
+ */
+int main(void)
+{
+    // Inicialize LCD display
+    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
-/* Functions ---------------------------------------------------------*/
-/* Main --------------------------------------------------------------*/
-/* Shows decimal values ​​on LCD display. */
-int main(void) {
+    // Test of LCD display: put string at position (3,0)
+    lcd_gotoxy(3, 0);
+    lcd_puts("LCD");
 
-    /* LCD display
-     * TODO: See Peter Fleury's online manual for LCD library, 
-     *       initialize display, and test different types of cursor */
-    lcd_init(LCD_DISP_ON);
-
-    // Display string without auto linefeed
-    lcd_puts("LCD testing");
-
-    // TODO: Display variable value in decimal, binary, and hexadecimal
-
-    /* Timer1
-     * TODO: Configure Timer1 clock source and enable overflow 
-     *       interrupt */
-
-    /* TODO: Design at least two user characters and store them in 
-     *       the display memory */
+    /* Configure 16-bit Timer/Counter1
+     * Set prescaler and enable overflow interrupt */
 
     // Enables interrupts by setting the global interrupt mask
-    sei();
 
     // Infinite loop
-    for (;;) {
+    while (1)
+    {
+        /* Empty loop. All subsequent operations are performed exclusively 
+         * inside interrupt service routines ISRs */
     }
 
     // Will never reach this
     return 0;
 }
 
-/* Interrupts --------------------------------------------------------*/
-/* Timer1 overflow interrupt routine.
- * Increment counter value. */
-ISR(TIMER1_OVF_vect) {
-
-    // TODO: Increment counter value form 0 to 255
+/* Interrupt service routines ----------------------------------------*/
+/**
+ * ISR starts when Timer/Counter1 overflows. Increment decimal counter
+ * value and display it on LCD display.
+ */
+ISR(TIMER1_OVF_vect)
+{
+    // WRITE YOUR CODE HERE
 }
