@@ -58,12 +58,12 @@ In GitHub, create a new public repository titled **Digital-electronics-2**. Init
 
 Use one of the available git manuals, such as [1](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061), [2](https://help.github.com/en/articles/basic-writing-and-formatting-syntax), or [3](https://guides.github.com/features/mastering-markdown/), and add the following sections to your README file.
 
- * Headers
- * Emphasis (italics, bold)
- * Lists (ordered, unordered)
- * Links
- * Table
- * Listing of C source code
+   * Headers
+   * Emphasis (italics, bold)
+   * Lists (ordered, unordered)
+   * Links
+   * Table
+   * Listing of C source code
 
 
 ## Part 2: Local repository
@@ -239,7 +239,6 @@ To start sampling, press the green button with two arrows, set the sampling rate
 When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Note that, a detailed description of all git commands can be found [here](https://github.com/joshnh/Git-Commands). Check the repository at GitHub web page for changes.
-
 
 ```bash
 ## Windows Git Bash or Linux:
