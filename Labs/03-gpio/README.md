@@ -99,10 +99,9 @@ For clarity and efficiency of the code, the individual parts of the application 
 C programs are highly dependent on functions. Functions are the basic building blocks of C programs and every C program is combination of one or more functions. There are two types of functions in C: **built-in functions** which are the part of C compiler and **user defined functions** which are written by programmers according to their requirement.
 
 To use a user-defined function, there are three parts to consider:
-
-* Function prototype or Function declaration (`*.h` file)
-* Function definition (`*.c` file)
-* Function call (`*.c` file)
+   * Function prototype or Function declaration (`*.h` file)
+   * Function definition (`*.c` file)
+   * Function call (`*.c` file)
 
 *[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A **function prototype** gives information to the compiler that the function may later be used in the program.*
 
