@@ -56,6 +56,10 @@
 
 ## LCD library
 
+https://components101.com/16x2-lcd-pinout-datasheet
+https://www.best-microcontroller-projects.com/hitachi-hd44780.html
+
+
 *In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury*
 
 1. Use online manual of LCD library and add the input parameters and description of the functions to the following table.
@@ -130,3 +134,8 @@ Remove all binaries and object files from the working directory. Then use git co
 1. Use new characters and create a bar graph at LCD. Let the bar state corresponds to decimal counter value, similar to the following figure.
 
 ![lcd_bargraph](../../Images/lcd_bar-graph_arduino.png "LCD bar graph")
+
+
+
+https://protostack.com.au/2010/03/character-lcd-displays-part-1/
+https://www.st.com/en/embedded-software/stsw-stm8063.html#documentation
