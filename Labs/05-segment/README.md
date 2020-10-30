@@ -45,7 +45,7 @@ Use schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf) and 
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repositories. Create a new working folder `Labs/05-segments` for this exercise.
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/05-segments` for this exercise.
 
 
 ## Part 2: Seven-segment display

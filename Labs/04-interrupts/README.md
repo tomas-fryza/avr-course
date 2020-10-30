@@ -40,7 +40,7 @@ Shields are boards that can be attached to an Arduino board, significantly expan
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repositories. Create a new working folder `Labs/04-interrupts` for this exercise.
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/04-interrupts` for this exercise.
 
 
 ## Part 2: Timers
