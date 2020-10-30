@@ -60,7 +60,7 @@ int main(void)
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux) and synchronize local and remote repositories.
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
 
 ```bash
 ## Windows Git Bash:
