@@ -123,11 +123,10 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
 ### Both versions
 
-Test functions from the table above. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
+Test functions from the table above and display values 0 to 9 in different positions on the display. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
 
 ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
-Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
 
 
 
