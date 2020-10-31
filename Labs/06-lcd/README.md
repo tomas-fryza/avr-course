@@ -64,12 +64,13 @@ In the lab, the LCD1602 display module is used. The display consists of two rows
 
 When a command is given on the LCD, we select the command register (RS = 0) and when data is sent to the LCD for display, we select the data register (RS = 1). A command is an instruction entered on the LCD in order to perform the required function. In order to display textual information, data is send to LCD.
 
-Let the following image shows the communication between ATmega328P and LCD display in 4-bit mode. How does HD44780 driving chipset understand the sequence of these signals?
+> Let the following image shows the communication between ATmega328P and LCD display in 4-bit mode. How does HD44780 driving chipset understand the sequence of these signals?
+>
+   &nbsp;
+   ![Timing of LCD display](Images/lcd_capture_C.png)
 
-&nbsp;
-![Timing of LCD display](Images/lcd_capture_C.png)
-
-The following signals are read on the first falling edge of the enable: `RS = 1` (data register) and high four bits are `D7:4 = 0100`. On the second falling edge of enable, the low four data bits are `D7:4 = 0011`. The whole byte transmitted to the LCD is therefore `0100_0011` (0x43) and according to the ASCII (American Standard Code for Information Interchange) table, it represents lettre `C`.
+> The following signals are read on the first falling edge of the enable: `RS = 1` (data register) and high four bits are `D7:4 = 0100`. On the second falling edge of enable, the low four data bits are `D7:4 = 0011`. The whole byte transmitted to the LCD is therefore `0100_0011` (0x43) and according to the ASCII (American Standard Code for Information Interchange) table, it represents lettre `C`.
+>
 
 The Hitachi HD44780 has many commands, the most useful for initialization, xy location settings, and print [[1]](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf).
 
