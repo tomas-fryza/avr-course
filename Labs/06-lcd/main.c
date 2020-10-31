@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- * Decimal counter with LCD display output.
+ * Stopwatch with LCD display output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
  * Copyright (c) 2017-2020 Tomas Fryza
@@ -18,22 +18,24 @@
 
 /* Function definitions ----------------------------------------------*/
 /**
- * Main function where the program execution begins. Display decimal 
- * counter values on LCD display when 16-bit Timer/Counter1 overflows.
+ * Main function where the program execution begins. Display stopwatch
+ * values on LCD display when 16-bit Timer/Counter2 overflows.
  */
 int main(void)
 {
     // Inicialize LCD display
     lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
-    // Test of LCD display: put string at position (3,0)
-    lcd_gotoxy(3, 0);
-    lcd_puts("LCD");
+    // Test of LCD display: put string from position (1,0)
+    lcd_gotoxy(1, 0);
+    lcd_puts("LCD Test");
+    lcd_putc('!');
 
-    /* Configure 16-bit Timer/Counter1
+    /* Configure 16-bit Timer/Counter2
      * Set prescaler and enable overflow interrupt */
 
     // Enables interrupts by setting the global interrupt mask
+    sei();
 
     // Infinite loop
     while (1)
@@ -48,10 +50,10 @@ int main(void)
 
 /* Interrupt service routines ----------------------------------------*/
 /**
- * ISR starts when Timer/Counter1 overflows. Increment decimal counter
- * value and display it on LCD display.
+ * ISR starts when Timer/Counter2 overflows. Update stopwatch value on
+ * LCD display.
  */
-ISR(TIMER1_OVF_vect)
+ISR(TIMER2_OVF_vect)
 {
     // WRITE YOUR CODE HERE
 }
