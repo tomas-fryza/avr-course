@@ -106,7 +106,7 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `segment.c`. Copy/paste the [template code](../library/segment.c) into it.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add GPIO anf Timer library files (`gpio.h`, `gpio.c`, `timer.h`) from the previous labs.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add GPIO and Timer library files (`gpio.h`, `gpio.c`, `timer.h`) from the previous labs.
 
 
 ### Version: Command-line toolchain
