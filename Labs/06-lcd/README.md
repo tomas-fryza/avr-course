@@ -47,63 +47,98 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: LCD display module
 
-**LCD** (Liquid Crystal Display) is an electronic display device and can display any ASCII text. There are many different screen sizes e.g. 16x1, 16x2, 16x4, 20x4, 40x4 characters and each character is made of 5x8 pixel dots. LCD displays have different LED backlight in yellow-green, white and blue color. LCD modules are mostly available in COB (Chip-On-Board) type. With this method, the controller IC chip or driver (here: HD44780) is directly mounted on the backside of the LCD module itself.
+**LCD** (Liquid Crystal Display) is an electronic display device which is used for display any ASCII text. There are many different screen sizes e.g. 16x1, 16x2, 16x4, 20x4, 40x4 characters and each character is made of 5x8 pixel dots. LCD displays have different LED backlight in yellow-green, white and blue color. LCD modules are mostly available in COB (Chip-On-Board) type. With this method, the controller IC chip or driver (here: HD44780) is directly mounted on the backside of the LCD module itself.
 
-The Hitachi HD44780 is an LCD driving chipset, and hence the driving software remains the same even for different screen sizes. The driver contains the character set but in addition you can also generate your own characters.
+The control is based on the Hitachi HD44780 (or a compatible) chipset, which is found on most text-based LCDs, and hence the driving software remains the same even for different screen sizes. The driver contains instruction set, character set but in addition you can also generate your own characters.
 
-The HD44780 is capable of operating in 8-bit mode i.e. faster, but that means 11 microcontroller pins are needed. Because the speed is not really that important as the amount of data needed to drive the display is low, the 4-bit mode is more appropriate for microcontrollers since only 6 (or 7) pins are needed. Inside the HD44780 there is still an 8-bit operation so for 4-bit mode, two writes to get 8-bit quantity inside the chip are made (first high four bits and then low four bits with an E clock pulse).
+The HD44780 is capable of operating in 8-bit mode i.e. faster, but that means 11 microcontroller pins are needed. Because the speed is not really that important as the amount of data needed to drive the display is low, the 4-bit mode is more appropriate for microcontrollers since only 6 (or 7) pins are needed.
 
-In the lab, we are using a 16x2 LCD (it can display 16 characters per line and there are 2 such lines) with only 6 wires for the HD44780:
+In 8-bit mode we send the command/data to the LCD using eight data lines (D0-D7), while in 4-bit mode we use four data lines (D4-D7) to send commands and data. Inside the HD44780 there is still an 8-bit operation so for 4-bit mode, two writes to get 8-bit quantity inside the chip are made (first high four bits and then low four bits with an E clock pulse).
+
+In the lab, the LCD1602 display module is used. The display consists of two rows of 16 characters each. Ih has an LED backlight and it interfaces through a parallel interface with only 6 wires for the HD44780:
    * RS - register select. Selects the data or instruction register inside the HD44780,
    * E - enable. This loads the data into the HD44780 on the falling edge,
    * D7:4 - Upper nibble used in 4-bit mode.
 
+![LCD 16x2 pinout https://www.circuitbasics.com/](Images/lcd_pinout.png)
+
+When a command is given on the LCD, we select the command register (RS = 0) and when data is sent to the LCD for display, we select the data register (RS = 1). A command is an instruction entered on the LCD in order to perform the required function according to the given command. In order to display textual information, data is send to LCD.
+
 Let the following image shows the communication between ATmega328P and LCD display in 4-bit mode. How does HD44780 driving chipset understand the sequence of these signals?
 
-   &nbsp;
-   ![Timing of LCD display](Images/lcd_capture_C.png)
+&nbsp;
+![Timing of LCD display](Images/lcd_capture_C.png)
 
 The following signals are read on the first falling edge of the enable: `RS = 1` (data register) and high four bits are `D7:4 = 0100`. On the second falling edge of enable, the low four data bits are `D7:4 = 0011`. The whole byte transmitted to the LCD is therefore `0100_0011` (0x43) and according to the ASCII (American Standard Code for Information Interchange) table, it represents lettre `C`.
 
+The Hitachi HD44780 has many commands, the most useful for initialization, xy location settings, and print [[1]](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf).
+
+![HD44780 instruction set](Images/hd44780_instructions_part1.png)
+
+![HD44780 instruction set](Images/hd44780_instructions_part2.png)
+
+If you are an advanced programmer and would like to create your own library for interfacing your microcontroller with an LCD module then you have to understand those instructions and commands which can be found its datasheet.
 
 
-**TODO:**
+## Part 3: Library for HD44780 based LCDs
 
-https://microcontrollerslab.com/hitachi-hd44780-lcd-module/
+In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury. Use online manual of LCD library and add the input parameters and description of the functions to the following table.
 
-The Hitachi HD44780 has many commands, here are the most useful: initialisation, xy location setting and print.
-
-https://mil.ufl.edu/3744/docs/lcdmanual/commands.html
-https://www.best-microcontroller-projects.com/hitachi-hd44780.html
-https://components101.com/sites/default/files/component_datasheet/16x2%20LCD%20Datasheet.pdf
-
-
-
-
-
-
-
-If you are an advanced programmer and would like to create your own library for interfacing your Microcontroller with this LCD module then you have to understand the HD44780 IC is working and commands which can be found its datasheet.
+   | **Function** | **Parameter(s)** | **Description** |
+   | :-: | :-: | :-- |
+   | `lcd_init` | `LCD_DISP_OFF`<br>&nbsp;<br>&nbsp;<br>&nbsp; | Display off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;
+   | `lcd_clrscr` | | |
+   | `lcd_home` | | |
+   | `lcd_gotoxy` | | |
+   | `lcd_putc` | | |
+   | `lcd_puts` | | |
+   | `lcd_command` | | |
+   | `lcd_data` | | |
 
 
+### Version: Atmel Studio 7
 
-*In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury*
+Create a new GCC C Executable Project for ATmega328P within `06-lcd` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-1. Use online manual of LCD library and add the input parameters and description of the functions to the following table.
-
-    | **Function** | **Parameter(s)** | **Description** |
-    | :-: | :-: | :-- |
-    | `lcd_init` | `LCD_DISP_OFF`<br>&nbsp;<br>&nbsp;<br>&nbsp; | Display off&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>&nbsp;<br>&nbsp;<br>&nbsp;
-    | `lcd_clrscr` | | |
-    | `lcd_home` | | |
-    | `lcd_gotoxy` | | |
-    | `lcd_putc` | | |
-    | `lcd_puts` | | |
-
-2. Use template from [teacher's GitHub]((https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Labs/06-lcd/main.c)) and test all functions mentioned above. Comment (or uncomment) source files you need within the list of compiled files in `06-lcd/Makefile`.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files (`lcd.h`, `lcd_definitions.h`, `lcd.c`) from `Labs/library` folder and timer library file (`timer.h`) from the previous labs.
 
 
-## Decimal counter
+### Version: Command-line toolchain
+
+Copy `main.c` and `Makefile` files from previous lab to `Labs/06-lcd` folder.
+
+Copy/paste [template code](main.c) to your `06-lcd/main.c` source file.
+
+Add the source file of LCD library between the compiled files in `06-lcd/Makefile`.
+
+```Makefile
+# Add or comment libraries you are using in the project
+SRCS += $(LIBRARY_DIR)/lcd.c
+#SRCS += $(LIBRARY_DIR)/uart.c
+#SRCS += $(LIBRARY_DIR)/twi.c
+#SRCS += $(LIBRARY_DIR)/gpio.c
+#SRCS += $(LIBRARY_DIR)/segment.c
+```
+
+
+### Both versions
+
+Test functions from the table above. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
+
+![SimulIDE](Images/screenshot_simulide_lcd.png)
+
+Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
+
+
+
+
+
+
+
+
+
+
+## Part 4: Stopwatch
 
 1. According to the listing bellow, verify how you can convert a variable value to string and then display it on LCD. Display one variable value in decimal, binary, and hexadecimal. What are the parameters of standard C function `itoa`?
 
