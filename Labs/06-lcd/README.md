@@ -100,7 +100,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 Create a new GCC C Executable Project for ATmega328P within `06-lcd` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files (`lcd.h`, `lcd_definitions.h`, `lcd.c`) from `Labs/library` folder and timer library file (`timer.h`) from the previous labs.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from `Labs/library` folder and timer library `timer.h` from the previous labs.
 
 
 ### Version: Command-line toolchain
