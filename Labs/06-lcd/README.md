@@ -55,7 +55,7 @@ The HD44780 is capable of operating in 8-bit mode i.e. faster, but that means 11
 
 In 8-bit mode we send the command/data to the LCD using eight data lines (D0-D7), while in 4-bit mode we use four data lines (D4-D7) to send commands and data. Inside the HD44780 there is still an 8-bit operation so for 4-bit mode, two writes to get 8-bit quantity inside the chip are made (first high four bits and then low four bits with an E clock pulse).
 
-In the lab, the LCD1602 display module is used. The display consists of two rows of 16 characters each. Ih has an LED backlight and it interfaces through a parallel interface with only 6 wires for the HD44780:
+In the lab, the LCD1602 display module is used. The display consists of two rows of 16 characters each. It has an LED backlight and it communicates through a parallel interface with only 6 wires:
    * RS - register select. Selects the data or instruction register inside the HD44780,
    * E - enable. This loads the data into the HD44780 on the falling edge,
    * D7:4 - Upper nibble used in 4-bit mode.
