@@ -25,7 +25,7 @@ Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find
 
    | **LCD signal(s)** | **AVR pin(s)** | **Description** |
    | :-: | :-: | :-- |
-   | RS | PB0 | Register selection signal. Selection between *Instruction register* (0) and *Data register* (1) |
+   | RS | PB0 | Register selection signal. Selection between Instruction register (RS=0) and Data register (RS=1) |
    | R/W |  |  |
    | E |  |  |
    | D[3:0] |  |  |
