@@ -36,7 +36,8 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
     // a b c d e f g DP (active low values)
     for (bit_number = 0; bit_number < 8; bit_number++)
     {
-        // Output DATA value (bit 0 of "segments")
+        // Test LSB of "segments" by & (faster) or % (slower) and... 
+        // ...output DATA value
 
         // Wait 1 us
 
@@ -54,7 +55,8 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
     // p3 p2 p1 p0 . . . . (active high values)
     for (bit_number = 0; bit_number < 8; bit_number++)
     {
-        // Output DATA value (bit 0 of "position")
+        // Test LSB of "position" by & (faster) or % (slower) and... 
+        // ...output DATA value
 
         // Wait 1 us
 
