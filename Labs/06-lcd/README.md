@@ -139,6 +139,14 @@ Because library functions only allow the display of strings (`lcd_puts`) or indi
 ```C
 #include <stdlib.h>         // C library. Needed for conversion function
 ...
+    itoa(tens, lcd_string, 10);     // Convert decimal value to string
+    lcd_puts(lcd_string);
+    ...
+```
+
+Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Update tenths of a second first, then add a condition to update the seconds and finally the minutes.
+
+```C
 /* Interrupt service routines ----------------------------------------*/
 /**
  * ISR starts when Timer/Counter2 overflows. Update the stopwatch on
@@ -147,17 +155,23 @@ Because library functions only allow the display of strings (`lcd_puts`) or indi
  */
 ISR(TIMER2_OVF_vect)
 {
+    static uint8_t number_of_overflows = 0;
     static uint8_t tens = 0;        // Tenths of a second
-    char lcd_string[2] = "00";      // String for converting numbers by itoa()
-    ...
+    static uint8_t secs = 0;        // Seconds
+    static uint8_t mins = 0;        // Minutes
+    char lcd_string[2] = "  ";      // String for converting numbers by itoa()
 
-    itoa(tens, lcd_string, 10);     // Convert decimal value to string
-    lcd_puts(lcd_string);
-    ...
+    number_of_overflows++;
+    if (number_of_overflows >= 6)
+    {
+        // Do this every 6 x 16 ms = 100 ms
+        number_of_overflows = 0;
+
+        // WRITE YOUR CODE HERE
+
+    }
 }
 ```
-
-Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Update tenths of a second first, then add a condition to update the seconds and finally the minutes.
 
 
 ## Part 5: User-defined symbols
@@ -180,14 +194,14 @@ The LCD character map is a table of information (memory locations) located on th
 /* Variables ---------------------------------------------------------*/
 // Custom character definition using https://omerk.github.io/lcdchargen/
 uint8_t customChar[8] = {
-	0b00111,
-	0b01110,
-	0b11100,
-	0b11000,
-	0b11100,
-	0b01110,
-	0b00111,
-	0b00011
+    0b00111,
+    0b01110,
+    0b11100,
+    0b11000,
+    0b11100,
+    0b01110,
+    0b00111,
+    0b00011
 };
     ...
     // Set pointer to beginning of CGRAM memory
@@ -203,12 +217,6 @@ uint8_t customChar[8] = {
     // Display first custom character
     lcd_putc(0);
 ```
-
-
-
-
-
-
 
 
 ## Synchronize repositories
