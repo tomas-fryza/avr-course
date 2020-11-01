@@ -4,7 +4,7 @@
 
 The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display. Another goal is to learn how to read documentation for library functions and use them in your own project.
 
-![LCD-keypad shield](Images/arduino_uno_lcd.jpg)
+![LCD-keypad shield](Images/arduino_uno_lcd-shield.jpg)
 
 
 ## Preparation tasks (done before the lab at home)
@@ -123,7 +123,11 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
 ### Both versions
 
-Test functions from the table above and display values 0 to 9 in different positions on the display. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
+Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/).
+
+![LCD screenshot](Images/screenshot_init.png)
+
+Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
 
 ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
