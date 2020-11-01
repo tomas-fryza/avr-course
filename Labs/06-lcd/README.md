@@ -123,13 +123,13 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
 ### Both versions
 
-Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/). Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
-
-![LCD screenshot](Images/screenshot_init.png)
-
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
 
 ![SimulIDE](Images/screenshot_simulide_lcd.png)
+
+Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/). Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
+
+![LCD screenshot](Images/screenshot_init.png)
 
 
 ## Part 4: Stopwatch
