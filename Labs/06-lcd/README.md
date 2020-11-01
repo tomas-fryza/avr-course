@@ -226,7 +226,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Complete the `TIMER2_OVF_vect` interrupt routine by stopwatch code.
+1. Complete the `TIMER2_OVF_vect` interrupt routine with stopwatch code.
 
 2. Display the square of the value "seconds" at LCD position "a".
 
