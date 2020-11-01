@@ -39,7 +39,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/pgmspace.h>
-#include "include/uart.h"
+#include "uart.h"
 
 
 /*

@@ -27,7 +27,7 @@
 #include <avr/io.h>
 #include <avr/pgmspace.h>
 #include <util/delay.h>
-#include "include/lcd.h"
+#include "lcd.h"
 
 
 /*
