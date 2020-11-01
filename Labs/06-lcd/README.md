@@ -2,7 +2,7 @@
 
 ### Learning objectives
 
-The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display. Another goal is to learn how to read documentation for library functions and use them in your own project.
+The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display and how to define custom characters. Another goal is to learn how to read documentation for library functions and use them in your own project.
 
 ![LCD-keypad shield](Images/arduino_uno_lcd-shield.jpg)
 
