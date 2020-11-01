@@ -100,7 +100,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 Create a new GCC C Executable Project for ATmega328P within `06-lcd` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from `Labs/library` folder and timer library `timer.h` from the previous labs.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files `lcd.h`, `lcd_definitions.h`, [`lcd.c`](../library/lcd.c) from `Labs/library/include` and `Labs/library` folders and timer library `timer.h` from the previous labs.
 
 
 ### Version: Command-line toolchain
@@ -123,7 +123,7 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
 ### Both versions
 
-Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/).
+Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/). Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
 
 ![LCD screenshot](Images/screenshot_init.png)
 
@@ -132,35 +132,37 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
 
-
-
-
-
-
-
-
-
-
 ## Part 4: Stopwatch
 
-1. According to the listing bellow, verify how you can convert a variable value to string and then display it on LCD. Display one variable value in decimal, binary, and hexadecimal. What are the parameters of standard C function `itoa`?
+Because library functions only allow the display of strings (`lcd_puts`) or individual characters (`lcd_putc`), the current values of the variables need to be converted to these strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` value in decimal, hexadecimal, or binary.
 
-    ```C
-    #include <stdlib.h>
-
-    uint8_t value = 31;
-    char lcd_string[3];
+```C
+#include <stdlib.h>         // C library. Needed for conversion function
+...
+/* Interrupt service routines ----------------------------------------*/
+/**
+ * ISR starts when Timer/Counter2 overflows. Update the stopwatch on
+ * LCD display every sixth overflow, ie approximately every 100 ms
+ * (6 x 16 ms = 100 ms).
+ */
+ISR(TIMER2_OVF_vect)
+{
+    static uint8_t tens = 0;        // Tenths of a second
+    char lcd_string[2] = "00";      // String for converting numbers by itoa()
     ...
 
-    itoa(value, lcd_string, 16);
-    lcd_putc('$');
+    itoa(tens, lcd_string, 10);     // Convert decimal value to string
     lcd_puts(lcd_string);
-    ```
+    ...
+}
+```
 
-2. Configure Timer1 clock source, enable its overflow interrupt, create a decimal counter from 0 to 255, and show the value on LCD display.
+Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Update tenths of a second first, then add a condition to update the seconds and finally the minutes.
 
 
-## User-defined symbols
+## Part 5: User-defined symbols
+
+**TODO:**
 
 
 
@@ -174,41 +176,103 @@ The LCD character map is a table of information (memory locations) located on th
 
 1. Design at least two user characters, store them in the display memory according to the following code and display them on LCD.
 
-    ```C
-    /* Variables ---------------------------------------------------------*/
-    // User-defined LCD chars
-    uint8_t lcd_charset[] = {0x0a, ...};
+```C
+/* Variables ---------------------------------------------------------*/
+// Custom character definition using https://omerk.github.io/lcdchargen/
+uint8_t customChar[8] = {
+	0b00111,
+	0b01110,
+	0b11100,
+	0b11000,
+	0b11100,
+	0b01110,
+	0b00111,
+	0b00011
+};
     ...
-
     // Set pointer to beginning of CGRAM memory
-    lcd_command(_BV(LCD_CGRAM));
-    // Store new chars to memory line by line
-    lcd_data(lcd_charset[0]);
+    lcd_command(1 << LCD_CGRAM);
+    for (uint8_t i = 0; i < 8; i++)
+    {
+        // Store all new chars to memory line by line
+        lcd_data(customChar[i]);
+    }
+    // Set pointer to beginning of DDRAM memory
+    lcd_command(1 << LCD_DDRAM);
     ...
+    // Display first custom character
+    lcd_putc(0);
+```
 
-    // Clear display for the first use
-    lcd_clrscr();
+
+
+
+
+
+
+
+## Synchronize repositories
+
+Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+
+
+## Experiments on your own
+
+1. Complete the `TIMER2_OVF_vect` interrupt routine by stopwatch code.
+
+2. Display the square of the value "seconds" at LCD position "a".
+
+3. Use new characters and create a progress bar at LCD position "b". Let the full bar state corresponds to stopwatch seconds. Hint: Use Timer/Counter0 with 16ms overflow and change the custom character at specific position.
+
+```C
+/* Variables ---------------------------------------------------------*/
+// Custom character definition using https://omerk.github.io/lcdchargen/
+uint8_t customChar[] = {
+    // addr 0: .....
+    0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000,
+    // addr 1: |....
+    0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000,
     ...
+};
+...
+/*--------------------------------------------------------------------*/
+/**
+ * ISR starts when Timer/Counter0 overflows. Update the progress bar on
+ * LCD display every 16 ms.
+ */
+ISR(TIMER0_OVF_vect)
+{
+    static uint8_t symbol = 0;
+    static uint8_t position = 0;
 
-    // Display first user-defined character
-    lcd_putc(0x00);
-    ```
+    lcd_gotoxy(1 + position, 1);
+    lcd_putc(symbol);
+
+    // WRITE YOUR CODE HERE
+}
+```
+
+Extra. From the LCD position "c", display the running text, ie text that moves one character to the left every second.
 
 
-## Clean project and synchronize git
+## Lab assignment
 
-Remove all binaries and object files from the working directory. Then use git commands, commit all modified/created files to your local repository and push them to remote repository or use VS Code options to perform these operations.
+1. Preparation tasks (done before the lab at home). Submit:
+   * Table with LCD signals,
+   * ASCII values.
 
+2. Stopwatch. Submit:
+   * Listing of `TIMER2_OVF_vect` interrupt routine with complete stopwatch code (`minutes:seconds.tenths`) and square value computation,
+   * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
-## Ideas for other tasks
+3. Progress bar. Submit:
+   * Listing of `TIMER0_OVF_vect` interrupt routine with a progress bar at least inside one position on the display,
+   * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
-1. Use new characters and create a bar graph at LCD. Let the bar state corresponds to decimal counter value, similar to the following figure.
+The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
 
-![lcd_bargraph](../../Images/lcd_bar-graph_arduino.png "LCD bar graph")
 
 
 
 https://protostack.com.au/2010/03/character-lcd-displays-part-1/
 https://www.st.com/en/embedded-software/stsw-stm8063.html#documentation
-
-Using these it is possible to create a simple bar graph to display a graphical representation of voltage etc.
