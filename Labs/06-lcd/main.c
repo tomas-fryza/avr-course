@@ -18,21 +18,22 @@
 
 /* Function definitions ----------------------------------------------*/
 /**
- * Main function where the program execution begins. Display stopwatch
- * values on LCD display when 16-bit Timer/Counter2 overflows.
+ * Main function where the program execution begins. Update stopwatch
+ * value on LCD display when 8-bit Timer/Counter2 overflows.
  */
 int main(void)
 {
-    // Inicialize LCD display
-    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
+    // Initialize LCD display
+    lcd_init(LCD_DISP_ON);
 
-    // Test of LCD display: put string from position (1,0)
+    // Put string(s) at LCD display
     lcd_gotoxy(1, 0);
     lcd_puts("LCD Test");
     lcd_putc('!');
 
-    /* Configure 16-bit Timer/Counter2
-     * Set prescaler and enable overflow interrupt */
+    // Configure 16-bit Timer/Counter2 for Stopwatch
+    // Set prescaler and enable overflow interrupt every 16 ms
+
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -50,10 +51,25 @@ int main(void)
 
 /* Interrupt service routines ----------------------------------------*/
 /**
- * ISR starts when Timer/Counter2 overflows. Update stopwatch value on
- * LCD display.
+ * ISR starts when Timer/Counter2 overflows. Update the stopwatch on
+ * LCD display every sixth overflow, ie approximately every 100 ms
+ * (6 x 16 ms = 100 ms).
  */
 ISR(TIMER2_OVF_vect)
 {
-    // WRITE YOUR CODE HERE
+    static uint8_t number_of_overflows = 0;
+    static uint8_t tens = 0;        // Tenths of a second
+    static uint8_t secs = 0;        // Seconds
+    static uint8_t mins = 0;        // Minutes
+    char lcd_string[2] = "00";      // String for converting numbers by itoa()
+
+    number_of_overflows++;
+    if (number_of_overflows >= 6)
+    {
+        // Do this every 6 x 16 ms = 100 ms
+	    number_of_overflows = 0;
+
+        // WRITE YOUR CODE HERE
+
+    }
 }
