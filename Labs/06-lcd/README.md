@@ -270,7 +270,7 @@ Extra. From the LCD position "c", display the running text, ie text that moves o
    * ASCII values.
 
 2. HD44780 communication. Submit:
-   * Picture of time signals between ATmega328P and HD44780 when transmitting `DE2` data.
+   * Picture of time signals between ATmega328P and HD44780 when transmitting data `DE2`.
    
 3. Stopwatch. Submit:
    * Listing of `TIMER2_OVF_vect` interrupt routine with complete stopwatch code (`minutes:seconds.tenths`) and square value computation,
