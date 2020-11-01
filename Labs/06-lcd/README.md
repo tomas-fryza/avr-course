@@ -286,13 +286,8 @@ The deadline for submitting the task is the day before the next laboratory exerc
 ## References
 
 1. https://www.sparkfun.com/datasheets/LCD/HD44780.pdf
-
 2. https://protostack.com.au/2010/03/character-lcd-displays-part-1/
-
 3. https://www.circuitbasics.com/
-
 4 .[LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html)
-
 5. https://www.st.com/en/embedded-software/stsw-stm8063.html#documentation
-
 6. [CGRAM display memory](https://www.mikroe.com/ebooks/pic-microcontrollers-programming-in-c/additional-components)
