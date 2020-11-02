@@ -203,7 +203,12 @@ uint8_t customChar[8] = {
     0b00111,
     0b00011
 };
-    ...
+...
+int main(void)
+{
+    // Initialize LCD display
+    lcd_init(LCD_DISP_ON);
+
     // Set pointer to beginning of CGRAM memory
     lcd_command(1 << LCD_CGRAM);
     for (uint8_t i = 0; i < 8; i++)
