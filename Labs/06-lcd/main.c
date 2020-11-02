@@ -48,3 +48,24 @@ int main(void)
     // Will never reach this
     return 0;
 }
+
+/* Interrupt service routines ----------------------------------------*/
+/**
+ * ISR starts when Timer/Counter2 overflows. Update the stopwatch on
+ * LCD display every sixth overflow, ie approximately every 100 ms
+ * (6 x 16 ms = 100 ms).
+ */
+ISR(TIMER2_OVF_vect)
+{
+    static uint8_t number_of_overflows = 0;
+
+    number_of_overflows++;
+    if (number_of_overflows >= 6)
+    {
+        // Do this every 6 x 16 ms = 100 ms
+        number_of_overflows = 0;
+
+        // WRITE YOUR CODE HERE
+
+    }
+}
