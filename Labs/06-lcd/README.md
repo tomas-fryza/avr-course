@@ -211,9 +211,9 @@ uint8_t customChar[8] = {
         // Store all new chars to memory line by line
         lcd_data(customChar[i]);
     }
-    // Set pointer to beginning of DDRAM memory
+    // Set DDRAM address
     lcd_command(1 << LCD_DDRAM);
-    ...
+    
     // Display first custom character
     lcd_putc(0);
 ```
