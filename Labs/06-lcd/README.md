@@ -129,7 +129,7 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 
 Test the functions from the table and display strings/characters on the LCD as follows [[2]](http://avtanski.net/projects/lcd/). Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
 
-![LCD screenshot](Images/screenshot_init.png)
+![LCD screenshot](Images/screenshot_lcd_init.png)
 
 
 ## Part 4: Stopwatch
@@ -176,19 +176,19 @@ ISR(TIMER2_OVF_vect)
 
 ## Part 5: User-defined symbols
 
-**TODO:**
+All LCD displays based on the Hitachi HD44780 controller have two types of memory that store defined characters: CGROM and CGRAM (Character Generator ROM & RAM). The CGROM memory is non-volatile and cannot be modified, while the CGRAM memory is volatile and can be modified at any time [[3]](https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/).
 
+CGROM memory is used to store all permanent fonts that can be displayed using their ASCII code. For example, if we write 0x43, then we get the character "C" on the display. It can generate 208 5x8 character patterns.
 
+![LCD CGROM memory](Images/lcd_cgrom.png)
 
-The LCD character map is a table of information (memory locations) located on the controller. The map assigns a number between 0 and 255 to each letter, number and punctuation mark. When you want your customer to see a capital A, you send it number 64 and if you want it to display an 8 you send it a 122.
+CGRAM is another memory that can be used for storing user defined characters. This RAM is limited to 64 bytes. Meaning, for 5x8 pixel based LCD, up to 8 user-defined characters can be stored in the CGRAM. It is useful if you want to use a character that is not part of the standard 127-character ASCII table.
 
+![LCD CGRAM memory](Images/lcd_cgram.png)
 
+A custom character is an array of 8 bytes. Each byte (only 5 bits are considered) in the array defines one row of the character in the 5x8 matrix. Whereas, the zeros and ones in the byte indicate which pixels in the row should be on and which ones should be off.
 
-*User-defined symbols are represented by eight bytes (lines) and they are stored in the beginning of [CGRAM display memory](https://www.mikroe.com/ebooks/pic-microcontrollers-programming-in-c/additional-components).*
-
-![lcd_symbols](../../Images/lcd_new_symbols.png "LCD new symbols")
-
-1. Design at least two user characters, store them in the display memory according to the following code and display them on LCD.
+Design at least two custom characters, store them in CGRAM according to the following code and display them on the LCD screen.
 
 ```C
 /* Variables ---------------------------------------------------------*/
@@ -277,7 +277,7 @@ Extra. From the LCD position "c", display the running text, ie text that moves o
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
 4. Progress bar. Submit:
-   * Listing of `TIMER0_OVF_vect` interrupt routine with a progress bar at least inside one position on the display,
+   * Listing of `TIMER0_OVF_vect` interrupt routine with a progress bar,
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
@@ -291,3 +291,5 @@ The deadline for submitting the task is the day before the next laboratory exerc
 4. [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html)
 5. https://www.st.com/en/embedded-software/stsw-stm8063.html#documentation
 6. [CGRAM display memory](https://www.mikroe.com/ebooks/pic-microcontrollers-programming-in-c/additional-components)
+7. https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/
+
