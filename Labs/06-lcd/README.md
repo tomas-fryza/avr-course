@@ -134,16 +134,6 @@ Test the functions from the table and display strings/characters on the LCD as f
 
 ## Part 4: Stopwatch
 
-Because library functions only allow the display of strings (`lcd_puts`) or individual characters (`lcd_putc`), the current values of the variables need to be converted to these strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` value in decimal, hexadecimal, or binary.
-
-```C
-#include <stdlib.h>         // C library. Needed for conversion function
-...
-    itoa(tens, lcd_string, 10);     // Convert decimal value to string
-    lcd_puts(lcd_string);
-    ...
-```
-
 Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Update tenths of a second first, then add a condition to update the seconds and finally the minutes.
 
 ```C
@@ -173,8 +163,18 @@ ISR(TIMER2_OVF_vect)
 }
 ```
 
+Because library functions only allow the display of strings (`lcd_puts`) or individual characters (`lcd_putc`), the current values of the variables need to be converted to these strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` value in decimal, hexadecimal, or binary.
 
-## Part 5: User-defined symbols
+```C
+#include <stdlib.h>         // C library. Needed for conversion function
+...
+    itoa(tens, lcd_string, 10);     // Convert decimal value to string
+    lcd_puts(lcd_string);
+    ...
+```
+
+
+## Part 5: Defined and custom characters
 
 All LCD displays based on the Hitachi HD44780 controller have two types of memory that store defined characters: CGROM and CGRAM (Character Generator ROM & RAM). The CGROM memory is non-volatile and cannot be modified, while the CGRAM memory is volatile and can be modified at any time [[3]](https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/).
 
