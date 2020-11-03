@@ -100,7 +100,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 Create a new GCC C Executable Project for ATmega328P within `06-lcd` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files `lcd.h`, `lcd_definitions.h`, [`lcd.c`](../library/lcd.c) from `Labs/library/include` and `Labs/library` folders and timer library `timer.h` from the previous labs.
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add LCD library files `lcd.h`, `lcd_definitions.h`, [`lcd.c`](../library/lcd.c) from `Labs/library/include` and `Examples/library` folders and timer library `timer.h` from the previous labs.
 
 
 ### Version: Command-line toolchain
@@ -134,7 +134,9 @@ Test the functions from the table and display strings/characters on the LCD as f
 
 ## Part 4: Stopwatch
 
-Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Update tenths of a second first, then add a condition to update the seconds and finally the minutes.
+Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Display tenths of a second add seconds `00:seconds.tenths`.
+
+![LCD screenshot](Images/screenshot_lcd_seconds.png)
 
 ```C
 /* Interrupt service routines ----------------------------------------*/
@@ -148,7 +150,6 @@ ISR(TIMER2_OVF_vect)
     static uint8_t number_of_overflows = 0;
     static uint8_t tens = 0;        // Tenths of a second
     static uint8_t secs = 0;        // Seconds
-    static uint8_t mins = 0;        // Minutes
     char lcd_string[2] = "  ";      // String for converting numbers by itoa()
 
     number_of_overflows++;
@@ -231,11 +232,21 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Complete the `TIMER2_OVF_vect` interrupt routine with stopwatch code.
+1. Complete the `TIMER2_OVF_vect` interrupt routine with stopwatch code and display `minutes:seconds.tenths`.
 
-2. Display the square of the value "seconds" at LCD position "a".
+![LCD screenshot](Images/screenshot_lcd_stopwatch.png)
 
-3. Use new characters and create a progress bar at LCD position "b". Let the full bar state corresponds to stopwatch seconds. Hint: Use Timer/Counter0 with 16ms overflow and change the custom character at specific position.
+2. Display the square of the value `seconds` at LCD position "a".
+
+![LCD screenshot](Images/screenshot_lcd_square.png)
+
+3. Use new characters and create a progress bar at LCD position "b". Let the full bar state corresponds to one second.
+
+![LCD screenshot](Images/screenshot_lcd_progress1.png)
+
+![LCD screenshot](Images/screenshot_lcd_progress2.png)
+
+Hint: Use Timer/Counter0 with 16ms overflow and change the custom character at specific position.
 
 ```C
 /* Variables ---------------------------------------------------------*/
@@ -275,8 +286,8 @@ Extra. From the LCD position "c", display the running text, ie text that moves o
    * ASCII values.
 
 2. HD44780 communication. Submit:
-   * Picture of time signals between ATmega328P and HD44780 when transmitting data `DE2`.
-   
+   * Picture of time signals between ATmega328P and HD44780 (LCD keypad shield) when transmitting data `DE2`.
+
 3. Stopwatch. Submit:
    * Listing of `TIMER2_OVF_vect` interrupt routine with complete stopwatch code (`minutes:seconds.tenths`) and square value computation,
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
