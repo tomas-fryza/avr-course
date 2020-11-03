@@ -246,7 +246,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ![LCD screenshot](Images/screenshot_lcd_progress2.png)
 
-Hint: Use Timer/Counter0 with 16ms overflow and change the custom character at specific position.
+Hint: Use Timer/Counter0 with 16ms overflow and change custom characters at specific display position.
 
 ```C
 /* Variables ---------------------------------------------------------*/
