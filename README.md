@@ -37,9 +37,11 @@ The following hardware and software components are mainly used in the lab.
 ### Software
 
 * [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7)
-* [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
 * [Visual Studio Code](https://code.visualstudio.com/)
+* [git](https://git-scm.com/)
+* [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
 * [Saleae logic analyser](https://www.saleae.com/downloads/)
+* [Doxygen](https://www.doxygen.nl/index.html)
 
 
 ## References
