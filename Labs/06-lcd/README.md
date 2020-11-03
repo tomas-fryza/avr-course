@@ -123,7 +123,7 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
 ### Both versions
 
-Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LCD connection to the LCD keypad shield).
+Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
 
 ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
