@@ -4,12 +4,12 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 ## Exercises
 
-* [Git version-control system, AVR tools](Labs/01-tools)
-* [Control of GPIO, LED, push button](Labs/02-leds)
-* [User library for GPIO control](Labs/03-gpio)
-* [Interrupts, timers](Labs/04-interrupts)
-* [Display devices, 7-segment display](Labs/05-segment)
-* [Display devices, LCD display](Labs/06-lcd)
+1. [Git version-control system, AVR tools](Labs/01-tools)
+2. [Control of GPIO, LED, push button](Labs/02-leds)
+3. [User library for GPIO control](Labs/03-gpio)
+4. [Interrupts, timers](Labs/04-interrupts)
+5. [Display devices, 7-segment display](Labs/05-segment)
+6. [Display devices, LCD display](Labs/06-lcd)
 * ADC, serial communication, UART
 * Serial communication, I2C/TWI
 
