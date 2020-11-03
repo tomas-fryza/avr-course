@@ -134,7 +134,7 @@ Test the functions from the table and display strings/characters on the LCD as f
 
 ## Part 4: Stopwatch
 
-Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Display tenths of a second add seconds `00:seconds.tenths`.
+Use Timer/Counter2 and update the stopwatch value approximately every 100&nbsp;ms. Display tenths of a second and seconds `00:seconds.tenths`.
 
 ![LCD screenshot](Images/screenshot_lcd_seconds.png)
 
