@@ -27,17 +27,17 @@
  */
 int main(void)
 {
-    /* GREEN LED */
+    // Green LED
     // Set pin as output in Data Direction Register...
     DDRB = DDRB | (1<<LED_GREEN);
     // ...and turn LED off in Data Register
     PORTB = PORTB & ~(1<<LED_GREEN);
 
-    /* Second LED */
-    // WRITE YOUR CODE HERE
+    // Configure second LED
 
-    /* Push button */
-    // WRITE YOUR CODE HERE
+
+    // Configure Push button and enable internal pull-up resistor
+
 
     // Infinite loop
     while (1)
