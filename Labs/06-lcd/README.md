@@ -276,7 +276,7 @@ ISR(TIMER0_OVF_vect)
 }
 ```
 
-Extra. From the LCD position "c", displays running text, ie text that moves characters to the left four times per second. Hint: Use Timer/Counter1 with an 262ms overflow and move the auxiliary "pointer" along the defined string, such as `uint8_t running_text[] = "   I like Digital electronics!\n";`.
+Extra. From the LCD position "c", displays running text, ie text that moves characters to the left four times per second. Hint: Use Timer/Counter1 with an 262ms overflow and move the auxiliary "pointer" along the defined string, such as `uint8_t running_text[] = "&nbsp; &nbsp; &nbsp; I like Digital electronics!\n";`.
 
 ![Running text](Images/running_text.gif)
 
