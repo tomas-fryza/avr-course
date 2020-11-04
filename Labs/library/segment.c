@@ -10,6 +10,9 @@
  **********************************************************************/
 
 /* Includes ----------------------------------------------------------*/
+#ifndef F_CPU
+#define F_CPU 16000000
+#endif
 #include <util/delay.h>
 #include "gpio.h"
 #include "segment.h"
