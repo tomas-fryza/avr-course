@@ -236,7 +236,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ![LCD screenshot](Images/screenshot_lcd_stopwatch.png)
 
-2. Display the square of the value `seconds` at LCD position "a".
+2. Display the square value of the `seconds` at LCD position "a".
 
 ![LCD screenshot](Images/screenshot_lcd_square.png)
 
