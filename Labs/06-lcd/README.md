@@ -276,7 +276,7 @@ ISR(TIMER0_OVF_vect)
 }
 ```
 
-Extra. From the LCD position "c", display the running text, ie text that moves one character to the left every second.
+Extra. From the LCD position "c", displays running text, ie text that moves one character to the left every second.
 
 
 ## Lab assignment
