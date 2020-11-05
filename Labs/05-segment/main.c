@@ -30,7 +30,7 @@ int main(void)
     SEG_update_shift_regs(0b00001101, 0b00010000);
 
     // Configure 16-bit Timer/Counter1 for Decimal counter
-    // Set prescaler and enable overflow interrupt every 262 ms
+    // Enable interrupt and set the overflow prescaler to 262 ms
 
 
     // Enables interrupts by setting the global interrupt mask
