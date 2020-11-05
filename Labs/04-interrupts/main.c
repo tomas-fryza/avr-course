@@ -35,7 +35,7 @@ int main(void)
     GPIO_write_low(&PORTB, LED_D1);
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
-    // Set prescaler and enable overflow interrupt every 262 ms
+    // Enable interrupt and set the overflow prescaler to 262 ms
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
