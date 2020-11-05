@@ -32,7 +32,7 @@ int main(void)
     lcd_putc('!');
 
     // Configure 8-bit Timer/Counter2 for Stopwatch
-    // Set prescaler and enable overflow interrupt every 16 ms
+    // Enable interrupt and set the overflow prescaler to 16 ms
 
 
     // Enables interrupts by setting the global interrupt mask
