@@ -56,7 +56,8 @@ int main(void)
 /* Interrupt service routines ----------------------------------------*/
 /**
  * ISR starts when Timer/Counter1 overflows. Toggle D1 LED on 
- * Multi-function shield. */
+ * Multi-function shield.
+ */
 ISR(TIMER1_OVF_vect)
 {
 
