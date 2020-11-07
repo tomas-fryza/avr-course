@@ -1,4 +1,4 @@
-# Lab 7: ADC, Serial communication, UART
+# Lab 7: ADC and UART serial communication
 
 ### Learning objectives
 
