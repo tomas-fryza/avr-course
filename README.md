@@ -12,7 +12,8 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 6. [Display devices, LCD display](Labs/06-lcd)
 7. [ADC and UART serial communication](Labs/07-uart)
 8. I2C/TWI serial communication
-9. Project instructions
+9. Combining C and assembly languages
+10. Project instructions
 
 
 ## Materials
