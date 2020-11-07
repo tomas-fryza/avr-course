@@ -10,8 +10,8 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 4. [Interrupts, timers](Labs/04-interrupts)
 5. [Display devices, 7-segment display](Labs/05-segment)
 6. [Display devices, LCD display](Labs/06-lcd)
-7. ADC, serial communication, UART
-8. Serial communication, I2C/TWI
+7. [ADC and UART serial communication](Labs/07-uart)
+8. I2C/TWI serial communication
 9. Project instructions
 
 
