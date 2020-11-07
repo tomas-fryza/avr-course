@@ -194,7 +194,7 @@ Remove all binaries and object files from the working directory and push all loc
 ## Lab assignment
 
 1. Preparation tasks (done before the lab at home). Submit:
-   * Table voltage divider values, calculated and measured ADC values for all five buttons.
+   * Table with voltage divider, calculated, and measured ADC values for all five buttons.
 
 
 ## References
