@@ -43,7 +43,11 @@ According to the connection, calculate the voltage value on pin PC0[A0] if one b
 
 &nbsp;
 
-Calculate the ADC values ​​for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
+What is the voltage value if none of the push buttons is pressed?
+
+
+
+Calculate the ADC values for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
 
 ![Equation: ADC conversion](Images/eq_adc.png)
 
@@ -54,6 +58,7 @@ Calculate the ADC values ​​for these voltages according to the following equ
    | Down   |       |     |  |
    | Left   |       |     |  |
    | Select |       |     |  |
+   | none   |       |     |  |
 
 
 ## Part 1: Synchronize repositories and create a new folder
