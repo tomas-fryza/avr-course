@@ -63,32 +63,79 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: Analog-to-Digital Conversion
 
-**TODO**
-https://components101.com/articles/analog-to-digital-adc-converters
-We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. But most of the electronic devices around us starting from a simple digital watch to a super computer are all digital devices. So, it is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it. This something is called the ADC or Analog to Digital Converter
+We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. It is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it.
 
-An analog to digital converter is a circuit that converts a continuous voltage value (analog) to a binary value (digital) that can be understood by a digital device which could then be used for digital computation. These ADC circuits can be found as an individual ADC ICs by themselves or embedded into a microcontroller. They’re called ADCs for short.
+An [Analog to Digital Converter](https://components101.com/articles/analog-to-digital-adc-converters) (ADC) is a circuit that converts a continuous voltage value (analog) to a binary value (digital) that can be understood by a digital device which could then be used for digital computation. These ADC circuits can be found as an individual ADC ICs by themselves or embedded into a modern microcontroller.
+
+The internal ADC module of ATmega328P can be used in relatively slow and not extremely accurate data acquisitions. But it is a good choice in most situations, like reading sensor data or reading waveforms.
+
+AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[3]](https://embedds.com/adc-on-atmega328-part-1/).
+
+The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADCH, ADCSRB, and DIDR0 registers. See [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Analog-to-Digital Converter > Register Description**) and complete the following table.
+
+   | **Operation** | **Register(s)** | **Bit(s)** | **Description** |
+   | :-: | :-- | :-- | :-- |
+   | Voltage reference | ADMUX | REFS1:0 | 01: AVcc voltage reference, 5V |
+   | Input channel |  | MUX3:0 | 0000: ADC0, 0001: ADC1, ... |
+   | ADC enable | ADCSRA |  |  |
+   | Start conversion |  |  |  |
+   | ADC interrupt enable |  |  |  |
+   | ADC clock prescaler |  | ADPS2:0 | 000: Division factor 2, 001: 2, 010: 4, ...|
+   | ADC result |  |  |  |
+
+
+### Version: Atmel Studio 7
+
+Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
+   * UART files `uart.h`, [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
+   * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
+   * timer library `timer.h` from the previous labs.
+
+
+### Version: Command-line toolchain
+
+Copy `main.c` and `Makefile` files from previous lab to `Labs/07-uart` folder.
+
+Copy/paste [template code](main.c) to your `07-uart/main.c` source file.
+
+Add the source files of UART and LCD libraries between the compiled files in `07-uart/Makefile`.
+
+```Makefile
+# Add or comment libraries you are using in the project
+SRCS += $(LIBRARY_DIR)/lcd.c
+SRCS += $(LIBRARY_DIR)/uart.c
+#SRCS += $(LIBRARY_DIR)/twi.c
+#SRCS += $(LIBRARY_DIR)/gpio.c
+#SRCS += $(LIBRARY_DIR)/segment.c
+```
+
+
+### Both versions
+
+In `main.c` configure ADC:
+   * voltage reference: AVcc with external capacitor,
+   * input channel: ADC0,
+   * clock prescaler: 128,
+   * enable ADC module, and
+   * enable interrupt
+
+Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
+
+Read the voltage level of Right, Up, Down, Left, Select push buttons and display it on LCD display. Write the values in the table from Preparation tasks section and compare them with the calculated ones.
+
+Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
+
+Based on the converted values, write the part of the code that distinguishes which push button was pressed.
+
+![SimulIDE](Images/screenshot_simulide_lcd-buttons.png)
 
 
 
 
 
 
-
-
-
-
-1. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) which I/O registers and bits configure operations of internal ADC module (see Analog-to-Digital Converter section)?
-
-    | **Operation** | **Code** | **Description** |
-    | :-: | :-- | :-- |
-    | Voltage reference | `ADMUX \|= _BV(REFS0);`<br>`ADMUX \|= _BV(REFS1) \| _BV(REFS0);` | AVcc voltage reference (5V)<br>Internal 1.1V reference&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-    | Analog input |  | Channel ADC0 |
-    | ADC clock divider |  | Division factor = 64, fadc =<br>Division factor = 128, fadc =   |
-    | ADC enable |  |  |
-    | ADC interrupt enable |  |  |
-    | Start conversion |  |  |
-    | ADC result |  |  |
 
 
 ## UART communication
@@ -140,7 +187,6 @@ An analog to digital converter is a circuit that converts a continuous voltage v
     > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
     >
 
-5. Compare measured ADC values with calculated ones. Program a routine to identify which push button was pressed according to the ADC value.
 
 
 
@@ -201,6 +247,8 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 4. Verify the UART communication with logic analyzer.
 
+Extra. Propose a new library for ADC.
+
 
 ## Lab assignment
 
@@ -211,3 +259,5 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 ## References
 
 1. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
+2. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
+3. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
