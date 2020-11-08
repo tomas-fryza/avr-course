@@ -63,6 +63,11 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: Analog-to-Digital Conversion
 
+**TODO**
+https://components101.com/articles/analog-to-digital-adc-converters
+We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. But most of the electronic devices around us starting from a simple digital watch to a super computer are all digital devices. So, it is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it. This something is called the ADC or Analog to Digital Converter
+
+An analog to digital converter is a circuit that converts a continuous voltage value (analog) to a binary value (digital) that can be understood by a digital device which could then be used for digital computation. These ADC circuits can be found as an individual ADC ICs by themselves or embedded into a microcontroller. They’re called ADCs for short.
 
 
 
@@ -138,12 +143,21 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 5. Compare measured ADC values with calculated ones. Program a routine to identify which push button was pressed according to the ADC value.
 
 
-## Clean project and synchronize git
-
-Remove all binaries and object files from the working directory and push all local changes to your remote repository.
 
 
-## Ideas for other tasks
+
+
+
+
+
+
+
+## Synchronize repositories
+
+Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git-useful-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+
+
+## Experiments on your own
 
 1. Use [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
@@ -186,9 +200,6 @@ Remove all binaries and object files from the working directory and push all loc
 3. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the baudrate be equal to 9600 Bd. Consider also the possibility of calculating the parity bit.
 
 4. Verify the UART communication with logic analyzer.
-
-
-
 
 
 ## Lab assignment
