@@ -45,7 +45,9 @@ According to the connection, calculate the voltage value on pin PC0[A0] if one b
 
 What is the voltage value if none of the push buttons is pressed?
 
+![Equation: Voltage divider](Images/eq_divider6.png)
 
+&nbsp;
 
 Calculate the ADC values for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
 
