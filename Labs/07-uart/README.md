@@ -96,9 +96,9 @@ The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADC
 Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * UART files `uart.h`, [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
+   * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
    * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
-   * timer library `timer.h` from the previous labs.
+   * Timer library `timer.h` from the previous labs.
 
 
 ### Version: Command-line toolchain
@@ -139,60 +139,51 @@ Based on the converted values, write the part of the code that distinguishes whi
 ![SimulIDE](Images/screenshot_simulide_lcd-buttons.png)
 
 
+## Part 3: UART communication
+
+TODO: description of UART (Universal asynchronous receiver-transmitter)
 
 
 
 
+> Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
+>
+   &nbsp;
+   ![Timing of UART](Images/uart_capture_A.png)
+
+> 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x41) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents lettre `A`.
+>
+> The figure further shows that the bit period, i.e. the duration of one bit, is 104&nbsp;us. The symbol rate of the communication is thus 1/104e-6 = 9615, i.e. approximately 9600&nbsp;Bd.
+>
+
+In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury. Use online manual of UART library and add the input parameters and description of the functions to the following table.
+
+   | **Function name** | **Function parameters** | **Description** | **Example** |
+   | :-- | :-- | :-- | :-- |
+   | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600&nbsp;Bd | `uart_init(UART_BAUD_SELECT(9600, F_CPU));` |
+   | `uart_getc` |  |  |
+   | `uart_putc` |  |  |
+   | `uart_puts` |  |  |
+
+Extend the application from the previous point and send information about the results of the analog to digital conversion and the pressed button to the UART transmitter. Use internal UART module with the following parametres: 8N1 mode, baud rate 9600.
 
 
-## UART communication
+### Version: SimulIDE
 
-1. What ASCII code/character is transmitting in UART (Universal asynchronous receiver-transmitter) 8N1 mode? According to bit period (one bit duration), estimate the symbol rate.
+In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive signals from the microcontroller, but also send them back.
 
-    &nbsp;
-    ![uart_example](../../Images/uart_capture_E.png "UART signal")
+![SimulIDE](Images/screenshot_simulide_uart.png)
 
-    | **UART mode** | **Frame structure** | **ASCII code** | **Baud rate** |
-    | :-: | :-: | :-: | :-: |
-    | 8N1 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  |
 
-2. What is the meaning of ASCII control characters `\r`, `\n`, and `\b`? What codes are defined for these characters in [ASCII table](http://www.asciitable.com/)?
+### Version: Real hardware
 
-    | **Character** | **ASCII code** | **Description** |
-    | :-: | :-: | :-- |
-    | `\r` |  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-    | `\n` |  |  |
-    | `\b` |  |  |
+Use PuTTY SSH Client to receive values from Arduino board. Set connection type to **Serial** and check that the configuration is the same as in the ATmega328 application. Note that, serial line to connect to (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
 
-3. *In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury.* Use online manual of UART library and add the input parameters (output values) and description of the functions to the following table.
+![PuTTY](Images/screenshot_putty_type.png)
+![PuTTY](Images/screenshot_putty_config.png)
 
-    | **Function** | **Parameter(s)** | **Description** |
-    | :-: | :-: | :-- |
-    | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600 Bd |
-    | `uart_getc` |  |  |
-    | `uart_putc` |  |  |
-    | `uart_puts` |  |  |
-
-4. Use template from [teacher's GitHub](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Labs/07-uart/main.c) and configure ADC (AVcc with external capacitor voltage reference, channel ADC0, prescaler 128, enable interrupt), Timer1 (start ADC conversion every second), and UART (mode 8N1, baud rate 9600) modules.
-
-    Read voltage level of push buttons and transmit it to UART. Use PuTTY SSH Client to receive values from Arduino board. Setup the application as follows:
-
-    | **Category** | **Parameter** | **Value/Description** |
-    | :-: | --: | :-- |
-    | Session | Connection type | Serial
-    | Serial | Serial line to connect to | `/dev/ttyUSB0`<br>(You can use `dmesg` Linux command to verify your port) |
-    |  | Speed (baud) | 9600 |
-    |  | Data bits | 8 |
-    |  | Stop bits | 1 |
-    |  | Parity | None |
-    |  | Flow control | XON/XOFF |
-    | Session | Saved Sessions | usb0 |
-    |  | button Save | (Save all your settings) |
-    |  | button Load | (Load your saved settings) |
-    |  | button Open | Open UART connection |
-
-    > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
-    >
+   > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
+   >
 
 
 
@@ -250,9 +241,9 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
     }
     ```
 
-3. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the baudrate be equal to 9600 Bd. Consider also the possibility of calculating the parity bit.
+3. What is the meaning of ASCII control characters `\r`, `\n`, and `\b`? What codes are defined for these characters in ASCII table?
 
-4. Verify the UART communication with logic analyzer.
+4. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the baudrate be equal to 9600 Bd. Consider also the possibility of calculating the parity bit. Verify the UART communication with logic analyzer.
 
 Extra. Propose a new library for ADC.
 
@@ -268,3 +259,4 @@ Extra. Propose a new library for ADC.
 1. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
 2. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
 3. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
+4. [ASCII Table and Description](http://www.asciitable.com/)
