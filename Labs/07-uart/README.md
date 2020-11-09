@@ -265,6 +265,8 @@ Extra. Design your own library for working with analog to digital convertor.
    * (Hand-drawn) picture of UART signal when transmitting data `DE2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd),
    * Listing of code for calculating/displaying parity bit.
 
+The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+
 
 ## References
 
