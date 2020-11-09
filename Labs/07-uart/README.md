@@ -141,10 +141,19 @@ Based on the converted values, write the part of the code that distinguishes whi
 
 ## Part 3: UART communication
 
-TODO: description of UART (Universal asynchronous receiver-transmitter)
+The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
+In UART communication, two UARTs communicate directly with each other. The transmitting UART converts parallel data from a CPU into serial form, transmits it in serial to the receiving UART, which then converts the serial data back into parallel data for the receiving device. Only two wires are needed to transmit data between two UARTs. Data flows from the Tx pin of the transmitting UART to the Rx pin of the receiving UART [[4]](https://www.circuitbasics.com/basics-uart-communication/).
 
+UARTs transmit data asynchronously, which means there is no external clock signal to synchronize the output of bits from the transmitting UART. Instead, timing is agreed upon in advance between both units, and special **Start** (log. 0) and 1 or 2 **Stop** (log. 1) bits are added to each data package. These bits define the beginning and end of the data packet so the receiving UART knows when to start reading the bits. In addition to the start and stop bits, the packet/frame also contains data bits and optional parity.
 
+The amount of **data** in each packet can be set from 5 to 9 bits. If it is not otherwise stated, data is transferred least-significant bit (LSB) first.
+
+**Parity** is a form of very simple, low-level error checking and can be Even or Odd. To produce the parity bit, add all 5-9 data bits and extend them to an even or odd number. For example, assuming parity is set to even and was added to a data byte `0110_1010`, which has an even number of 1's (4), the parity bit would be set to 0. Conversely, if the parity mode was set to odd, the parity bit would be 1.
+
+One of the most common UART formats is called **9600 8N1**, which means 8 data bits, no parity, 1 stop bit and a symbol rate of 9600&nbsp;Bd.
+
+![UART frame 8N1](Images/uart_frame_8n1.png)
 
 > Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
 >
@@ -182,18 +191,8 @@ Use PuTTY SSH Client to receive values from Arduino board. Set connection type t
 ![PuTTY](Images/screenshot_putty_type.png)
 ![PuTTY](Images/screenshot_putty_config.png)
 
-   > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
-   >
-
-
-
-
-
-
-
-
-
-
+> WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
+>
 
 
 ## Synchronize repositories
@@ -203,55 +202,68 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Use [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
+1. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
 
-    ```C
-    /* Color/formatting sequence always starts by "\033[" and ends by "m" strings.
-    * One or more formatting codes "#", separated by ";" can be used within
-    * one line, such as:
-    *    \033[#m      or
-    *    \033[#;#m    or
-    *    \033[#;#;#m  etc. */
-    uart_puts("\033[4;32m");        // 4: underline style; 32: green foreground
-    uart_puts("This is all Green and Underlined.");
-    uart_puts("\033[0m");           // 0: reset all attributes
-    uart_puts("This is Normal text again.");
-    ```
+Extra. Design your own library for working with analog to digital convertor.
 
-2. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. Let the main screen of the console is as follows:
 
-    ```bash
-    --- Interactive UART console ---
-    1: read current Timer/counter1 value
-    2: reset Timer/counter1
-    > 
-    ```
-
-    After pressing the '1' key on computer keyboard, ATmega328P receives ASCII code of the key and sends the current Timer1 value back to PuTTY. After pressing the '2' key, ATmega328P resets Timer1 value, etc. Use ANSI escape sequences to highlight information within PuTTY console.
-
-    ```C
-    uint8_t c;
-    ...
-    
-    c = uart_getc();
-    if (c != '\0') {        // Data available from UART
-        if (c == '1') {     // Key '1' received
-            ...
-        }
-    }
-    ```
+### Version: Real hardware
 
 3. What is the meaning of ASCII control characters `\r`, `\n`, and `\b`? What codes are defined for these characters in ASCII table?
 
-4. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the baudrate be equal to 9600 Bd. Consider also the possibility of calculating the parity bit. Verify the UART communication with logic analyzer.
+4. Use [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
-Extra. Propose a new library for ADC.
+   ```C
+   /* Color/formatting sequence always starts by "\033[" and ends by "m" strings.
+   * One or more formatting codes "#", separated by ";" can be used within
+   * one line, such as:
+   *    \033[#m      or
+   *    \033[#;#m    or
+   *    \033[#;#;#m  etc. */
+   uart_puts("\033[4;32m");        // 4: underline style; 32: green foreground
+   uart_puts("This is all Green and Underlined.");
+   uart_puts("\033[0m");           // 0: reset all attributes
+   uart_puts("This is Normal text again.");
+   ```
+
+5. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. Let the main screen of the console is as follows:
+
+   ```bash
+   --- Interactive UART console ---
+   1: read current Timer/counter1 value
+   2: reset Timer/counter1
+   > 
+   ```
+
+   After pressing the '1' key on computer keyboard, ATmega328P receives ASCII code of the key and sends the current Timer1 value back to PuTTY. After pressing the '2' key, ATmega328P resets Timer1 value, etc. Use ANSI escape sequences to highlight information within PuTTY console.
+
+   ```C
+   uint8_t c;
+   ...
+    
+   c = uart_getc();
+   if (c != '\0') {        // Data available from UART
+       if (c == '1') {     // Key '1' received
+           ...
+       }
+   }
+   ```
+
+6. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600 Bd, do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer.
 
 
 ## Lab assignment
 
 1. Preparation tasks (done before the lab at home). Submit:
-   * Table with voltage divider, calculated, and measured ADC values for all five buttons.
+   * Table with voltage divider, calculated, and measured ADC values for all buttons.
+
+2. ADC. Submit:
+   * Listing of `ADC_vect` interrupt routine with complete code for sending data to the LCD/UART and identification of the pressed button.
+   * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
+
+3. UART. Submit:
+   * (Hand-drawn) picture of UART signal when transmitting data `DE2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd),
+   * Listing of code for calculating/displaying parity bit.
 
 
 ## References
@@ -259,4 +271,5 @@ Extra. Propose a new library for ADC.
 1. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
 2. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
 3. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
-4. [ASCII Table and Description](http://www.asciitable.com/)
+4. Circuit Basics. [Basics of UART Communication](https://www.circuitbasics.com/basics-uart-communication/)
+5. [ASCII Table and Description](http://www.asciitable.com/)
