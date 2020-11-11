@@ -121,7 +121,11 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 ### Both versions
 
-In `main.c` configure ADC:
+Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
+
+![SimulIDE](Images/screenshot_simulide_lcd_probe.png)
+
+In `main.c` configure ADC as follows:
    * voltage reference: AVcc with external capacitor,
    * input channel: ADC0,
    * clock prescaler: 128,
@@ -130,7 +134,7 @@ In `main.c` configure ADC:
 
 Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
 
-Read the voltage level of Right, Up, Down, Left, Select push buttons and display it on LCD display. Write the values in the table from Preparation tasks section and compare them with the calculated ones.
+Read the voltage level of Right, Up, Down, Left, Select push buttons and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Write the values in the table from Preparation tasks section and compare them with the calculated ones.
 
 ```c
 /**
@@ -148,9 +152,7 @@ ISR(ADC_vect)
     ...
 ```
 
-Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
-
-Based on the converted values, write the part of the code that distinguishes which push button was pressed.
+Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at position `c`.
 
 ![SimulIDE](Images/screenshot_simulide_lcd-buttons.png)
 

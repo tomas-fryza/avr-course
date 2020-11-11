@@ -28,10 +28,11 @@ int main(void)
 {
     // Initialize LCD display
     lcd_init(LCD_DISP_ON);
-    lcd_gotoxy(1, 0);
-    lcd_puts("value:");
-    lcd_gotoxy(3, 1);
-    lcd_puts("key:");
+    lcd_gotoxy(1, 0); lcd_puts("value:");
+    lcd_gotoxy(3, 1); lcd_puts("key:");
+    lcd_gotoxy(8, 0); lcd_puts("a");    // Put ADC value in decimal
+    lcd_gotoxy(13,0); lcd_puts("b");    // Put ADC value in hexadecimal
+    lcd_gotoxy(8, 1); lcd_puts("c");    // Put button name here
 
     // Configure ADC to convert PC0[A0] analog value
     // Set ADC reference to AVcc
@@ -84,7 +85,6 @@ ISR(TIMER1_OVF_vect)
  */
 ISR(ADC_vect)
 {
-
     // WRITE YOUR CODE HERE
 
 }
