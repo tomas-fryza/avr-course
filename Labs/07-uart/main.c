@@ -78,10 +78,8 @@ ISR(TIMER1_OVF_vect)
 }
 
 /* -------------------------------------------------------------------*/
-/* ADC complete interrupt routine.
- * Update LCD and UART transmiter. */
 /**
- * ISR starts when ADC complets the convertion. Display value on LCD
+ * ISR starts when ADC complets the conversion. Display value on LCD
  * and send it to UART.
  */
 ISR(ADC_vect)
