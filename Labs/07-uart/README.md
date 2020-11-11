@@ -222,6 +222,28 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c` and send it to UART. Try to recalculate the input voltage values. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
 
+   > Note: If you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 64.
+   >
+```c
+/** @brief  Size of the circular receive buffer, must be power of 2
+ *
+ *  You may need to adapt this constant to your target and your application by adding
+ *  CDEFS += -DUART_RX_BUFFER_SIZE=nn to your Makefile.
+ */
+#ifndef UART_RX_BUFFER_SIZE
+# define UART_RX_BUFFER_SIZE 64
+#endif
+
+/** @brief  Size of the circular transmit buffer, must be power of 2
+ *
+ *  You may need to adapt this constant to your target and your application by adding
+ *  CDEFS += -DUART_TX_BUFFER_SIZE=nn to your Makefile.
+ */
+#ifndef UART_TX_BUFFER_SIZE
+# define UART_TX_BUFFER_SIZE 64
+#endif
+```
+
 ![SimulIDE](Images/screenshot_simulide_lcd_final.png)
 
 2. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
