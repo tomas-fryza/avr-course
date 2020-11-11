@@ -132,6 +132,22 @@ Use single conversion mode and start each conversion every second (use Timer/Cou
 
 Read the voltage level of Right, Up, Down, Left, Select push buttons and display it on LCD display. Write the values in the table from Preparation tasks section and compare them with the calculated ones.
 
+```c
+/**
+ * ISR starts when ADC completes the conversion. Display value on LCD
+ * and send it to UART.
+ */
+ISR(ADC_vect)
+{
+    // WRITE YOUR CODE HERE
+    uint16_t value = 0;
+    char lcd_string[4] = "0000";
+
+    value = ADC;    // Copy ADC result to 16-bit variable
+    itoa(value, lcd_string, 10);    // Convert to string in decimal
+    ...
+```
+
 Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
 
 Based on the converted values, write the part of the code that distinguishes which push button was pressed.
