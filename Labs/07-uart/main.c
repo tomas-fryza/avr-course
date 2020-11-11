@@ -36,7 +36,7 @@ int main(void)
     // Configure ADC to convert PC0[A0] analog value
     // Set ADC reference to AVcc
 
-    // Set input channet to ADC0
+    // Set input channel to ADC0
 
     // Enable ADC module
 
@@ -79,7 +79,7 @@ ISR(TIMER1_OVF_vect)
 
 /* -------------------------------------------------------------------*/
 /**
- * ISR starts when ADC complets the conversion. Display value on LCD
+ * ISR starts when ADC completes the conversion. Display value on LCD
  * and send it to UART.
  */
 ISR(ADC_vect)
