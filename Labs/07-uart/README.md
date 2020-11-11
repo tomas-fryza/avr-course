@@ -134,7 +134,7 @@ In `main.c` configure ADC as follows:
 
 Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
 
-Read the voltage level of Right, Up, Down, Left, Select push buttons and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Write the values in the table from Preparation tasks section and compare them with the calculated ones.
+Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable, which is declared in the AVR library, to read the value from both converter registers ADCH:L.
 
 ```c
 /**
@@ -152,9 +152,9 @@ ISR(ADC_vect)
     ...
 ```
 
-Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at position `c`.
+Write the values to the table from Preparation tasks section and compare them with the calculated ones.
 
-![SimulIDE](Images/screenshot_simulide_lcd-buttons.png)
+![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
 
 
 ## Part 3: UART communication
@@ -176,9 +176,9 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 > Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
 >
    &nbsp;
-   ![Timing of UART](Images/uart_capture_A.png)
+   ![Timing of UART](Images/uart_capture_E.png)
 
-> 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x41) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents lettre `A`.
+> 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x45) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents the letter `E`.
 >
 > The figure further shows that the bit period, i.e. the duration of one bit, is 104&nbsp;us. The symbol rate of the communication is thus 1/104e-6 = 9615, i.e. approximately 9600&nbsp;Bd.
 >
@@ -192,14 +192,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `uart_putc` |  |  |
    | `uart_puts` |  |  |
 
-Extend the application from the previous point and send information about the results of the analog to digital conversion and the pressed button to the UART transmitter. Use internal UART module with the following parametres: 8N1 mode, baud rate 9600.
+Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode.
 
 
 ### Version: SimulIDE
 
-In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive signals from the microcontroller, but also send them back.
+In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-![SimulIDE](Images/screenshot_simulide_uart.png)
+![SimulIDE](Images/screenshot_simulide_lcd_uart.png)
 
 
 ### Version: Real hardware
@@ -220,7 +220,9 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
+1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c` and send it to UART.
+
+2. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
 
 Extra. Design your own library for working with analog to digital convertor.
 
