@@ -50,7 +50,7 @@ A timer (or counter) is a hardware block built in the MCU. It is like a clock, a
    * Timer/Counter1, and
    * Timer/Counter2.
 
-T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter in microcontroller counts in synchronisation with microcontroller clock from 0 upto 255 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024.
+T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter in microcontroller counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024.
 
 The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
