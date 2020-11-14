@@ -147,7 +147,7 @@ ISR(ADC_vect)
     char lcd_string[4] = "0000";
 
     value = ADC;    // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);    // Convert value in decimal to string
+    itoa(value, lcd_string, 10);    // Convert decimal value to string
     ...
 ```
 
