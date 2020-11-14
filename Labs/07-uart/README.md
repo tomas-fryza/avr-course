@@ -143,12 +143,11 @@ Read the voltage level when a push button is pressed and display it in decimal a
  */
 ISR(ADC_vect)
 {
-    // WRITE YOUR CODE HERE
     uint16_t value = 0;
     char lcd_string[4] = "0000";
 
     value = ADC;    // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);    // Convert to string in decimal
+    itoa(value, lcd_string, 10);    // Convert value in decimal to string
     ...
 ```
 
@@ -293,7 +292,7 @@ Extra. Design your own library for working with analog to digital convertor.
    }
    ```
 
-6. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600 Bd, do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer.
+6. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
 
 ## Lab assignment
