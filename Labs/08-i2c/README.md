@@ -85,7 +85,7 @@
 
 4. Form the UART output of your application to a hexadecimal table view according to the following example. See [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) for reserved addresses (RA).
 
-    ```bash
+    ```
     Scan I2C-bus for devices:
     
         .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
