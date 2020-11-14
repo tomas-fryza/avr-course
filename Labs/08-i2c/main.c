@@ -91,11 +91,16 @@ ISR(TIMER1_OVF_vect)
     
     // Transmit I2C slave address and get result
     case STATE_SEND:
-        //  7  6  5  4  3  2  1  0
-        // a6 a5 a4 a3 a2 a1 a0 R/W
+        // I2C address frame:
+        // +------------------------+------------+
+        // |      from Master       | from Slave |
+        // +------------------------+------------+
+        // | 7  6  5  4  3  2  1  0 |     ACK    |
+        // |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
+        // +------------------------+------------+
         result = twi_start((addr<<1) + TWI_WRITE);
         twi_stop();
-        /* Test result from I2C bus. If it is 0 move to ACK state, 
+        /* Test result from I2C bus. If it is 0 then move to ACK state, 
          * otherwise move to IDLE */
 
         break;
@@ -106,7 +111,7 @@ ISR(TIMER1_OVF_vect)
 
         break;
 
-    // If something unexpected happens, move to IDLE
+    // If something unexpected happens then move to IDLE
     default:
         state = STATE_IDLE;
         break;
