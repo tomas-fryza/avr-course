@@ -95,6 +95,9 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
     ```
 
 
+![I2C leds](Images/screenshot_simulide_i2c_leds.png)
+
+
 ## DHT12 temperature and humidity sensor
 
 1. Create a new project folder `08-twi_temperature` and copy three files from `08-twi_scan` project.
