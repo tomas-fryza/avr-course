@@ -54,7 +54,7 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 1. Use breadboard to connect humidity/temperature DHT12 digital sensor and real time clock (RTC) device DS3231 to Arduino Uno board. Use 3.3 V voltage for both TWI modules.
 
-![I2C scan](Images/screenshot_simulide_i2c_scan.png)
+![I2C scan](Images/screenshot_simulide_i2c_scan.pn)
 
 2. Use header file `library/Include/twi.h` of the TWI library and add the functions' input parameters, output values, and description to the following table.
 
