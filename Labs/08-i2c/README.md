@@ -50,19 +50,27 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../Docs/dht12_manual.pdf), this is the address of the register, to which the integer part of the measured temperature is stored. (The following register contains its fractional part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../Docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
 >
+   | **Register address** | **Description** |
+   | :-: | :-- |
+   | 0x00 | Humidity integer part |
+   | 0x01 | Humidity fractional part |
+   | 0x02 | Temperature integer part |
+   | 0x03 | Temperature fractional part |
+   | 0x04 | Checksum |
+
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
 >
 > The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees C.
 >
    | **Frame #** | **Description** |
    | :-: | :-- |
-   | 1 | Address frame with SLA+W = 0x5c |
-   | 2 | Data frame represents internal register ID |
-   | 3 | Address frame with SLA+R = 0x5c |
-   | 4 | Data frame with integer part of the temperature |
-   | 5 | Data frame with fractional part of the temperature |
+   | 1 | Address frame with SLA+W = 0x5c (184) |
+   | 2 | Data frame sent to the slave represents the ID of internal register |
+   | 3 | Address frame with SLA+R = 0x5c (185) |
+   | 4 | Data frame with integer part of temperature read from slave |
+   | 5 | Data frame with fractional part of temperature read from slave|
 
 
 ## Part 3: I2C scanner
