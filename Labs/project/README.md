@@ -20,6 +20,7 @@ The deadline for submitting the project is the day before the presentation. Use 
 ### Will be evaluated
    * The contents of the submitted README file,
    * The complexity of the created application, functionality,
+   * Custom functionality beyond the topic,
    * If the topic has been completed,
    * C guidelines: division of code into functions/libraries, code purity and correctness, indentation, use of comments,
    * Use codes and libraries from previous exercises instead of copying from the Internet,
@@ -27,7 +28,20 @@ The deadline for submitting the project is the day before the presentation. Use 
    * Completeness and clarity of documentation,
    * Circuit diagram (schema),
    * Discussion of results,
-   * 5-minute presentation.
+   * 5-minute presentation in English, Czech, or Slovak.
+
+### Bude hodnoceno
+   * Obsah odeslaného souboru README,
+   * Složitost vytvořené aplikace, funkčnost,
+   * Přidání vlastní funkcionality nad rámec zadání,
+   * Zda práce odpovídá zadání,
+   * C guidelines: rozdělení kódu na funkce/knihovny, čistota a správnost kódu, odsazení, použití komentářů,
+   * Využití kódů a knihoven z předchozích cvičení namísto kopírování z internetu,
+   * Využití jazyka symbolických adres,
+   * Úplnost a jasnost dokumentace,
+   * Schéma zapojení,
+   * Diskuse o výsledcích,
+   * 5minutová prezentace v angličtině, češtině, nebo slovenštině.
 
 
 ### Topics 2020/21
