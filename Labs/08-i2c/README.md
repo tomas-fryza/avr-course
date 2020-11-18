@@ -54,7 +54,7 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 >
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
 >
-> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 20.3 degrees C.
+> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees C.
 >
    | **Frame #** | **Description** |
    | :-: | :-- |
