@@ -9,11 +9,12 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 3. [User library for GPIO control](Labs/03-gpio)
 4. [Interrupts, timers](Labs/04-interrupts)
 5. [Display devices, 7-segment display](Labs/05-segment)
-6. [Display devices, LCD display](Labs/06-lcd)
-7. [ADC and UART serial communication](Labs/07-uart)
-8. I2C/TWI serial communication
-9. Combining C and assembly languages
-10. [Project instructions](Labs/project)
+6. Public holiday (28-Oct 2020)
+7. [Display devices, LCD display](Labs/06-lcd)
+8. [ADC and UART serial communication](Labs/07-uart)
+* I2C/TWI serial communication
+* Combining C and assembly languages
+9. [Project instructions](Labs/project)
 
 
 ## Materials
