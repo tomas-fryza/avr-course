@@ -46,19 +46,19 @@ The deadline for submitting the project is the day before the presentation. Use 
 
 ### Topics 2020/21
 
-**Wednesday 9:00 am:**
+**Lab group Wednesday 9:00 am:**
 
 Description of 4x3 keyboard control. Application of the door lock system; display; door unlock relay; own library for keypad scanning; time limit for entering the correct 4-digit code; several correct codes to distinguish more people; signaling of entering the wrong code; time delay for re-locking the lock; sending application status information to the UART.
 
 Popis ovládání klávesnice 4x3. Aplikace systému pro otevírání zámku dveří; displej; relé pro odemknutí dveří; vlastní knihovna pro skenování klávesnice; časový limit pro zadání správného 4místného kódu; několik správných kódů pro rozlišení více lidí; signalizace zadání špatného kódu; časová prodleva pro opětovné uzamčení zámku; odesílání informací o stavu aplikace na UART.
 
-**Wednesday 11:00 am:**
+**Lab group Wednesday 11:00 am:**
 
 Description of ultrasonic sensor HC-SR04 control. Parking assistant application using several ultrasonic sensors (Micro > Sensors > HC-SR04, see examples/Arduino/Arduino_SR04); display; distance in centimeters; acoustic signaling with different frequencies according to distance; distance indication on LED bar; sending application status information to the UART.
 
 Popis ovládání ultrazvukového senzoru HC-SR04. Aplikace parkovacího asistenta pomocí několika ultrazvukových senzorů (Micro> Sensors> HC-SR04, viz examples / Arduino / Arduino_SR04); displej; vzdálenost v centimetrech; akustická signalizace s různými frekvencemi podle vzdálenosti; indikace vzdálenosti na LED panelu; odesílání informací o stavu aplikace na UART.
 
-**Wednesday 1:00 pm:**
+**Lab group Wednesday 1:00 pm:**
 
 Function description R-2R ladder Digital to Analog Converter (DAC). Application of analog signal generator using at least 8-bit DAC; several preset signal types; display; 4x3 keypad control; (possibility of DTMF, Dual-Tone Multiple Frequencies tone generation) sending application status information to the UART.
 
