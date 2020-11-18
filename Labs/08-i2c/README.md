@@ -31,23 +31,38 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: I2C bus
 
-**TODO**
+**TODO:** Description
 
-2. What frames are used in I2C communication according to the following waveforms?
 
+
+
+
+
+
+> Let the following image shows several frames of I2C communication between ATmega328P and slave device. What circuit is it and what information was sent over the bus?
+>
    &nbsp;
    ![Temperature reception from DHT12 sensor](Images/twi-dht12_temperature_decoded.png)
 
+> This communication example contains a total of five frames. After the start condition, which is initiated by the master, the address frame is always sent. It contains a 7-bit address of the slave device, supplemented by information on whether the data will be written to the slave or read from it to the master. The ninth bit of the address frame is an acknowledgment provided by the receiving side.
+>
+> Here, the address is 184 (decimal), i.e. `1011100_0` in binary including R/W=0. The slave address is therefore 1011100 (0x5c) and master will write data to the slave. The slave has acknowledged the address reception, so that the communication can continue. 
+>
+> According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
+>
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../Docs/dht12_manual.pdf), this is the address of the register, to which the integer part of the measured temperature is stored. (The following register contains its fractional part.)
+>
+> After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
+>
+> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 20.3 degrees C.
+>
    | **Frame #** | **Description** |
    | :-: | :-- |
-   | 1 | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-   | 2 |  |
-   | 3 |  |
-   | 4 |  |
-   | 5 |  |
-
-
-
+   | 1 | Address frame with SLA+W = 0x5c |
+   | 2 | Data frame represents internal register ID |
+   | 3 | Address frame with SLA+R = 0x5c |
+   | 4 | Data frame with integer part of the temperature |
+   | 5 | Data frame with fractional part of the temperature |
 
 
 ## Part 3: I2C scanner
@@ -92,7 +107,7 @@ SRCS += $(LIBRARY_DIR)/twi.c
 ```
 
 
-### Both versions
+### All versions
 
 Use I2C/TWI header file [`twi.h`](../library/include/twi.h) and add the functions' input parameters, output values, and description to the following table.
 
@@ -105,18 +120,28 @@ Use I2C/TWI header file [`twi.h`](../library/include/twi.h) and add the function
    | `twi_read_nack` | <br>&nbsp; |  |
    | `twi_stop` |  |  |
 
-Explore the use of FSM (Finite State Machine) in the application' [template](main.c) and complete the Timer/Counter1 overflow routine to scan slave addresses. Transmit useful information via UART to PuTTY SSH Client. How many slave devices are connected to the bus?
+Explore the use of FSM (Finite State Machine) in the application' [template](main.c) and complete the Timer/Counter1 overflow routine to scan slave addresses. Transmit useful information via UART to PuTTY SSH Client.
+
+
+
+
+
+
+
+
+**TODO: New figure**
 
    &nbsp;
    ![FSM for I2C scanner](Images/fsm_twi_scan.png)
 
-   | **Address** | **TWI device** |
-   | :-: | :-: |
-   |  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-   |  | &nbsp; |
-   |  | &nbsp; |
 
-Form the UART output of your application to a hexadecimal table view according to the following figure. See [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) for reserved addresses (RA).
+
+
+
+
+
+
+Form the UART output of your application to a hexadecimal table according to the following figure. See [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) for reserved addresses (RA).
 
    ```
    Scan I2C-bus for devices:
@@ -205,4 +230,5 @@ The deadline for submitting the task is the day before the next laboratory exerc
 
 ## References
 
-1. Xxx
+1. Adafruit. [List of I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list)
+2. Aosong. [Digital temperature DHT12](../../Docs/dht12_manual.pdf)
