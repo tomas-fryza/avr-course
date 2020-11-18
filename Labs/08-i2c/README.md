@@ -36,7 +36,7 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 2. What frames are used in I2C communication according to the following waveforms?
 
    &nbsp;
-   ![twi_example](../../Images/twi-dht12_temperature_decoded.png "TWI communication example")
+   ![Temperature reception from DHT12 sensor](Images/twi-dht12_temperature_decoded.png)
 
    | **Frame #** | **Description** |
    | :-: | :-- |
@@ -52,11 +52,49 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 3: I2C scanner
 
-1. Use breadboard to connect humidity/temperature DHT12 digital sensor and real time clock (RTC) device DS3231 to Arduino Uno board. Use 3.3 V voltage for both TWI modules.
+### Version: SimulIDE
+
+In the SimulIDE application, use the circuits: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create the connection according to the following figure. Also, change **Control Code** property of all devices. These codes represent the I2C addresses of the slave circuits.
 
 ![I2C scanner circuit](Images/screenshot_simulide_i2c_scan.png)
 
-2. Use header file `library/Include/twi.h` of the TWI library and add the functions' input parameters, output values, and description to the following table.
+
+### Version: Real hardware
+
+Use breadboard to connect humidity/temperature DHT12 digital sensor and real time clock (RTC) device DS3231 to Arduino Uno board. Use 3.3&nbsp;V voltage for both modules.
+
+
+### Version: Atmel Studio 7
+
+Create a new GCC C Executable Project for ATmega328P within `08-i2C` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+
+In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
+   * I2C/TWI files `twi.h`, `twi.c` from `Examples/library/include` and `Examples/library` folders,
+   * UART library files `uart.h`, `uart.c` from the previous lab,
+   * Timer library `timer.h` from the previous labs.
+
+
+### Version: Command-line toolchain
+
+Copy `main.c` and `Makefile` files from previous lab to `Labs/08-i2c` folder.
+
+Copy/paste [template code](main.c) to your `08-i2c/main.c` source file.
+
+Add the source files of I2C/TWI and UART libraries between the compiled files in `08-i2c/Makefile`.
+
+```Makefile
+# Add or comment libraries you are using in the project
+#SRCS += $(LIBRARY_DIR)/lcd.c
+SRCS += $(LIBRARY_DIR)/uart.c
+SRCS += $(LIBRARY_DIR)/twi.c
+#SRCS += $(LIBRARY_DIR)/gpio.c
+#SRCS += $(LIBRARY_DIR)/segment.c
+```
+
+
+### Both versions
+
+Use I2C/TWI header file [`twi.h`](../library/include/twi.h) and add the functions' input parameters, output values, and description to the following table.
 
    | **Function** | **Parameter(s)** | **Description** |
    | :-: | :-: | :-- |
@@ -67,35 +105,39 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
    | `twi_read_nack` | <br>&nbsp; |  |
    | `twi_stop` |  |  |
 
-3. Use template from [teacher's GitHub](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Labs/08-twi_scan/main.c), explore the use of FSM (Finite State Machine) in the application, set Timer1 overflow to 33 msec, scan all slave addresses and transmit results via UART to PuTTY SSH Client. How many slave devices there are connected?
+Explore the use of FSM (Finite State Machine) in the application' [template](main.c) and complete the Timer/Counter1 overflow routine to scan slave addresses. Transmit useful information via UART to PuTTY SSH Client. How many slave devices are connected to the bus?
 
-    &nbsp;
-    ![twi_scan_fsm](../../Images/fsm_twi_scan.png "Finite State Machine of TWI scanner")
+   &nbsp;
+   ![FSM for I2C scanner](Images/fsm_twi_scan.png)
 
-    | **Address** | **TWI device** |
-    | :-: | :-: |
-    |  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-    |  | &nbsp; |
-    |  | &nbsp; |
+   | **Address** | **TWI device** |
+   | :-: | :-: |
+   |  | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+   |  | &nbsp; |
+   |  | &nbsp; |
 
-4. Form the UART output of your application to a hexadecimal table view according to the following example. See [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) for reserved addresses (RA).
+Form the UART output of your application to a hexadecimal table view according to the following figure. See [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) for reserved addresses (RA).
 
-    ```
-    Scan I2C-bus for devices:
-    
-        .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
-    0.: RA RA RA RA RA RA RA RA -- -- -- -- -- -- -- -- 
-    1.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-    2.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-    3.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-    4.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-    5.: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- --
-    6.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-    7.: -- -- -- -- -- -- -- -- RA RA RA RA RA RA RA RA
-    ```
+   ```
+   Scan I2C-bus for devices:
+
+       .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
+   0.: RA RA RA RA RA RA RA RA -- -- -- -- -- -- -- --
+   1.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   2.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   3.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   4.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   5.: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- --
+   6.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   7.: -- -- -- -- -- -- -- -- RA RA RA RA RA RA RA RA
+   ```
 
 
-![I2C leds circuit](Images/screenshot_simulide_i2c_leds.png)
+
+
+
+
+
 
 
 ## DHT12 temperature and humidity sensor
