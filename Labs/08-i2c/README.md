@@ -82,14 +82,9 @@ In the SimulIDE application, use the following components: I2C Ram (**Components
 
 Use breadboard to connect humidity/temperature DHT12 digital sensor and combined module with real time clock (RTC) device DS3231 and AT24C32 memory to Arduino Uno board. Use 3.3&nbsp;V voltage for both modules. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
 
-   ![Humidity/temperature sensor DHT12](Images/dht12.jpg)
-
-   | **DHT12** | **Arduino** |  |
+   | **DHT12 pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
-   | + | 3.3V | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
-   | SDA | SDA | |
-   | - | GND | |
-   | SCL | SCL | |
+   | +<br>SDA<br>-<br>SCL | 3.3V<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
 
    ![RTC/EEPROM module](Images/rtc_eeprom.jpg)
 
