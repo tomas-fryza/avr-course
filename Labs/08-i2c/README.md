@@ -217,7 +217,7 @@ Form the UART output of your application to a hexadecimal table according to the
 
 ### Version: SimulIDE
 
-In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Also, several signals can form a bus **Logic > Other Logic > Bus**.
+In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
 ![I2C LED bar](Images/screenshot_simulide_i2c_leds.png)
 
@@ -226,9 +226,7 @@ Create an application that sequentially turns on one of the eight LEDs. ie first
 
 ### Version: Real hardware
 
-## DHT12 temperature and humidity sensor
-
-Program an FSM application which reads data from humidity/temperature DHT12 digital sensor and sends them periodically via UART to PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../Docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
+Program an FSM application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../Docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
    | **Register address** | **Description** |
    | :-: | :-- |
@@ -250,12 +248,12 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ### Version: SimulIDE
 
-1. Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third. Send the first ten values from each memory module to the UART.
+1. Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third one. Send the first ten values from each memory module to the UART.
 
 
 ### Version: Real hardware
 
-2. Extend the humidity/temperature application, use the RTC/EEPROM module and read second/minute values from RTC DS3231 device, and send them via UART to PuTTY SSH Client. According to the [DS3231 manual](../../Docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
+2. Extend the humidity/temperature application, use the RTC/EEPROM module and read second and minute values from RTC DS3231 device, and send them via UART to PuTTY SSH Client. According to the [DS3231 manual](../../Docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
 
    | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
    | :-: | :-: | :-: | :-: |
@@ -263,7 +261,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
    | 0x01 | 0 | 10 Minutes | Minutes |
    | ... | ... | ... | ... |
 
-4. Verify the TWI communication with logic analyzer. Find out in what format the hour information is stored in the circuit. Implement an application that reads the hours and displays it in both 12-hour and 24-hour formats.
+4. Verify the I2C communication with logic analyzer. Find out in what format the hour information is stored in the circuit. Implement an application that reads the hours and displays it in both 12-hour and 24-hour formats.
 
 
 ## Lab assignment
