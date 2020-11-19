@@ -141,16 +141,16 @@ SRCS += $(LIBRARY_DIR)/twi.c
 
 ### All versions
 
-Use the [`twi.h`](../library/include/twi.h) header file from the I2C/TWI library to complete the description of the functions in the following table.
+Use the [`twi.h`](../../Examples/library/include/twi.h) header file from the I2C/TWI library to complete the description of the functions in the following table.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `twi_init` | None | Initialize TWI, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
-   | `twi_start` |  |  | `twi_start((addr<<1)+TWI_READ);` |
-   | `twi_write` |  |  |  |
-   | `twi_read_ack` |  |  |  |
-   | `twi_read_nack` |  |  |  |
-   | `twi_stop` |  |  |  |
+   | `twi_start` |  | <br>&nbsp; | `twi_start((addr<<1)+TWI_READ);` |
+   | `twi_write` |  | <br>&nbsp; |  |
+   | `twi_read_ack` | <br>&nbsp; |  |  |
+   | `twi_read_nack` | <br>&nbsp; |  |  |
+   | `twi_stop` |  |  | `twi_stop();` |
 
 Explore the use of Finite State Machine (FSM) in the `main.c` source file. Note that state names are declared using `typedef enum` as follows
 
