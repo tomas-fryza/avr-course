@@ -58,7 +58,7 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
 >
-> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees C.
+> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees celsius.
 >
    | **Frame #** | **Description** |
    | :-: | :-- |
@@ -73,7 +73,7 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ### Version: SimulIDE
 
-In the SimulIDE application, use the circuits: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create the connection according to the following figure. Also, change **Control Code** property of all devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
+In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a connection according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
 ![I2C scanner circuit](Images/screenshot_simulide_i2c_scan.png)
 
@@ -91,7 +91,6 @@ Use breadboard to connect humidity/temperature DHT12 digital sensor and combined
    | - | GND |
    | SCL | SCL |
 
-   &nbsp;
    ![RTC/EEPROM module](Images/rtc_eeprom.jpg)
 
    | **RTC+EEPROM** | **Arduino** |
@@ -102,7 +101,6 @@ Use breadboard to connect humidity/temperature DHT12 digital sensor and combined
    | SDA | SDA |
    | VCC | 3.3V |
    | GND | GND |
-   &nbsp;
    
 
 ### Version: Atmel Studio 7
@@ -110,7 +108,7 @@ Use breadboard to connect humidity/temperature DHT12 digital sensor and combined
 Create a new GCC C Executable Project for ATmega328P within `08-i2C` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * I2C/TWI files `twi.h`, `common.h`, `twi.c` from `Examples/library/include` and `Examples/library` folders,
+   * I2C/TWI files `twi.h`, `common.h`, [`twi.c`](../../Examples/library/twi.c) from `Examples/library/include` and `Examples/library` folders,
    * UART library files `uart.h`, `uart.c` from the previous lab,
    * Timer library `timer.h` from the previous labs.
 
