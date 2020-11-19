@@ -86,7 +86,7 @@ Use breadboard to connect humidity/temperature DHT12 digital sensor and combined
    | :-: | :-: | :-: |
    | +<br>SDA<br>-<br>SCL | 3.3V<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
 
-   | **RTC+EEPROM** | **Arduino** |  |
+   | **RTC+EEPROM pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
    | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>3.3V<br>GND | ![RTC/EEPROM module](Images/rtc_eeprom.jpg) |
    
