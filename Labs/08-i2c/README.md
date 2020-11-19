@@ -15,15 +15,14 @@ Use schematic of the [Arduino Uno](../../Docs/arduino_shield.pdf) board and find
    | :-: | :-: | :-: |
    | SDA (data)  |  |  |
    | SCL (clock) |  |  |
-   &nbsp;
 
+&nbsp;
 What is the general structure of I2C address and data frames?
 
    | **Frame type** | **8** | **7** | **6** | **5** | **4** | **3** | **2** | **1** | **0** | **Description**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
    | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-- |
    | Address | | | | | | | | | | |
    | Data    | | | | | | | | | | |
-   &nbsp;
 
 
 ## Part 1: Synchronize repositories and create a new folder
