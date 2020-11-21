@@ -31,9 +31,24 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: I2C bus
 
+I2C is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers. Each slave device has a unique address [[1]](https://i2c.info/).
 
-**TODO:** Description
+I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages.
 
+![I2C bus](Images/i2c-bus.png)
+
+The initial I2C specifications defined maximum clock frequency of 100 kHz. This was later increased to 400 kHz as Fast mode. There is also a High speed mode which can go up to 3.4 MHz and there is also a 5 MHz ultra-fast mode.
+
+In normal state both lines (SCL and SDA) are high. The communication is initiated by the master device. It generates the Start condition (S) followed by the address of the slave device (SLA). If the bit 0 of the address byte was set to 0 the master device will write to the slave device (SLA+W). Otherwise, the next byte will be read from the slave device (SLA+R). Each byte is supplemented by an ACK (low level) or NACK (high level) acknowledgment bit, which is always transmitted by the device receiving the previous byte.
+
+The address byte is followed by one or more data bytes, where each contains 8 bits and is again terminated by ACK/NACK. Once all bytes are read or written the master device generates Stop condition (P). This means that the master device switches the SDA line from low voltage level to high voltage level before the SCL line switches from high to low [[2]](https://www.electronicshub.org/basics-i2c-communication/).
+
+![I2C protocol](Images/i2c_protocol.jpg)
+
+Note that, most I2C devices support repeated start condition. This means that before the communication ends with a stop condition, master device can repeat start condition with address byte and change the mode from writing to reading.
+
+
+### Example
 
 > Let the following image shows several frames of I2C communication between ATmega328P and slave device. What circuit is it and what information was sent over the bus?
 >
@@ -273,7 +288,9 @@ The deadline for submitting the task is the day before the next laboratory exerc
 
 ## References
 
-1. Adafruit. [List of I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list)
-2. Aosong. [Digital temperature DHT12](../../Docs/dht12_manual.pdf)
-3. NXP. [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)
-4. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../Docs/ds3231_manual.pdf)
+1. Ezoic. [I2C Info - I2C Bus, Interface and Protocol](https://i2c.info/)
+2. Electronicshub.org. [Basics of I2C Communication | Hardware, Data Transfer, Configuration](https://www.electronicshub.org/basics-i2c-communication/)
+3. Adafruit. [List of I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list)
+4. Aosong. [Digital temperature DHT12](../../Docs/dht12_manual.pdf)
+5. NXP. [I2C-bus specification and user manual](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)
+6. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../Docs/ds3231_manual.pdf)
