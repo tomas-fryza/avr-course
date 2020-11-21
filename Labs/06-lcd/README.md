@@ -64,6 +64,9 @@ In the lab, the LCD1602 display module is used. The display consists of two rows
 
 When a command is given on the LCD, we select the command register (RS = 0) and when data is sent to the LCD for display, we select the data register (RS = 1). A command is an instruction entered on the LCD in order to perform the required function. In order to display textual information, data is send to LCD.
 
+
+### Example
+
 > Let the following image shows the communication between ATmega328P and LCD display in 4-bit mode. How does HD44780 chipset understand the sequence of these signals?
 >
    &nbsp;
