@@ -172,6 +172,9 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 ![UART frame 8N1](Images/uart_frame_8n1.png)
 
+
+### Example
+
 > Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
 >
    &nbsp;
