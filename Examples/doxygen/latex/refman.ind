@@ -1,217 +1,190 @@
 \begin{theindex}
 
-  \item {/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/common.\+h}, 
-		\hyperpage{23}
-  \item {/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/lcd.\+h}, 
-		\hyperpage{24}
-  \item {/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/twi.\+h}, 
-		\hyperpage{26}
-  \item {/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/uart.\+h}, 
-		\hyperpage{29}
+  \item {common.h}, \hyperpage{17}
+    \subitem {DDR}, \hyperpage{17}
+    \subitem {PIN}, \hyperpage{17}
 
   \indexspace
 
-  \item {common.\+h}
-    \subitem {D\+DR}, \hyperpage{23}
-    \subitem {P\+IN}, \hyperpage{23}
+  \item {DDR}
+    \subitem {common.h}, \hyperpage{17}
 
   \indexspace
 
-  \item {D\+DR}
-    \subitem {common.\+h}, \hyperpage{23}
+  \item {F\_SCL}
+    \subitem {twi.h}, \hyperpage{20}
 
   \indexspace
 
-  \item {F\+\_\+\+S\+CL}
-    \subitem {twi.\+h}, \hyperpage{27}
+  \item {LCD library $<$lcd.h$>$}, \hyperpage{2}
+    \subitem {lcd\_clrscr}, \hyperpage{7}
+    \subitem {lcd\_command}, \hyperpage{7}
+    \subitem {LCD\_CONTROLLER\_KS0073}, \hyperpage{5}
+    \subitem {lcd\_data}, \hyperpage{7}
+    \subitem {LCD\_DELAY\_BOOTUP}, \hyperpage{5}
+    \subitem {LCD\_DELAY\_BUSY\_FLAG}, \hyperpage{5}
+    \subitem {LCD\_DELAY\_ENABLE\_PULSE}, \hyperpage{5}
+    \subitem {LCD\_DELAY\_INIT}, \hyperpage{6}
+    \subitem {LCD\_DELAY\_INIT\_4BIT}, \hyperpage{6}
+    \subitem {LCD\_DELAY\_INIT\_REP}, \hyperpage{6}
+    \subitem {lcd\_gotoxy}, \hyperpage{8}
+    \subitem {lcd\_home}, \hyperpage{8}
+    \subitem {lcd\_init}, \hyperpage{8}
+    \subitem {LCD\_IO\_MODE}, \hyperpage{6}
+    \subitem {LCD\_LINE\_LENGTH}, \hyperpage{6}
+    \subitem {lcd\_putc}, \hyperpage{9}
+    \subitem {lcd\_puts}, \hyperpage{9}
+    \subitem {lcd\_puts\_p}, \hyperpage{9}
+    \subitem {LCD\_RW\_PIN}, \hyperpage{6}
+    \subitem {LCD\_RW\_PORT}, \hyperpage{6}
+    \subitem {LCD\_START\_LINE1}, \hyperpage{6}
+    \subitem {LCD\_START\_LINE2}, \hyperpage{6}
+    \subitem {LCD\_START\_LINE3}, \hyperpage{6}
+    \subitem {LCD\_START\_LINE4}, \hyperpage{6}
+    \subitem {LCD\_WRAP\_LINES}, \hyperpage{7}
+  \item {lcd.h}, \hyperpage{17}
+  \item {lcd\_clrscr}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{7}
+  \item {lcd\_command}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{7}
+  \item {LCD\_CONTROLLER\_KS0073}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{5}
+  \item {lcd\_data}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{7}
+  \item {LCD\_DELAY\_BOOTUP}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{5}
+  \item {LCD\_DELAY\_BUSY\_FLAG}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{5}
+  \item {LCD\_DELAY\_ENABLE\_PULSE}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{5}
+  \item {LCD\_DELAY\_INIT}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_DELAY\_INIT\_4BIT}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_DELAY\_INIT\_REP}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {lcd\_gotoxy}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{8}
+  \item {lcd\_home}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{8}
+  \item {lcd\_init}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{8}
+  \item {LCD\_IO\_MODE}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_LINE\_LENGTH}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {lcd\_putc}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{9}
+  \item {lcd\_puts}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{9}
+  \item {lcd\_puts\_p}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{9}
+  \item {LCD\_RW\_PIN}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_RW\_PORT}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_START\_LINE1}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_START\_LINE2}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_START\_LINE3}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_START\_LINE4}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{6}
+  \item {LCD\_WRAP\_LINES}
+    \subitem {LCD library $<$lcd.h$>$}, \hyperpage{7}
 
   \indexspace
 
-  \item {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
-    \subitem {L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}, 
-		\hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}, \hyperpage{10}
-    \subitem {L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}, 
-		\hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}, \hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}, \hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}, 
-		\hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}, 
-		\hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}, 
-		\hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}, 
-		\hyperpage{11}
-    \subitem {L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}, 
-		\hyperpage{11}
-    \subitem {lcd\+\_\+clrscr}, \hyperpage{12}
-    \subitem {lcd\+\_\+command}, \hyperpage{12}
-    \subitem {lcd\+\_\+data}, \hyperpage{12}
-    \subitem {lcd\+\_\+gotoxy}, \hyperpage{13}
-    \subitem {lcd\+\_\+home}, \hyperpage{13}
-    \subitem {lcd\+\_\+init}, \hyperpage{13}
-    \subitem {lcd\+\_\+putc}, \hyperpage{14}
-    \subitem {lcd\+\_\+puts}, \hyperpage{14}
-    \subitem {lcd\+\_\+puts\+\_\+p}, \hyperpage{14}
-  \item {L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{10}
-  \item {L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{11}
-  \item {lcd\+\_\+clrscr}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{12}
-  \item {lcd\+\_\+command}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{12}
-  \item {lcd\+\_\+data}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{12}
-  \item {lcd\+\_\+gotoxy}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{13}
-  \item {lcd\+\_\+home}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{13}
-  \item {lcd\+\_\+init}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{13}
-  \item {lcd\+\_\+putc}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{14}
-  \item {lcd\+\_\+puts}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{14}
-  \item {lcd\+\_\+puts\+\_\+p}
-    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{14}
+  \item {PIN}
+    \subitem {common.h}, \hyperpage{17}
 
   \indexspace
 
-  \item {P\+IN}
-    \subitem {common.\+h}, \hyperpage{23}
+  \item {twi.h}, \hyperpage{20}
+    \subitem {F\_SCL}, \hyperpage{20}
+    \subitem {TWI\_BIT\_RATE\_REG}, \hyperpage{20}
+    \subitem {twi\_init}, \hyperpage{21}
+    \subitem {TWI\_PORT}, \hyperpage{21}
+    \subitem {TWI\_READ}, \hyperpage{21}
+    \subitem {twi\_read\_ack}, \hyperpage{21}
+    \subitem {twi\_read\_nack}, \hyperpage{21}
+    \subitem {TWI\_SCL\_PIN}, \hyperpage{21}
+    \subitem {TWI\_SDA\_PIN}, \hyperpage{21}
+    \subitem {twi\_start}, \hyperpage{22}
+    \subitem {twi\_stop}, \hyperpage{22}
+    \subitem {TWI\_WRITE}, \hyperpage{21}
+    \subitem {twi\_write}, \hyperpage{22}
+  \item {TWI\_BIT\_RATE\_REG}
+    \subitem {twi.h}, \hyperpage{20}
+  \item {twi\_init}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {TWI\_PORT}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {TWI\_READ}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {twi\_read\_ack}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {twi\_read\_nack}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {TWI\_SCL\_PIN}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {TWI\_SDA\_PIN}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {twi\_start}
+    \subitem {twi.h}, \hyperpage{22}
+  \item {twi\_stop}
+    \subitem {twi.h}, \hyperpage{22}
+  \item {TWI\_WRITE}
+    \subitem {twi.h}, \hyperpage{21}
+  \item {twi\_write}
+    \subitem {twi.h}, \hyperpage{22}
 
   \indexspace
 
-  \item {T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+R\+A\+T\+E\+\_\+\+R\+EG}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {T\+W\+I\+\_\+\+P\+O\+RT}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {T\+W\+I\+\_\+\+R\+E\+AD}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {T\+W\+I\+\_\+\+S\+C\+L\+\_\+\+P\+IN}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {T\+W\+I\+\_\+\+S\+D\+A\+\_\+\+P\+IN}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {T\+W\+I\+\_\+\+W\+R\+I\+TE}
-    \subitem {twi.\+h}, \hyperpage{27}
-  \item {twi.\+h}
-    \subitem {F\+\_\+\+S\+CL}, \hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+R\+A\+T\+E\+\_\+\+R\+EG}, 
-		\hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+P\+O\+RT}, \hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+R\+E\+AD}, \hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+S\+C\+L\+\_\+\+P\+IN}, \hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+S\+D\+A\+\_\+\+P\+IN}, \hyperpage{27}
-    \subitem {T\+W\+I\+\_\+\+W\+R\+I\+TE}, \hyperpage{27}
-    \subitem {twi\+\_\+init}, \hyperpage{28}
-    \subitem {twi\+\_\+read\+\_\+ack}, \hyperpage{28}
-    \subitem {twi\+\_\+read\+\_\+nack}, \hyperpage{28}
-    \subitem {twi\+\_\+start}, \hyperpage{28}
-    \subitem {twi\+\_\+stop}, \hyperpage{29}
-    \subitem {twi\+\_\+write}, \hyperpage{29}
-  \item {twi\+\_\+init}
-    \subitem {twi.\+h}, \hyperpage{28}
-  \item {twi\+\_\+read\+\_\+ack}
-    \subitem {twi.\+h}, \hyperpage{28}
-  \item {twi\+\_\+read\+\_\+nack}
-    \subitem {twi.\+h}, \hyperpage{28}
-  \item {twi\+\_\+start}
-    \subitem {twi.\+h}, \hyperpage{28}
-  \item {twi\+\_\+stop}
-    \subitem {twi.\+h}, \hyperpage{29}
-  \item {twi\+\_\+write}
-    \subitem {twi.\+h}, \hyperpage{29}
-
-  \indexspace
-
-  \item {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{16}
-    \subitem {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED}, 
-		\hyperpage{17}
-    \subitem {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT}, 
-		\hyperpage{17}
-    \subitem {U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
-		\hyperpage{18}
-    \subitem {U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
-		\hyperpage{18}
-    \subitem {uart1\+\_\+getc}, \hyperpage{18}
-    \subitem {uart1\+\_\+init}, \hyperpage{18}
-    \subitem {uart1\+\_\+putc}, \hyperpage{19}
-    \subitem {uart1\+\_\+puts}, \hyperpage{19}
-    \subitem {uart1\+\_\+puts\+\_\+p}, \hyperpage{19}
-    \subitem {uart\+\_\+getc}, \hyperpage{19}
-    \subitem {uart\+\_\+init}, \hyperpage{20}
-    \subitem {uart\+\_\+putc}, \hyperpage{20}
-    \subitem {uart\+\_\+puts}, \hyperpage{21}
-    \subitem {uart\+\_\+puts\+\_\+p}, \hyperpage{21}
-  \item {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
-  \item {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
-  \item {U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
-  \item {U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
-  \item {uart1\+\_\+getc}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
-  \item {uart1\+\_\+init}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
-  \item {uart1\+\_\+putc}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
-  \item {uart1\+\_\+puts}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
-  \item {uart1\+\_\+puts\+\_\+p}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
-  \item {uart\+\_\+getc}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
-  \item {uart\+\_\+init}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{20}
-  \item {uart\+\_\+putc}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{20}
-  \item {uart\+\_\+puts}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{21}
-  \item {uart\+\_\+puts\+\_\+p}
-    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{21}
+  \item {UART Library $<$uart.h$>$}, \hyperpage{11}
+    \subitem {uart1\_getc}, \hyperpage{13}
+    \subitem {uart1\_init}, \hyperpage{13}
+    \subitem {uart1\_putc}, \hyperpage{14}
+    \subitem {uart1\_puts}, \hyperpage{14}
+    \subitem {uart1\_puts\_p}, \hyperpage{14}
+    \subitem {UART\_BAUD\_SELECT}, \hyperpage{12}
+    \subitem {UART\_BAUD\_SELECT\_DOUBLE\_SPEED}, \hyperpage{13}
+    \subitem {uart\_getc}, \hyperpage{14}
+    \subitem {uart\_init}, \hyperpage{15}
+    \subitem {uart\_putc}, \hyperpage{15}
+    \subitem {uart\_puts}, \hyperpage{16}
+    \subitem {uart\_puts\_p}, \hyperpage{16}
+    \subitem {UART\_RX\_BUFFER\_SIZE}, \hyperpage{13}
+    \subitem {UART\_TX\_BUFFER\_SIZE}, \hyperpage{13}
+  \item {uart.h}, \hyperpage{23}
+  \item {uart1\_getc}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{13}
+  \item {uart1\_init}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{13}
+  \item {uart1\_putc}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{14}
+  \item {uart1\_puts}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{14}
+  \item {uart1\_puts\_p}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{14}
+  \item {UART\_BAUD\_SELECT}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{12}
+  \item {UART\_BAUD\_SELECT\_DOUBLE\_SPEED}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{13}
+  \item {uart\_getc}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{14}
+  \item {uart\_init}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{15}
+  \item {uart\_putc}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{15}
+  \item {uart\_puts}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{16}
+  \item {uart\_puts\_p}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{16}
+  \item {UART\_RX\_BUFFER\_SIZE}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{13}
+  \item {UART\_TX\_BUFFER\_SIZE}
+    \subitem {UART Library $<$uart.h$>$}, \hyperpage{13}
 
 \end{theindex}

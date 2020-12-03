@@ -1,31 +1,31 @@
-\hypertarget{lcd_8h}{}\section{/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/lcd.h File Reference}
-\label{lcd_8h}\index{/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/lcd.\+h@{/home/fryza/\+G\+I\+T/\+Digital-\/electronics-\/2/\+Examples/library/include/lcd.\+h}}
+\hypertarget{a00005}{}\doxysubsection{lcd.\+h File Reference}
+\label{a00005}\index{lcd.h@{lcd.h}}
 {\ttfamily \#include $<$inttypes.\+h$>$}\newline
 {\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}lcd\+\_\+definitions.\+h\char`\"{}}\newline
-\subsection*{Macros}
+\doxysubsubsection*{Macros}
 \begin{Indent}\textbf{ Definition for L\+CD controller type}\par
 {\em Use 0 for H\+D44780 controller, change to 1 for displays with K\+S0073 controller. }\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga63574b03f72a197aeee823aae95dc3b7}{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}~0
+\#define \mbox{\hyperlink{a00017_ga63574b03f72a197aeee823aae95dc3b7}{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}}~0
 \end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}\textbf{ Definitions for Display Size}\par
 {\em Change these definitions to adapt setting to your display
 
-These definitions can be defined in a separate include file {\bfseries \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{lcd_8h}{lcd.\+h} }\begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding -\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00005}{lcd.\+h}} }\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__pfleury__lcd_gae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}~0x40
+\#define \mbox{\hyperlink{a00017_gae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}~0x40
 \item 
-\#define \hyperlink{group__pfleury__lcd_gabd056d70a1488ea2eb1aef87e248e234}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}~0x00
+\#define \mbox{\hyperlink{a00017_gabd056d70a1488ea2eb1aef87e248e234}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}}~0x00
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga7b317b21058ef031716ba040ef75430a}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}~0x40
+\#define \mbox{\hyperlink{a00017_ga7b317b21058ef031716ba040ef75430a}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}}~0x40
 \item 
-\#define \hyperlink{group__pfleury__lcd_gae7cca16353048a062baeb3a52da55249}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}~0x14
+\#define \mbox{\hyperlink{a00017_gae7cca16353048a062baeb3a52da55249}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}}~0x14
 \item 
-\#define \hyperlink{group__pfleury__lcd_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}~0x54
+\#define \mbox{\hyperlink{a00017_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}}~0x54
 \item 
-\#define \hyperlink{group__pfleury__lcd_gadb35ff6cb242e48ba0545ea919ffc5d3}{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}~0
+\#define \mbox{\hyperlink{a00017_gadb35ff6cb242e48ba0545ea919ffc5d3}{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}}~0
 \end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}\textbf{ Definitions for 4-\/bit IO mode}\par
@@ -34,36 +34,36 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 Normally the four data lines should be mapped to bit 0..3 on one port, but it is possible to connect these data lines in different order or even on different ports by adapting the L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+O\+RT and L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+IN definitions.
 
 Adjust these definitions to your target.~\newline
-These definitions can be defined in a separate include file {\bfseries \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{lcd_8h}{lcd.\+h} }\begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding {\bfseries{-\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE}} to the {\bfseries{C\+D\+E\+FS}} section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00005}{lcd.\+h}} }\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga659fcdf979f69bbd14f852f525f25e02}{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}~1
+\#define \mbox{\hyperlink{a00017_ga659fcdf979f69bbd14f852f525f25e02}{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}}~1
 \item 
-\#define \hyperlink{group__pfleury__lcd_gae8772bdf31db863b81805c837bdc2da2}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\#define \mbox{\hyperlink{a00017_gae8772bdf31db863b81805c837bdc2da2}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}}~L\+C\+D\+\_\+\+P\+O\+RT
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga3ac938dd5fc02a9a232df6605b5f6aa8}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}~5
+\#define \mbox{\hyperlink{a00017_ga3ac938dd5fc02a9a232df6605b5f6aa8}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}}~5
 \end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}\textbf{ Definitions of delays}\par
 {\em Used to calculate delay timers. Adapt the F\+\_\+\+C\+PU define in the Makefile to the clock frequency in Hz of your target
 
 These delay times can be adjusted, if some displays require different delays.~\newline
-These definitions can be defined in a separate include file {\bfseries \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{lcd__definitions_8h_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{lcd_8h}{lcd.\+h} }\begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding {\bfseries{-\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE}} to the {\bfseries{C\+D\+E\+FS}} section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00008_source}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00005}{lcd.\+h}} }\begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}~16000
+\#define \mbox{\hyperlink{a00017_ga79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}}~16000
 \item 
-\#define \hyperlink{group__pfleury__lcd_gab6ba3c8cdcf1a96b0d4c476eff8f8617}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}~5000
+\#define \mbox{\hyperlink{a00017_gab6ba3c8cdcf1a96b0d4c476eff8f8617}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}}~5000
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga2ce1ac9b146b7baa7169e27f9cf3a99e}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}~64
+\#define \mbox{\hyperlink{a00017_ga2ce1ac9b146b7baa7169e27f9cf3a99e}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}}~64
 \item 
-\#define \hyperlink{group__pfleury__lcd_gadf773dcbd0827cd15c788065c9197459}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}~64
+\#define \mbox{\hyperlink{a00017_gadf773dcbd0827cd15c788065c9197459}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}}~64
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga73b2370827e2d350cedd45e08a9eb0b2}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}~4
+\#define \mbox{\hyperlink{a00017_ga73b2370827e2d350cedd45e08a9eb0b2}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}}~4
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga5b0632f09757ffe6f018c6ef88cc3296}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}~1
+\#define \mbox{\hyperlink{a00017_ga5b0632f09757ffe6f018c6ef88cc3296}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}}~1
 \end{DoxyCompactItemize}
 \end{Indent}
 \begin{Indent}\textbf{ Definitions for L\+CD command instructions}\par
-{\em The constants define the various L\+CD controller instructions which can be passed to the function \hyperlink{group__pfleury__lcd_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command()}, see H\+D44780 data sheet for a complete description. }\begin{DoxyCompactItemize}
+{\em The constants define the various L\+CD controller instructions which can be passed to the function \mbox{\hyperlink{a00017_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command()}}, see H\+D44780 data sheet for a complete description. }\begin{DoxyCompactItemize}
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+C\+LR}~0 /$\ast$ D\+B0\+: clear display                  $\ast$/
 \item 
@@ -91,7 +91,7 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}~5 /$\ast$ D\+B5\+: function set                   $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT}~4 /$\ast$   D\+B4\+: set 8\+B\+I\+T mode (0-\/$>$4\+B\+I\+T mode) $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT}~4 /$\ast$   D\+B4\+: set 8B\+IT mode (0-\/$>$4B\+IT mode) $\ast$/
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+2\+L\+I\+N\+ES}~3 /$\ast$   D\+B3\+: two lines (0-\/$>$one line)      $\ast$/
 \item 
@@ -113,13 +113,13 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF}~0x08 /$\ast$ display off                            $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON}~0x0\+C /$\ast$ display on, cursor off                 $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON}~0x0C /$\ast$ display on, cursor off                 $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0x0\+D /$\ast$ display on, cursor off, blink char     $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0x0D /$\ast$ display on, cursor off, blink char     $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~0x0\+E /$\ast$ display on, cursor on                  $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~0x0E /$\ast$ display on, cursor on                  $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK}~0x0\+F /$\ast$ display on, cursor on, blink char      $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK}~0x0F /$\ast$ display on, cursor on, blink char      $\ast$/
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+L\+E\+FT}~0x10 /$\ast$ move cursor left  (decrement)          $\ast$/
 \item 
@@ -127,7 +127,7 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+FT}~0x18 /$\ast$ shift display left                     $\ast$/
 \item 
-\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT}~0x1\+C /$\ast$ shift display right                    $\ast$/
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT}~0x1C /$\ast$ shift display right                    $\ast$/
 \item 
 \#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+1\+L\+I\+NE}~0x20 /$\ast$ 4-\/bit interface, single line, 5x7 dots $\ast$/
 \item 
@@ -140,26 +140,26 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 \#define {\bfseries L\+C\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+E\+F\+A\+U\+LT}~((1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE) $\vert$ (1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC) )
 \end{DoxyCompactItemize}
 \end{Indent}
-\subsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{group__pfleury__lcd_ga4f1928f1515e21422d5a33af2949f2f7}{lcd\+\_\+puts\+\_\+P}(\+\_\+\+\_\+s)~\hyperlink{group__pfleury__lcd_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}(P\+S\+TR(\+\_\+\+\_\+s))
+\#define \mbox{\hyperlink{a00017_ga4f1928f1515e21422d5a33af2949f2f7}{lcd\+\_\+puts\+\_\+P}}(\+\_\+\+\_\+s)~\mbox{\hyperlink{a00017_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}}(P\+S\+TR(\+\_\+\+\_\+s))
 \begin{DoxyCompactList}\small\item\em macros for automatically storing string constant in program memory \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_ga9af28b2779326b63ff4356e2b1828984}{lcd\+\_\+init} (uint8\+\_\+t disp\+Attr)
+void \mbox{\hyperlink{a00017_ga9af28b2779326b63ff4356e2b1828984}{lcd\+\_\+init}} (uint8\+\_\+t disp\+Attr)
 \begin{DoxyCompactList}\small\item\em Initialize display and select type of cursor. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_gaf8da853dba4b9d5f2aea4e294444e14d}{lcd\+\_\+clrscr} (void)
+void \mbox{\hyperlink{a00017_gaf8da853dba4b9d5f2aea4e294444e14d}{lcd\+\_\+clrscr}} (void)
 \begin{DoxyCompactList}\small\item\em Clear display and set cursor to home position. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_ga3aabf730aa4e0393bb5c959583c00a8e}{lcd\+\_\+home} (void)
+void \mbox{\hyperlink{a00017_ga3aabf730aa4e0393bb5c959583c00a8e}{lcd\+\_\+home}} (void)
 \begin{DoxyCompactList}\small\item\em Set cursor to home position. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_gadbf47a5efdf02367ded1ebf8f9edb5fe}{lcd\+\_\+gotoxy} (uint8\+\_\+t x, uint8\+\_\+t y)
+void \mbox{\hyperlink{a00017_gadbf47a5efdf02367ded1ebf8f9edb5fe}{lcd\+\_\+gotoxy}} (uint8\+\_\+t x, uint8\+\_\+t y)
 \begin{DoxyCompactList}\small\item\em Set cursor to specified position. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_gafa7e36b95c43d603f510273ad077cbbe}{lcd\+\_\+putc} (char c)
+void \mbox{\hyperlink{a00017_gafa7e36b95c43d603f510273ad077cbbe}{lcd\+\_\+putc}} (char c)
 \begin{DoxyCompactList}\small\item\em Display character at current cursor position. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_ga8ffdfcac7638368ff04364c14984266e}{lcd\+\_\+puts} (const char $\ast$s)
+void \mbox{\hyperlink{a00017_ga8ffdfcac7638368ff04364c14984266e}{lcd\+\_\+puts}} (const char $\ast$s)
 \begin{DoxyCompactList}\small\item\em Display string without auto linefeed. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p} (const char $\ast$progmem\+\_\+s)
+void \mbox{\hyperlink{a00017_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}} (const char $\ast$progmem\+\_\+s)
 \begin{DoxyCompactList}\small\item\em Display string from program memory without auto linefeed. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command} (uint8\+\_\+t cmd)
+void \mbox{\hyperlink{a00017_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command}} (uint8\+\_\+t cmd)
 \begin{DoxyCompactList}\small\item\em Send L\+CD controller instruction command. \end{DoxyCompactList}\item 
-void \hyperlink{group__pfleury__lcd_gad0729d2cba627825a089ca1fff12ba29}{lcd\+\_\+data} (uint8\+\_\+t data)
+void \mbox{\hyperlink{a00017_gad0729d2cba627825a089ca1fff12ba29}{lcd\+\_\+data}} (uint8\+\_\+t data)
 \begin{DoxyCompactList}\small\item\em Send data byte to L\+CD controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
