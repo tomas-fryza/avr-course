@@ -1,10 +1,10 @@
 ;* ---------------------------------------------------------------------
 ;*
-;* Assembly implementation of 4- and 8--bit LFSR-based (Linear Feedback
+;* Assembly implementation of 4- and 8-bit LFSR-based (Linear Feedback
 ;* Shift Register) pseudo-random generators.
 ;* ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
 ;*
-;* Copyright (c) 2017-2019 Tomas Fryza
+;* Copyright (c) 2017-2020 Tomas Fryza
 ;* Dept. of Radio Electronics, Brno University of Technology, Czechia
 ;* This work is licensed under the terms of the MIT license.
 ;*
@@ -18,12 +18,12 @@
 #define __SFR_OFFSET    0
 #include <avr/io.h>
 
-;* Define --------------------------------------------------------------
+;* Defines -------------------------------------------------------------
 #define result  r16
 #define temp    r17
 #define input   r24
 
-;* Functions -----------------------------------------------------------
+;* Function definitions ------------------------------------------------
 ;* LFSR-based 4-bit pseudo-random generator.
 ;* Input:  r24 - Current value of shift register
 ;* Return: r24 - New value of shift register
