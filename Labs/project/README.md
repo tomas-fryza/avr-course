@@ -30,7 +30,7 @@ The deadline for submitting the project is the day before the presentation. Use 
    * Discussion of results,
    * 5-minute presentation in English, Czech, or Slovak.
 
-*### Bude hodnoceno
+### Bude hodnoceno
    * Obsah odeslaného souboru README,
    * Složitost vytvořené aplikace, funkčnost,
    * Přidání vlastní funkcionality nad rámec zadání,
@@ -41,7 +41,7 @@ The deadline for submitting the project is the day before the presentation. Use 
    * Úplnost a jasnost dokumentace,
    * Schéma zapojení,
    * Diskuse o výsledcích,
-   * 5minutová prezentace v angličtině, češtině, nebo slovenštině.*
+   * 5minutová prezentace v angličtině, češtině, nebo slovenštině.
 
 
 ### Topics 2020/21
