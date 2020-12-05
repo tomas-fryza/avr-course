@@ -9,13 +9,13 @@ The purpose of the laboratory exercise is to ...
 
 ## Preparation tasks (done before the lab at home)
 
-How many *working* (General Purpose) registers does the AVR microcontroller contain? What are their names? Which registers can be used as 16-bit pointers?
+TODO: LFSR values for 4-bit structure
 
-   | **Question** | **Answer** |
-   | :-- | :-- |
-   | How many GP registers? |  |
-   | GP registr names? |  |
-   | Which are 16-bit pointers? |  |
+
+
+
+
+
 
 Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/), find the description of selected instructions, and complete the table.
 
@@ -84,9 +84,18 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 Explore the use of FSM in the application, set Timer/Counter1 overflow, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client or Serial monitor.
 
-Verify that feedback taps generate the maximum-length LFSR (Linear-feedback shift register) sequence for 4- and 8-bit structure.
+   ![FSM for LFSR generator](Images/fsm_lfsr_asm.png)
 
-Explore the LFSR algorithm within `rand4_asm` function. What the taps positions mean?
+Explore the LFSR algorithm within `rand4_asm` function. What the taps positions mean? Verify which feedback taps generate a maximum length LFSR (Linear Feedback Shift Register) sequence for the 4-structure.
+
+   | **Taps** | **LFSR sequence** | **Length** |
+   | :-: | :-- | :-: |
+   | 1, 0 |  |  |
+   | 2, 0 |  |  |
+   | 3, 0 |  |  |
+   | 2, 1 |  |  |
+   | 3, 1 |  |  |
+   | 3, 2 |  |  |
 
    > Use the following structure of 8-bit LFSR to derive the connection for 4-bit algorithm.
    >
