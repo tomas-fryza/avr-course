@@ -19,63 +19,88 @@
 #include <avr/io.h>
 
 ;* Defines -------------------------------------------------------------
-#define result  r16
-#define temp    r17
-#define input   r24
+#define register    r24
+#define input0      r16
+#define input1      r17
 
 ;* Function definitions ------------------------------------------------
-;* LFSR-based 4-bit pseudo-random generator.
+;* LFSR-based 4-bit pseudo-random generator. Taps are equal to 3, 1.
 ;* Input:  r24 - Current value of shift register
 ;* Return: r24 - New value of shift register
 .global rand4_asm
 rand4_asm:
-    push result             ; Save "Result" on Stack
-    push temp               ; Save "Temp" on Stack
+    push input0             ; Save used registers on Stack
+    push input1
 
-    bst input, 3            ; Copy "Input" bit 3 to T Flag...
-    bld result, 0           ; ...and then to "Result" bit 0
-    bst input, 2            ; Copy "Input" bit 2 to T Flag
-    bld temp, 0             ; ...and then to "Temp" bit 0
-    eor result, temp        ; Xor "Input" bits 3 and 2
+    ; register:         3   2   1   0
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   |   | 3 |   | 1 |   |
+    ; +---+---+---+---+---+---+---+---+
+    bst register, 3         ; Copy FIRST tap to T flag...
+    bld input0, 0           ; ...and then to input0 bit 0
+    ; input0:                       0
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   |   |   |   |   | 3 |
+    ; +---+---+---+---+---+---+---+---+
+    bst register, 1         ; Copy SECOND tap to T flag
+    bld input1, 0           ; ...and then to input1 bit 0
+    ; input1:                       0
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   |   |   |   |   | 1 |
+    ; +---+---+---+---+---+---+---+---+
+    eor input0, input1      ; Xor both taps
+    com input0              ; Invert Xor
+    ror input0              ; Move bit0 to C flag
+    ; input0:
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   |   |   |   |   | * | --> C
+    ; +---+---+---+---+---+---+---+---+
+    rol register            ; Shift register left with C flag
+    ; register:         3   2   1   0
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   | 3 | 2 | 1 | 0 | C | <-- C
+    ; +---+---+---+---+---+---+---+---+
+    andi register, 0x0f     ; Clear four upper bits in register
+    ; register:         3   2   1   0
+    ; +---+---+---+---+---+---+---+---+
+    ; |   |   |   |   | 2 | 1 | 0 | C |
+    ; +---+---+---+---+---+---+---+---+
 
-    lsl input               ; Shift all "Input" bits to left
-    com result              ; Invert "Result"
-    bst result, 0           ; Copy "Result" bit 0 to T Flag...
-    bld input, 0            ; ...and then to "Input" bit 0
-    andi input, 0x0f        ; Make sure 4 upper birs are cleared
-
-    pop temp                ; Restore "Temp" from Stack
-    pop result              ; Restore "Result" from Stack
+    pop input1              ; Restore used registers from Stack
+    pop input0
     ret                     ; Return from subroutine
 
 ;*----------------------------------------------------------------------
-;* LFSR-based 8-bit pseudo-random generator.
+;* LFSR-based 8-bit pseudo-random generator. Taps are equal to 7, 5, 4, 3.
 ;* Input:  r24 - Current value of shift register
 ;* Return: r24 - New value of shift register
 .global rand8_asm
 rand8_asm:
-    push result             ; Backup values to Stack
-    push temp
+    push input0             ; Save used registers on Stack
+    push input1
 
-    bst input, 7            ; Xor "Input" bit 7 and 5
-    bld result, 0
-    bst input, 5
-    bld temp, 0
-    eor result, temp
+    ; register: 5   4   3   2   1   0
+    ; +---+---+---+---+---+---+---+---+
+    ; | 7 |   | 5 | 4 | 3 |   |   |   |
+    ; +---+---+---+---+---+---+---+---+
+    bst register, 7         ; Xor taps 7 and 5
+    bld input0, 0
+    bst register, 5
+    bld input1, 0
+    eor input0, input1
 
-    bst input, 4            ; Xor "Input" bit 4 with subresult
-    bld temp, 0
-    eor result, temp
+    bst register, 4         ; Xor tap 4 with subresult in input0
+    bld input1, 0
+    eor input0, input1
 
-    bst input, 3            ; Xor "Input" bit 3 with subresult
-    bld temp, 0
-    eor result, temp
+    bst register, 3         ; Xor tap 3 with subresult in input0
+    bld input1, 0
+    eor input0, input1
 
-    lsl input               ; Update new value in shift register
-    com result
-    bst result, 0
-    bld input, 0
+    com input0              ; Invert Xor
+    ror input0              ; Move bit0 to C flag
+    rol register            ; Shift register left with C flag
 
-    pop temp                ; Restore values from Stack end return
-    pop result
-    ret
+    pop input1              ; Restore used registers from Stack
+    pop input0
+    ret                     ; Return from subroutine
