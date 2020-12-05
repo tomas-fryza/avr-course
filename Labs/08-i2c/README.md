@@ -199,6 +199,9 @@ Complete the Timer/Counter1 overflow routine according to the following state di
 
    ![FSM for I2C scanner](Images/fsm_scan_i2c.png)
 
+> The figure above was created in [diagrams.net](https://app.diagrams.net/). It is an open source, online, desktop and container deployable diagramming software.
+>
+
 Form the UART output of your application to a hexadecimal table according to the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) and cannot be used for slave circuits.
 
    ```
