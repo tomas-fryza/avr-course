@@ -1,4 +1,4 @@
-# Lab 9: Combining C and assembly source files
+# Lab 9: Combining C and assembly languages
 
 ### Learning objectives
 
