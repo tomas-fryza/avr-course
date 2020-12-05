@@ -22,14 +22,6 @@
 #include <stdlib.h>         // C library. Needed for conversion function
 #include "uart.h"           // Peter Fleury's UART library
 
-/* Variables ---------------------------------------------------------*/
-typedef enum {              // FSM declaration
-    STATE_IDLE = 1,
-    STATE_RAND4,
-    STATE_RAND8,
-    STATE_INFO
-} state_t;
-
 /* Function prototypes -----------------------------------------------*/
 extern uint8_t rand4_asm(uint8_t value);
 extern uint8_t rand8_asm(uint8_t value);
@@ -42,8 +34,9 @@ extern uint8_t rand8_asm(uint8_t value);
 int main(void)
 {
     // Set all pins from port B as output
-
+    DDRB = 0xff;
     // Set all pins from port B to low
+    PORTB = 0x00;
 
     // Initialize UART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
@@ -57,7 +50,7 @@ int main(void)
     sei();
 
     // Put strings to ringbuffer for transmitting via UART
-    uart_puts("\r\nLFSR-based pseudo-random generator:");
+    uart_puts("LFSR-based pseudo-random generator:\r\n");
 
     // Infinite loop
     while (1)
@@ -73,87 +66,40 @@ int main(void)
 /* Interrupt service routines ----------------------------------------*/
 /**
  * ISR starts when Timer/Counter1 overflows. Update Finite State Machine
- * and test generate 4- and 8-bit pseudo-random sequences.
+ * and generate 4- and 8-bit pseudo-random sequences.
  */
 ISR(TIMER1_OVF_vect)
 {
-    static state_t state = STATE_IDLE;  // Current state of the FSM
     // Type of LFSR structure (0 @ 4-bit, 1 @ 8-bit, 2 @ nothing)
-    static uint8_t lfsr_type = 0;
-    static uint8_t lfsr_value = 0;
+    static uint8_t type = 0;
+    static uint8_t value = 0;
     static uint8_t number_of_values = 0;
-    char uart_string[8] = "00000000";   // String for converting numbers by itoa()
+    // String for converting numbers by itoa()
+    char uart_string[8] = "00000000";
 
-    // FSM
-    switch (state)
+    // If TYPE is 0 then generate a 4-bit sequence
+    if (type == 0)
     {
-    // Select type of LFSR structure
-    case STATE_IDLE:
-        // If type is 0 then start 4-bit generator
-        if (lfsr_type == 0)
-        {
-            // Reset variables lfsr_value and number_of_values
-
-            // Move to RAND4 state
-            state = STATE_RAND4;
-        }
-        // If type is 1 then start 8-bit generator
-        else if (lfsr_type == 1)
-        {
-            // Reset variables lfsr_value and number_of_values
-
-            // Move to RAND4 state
-
-        }
-        // If type is 2 then do nothing
-        else
-            // Do nothing
-        break;
-
-    // Generate 4-bit LFSR sequence
-    case STATE_RAND4:
-        // Generate one LFSR value and move to INFO state
-        lfsr_value = rand4_asm(lfsr_value);
-        state = STATE_INFO;
-        break;
-
-    // Generate 8-bit LFSR sequence
-    case STATE_RAND8:
-        // Generate one LFSR value and move to INFO state
-        lfsr_value = rand8_asm(lfsr_value);
-        state = STATE_INFO;
-        break;
-
-    // Print information about LFSR values
-    case STATE_INFO:
         // Transmit LFSR value via UART in hexadecimal, binary, and decimal
 
         // Display LFSR value by LEDs
 
-        // If LFSR value is equal to 0 then print length info and move to IDLE
-        if (lfsr_value == 0)
+        // Generate one LFSR value
+        value = rand4_asm(value);
+
+        // Increment number of generated LFSR values
+        number_of_values++;
+
+        // If VALUE is equal to 0 then print length info and change LFSR type
+        if (value == 0)
         {
             uart_puts("Length of sequence: ");
             // Print length of generated sequence
 
-            // Change LFSR type and move to IDLE state
-            lfsr_type++;
-            state = STATE_IDLE;
+            // Change LFSR type and reset values
+            type++;
+            value = 0;
+            number_of_values = 0;
         }
-        else
-        {
-            // Increment number of generated LFSR values
-            number_of_values++;
-            if (lfsr_type == 0)
-                state = STATE_RAND4;
-            else
-                state = STATE_RAND8;
-        }
-        break;
-
-    // If something unexpected happens then move to IDLE
-    default:
-        state = STATE_IDLE;
-        break;
     }
 }
