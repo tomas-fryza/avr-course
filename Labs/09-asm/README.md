@@ -11,7 +11,7 @@ The purpose of the laboratory exercise is to ...(Linear Feedback Shift Register)
 
 TODO: LFSR values for 4-bit structure with Taps 3, 1
 
-   | **Idx** | **3** | **2** | **1** | **0** | **3 xnor 1** |
+   | **Index** | **3** | **2** | **1** | **0** | **3 xnor 1** |
    | :-: | :-: | :-: | :-: | :-: | :-: |
    | 0 | 0 | 0 | 0 | 0 | 1 |
    | 1 | 0 | 0 | 0 | 1 | 1 |
@@ -141,7 +141,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 2. LFSR generator. Submit:
    * Table with 4-bit pseudo random sequences,
-   * Conversion of your selected instructions into machine code, including a documented procedure.
+   * Conversion process of your selected instructions into machine code.
 
 3. Burst generator. Submit:
    * Listing of assembly function,
