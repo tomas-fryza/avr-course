@@ -111,7 +111,7 @@ For each instruction from `rand4_asm` function, determine the number of iteratio
 
 Create a new project `09-asm_burst` and copy needed files from previous project(s).
 
-In assembly, program a function `extern void burst_asm(uint8_t number)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Use logical analyzer, verify the pulses' width, and calculate the CPU frequency of target ATmega328P.
+In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use logical analyzer, verify the pulses' width.
 
 
 ## Synchronize repositories
@@ -139,12 +139,14 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 1. Preparation tasks (done before the lab at home). Submit:
    * Both tables with LFSR values and instructions.
 
-2. LFSR generator. Submit:
+2. 4-bit LFSR generator. Submit:
    * Table with 4-bit pseudo random sequences,
+   * Listing of C function for 4-bit LFSR generator,
    * Conversion process of your selected instructions into machine code.
 
 3. Burst generator. Submit:
    * Listing of assembly function,
+   * Listing of C function,
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
