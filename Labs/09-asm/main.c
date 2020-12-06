@@ -23,8 +23,8 @@
 #include "uart.h"           // Peter Fleury's UART library
 
 /* Function prototypes -----------------------------------------------*/
-extern uint8_t rand4_asm(uint8_t value);
-extern uint8_t rand8_asm(uint8_t value);
+uint8_t rand4_asm(uint8_t value);
+uint8_t rand8_asm(uint8_t value);
 
 /* Function definitions ----------------------------------------------*/
 /**
