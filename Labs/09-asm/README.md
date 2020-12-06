@@ -89,7 +89,11 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 ### All versions
 
-Set Timer/Counter1 overflow, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client or Serial monitor. Explore the LFSR algorithm within `rand4_asm` function. Verify which feedback taps generate a maximum length LFSR sequence for 4-structure.
+Set Timer/Counter1 overflow, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client or Serial monitor. (In SimulIDE, also display sequences using LEDs.) 
+
+![LFSR 4-bit generator](Images/screenshot_simulide_asm_lfsr4.png)
+
+Explore the LFSR algorithm within `rand4_asm` function. Verify which feedback taps generate a maximum length LFSR sequence for 4-structure.
 
    | **Taps** | **4-bit LFSR sequence**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Length** |
    | :-: | :-- | :-: |
@@ -106,12 +110,21 @@ Use AVR® Instruction Set Manual, convert one instruction from assembly to machi
 
 For each instruction from `rand4_asm` function, determine the number of iterations and use the CPU cycles values to calculate the total duration of this function.
 
+In the `main.c` file, program the function `uint8_t rand4_c(uint8_t value)` in C, which generates a 4-bit LFSR sequence with a maximum length. In the `.lss` file compare both functions, in assembly and your in C. What is the duration of both functions in CPU cycles?
 
-## Part 4: Variable-length burst generator
+   | **Function** | **Number of instructions** | **Total number of CPU cycles** |
+   | :-- | :-: | :-: |
+   | `rand4_asm` | | |
+   | `rand4_c` | | |
 
-Create a new project `09-asm_burst` and copy needed files from previous project(s).
 
-In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use logical analyzer, verify the pulses' width.
+## Part 4: Sum of the products (SoP)
+
+Create a new project `09-asm_sop` and copy needed files from previous project(s).
+
+In assembly, program the `uint8_t sop_asm(*uint8_t a, *uint8_t b, uint8_t length)` function to calculate the sum of the products of two integer vectors `a` and `b`, which have the same number of elements `length`. Transmit the SoP result via UART. For simplicity, consider only 8-bit sum and multiplication operations.
+
+Write the same function `uint8_t sop_c(*uint8_t a, *uint8_t b, uint8_t length)` in C language and compare the duration of both functions using the file `.lss`.
 
 
 ## Synchronize repositories
@@ -121,17 +134,22 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 ## Experiments on your own
 
-1. Verify that assembly function `rand8_asm` is able to generate an 8-bit sequence of maximum length for taps 7, 5, 4, 3.
+### Version: Real hardware
 
-2. In assembly, program a function to calculate the sum of product of two integer vectors and transmit the result via UART. For simplicity, consider only 8-bit sum and multiplication operations.
+1. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
 
-3. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence? 
+2. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: C2, D2, E2, F2, G2, and A2.
 
-4. In assembly, program a function to find a maximum value of input array. Transmit the result via UART.
 
-5. In assembly, program your own delay function and let the parameter is duration in microseconds.
+### Version: Both SimulIDE and real hardware
 
-6. In assembly, program interrupt service routine for Timer1 overflow.
+3. Verify that assembly function `rand8_asm` is able to generate an 8-bit sequence of maximum length for taps 7, 5, 4, 3.
+
+4. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence? 
+
+5. In assembly, program a function to find a maximum value of input array. Transmit the result via UART.
+
+6. In assembly, program interrupt service routine for Timer/Counter1 overflow.
 
 
 ## Lab assignment
@@ -141,10 +159,11 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Git
 
 2. 4-bit LFSR generator. Submit:
    * Table with 4-bit pseudo random sequences,
+   * Conversion process of your selected instruction into machine code,
    * Listing of C function for 4-bit LFSR generator,
-   * Conversion process of your selected instructions into machine code.
+   * Comparison table with number od instructions and CPU cycles.
 
-3. Burst generator. Submit:
+3. Sum of product. Submit:
    * Listing of assembly function,
    * Listing of C function,
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
