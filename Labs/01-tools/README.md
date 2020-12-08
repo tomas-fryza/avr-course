@@ -28,16 +28,12 @@ If you have the option to use Arduino Uno board and logic analyzer, also downloa
 
 ### Windows and command-line toolchain
 
-Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio.
-
-Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
 
 ### Ubuntu-based Linux distributions
 
-Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain.
-
-Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
 
 ## Part 1: GitHub
