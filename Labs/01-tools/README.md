@@ -25,10 +25,6 @@ If you have the option to use Arduino Uno board and logic analyzer, also downloa
 * [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
 * [Saleae logic](https://www.saleae.com/downloads/).
 
-To make it easier to work with git, you can install a graphical client:
-* [GitKraken](https://www.gitkraken.com/) or
-* [GitHub Desktop](https://desktop.github.com/).
-
 
 ### Windows and command-line toolchain
 
@@ -36,18 +32,12 @@ Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-ele
 
 Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
-To make it easier to work with git, you can install a graphical client:
-* [GitKraken](https://www.gitkraken.com/) or
-* [GitHub Desktop](https://desktop.github.com/).
-
 
 ### Ubuntu-based Linux distributions
 
 Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain.
 
 Download and install [SimulIDE](https://www.simulide.com/p/home.html).
-
-To make it easier to work with git, you can install a graphical client [GitKraken](https://www.gitkraken.com/).
 
 
 ## Part 1: GitHub
