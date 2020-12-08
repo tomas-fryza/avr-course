@@ -268,7 +268,7 @@ $ git status
 1. Submit the GitHub link to your `Digital-electronics-2` repository.
 
 2. Blink example. Submit:
-    * Answers to questions: What is the meaning of `|`, `&`, `^`, `~`, `<<`, `>>` binary operators? Write a truth table and explain the use of operators with examples.
+    * Answer to question: What is the meaning of `|`, `&`, `^`, `~`, `<<`, `>>` binary operators? Write a truth table and explain the use of operators with examples.
 
 3. Morse code application. Submit:
     * Listing of C code (`main.c`),
