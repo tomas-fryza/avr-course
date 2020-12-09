@@ -62,7 +62,7 @@ Description of ultrasonic sensor HC-SR04 control. Parking assistant application 
 
 Function description R-2R ladder Digital to Analog Converter (DAC). Application of analog signal generator using at least 8-bit DAC; several preset signal types; display; 4x3 keypad control; (possibility of DTMF, Dual-Tone Multiple Frequencies tone generation); sending interesting information about the status of the application to the UART.
 
-*Popis funkce R-2R ladder Digital to Analog Converter (DAC). Aplikace generátoru analogového signálu využívající alespoň 8bitový DAC; několik přednastavených typů signálů; displej; ovládání pomocí klávesnice 4x3; (možnost generování tónu DTMF, Dual-Tone Multiple Frequencies); odesílání zajímavých informací o stavu aplikace na UART.*
+*Popis funkce R-2R ladder digitálně analogového převodníku (Digital to Analog Converter, DAC). Aplikace generátoru analogového signálu využívající alespoň 8bitový DAC; několik přednastavených typů signálů; displej; ovládání pomocí klávesnice 4x3; (volitelně možnost generování tónu DTMF, Dual-Tone Multiple Frequencies); odesílání zajímavých informací o stavu aplikace na UART.*
 
 
 ---
@@ -70,6 +70,13 @@ Function description R-2R ladder Digital to Analog Converter (DAC). Application 
 The README file has a complete description of the problem, circuit diagram, graphical representation of the application (flowchart or state diagram), screenshots of simulations, links to source files in the repository, discussion of results, list of references, animation or a link to your own demo video etc. The required structure of your README file is as follows.
 
 # Your project title
+
+### Team members
+
+Names of all project team members.
+
+[Link to your GitHub project folder](http://github.com/xxx)
+
 
 ### Project objectives
 
