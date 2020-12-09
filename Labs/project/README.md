@@ -4,7 +4,7 @@ The aim of the C project is an independent study of the assigned topic, design o
 
 Students work on the project from the 9th to the 13th week of the semester in the same groups as in labs (ie in pairs or individually). The source code for the AVR must be written in C and implemented on the ATmega328P microcontroller. Smaller functions can be written in AVR assembly language as well. Students may consult with their laboratory tutor and may not assign anyone else, including other students, academics, or PhD students. Students present their results during the last lab before Christmas.
 
-The deadline for submitting the project is the day before the presentation. Use BUT e-learning web page, export your project README file to PDF and submit it. The PDF must include the GitHub link to the project folder. The repository itself must contain:
+The deadline for submitting the project is the day before the presentation. Use [BUT e-learning](https://moodle.vutbr.cz/course/view.php?id=229631) web page, export your project README file to PDF and submit it. The PDF must include the GitHub link to the project folder. The repository itself must contain:
    * Project README file according to the required structure (You will export and submit this file). The README file can be written in English, Czech, or Slovak,
    * Complete project in Atmel Studio 7 or Command-line tool with AVR 8-bit Toolchain v3.62 for Windows or 3.6.2 for Linux. All source files must be written in English,
    * Libraries of all components that you have developed, including its documentation,
