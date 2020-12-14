@@ -2,14 +2,20 @@
 
 ### Learning objectives
 
-The purpose of the laboratory exercise is to ...(Linear Feedback Shift Register)...
+The purpose of the laboratory exercise is to understand the AVR instruction set and how the individual instructions are translated into machine code. The main goal is to learn to combine higher and lower programming language in one project.
 
 ![LFSR generator](Images/arduino_uno_lfsr.jpg)
 
 
 ## Preparation tasks (done before the lab at home)
 
-TODO: LFSR values for 4-bit structure with Taps 3, 1
+A linear-feedback shift register (LFSR) is a shift register whose input bit is a linear function of its previous state. The bit positions that affect the next state are called the taps. We can use this type of functions in many application such as counters, crypto, CRC generation, scrambling/descrambling algorithm, etc.
+
+There are two different (but equivalent) types of LFSR implementation the Fibonacci and the Galois. The LFSR can be implemented using XOR or XNOR primitive functions [[1]](https://surf-vhdl.com/how-to-implement-an-lfsr-in-vhdl/).
+
+A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible 2^N−1 states which look like pseudo-random values. If XOR gates are used, the illegal state is all zeros because this case will never change. A state with all ones is illegal when using an XNOR feedback, because the counter would remain locked-up in this state.
+
+Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [3, 1]. In the following table, complete the individual states in the registry if the initial value was 0000 [[2]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). How many states are generated in this way?
 
    | **Index** | **3** | **2** | **1** | **0** | **3 xnor 1** |
    | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -173,4 +179,6 @@ The deadline for submitting the task is the day before the next laboratory exerc
 
 ## References
 
-1. Microchip Atmel. [AVR® Instruction Set Manual](https://onlinedocs.microchip.com/)
+1. Surf-VHDL. [How to implement an LFSR in VHDL](https://surf-vhdl.com/how-to-implement-an-lfsr-in-vhdl/)
+2. Clive Maxfield. [Tutorial: Linear Feedback Shift Registers (LFSRs) – Part 1](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/)
+3. Microchip Atmel. [AVR® Instruction Set Manual](https://onlinedocs.microchip.com/)
