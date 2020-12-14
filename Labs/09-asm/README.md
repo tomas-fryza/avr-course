@@ -57,7 +57,17 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 
 ## Part 2: Assembly language
 
-TBD
+Any program is just a series of instructions, that fetch and manipulate data. In most applications, this means reading the inputs, checking their status, switching on the outputs accordingly, or transferring data to another device, such as a display or serial line.
+
+A number of simple binary instructions are used to perform these basic tasks, and each has an equivalent assembly language instruction that people can understand. Using assembly language allows you to understand much more about how the AVR works and how it is put together. It also produces very small and therefore fast code. The disadvantage is that you as a programmer have to do everything, including memory management and program structure, which can be very time consuming.
+
+To avoid this, higher-level languages are more often used to write programs for microcontrollers, expecially C but also Basic and Java. A high level means that each line of C (or other language) can be translated into many lines of assembly language.
+
+The compiler also deals with program structure and memory management, making writinh code much easier. Commonly used routines, such as delays, can also be stored in libraries and easily reused. In addition, the C compiler makes it easier to work with numbers larger than one byte.
+
+For time- or space-critical applications, it can often be desirable to combine C code (for easy maintenance) and assembly code (for maximal speed or minimal code size) together. To allow a program written in C to call a subroutine written in assembly language, you must be familiar with the register usage convention of the C compiler [[3]](https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2012/xg46_jy363/xg46_jy363/Reference/Mixing%20C%20and%20assembly;%20language%20programs.pdf).
+
+Parameters between C and assembly may be passed via registers and/or the stack. Using the register way, parameters are passed via R25:8 (first parameter in R25:24). If the parameters passed require more memory than is available in the registers R25:8, then the stack is used to pass additional parameters. Return values are placed in registers beginning at R25, ie. an 8-bit value gets returned in R24, an 16-bit value gets returned in R25:24, an 32-bit value gets returned in R25:22, and an 64-bit value gets returned in R25:18 [[4]](https://msoe.us/taylor/tutorial/ce2810/candasm).
 
 
 ## Part 3: LFSR-based pseudo random generator
@@ -182,3 +192,5 @@ The deadline for submitting the task is the day before the next laboratory exerc
 1. Surf-VHDL. [How to implement an LFSR in VHDL](https://surf-vhdl.com/how-to-implement-an-lfsr-in-vhdl/)
 2. Clive Maxfield. [Tutorial: Linear Feedback Shift Registers (LFSRs) – Part 1](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/)
 3. Microchip Atmel. [AVR® Instruction Set Manual](https://onlinedocs.microchip.com/)
+4. William Barnekow. [Mixing C and assembly language programs](https://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2012/xg46_jy363/xg46_jy363/Reference/Mixing%20C%20and%20assembly%20language%20programs.pdf)
+5. Chris Taylor. [Mixing C and Assembly](https://msoe.us/taylor/tutorial/ce2810/candasm)
