@@ -66,6 +66,7 @@
 
 **Name**   | **Version**                | **Result**      | **Note**
 ---------- | -------------------------- | --------------- | -----------
+Ubuntu     | 20.04.1 LTS Focal Fossa    | OK (2020-12-22) | Student M.S., VirtualBox
 Linux Mint | 18.3, Sylvia               | OK (2019-06-13) | Laptop
 Linux Mint | 18.2, Sonya                | OK (2019-05-17) | Lab SC 6.61
 Ubuntu     | 18.04.1 LTS, Bionic Beaver | OK (2019-05-15) | Office
