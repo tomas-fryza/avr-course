@@ -3,7 +3,7 @@
  * Blink a LED and use function from the delay library.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2020 Tomas Fryza
+ * Copyright (c) 2018-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -23,7 +23,7 @@
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU           // Preprocessor directive allows for conditional
                         // compilation. The #ifndef means "if not defined".
-#define F_CPU 16000000  // CPU frequency in Hz required for delay
+# define F_CPU 16000000 // CPU frequency in Hz required for delay
 #endif                  // The #ifndef directive must be closed by #endif
 
 /* Includes ----------------------------------------------------------*/
@@ -34,10 +34,11 @@
 #include <avr/io.h>     // AVR device-specific IO definitions
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Toggle one LED 
- * and use function from the delay library.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Toggle one LED and use delay library.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Set pin as output in Data Direction Register

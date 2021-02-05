@@ -4,7 +4,7 @@
 ;* Shift Register) pseudo-random generators.
 ;* ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
 ;*
-;* Copyright (c) 2017-2020 Tomas Fryza
+;* Copyright (c) 2017-2021 Tomas Fryza
 ;* Dept. of Radio Electronics, Brno University of Technology, Czechia
 ;* This work is licensed under the terms of the MIT license.
 ;*
@@ -24,9 +24,13 @@
 #define input1      r17
 
 ;* Function definitions ------------------------------------------------
-;* LFSR-based 4-bit pseudo-random generator. Taps are equal to 3, 1.
-;* Input:  r24 - Current value of shift register
-;* Return: r24 - New value of shift register
+;**********************************************************************
+;* Function: rand4_asm
+;* Purpose:  LFSR-based 4-bit pseudo-random generator. Taps are equal 
+;*           to 3, 1.
+;* Input:    r24 - Current value of shift register
+;* Return:   r24 - New value of shift register
+;**********************************************************************/
 .global rand4_asm
 rand4_asm:
     push input0             ; Save used registers on Stack
@@ -70,10 +74,13 @@ rand4_asm:
     pop input0
     ret                     ; Return from subroutine
 
-;*----------------------------------------------------------------------
-;* LFSR-based 8-bit pseudo-random generator. Taps are equal to 7, 5, 4, 3.
-;* Input:  r24 - Current value of shift register
-;* Return: r24 - New value of shift register
+;**********************************************************************
+;* Function: rand8_asm
+;* Purpose:  LFSR-based 8-bit pseudo-random generator. Taps are equal 
+;*           to 7, 5, 4, 3.
+;* Input:    r24 - Current value of shift register
+;* Return:   r24 - New value of shift register
+;**********************************************************************/
 .global rand8_asm
 rand8_asm:
     push input0             ; Save used registers on Stack

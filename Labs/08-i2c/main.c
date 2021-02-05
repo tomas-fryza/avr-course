@@ -5,7 +5,7 @@
  * used.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2020 Tomas Fryza
+ * Copyright (c) 2017-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -32,11 +32,12 @@ typedef enum {              // FSM declaration
 } state_t;
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Use Timer/Counter1
- * and send I2C (TWI) address every 33 ms. Send information about 
- * scanning process to UART.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Use Timer/Counter1 and send I2C (TWI) address every 33 ms.
+ *           Send information about scanning process to UART.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Initialize I2C (TWI)
@@ -68,10 +69,11 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter1 overflows. Update Finite State Machine
- * and test I2C slave addresses between 8 and 119.
- */
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Update Finite State Machine and test I2C slave addresses 
+ *           between 8 and 119.
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM

@@ -19,11 +19,12 @@
 #include "uart.h"           // Peter Fleury's UART library
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Use Timer/Counter1
- * and start ADC conversion four times per second. Send value to LCD
- * and UART.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Use Timer/Counter1 and start ADC conversion four times 
+ *           per second. Send value to LCD and UART.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Initialize LCD display
@@ -68,21 +69,21 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter1 overflows. Use single conversion mode
- * and start conversion four times per second.
- */
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Use single conversion mode and start conversion four times
+ *           per second.
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     // Start ADC conversion
 
 }
 
-/* -------------------------------------------------------------------*/
-/**
- * ISR starts when ADC completes the conversion. Display value on LCD
- * and send it to UART.
- */
+/**********************************************************************
+ * Function: ADC complete interrupt
+ * Purpose:  Display value on LCD and send it to UART.
+ **********************************************************************/
 ISR(ADC_vect)
 {
     // WRITE YOUR CODE HERE

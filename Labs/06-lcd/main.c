@@ -3,7 +3,7 @@
  * Stopwatch with LCD display output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2020 Tomas Fryza
+ * Copyright (c) 2017-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -17,10 +17,12 @@
 #include <stdlib.h>         // C library. Needed for conversion function
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Update stopwatch
- * value on LCD display when 8-bit Timer/Counter2 overflows.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Update stopwatch value on LCD display when 8-bit 
+ *           Timer/Counter2 overflows.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Initialize LCD display
@@ -50,11 +52,11 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter2 overflows. Update the stopwatch on
- * LCD display every sixth overflow, ie approximately every 100 ms
- * (6 x 16 ms = 100 ms).
- */
+/**********************************************************************
+ * Function: Timer/Counter2 overflow interrupt
+ * Purpose:  Update the stopwatch on LCD display every sixth overflow,
+ *           ie approximately every 100 ms (6 x 16 ms = 100 ms).
+ **********************************************************************/
 ISR(TIMER2_OVF_vect)
 {
     static uint8_t number_of_overflows = 0;

@@ -4,7 +4,7 @@
  * use delay library any more.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2020 Tomas Fryza
+ * Copyright (c) 2018-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -23,11 +23,12 @@
 #include "timer.h"          // Timer library for AVR-GCC
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Toggle one LED
- * on the Multi-function shield using the internal 8- or 16-bit 
- * Timer/Counter.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Toggle one LED on the Multi-function shield using 
+             the internal 8- or 16-bit Timer/Counter.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Configuration of LED(s)
@@ -54,10 +55,10 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter1 overflows. Toggle D1 LED on 
- * Multi-function shield.
- */
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Toggle D1 LED on Multi-function shield.
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
 

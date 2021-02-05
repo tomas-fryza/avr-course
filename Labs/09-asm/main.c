@@ -4,7 +4,7 @@
  * pseudo-random generator in AVR assembly.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2020 Tomas Fryza
+ * Copyright (c) 2017-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -12,7 +12,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
-#define F_CPU 16000000
+# define F_CPU 16000000
 #endif
 
 /* Includes ----------------------------------------------------------*/
@@ -27,10 +27,12 @@ uint8_t rand4_asm(uint8_t value);
 uint8_t rand8_asm(uint8_t value);
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Use Timer/Counter1
- * and generate pseudo-random values using 4- and 8-bit LFSR structure.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Use Timer/Counter1 and generate pseudo-random values 
+ *           using 4- and 8-bit LFSR structure.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Set all pins from port B as output
@@ -64,10 +66,11 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter1 overflows. Update Finite State Machine
- * and generate 4- and 8-bit pseudo-random sequences.
- */
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Update Finite State Machine and generate 4- and 8-bit 
+             pseudo-random sequences.
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     // Type of LFSR structure (0 @ 4-bit, 1 @ 8-bit, 2 @ nothing)

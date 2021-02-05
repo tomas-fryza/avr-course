@@ -20,7 +20,7 @@
  * The library contains functions for controlling the seven-segment 
  * display (SSD) using two shift registers 74HC595.
  *
- * @copyright (c) 2019-2020 Tomas Fryza
+ * @copyright (c) 2019-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  */
@@ -46,8 +46,8 @@ void SEG_init(void);
 /**
  * @brief Display segments at one position of the SSD.
  * @param segments - Segments to be displayed (abcdefgDP, active low)
- * @param position - Position of the display where the segments is to 
- *                   be displayed (p3 p2 p1 p0 ...., active high)
+ * @param position - Position of the display where the segments are to 
+ *                   be displayed (p3 p2 p1 p0 xxxx, active high)
  * @note  Two shift registers are connected in series, ie 16 bits are 
  *        transmitted.
  */

@@ -3,7 +3,7 @@
  * Decimal counter with 7-segment output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2020 Tomas Fryza
+ * Copyright (c) 2018-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -16,11 +16,12 @@
 #include "segment.h"        // Seven-segment display library for AVR-GCC
 
 /* Function definitions ----------------------------------------------*/
-/**
- * Main function where the program execution begins. Display decimal 
- * counter values on SSD (Seven-segment display) when 16-bit 
- * Timer/Counter1 overflows.
- */
+/**********************************************************************
+ * Function: Main function where the program execution begins
+ * Purpose:  Display decimal counter values on SSD (Seven-segment 
+ *           display) when 16-bit Timer/Counter1 overflows.
+ * Returns:  none
+ **********************************************************************/
 int main(void)
 {
     // Configure SSD signals
@@ -48,10 +49,10 @@ int main(void)
 }
 
 /* Interrupt service routines ----------------------------------------*/
-/**
- * ISR starts when Timer/Counter1 overflows. Increment decimal counter
- * value and display it on SSD.
- */
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Increment decimal counter value and display it on SSD.
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
 
