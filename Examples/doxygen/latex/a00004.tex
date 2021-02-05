@@ -1,0 +1,41 @@
+\hypertarget{a00004}{}\subsection{twi.\+h File Reference}
+\label{a00004}\index{twi.\+h@{twi.\+h}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\\*
+\subsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00007_ga43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}~16000000
+\begin{DoxyCompactList}\small\item\em C\+PU frequency in Hz required for delay. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga762c164f4acd04d3ce3627fe73e7c018}{T\+W\+I\+\_\+\+P\+O\+RT}~P\+O\+R\+TC
+\begin{DoxyCompactList}\small\item\em Port of T\+WI hardware unit. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga3f14ed8491293d0dda1372cceaa39851}{T\+W\+I\+\_\+\+S\+D\+A\+\_\+\+P\+IN}~4
+\begin{DoxyCompactList}\small\item\em S\+DA pin of T\+WI hardware unit. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_gac0ad8b33f1be48e211f1eeae2dd65cee}{T\+W\+I\+\_\+\+S\+C\+L\+\_\+\+P\+IN}~5
+\begin{DoxyCompactList}\small\item\em S\+CL pin of T\+WI hardware unit. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga7a1c522bed64982971384489ee477bd3}{F\+\_\+\+S\+CL}~50000
+\begin{DoxyCompactList}\small\item\em T\+WI bit rate. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga801c158406ca2334b446e442a2debe37}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+R\+A\+T\+E\+\_\+\+R\+EG}~((\hyperlink{a00007_ga43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}/\hyperlink{a00007_ga7a1c522bed64982971384489ee477bd3}{F\+\_\+\+S\+CL} -\/ 16) / 2)
+\begin{DoxyCompactList}\small\item\em T\+WI bit rate register value. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_gaaf9a8abccd811954f9cc316f2b2f87b3}{T\+W\+I\+\_\+\+R\+E\+AD}~1
+\begin{DoxyCompactList}\small\item\em Data direction for reading from T\+WI device. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga3b68e8e777b71520f9dbfac733774d5f}{T\+W\+I\+\_\+\+W\+R\+I\+TE}~0
+\begin{DoxyCompactList}\small\item\em Data direction for writing to T\+WI device. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga6c0346728feb274834cad94daca316ee}{D\+DR}(\+\_\+x)~($\ast$(\&\+\_\+x -\/ 1))
+\begin{DoxyCompactList}\small\item\em Define address of Data Direction Register of port \+\_\+x. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga740f9eb9c9f9e33500ee61ec53945f6a}{P\+IN}(\+\_\+x)~($\ast$(\&\+\_\+x -\/ 2))
+\begin{DoxyCompactList}\small\item\em Define address of input register of port \+\_\+x. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00007_ga16f0e6b2fa5a26eadbf4086ab6d54467}{twi\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initialize T\+WI, enable internal pull-\/ups, set S\+CL frequency. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{a00007_ga36b3c950a1804f75057a870afdf81d55}{twi\+\_\+start} (uint8\+\_\+t slave\+\_\+address)
+\begin{DoxyCompactList}\small\item\em Start communication on T\+WI bus and send address of T\+WI slave. \end{DoxyCompactList}\item 
+void \hyperlink{a00007_gab45679e1a7b3b8f97b636d825e7d14f7}{twi\+\_\+write} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send one data byte to T\+WI slave device. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{a00007_ga7a2cd23dea30ee2c99c1ccffb3402d79}{twi\+\_\+read\+\_\+ack} (void)
+\begin{DoxyCompactList}\small\item\em Read one byte from T\+WI slave device and acknowledge it by A\+CK. \end{DoxyCompactList}\item 
+uint8\+\_\+t \hyperlink{a00007_gaa21e972557bab9a799720874660cf152}{twi\+\_\+read\+\_\+nack} (void)
+\begin{DoxyCompactList}\small\item\em Read one byte from T\+WI slave device and acknowledge it by N\+A\+CK. \end{DoxyCompactList}\item 
+void \hyperlink{a00007_gacf52d6c93df110dee6d402b389e5042e}{twi\+\_\+stop} (void)
+\begin{DoxyCompactList}\small\item\em Generates stop condition on T\+WI bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
