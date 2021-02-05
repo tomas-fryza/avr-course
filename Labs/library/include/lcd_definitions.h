@@ -8,7 +8,7 @@
  * "lcd.h" (see Peter Fleury's LCD library for HD44780 based LCDs).
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2020 Tomas Fryza
+ * Copyright (c) 2019-2021 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -16,25 +16,37 @@
 
 /* Defines -----------------------------------------------------------*/
 /**
- * @brief Number of visible lines and characters per line of the 
- *        display.
+ * @name  Definitions for Display Size
+ * Number of visible lines and characters per line of the display.
+ *
+ * @note All definitions added to the file lcd_definitions.h will 
+ * override the default definitions from lcd.h. Add -D_LCD_DEFINITIONS_FILE
+ * to the CDEFS section in the Makefile.
  */
-#define LCD_LINES       2
-#define LCD_DISP_LENGTH 16
+#define LCD_LINES 2 /**< Number of visible lines of the display */
+#define LCD_DISP_LENGTH 16 /**< Visibles characters per line of the display */
 
 /**
- * @brief 4-bit mode definition of LCD signals on the Arduino Uno LCD
- *        Keypad Shield.
+ * @name Definitions for 4-bit IO mode
+ * 4-bit mode definition of LCD signals on the Arduino Uno LCD Keypad Shield.
+ *
+ * The four LCD data lines and the two control lines RS, E can be on the
+ * same port or on different ports. R/W pin is directly connected to GND
+ * on LCD Keypad Shield and cannot be controlled.
+ *
+ * @note All definitions added to the file lcd_definitions.h will 
+ * override the default definitions from lcd.h. Add -D_LCD_DEFINITIONS_FILE
+ * to the CDEFS section in the Makefile.
  */
 #define LCD_PORT        PORTD
 #define LCD_DATA0_PORT  LCD_PORT
 #define LCD_DATA1_PORT  LCD_PORT
 #define LCD_DATA2_PORT  LCD_PORT
 #define LCD_DATA3_PORT  LCD_PORT
-#define LCD_DATA0_PIN   PD4     // HD44780 pin D4
-#define LCD_DATA1_PIN   PD5     // HD44780 pin D5
-#define LCD_DATA2_PIN   PD6     // HD44780 pin D6
-#define LCD_DATA3_PIN   PD7     // HD44780 pin D7
+#define LCD_DATA0_PIN   PD4 /**< Pin for HD44780 data pin D4 */
+#define LCD_DATA1_PIN   PD5 /**< Pin for HD44780 data pin D5 */
+#define LCD_DATA2_PIN   PD6 /**< Pin for HD44780 data pin D6 */
+#define LCD_DATA3_PIN   PD7 /**< Pin for HD44780 data pin D7 */
 #define LCD_RS_PORT     PORTB
 #define LCD_RS_PIN      PB0
 #define LCD_E_PORT      PORTB
