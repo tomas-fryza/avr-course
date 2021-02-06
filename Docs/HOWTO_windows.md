@@ -10,15 +10,15 @@
 
     Add `C:\MinGW\bin` to your **Path** environment variable: **This PC > Properties > Advanced system settings > Environment Variables...**
 
-4. Download the latest version of Avrdude, such as [avrdude-6.3-mingw32.zip](http://download.savannah.gnu.org/releases/avrdude/) and extract **avrdude.conf** and **avrdude.exe** files to `C:\Appz\Avr` (Do NOT use any space in filepath). Copy [libusb0.dll](libusb0.dll) dynamic link library to `C:\Appz\Avr`. You can find the dll as part of Arduino IDE as well.
+4. Download the latest version of Avrdude, such as [avrdude-6.3-mingw32.zip](http://download.savannah.gnu.org/releases/avrdude/) and extract **avrdude.conf** and **avrdude.exe** files to `C:\Appz\Avr` (Do NOT use any spaces in the file path). Copy [libusb0.dll](libusb0.dll) dynamic link library to `C:\Appz\Avr`. You can find the dll as part of Arduino IDE as well.
 
 5. Download and install [PuTTy](https://www.putty.org/) client for serial communication between Arduino Uno board and your computer.
 
 6. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
-7. Download the latest toolchain [AVR 8-bit Toolchain v3.62 - Windows](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
+7. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
-8. Download and extract `Examples` folder from [this repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
+8. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
 9. Start Visual Studio Code source code editor, open template folder, in `Examples/Makefile.in` file enable and/or modify Windows parameters according to your local settings:
 
