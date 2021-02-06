@@ -10,7 +10,7 @@
 
 3. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
 
-4. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from [this repository](avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
+4. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
 
     ```bash
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz -C /opt/
