@@ -16,7 +16,7 @@
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz -C /opt/
     ```
 
-5. Download and extract `Examples` folder from [this repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
+5. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
 6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in` file enable and/or modify Linux parameters according to your local settings:
 
