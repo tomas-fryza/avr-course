@@ -1,0 +1,324 @@
+\hypertarget{a00016}{}\doxysubsection{U\+A\+RT Library $<$uart.\+h$>$}
+\label{a00016}\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+
+
+Interrupt U\+A\+RT library using the built-\/in U\+A\+RT with transmit and receive circular buffers.  
+
+
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00016_ga367ff7b5de225ed936a63239ad4adb0b}{U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT}}(baud\+Rate,  xtal\+Cpu)~(((xtal\+Cpu) + 8UL $\ast$ (baud\+Rate)) / (16UL $\ast$ (baud\+Rate)) -\/ 1UL)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT Baudrate Expression. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00016_ga1a02d45130520cb651ab313e69039382}{U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED}}(baud\+Rate,  xtal\+Cpu)~( ((((xtal\+Cpu) + 4UL $\ast$ (baud\+Rate)) / (8UL $\ast$ (baud\+Rate)) -\/ 1UL)) $\vert$ 0x8000)
+\begin{DoxyCompactList}\small\item\em U\+A\+RT Baudrate Expression for A\+Tmega double speed mode. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00016_ga5bdd6772c246436bb14377095de79b31}{U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~32
+\begin{DoxyCompactList}\small\item\em Size of the circular receive buffer, must be power of 2. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{a00016_ga05f5d709605c6317c97e4974bec3402a}{U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~32
+\begin{DoxyCompactList}\small\item\em Size of the circular transmit buffer, must be power of 2. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_gabcdb1041d763560cd8f8e722370dfd37}\label{a00016_gabcdb1041d763560cd8f8e722370dfd37}} 
+\#define \mbox{\hyperlink{a00016_gabcdb1041d763560cd8f8e722370dfd37}{U\+A\+R\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+E\+R\+R\+OR}}~0x1000
+\begin{DoxyCompactList}\small\item\em Framing Error by U\+A\+RT ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_ga3183177e3613d8785d8cc8516931beb6}\label{a00016_ga3183177e3613d8785d8cc8516931beb6}} 
+\#define \mbox{\hyperlink{a00016_ga3183177e3613d8785d8cc8516931beb6}{U\+A\+R\+T\+\_\+\+O\+V\+E\+R\+R\+U\+N\+\_\+\+E\+R\+R\+OR}}~0x0800
+\begin{DoxyCompactList}\small\item\em Overrun condition by U\+A\+RT ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_ga946e3d317937e003d2057bf19e96dd1d}\label{a00016_ga946e3d317937e003d2057bf19e96dd1d}} 
+\#define \mbox{\hyperlink{a00016_ga946e3d317937e003d2057bf19e96dd1d}{U\+A\+R\+T\+\_\+\+P\+A\+R\+I\+T\+Y\+\_\+\+E\+R\+R\+OR}}~0x0400
+\begin{DoxyCompactList}\small\item\em Parity Error by U\+A\+RT ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_ga94758f3dad6864703b7417d3e40f11df}\label{a00016_ga94758f3dad6864703b7417d3e40f11df}} 
+\#define \mbox{\hyperlink{a00016_ga94758f3dad6864703b7417d3e40f11df}{U\+A\+R\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW}}~0x0200
+\begin{DoxyCompactList}\small\item\em receive ringbuffer overflow \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_ga77ba544d423ff42d400220a05303f268}\label{a00016_ga77ba544d423ff42d400220a05303f268}} 
+\#define \mbox{\hyperlink{a00016_ga77ba544d423ff42d400220a05303f268}{U\+A\+R\+T\+\_\+\+N\+O\+\_\+\+D\+A\+TA}}~0x0100
+\begin{DoxyCompactList}\small\item\em no receive data available ~\newline
+ \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_gae9e143569df2285379bc55f9f5595bf9}\label{a00016_gae9e143569df2285379bc55f9f5595bf9}} 
+\#define \mbox{\hyperlink{a00016_gae9e143569df2285379bc55f9f5595bf9}{uart\+\_\+puts\+\_\+P}}(\+\_\+\+\_\+s)~\mbox{\hyperlink{a00016_ga6d78b6744db6232f52b4616402036c2f}{uart\+\_\+puts\+\_\+p}}(P\+S\+TR(\+\_\+\+\_\+s))
+\begin{DoxyCompactList}\small\item\em Macro to automatically put a string constant into program memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{a00016_gaabd7a5b0c15611ee9ecb2873cc9ee87a}\label{a00016_gaabd7a5b0c15611ee9ecb2873cc9ee87a}} 
+\#define \mbox{\hyperlink{a00016_gaabd7a5b0c15611ee9ecb2873cc9ee87a}{uart1\+\_\+puts\+\_\+P}}(\+\_\+\+\_\+s)~\mbox{\hyperlink{a00016_ga1e8074d0a2d5922601c5db2f9777ba79}{uart1\+\_\+puts\+\_\+p}}(P\+S\+TR(\+\_\+\+\_\+s))
+\begin{DoxyCompactList}\small\item\em Macro to automatically put a string constant into program memory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{a00016_gac19a76bb7d446125734a67f9f4b68991}{uart\+\_\+init}} (unsigned int baudrate)
+\begin{DoxyCompactList}\small\item\em Initialize U\+A\+RT and set baudrate. \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{a00016_gaefaab30a8338ec46a6be35b99b1b4f09}{uart\+\_\+getc}} (void)
+\begin{DoxyCompactList}\small\item\em Get received byte from ringbuffer. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_gad975221bc08b901e4c7ad69f9c9a97e2}{uart\+\_\+putc}} (unsigned char data)
+\begin{DoxyCompactList}\small\item\em Put byte to ringbuffer for transmitting via U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_gae52facc0a56086a365bb0018160d8d71}{uart\+\_\+puts}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Put string to ringbuffer for transmitting via U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_ga6d78b6744db6232f52b4616402036c2f}{uart\+\_\+puts\+\_\+p}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Put string from program memory to ringbuffer for transmitting via U\+A\+RT. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_ga4db697cb5469fd70e794fa7df73a6d6a}{uart1\+\_\+init}} (unsigned int baudrate)
+\begin{DoxyCompactList}\small\item\em Initialize U\+S\+A\+R\+T1 (only available on selected A\+Tmegas) \end{DoxyCompactList}\item 
+unsigned int \mbox{\hyperlink{a00016_gaeb1405c641e5bc9b7224018f5e8d90de}{uart1\+\_\+getc}} (void)
+\begin{DoxyCompactList}\small\item\em Get received byte of U\+S\+A\+R\+T1 from ringbuffer. (only available on selected A\+Tmega) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_gab465f689d197fadfbacc374fc9411154}{uart1\+\_\+putc}} (unsigned char data)
+\begin{DoxyCompactList}\small\item\em Put byte to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_ga5568f8f3913b218fd4d0346af78831b2}{uart1\+\_\+puts}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Put string to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00016_ga1e8074d0a2d5922601c5db2f9777ba79}{uart1\+\_\+puts\+\_\+p}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Put string from program memory to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsubsection{Detailed Description}
+Interrupt U\+A\+RT library using the built-\/in U\+A\+RT with transmit and receive circular buffers. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00011}{uart.h}}>} }
+\end{DoxyCode}
+
+
+This library can be used to transmit and receive data through the built in U\+A\+RT.
+
+An interrupt is generated when the U\+A\+RT has finished transmitting or receiving a byte. The interrupt handling routines use circular buffers for buffering received and transmitted data.
+
+The U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE and U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE constants define the size of the circular buffers in bytes. Note that these constants must be a power of 2. You may need to adapt these constants to your target and your application by adding C\+D\+E\+FS += -\/D\+U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE=nn -\/D\+U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE=nn to your Makefile.
+
+\begin{DoxyNote}{Note}
+Based on Atmel Application Note A\+V\+R306 
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Peter Fleury \href{mailto:pfleury@gmx.ch}{\texttt{ pfleury@gmx.\+ch}} \href{http://tinyurl.com/peterfleury}{\texttt{ http\+://tinyurl.\+com/peterfleury}} 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+(C) 2015 Peter Fleury, G\+NU General Public License Version 3 
+\end{DoxyCopyright}
+
+
+\doxysubsubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{a00016_ga367ff7b5de225ed936a63239ad4adb0b}\label{a00016_ga367ff7b5de225ed936a63239ad4adb0b}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!UART\_BAUD\_SELECT@{UART\_BAUD\_SELECT}}
+\index{UART\_BAUD\_SELECT@{UART\_BAUD\_SELECT}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{UART\_BAUD\_SELECT}{UART\_BAUD\_SELECT}}
+{\footnotesize\ttfamily \#define U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT(\begin{DoxyParamCaption}\item[{}]{baud\+Rate,  }\item[{}]{xtal\+Cpu }\end{DoxyParamCaption})~(((xtal\+Cpu) + 8UL $\ast$ (baud\+Rate)) / (16UL $\ast$ (baud\+Rate)) -\/ 1UL)}
+
+
+
+U\+A\+RT Baudrate Expression. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xtal\+Cpu} & system clock in Mhz, e.\+g. 4000000UL for 4Mhz \\
+\hline
+{\em baud\+Rate} & baudrate in bps, e.\+g. 1200, 2400, 9600 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{a00016_ga1a02d45130520cb651ab313e69039382}\label{a00016_ga1a02d45130520cb651ab313e69039382}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!UART\_BAUD\_SELECT\_DOUBLE\_SPEED@{UART\_BAUD\_SELECT\_DOUBLE\_SPEED}}
+\index{UART\_BAUD\_SELECT\_DOUBLE\_SPEED@{UART\_BAUD\_SELECT\_DOUBLE\_SPEED}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{UART\_BAUD\_SELECT\_DOUBLE\_SPEED}{UART\_BAUD\_SELECT\_DOUBLE\_SPEED}}
+{\footnotesize\ttfamily \#define U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED(\begin{DoxyParamCaption}\item[{}]{baud\+Rate,  }\item[{}]{xtal\+Cpu }\end{DoxyParamCaption})~( ((((xtal\+Cpu) + 4UL $\ast$ (baud\+Rate)) / (8UL $\ast$ (baud\+Rate)) -\/ 1UL)) $\vert$ 0x8000)}
+
+
+
+U\+A\+RT Baudrate Expression for A\+Tmega double speed mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xtal\+Cpu} & system clock in Mhz, e.\+g. 4000000UL for 4Mhz \\
+\hline
+{\em baud\+Rate} & baudrate in bps, e.\+g. 1200, 2400, 9600 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{a00016_ga5bdd6772c246436bb14377095de79b31}\label{a00016_ga5bdd6772c246436bb14377095de79b31}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!UART\_RX\_BUFFER\_SIZE@{UART\_RX\_BUFFER\_SIZE}}
+\index{UART\_RX\_BUFFER\_SIZE@{UART\_RX\_BUFFER\_SIZE}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{UART\_RX\_BUFFER\_SIZE}{UART\_RX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~32}
+
+
+
+Size of the circular receive buffer, must be power of 2. 
+
+You may need to adapt this constant to your target and your application by adding C\+D\+E\+FS += -\/D\+U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE=nn to your Makefile. \mbox{\Hypertarget{a00016_ga05f5d709605c6317c97e4974bec3402a}\label{a00016_ga05f5d709605c6317c97e4974bec3402a}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!UART\_TX\_BUFFER\_SIZE@{UART\_TX\_BUFFER\_SIZE}}
+\index{UART\_TX\_BUFFER\_SIZE@{UART\_TX\_BUFFER\_SIZE}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{UART\_TX\_BUFFER\_SIZE}{UART\_TX\_BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~32}
+
+
+
+Size of the circular transmit buffer, must be power of 2. 
+
+You may need to adapt this constant to your target and your application by adding C\+D\+E\+FS += -\/D\+U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE=nn to your Makefile. 
+
+\doxysubsubsection{Function Documentation}
+\mbox{\Hypertarget{a00016_gaeb1405c641e5bc9b7224018f5e8d90de}\label{a00016_gaeb1405c641e5bc9b7224018f5e8d90de}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart1\_getc@{uart1\_getc}}
+\index{uart1\_getc@{uart1\_getc}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart1\_getc()}{uart1\_getc()}}
+{\footnotesize\ttfamily unsigned int uart1\+\_\+getc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get received byte of U\+S\+A\+R\+T1 from ringbuffer. (only available on selected A\+Tmega) 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_gaefaab30a8338ec46a6be35b99b1b4f09}{uart\+\_\+getc}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{a00016_ga4db697cb5469fd70e794fa7df73a6d6a}\label{a00016_ga4db697cb5469fd70e794fa7df73a6d6a}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart1\_init@{uart1\_init}}
+\index{uart1\_init@{uart1\_init}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart1\_init()}{uart1\_init()}}
+{\footnotesize\ttfamily void uart1\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{baudrate }\end{DoxyParamCaption})}
+
+
+
+Initialize U\+S\+A\+R\+T1 (only available on selected A\+Tmegas) 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_gac19a76bb7d446125734a67f9f4b68991}{uart\+\_\+init}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{a00016_gab465f689d197fadfbacc374fc9411154}\label{a00016_gab465f689d197fadfbacc374fc9411154}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart1\_putc@{uart1\_putc}}
+\index{uart1\_putc@{uart1\_putc}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart1\_putc()}{uart1\_putc()}}
+{\footnotesize\ttfamily void uart1\+\_\+putc (\begin{DoxyParamCaption}\item[{unsigned char}]{data }\end{DoxyParamCaption})}
+
+
+
+Put byte to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_gad975221bc08b901e4c7ad69f9c9a97e2}{uart\+\_\+putc}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{a00016_ga5568f8f3913b218fd4d0346af78831b2}\label{a00016_ga5568f8f3913b218fd4d0346af78831b2}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart1\_puts@{uart1\_puts}}
+\index{uart1\_puts@{uart1\_puts}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart1\_puts()}{uart1\_puts()}}
+{\footnotesize\ttfamily void uart1\+\_\+puts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Put string to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_gae52facc0a56086a365bb0018160d8d71}{uart\+\_\+puts}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{a00016_ga1e8074d0a2d5922601c5db2f9777ba79}\label{a00016_ga1e8074d0a2d5922601c5db2f9777ba79}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart1\_puts\_p@{uart1\_puts\_p}}
+\index{uart1\_puts\_p@{uart1\_puts\_p}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart1\_puts\_p()}{uart1\_puts\_p()}}
+{\footnotesize\ttfamily void uart1\+\_\+puts\+\_\+p (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Put string from program memory to ringbuffer for transmitting via U\+S\+A\+R\+T1 (only available on selected A\+Tmega) 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_ga6d78b6744db6232f52b4616402036c2f}{uart\+\_\+puts\+\_\+p}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{a00016_gaefaab30a8338ec46a6be35b99b1b4f09}\label{a00016_gaefaab30a8338ec46a6be35b99b1b4f09}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart\_getc@{uart\_getc}}
+\index{uart\_getc@{uart\_getc}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart\_getc()}{uart\_getc()}}
+{\footnotesize\ttfamily unsigned int uart\+\_\+getc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get received byte from ringbuffer. 
+
+Returns in the lower byte the received character and in the higher byte the last receive error. U\+A\+R\+T\+\_\+\+N\+O\+\_\+\+D\+A\+TA is returned when no data is available.
+
+\begin{DoxyReturn}{Returns}
+lower byte\+: received byte from ringbuffer 
+
+higher byte\+: last receive status
+\begin{DoxyItemize}
+\item {\bfseries{0}} successfully received data from U\+A\+RT
+\item {\bfseries{U\+A\+R\+T\+\_\+\+N\+O\+\_\+\+D\+A\+TA}} ~\newline
+no receive data available
+\item {\bfseries{U\+A\+R\+T\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+O\+V\+E\+R\+F\+L\+OW}} ~\newline
+Receive ringbuffer overflow. We are not reading the receive buffer fast enough, one or more received character have been dropped
+\item {\bfseries{U\+A\+R\+T\+\_\+\+O\+V\+E\+R\+R\+U\+N\+\_\+\+E\+R\+R\+OR}} ~\newline
+Overrun condition by U\+A\+RT. A character already present in the U\+A\+RT U\+DR register was not read by the interrupt handler before the next character arrived, one or more received characters have been dropped.
+\item {\bfseries{U\+A\+R\+T\+\_\+\+F\+R\+A\+M\+E\+\_\+\+E\+R\+R\+OR}} ~\newline
+Framing Error by U\+A\+RT 
+\end{DoxyItemize}
+\end{DoxyReturn}
+\mbox{\Hypertarget{a00016_gac19a76bb7d446125734a67f9f4b68991}\label{a00016_gac19a76bb7d446125734a67f9f4b68991}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart\_init@{uart\_init}}
+\index{uart\_init@{uart\_init}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart\_init()}{uart\_init()}}
+{\footnotesize\ttfamily void uart\+\_\+init (\begin{DoxyParamCaption}\item[{unsigned int}]{baudrate }\end{DoxyParamCaption})}
+
+
+
+Initialize U\+A\+RT and set baudrate. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & Specify baudrate using macro \mbox{\hyperlink{a00016_ga367ff7b5de225ed936a63239ad4adb0b}{U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T()}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{a00016_gad975221bc08b901e4c7ad69f9c9a97e2}\label{a00016_gad975221bc08b901e4c7ad69f9c9a97e2}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart\_putc@{uart\_putc}}
+\index{uart\_putc@{uart\_putc}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart\_putc()}{uart\_putc()}}
+{\footnotesize\ttfamily void uart\+\_\+putc (\begin{DoxyParamCaption}\item[{unsigned char}]{data }\end{DoxyParamCaption})}
+
+
+
+Put byte to ringbuffer for transmitting via U\+A\+RT. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & byte to be transmitted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{a00016_gae52facc0a56086a365bb0018160d8d71}\label{a00016_gae52facc0a56086a365bb0018160d8d71}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart\_puts@{uart\_puts}}
+\index{uart\_puts@{uart\_puts}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart\_puts()}{uart\_puts()}}
+{\footnotesize\ttfamily void uart\+\_\+puts (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Put string to ringbuffer for transmitting via U\+A\+RT. 
+
+The string is buffered by the uart library in a circular buffer and one character at a time is transmitted to the U\+A\+RT using interrupts. Blocks if it can not write the whole string into the circular buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & string to be transmitted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{a00016_ga6d78b6744db6232f52b4616402036c2f}\label{a00016_ga6d78b6744db6232f52b4616402036c2f}} 
+\index{UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}!uart\_puts\_p@{uart\_puts\_p}}
+\index{uart\_puts\_p@{uart\_puts\_p}!UART Library $<$uart.h$>$@{UART Library $<$uart.h$>$}}
+\doxyparagraph{\texorpdfstring{uart\_puts\_p()}{uart\_puts\_p()}}
+{\footnotesize\ttfamily void uart\+\_\+puts\+\_\+p (\begin{DoxyParamCaption}\item[{const char $\ast$}]{s }\end{DoxyParamCaption})}
+
+
+
+Put string from program memory to ringbuffer for transmitting via U\+A\+RT. 
+
+The string is buffered by the uart library in a circular buffer and one character at a time is transmitted to the U\+A\+RT using interrupts. Blocks if it can not write the whole string into the circular buffer.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & program memory string to be transmitted \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{a00016_gae9e143569df2285379bc55f9f5595bf9}{uart\+\_\+puts\+\_\+P}} 
+\end{DoxySeeAlso}

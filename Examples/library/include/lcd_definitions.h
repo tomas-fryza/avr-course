@@ -23,8 +23,8 @@
  * override the default definitions from lcd.h. Add -D_LCD_DEFINITIONS_FILE
  * to the CDEFS section in the Makefile.
  */
-#define LCD_LINES 2 /**< Number of visible lines of the display */
-#define LCD_DISP_LENGTH 16 /**< Visibles characters per line of the display */
+#define LCD_LINES 2 /**< @brief Number of visible lines of the display */
+#define LCD_DISP_LENGTH 16 /**< @brief Visibles characters per line of the display */
 
 /**
  * @name Definitions for 4-bit IO mode
@@ -43,10 +43,10 @@
 #define LCD_DATA1_PORT  LCD_PORT
 #define LCD_DATA2_PORT  LCD_PORT
 #define LCD_DATA3_PORT  LCD_PORT
-#define LCD_DATA0_PIN   PD4 /**< Pin for HD44780 data pin D4 */
-#define LCD_DATA1_PIN   PD5 /**< Pin for HD44780 data pin D5 */
-#define LCD_DATA2_PIN   PD6 /**< Pin for HD44780 data pin D6 */
-#define LCD_DATA3_PIN   PD7 /**< Pin for HD44780 data pin D7 */
+#define LCD_DATA0_PIN   PD4 /**< @brief Pin for HD44780 data pin D4 */
+#define LCD_DATA1_PIN   PD5 /**< @brief Pin for HD44780 data pin D5 */
+#define LCD_DATA2_PIN   PD6 /**< @brief Pin for HD44780 data pin D6 */
+#define LCD_DATA3_PIN   PD7 /**< @brief Pin for HD44780 data pin D7 */
 #define LCD_RS_PORT     PORTB
 #define LCD_RS_PIN      PB0
 #define LCD_E_PORT      PORTB

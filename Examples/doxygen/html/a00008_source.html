@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.20"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>AVR libraries: lcd_definitions.h Source File</title>
+<title>Collection of AVR libraries: twi.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,10 +18,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AVR libraries
-   &#160;<span id="projectnumber">2020</span>
+   <div id="projectname">Collection of AVR libraries
+   &#160;<span id="projectnumber">2021</span>
    </div>
-   <div id="projectbrief">Libraries for the course Digital Electronics 2</div>
   </td>
  </tr>
  </tbody>
@@ -45,46 +44,68 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">lcd_definitions.h</div>  </div>
+<div class="title">twi.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef LCD_DEFINITIONS_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define LCD_DEFINITIONS_H</span></div>
+<a href="a00008.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef TWI_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define TWI_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">/***********************************************************************</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Adjusting the display settings. All definitions added to the file </span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * &quot;lcd_definitions.h&quot; will override the default definitions from </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * &quot;lcd.h&quot; (see Peter Fleury&#39;s LCD library for HD44780 based LCDs).</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * Copyright (c) 2019-2020 Tomas Fryza</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * Dept. of Radio Electronics, Brno University of Technology, Czechia</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * This work is licensed under the terms of the MIT license.</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> **********************************************************************/</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">/* Defines -----------------------------------------------------------*/</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define LCD_LINES       2</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define LCD_DISP_LENGTH 16</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#define LCD_PORT        PORTD</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#define LCD_DATA0_PORT  LCD_PORT</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define LCD_DATA1_PORT  LCD_PORT</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define LCD_DATA2_PORT  LCD_PORT</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define LCD_DATA3_PORT  LCD_PORT</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#define LCD_DATA0_PIN   PD4     // HD44780 pin D4</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#define LCD_DATA1_PIN   PD5     // HD44780 pin D5</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#define LCD_DATA2_PIN   PD6     // HD44780 pin D6</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#define LCD_DATA3_PIN   PD7     // HD44780 pin D7</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#define LCD_RS_PORT     PORTB</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#define LCD_RS_PIN      PB0</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#define LCD_E_PORT      PORTB</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#define LCD_E_PIN       PB1</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// R/W pin is connected to GND on LCD Keypad Shield</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * TWI library for AVR-GCC.</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * Copyright (c) 2018-2021 Tomas Fryza</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * Dept. of Radio Electronics, Brno University of Technology, Czechia</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * This work is licensed under the terms of the MIT license.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> **********************************************************************/</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">/* Includes ----------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor"> #include &lt;avr/io.h&gt;</span></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">/* Defines -----------------------------------------------------------*/</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#ifndef F_CPU</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="a00015.html#ga43bafb28b29491ec7f871319b5a3b2f8">   49</a></span>&#160;<span class="preprocessor"># define F_CPU 16000000 </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="a00015.html#ga7a1c522bed64982971384489ee477bd3">   51</a></span>&#160;<span class="preprocessor">#define F_SCL 50000 </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="a00015.html#ga801c158406ca2334b446e442a2debe37">   52</a></span>&#160;<span class="preprocessor">#define TWI_BIT_RATE_REG ((F_CPU/F_SCL - 16) / 2) </span></div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="a00015.html#ga762c164f4acd04d3ce3627fe73e7c018">   58</a></span>&#160;<span class="preprocessor">#define TWI_PORT PORTC </span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="a00015.html#ga3f14ed8491293d0dda1372cceaa39851">   59</a></span>&#160;<span class="preprocessor">#define TWI_SDA_PIN 4 </span></div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="a00015.html#gac0ad8b33f1be48e211f1eeae2dd65cee">   60</a></span>&#160;<span class="preprocessor">#define TWI_SCL_PIN 5 </span></div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="a00015.html#gaaf9a8abccd811954f9cc316f2b2f87b3">   66</a></span>&#160;<span class="preprocessor">#define TWI_READ 1 </span></div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="a00015.html#ga3b68e8e777b71520f9dbfac733774d5f">   67</a></span>&#160;<span class="preprocessor">#define TWI_WRITE 0 </span></div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="a00015.html#ga6c0346728feb274834cad94daca316ee">   69</a></span>&#160;<span class="preprocessor">#define DDR(_x) (*(&amp;_x - 1))</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="a00015.html#ga740f9eb9c9f9e33500ee61ec53945f6a">   71</a></span>&#160;<span class="preprocessor">#define PIN(_x) (*(&amp;_x - 2))</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">/* Function prototypes -----------------------------------------------*/</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00015.html#ga16f0e6b2fa5a26eadbf4086ab6d54467">   88</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00015.html#ga16f0e6b2fa5a26eadbf4086ab6d54467">twi_init</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="a00015.html#ga36b3c950a1804f75057a870afdf81d55">  100</a></span>&#160;uint8_t <a class="code" href="a00015.html#ga36b3c950a1804f75057a870afdf81d55">twi_start</a>(uint8_t slave_address);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="a00015.html#gab45679e1a7b3b8f97b636d825e7d14f7">  108</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00015.html#gab45679e1a7b3b8f97b636d825e7d14f7">twi_write</a>(uint8_t data);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="a00015.html#ga7a2cd23dea30ee2c99c1ccffb3402d79">  115</a></span>&#160;uint8_t <a class="code" href="a00015.html#ga7a2cd23dea30ee2c99c1ccffb3402d79">twi_read_ack</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="a00015.html#gaa21e972557bab9a799720874660cf152">  122</a></span>&#160;uint8_t <a class="code" href="a00015.html#gaa21e972557bab9a799720874660cf152">twi_read_nack</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="a00015.html#gacf52d6c93df110dee6d402b389e5042e">  129</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00015.html#gacf52d6c93df110dee6d402b389e5042e">twi_stop</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="aa00015_html_ga7a2cd23dea30ee2c99c1ccffb3402d79"><div class="ttname"><a href="a00015.html#ga7a2cd23dea30ee2c99c1ccffb3402d79">twi_read_ack</a></div><div class="ttdeci">uint8_t twi_read_ack(void)</div><div class="ttdoc">Read one byte from TWI slave device and acknowledge it by ACK.</div></div>
+<div class="ttc" id="aa00015_html_ga16f0e6b2fa5a26eadbf4086ab6d54467"><div class="ttname"><a href="a00015.html#ga16f0e6b2fa5a26eadbf4086ab6d54467">twi_init</a></div><div class="ttdeci">void twi_init(void)</div><div class="ttdoc">Initialize TWI, enable internal pull-ups, set SCL frequency.</div></div>
+<div class="ttc" id="aa00015_html_gaa21e972557bab9a799720874660cf152"><div class="ttname"><a href="a00015.html#gaa21e972557bab9a799720874660cf152">twi_read_nack</a></div><div class="ttdeci">uint8_t twi_read_nack(void)</div><div class="ttdoc">Read one byte from TWI slave device and acknowledge it by NACK.</div></div>
+<div class="ttc" id="aa00015_html_ga36b3c950a1804f75057a870afdf81d55"><div class="ttname"><a href="a00015.html#ga36b3c950a1804f75057a870afdf81d55">twi_start</a></div><div class="ttdeci">uint8_t twi_start(uint8_t slave_address)</div><div class="ttdoc">Start communication on TWI bus and send address of TWI slave.</div></div>
+<div class="ttc" id="aa00015_html_gab45679e1a7b3b8f97b636d825e7d14f7"><div class="ttname"><a href="a00015.html#gab45679e1a7b3b8f97b636d825e7d14f7">twi_write</a></div><div class="ttdeci">void twi_write(uint8_t data)</div><div class="ttdoc">Send one data byte to TWI slave device.</div></div>
+<div class="ttc" id="aa00015_html_gacf52d6c93df110dee6d402b389e5042e"><div class="ttname"><a href="a00015.html#gacf52d6c93df110dee6d402b389e5042e">twi_stop</a></div><div class="ttdeci">void twi_stop(void)</div><div class="ttdoc">Generates stop condition on TWI bus.</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20
