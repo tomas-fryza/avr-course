@@ -1,0 +1,171 @@
+\begin{theindex}
+
+  \item {L\+C\+D Definitions $<$lcd\+\_\+definitions.\+h$>$}, 
+		\hyperpage{10}
+  \item {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{2}
+    \subitem {L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}, \hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}, \hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}, \hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}, 
+		\hyperpage{6}
+    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}, 
+		\hyperpage{7}
+    \subitem {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}, 
+		\hyperpage{7}
+    \subitem {L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}, 
+		\hyperpage{7}
+    \subitem {lcd\+\_\+clrscr}, \hyperpage{7}
+    \subitem {lcd\+\_\+command}, \hyperpage{7}
+    \subitem {lcd\+\_\+data}, \hyperpage{7}
+    \subitem {lcd\+\_\+gotoxy}, \hyperpage{8}
+    \subitem {lcd\+\_\+home}, \hyperpage{8}
+    \subitem {lcd\+\_\+init}, \hyperpage{8}
+    \subitem {lcd\+\_\+putc}, \hyperpage{8}
+    \subitem {lcd\+\_\+puts}, \hyperpage{9}
+    \subitem {lcd\+\_\+puts\+\_\+p}, \hyperpage{9}
+  \item {L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{6}
+  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {lcd.\+h}, \hyperpage{20}
+  \item {lcd\+\_\+clrscr}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {lcd\+\_\+command}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {lcd\+\_\+data}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{7}
+  \item {lcd\+\_\+definitions.\+h}, \hyperpage{22}
+  \item {lcd\+\_\+gotoxy}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{8}
+  \item {lcd\+\_\+home}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{8}
+  \item {lcd\+\_\+init}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{8}
+  \item {lcd\+\_\+putc}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{8}
+  \item {lcd\+\_\+puts}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{9}
+  \item {lcd\+\_\+puts\+\_\+p}
+    \subitem {L\+C\+D library $<$lcd.\+h$>$}, \hyperpage{9}
+
+  \indexspace
+
+  \item {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{12}
+    \subitem {twi\+\_\+init}, \hyperpage{13}
+    \subitem {twi\+\_\+read\+\_\+ack}, \hyperpage{13}
+    \subitem {twi\+\_\+read\+\_\+nack}, \hyperpage{13}
+    \subitem {twi\+\_\+start}, \hyperpage{13}
+    \subitem {twi\+\_\+stop}, \hyperpage{14}
+    \subitem {twi\+\_\+write}, \hyperpage{14}
+  \item {twi.\+h}, \hyperpage{23}
+  \item {twi\+\_\+init}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{13}
+  \item {twi\+\_\+read\+\_\+ack}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{13}
+  \item {twi\+\_\+read\+\_\+nack}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{13}
+  \item {twi\+\_\+start}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{13}
+  \item {twi\+\_\+stop}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{14}
+  \item {twi\+\_\+write}
+    \subitem {T\+W\+I Library $<$twi.\+h$>$}, \hyperpage{14}
+
+  \indexspace
+
+  \item {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{15}
+    \subitem {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED}, 
+		\hyperpage{16}
+    \subitem {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT}, 
+		\hyperpage{16}
+    \subitem {U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
+		\hyperpage{17}
+    \subitem {U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}, 
+		\hyperpage{17}
+    \subitem {uart1\+\_\+getc}, \hyperpage{17}
+    \subitem {uart1\+\_\+init}, \hyperpage{17}
+    \subitem {uart1\+\_\+putc}, \hyperpage{17}
+    \subitem {uart1\+\_\+puts}, \hyperpage{17}
+    \subitem {uart1\+\_\+puts\+\_\+p}, \hyperpage{17}
+    \subitem {uart\+\_\+getc}, \hyperpage{18}
+    \subitem {uart\+\_\+init}, \hyperpage{18}
+    \subitem {uart\+\_\+putc}, \hyperpage{18}
+    \subitem {uart\+\_\+puts}, \hyperpage{19}
+    \subitem {uart\+\_\+puts\+\_\+p}, \hyperpage{19}
+  \item {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+C\+T\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+S\+P\+E\+ED}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{16}
+  \item {U\+A\+R\+T\+\_\+\+B\+A\+U\+D\+\_\+\+S\+E\+L\+E\+CT}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{16}
+  \item {U\+A\+R\+T\+\_\+\+R\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {U\+A\+R\+T\+\_\+\+T\+X\+\_\+\+B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart.\+h}, \hyperpage{24}
+  \item {uart1\+\_\+getc}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart1\+\_\+init}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart1\+\_\+putc}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart1\+\_\+puts}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart1\+\_\+puts\+\_\+p}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{17}
+  \item {uart\+\_\+getc}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
+  \item {uart\+\_\+init}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
+  \item {uart\+\_\+putc}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{18}
+  \item {uart\+\_\+puts}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
+  \item {uart\+\_\+puts\+\_\+p}
+    \subitem {U\+A\+R\+T Library $<$uart.\+h$>$}, \hyperpage{19}
+
+\end{theindex}

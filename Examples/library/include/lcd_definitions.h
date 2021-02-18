@@ -8,11 +8,29 @@
  * "lcd.h" (see Peter Fleury's LCD library for HD44780 based LCDs).
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2021 Tomas Fryza
+ * Copyright (c) 2019-2021 Tomas Fryza, Peter Fleury
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
  **********************************************************************/
+
+/**
+ * @file 
+ * @defgroup fryza_lcd LCD Definitions <lcd_definitions.h>
+ * @code #include "lcd_definitions.h" @endcode
+ *
+ * @brief Adjusting the display settings.
+ *
+ * All definitions added to the file "lcd_definitions.h" will override 
+ * the default definitions from "lcd.h" (see Peter Fleury's LCD library
+ * for HD44780 based LCDs).
+ *
+ * @author Tomas Fryza, Peter Fleury, Dept. of Radio Electronics,
+ *         Brno University of Technology, Czechia
+ * @copyright (c) 2019-2021 Tomas Fryza, Peter Fleury, This work is 
+ *                licensed under the terms of the MIT license
+ * @{
+ */
 
 /* Defines -----------------------------------------------------------*/
 /**
@@ -52,5 +70,7 @@
 #define LCD_E_PORT      PORTB
 #define LCD_E_PIN       PB1
 // R/W pin is connected to GND on LCD Keypad Shield
+
+/** @} */
 
 #endif

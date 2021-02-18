@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>AVR libraries: LCD library &lt;lcd.h&gt;</title>
+<title>Collection of AVR libraries: LCD library &lt;lcd.h&gt;</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -17,10 +17,9 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">AVR libraries
-   &#160;<span id="projectnumber">2020</span>
+   <div id="projectname">Collection of AVR libraries
+   &#160;<span id="projectnumber">2021</span>
    </div>
-   <div id="projectbrief">Libraries for the course Digital Electronics 2</div>
   </td>
  </tr>
  </tbody>
@@ -55,7 +54,7 @@ Definition for LCD controller type</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
 Definitions for Display Size</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrpcaec0cb1262819d89ffa7f25526cc869"></a>Change these definitions to adapt setting to your display</p>
-<p>These definitions can be defined in a separate include file <b><a class="el" href="a00003_source.html">lcd_definitions.h</a></b> instead modifying this file by adding -D_LCD_DEFINITIONS_FILE to the CDEFS section in the Makefile. All definitions added to the file <a class="el" href="a00003_source.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
+<p>These definitions can be defined in a separate include file <b><a class="el" href="a00003.html">lcd_definitions.h</a></b> instead modifying this file by adding -D_LCD_DEFINITIONS_FILE to the CDEFS section in the Makefile. All definitions added to the file <a class="el" href="a00003.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
 </td></tr>
 <tr class="memitem:gae59a728d9dee9f12c817b29d38746ed9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#gae59a728d9dee9f12c817b29d38746ed9">LCD_LINE_LENGTH</a>&#160;&#160;&#160;0x40</td></tr>
 <tr class="separator:gae59a728d9dee9f12c817b29d38746ed9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -75,7 +74,7 @@ Definitions for 4-bit IO mode</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp0d38ed8c5b4202f593f69f9003c1a16c"></a>The four LCD data lines and the three control lines RS, RW, E can be on the same port or on different ports. Change LCD_RS_PORT, LCD_RW_PORT, LCD_E_PORT if you want the control lines on different ports.</p>
 <p>Normally the four data lines should be mapped to bit 0..3 on one port, but it is possible to connect these data lines in different order or even on different ports by adapting the LCD_DATAx_PORT and LCD_DATAx_PIN definitions.</p>
 <p>Adjust these definitions to your target.<br />
-These definitions can be defined in a separate include file <b><a class="el" href="a00003_source.html">lcd_definitions.h</a></b> instead modifying this file by adding <b>-D_LCD_DEFINITIONS_FILE</b> to the <b>CDEFS</b> section in the Makefile. All definitions added to the file <a class="el" href="a00003_source.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
+These definitions can be defined in a separate include file <b><a class="el" href="a00003.html">lcd_definitions.h</a></b> instead modifying this file by adding <b>-D_LCD_DEFINITIONS_FILE</b> to the <b>CDEFS</b> section in the Makefile. All definitions added to the file <a class="el" href="a00003.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
 </td></tr>
 <tr class="memitem:ga659fcdf979f69bbd14f852f525f25e02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#ga659fcdf979f69bbd14f852f525f25e02">LCD_IO_MODE</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:ga659fcdf979f69bbd14f852f525f25e02"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -88,7 +87,7 @@ These definitions can be defined in a separate include file <b><a class="el" hre
 Definitions of delays</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p><a class="anchor" id="amgrp73324fc181df7d63636f86a5b76e74f2"></a>Used to calculate delay timers. Adapt the F_CPU define in the Makefile to the clock frequency in Hz of your target</p>
 <p>These delay times can be adjusted, if some displays require different delays.<br />
-These definitions can be defined in a separate include file <b><a class="el" href="a00003_source.html">lcd_definitions.h</a></b> instead modifying this file by adding <b>-D_LCD_DEFINITIONS_FILE</b> to the <b>CDEFS</b> section in the Makefile. All definitions added to the file <a class="el" href="a00003_source.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
+These definitions can be defined in a separate include file <b><a class="el" href="a00003.html">lcd_definitions.h</a></b> instead modifying this file by adding <b>-D_LCD_DEFINITIONS_FILE</b> to the <b>CDEFS</b> section in the Makefile. All definitions added to the file <a class="el" href="a00003.html">lcd_definitions.h</a> will override the default definitions from <a class="el" href="a00002.html">lcd.h</a> </p>
 </td></tr>
 <tr class="memitem:ga79ca3fe83448ab158a4c566bf292c260"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html#ga79ca3fe83448ab158a4c566bf292c260">LCD_DELAY_BOOTUP</a>&#160;&#160;&#160;16000</td></tr>
 <tr class="separator:ga79ca3fe83448ab158a4c566bf292c260"><td class="memSeparator" colspan="2">&#160;</td></tr>

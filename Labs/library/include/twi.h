@@ -34,12 +34,13 @@
  *         of Technology, Czechia
  * @copyright (c) 2018-2021 Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
+ * @{
  */
 
-/**@{*/
 
 /* Includes ----------------------------------------------------------*/
  #include <avr/io.h>
+
 
 /* Defines -----------------------------------------------------------*/
 /**
@@ -128,6 +129,6 @@ uint8_t twi_read_nack(void);
  */
 void twi_stop(void);
 
-/**@}*/
+/** @} */
 
 #endif

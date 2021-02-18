@@ -1,0 +1,60 @@
+\hypertarget{a00013}{}\subsection{Timer Library $<$timer.\+h$>$}
+\label{a00013}\index{Timer Library $<$timer.\+h$>$@{Timer Library $<$timer.\+h$>$}}
+
+
+Timer library for A\+V\+R-\/\+G\+CC.  
+
+
+\subsubsection*{Definitions of Timer/\+Counter1}
+\label{_amgrp446a33d1fb2676394cd3037c2ddc3759}%
+\begin{DoxyNote}{Note}
+F\+\_\+\+C\+PU = 16 M\+Hz 
+\end{DoxyNote}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00013_ga85dff9eee7b0f0cc8a8a1d13793742a3}{T\+I\+M1\+\_\+stop}()~T\+C\+C\+R1B \&= $\sim$((1$<$$<$C\+S12) $\vert$ (1$<$$<$C\+S11) $\vert$ (1$<$$<$C\+S10));\hypertarget{a00013_ga85dff9eee7b0f0cc8a8a1d13793742a3}{}\label{a00013_ga85dff9eee7b0f0cc8a8a1d13793742a3}
+
+\begin{DoxyCompactList}\small\item\em Stop timer, prescaler 000 -\/$>$ S\+T\+OP. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_ga1193ba83b972f64ffc89d54dd9cb3d88}{T\+I\+M1\+\_\+overflow\+\_\+4ms}()~T\+C\+C\+R1B \&= $\sim$((1$<$$<$C\+S12) $\vert$ (1$<$$<$C\+S11)); T\+C\+C\+R1B $\vert$= (1$<$$<$C\+S10);\hypertarget{a00013_ga1193ba83b972f64ffc89d54dd9cb3d88}{}\label{a00013_ga1193ba83b972f64ffc89d54dd9cb3d88}
+
+\begin{DoxyCompactList}\small\item\em Set overflow 4ms, prescaler 001 -\/$>$ 1. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_ga35693ced5c9f4a0b669ac24ceca8e69b}{T\+I\+M1\+\_\+overflow\+\_\+33ms}()~T\+C\+C\+R1B \&= $\sim$((1$<$$<$C\+S12) $\vert$ (1$<$$<$C\+S10)); T\+C\+C\+R1B $\vert$= (1$<$$<$C\+S11);\hypertarget{a00013_ga35693ced5c9f4a0b669ac24ceca8e69b}{}\label{a00013_ga35693ced5c9f4a0b669ac24ceca8e69b}
+
+\begin{DoxyCompactList}\small\item\em Set overflow 33ms, prescaler 010 -\/$>$ 8. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_ga77e94f0031880610c8fdbc9a0257ef09}{T\+I\+M1\+\_\+overflow\+\_\+262ms}()~T\+C\+C\+R1B \&= $\sim$(1$<$$<$C\+S12); T\+C\+C\+R1B $\vert$= (1$<$$<$C\+S11) $\vert$ (1$<$$<$C\+S10);\hypertarget{a00013_ga77e94f0031880610c8fdbc9a0257ef09}{}\label{a00013_ga77e94f0031880610c8fdbc9a0257ef09}
+
+\begin{DoxyCompactList}\small\item\em Set overflow 262ms, prescaler 011 -\/$>$ 64. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_ga36d54e146587c408a2ce92dfcd2c52c3}{T\+I\+M1\+\_\+overflow\+\_\+1s}()~T\+C\+C\+R1B \&= $\sim$((1$<$$<$C\+S11) $\vert$ (1$<$$<$C\+S10)); T\+C\+C\+R1B $\vert$= (1$<$$<$C\+S12);\hypertarget{a00013_ga36d54e146587c408a2ce92dfcd2c52c3}{}\label{a00013_ga36d54e146587c408a2ce92dfcd2c52c3}
+
+\begin{DoxyCompactList}\small\item\em Set overflow 1s, prescaler 100 -\/$>$ 256. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_gac1fab4593fb6fa4dd8239431180343f3}{T\+I\+M1\+\_\+overflow\+\_\+4s}()~T\+C\+C\+R1B \&= $\sim$(1$<$$<$C\+S11); T\+C\+C\+R1B $\vert$= (1$<$$<$C\+S12) $\vert$ (1$<$$<$C\+S10);\hypertarget{a00013_gac1fab4593fb6fa4dd8239431180343f3}{}\label{a00013_gac1fab4593fb6fa4dd8239431180343f3}
+
+\begin{DoxyCompactList}\small\item\em Set overflow 4s, prescaler // 101 -\/$>$ 1024. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_gad43aa0fc3eb8c3bd21ef2d4546130f05}{T\+I\+M1\+\_\+overflow\+\_\+interrupt\+\_\+enable}()~T\+I\+M\+S\+K1 $\vert$= (1$<$$<$T\+O\+I\+E1);\hypertarget{a00013_gad43aa0fc3eb8c3bd21ef2d4546130f05}{}\label{a00013_gad43aa0fc3eb8c3bd21ef2d4546130f05}
+
+\begin{DoxyCompactList}\small\item\em Enable overflow interrupt. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00013_ga650fbf1dbe4572e36196a71982dbd061}{T\+I\+M1\+\_\+overflow\+\_\+interrupt\+\_\+disable}()~T\+I\+M\+S\+K1 \&= $\sim$(1$<$$<$T\+O\+I\+E1);\hypertarget{a00013_ga650fbf1dbe4572e36196a71982dbd061}{}\label{a00013_ga650fbf1dbe4572e36196a71982dbd061}
+
+\begin{DoxyCompactList}\small\item\em Disable overflow interrupt. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Timer library for A\+V\+R-\/\+G\+CC. 
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{a00006}{timer.h}"} 
+\end{DoxyCode}
+
+
+The library contains macros for controlling the timer modules.
+
+\begin{DoxyNote}{Note}
+Based on Microchip Atmel A\+Tmega328P manual and no source file is needed for the library. 
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Tomas Fryza, Dept. of Radio Electronics, Brno University of Technology, Czechia 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+(c) 2019-\/2021 Tomas Fryza, This work is licensed under the terms of the M\+IT license 
+\end{DoxyCopyright}

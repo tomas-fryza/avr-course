@@ -1,0 +1,91 @@
+\hypertarget{a00012}{}\subsection{Seven-\/segment Library $<$segment.\+h$>$}
+\label{a00012}\index{Seven-\/segment Library $<$segment.\+h$>$@{Seven-\/segment Library $<$segment.\+h$>$}}
+
+
+Seven-\/segment display library for A\+V\+R-\/\+G\+CC.  
+
+
+\subsubsection*{Definition of S\+SD interface}
+\label{_amgrpdf5f6bef3d78097d2a76bc3ea614e2ec}%
+\begin{DoxyNote}{Note}
+Connection is based on Multi-\/function shield. 
+\end{DoxyNote}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries S\+E\+G\+M\+E\+N\+T\+\_\+\+L\+A\+T\+CH}~P\+D4\hypertarget{a00012_ga59be46ac20d02453c1374cc90a28b25e}{}\label{a00012_ga59be46ac20d02453c1374cc90a28b25e}
+
+\item 
+\#define {\bfseries S\+E\+G\+M\+E\+N\+T\+\_\+\+C\+LK}~P\+D7\hypertarget{a00012_ga6406c9d48869a0e3863971db22c25be3}{}\label{a00012_ga6406c9d48869a0e3863971db22c25be3}
+
+\item 
+\#define {\bfseries S\+E\+G\+M\+E\+N\+T\+\_\+\+D\+A\+TA}~P\+B0\hypertarget{a00012_ga962a093435b53a7b4ecf7312c7ceaf00}{}\label{a00012_ga962a093435b53a7b4ecf7312c7ceaf00}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00012_gacaabc905da11e7772ffa6a75e156964f}{S\+E\+G\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Configure S\+SD signals L\+A\+T\+CH, C\+LK, and D\+A\+TA as output. \end{DoxyCompactList}\item 
+void \hyperlink{a00012_gaf988da91cec04913e9d76e9089e9d4c4}{S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs} (uint8\+\_\+t segments, uint8\+\_\+t position)
+\begin{DoxyCompactList}\small\item\em Display segments at one position of the S\+SD. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Seven-\/segment display library for A\+V\+R-\/\+G\+CC. 
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{a00005}{segment.h}"} 
+\end{DoxyCode}
+
+
+The library contains functions for controlling the seven-\/segment display (S\+SD) using two shift registers 74\+H\+C595.
+
+\begin{DoxyAuthor}{Author}
+Tomas Fryza, Dept. of Radio Electronics, Brno University of Technology, Czechia 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+(c) 2019-\/2021 Tomas Fryza, This work is licensed under the terms of the M\+IT license 
+\end{DoxyCopyright}
+
+
+\subsubsection{Function Documentation}
+\index{Seven-\/segment Library $<$segment.\+h$>$@{Seven-\/segment Library $<$segment.\+h$>$}!S\+E\+G\+\_\+init@{S\+E\+G\+\_\+init}}
+\index{S\+E\+G\+\_\+init@{S\+E\+G\+\_\+init}!Seven-\/segment Library $<$segment.\+h$>$@{Seven-\/segment Library $<$segment.\+h$>$}}
+\paragraph[{\texorpdfstring{S\+E\+G\+\_\+init(void)}{SEG_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+E\+G\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{a00012_gacaabc905da11e7772ffa6a75e156964f}{}\label{a00012_gacaabc905da11e7772ffa6a75e156964f}
+
+
+Configure S\+SD signals L\+A\+T\+CH, C\+LK, and D\+A\+TA as output. 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{Seven-\/segment Library $<$segment.\+h$>$@{Seven-\/segment Library $<$segment.\+h$>$}!S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs@{S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs}}
+\index{S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs@{S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs}!Seven-\/segment Library $<$segment.\+h$>$@{Seven-\/segment Library $<$segment.\+h$>$}}
+\paragraph[{\texorpdfstring{S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs(uint8\+\_\+t segments, uint8\+\_\+t position)}{SEG_update_shift_regs(uint8_t segments, uint8_t position)}}]{\setlength{\rightskip}{0pt plus 5cm}void S\+E\+G\+\_\+update\+\_\+shift\+\_\+regs (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{segments, }
+\item[{uint8\+\_\+t}]{position}
+\end{DoxyParamCaption}
+)}\hypertarget{a00012_gaf988da91cec04913e9d76e9089e9d4c4}{}\label{a00012_gaf988da91cec04913e9d76e9089e9d4c4}
+
+
+Display segments at one position of the S\+SD. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em segments} & Segments to be displayed (abcdefg\+DP, active low) \\
+\hline
+{\em position} & Position of the display where the segments are to be displayed (p3 p2 p1 p0 xxxx, active high) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Two shift registers are connected in series, ie 16 bits are transmitted. 
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

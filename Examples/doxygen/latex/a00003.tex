@@ -1,0 +1,53 @@
+\hypertarget{a00003}{}\subsection{lcd\+\_\+definitions.\+h File Reference}
+\label{a00003}\index{lcd\+\_\+definitions.\+h@{lcd\+\_\+definitions.\+h}}
+\subsubsection*{Macros}
+\begin{Indent}{\bf Definitions for Display Size}\par
+{\em Number of visible lines and characters per line of the display.
+
+\begin{DoxyNote}{Note}
+All definitions added to the file \hyperlink{a00003}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h}. Add -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00007_ga01212e90283511562039db786f65ba98}{L\+C\+D\+\_\+\+L\+I\+N\+ES}~2
+\begin{DoxyCompactList}\small\item\em Number of visible lines of the display. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga684bb4392e384b7ae7c660d81dacb930}{L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+N\+G\+TH}~16
+\begin{DoxyCompactList}\small\item\em Visibles characters per line of the display. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Definitions for 4-\/bit IO mode}\par
+{\em 4-\/bit mode definition of L\+CD signals on the Arduino Uno L\+CD Keypad Shield.
+
+The four L\+CD data lines and the two control lines RS, E can be on the same port or on different ports. R/W pin is directly connected to G\+ND on L\+CD Keypad Shield and cannot be controlled.
+
+\begin{DoxyNote}{Note}
+All definitions added to the file \hyperlink{a00003}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h}. Add -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. 
+\end{DoxyNote}
+}\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+P\+O\+RT}~P\+O\+R\+TD
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+A\+T\+A0\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+A\+T\+A1\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+A\+T\+A2\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+A\+T\+A3\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define \hyperlink{a00007_gafe54d7d886b5c56bed0cf971febbb773}{L\+C\+D\+\_\+\+D\+A\+T\+A0\+\_\+\+P\+IN}~P\+D4
+\begin{DoxyCompactList}\small\item\em Pin for H\+D44780 data pin D4. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga97fb520e7b83bb047ac5c9247de57049}{L\+C\+D\+\_\+\+D\+A\+T\+A1\+\_\+\+P\+IN}~P\+D5
+\begin{DoxyCompactList}\small\item\em Pin for H\+D44780 data pin D5. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga7f3d53627337f6535cc8daa35876510a}{L\+C\+D\+\_\+\+D\+A\+T\+A2\+\_\+\+P\+IN}~P\+D6
+\begin{DoxyCompactList}\small\item\em Pin for H\+D44780 data pin D6. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00007_ga54032ce0050853e181f879b69fec4370}{L\+C\+D\+\_\+\+D\+A\+T\+A3\+\_\+\+P\+IN}~P\+D7
+\begin{DoxyCompactList}\small\item\em Pin for H\+D44780 data pin D7. \end{DoxyCompactList}\item 
+\#define {\bfseries L\+C\+D\+\_\+\+R\+S\+\_\+\+P\+O\+RT}~P\+O\+R\+TB
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+R\+S\+\_\+\+P\+IN}~P\+B0
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+\_\+\+P\+O\+RT}~P\+O\+R\+TB
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+\_\+\+P\+IN}~P\+B1
+\end{DoxyCompactItemize}
+\end{Indent}

@@ -1,0 +1,459 @@
+\hypertarget{a00010}{}\subsection{L\+CD library $<$lcd.\+h$>$}
+\label{a00010}\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+
+
+Basic routines for interfacing a H\+D44780\+U-\/based character L\+CD display.  
+
+
+\subsubsection*{Definition for L\+CD controller type}
+\label{_amgrp9cebaa2a52e46760a474a1905c7f53a9}%
+Use 0 for H\+D44780 controller, change to 1 for displays with K\+S0073 controller. \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00010_ga63574b03f72a197aeee823aae95dc3b7}{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}~0
+\end{DoxyCompactItemize}
+\subsubsection*{Definitions for Display Size}
+\label{_amgrpcaec0cb1262819d89ffa7f25526cc869}%
+Change these definitions to adapt setting to your display
+
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00004}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \hyperlink{a00004}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00003}{lcd.\+h} \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00010_gae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}~0x40
+\item 
+\#define \hyperlink{a00010_gabd056d70a1488ea2eb1aef87e248e234}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}~0x00
+\item 
+\#define \hyperlink{a00010_ga7b317b21058ef031716ba040ef75430a}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}~0x40
+\item 
+\#define \hyperlink{a00010_gae7cca16353048a062baeb3a52da55249}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}~0x14
+\item 
+\#define \hyperlink{a00010_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}~0x54
+\item 
+\#define \hyperlink{a00010_gadb35ff6cb242e48ba0545ea919ffc5d3}{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}~0
+\end{DoxyCompactItemize}
+\subsubsection*{Definitions for 4-\/bit IO mode}
+\label{_amgrp0d38ed8c5b4202f593f69f9003c1a16c}%
+The four L\+CD data lines and the three control lines RS, RW, E can be on the same port or on different ports. Change L\+C\+D\+\_\+\+R\+S\+\_\+\+P\+O\+RT, L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT, L\+C\+D\+\_\+\+E\+\_\+\+P\+O\+RT if you want the control lines on different ports.
+
+Normally the four data lines should be mapped to bit 0..3 on one port, but it is possible to connect these data lines in different order or even on different ports by adapting the L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+O\+RT and L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+IN definitions.
+
+Adjust these definitions to your target.~\newline
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00004}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00004}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00003}{lcd.\+h} \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00010_ga659fcdf979f69bbd14f852f525f25e02}{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}~1
+\item 
+\#define \hyperlink{a00010_gae8772bdf31db863b81805c837bdc2da2}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define \hyperlink{a00010_ga3ac938dd5fc02a9a232df6605b5f6aa8}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}~5
+\end{DoxyCompactItemize}
+\subsubsection*{Definitions of delays}
+\label{_amgrp73324fc181df7d63636f86a5b76e74f2}%
+Used to calculate delay timers. Adapt the F\+\_\+\+C\+PU define in the Makefile to the clock frequency in Hz of your target
+
+These delay times can be adjusted, if some displays require different delays.~\newline
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00004}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00004}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00003}{lcd.\+h} \begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00010_ga79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}~16000
+\item 
+\#define \hyperlink{a00010_gab6ba3c8cdcf1a96b0d4c476eff8f8617}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}~5000
+\item 
+\#define \hyperlink{a00010_ga2ce1ac9b146b7baa7169e27f9cf3a99e}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}~64
+\item 
+\#define \hyperlink{a00010_gadf773dcbd0827cd15c788065c9197459}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}~64
+\item 
+\#define \hyperlink{a00010_ga73b2370827e2d350cedd45e08a9eb0b2}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}~4
+\item 
+\#define \hyperlink{a00010_ga5b0632f09757ffe6f018c6ef88cc3296}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}~1
+\end{DoxyCompactItemize}
+\subsubsection*{Definitions for L\+CD command instructions}
+\label{_amgrpe1b1604cb195ab970ebf8b6b8b3e322f}%
+The constants define the various L\+CD controller instructions which can be passed to the function \hyperlink{a00010_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command()}, see H\+D44780 data sheet for a complete description. \begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+LR}~0 /$\ast$ D\+B0\+: clear display                  $\ast$/\hypertarget{a00010_ga459688213267d13ccfbeb2c9004988cb}{}\label{a00010_ga459688213267d13ccfbeb2c9004988cb}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+H\+O\+ME}~1 /$\ast$ D\+B1\+: return to home position        $\ast$/\hypertarget{a00010_gae0e309ccad89222eb3457f2da9f2bb8d}{}\label{a00010_gae0e309ccad89222eb3457f2da9f2bb8d}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE}~2 /$\ast$ D\+B2\+: set entry mode                 $\ast$/\hypertarget{a00010_gae5d757ddb6d94de8c82191b60b40e442}{}\label{a00010_gae5d757ddb6d94de8c82191b60b40e442}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC}~1 /$\ast$   D\+B1\+: 1=increment, 0=decrement     $\ast$/\hypertarget{a00010_gada766266a0be0d0040fbf86e23b58aa6}{}\label{a00010_gada766266a0be0d0040fbf86e23b58aa6}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+H\+I\+FT}~0 /$\ast$   D\+B2\+: 1=display shift on           $\ast$/\hypertarget{a00010_ga14d0c7fda147e0dc8cdaa4a2629b3532}{}\label{a00010_ga14d0c7fda147e0dc8cdaa4a2629b3532}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+ON}~3 /$\ast$ D\+B3\+: turn lcd/cursor on             $\ast$/\hypertarget{a00010_ga47a809dfec086fdeca93dedc4fb83b44}{}\label{a00010_ga47a809dfec086fdeca93dedc4fb83b44}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+D\+I\+S\+P\+L\+AY}~2 /$\ast$   D\+B2\+: turn display on              $\ast$/\hypertarget{a00010_gae84f634b0a1661c4d5bbaafd9397732a}{}\label{a00010_gae84f634b0a1661c4d5bbaafd9397732a}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~1 /$\ast$   D\+B1\+: turn cursor on               $\ast$/\hypertarget{a00010_ga47638b5ebbaec9600a0ebf9a55caf802}{}\label{a00010_ga47638b5ebbaec9600a0ebf9a55caf802}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0 /$\ast$     D\+B0\+: blinking cursor ?          $\ast$/\hypertarget{a00010_ga5d76592a978537acee615098ce4d80f5}{}\label{a00010_ga5d76592a978537acee615098ce4d80f5}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+VE}~4 /$\ast$ D\+B4\+: move cursor/display            $\ast$/\hypertarget{a00010_ga3f4f758b80fcfa6c9e4db58e2515c78a}{}\label{a00010_ga3f4f758b80fcfa6c9e4db58e2515c78a}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+SP}~3 /$\ast$   D\+B3\+: move display (0-\/$>$ cursor) ?  $\ast$/\hypertarget{a00010_gaaddc2afa9a02bfa748950f2c1e6a204d}{}\label{a00010_gaaddc2afa9a02bfa748950f2c1e6a204d}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+R\+I\+G\+HT}~2 /$\ast$   D\+B2\+: move right (0-\/$>$ left) ?      $\ast$/\hypertarget{a00010_ga97cdb19acf109ad52ab4994d2ad02cee}{}\label{a00010_ga97cdb19acf109ad52ab4994d2ad02cee}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}~5 /$\ast$ D\+B5\+: function set                   $\ast$/\hypertarget{a00010_ga50de1697f1da8ab075a6b4d7aeace64e}{}\label{a00010_ga50de1697f1da8ab075a6b4d7aeace64e}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT}~4 /$\ast$   D\+B4\+: set 8\+B\+I\+T mode (0-\/$>$4\+B\+I\+T mode) $\ast$/\hypertarget{a00010_ga91d15d8e3008f6cb141406a8b5d0d3c0}{}\label{a00010_ga91d15d8e3008f6cb141406a8b5d0d3c0}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+2\+L\+I\+N\+ES}~3 /$\ast$   D\+B3\+: two lines (0-\/$>$one line)      $\ast$/\hypertarget{a00010_ga6c24806bed18d565917165caa3475463}{}\label{a00010_ga6c24806bed18d565917165caa3475463}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10\+D\+O\+TS}~2 /$\ast$   D\+B2\+: 5x10 font (0-\/$>$5x7 font)      $\ast$/\hypertarget{a00010_ga48de81358277fe4f2810c2b82f90397e}{}\label{a00010_ga48de81358277fe4f2810c2b82f90397e}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+G\+R\+AM}~6 /$\ast$ D\+B6\+: set CG R\+AM address             $\ast$/\hypertarget{a00010_ga3b38de74c362be1781fef1136aa9684c}{}\label{a00010_ga3b38de74c362be1781fef1136aa9684c}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+D\+R\+AM}~7 /$\ast$ D\+B7\+: set DD R\+AM address             $\ast$/\hypertarget{a00010_gae54acf3ccc45b7d6be334a03627740c6}{}\label{a00010_gae54acf3ccc45b7d6be334a03627740c6}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+B\+U\+SY}~7 /$\ast$ D\+B7\+: L\+CD is busy                    $\ast$/\hypertarget{a00010_gac8dd1658e235f174d1cabae5c438943d}{}\label{a00010_gac8dd1658e235f174d1cabae5c438943d}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+EC}~0x04 /$\ast$ display shift off, dec cursor move dir $\ast$/\hypertarget{a00010_gaad56f8e07634e85663f56888ae97089c}{}\label{a00010_gaad56f8e07634e85663f56888ae97089c}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+E\+C\+\_\+\+S\+H\+I\+FT}~0x05 /$\ast$ display shift on,  dec cursor move dir $\ast$/\hypertarget{a00010_ga1c62932f252c6262cbef728add9696e4}{}\label{a00010_ga1c62932f252c6262cbef728add9696e4}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+}~0x06 /$\ast$ display shift off, inc cursor move dir $\ast$/\hypertarget{a00010_gad27ddc4b8d03594662c8757f946dde28}{}\label{a00010_gad27ddc4b8d03594662c8757f946dde28}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+\+S\+H\+I\+FT}~0x07 /$\ast$ display shift on,  inc cursor move dir $\ast$/\hypertarget{a00010_gafabd0215cc6ae5539dc638dbec44a506}{}\label{a00010_gafabd0215cc6ae5539dc638dbec44a506}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF}~0x08 /$\ast$ display off                            $\ast$/\hypertarget{a00010_gaa2966175115943883f51e9c90478540c}{}\label{a00010_gaa2966175115943883f51e9c90478540c}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON}~0x0\+C /$\ast$ display on, cursor off                 $\ast$/\hypertarget{a00010_ga5163a96b133868975c0738e180b30cb8}{}\label{a00010_ga5163a96b133868975c0738e180b30cb8}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0x0\+D /$\ast$ display on, cursor off, blink char     $\ast$/\hypertarget{a00010_ga470cef85de53e37356b22c66a357a764}{}\label{a00010_ga470cef85de53e37356b22c66a357a764}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~0x0\+E /$\ast$ display on, cursor on                  $\ast$/\hypertarget{a00010_gaf56b6d6bdb6fa48b26106dee5f74ae1f}{}\label{a00010_gaf56b6d6bdb6fa48b26106dee5f74ae1f}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK}~0x0\+F /$\ast$ display on, cursor on, blink char      $\ast$/\hypertarget{a00010_gac1984ed0db15c6991d34c184fdca5dc6}{}\label{a00010_gac1984ed0db15c6991d34c184fdca5dc6}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+L\+E\+FT}~0x10 /$\ast$ move cursor left  (decrement)          $\ast$/\hypertarget{a00010_gac2f0ddce1daaa1bf1a016270a89a264b}{}\label{a00010_gac2f0ddce1daaa1bf1a016270a89a264b}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+R\+I\+G\+HT}~0x14 /$\ast$ move cursor right (increment)          $\ast$/\hypertarget{a00010_ga0ad58e39e053e97d34527fcbe936899b}{}\label{a00010_ga0ad58e39e053e97d34527fcbe936899b}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+FT}~0x18 /$\ast$ shift display left                     $\ast$/\hypertarget{a00010_gab3c34ff1eee238bbe9c677215219fb8e}{}\label{a00010_gab3c34ff1eee238bbe9c677215219fb8e}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT}~0x1\+C /$\ast$ shift display right                    $\ast$/\hypertarget{a00010_ga9a90bb926f5ba59378af81fe8e246ffb}{}\label{a00010_ga9a90bb926f5ba59378af81fe8e246ffb}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+1\+L\+I\+NE}~0x20 /$\ast$ 4-\/bit interface, single line, 5x7 dots $\ast$/\hypertarget{a00010_gaff4e5baa36a0322eb97557dcb18cd96e}{}\label{a00010_gaff4e5baa36a0322eb97557dcb18cd96e}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}~0x28 /$\ast$ 4-\/bit interface, dual line,   5x7 dots $\ast$/\hypertarget{a00010_gab35032ab368a8bc90798e0c547fb24c2}{}\label{a00010_gab35032ab368a8bc90798e0c547fb24c2}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+1\+L\+I\+NE}~0x30 /$\ast$ 8-\/bit interface, single line, 5x7 dots $\ast$/\hypertarget{a00010_gaa8aeee098cb4c84ec420e00d054abcce}{}\label{a00010_gaa8aeee098cb4c84ec420e00d054abcce}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}~0x38 /$\ast$ 8-\/bit interface, dual line,   5x7 dots $\ast$/\hypertarget{a00010_ga160a214f47869f8f98ad5add3a7568db}{}\label{a00010_ga160a214f47869f8f98ad5add3a7568db}
+
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+E\+F\+A\+U\+LT}~((1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE) $\vert$ (1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC) )\hypertarget{a00010_ga1849e2087d3034a3fffa67444beed109}{}\label{a00010_ga1849e2087d3034a3fffa67444beed109}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{a00010_ga9af28b2779326b63ff4356e2b1828984}{lcd\+\_\+init} (uint8\+\_\+t disp\+Attr)
+\begin{DoxyCompactList}\small\item\em Initialize display and select type of cursor. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_gaf8da853dba4b9d5f2aea4e294444e14d}{lcd\+\_\+clrscr} (void)
+\begin{DoxyCompactList}\small\item\em Clear display and set cursor to home position. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_ga3aabf730aa4e0393bb5c959583c00a8e}{lcd\+\_\+home} (void)
+\begin{DoxyCompactList}\small\item\em Set cursor to home position. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_gadbf47a5efdf02367ded1ebf8f9edb5fe}{lcd\+\_\+gotoxy} (uint8\+\_\+t x, uint8\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Set cursor to specified position. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_gafa7e36b95c43d603f510273ad077cbbe}{lcd\+\_\+putc} (char c)
+\begin{DoxyCompactList}\small\item\em Display character at current cursor position. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_ga8ffdfcac7638368ff04364c14984266e}{lcd\+\_\+puts} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Display string without auto linefeed. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p} (const char $\ast$progmem\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Display string from program memory without auto linefeed. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command} (uint8\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em Send L\+CD controller instruction command. \end{DoxyCompactList}\item 
+void \hyperlink{a00010_gad0729d2cba627825a089ca1fff12ba29}{lcd\+\_\+data} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send data byte to L\+CD controller. \end{DoxyCompactList}\item 
+\#define \hyperlink{a00010_ga4f1928f1515e21422d5a33af2949f2f7}{lcd\+\_\+puts\+\_\+P}(\+\_\+\+\_\+s)~\hyperlink{a00010_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}(P\+S\+TR(\+\_\+\+\_\+s))\hypertarget{a00010_ga4f1928f1515e21422d5a33af2949f2f7}{}\label{a00010_ga4f1928f1515e21422d5a33af2949f2f7}
+
+\begin{DoxyCompactList}\small\item\em macros for automatically storing string constant in program memory \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Basic routines for interfacing a H\+D44780\+U-\/based character L\+CD display. 
+
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include <\hyperlink{a00003}{lcd.h}>} 
+\end{DoxyCode}
+
+
+L\+CD character displays can be found in many devices, like espresso machines, laser printers. The Hitachi H\+D44780 controller and its compatible controllers like Samsung K\+S0066U have become an industry standard for these types of displays.
+
+This library allows easy interfacing with a H\+D44780 compatible display and can be operated in memory mapped mode (L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE defined as 0 in the include file \hyperlink{a00003}{lcd.\+h}.) or in 4-\/bit IO port mode (L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE defined as 1). 8-\/bit IO port mode is not supported.
+
+Memory mapped mode is compatible with old Kanda S\+T\+K200 starter kit, but also supports generation of R/W signal through A8 address line.
+
+\begin{DoxySeeAlso}{See also}
+The chapter \href{ http://homepage.hispeed.ch/peterfleury/avr-lcd44780.html}{\tt Interfacing a H\+D44780 Based L\+CD to an A\+VR} on my home page, which shows example circuits how to connect an L\+CD to an A\+VR controller.
+\end{DoxySeeAlso}
+\begin{DoxyAuthor}{Author}
+Peter Fleury \href{mailto:pfleury@gmx.ch}{\tt pfleury@gmx.\+ch} \href{http://tinyurl.com/peterfleury}{\tt http\+://tinyurl.\+com/peterfleury}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+2.\+0
+\end{DoxyVersion}
+\begin{DoxyCopyright}{Copyright}
+(C) 2015 Peter Fleury, G\+NU General Public License Version 3 
+\end{DoxyCopyright}
+
+
+\subsubsection{Macro Definition Documentation}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073@{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}}
+\index{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073@{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}{LCD_CONTROLLER_KS0073}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073~0}\hypertarget{a00010_ga63574b03f72a197aeee823aae95dc3b7}{}\label{a00010_ga63574b03f72a197aeee823aae95dc3b7}
+Use 0 for H\+D44780 controller, 1 for K\+S0073 controller \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}{LCD_DELAY_BOOTUP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP~16000}\hypertarget{a00010_ga79ca3fe83448ab158a4c566bf292c260}{}\label{a00010_ga79ca3fe83448ab158a4c566bf292c260}
+delay in micro seconds after power-\/on \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}{LCD_DELAY_BUSY_FLAG}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG~4}\hypertarget{a00010_ga73b2370827e2d350cedd45e08a9eb0b2}{}\label{a00010_ga73b2370827e2d350cedd45e08a9eb0b2}
+time in micro seconds the address counter is updated after busy flag is cleared \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}{LCD_DELAY_ENABLE_PULSE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE~1}\hypertarget{a00010_ga5b0632f09757ffe6f018c6ef88cc3296}{}\label{a00010_ga5b0632f09757ffe6f018c6ef88cc3296}
+enable signal pulse width in micro seconds \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}{LCD_DELAY_INIT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT~5000}\hypertarget{a00010_gab6ba3c8cdcf1a96b0d4c476eff8f8617}{}\label{a00010_gab6ba3c8cdcf1a96b0d4c476eff8f8617}
+delay in micro seconds after initialization command sent \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}{LCD_DELAY_INIT_4BIT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT~64}\hypertarget{a00010_gadf773dcbd0827cd15c788065c9197459}{}\label{a00010_gadf773dcbd0827cd15c788065c9197459}
+delay in micro seconds after setting 4-\/bit mode \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}}
+\index{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP@{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}{LCD_DELAY_INIT_REP}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP~64}\hypertarget{a00010_ga2ce1ac9b146b7baa7169e27f9cf3a99e}{}\label{a00010_ga2ce1ac9b146b7baa7169e27f9cf3a99e}
+delay in micro seconds after initialization command repeated \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE@{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}}
+\index{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE@{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}{LCD_IO_MODE}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE~1}\hypertarget{a00010_ga659fcdf979f69bbd14f852f525f25e02}{}\label{a00010_ga659fcdf979f69bbd14f852f525f25e02}
+0\+: memory mapped mode, 1\+: IO port mode \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}
+\index{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH@{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}{LCD_LINE_LENGTH}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH~0x40}\hypertarget{a00010_gae59a728d9dee9f12c817b29d38746ed9}{}\label{a00010_gae59a728d9dee9f12c817b29d38746ed9}
+internal line length of the display \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN@{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}}
+\index{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN@{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}{LCD_RW_PIN}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN~5}\hypertarget{a00010_ga3ac938dd5fc02a9a232df6605b5f6aa8}{}\label{a00010_ga3ac938dd5fc02a9a232df6605b5f6aa8}
+pin for RW line \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT@{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}}
+\index{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT@{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}{LCD_RW_PORT}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT~L\+C\+D\+\_\+\+P\+O\+RT}\hypertarget{a00010_gae8772bdf31db863b81805c837bdc2da2}{}\label{a00010_gae8772bdf31db863b81805c837bdc2da2}
+port for RW line \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}}
+\index{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}{LCD_START_LINE1}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1~0x00}\hypertarget{a00010_gabd056d70a1488ea2eb1aef87e248e234}{}\label{a00010_gabd056d70a1488ea2eb1aef87e248e234}
+D\+D\+R\+AM address of first char of line 1 \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}}
+\index{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}{LCD_START_LINE2}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2~0x40}\hypertarget{a00010_ga7b317b21058ef031716ba040ef75430a}{}\label{a00010_ga7b317b21058ef031716ba040ef75430a}
+D\+D\+R\+AM address of first char of line 2 \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}}
+\index{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}{LCD_START_LINE3}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3~0x14}\hypertarget{a00010_gae7cca16353048a062baeb3a52da55249}{}\label{a00010_gae7cca16353048a062baeb3a52da55249}
+D\+D\+R\+AM address of first char of line 3 \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}}
+\index{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4@{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}{LCD_START_LINE4}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4~0x54}\hypertarget{a00010_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}{}\label{a00010_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}
+D\+D\+R\+AM address of first char of line 4 \index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES@{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}}
+\index{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES@{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}{LCD_WRAP_LINES}}]{\setlength{\rightskip}{0pt plus 5cm}\#define L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES~0}\hypertarget{a00010_gadb35ff6cb242e48ba0545ea919ffc5d3}{}\label{a00010_gadb35ff6cb242e48ba0545ea919ffc5d3}
+0\+: no wrap, 1\+: wrap at end of visibile line 
+
+\subsubsection{Function Documentation}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+clrscr@{lcd\+\_\+clrscr}}
+\index{lcd\+\_\+clrscr@{lcd\+\_\+clrscr}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+clrscr(void)}{lcd_clrscr(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+clrscr (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_gaf8da853dba4b9d5f2aea4e294444e14d}{}\label{a00010_gaf8da853dba4b9d5f2aea4e294444e14d}
+
+
+Clear display and set cursor to home position. 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+command@{lcd\+\_\+command}}
+\index{lcd\+\_\+command@{lcd\+\_\+command}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+command(uint8\+\_\+t cmd)}{lcd_command(uint8_t cmd)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+command (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{cmd}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_gaea9d14f02df06f948cb5a56776980826}{}\label{a00010_gaea9d14f02df06f948cb5a56776980826}
+
+
+Send L\+CD controller instruction command. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & instruction to send to L\+CD controller, see H\+D44780 data sheet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+data@{lcd\+\_\+data}}
+\index{lcd\+\_\+data@{lcd\+\_\+data}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+data(uint8\+\_\+t data)}{lcd_data(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{data}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_gad0729d2cba627825a089ca1fff12ba29}{}\label{a00010_gad0729d2cba627825a089ca1fff12ba29}
+
+
+Send data byte to L\+CD controller. 
+
+Similar to \hyperlink{a00010_gafa7e36b95c43d603f510273ad077cbbe}{lcd\+\_\+putc()}, but without interpreting LF 
+\begin{DoxyParams}{Parameters}
+{\em data} & byte to send to L\+CD controller, see H\+D44780 data sheet \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+gotoxy@{lcd\+\_\+gotoxy}}
+\index{lcd\+\_\+gotoxy@{lcd\+\_\+gotoxy}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+gotoxy(uint8\+\_\+t x, uint8\+\_\+t y)}{lcd_gotoxy(uint8_t x, uint8_t y)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+gotoxy (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{x, }
+\item[{uint8\+\_\+t}]{y}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_gadbf47a5efdf02367ded1ebf8f9edb5fe}{}\label{a00010_gadbf47a5efdf02367ded1ebf8f9edb5fe}
+
+
+Set cursor to specified position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & horizontal position~\newline
+ (0\+: left most position) \\
+\hline
+{\em y} & vertical position~\newline
+ (0\+: first line) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+home@{lcd\+\_\+home}}
+\index{lcd\+\_\+home@{lcd\+\_\+home}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+home(void)}{lcd_home(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+home (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_ga3aabf730aa4e0393bb5c959583c00a8e}{}\label{a00010_ga3aabf730aa4e0393bb5c959583c00a8e}
+
+
+Set cursor to home position. 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+init@{lcd\+\_\+init}}
+\index{lcd\+\_\+init@{lcd\+\_\+init}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+init(uint8\+\_\+t disp\+Attr)}{lcd_init(uint8_t dispAttr)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+init (
+\begin{DoxyParamCaption}
+\item[{uint8\+\_\+t}]{disp\+Attr}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_ga9af28b2779326b63ff4356e2b1828984}{}\label{a00010_ga9af28b2779326b63ff4356e2b1828984}
+
+
+Initialize display and select type of cursor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em disp\+Attr} & {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF} display off~\newline
+ {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON} display on, cursor off~\newline
+ {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR} display on, cursor on~\newline
+ {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK} display on, cursor on flashing \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+putc@{lcd\+\_\+putc}}
+\index{lcd\+\_\+putc@{lcd\+\_\+putc}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+putc(char c)}{lcd_putc(char c)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+putc (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_gafa7e36b95c43d603f510273ad077cbbe}{}\label{a00010_gafa7e36b95c43d603f510273ad077cbbe}
+
+
+Display character at current cursor position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c} & character to be displayed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+puts@{lcd\+\_\+puts}}
+\index{lcd\+\_\+puts@{lcd\+\_\+puts}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+puts(const char $\ast$s)}{lcd_puts(const char *s)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+puts (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_ga8ffdfcac7638368ff04364c14984266e}{}\label{a00010_ga8ffdfcac7638368ff04364c14984266e}
+
+
+Display string without auto linefeed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em s} & string to be displayed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\index{L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}!lcd\+\_\+puts\+\_\+p@{lcd\+\_\+puts\+\_\+p}}
+\index{lcd\+\_\+puts\+\_\+p@{lcd\+\_\+puts\+\_\+p}!L\+C\+D library $<$lcd.\+h$>$@{L\+C\+D library $<$lcd.\+h$>$}}
+\paragraph[{\texorpdfstring{lcd\+\_\+puts\+\_\+p(const char $\ast$progmem\+\_\+s)}{lcd_puts_p(const char *progmem_s)}}]{\setlength{\rightskip}{0pt plus 5cm}void lcd\+\_\+puts\+\_\+p (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{progmem\+\_\+s}
+\end{DoxyParamCaption}
+)}\hypertarget{a00010_ga9022a24a56a9b15681f62eb6ba77e5de}{}\label{a00010_ga9022a24a56a9b15681f62eb6ba77e5de}
+
+
+Display string from program memory without auto linefeed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progmem\+\_\+s} & string from program memory be be displayed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{a00010_ga4f1928f1515e21422d5a33af2949f2f7}{lcd\+\_\+puts\+\_\+P} 
+\end{DoxySeeAlso}

@@ -15,7 +15,7 @@ Use 0 for H\+D44780 controller, change to 1 for displays with K\+S0073 controlle
 \label{_amgrpcaec0cb1262819d89ffa7f25526cc869}%
 Change these definitions to adapt setting to your display
 
-These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \hyperlink{a00003}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{a00006_gae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}~0x40
 \item 
@@ -36,7 +36,7 @@ The four L\+CD data lines and the three control lines RS, RW, E can be on the sa
 Normally the four data lines should be mapped to bit 0..3 on one port, but it is possible to connect these data lines in different order or even on different ports by adapting the L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+O\+RT and L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+IN definitions.
 
 Adjust these definitions to your target.~\newline
-These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00003}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{a00006_ga659fcdf979f69bbd14f852f525f25e02}{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}~1
 \item 
@@ -49,7 +49,7 @@ These definitions can be defined in a separate include file {\bfseries \hyperlin
 Used to calculate delay timers. Adapt the F\+\_\+\+C\+PU define in the Makefile to the clock frequency in Hz of your target
 
 These delay times can be adjusted, if some displays require different delays.~\newline
-These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00003_source}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
+These definitions can be defined in a separate include file {\bfseries \hyperlink{a00003}{lcd\+\_\+definitions.\+h}} instead modifying this file by adding {\bfseries -\/\+D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE} to the {\bfseries C\+D\+E\+FS} section in the Makefile. All definitions added to the file \hyperlink{a00003}{lcd\+\_\+definitions.\+h} will override the default definitions from \hyperlink{a00002}{lcd.\+h} \begin{DoxyCompactItemize}
 \item 
 \#define \hyperlink{a00006_ga79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}~16000
 \item 
