@@ -205,17 +205,19 @@ Complete the Timer/Counter1 overflow routine according to the following state di
 Form the UART output of your application to a hexadecimal table according to the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.nxp.com/docs/en/user-guide/UM10204.pdf) and cannot be used for slave circuits.
 
    ```
-   Scan I2C-bus for devices:
+   Scan I2C-bus for slave devices:
 
-       .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
-   0.: RA RA RA RA RA RA RA RA -- -- -- -- -- -- -- --
-   1.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   2.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   3.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   4.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   5.: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- --
-   6.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-   7.: -- -- -- -- -- -- -- -- RA RA RA RA RA RA RA RA
+         .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
+   0x0.: RA RA RA RA RA RA RA RA -- -- -- -- -- -- -- --
+   0x1.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   0x2.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   0x3.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   0x4.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   0x5.: -- -- -- -- -- -- -- 57 -- -- -- -- -- -- -- --
+   0x6.: -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+   0x7.: -- -- -- -- -- -- -- -- RA RA RA RA RA RA RA RA
+   
+   Number of detected devices: 1
    ```
 
 
