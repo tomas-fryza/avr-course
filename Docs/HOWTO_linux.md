@@ -5,7 +5,7 @@
 2. AVR template requires the following packages to be installed correctly:
 
     ```bash
-    sudo apt-get install git make avrdude putty
+    sudo apt-get install git make avrdude putty doxygen doxygen-gui
     ```
 
 3. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
