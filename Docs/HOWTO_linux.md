@@ -18,7 +18,7 @@
 
 5. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in` file enable and/or modify Linux parameters according to your local settings:
+6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in`  enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -39,7 +39,7 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-7. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
+7. In Visual Studio Code, open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
     cd Examples/blink
@@ -56,16 +56,19 @@
     make clean
     ```
 
-8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
+8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
 
+    > Install **AVR Support** extension in Visual Studio Code for AVR assembly language support.
+    > 
 
 #### Tested on operating systems
 
 **Name**   | **Version**                | **Result**      | **Note**
 ---------- | -------------------------- | --------------- | -----------
+Linux Mint | 20.1, Ulyssa               | OK (2021-06-24) | Laptop
 Ubuntu     | 20.04.1 LTS, Focal Fossa   | OK (2020-12-22) | Student, VirtualBox
 Ubuntu     | 20.04.1 LTS, Focal Fossa   | OK (2020-12-10) | Student, Laptop
 Linux Mint | 18.3, Sylvia               | OK (2019-06-13) | Laptop
