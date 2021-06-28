@@ -8,17 +8,15 @@
     sudo apt-get install git make avrdude putty doxygen doxygen-gui
     ```
 
-3. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
-
-4. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
+3. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
 
     ```bash
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz -C /opt/
     ```
 
-5. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
+4. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-6. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in`  enable and/or modify Linux parameters according to your local settings:
+5. Start Visual Studio Code source code editor, open examples folder, and in `Examples/Makefile.in`  enable and/or modify Linux parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -39,7 +37,7 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-7. In Visual Studio Code, open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
+6. In Visual Studio Code, open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
     cd Examples/blink
@@ -56,7 +54,7 @@
     make clean
     ```
 
-8. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`
+7. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
