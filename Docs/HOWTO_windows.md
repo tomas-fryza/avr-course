@@ -14,13 +14,11 @@
 
 5. Download and install [PuTTy](https://www.putty.org/) client for serial communication between Arduino Uno board and your computer.
 
-6. Optionally, download and install [Saleae logic](https://www.saleae.com/downloads/) for analyzing digital and analog signals.
+6. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
-7. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
+7. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
-8. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
-
-9. Start Visual Studio Code source code editor, open template folder, in `Examples/Makefile.in` file enable and/or modify Windows parameters according to your local settings:
+8. Start Visual Studio Code source code editor, open template folder, in `Examples/Makefile.in` file enable and/or modify Windows parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -41,7 +39,7 @@
     > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
     >
 
-10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
+9. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
     cd Examples
@@ -62,7 +60,7 @@
     mingw32-make.exe clean
     ```
 
-11. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
+10. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
