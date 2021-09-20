@@ -1,6 +1,6 @@
 # Digital electronics 2
 
-The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vutbr.cz/en/students/courses/detail/224132) at Brno University of Technology, Czechia.
+The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/242365) at Brno University of Technology, Czechia.
 
 ## Exercises
 
@@ -12,7 +12,6 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 6. [Display devices, LCD display](Labs/06-lcd)
 7. [ADC and UART serial communication](Labs/07-uart)
 8. [I2C/TWI serial communication](Labs/08-i2c)
-9. [Combining C and assembly languages](Labs/09-asm)
 
 ### C project
 
