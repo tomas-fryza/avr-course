@@ -76,7 +76,7 @@ With help of `git` command, clone a local copy of your public repository.
 
 ```bash
 ## Windows Git Bash or Linux:
-$ git clone https://github.com/your-github-account/Digital-electronics-2
+$ git clone https://github.com/your-github-account/Digital-electronics-2.git
 $ cd Digital-electronics-2/
 $ ls
 LICENSE  README.md
