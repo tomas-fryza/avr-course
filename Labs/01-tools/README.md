@@ -106,7 +106,7 @@ $ mkdir 01-tools
 
 Follow any online tutorial, such as [1](../../Docs/CProgrammingInAtmelStudio7.pdf) or [2](https://unboxing-tomorrow.com/programming-atmel-microcontrollers-with-atmel-studio-7/), create a new GCC C Executable Project `led` within `01-tools` working folder for ATmega328P device and copy/paste [blink example code](../../Examples/blink/main.c) to your `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
 
-Compile the project.
+Build (compile) the project.
 
 Simulate the project in Atmel Studio 7.
 
