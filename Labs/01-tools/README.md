@@ -297,21 +297,3 @@ $ git status
 3. GitHub, Inc. [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
 
 4. GitHub, Inc. [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
-
-
-
-
-
-
-
-
-6. Submit the GitHub link to your `Digital-electronics-2` repository.
-
-2. Blink example. Submit:
-    * Answer to question: What is the meaning of `|`, `&`, `^`, `~`, `<<`, `>>` binary operators? Write a truth table and explain the use of operators with examples.
-
-3. Morse code application. Submit:
-    * Listing of C code (`main.c`),
-    * Screenshot of SimulIDE circuit.
-
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
