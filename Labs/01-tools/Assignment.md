@@ -11,7 +11,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 2. Complete truth table with such operators:
 
-| **b** | **a** |**b `|` a** | **b `&` a** | **b `^` a** | **`~` b** |
+| **b** | **a** |**b   a** | **b   a** | **b   a** | **b** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | 0 | 0 |  |  |  |  |
 | 0 | 1 |  |  |  |  |
