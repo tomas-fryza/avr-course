@@ -3,7 +3,7 @@
 ![Atmel Studio 7](Images/screenshot_atmel_studio_blink.png)
 
 
-### Learning objectivess
+### Learning objectives
 
 After completing this lab you will be able to:
   * Use markdown README files
