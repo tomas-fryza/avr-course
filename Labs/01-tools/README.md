@@ -1,12 +1,32 @@
 # Lab 1: Git version-control system, AVR tools
 
-### Learning objectives
-
-The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program a microcontroller on the Arduino Uno board.
-
 ![Atmel Studio 7](Images/screenshot_atmel_studio_blink.png)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+  * Use markdown README files
+  * Create git repository
+  * Understand basic structure of C files
+  * Compile and download firmware to AVR device
+
+The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program a microcontroller on the Arduino Uno board.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: GitHub](#part1)
+* [Part 2: Local repository](#part2)
+* [Part 3: Test AVR tools](#part3)
+* [Part 4: SimulIDE](#part4)
+* [Part 5: Logic analyzer](#part5)
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
 Create an account on [GitHub](https://github.com/).
@@ -39,6 +59,7 @@ If you have the option to use Arduino Uno board and logic analyzer, also downloa
 * [Saleae logic](https://www.saleae.com/downloads/).
 
 
+<a name="part1"></a>
 ## Part 1: GitHub
 
 GitHub is a code hosting platform for collaboration and version control. GitHub lets you (and others) work together on projects.
@@ -47,17 +68,18 @@ In GitHub, create a new public repository titled **Digital-electronics-2**. Init
 
 Use one of the available git manuals, such as [1](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061), [2](https://help.github.com/en/articles/basic-writing-and-formatting-syntax), or [3](https://guides.github.com/features/mastering-markdown/), and add the following sections to your README file.
 
-   * Headers
-   * Emphasis (italics, bold)
+   * Headers H1, H2, H3
+   * Emphasis (*italics*, **bold**)
    * Lists (ordered, unordered)
    * Links
    * Table
-   * Listing of C source code
+   * Listing of C source code (with syntax highlighting)
 
 
+<a name="part2"></a>
 ## Part 2: Local repository
 
-Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`.
+Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`. *Important: To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.*
 
 ```bash
 ## Windows Git Bash:
@@ -100,6 +122,7 @@ $ mkdir 01-tools
 ```
 
 
+<a name="part3"></a>
 ## Part 3: Test AVR tools
 
 ### Version: Windows and Atmel Studio 7
@@ -195,6 +218,7 @@ $ make flash
 ```
 
 
+<a name="part4"></a>
 ## Part 4: SimulIDE
 
 Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
@@ -214,6 +238,7 @@ You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope
 The properties of each component can be found/changed in the **Properties** tab.
 
 
+<a name="part5"></a>
 ## Part 5: Logic analyzer
 
 Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
@@ -223,7 +248,7 @@ To start sampling, press the green button with two arrows, set the sampling rate
 ![Logic analyzer](Images/screenshot_saleae.png "Saleae Logic software")
 
 
-## Synchronize repositories
+## Synchronize git
 
 When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
 
@@ -232,9 +257,9 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 ```bash
 ## Windows Git Bash or Linux:
 $ git status
-$ git add <your-modified-files>
+$ git add -A
 $ git status
-$ git commit -m "[LAB] AVR toolchain tested"
+$ git commit -m "[LAB] Creating 01-tools lab"
 $ git status
 $ git push
 $ git status
@@ -243,6 +268,7 @@ $ git status
 ![Git Bash](Images/screenshot_git_bash.png)
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Choose one variant and install the AVR development tools on your computer.
@@ -252,9 +278,34 @@ $ git status
 3. Simulate the Morse code application in SimulIDE.
 
 
+<a name="assignment"></a>
 ## Lab assignment
 
-1. Submit the GitHub link to your `Digital-electronics-2` repository.
+
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+
+
+<a name="references"></a>
+## References
+
+1. [MIT license](https://choosealicense.com/licenses/mit/)
+
+2. Sayan Mondal. [How to make the perfect Readme.md on GitHub](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061)
+
+3. GitHub, Inc. [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
+
+4. GitHub, Inc. [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+
+
+
+
+
+
+
+
+6. Submit the GitHub link to your `Digital-electronics-2` repository.
 
 2. Blink example. Submit:
     * Answer to question: What is the meaning of `|`, `&`, `^`, `~`, `<<`, `>>` binary operators? Write a truth table and explain the use of operators with examples.
