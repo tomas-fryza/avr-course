@@ -273,14 +273,13 @@ $ git status
 
 1. Choose one variant and install the AVR development tools on your computer.
 
-2. Modify the code from `blink` example and build an application that will repeatedly displayed the string `DE2` on two LEDs in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation. Display a dot on one LED and a comma on the other.
+2. Modify the code from `led` example and build an application that will repeatedly displayed the string `DE2` on two LEDs in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation. Display a dot on one LED and a comma on the other.
 
 3. Simulate the Morse code application in SimulIDE.
 
 
 <a name="assignment"></a>
 ## Lab assignment
-
 
 *Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
