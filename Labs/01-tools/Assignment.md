@@ -27,13 +27,13 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 ### Morse code
 
-1. Listing of C code with syntax highlighting which generates one "dot" and one "comma" on two LEDs:
+1. Listing of C code with syntax highlighting which generates one "dot" and one "comma" on LEDs; display a dot on one LED and a comma on the other:
 
 ```c
    // WRITE YOUR CODE HERE
 ```
 
 
-2. Scheme of Morse code application, i.e. connection of AVR device, two LEDs, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
+2. Scheme of Morse code application, i.e. connection of AVR device, two LEDs, resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
    ![your figure]()
