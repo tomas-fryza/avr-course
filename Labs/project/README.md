@@ -1,4 +1,4 @@
-# C project: General instructionss
+# C project: General instructions
 
 The aim of the C project is an independent study of the assigned topic, design of your own solution, simulation and/or implementation, creation of project documentation and presentation of results.
 
