@@ -1,15 +1,34 @@
 # Lab 2: Control of GPIO, LED, push button
 
-### Learning objectives
-
-The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
-
 ![Arduino Uno](Images/arduino_uno_leds.jpg)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+  * Use LEDs and push buttons
+  * Config input/output ports of AVR using control registers
+  * Use ATmega328P manual and find information
+  * Use breadboard and connect electronic devices to AVR pins
+
+The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: Synchronize Git and create a new folder](#part1)
+* [Part 2: Active-low and active-high LEDs](#part2)
+* [Part 3: Push button](#part3)
+* [Part 4: Switch debouncing](#part4)
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
-Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high. What is the name of the LED pin that is connected to the microcontroller in each case?
+1. Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high.
 
 &nbsp;
 
@@ -23,10 +42,10 @@ Draw two basic ways to connect a LED to the output pin of the microcontroller: L
 
 &nbsp;
 
-[Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
+2. [Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
 
 &nbsp;
-![Clock period](Images/ohms_law.png)
+![ohms law](Images/ohms_law.png)
 &nbsp;
 
 | **LED color** | **Supply voltage** | **LED current** | **LED voltage** | **Resistor value** |
@@ -40,7 +59,7 @@ R = \frac{V_{SUPPLY}-V_{LED}}{I} =
 ```
 >
 
-Draw the basic ways to connect a push button to the microcontroller input pin: button active-low, button active-high.
+3. Draw the basic ways to connect a push button to the microcontroller input pin: button active-low, button active-high.
 
 &nbsp;
 
@@ -55,6 +74,7 @@ Draw the basic ways to connect a push button to the microcontroller input pin: b
 &nbsp;
 
 
+<a name="part1"></a>
 ## Part 1: Synchronize repositories and create a new folder
 
 When you start working, always synchronize the contents of your working folder and local repository with remote version at GitHub. This way you are sure that you will not lose any of your changes.
@@ -89,6 +109,7 @@ $ mkdir 02-leds
 ```
 
 
+<a name="part2"></a>
 ## Part 2: Active-low and active-high LEDs
 
 AVR microcontroller associates pins into so-called ports, which are marked with the letters A, B, C, etc. Each of the pins is controlled separately and can function as an input (entry) or output (exit) point of the microcontroller. Control is possible exclusively by software via control registers.
@@ -175,6 +196,7 @@ Compile the project with the `mingw32-make.exe all` (Windows) or `make all` (Lin
 Download the compiled code to Arduino Uno board with `mingw32-make.exe flash` (Windows) or `make flash` (Linux) or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs.
 
 
+<a name="part3"></a>
 ## Part 3: Push button
 
 Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor (if internal pull-up resistor is not used) and push button to Arduino input pin in active-low way. **Let the push button is connected to port D.**
@@ -195,23 +217,26 @@ Use Special function registers from [AVR Libc](https://onlinedocs.microchip.com/
 Complete the code, compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
 
+<a name="part4"></a>
 ## Part 4: Switch debouncing (hardware implementation only)
 
 *[Bouncing](https://whatis.techtarget.com/definition/debouncing) is the tendency of any two metal contacts in an electronic device to generate multiple signals as the contacts close or open; debouncing is any kind of hardware device or software that ensures that only a single signal will be acted upon for a single opening or closing of a contact.*
 
 ![Real push button signal with bouncing](Images/debouncer.png)
 
-
 Use AVR Libc and time delay library functions to debounce a push button. Create an application that samples the input signal and decides that the push button was pressed based on a series of the same values, eg. four zero bits consecutively present on the input pin.
 
 ![Decouncer](Images/debouncer_algo.png)
 
 
-## Synchronize repositories
+## Synchronize git
+
+When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Connect at least five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application that will--when you press and release the push button once--ensure that only one of LEDs is switched on at a time in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
@@ -221,15 +246,23 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 Extra. Program the [PWM generator](https://www.analogictips.com/pulse-width-modulation-pwm/) using the delay library. Let the duty cycle of the PWM signal be changed continuously and the signal is connected to one of the LEDs. How does a change of duty cycle affect the brightness of an LED?
 
 
+<a name="assignment"></a>
 ## Lab assignment
 
-1. LED example. Submit:
-    * Tables for DDRB, PORTB, and their combination,
-    * Table with input/output pins available on ATmega328P,
-    * Listing of C code with two LEDs and a push button,
-    * Screenshot of SimulIDE circuit.
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-2. Knight Rider application. Submit:
-    * Listing of C code.
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+
+<a name="references"></a>
+## References
+
+1. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
+
+2. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+
+3. Microchip Technology Inc. [AVR Libc](https://onlinedocs.microchip.com/)
+
+4. TechTarget. [Debouncing](https://whatis.techtarget.com/definition/debouncing)
+
+5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
