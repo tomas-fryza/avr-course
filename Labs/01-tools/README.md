@@ -1,4 +1,4 @@
-# Lab 1: Git version-control system, AVR toolss
+# Lab 1: Git version-control system, AVR tools
 
 ![Atmel Studio 7](Images/screenshot_atmel_studio_blink.png)
 
