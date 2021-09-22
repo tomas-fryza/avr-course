@@ -43,6 +43,9 @@ int main(void)
     // Infinite loop
     while (1)
     {
+        // Pause several milliseconds
+        _delay_ms(SHORT_DELAY);
+
         // WRITE YOUR CODE HERE
     }
 
@@ -52,6 +55,6 @@ int main(void)
 ```
 
 
-2. Scheme of Morse code application, i.e. connection of AVR device, two LEDs, resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
+2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
    ![your figure]()
