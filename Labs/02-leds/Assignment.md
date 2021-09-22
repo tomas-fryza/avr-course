@@ -29,7 +29,29 @@ Link to your `Digital-electronics-2` GitHub repository:
 2. Part of the C code listing with syntax highlighting, which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C:
 
 ```c
-   // WRITE YOUR CODE HERE
+int main(void)
+{
+    // Green LED at port B
+    // Set pin as output in Data Direction Register...
+    DDRB = DDRB | (1<<LED_GREEN);
+    // ...and turn LED off in Data Register
+    PORTB = PORTB & ~(1<<LED_GREEN);
+
+    // Configure the second LED at port C
+    // WRITE YOUR CODE HERE
+
+    // Infinite loop
+    while (1)
+    {
+        // Pause several milliseconds
+        _delay_ms(BLINK_DELAY);
+
+        // WRITE YOUR CODE HERE
+    }
+
+    // Will never reach this
+    return 0;
+}
 ```
 
 
