@@ -273,7 +273,7 @@ $ git status
 
 1. Choose one variant and install the AVR development tools on your computer.
 
-2. Modify the code from `led` example and build an application that will repeatedly displayed the string `DE2` on two LEDs in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation. Display a dot on one LED and a comma on the other.
+2. Modify the code from `led` example and build an application that will repeatedly displayed the string `DE2` on a LED in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation.
 
 3. Simulate the Morse code application in SimulIDE.
 
