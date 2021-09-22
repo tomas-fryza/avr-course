@@ -239,7 +239,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 <a name="experiments"></a>
 ## Experiments on your own
 
-1. Connect at least five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application that will--when you press and release the push button once--ensure that only one of LEDs is switched on at a time in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk).
+1. Connect at least five LEDs and a push button to the microcontroller, modify `02-leds` code, and program an application in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). When you press and release a push button once, the LEDs starts to switched on and off; ensure that only one of LEDs is switched on at a time. Do not implement the blinking speed changing.
 
 2. Simulate the Knight Rider application in SimulIDE.
 
