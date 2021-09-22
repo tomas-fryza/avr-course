@@ -29,9 +29,9 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 <a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
-Create an account on [GitHub](https://github.com/).
+1. Create an account on [GitHub](https://github.com/).
 
-According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
+2. **Optional task:** According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
 
 ### Windows and Atmel Studio 7
@@ -296,3 +296,7 @@ $ git status
 3. GitHub, Inc. [Basic writing and formatting syntax](https://help.github.com/en/articles/basic-writing-and-formatting-syntax)
 
 4. GitHub, Inc. [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+
+5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+
+6. Joshua Hibbert. [Git Commands](https://github.com/joshnh/Git-Commands)
