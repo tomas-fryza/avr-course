@@ -55,8 +55,8 @@ Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-elect
 ### All versions
 
 If you have the option to use Arduino Uno board and logic analyzer, also download and install:
-* [Arduino IDE](https://www.arduino.cc/en/Main/Software), which contains all USB drivers and
-* [Saleae logic](https://www.saleae.com/downloads/).
+* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+* [Saleae logic](https://www.saleae.com/downloads/)
 
 
 <a name="part1"></a>
