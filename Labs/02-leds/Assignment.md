@@ -60,7 +60,6 @@ int main(void)
 1. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D:
 
 ```c
-...
     // Configure Push button at port D and enable internal pull-up resistor
     // WRITE YOUR CODE HERE
 
@@ -72,7 +71,7 @@ int main(void)
 
         // WRITE YOUR CODE HERE
     }
-}```
+```
 
 
 ### Knight Rider
