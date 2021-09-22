@@ -272,7 +272,7 @@ $ git push
 $ git status
 ```
 
-<?--
+<!--
 ![Git Bash](Images/screenshot_git_bash.png)
 -->
 
