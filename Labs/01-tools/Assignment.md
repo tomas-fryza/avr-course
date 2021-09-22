@@ -27,10 +27,28 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 ### Morse code
 
-1. Listing of C code with syntax highlighting which generates one "dot" and one "comma" on LEDs; display a dot on one LED and a comma on the other:
+1. Listing of C code with syntax highlighting which repeats one "dot" and one "comma" on a LED:
 
 ```c
-   // WRITE YOUR CODE HERE
+int main(void)
+{
+    // Set pin as output in Data Direction Register
+    // DDRB = DDRB or 0010 0000
+    DDRB = DDRB | (1<<LED_GREEN);
+
+    // Set pin LOW in Data Register (LED off)
+    // PORTB = PORTB and 1101 1111
+    PORTB = PORTB & ~(1<<LED_GREEN);
+
+    // Infinite loop
+    while (1)
+    {
+        // WRITE YOUR CODE HERE
+    }
+
+    // Will never reach this
+    return 0;
+}
 ```
 
 
