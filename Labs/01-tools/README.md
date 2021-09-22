@@ -135,6 +135,13 @@ Simulate the project in Atmel Studio 7: **Debug > Start Debugging and Break (Alt
 
 Connect Arduino board to USB port (in lab's configuration it supposed to be COM3), run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).
 
+```
+Title: Send to Arduino UNO
+Command: C:\APPZ\avrdude\avrdude.exe
+Arguments: -p m328p -c arduino -D -V -u -q -U flash:w:$(TargetName).hex:i -P COM3
+Initial directory: $(TargetDir)
+```
+
 
 ### Version: Windows and command-line toolchain
 
