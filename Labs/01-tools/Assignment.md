@@ -27,7 +27,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 ### Morse code
 
-1. Listing of C code with syntax highlighting which repeats one "dot" and one "comma" on a LED:
+1. Listing of C code with syntax highlighting which repeats one "dot" and one "comma" (BTW, in Morse code it is letter `A`) on a LED:
 
 ```c
 int main(void)
