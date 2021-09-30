@@ -1,12 +1,30 @@
 # Lab 3: User library for GPIO control
 
-### Learning objectives
-
-The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
-
 ![Atmel Studio 7](Images/screenshot_atmel_studio_gpio.png)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+  * Xxx
+  * Xxx
+  * Xxx
+
+The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: Introduction and header file](#part1)
+* [Part 2: Active-low and active-high LEDs](#part2)
+* [Part 3: Push button](#part3)
+* [Part 4: Switch debouncing](#part4)
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
 Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
@@ -58,6 +76,7 @@ int main(void)
 ```
 
 
+<a name="part1"></a>
 ## Part 1: Synchronize repositories and create a new folder
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
@@ -90,6 +109,7 @@ $ mkdir 03-gpio
 ```
 
 
+<a name="part2"></a>
 ## Part 2: Introduction and header file
 
 For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
@@ -253,4 +273,36 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * Listing of `main.c`,
     * Screenshot from SimulIDE.
 
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+
+
+
+
+
+
+
+<a name="assignment"></a>
+## Lab assignment
+
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+
+
+<a name="references"></a>
+## References
+
+1. Parewa Labs Pvt. Ltd. [C User-defined functions](https://www.programiz.com/c-programming/c-user-defined-functions)
+
+2. [Understanding C Pointers: A Beginner’s Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+
+
+
+1. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
+
+2. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+
+3. Microchip Technology Inc. [AVR Libc](https://onlinedocs.microchip.com/)
+
+4. TechTarget. [Debouncing](https://whatis.techtarget.com/definition/debouncing)
+
+5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
