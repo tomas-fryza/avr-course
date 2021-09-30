@@ -37,7 +37,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 ### Windows and Atmel Studio 7
 
 Download and install:
-* [Atmel Studio 7](https://www.microchip.com/mplab/avr-support/atmel-studio-7),
+* [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices),
 * [SimulIDE](https://www.simulide.com/p/home.html), and
 * [git](https://git-scm.com/).
 
