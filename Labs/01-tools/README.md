@@ -6,10 +6,10 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-  * Use markdown README files
-  * Create git repository
-  * Understand basic structure of C files
-  * Compile and download firmware to AVR device
+   * Use markdown README files
+   * Create git repository
+   * Understand basic structure of C files
+   * Compile and download firmware to AVR device
 
 The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program a microcontroller on the Arduino Uno board.
 
