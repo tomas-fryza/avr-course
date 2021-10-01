@@ -6,10 +6,10 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-  * Use LEDs and push buttons
-  * Config input/output ports of AVR using control registers
-  * Use ATmega328P manual and find information
-  * Use breadboard and connect electronic devices to AVR pins
+   * Use LEDs and push buttons
+   * Config input/output ports of AVR using control registers
+   * Use ATmega328P manual and find information
+   * Use breadboard and connect electronic devices to AVR pins
 
 The purpose of this laboratory exercise is to learn how to use basic input/output devices such as LEDs (Light Emitting Diodes) and push buttons, and how to control GPIO (General Purpose Input Output) pins with help of control registers.
 
@@ -266,3 +266,7 @@ Extra. Program the [PWM generator](https://www.analogictips.com/pulse-width-modu
 4. TechTarget. [Debouncing](https://whatis.techtarget.com/definition/debouncing)
 
 5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+
+6. norwega. [Knight Rider style chaser](https://www.youtube.com/watch?v=w-P-2LdS6zk)
+
+7. Janet Heath. [PWM: Pulse Width Modulation: What is it and how does it work?](https://www.analogictips.com/pulse-width-modulation-pwm/)
