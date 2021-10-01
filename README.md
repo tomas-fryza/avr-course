@@ -38,7 +38,7 @@ The following hardware and software components are mainly used in the lab.
 
 * [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
 * [Visual Studio Code](https://code.visualstudio.com/)
-* [tool]
+* [GCC Compilers for AVR](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
 * [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
 * [git](https://git-scm.com/)
 
