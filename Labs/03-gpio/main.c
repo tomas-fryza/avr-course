@@ -4,7 +4,7 @@
  * functions from GPIO library.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2021 Tomas Fryza
+ * Copyright (c) 2019-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -26,22 +26,19 @@
 /**********************************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Toggle two LEDs when a push button is pressed. Functions 
- *           from user-defined GPIO library is used instead of low-level
- *           logic operations.
+ *           from user-defined GPIO library is used.
  * Returns:  none
  **********************************************************************/
-
- */
 int main(void)
 {
-    // Green LED
+    // Green LED at port B
     GPIO_config_output(&DDRB, LED_GREEN);
     GPIO_write_low(&PORTB, LED_GREEN);
 
-    // Configure second LED
+    // Configure the second LED at port C
 
 
-    // Configure Push button and enable internal pull-up resistor
+    // Configure Push button at port D and enable internal pull-up resistor
 
 
     // Infinite loop
