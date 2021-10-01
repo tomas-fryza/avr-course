@@ -140,7 +140,9 @@ Title: Send to Arduino UNO
 Command: C:\APPZ\avrdude\avrdude.exe
 Arguments: -p m328p -c arduino -D -V -u -q -U flash:w:$(TargetName).hex:i -P COM3
 Initial directory: $(TargetDir)
-Use Output window
+Use Output window: checked
+
+![Set external tool](Images/external_tool.png)
 ```
 
 
