@@ -6,19 +6,19 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-  * Xxx
-  * Xxx
-  * Xxx
+   * Understand the difference between header and source files
+   * Create your own library
+   * Understand how to call a function with pointers
 
 The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
 
 
 ### Table of contents
 * [Preparation tasks](#preparation)
-* [Part 1: Introduction and header file](#part1)
-* [Part 2: Active-low and active-high LEDs](#part2)
-* [Part 3: Push button](#part3)
-* [Part 4: Switch debouncing](#part4)
+* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 2: Library header file](#part2)
+* [Part 3: Library source file](#part3)
+* [Part 4: Final application](#part4)
 * [Experiments on your own](#experiments)
 * [Lab assignment](#assignment)
 * [References](#references)
@@ -27,7 +27,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 <a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
-Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
+1. Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
 
 | **Data type** | **Number of bits** | **Range** | **Description** |
 | :-: | :-: | :-: | :-- | 
@@ -38,9 +38,7 @@ Fill in the following table and enter the number of bits and numeric range for t
 | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
 | `void`     |  |  |  |
 
-Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called).
-
-Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
+2. Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
 ```C
 #include <avr/io.h>
@@ -110,7 +108,7 @@ $ mkdir 03-gpio
 
 
 <a name="part2"></a>
-## Part 2: Introduction and header file
+## Part 2: Library header file
 
 For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
 
@@ -184,14 +182,15 @@ Complete the function prototypes definition in `gpio.h` file according to the fo
 
 The register name parameter must be `volatile` to avoid a compiler warning.
 
-Note that the C notation `*variable` representing a pointer to memory location where the value is stored. Notation `&variable` is address-of-operator and gives an address reference of variable.
+Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
-> [Understanding C Pointers: A Beginner’s Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+> [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
 >
 > ![Understanding C pointers](Images/pointer-variable-ampersand-and-asterisk.png)
 >
 
 
+<a name="part3"></a>
 ## Part 3: Library source file
 
 ### Version: Atmel Studio 7
@@ -231,6 +230,7 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 ```
 
 
+<a name="part4"></a>
 ## Part 4: Final application
 
 In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
@@ -248,6 +248,7 @@ Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulID
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Complete declarations (`*.h`) and definitions (`*.c`) of all functions from the GPIO library.
@@ -255,29 +256,6 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 2. Use the GPIO library functions and reprogram the Knight Rider application from the previous lab.
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `gpio.h` library for later easy generation of PDF documentation. Get inspired by the `GPIO_config_output` function in the `gpio.h` file.
-
-
-## Lab assignment
-
-1. Preparation tasks (done before the lab at home). Submit:
-    * Table with data types,
-    * Completed source code from the example.
-
-2. GPIO library. Submit:
-    * Listing of library source file `gpio.c`,
-    * Listing of final application `main.c` (blinking of two LEDs),
-    * Screenshot from SimulIDE,
-    * In your words, describe the difference between the declaration and the definition of the function in C. Give an example.
-
-3. Knight Rider. Submit:
-    * Listing of `main.c`,
-    * Screenshot from SimulIDE.
-
-
-
-
-
-
 
 
 <a name="assignment"></a>
@@ -293,16 +271,10 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 1. Parewa Labs Pvt. Ltd. [C User-defined functions](https://www.programiz.com/c-programming/c-user-defined-functions)
 
-2. [Understanding C Pointers: A Beginner’s Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+2. [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
 
+3. avr-libc. [How do I pass an IO port as a parameter to a function?](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass)
 
+4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
 
-1. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
-
-2. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
-
-3. Microchip Technology Inc. [AVR Libc](https://onlinedocs.microchip.com/)
-
-4. TechTarget. [Debouncing](https://whatis.techtarget.com/definition/debouncing)
-
-5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+5. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
