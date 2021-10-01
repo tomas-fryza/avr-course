@@ -89,7 +89,7 @@ For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 d
 
 ```C
 #ifndef TIMER_H
-#define TIMER_H
+# define TIMER_H
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>
