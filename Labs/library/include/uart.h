@@ -1,5 +1,5 @@
 #ifndef UART_H
-#define UART_H
+# define UART_H
 
 /************************************************************************
 *  Title:    Interrupt UART library with receive/transmit circular buffers

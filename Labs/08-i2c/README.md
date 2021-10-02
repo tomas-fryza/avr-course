@@ -117,11 +117,11 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 If necessary, add a CPU frequency definition to `twi.h`.
 
-   ```c
-   #ifndef F_CPU
-   #define F_CPU 16000000
-   #endif
-   ```
+```c
+#ifndef F_CPU
+# define F_CPU 16000000
+#endif
+```
 
 
 ### Version: Command-line toolchain

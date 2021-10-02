@@ -131,7 +131,7 @@ A header file can be shared between several source files by including it with th
 
 ```C
 #ifndef HEADER_FILE_NAME        // Preprocessor directive allows for conditional compilation. If not defined.
-#define HEADER_FILE_NAME        // Definition of constant within your source code.
+# define HEADER_FILE_NAME       // Definition of constant within your source code.
 
 // The body of entire header file
 

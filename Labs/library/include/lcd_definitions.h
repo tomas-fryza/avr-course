@@ -1,5 +1,5 @@
 #ifndef LCD_DEFINITIONS_H
-#define LCD_DEFINITIONS_H
+# define LCD_DEFINITIONS_H
 
 /***********************************************************************
  * 
