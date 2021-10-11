@@ -25,7 +25,7 @@
  *       (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2.
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
- * @copyright (c) 2019-2021 Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2019-Present Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  * @{
  */
