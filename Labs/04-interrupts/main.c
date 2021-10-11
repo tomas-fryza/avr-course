@@ -4,7 +4,7 @@
  * use delay library any more.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2021 Tomas Fryza
+ * Copyright (c) 2018-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -31,12 +31,12 @@
  **********************************************************************/
 int main(void)
 {
-    // Configuration of LED(s)
+    // Configuration of LED(s) at port B
     GPIO_config_output(&DDRB, LED_D1);
     GPIO_write_low(&PORTB, LED_D1);
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
-    // Enable interrupt and set the overflow prescaler to 262 ms
+    // Set the overflow prescaler to 262 ms and enable interrupt
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
