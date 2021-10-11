@@ -6,8 +6,10 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Xxx
-   * Xxx
+   * Use `#define` compiler directives
+   * Use internal microcontroller timers
+   * Understand overflow
+   * Use additional shields with other peripherals
 
 The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
@@ -18,8 +20,7 @@ The purpose of the laboratory exercise is to understand the function of the inte
 * [Part 2: Timers](#part2)
 * [Part 3: Polling and Interrupts](#part3)
 * [Part 4: Final application](#part4)
-
-
+* [Part 5: PWM (Pulse Width Modulation)](#part5)
 * [Experiments on your own](#experiments)
 * [Lab assignment](#assignment)
 * [References](#references)
@@ -28,13 +29,13 @@ The purpose of the laboratory exercise is to understand the function of the inte
 <a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
-Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
+Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an **overflow**. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
 &nbsp;
 ![Timer overflow](Images/timer_overflow.png)
 &nbsp;
 
-1. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
+1. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128 and other timers have only 5 prescaler values.
 
 | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -71,7 +72,7 @@ A timer (or counter) is a hardware block within an MCU and can be used to measur
    * Timer/Counter1, and
    * Timer/Counter2.
 
-T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024.
+T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65,535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024, and others.
 
 The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
@@ -106,7 +107,7 @@ Create a new library header file in `Labs/library/include/timer.h` and copy/past
 
 ### Both versions
 
-For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is not needed!
+For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
 ```C
 #ifndef TIMER_H
@@ -221,6 +222,8 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 
 Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
 
+Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
+
 Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
 
 FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
@@ -238,21 +241,11 @@ void IRQHandler(){
 
 the line `static uint16_t i=0;` will only run the first time.
 
-Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
 
-
-
-
-
-
-
-
-
-
-
+<a name="part5"></a>
 ## Part 5: PWM (Pulse Width Modulation)
 
-Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[4]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
+Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[8]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
    * On-Time: duration of time signal is high,
    * Off-Time: duration of time signal is low,
    * Period: the sum of on-time and off-time of PWM signal,
@@ -277,6 +270,7 @@ Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronic
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
@@ -303,30 +297,12 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
 
+<a name="assignment"></a>
 ## Lab assignment
 
-1. Preparation tasks (done before the lab at home). Submit:
-    * Table with overflow times.
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-2. Timer library. Submit:
-    * Listing of library header file `timer.h`,
-    * Listing of the Knight Rider application `main.c`,
-    * Screenshot of SimulIDE circuit,
-    * In your words, describe the difference between a common C function and interrupt service routine.
-
-3. PWM. Submit:
-    * Table with PWM channels of ATmega328P,
-    * Describe the behavior of Clear Timer on Compare and Fast PWM modes.
-
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
-
-
-
-
-
-
-
-
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 
 <a name="references"></a>
@@ -345,3 +321,9 @@ The deadline for submitting the task is the day before the next laboratory exerc
 6. norwega. [Knight Rider style chaser](https://www.youtube.com/watch?v=w-P-2LdS6zk)
 
 7. StackOverflow. [Static variables inside interrupts](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
+
+8. Tutorials Point. [Arduino - Pulse Width Modulation](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm)
+
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+
+10. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
