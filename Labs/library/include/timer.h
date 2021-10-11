@@ -6,7 +6,7 @@
  * Timer library for AVR-GCC.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2021 Tomas Fryza
+ * Copyright (c) 2019-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -25,7 +25,7 @@
  *       is needed for the library.
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
- * @copyright (c) 2019-2021 Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2019-Present Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  * @{
  */
@@ -56,6 +56,18 @@
 #define TIM1_overflow_interrupt_enable()  TIMSK1 |= (1<<TOIE1);
 /** @brief Disable overflow interrupt */
 #define TIM1_overflow_interrupt_disable() TIMSK1 &= ~(1<<TOIE1);
+
+/**
+ * @name  Definitions of Timer/Counter0
+ * @note  F_CPU = 16 MHz
+ */
+// WRITE YOUR CODE HERE
+
+/**
+ * @name  Definitions of Timer/Counter2
+ * @note  F_CPU = 16 MHz
+ */
+// WRITE YOUR CODE HERE
 
 /** @} */
 
