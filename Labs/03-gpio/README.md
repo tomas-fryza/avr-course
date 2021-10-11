@@ -8,7 +8,7 @@
 After completing this lab you will be able to:
    * Understand the difference between header and source files
    * Create your own library
-   * Understand how to call a function with pointers
+   * Understand how to call a function with pointer parameters
 
 The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
 
