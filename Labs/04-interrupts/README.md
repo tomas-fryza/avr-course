@@ -1,12 +1,31 @@
 # Lab 4: Interrupts, timers
 
-### Learning objectives
-
-The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
-
 ![Multi-function shield](Images/arduino_uno_multi-shield.jpg)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+   * Xxx
+   * Xxx
+
+The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 2: Timers](#part2)
+* [Part 3: Polling and Interrupts](#part3)
+* [Part 4: Final application](#part4)
+
+
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
 Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an overflow. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
@@ -15,7 +34,7 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
 ![Timer overflow](Images/timer_overflow.png)
 &nbsp;
 
-Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
+1. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128.
 
 | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -23,7 +42,7 @@ Calculate the overflow times for three Timer/Counter modules that contain ATmega
 | Timer/Counter1 | 16 |     |      | -- | | -- | | |
 | Timer/Counter2 | 8  |     |      |    | |    | | |
 
-Shields are boards that can be attached to an Arduino board, significantly expand its capabilities, and makes prototyping much faster. See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of four LEDs (D1, D2, D3, D4) and three push buttons (S1-A1, S2-A2, S3-A3).
+2. Shields are boards that can be attached to an Arduino board, significantly expand its capabilities, and makes prototyping much faster. See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of four LEDs (D1, D2, D3, D4) and three push buttons (S1-A1, S2-A2, S3-A3).
 
 &nbsp;
 
@@ -38,19 +57,21 @@ Shields are boards that can be attached to an Arduino board, significantly expan
 &nbsp;
 
 
+<a name="part1"></a>
 ## Part 1: Synchronize repositories and create a new folder
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/04-interrupts` for this exercise.
 
 
+<a name="part2"></a>
 ## Part 2: Timers
 
-A timer (or counter) is a hardware block built in the MCU. It is like a clock, and can be used to measure time events. ATmega328P has three timers, called:
+A timer (or counter) is a hardware block within an MCU and can be used to measure time events. ATmega328P has three timers, called:
    * Timer/Counter0,
    * Timer/Counter1, and
    * Timer/Counter2.
 
-T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter in microcontroller counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024.
+T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024.
 
 The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
@@ -85,7 +106,7 @@ Create a new library header file in `Labs/library/include/timer.h` and copy/past
 
 ### Both versions
 
-For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is not needed.
+For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is not needed!
 
 ```C
 #ifndef TIMER_H
@@ -116,9 +137,10 @@ For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 d
 ```
 
 
+<a name="part3"></a>
 ## Part 3: Polling and Interrupts
 
-The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[1]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
+The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
 
 While polling is a simple way to check for state changes, there's a cost. If the checking interval is too long, there can be a long lag between occurrence and detection and you may miss the change completely, if the state changes back before you check. A shorter interval will get faster and more reliable detection, but also consumes much more processing time and power, since many more checks will come back negative.
 
@@ -126,7 +148,7 @@ An alternative approach is to utilize **interrupts**. With this method, the stat
 
 ![Interrupts versus polling](Images/interrupts_vs_polling.jpg)
 
-An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[2]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
+An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[4]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
 Interrupts can be established for events such as a counter's value, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
 
@@ -152,6 +174,7 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
 
+<a name="part4"></a>
 ## Part 4: Final application
 
 In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library.
@@ -198,9 +221,9 @@ Compile the code and download to Arduino Uno board or load `*.hex` firmware to S
 
 Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
 
-Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use the delay library, but a single Timer/Counter.
+Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
 
-FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[3]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
+FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
 
 ```C
 void IRQHandler(){  
@@ -216,6 +239,15 @@ void IRQHandler(){
 the line `static uint16_t i=0;` will only run the first time.
 
 Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a function from your GPIO library.
+
+
+
+
+
+
+
+
+
 
 
 ## Part 5: PWM (Pulse Width Modulation)
@@ -287,3 +319,29 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
     * Describe the behavior of Clear Timer on Compare and Fast PWM modes.
 
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+
+
+
+
+
+
+
+
+
+
+<a name="references"></a>
+## References
+
+1. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+
+2. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
+
+3. Renesas Electronics Corporation. [Essentials of Microcontroller Use Learning about Peripherals: Interrupts](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html)
+
+4. Tutorials Point. [Embedded Systems - Interrupts](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm)
+
+5. [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html)
+
+6. norwega. [Knight Rider style chaser](https://www.youtube.com/watch?v=w-P-2LdS6zk)
+
+7. StackOverflow. [Static variables inside interrupts](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
