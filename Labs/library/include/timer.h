@@ -52,9 +52,9 @@
 #define TIM1_overflow_1s()    TCCR1B &= ~((1<<CS11) | (1<<CS10)); TCCR1B |= (1<<CS12);
 /** @brief Set overflow 4s, prescaler // 101 -> 1024 */
 #define TIM1_overflow_4s()    TCCR1B &= ~(1<<CS11); TCCR1B |= (1<<CS12) | (1<<CS10);
-/** @brief Enable overflow interrupt */
+/** @brief Enable overflow interrupt, 1 -> enable */
 #define TIM1_overflow_interrupt_enable()  TIMSK1 |= (1<<TOIE1);
-/** @brief Disable overflow interrupt */
+/** @brief Disable overflow interrupt, 0 -> disable */
 #define TIM1_overflow_interrupt_disable() TIMSK1 &= ~(1<<TOIE1);
 
 /**
