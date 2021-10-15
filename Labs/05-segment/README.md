@@ -6,8 +6,10 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Xxx
-   * Xxx
+   * Use seven-segment displays
+   * Understand the SPI communication between MCU and shift registers
+   * Use library functions for seven-segment display
+   * Understand the time multiplexing between individual displays
 
 The purpose of the laboratory exercise is to understand the serial control of four seven-segment displays (SSDs) using a pair of 74595 shift registers. In addition, the goal is to master the use of interrupts in applications with AVR.
 
