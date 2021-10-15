@@ -3,7 +3,7 @@
  * Seven-segment display library for AVR-GCC.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2021 Tomas Fryza
+ * Copyright (c) 2019-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -26,9 +26,9 @@
 void SEG_init(void)
 {
     /* Configuration of SSD signals */
-    GPIO_config_output(&DDRD, SEGMENT_LATCH);
-    GPIO_config_output(&DDRD, SEGMENT_CLK);
-    GPIO_config_output(&DDRB, SEGMENT_DATA);
+    GPIO_config_output(&DDRD, SEG_LATCH);
+    GPIO_config_output(&DDRD, SEG_CLK);
+    GPIO_config_output(&DDRB, SEG_DATA);
 }
 
 /**********************************************************************

@@ -6,7 +6,7 @@
  * Seven-segment display library for AVR-GCC.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2019-2021 Tomas Fryza
+ * Copyright (c) 2019-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -24,7 +24,7 @@
  *
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
- * @copyright (c) 2019-2021 Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2019-Present Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  * @{
  */
@@ -39,9 +39,9 @@
  * @name  Definition of SSD interface
  * @note  Connection is based on Multi-function shield.
  */
-#define SEGMENT_LATCH   PD4
-#define SEGMENT_CLK     PD7
-#define SEGMENT_DATA    PB0
+#define SEG_LATCH   PD4
+#define SEG_CLK     PD7
+#define SEG_DATA    PB0
 
 
 /* Function prototypes -----------------------------------------------*/
@@ -72,6 +72,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position);
 
 
 /* SEG_clk_2us */
+
 
 /** @} */
 
