@@ -8,7 +8,7 @@
     sudo apt-get install git make avrdude putty doxygen doxygen-gui
     ```
 
-3. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
+3. Download the latest toolchain AVR 8-bit Toolchain - Linux 64-bit from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](../Install/avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `/opt` directory:
 
     ```bash
     sudo tar -xzvf avr8-gnu-toolchain-3.6.2.1778-linux.any.x86_64.tar.gz -C /opt/
@@ -33,9 +33,6 @@
     ## See USB-SERIAL CH340 port in Device Manager
     #USBPORT = COM3
     ```
-
-    > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
-    >
 
 6. In Visual Studio Code, open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 

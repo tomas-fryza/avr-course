@@ -10,11 +10,11 @@
 
     Add `C:\MinGW\bin` to your **Path** environment variable: **This PC > Properties > Advanced system settings > Environment Variables...**
 
-4. Download the latest version of Avrdude, such as [avrdude-6.3-mingw32.zip](http://download.savannah.gnu.org/releases/avrdude/) and extract **avrdude.conf** and **avrdude.exe** files to `C:\Appz\Avr` (Do NOT use any spaces in the file path). Copy [libusb0.dll](libusb0.dll) dynamic link library to `C:\Appz\Avr`. You can find the dll as part of Arduino IDE as well.
+4. Download the latest version of Avrdude, such as [avrdude-6.3-mingw32.zip](http://download.savannah.gnu.org/releases/avrdude/) and extract **avrdude.conf** and **avrdude.exe** files to `C:\Appz\Avr` (Do NOT use any spaces in the file path). Copy [libusb0.dll](../Install/libusb0.dll) dynamic link library to `C:\Appz\Avr`. You can find the dll as part of Arduino IDE as well.
 
 5. Download and install [PuTTy](https://www.putty.org/) client for serial communication between Arduino Uno board and your computer.
 
-6. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
+6. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](../Install/avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
 7. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
 
@@ -35,9 +35,6 @@
     # See USB-SERIAL CH340 port in Device Manager
     USBPORT = COM3
     ```
-
-    > If USB drivers for AVR boards are missing, download and install [Arduino IDE](https://www.arduino.cc/en/Main/Software) (it includes all drivers:).
-    >
 
 9. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
