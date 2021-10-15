@@ -3,7 +3,7 @@
  * Decimal counter with 7-segment output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2021 Tomas Fryza
+ * Copyright (c) 2018-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -31,7 +31,7 @@ int main(void)
     SEG_update_shift_regs(0b00001101, 0b00010000);
 
     // Configure 16-bit Timer/Counter1 for Decimal counter
-    // Enable interrupt and set the overflow prescaler to 262 ms
+    // Set the overflow prescaler to 262 ms and enable interrupt
 
 
     // Enables interrupts by setting the global interrupt mask
@@ -55,7 +55,6 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-
     // WRITE YOUR CODE HERE
 
 }
