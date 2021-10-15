@@ -1,19 +1,35 @@
 # Lab 5: Display devices, 7-segment display
 
-### Learning objectives
-
-The purpose of the laboratory exercise is to understand the serial control of four seven-segment displays (SSDs) using a pair of 74595 shift registers. In addition, the goal is to master the use of interrupts in applications with AVR.
-
 ![Multi-function shield](Images/arduino_uno_multi-shield_segments.jpg)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+   * Xxx
+   * Xxx
+
+The purpose of the laboratory exercise is to understand the serial control of four seven-segment displays (SSDs) using a pair of 74595 shift registers. In addition, the goal is to master the use of interrupts in applications with AVR.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 2: Seven-segment display](#part2)
+* [Part 3: Decimal counter](#part3)
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
-Read the [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html) and find out what is the difference between:
+1. Read the [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html) and find out what is the difference between:
    * Common Cathode 7-segment display (CC SSD)
    * Common Anode 7-segment display (CA SSD)
 
-In the following table, write the binary values of the segments for display 0 to 9 on a common anode 7-segment display.
+2. In the following table, write the binary values of the segments for display 0 to 9 on a common anode 7-segment display.
 
    | **Digit** | **A** | **B** | **C** | **D** | **E** | **F** | **G** | **DP** |
    | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -28,7 +44,7 @@ In the following table, write the binary values of the segments for display 0 to
    | 8 |   |   |   |   |   |   |   |   |
    | 9 |   |   |   |   |   |   |   |   |
 
-Use schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of seven-segment display. What is the purpose of two shift registers 74HC595?
+3. Use schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of seven-segment display. What is the purpose of two shift registers 74HC595?
 
 &nbsp;
 
@@ -43,11 +59,13 @@ Use schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf) and 
 &nbsp;
 
 
+<a name="part1"></a>
 ## Part 1: Synchronize repositories and create a new folder
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/05-segments` for this exercise.
 
 
+<a name="part2"></a>
 ## Part 2: Seven-segment display
 
 **Seven-segment display** (SSD) is an electronic device and consists of eight LEDs connected in parallel that can be lit in different combinations to display the numbers and letters [[1]](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html). These LEDs are called segments and they are titled a, b, ..., g.
@@ -189,6 +207,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 ```
 
 
+<a name="part3"></a>
 ## Part 3: Decimal counter
 
 Create a decimal counter from 0 to 9 with output on the 7-segment display. Configure a prescaler of 16-bit Timer/Counter1, enable an interrupt after its overflow, and program the ISR to increment the state of the decimal counter after each overflow. Display the value on the SSD.
@@ -196,9 +215,9 @@ Create a decimal counter from 0 to 9 with output on the 7-segment display. Confi
 
 ### Multiple displays
 
-Create a decimal counter from 00 to 59 with output on the 7-segment display. Use a separate variable for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
+Create a counter from 00 to 59 with output on the 7-segment display. To simplify things, you can use separate variables, one for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
 
-To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
+To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade value. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
 
 ```C
 ISR(TIMER0_OVF_vect)
@@ -216,13 +235,14 @@ ISR(TIMER0_OVF_vect)
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Try extending the decimal counter to four positions and display stopwatch values from 00.00 to 59.59.
 
-2. Modify the look-up table and program a cycling snake, such as [[2]](https://www.youtube.com/watch?v=5cIfiIujSPs) or [[3]](https://www.youtube.com/watch?v=pywOh2YC1ik).
+2. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on, and also the `SEG_clk_2us()` function, which will generate 1 period of a clock signal with a frequency of 500&nbsp;kHz.
 
-3. In segment library, program function `SEG_clear()`, which ensures that the entire display goes out, ie no segment will be switched on, and also the `SEG_clk_2us()` function, which will generate 1 period of a clock signal with a frequency of 500&nbsp;kHz.
+3. Modify the look-up table and program a cycling snake, such as [[4]](https://www.youtube.com/watch?v=5cIfiIujSPs) or [[5]](https://www.youtube.com/watch?v=pywOh2YC1ik).
 
 Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) and revise your `segment.h` comments for later easy generation of PDF documentation.
 
@@ -237,19 +257,29 @@ Extra. According to the [ATmega328P datasheet](https://www.microchip.com/wwwprod
 Program an application that uses any push button on Multi-function shield and Pin Change Interrupts 11:9 to reset the decimal counter value. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
 
 
+<a name="assignment"></a>
 ## Lab assignment
 
-1. Preparation tasks (done before the lab at home). Submit:
-    * Table with segments values for display 0 to 9 on a common anode 7-segment display,
-    * In your words, describe the difference between Common Cathode and Common Anode 7-segment display.
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-2. 7-segment library. Submit:
-    * Listing of library source file `segment.c`,
-    * Listing of decimal counter application `main.c` (at least two-digit decimal counter, ie. from 00 to 59),
-    * Screenshot of SimulIDE circuit.
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
-3. Snake. Submit:
-    * Look-up table with snake definition,
-    * Listing of your snake cycling application `main.c` (at least one-digit snake).
 
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+<a name="references"></a>
+## References
+
+1. AspenCore, Inc. [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html)
+
+2. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+
+3. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+
+4. Aleksei Tepljakov. [7 segment display application: snake](https://www.youtube.com/watch?v=5cIfiIujSPs)
+
+5. greenoakst. [Cycling snake on 2-digit 7-segment display](https://www.youtube.com/watch?v=pywOh2YC1ik)
+
+6. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
+
+7. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
+
+8. [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html)
