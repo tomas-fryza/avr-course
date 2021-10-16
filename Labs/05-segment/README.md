@@ -18,7 +18,7 @@ The purpose of the laboratory exercise is to understand the serial control of fo
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Seven-segment display](#part2)
-* [Part 3: Decimal counter](#part3)
+* [Part 3: Counter application](#part3)
 * [Experiments on your own](#experiments)
 * [Lab assignment](#assignment)
 * [References](#references)
@@ -120,26 +120,26 @@ Analyze timing of serial communication between ATmega328P and seven-segment disp
 
 ### Version: Atmel Studio 7
 
-Create a new GCC C Executable Project for ATmega328P within `05-segment` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+1. Create a new GCC C Executable Project for ATmega328P within `05-segment` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `segment.h`. Copy/paste the [template code](../library/include/segment.h) into it.
+2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `segment.h`. Copy/paste the [template code](../library/include/segment.h) into it.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `segment.c`. Copy/paste the [template code](../library/segment.c) into it.
+3. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `segment.c`. Copy/paste the [template code](../library/segment.c) into it.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add GPIO and Timer library files (`gpio.h`, `gpio.c`, `timer.h`) from the previous labs.
+4. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add GPIO and Timer library files (`gpio.h`, `gpio.c`, `timer.h`) from the previous labs.
 
 
 ### Version: Command-line toolchain
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/05-segment` folder.
+1. Copy `main.c` and `Makefile` files from previous lab to `Labs/05-segment` folder.
 
-Copy/paste [template code](main.c) to your `05-segment/main.c` source file.
+2. Copy/paste [template code](main.c) to your `05-segment/main.c` source file.
 
-Create a new library header file in `Labs/library/include/segment.h` and copy/paste the [template code](../library/include/segment.h) into it.
+3. Create a new library header file in `Labs/library/include/segment.h` and copy/paste the [template code](../library/include/segment.h) into it.
 
-Create a new `Labs/library/segment.c` library source file and copy/paste the [template code](../library/segment.c) into it.
+4. Create a new `Labs/library/segment.c` library source file and copy/paste the [template code](../library/segment.c) into it.
 
-Add the source file of SSD library between the compiled files in `05-segment/Makefile`.
+5. Add the source file of SSD library between the compiled files in `05-segment/Makefile`.
 
 ```Makefile
 # Add or comment libraries you are using in the project
@@ -162,15 +162,15 @@ Study the function prototypes and macro defines in the `segment.h` header file.
 | `void` | `SEG_clear` | `void` | Turn off all segments at all positions of the SSD |
 | `void` | `SEG_clk_2us` | `void` | Generate one CLK signal period with a duration of 2&nbsp;us |
 
-Define a function for updating the shift registers. Let the function takes two 8-bit variables as inputs: segments to be displayed and position of the display. Bit 0 of first input represents decimal point DP, bit 1 segment G, etc. The suggested structure of the subroutine is presented in [`segment.c`](../library/segment.c) source file. All proposed delay values are equal to 1&nbsp;us, although according to data sheet 74HC595 they may be smaller. Use delay library here for simplicity.
+1. Define a function for updating the shift registers. Let the function takes two 8-bit variables as inputs: segments to be displayed and position of the display. Bit 0 of first input represents decimal point DP, bit 1 segment G, etc. The suggested structure of the subroutine is presented in [`segment.c`](../library/segment.c) source file. All proposed delay values are equal to 1&nbsp;us, although according to data sheet 74HC595 they may be smaller. Use delay library here for simplicity.
 
-Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical SSD connection using shift registers according to the Multi-function shield).
+2. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical SSD connection using shift registers according to the Multi-function shield).
 
 ![SimulIDE](Images/screenshot_simulide_ssd.png)
 
-Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
+3. Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
 
-Create a look-up tables in `segment.c` for getting the segment values given a number between 0 and 9 and positions between 0 and 3.
+4. Create a look-up tables in `segment.c` for getting the segment values given a number between 0 and 9 and positions between 0 and 3.
 
 ```C
 /* Variables ---------------------------------------------------------*/
@@ -210,16 +210,13 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 
 
 <a name="part3"></a>
-## Part 3: Decimal counter
+## Part 3: Counter application
 
-Create a decimal counter from 0 to 9 with output on the 7-segment display. Configure a prescaler of 16-bit Timer/Counter1, enable an interrupt after its overflow, and program the ISR to increment the state of the decimal counter after each overflow. Display the value on the SSD.
+1. Create a decimal counter from 0 to 9 with output on the 7-segment display. Configure a prescaler of 16-bit Timer/Counter1, enable an interrupt after its overflow, and program the ISR to increment the state of the decimal counter after each overflow. Display the value on the SSD.
 
+2. Create a counter from 00 to 59 with output on the 7-segment display. To simplify things, you can use separate variables, one for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
 
-### Multiple displays
-
-Create a counter from 00 to 59 with output on the 7-segment display. To simplify things, you can use separate variables, one for each decade. Let the higher decade be incremented if the lower decade is at its maximum.
-
-To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade value. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
+   To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade value. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
 
 ```C
 ISR(TIMER0_OVF_vect)
