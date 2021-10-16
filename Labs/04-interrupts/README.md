@@ -85,24 +85,24 @@ The timer modules can be configured with several special purpose registers. Acco
 
 ### Version: Atmel Studio 7
 
-Create a new GCC C Executable Project for ATmega328P within `04-interrupts` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+1. Create a new GCC C Executable Project for ATmega328P within `04-interrupts` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `timer.h`. Copy/paste the [template code](../library/include/timer.h) into it.
+2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `timer.h`. Copy/paste the [template code](../library/include/timer.h) into it.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
+3. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
 
 ![Atmel Studio 7](Images/screenshot_atmel_studio_files.png)
 
 
 ### Version: Command-line toolchain
 
-Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder. If not, copy them from the `Examples` folder.
+1. Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder. If not, copy them from the `Examples` folder.
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupts` folder.
+2. Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupts` folder.
 
-Copy/paste [template code](main.c) to your `04-interrupts/main.c` source file.
+3. Copy/paste [template code](main.c) to your `04-interrupts/main.c` source file.
 
-Create a new library header file in `Labs/library/include/timer.h` and copy/paste the [template code](../library/include/timer.h) into it.
+4. Create a new library header file in `Labs/library/include/timer.h` and copy/paste the [template code](../library/include/timer.h) into it.
 
 
 ### Both versions
@@ -178,9 +178,7 @@ All interrupts are disabled by default. If you want to use them, you must first 
 <a name="part4"></a>
 ## Part 4: Final application
 
-In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library.
-
-Use Multi-function shield and toggle D1 LED with one of the internal timers. Select its prescaler value and enable overflow interrupt. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
+In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library. Use Multi-function shield and toggle D1 LED with one of the internal timers. Select its prescaler value and enable overflow interrupt. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
 
 In addition, if you want to use interrupts in your application, you must:
    * insert the header file `#include <avr/interrupt.h>`,
@@ -218,24 +216,29 @@ ISR(TIMER1_OVF_vect)
 }
 ```
 
-Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
+1. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
 
-Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
+2. Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
 
-Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
+3. Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
 
-Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
+4. Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
 
 FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
 
-```C
-void IRQHandler(){  
-  static uint16_t i=0;
-  if(i>=500){
-    i=0;
-  }else{
-    i++;
-  }
+```c
+void IRQHandler()
+{
+    static uint16_t i=0;
+
+    if (i>=500)
+    {
+        i=0;
+    }
+    else
+    {
+        i++;
+    }
 }
 ```
 
