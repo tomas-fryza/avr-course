@@ -91,7 +91,7 @@ The timer modules can be configured with several special purpose registers. Acco
 
 3. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
 
-![Atmel Studio 7](Images/screenshot_atmel_studio_files.png)
+   ![Atmel Studio 7](Images/screenshot_atmel_studio_files.png)
 
 
 ### Version: Command-line toolchain
