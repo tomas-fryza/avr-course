@@ -166,13 +166,13 @@ Study the function prototypes and macro defines in the `segment.h` header file.
 
 2. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical SSD connection using shift registers according to the Multi-function shield).
 
-![SimulIDE](Images/screenshot_simulide_ssd.png)
+   ![SimulIDE](Images/screenshot_simulide_ssd.png)
 
 3. Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
 
 4. Create a look-up tables in `segment.c` for getting the segment values given a number between 0 and 9 and positions between 0 and 3.
 
-```C
+```c
 /* Variables ---------------------------------------------------------*/
 // Active-low digit 0 to 9
 uint8_t segment_value[] = {
@@ -218,7 +218,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 
    To operate multiple displays, it is necessary to constantly switch between them with sufficient speed and repeatedly display the appropriate decade value. For switching, add a second timer Timer/Counter0 with an overflow time of 4 ms. When the timer overflows, switch the display position and send its value to the display. Use a static variable within the interrupt handler to keep the information about the current position.
 
-```C
+```c
 ISR(TIMER0_OVF_vect)
 {
     static uint8_t pos = 0;
