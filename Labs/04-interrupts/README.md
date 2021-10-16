@@ -224,20 +224,20 @@ ISR(TIMER1_OVF_vect)
 
 4. Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
 
-FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
+   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts)
 
 ```c
 void IRQHandler()
 {
-    static uint16_t i=0;
+    static uint16_t i=0;  // When IRQHandler is executed for the first time, i=0
 
     if (i>=500)
     {
-        i=0;
+        i=0;  // Variable is reset when function IRQHandler is executed 500 times
     }
     else
     {
-        i++;
+        i++;  // Variable is incremented any time function IRQHandler is executed
     }
 }
 ```
