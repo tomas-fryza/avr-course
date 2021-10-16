@@ -221,7 +221,7 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 ```c
 ISR(TIMER0_OVF_vect)
 {
-    static uint8_t pos = 0;
+    static uint8_t pos = 0;  // This line will only run the first time
     ...
 }
 ```
