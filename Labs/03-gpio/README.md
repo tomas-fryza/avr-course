@@ -29,18 +29,18 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
 1. Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
 
-| **Data type** | **Number of bits** | **Range** | **Description** |
-| :-: | :-: | :-: | :-- | 
-| `uint8_t`  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
-| `int8_t`   |  |  |  |
-| `uint16_t` |  |  |  |
-| `int16_t`  |  |  |  |
-| `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-| `void`     |  |  |  |
+   | **Data type** | **Number of bits** | **Range** | **Description** |
+   | :-: | :-: | :-: | :-- | 
+   | `uint8_t`  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
+   | `int8_t`   |  |  |  |
+   | `uint16_t` |  |  |  |
+   | `int16_t`  |  |  |  |
+   | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
+   | `void`     |  |  |  |
 
 2. Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
-```C
+```c
 #include <avr/io.h>
 
 // Function declaration (prototype)
@@ -143,14 +143,14 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 ### Version: Atmel Studio 7
 
-Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+1. Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
+2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Version: Command-line toolchain
 
-If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `Makefile.in` settings file exists in `Labs` folder.
+1. If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `Makefile.in` settings file exists in `Labs` folder.
 
 ```bash
 ## Linux:
@@ -159,11 +159,11 @@ $ ls
 01-tools  02-leds  03-gpio  Makefile.in  library
 ```
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.
+2. Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.
 
-Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
+3. Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
 
-Create a new library header file in `Labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
+4. Create a new library header file in `Labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
 
 
 ### Both versions
@@ -195,14 +195,14 @@ Note that the C notation `*variable` representing a pointer to memory location w
 
 ### Version: Atmel Studio 7
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `gpio.c`. Copy/paste the [template code](../library/gpio.c) into it.
+1. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `gpio.c`. Copy/paste the [template code](../library/gpio.c) into it.
 
 
 ### Version: Command-line toolchain
 
-Create a new `Labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
+1. Create a new `Labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
 
-Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
+2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
 
 ```Makefile
 # Add or comment libraries you are using in the project
@@ -215,11 +215,9 @@ SRCS += $(LIBRARY_DIR)/gpio.c
 
 ### Both versions
 
-Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
+Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass). Complete the definition of all functions in `gpio.c` file according to the example.
 
-Complete the definition of all functions in `gpio.c` file according to the example.
-
-```C
+```c
 #include "gpio.h"
 
 /* Function definitions ----------------------------------------------*/
@@ -233,14 +231,14 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 <a name="part4"></a>
 ## Part 4: Final application
 
-In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
+1. In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
 
-```C
+```c
     /* GREEN LED */
     GPIO_config_output(&DDRB, LED_GREEN);
 ```
 
-Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
+2. Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
 
 ## Synchronize repositories
