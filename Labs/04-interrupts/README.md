@@ -289,7 +289,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 
    Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
 
-![SimulIDE](Images/screenshot_simulide_pwm.png)
+   ![SimulIDE](Images/screenshot_simulide_pwm.png)
 
 2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
    * Normal mode,
