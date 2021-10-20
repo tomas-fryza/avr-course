@@ -11,7 +11,7 @@ Link to your `Digital-electronics-2` GitHub repository:
    * CC SSD
    * CA SSD
 
-2. Code listing with syntax highlighting of two interrupt service routines (`TIMER0_OVF_vect`, `TIMER0_OVF_vect`) from counter application with at least two digits, ie. values from 00 to 59:
+2. Code listing with syntax highlighting of two interrupt service routines (`TIMER1_OVF_vect`, `TIMER0_OVF_vect`) from counter application with at least two digits, ie. values from 00 to 59:
 
 ```c
 /**********************************************************************
