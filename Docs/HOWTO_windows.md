@@ -16,9 +16,11 @@
 
 6. Download the latest toolchain AVR 8-bit Toolchain v3.62 - Windows from Microchip [webpage](https://www.microchip.com/mplab/avr-support/avr-and-arm-toolchains-c-compilers), from this [repository](../Install/avr8-gnu-toolchain-3.6.2.1778-win32.any.x86.zip), or from Microchip's [archive](https://www.microchip.com/en-us/development-tools-tools-and-software/avr-and-sam-downloads-archive) and extract all files to `C:\Appz\Avr\avr8-gnu-toolchain-win32_x86`.
 
-7. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
+7. Instal the [CH340 drivers](http://www.wch-ic.com/downloads/CH341SER_ZIP.html) and restart the computer.
 
-8. Start Visual Studio Code source code editor, open template folder, in `Examples/Makefile.in` file enable and/or modify Windows parameters according to your local settings:
+8. Download and extract `Examples` folder from this [repository](https://github.com/tomas-fryza/Digital-electronics-2/archive/master.zip) to local computer.
+
+9. Start Visual Studio Code source code editor, open template folder, in `Examples/Makefile.in` file enable and/or modify Windows parameters according to your local settings:
 
     ```Makefile
     ## Linux
@@ -36,7 +38,7 @@
     USBPORT = COM3
     ```
 
-9. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
+10. Open a new terminal in menu **Terminal > New Terminal** and change working directory to `Examples/blink`.
 
     ```bash
     cd Examples
@@ -57,7 +59,7 @@
     mingw32-make.exe clean
     ```
 
-10. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
+11. To create a new project, make a new directory within `Labs` folder and copy three files `main.c`, `Makefile`, and `README.md` from `Examples/blink` project to `Labs/new-project-folder`.
 
     > If your Arduino board (or clone) does not contain any bootloader, follow instructions at [Instructables](https://www.instructables.com/id/How-to-fix-bad-Chinese-Arduino-clones/) or [Arduino webpages](https://www.arduino.cc/en/Tutorial/ArduinoISP).
     >
@@ -69,6 +71,7 @@
 
 | **Version**                | **Date (YYYY-MM-DD)** | **Note**    |
 | :------------------------- | :-------------------- | :---------- |
+| Windows 10                 | 2021-10-21            | Office      |
 | Windows 10                 | 2020-09-03            | Lab SC 6.61 |
 | Windows 10                 | 2019-11-26            | Lab SC 6.66 |
 | Windows 7                  | 2019-05-17            | Lab SC 6.61 |
