@@ -270,7 +270,7 @@ Program an application that uses any push button on Multi-function shield and Pi
 
 1. AspenCore, Inc. [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html)
 
-2. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+2. Tomas Fryza. [Schematic of Multi-function shield](../../Docs/arduino_shield.pdf)
 
 3. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
 
