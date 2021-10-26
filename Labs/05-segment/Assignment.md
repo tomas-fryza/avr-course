@@ -1,6 +1,8 @@
 # Lab 5: YOUR_FIRSTNAME FAMILYNAME
 
-Link to your `Digital-electronics-2` GitHub repository: [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
+Link to your `Digital-electronics-2` GitHub repository:
+
+[https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
 
 ### 7-segment library
