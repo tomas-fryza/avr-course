@@ -4,7 +4,7 @@
  * transmitting via UART.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2020 Tomas Fryza
+ * Copyright (c) 2018-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -48,8 +48,7 @@ int main(void)
 
 
     // Configure 16-bit Timer/Counter1 to start ADC conversion
-    // Enable interrupt and set the overflow prescaler to 262 ms
-
+    // Set prescaler to 262 ms and enable overflow interrupt
 
     // Initialize UART to asynchronous, 8N1, 9600
 
