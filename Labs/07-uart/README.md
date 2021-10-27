@@ -6,8 +6,9 @@
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Xxx
-   * Xxx
+   * Understand the analog-to-digital conversion process
+   * How to use internal ADC unit
+   * Understand the UART communication
 
 The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter. Another goal is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
 
@@ -16,12 +17,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Analog-to-Digital Conversion](#part2)
-
-
-
-* [Part 3: Library for HD44780 based LCDs](#part3)
-* [Part 4: Stopwatch](#part4)
-* [Part 5: Defined and custom characters](#part5)
+* [Part 3: UART communication](#part3)
 * [Experiments on your own](#experiments)
 * [Lab assignment](#assignment)
 * [References](#references)
@@ -116,9 +112,9 @@ The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADC
 
 ### Version: Atmel Studio 7
 
-Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+1. Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
-In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
+2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
    * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
    * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
    * Timer library `timer.h` from the previous labs.
@@ -126,11 +122,11 @@ In **Solution Explorer** click on the project name, then in menu **Project**, se
 
 ### Version: Command-line toolchain
 
-Copy `main.c` and `Makefile` files from previous lab to `Labs/07-uart` folder.
+1. Copy `main.c` and `Makefile` files from previous lab to `Labs/07-uart` folder.
 
-Copy/paste [template code](main.c) to your `07-uart/main.c` source file.
+2. Copy/paste [template code](main.c) to your `07-uart/main.c` source file.
 
-Add the source files of UART and LCD libraries between the compiled files in `07-uart/Makefile`.
+3. Add the source files of UART and LCD libraries between the compiled files in `07-uart/Makefile`.
 
 ```Makefile
 # Add or comment libraries you are using in the project
@@ -144,26 +140,26 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 ### Both versions
 
-Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
+1. Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
 
-![SimulIDE](Images/screenshot_simulide_lcd_probe.png)
+   ![SimulIDE](Images/screenshot_simulide_lcd_probe.png)
 
-In `main.c` configure ADC as follows:
-   * voltage reference: AVcc with external capacitor,
-   * input channel: ADC0,
-   * clock prescaler: 128,
-   * enable ADC module, and
+2. In `main.c` configure ADC as follows:
+   * voltage reference: AVcc with external capacitor
+   * input channel: ADC0
+   * clock prescaler: 128
+   * enable ADC module
    * enable interrupt
 
-Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
+   Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
 
-Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable, which is declared in the AVR library, to read the value from both converter registers ADCH:L.
+   Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable, which is declared in the AVR library, to read the value from both converter registers ADCH:L.
 
 ```c
-/**
- * ISR starts when ADC completes the conversion. Display value on LCD
- * and send it to UART.
- */
+/**********************************************************************
+ * Function: ADC complete interrupt
+ * Purpose:  Display value on LCD and send it to UART.
+ **********************************************************************/
 ISR(ADC_vect)
 {
     uint16_t value = 0;
@@ -171,19 +167,21 @@ ISR(ADC_vect)
 
     value = ADC;    // Copy ADC result to 16-bit variable
     itoa(value, lcd_string, 10);    // Convert decimal value to string
-    ...
+
+    // WRITE YOUR CODE HERE
 ```
 
-Write the values to the table from Preparation tasks section and compare them with the calculated ones.
+3. Write the values to the table from Preparation tasks section and compare them with the calculated ones.
 
-![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
+   ![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
 
 
+<a name="part3"></a>
 ## Part 3: UART communication
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
-In UART communication, two UARTs communicate directly with each other. The transmitting UART converts parallel data from a CPU into serial form, transmits it in serial to the receiving UART, which then converts the serial data back into parallel data for the receiving device. Only two wires are needed to transmit data between two UARTs. Data flows from the Tx pin of the transmitting UART to the Rx pin of the receiving UART [[4]](https://www.circuitbasics.com/basics-uart-communication/).
+In UART communication, two UARTs communicate directly with each other. The transmitting UART converts parallel data from a CPU into serial form, transmits it in serial to the receiving UART, which then converts the serial data back into parallel data for the receiving device. Only two wires are needed to transmit data between two UARTs. Data flows from the Tx pin of the transmitting UART to the Rx pin of the receiving UART [[6]](https://www.circuitbasics.com/basics-uart-communication/).
 
 UARTs transmit data asynchronously, which means there is no external clock signal to synchronize the output of bits from the transmitting UART. Instead, timing is agreed upon in advance between both units, and special **Start** (log. 0) and 1 or 2 **Stop** (log. 1) bits are added to each data package. These bits define the beginning and end of the data packet so the receiving UART knows when to start reading the bits. In addition to the start and stop bits, the packet/frame also contains data bits and optional parity.
 
@@ -196,19 +194,19 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 ![UART frame 8N1](Images/uart_frame_8n1.png)
 
 
-### Example
+### Example of UART communication
 
-> Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
+> **Question:** Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
 >
    &nbsp;
    ![Timing of UART](Images/uart_capture_E.png)
 
-> 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x45) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents the letter `E`.
+> **Answer:** 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x45) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents the letter `E`.
 >
 > The figure further shows that the bit period, i.e. the duration of one bit, is 104&nbsp;us. The symbol rate of the communication is thus 1/104e-6 = 9615, i.e. approximately 9600&nbsp;Bd.
 >
 
-In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury. Use online manual of UART library and add the input parameters and description of the functions to the following table.
+1. In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury. Use online manual of UART library and add the input parameters and description of the functions to the following table.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
@@ -217,22 +215,22 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `uart_putc` |  |  |
    | `uart_puts` |  |  |
 
-Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode.
+2. Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode.
 
 
 ### Version: SimulIDE
 
-In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
+1. In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-![SimulIDE](Images/screenshot_simulide_lcd_uart.png)
+   ![SimulIDE](Images/screenshot_simulide_lcd_uart.png)
 
 
 ### Version: Real hardware
 
-Use PuTTY SSH Client to receive values from Arduino board. Set connection type to **Serial** and check that the configuration is the same as in the ATmega328 application. Note that, serial line to connect to (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
+1. Use PuTTY SSH Client to receive values from Arduino board. Set connection type to **Serial** and check that the configuration is the same as in the ATmega328 application. Note that, serial line to connect to (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
 
-![PuTTY](Images/screenshot_putty_type.png)
-![PuTTY](Images/screenshot_putty_config.png)
+   ![PuTTY](Images/screenshot_putty_type.png)
+   ![PuTTY](Images/screenshot_putty_config.png)
 
 > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
 >
@@ -243,6 +241,7 @@ Use PuTTY SSH Client to receive values from Arduino board. Set connection type t
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 
+<a name="experiments"></a>
 ## Experiments on your own
 
 1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c` and send it to UART. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
@@ -269,7 +268,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 #endif
 ```
 
-![SimulIDE](Images/screenshot_simulide_lcd_final.png)
+   ![SimulIDE](Images/screenshot_simulide_lcd_final.png)
 
 2. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
 
@@ -280,7 +279,7 @@ Extra. Design your own library for working with analog to digital convertor.
 
 3. What is the meaning of ASCII control characters `\r`, `\n`, and `\b`? What codes are defined for these characters in ASCII table?
 
-4. Use [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
+4. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
    ```C
    /* Color/formatting sequence always starts by "\033[" and ends by "m" strings.
@@ -309,7 +308,7 @@ Extra. Design your own library for working with analog to digital convertor.
    ```C
    uint8_t c;
    ...
-    
+
    c = uart_getc();
    if (c != '\0') {        // Data available from UART
        if (c == '1') {     // Key '1' received
@@ -318,23 +317,15 @@ Extra. Design your own library for working with analog to digital convertor.
    }
    ```
 
-6. Program a software UART transmitter that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
+6. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
 
+<a name="assignment"></a>
 ## Lab assignment
 
-1. Preparation tasks (done before the lab at home). Submit:
-   * Table with voltage divider, calculated, and measured ADC values for all buttons.
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-2. ADC. Submit:
-   * Listing of `ADC_vect` interrupt routine with complete code for sending data to the LCD/UART and identification of the pressed button.
-   * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
-
-3. UART. Submit:
-   * (Hand-drawn) picture of UART signal when transmitting data `DE2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd),
-   * Listing of code for calculating/displaying parity bit.
-
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
+*Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 
 <a name="references"></a>
@@ -342,22 +333,20 @@ The deadline for submitting the task is the day before the next laboratory exerc
 
 1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
 
-2. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
+2. EETech Media, LLC. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
 
-3. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
+3. Components101. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
 
-4. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
+4. Embedds. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
 
 5. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
 
+6. Circuit Basics. [Basics of UART Communication](https://www.circuitbasics.com/basics-uart-communication/)
 
+7. [ASCII Table](http://www.asciitable.com/)
 
-
-
-4. Circuit Basics. [Basics of UART Communication](https://www.circuitbasics.com/basics-uart-communication/)
-5. [ASCII Table and Description](http://www.asciitable.com/)
-
-
+8. Peter Fleury. [UART library](http://www.peterfleury.epizy.com/avr-software.html)
 
 9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
 
+10. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
