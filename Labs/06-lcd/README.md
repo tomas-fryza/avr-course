@@ -160,9 +160,12 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
    ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
-2. Test the functions from the table and display strings/characters on the LCD as follows [[3]](http://avtanski.net/projects/lcd/). Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
+2. Test the library functions from the table and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds in position "a", the process bar in position "b", and the rotating text in position "c".
 
    ![LCD screenshot](Images/screenshot_lcd_init.png)
+
+> The figure above was created by online [LCD Display Screenshot Generator](http://avtanski.net/projects/lcd/).
+>
 
 
 <a name="part4"></a>
