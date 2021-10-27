@@ -1,12 +1,33 @@
 # Lab 7: ADC and UART serial communication
 
-### Learning objectives
-
-The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter. Another goal is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
-
 ![LCD-keypad shield](Images/arduino_uno_adc.jpg)
 
 
+### Learning objectives
+
+After completing this lab you will be able to:
+   * Xxx
+   * Xxx
+
+The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter. Another goal is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
+
+
+### Table of contents
+* [Preparation tasks](#preparation)
+* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 2: Analog-to-Digital Conversion](#part2)
+
+
+
+* [Part 3: Library for HD44780 based LCDs](#part3)
+* [Part 4: Stopwatch](#part4)
+* [Part 5: Defined and custom characters](#part5)
+* [Experiments on your own](#experiments)
+* [Lab assignment](#assignment)
+* [References](#references)
+
+
+<a name="preparation"></a>
 ## Preparation tasks (done before the lab at home)
 
 Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
@@ -23,7 +44,7 @@ Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find
 
 &nbsp;
 
-According to the connection, calculate the voltage value on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively.
+According to the connection, calculate the voltage values on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively.
 
 ![Equation: Voltage divider](Images/eq_divider1.png)
 
@@ -63,11 +84,13 @@ Calculate the ADC values for these voltages according to the following equation 
    | none   |       |     |  |
 
 
+<a name="part1"></a>
 ## Part 1: Synchronize repositories and create a new folder
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/07-uart` for this exercise.
 
 
+<a name="part2"></a>
 ## Part 2: Analog-to-Digital Conversion
 
 We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. It is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it.
@@ -76,7 +99,7 @@ An [Analog to Digital Converter](https://components101.com/articles/analog-to-di
 
 The internal ADC module of ATmega328P can be used in relatively slow and not extremely accurate data acquisitions. But it is a good choice in most situations, like reading sensor data or reading waveforms.
 
-AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[3]](https://embedds.com/adc-on-atmega328-part-1/).
+AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[4]](https://embedds.com/adc-on-atmega328-part-1/).
 
 The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADCH, ADCSRB, and DIDR0 registers. See [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Analog-to-Digital Converter > Register Description**) and complete the following table.
 
@@ -314,10 +337,27 @@ Extra. Design your own library for working with analog to digital convertor.
 The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
 
 
+<a name="references"></a>
 ## References
 
-1. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
-2. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
-3. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
+1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
+
+2. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
+
+3. [Introduction to Analog to Digital Converters (ADC Converters)](https://components101.com/articles/analog-to-digital-adc-converters)
+
+4. Embedded projects from around the web. [ADC on Atmega328. Part 1](https://embedds.com/adc-on-atmega328-part-1/)
+
+5. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
+
+
+
+
+
 4. Circuit Basics. [Basics of UART Communication](https://www.circuitbasics.com/basics-uart-communication/)
 5. [ASCII Table and Description](http://www.asciitable.com/)
+
+
+
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+
