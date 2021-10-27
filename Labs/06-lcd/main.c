@@ -3,7 +3,7 @@
  * Stopwatch with LCD display output.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2021 Tomas Fryza
+ * Copyright (c) 2017-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -34,7 +34,7 @@ int main(void)
     lcd_putc('!');
 
     // Configure 8-bit Timer/Counter2 for Stopwatch
-    // Enable interrupt and set the overflow prescaler to 16 ms
+    // Set the overflow prescaler to 16 ms and enable interrupt
 
 
     // Enables interrupts by setting the global interrupt mask
@@ -70,4 +70,5 @@ ISR(TIMER2_OVF_vect)
         // WRITE YOUR CODE HERE
 
     }
+    // Else do nothing and exit the ISR
 }
