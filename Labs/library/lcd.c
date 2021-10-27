@@ -190,10 +190,11 @@ static void lcd_write(uint8_t data, uint8_t rs)
         LCD_DATA2_PORT |= _BV(LCD_DATA2_PIN);
         LCD_DATA3_PORT |= _BV(LCD_DATA3_PIN);
 
-        /* FRYZA: EXPERIMENTALLY ADDED FOR ARDUINO UNO
-         * Delay MUST be greater than 679 us
+        /* FRYZA: EXPERIMENTALLY ADDED FOR ARDUINO UNO and LCD KEYPAD SHIELD
+         * Delay MUST be greater than 679 us for blue-light background LCD Keypad Shield
+         * Delay MUST be greater than 754 us for green-yellow-light background LCD Keypad Shield
          */
-        _delay_us(750);
+        _delay_us(800);
     }
 } /* lcd_write */
 
