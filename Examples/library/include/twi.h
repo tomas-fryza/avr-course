@@ -40,6 +40,7 @@
 /* Includes ----------------------------------------------------------*/
  #include <avr/io.h>
 
+
 /* Defines -----------------------------------------------------------*/
 /**
  * @name Definition of frequencies 
@@ -71,10 +72,6 @@
 
 
 /* Function prototypes -----------------------------------------------*/
-/**
- * @name Functions
- */
-
 /**
  * @brief  Initialize TWI, enable internal pull-ups, set SCL frequency.
  * @par    Implementation notes:
