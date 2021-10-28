@@ -19,8 +19,6 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 The following hardware and software components are mainly used in the lab.
 
-### Hardware
-
 * Devices:
    - [ATmega328P](https://www.microchip.com/wwwproducts/en/ATmega328P) 8-bit microcontroller: [instruction set](https://www.microchip.com/webdoc/avrassembler/avrassembler.wb_instruction_list.html)
 
