@@ -53,7 +53,7 @@ The following hardware and software components are mainly used in the lab.
    - [GCC Compilers for AVR](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
 
 * Other tools:
-   - [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
+   - [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation
 
    - [git](https://git-scm.com/)
 
