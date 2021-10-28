@@ -45,14 +45,17 @@ The following hardware and software components are mainly used in the lab.
 
    - Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng)
 
+* Development tools:
+   - [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
 
-### Software
+   - [Visual Studio Code](https://code.visualstudio.com/)
 
-* [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
-* [Visual Studio Code](https://code.visualstudio.com/)
-* [GCC Compilers for AVR](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
-* [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
-* [git](https://git-scm.com/)
+   - [GCC Compilers for AVR](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
+
+* Others:
+   - [SimulIDE](https://www.simulide.com/p/home.html), real time electronic circuit simulator. With PIC, AVR and Arduino simulation.
+
+   - [git](https://git-scm.com/)
 
 
 ## References
