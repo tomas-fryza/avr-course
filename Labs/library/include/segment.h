@@ -46,10 +46,6 @@
 
 /* Function prototypes -----------------------------------------------*/
 /**
- * @name Functions
- */
-
-/**
  * @brief  Configure SSD signals LATCH, CLK, and DATA as output.
  * @return none
  */
