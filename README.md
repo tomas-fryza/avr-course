@@ -29,9 +29,9 @@ The following hardware and software components are mainly used in the lab.
 
 * [LCD and keypad shield](https://arduino-shop.cz/en/arduino-platform/899-arduino-lcd-shield-1420670167.html) with LCD and five push buttons: [schematic](Docs/arduino_shield.pdf)
 
-* I2C humidity and temperature sensor [DHT12](https://arduino-shop.cz/arduino/1977-i2c-teplomer-a-vlhkomer-dht12-digitalni.html): [data sheet](Docs/dht12_manual.pdf)
+* [DHT12](https://arduino-shop.cz/arduino/1977-i2c-teplomer-a-vlhkomer-dht12-digitalni.html) I2C humidity and temperature sensor: [data sheet](Docs/dht12_manual.pdf)
 
-* I2C real time clock [DS3231](https://arduino-shop.cz/hledani.php?q=DS3231&n_q=): [data sheet](Docs/ds3231_manual.pdf)
+* [DS3231](https://arduino-shop.cz/hledani.php?q=DS3231&n_q=) I2C real time clock: [data sheet](Docs/ds3231_manual.pdf)
 
 * [HC-SR04](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) ultrasonic sensor
 
