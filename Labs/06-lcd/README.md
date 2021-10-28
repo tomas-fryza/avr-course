@@ -160,7 +160,7 @@ SRCS += $(LIBRARY_DIR)/lcd.c
 
    ![SimulIDE](Images/screenshot_simulide_lcd.png)
 
-2. Test the library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a cursor after letter "c".
+2. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a cursor after letter "c".
 
    ![LCD screenshot](Images/screenshot_lcd_init.png)
 
