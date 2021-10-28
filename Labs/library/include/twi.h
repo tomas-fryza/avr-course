@@ -74,10 +74,6 @@
 
 /* Function prototypes -----------------------------------------------*/
 /**
- * @name Functions
- */
-
-/**
  * @brief  Initialize TWI, enable internal pull-ups, set SCL frequency.
  * @par    Implementation notes:
  *           - AVR internal pull-up resistors at pins TWI_SDA_PIN and
