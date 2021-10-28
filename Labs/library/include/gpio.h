@@ -37,10 +37,6 @@
 
 /* Function prototypes -----------------------------------------------*/
 /**
- * @name Functions
- */
-
-/**
  * @brief  Configure one output pin in Data Direction Register.
  * @param  reg_name Address of Data Direction Register, such as &DDRB
  * @param  pin_num  Pin designation in the interval 0 to 7
