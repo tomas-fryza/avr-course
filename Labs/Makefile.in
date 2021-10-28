@@ -15,8 +15,9 @@ F_CPU    = 16000000
 #USBPORT = /dev/ttyUSB0
 
 ## Windows
-PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
-AVRDUDE = C:\APPZ\avrdude\avrdude.exe
+#PREFIX  = C:\Appz\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
+PREFIX  = C:\Appz\Avr\avr8-gnu-toolchain-win32_x86
+AVRDUDE = C:\Appz\Avr\avrdude.exe
 RM      = del
 # See USB-SERIAL CH340 port in Device Manager
 USBPORT = COM3
