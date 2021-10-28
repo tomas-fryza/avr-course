@@ -31,17 +31,17 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 
 1. Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find out the connection of LCD display. What data and control signals are used? What is the meaning of these signals?
 
-&nbsp;
+   &nbsp;
 
-&nbsp;
+   &nbsp;
 
-&nbsp;
+   &nbsp;
 
-&nbsp;
+   &nbsp;
 
-&nbsp;
+   &nbsp;
 
-&nbsp;
+   &nbsp;
 
    | **LCD signal(s)** | **AVR pin(s)** | **Description** |
    | :-: | :-: | :-- |
