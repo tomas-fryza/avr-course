@@ -34,6 +34,8 @@ ISR(ADC_vect)
     itoa(value, lcd_string, 10);    // Convert decimal value to string
 
     // WRITE YOUR CODE HERE
+
+}
 ```
 
 
