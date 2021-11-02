@@ -22,7 +22,7 @@ Link to your `Digital-electronics-2` GitHub repository:
    * Function
    * Interrupt service routine
 
-2. Part of the header file listing with syntax highlighting, which defines settings for Timer/Counter0:
+2. Part of the header file listing, which defines settings for Timer/Counter0. Always use syntax highlighting and meaningful comments:
 
 ```c
 /**
