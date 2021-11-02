@@ -18,7 +18,7 @@ Link to your `Digital-electronics-2` GitHub repository:
    | Select |       |     |  |
    | none   |       |     |  |
 
-2. Code listing with syntax highlighting of ACD interrupt service routine for sending data to the LCD/UART and identification of the pressed button.:
+2. Code listing of ACD interrupt service routine for sending data to the LCD/UART and identification of the pressed button. Always use syntax highlighting and meaningful comments:
 
 ```c
 /**********************************************************************
@@ -52,7 +52,7 @@ ISR(ADC_vect)
 
 ### Temperature meter
 
-Consider an application for temperature measurement and display. Use temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, one LED and one push button. After pressing the button, the temperature is measured, its value is displayed on the LCD and data is sent to the UART. When the temperature is too high, the LED will start blinking.
+Consider an application for temperature measurement and display. Use temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, one LED and a push button. After pressing the button, the temperature is measured, its value is displayed on the LCD and data is sent to the UART. When the temperature is too high, the LED will start blinking.
 
 1. Scheme of temperature meter. The image can be drawn on a computer or by hand. Always name all components and their values.
 
