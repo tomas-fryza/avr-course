@@ -24,7 +24,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 ### Custom characters
 
-1. Code listing with syntax highlighting of two custom character definition:
+1. Code listing of two custom character definition. Always use syntax highlighting and meaningful comments:
 
 ```c
 /* Variables ---------------------------------------------------------*/
