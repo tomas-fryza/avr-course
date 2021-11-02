@@ -100,7 +100,7 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADCH, ADCSRB, and DIDR0 registers. See [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Analog-to-Digital Converter > Register Description**) and complete the following table.
 
    | **Operation** | **Register(s)** | **Bit(s)** | **Description** |
-   | :-: | :-: | :-: | :-- |
+   | :-- | :-: | :-: | :-- |
    | Voltage reference    | ADMUX | REFS1:0 | 01: AVcc voltage reference (5V), ... |
    | Input channel        | ADMUX | MUX3:0 | 0000: ADC0, 0001: ADC1, ... |
    | ADC enable           | ADCSRA |  |  |
