@@ -26,7 +26,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 | 1 | 0 | | | |
 | 1 | 1 | | | |
 
-2. Part of the C code listing with syntax highlighting, which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C:
+2. Part of the C code listing which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C. Always use syntax highlighting and meaningful comments:
 
 ```c
 int main(void)
@@ -57,7 +57,7 @@ int main(void)
 
 ### Push button
 
-1. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D:
+1. Part of the C code listing which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D. Always use syntax highlighting and meaningful comments:
 
 ```c
     // Configure Push button at port D and enable internal pull-up resistor
