@@ -5,5 +5,10 @@
         "timer.h": "c",
         "interrupt.h": "c",
         "twi.h": "c"
+    },
+    "markdownlint.config": {
+        "MD033": {
+            "allowed_elements": [ "a" ]
+        }
     }
 }
