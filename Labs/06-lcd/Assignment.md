@@ -1,6 +1,8 @@
 # Lab 6: YOUR_FIRSTNAME FAMILYNAME
 
-Link to this file in your GitHub repository: [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
+Link to this file in your GitHub repository:
+
+[https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
 
 ### LCD display module
