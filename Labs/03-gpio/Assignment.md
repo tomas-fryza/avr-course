@@ -22,10 +22,10 @@ Link to your `Digital-electronics-2` GitHub repository:
 ### GPIO library
 
 1. In your words, describe the difference between the declaration and the definition of the function in C.
-   * Function declaration
-   * Function definition
+   * Function declaration:
+   * Function definition:
 
-2. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Use function from your GPIO library. Let the push button is connected to port D:
+2. Part of the C code listing which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Use function from your GPIO library. Let the push button is connected to port D. Always use syntax highlighting and meaningful comments:
 
 ```c
     // Configure Push button at port D and enable internal pull-up resistor
