@@ -153,7 +153,9 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
    Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
 
-   Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable, which is declared in the AVR library, to read the value from both converter registers ADCH:L.
+   Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
+
+![LCD-keypad shield](Images/arduino_uno_adc.jpg)
 
 ```c
 /**********************************************************************
