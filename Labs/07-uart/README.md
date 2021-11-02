@@ -2,18 +2,18 @@
 
 ![LCD-keypad shield](Images/arduino_uno_adc.jpg)
 
-
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Understand the analog-to-digital conversion process
-   * How to use internal ADC unit
-   * Understand the UART communication
+
+* Understand the analog-to-digital conversion process
+* How to use internal ADC unit
+* Understand the UART communication
 
 The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter. Another goal is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
 
-
 ### Table of contents
+
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Analog-to-Digital Conversion](#part2)
@@ -22,9 +22,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 * [Lab assignment](#assignment)
 * [References](#references)
 
-
-<a name="preparation"></a>
+<a name="preparation">
 ## Preparation tasks (done before the lab at home)
+</a>
 
 1. Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
 
@@ -79,15 +79,15 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
    | Select |       |     |  |
    | none   |       |     |  |
 
-
-<a name="part1"></a>
+<a name="part1">
 ## Part 1: Synchronize repositories and create a new folder
+</a>
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/07-uart` for this exercise.
 
-
-<a name="part2"></a>
+<a name="part2">
 ## Part 2: Analog-to-Digital Conversion
+</a>
 
 We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. It is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it.
 
@@ -109,7 +109,6 @@ The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADC
    | ADC clock prescaler  |  | ADPS2:0 | 000: Division factor 2, 001: 2, 010: 4, ...|
    | ADC 10-bit result    |  |  |  |
 
-
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
@@ -118,7 +117,6 @@ The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADC
    * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
    * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
    * Timer library `timer.h` from the previous labs.
-
 
 ### Version: Command-line toolchain
 
@@ -137,7 +135,6 @@ SRCS += $(LIBRARY_DIR)/uart.c
 #SRCS += $(LIBRARY_DIR)/segment.c
 ```
 
-
 ### Both versions
 
 1. Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
@@ -155,7 +152,7 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
    Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
 
-![LCD-keypad shield](Images/arduino_uno_adc.jpg)
+   ![LCD-keypad shield](Images/arduino_uno_adc.jpg)
 
 ```c
 /**********************************************************************
@@ -177,9 +174,9 @@ ISR(ADC_vect)
 
    ![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
 
-
-<a name="part3"></a>
+<a name="part3">
 ## Part 3: UART communication
+</a>
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
@@ -194,7 +191,6 @@ The amount of **data** in each packet can be set from 5 to 9 bits. If it is not 
 One of the most common UART formats is called **9600 8N1**, which means 8 data bits, no parity, 1 stop bit and a symbol rate of 9600&nbsp;Bd.
 
 ![UART frame 8N1](Images/uart_frame_8n1.png)
-
 
 ### Example of UART communication
 
@@ -219,13 +215,11 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 2. Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode.
 
-
 ### Version: SimulIDE
 
 1. In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
    ![SimulIDE](Images/screenshot_simulide_lcd_uart.png)
-
 
 ### Version: Real hardware
 
@@ -237,14 +231,13 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
 >
 
-
 ## Synchronize repositories
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
-
-<a name="experiments"></a>
+<a name="experiments">
 ## Experiments on your own
+</a>
 
 1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c` and send it to UART. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
 
@@ -275,7 +268,6 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 2. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
 
 Extra. Design your own library for working with analog to digital convertor.
-
 
 ### Version: Real hardware
 
@@ -321,17 +313,17 @@ Extra. Design your own library for working with analog to digital convertor.
 
 6. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
-
-<a name="assignment"></a>
+<a name="assignment">
 ## Lab assignment
+</a>
 
 *Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
 *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
-
-<a name="references"></a>
+<a name="references">
 ## References
+</a>
 
 1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
 
