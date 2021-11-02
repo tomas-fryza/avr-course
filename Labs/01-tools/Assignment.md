@@ -8,12 +8,12 @@ Link to your `Digital-electronics-2` GitHub repository:
 ### Blink example
 
 1. What is the meaning of the following binary operators in C?
-   * `|`
-   * `&`
-   * `^`
-   * `~`
-   * `<<`
-   * `>>`
+   * `|`:
+   * `&`:
+   * `^`:
+   * `~`:
+   * `<<`:
+   * `>>`:
 
 2. Complete truth table with operators: `|`, `&`, `^`, `~`
 
@@ -27,7 +27,7 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 ### Morse code
 
-1. Listing of C code with syntax highlighting which repeats one "dot" and one "comma" (BTW, in Morse code it is letter `A`) on a LED:
+1. Listing of C code which repeats one "dot" and one "comma" (BTW, in Morse code it is letter `A`) on a LED. Always use syntax highlighting and meaningful comments:
 
 ```c
 int main(void)
