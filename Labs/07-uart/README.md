@@ -79,9 +79,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
    | Select |       |     |  |
    | none   |       |     |  |
 
-<a name="part1">
+<a name="part1"></a>
+
 ## Part 1: Synchronize repositories and create a new folder
-</a>
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/07-uart` for this exercise.
 
