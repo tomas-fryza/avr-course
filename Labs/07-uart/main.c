@@ -46,12 +46,10 @@ int main(void)
 
     // Set clock prescaler to 128
 
-
     // Configure 16-bit Timer/Counter1 to start ADC conversion
     // Set prescaler to 262 ms and enable overflow interrupt
 
     // Initialize UART to asynchronous, 8N1, 9600
-
 
     // Enables interrupts by setting the global interrupt mask
     sei();
