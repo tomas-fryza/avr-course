@@ -22,9 +22,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 * [Lab assignment](#assignment)
 * [References](#references)
 
-<a name="preparation">
+<a name="preparation"></a>
+
 ## Preparation tasks (done before the lab at home)
-</a>
 
 1. Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
 
@@ -85,9 +85,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/07-uart` for this exercise.
 
-<a name="part2">
+<a name="part2"></a>
+
 ## Part 2: Analog-to-Digital Conversion
-</a>
 
 We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. It is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it.
 
@@ -174,9 +174,9 @@ ISR(ADC_vect)
 
    ![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
 
-<a name="part3">
+<a name="part3"></a>
+
 ## Part 3: UART communication
-</a>
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
@@ -235,9 +235,9 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
-<a name="experiments">
+<a name="experiments"></a>
+
 ## Experiments on your own
-</a>
 
 1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c` and send it to UART. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
 
@@ -313,17 +313,17 @@ Extra. Design your own library for working with analog to digital convertor.
 
 6. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
-<a name="assignment">
+<a name="assignment"></a>
+
 ## Lab assignment
-</a>
 
 *Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
 *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
-<a name="references">
+<a name="references"></a>
+
 ## References
-</a>
 
 1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
 
