@@ -214,7 +214,13 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
    | `uart_putc` |  |  |
    | `uart_puts` |  |  |
 
-2. Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode.
+2. Extend the application from the previous point and send information about the results of the analog to digital conversion to the UART transmitter. Use internal UART module in 9600 8N1 mode. If needed, define the CPU clock frequency:
+
+```c
+#ifndef F_CPU
+# define F_CPU 16000000     // CPU frequency in Hz required for delay
+#endif
+```
 
 ### Version: SimulIDE
 
