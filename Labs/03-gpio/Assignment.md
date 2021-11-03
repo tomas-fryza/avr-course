@@ -1,4 +1,4 @@
-# Lab 3: YOUR_FIRSTNAME FAMILYNAME
+# Lab 3: YOUR_FIRSTNAME LASTNAME
 
 Link to this file in your GitHub repository:
 
