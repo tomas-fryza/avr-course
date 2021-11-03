@@ -207,7 +207,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 1. In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury. Use online manual of UART library and add the input parameters and description of the functions to the following table.
 
-   | **Function name** | **Function parameters** | **Description** | **Example** |
+   | **Function name** | **Function parameter(s)** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600&nbsp;Bd | `uart_init(UART_BAUD_SELECT(9600, F_CPU));` |
    | `uart_getc` |  |  |
