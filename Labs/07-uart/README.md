@@ -168,6 +168,7 @@ ISR(ADC_vect)
     itoa(value, lcd_string, 10);  // Convert decimal value to string
 
     // WRITE YOUR CODE HERE
+}
 ```
 
 3. Write the values to the table from Preparation tasks section and compare them with the calculated ones.
