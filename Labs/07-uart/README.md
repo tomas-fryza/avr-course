@@ -218,7 +218,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 ```c
 #ifndef F_CPU
-# define F_CPU 16000000     // CPU frequency in Hz required for delay
+# define F_CPU 16000000  // CPU frequency in Hz required for UART_BAUD_SELECT
 #endif
 ```
 
