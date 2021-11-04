@@ -6,7 +6,7 @@
  * TWI library for AVR-GCC.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2018-2021 Tomas Fryza
+ * Copyright (c) 2018-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -17,7 +17,7 @@
  * Collection of AVR libraries for the course Digital Electronics 2, 
  * Brno University of Technology, Czechia
  * @author Tomas Fryza, Peter Fleury
- * @copyright (c) 2018-2021 Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2018-Present Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  *
  * @file 
@@ -32,7 +32,7 @@
  * @note Based on Microchip Atmel ATmega16 and ATmega328P manuals.
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
- * @copyright (c) 2018-2021 Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2018-Present Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  * @{
  */
@@ -47,7 +47,7 @@
  * @name Definition of frequencies 
  */
 #ifndef F_CPU
-# define F_CPU 16000000 /**< @brief CPU frequency in Hz required for delay */
+# define F_CPU 16000000 /**< @brief CPU frequency in Hz required TWI_BIT_RATE_REG */
 #endif
 #define F_SCL 50000 /**< @brief TWI bit rate. Must be greater than 31000 */
 #define TWI_BIT_RATE_REG ((F_CPU/F_SCL - 16) / 2) /**< @brief TWI bit rate register value */

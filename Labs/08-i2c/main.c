@@ -5,7 +5,7 @@
  * used.
  * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
  *
- * Copyright (c) 2017-2021 Tomas Fryza
+ * Copyright (c) 2017-Present Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
@@ -13,7 +13,7 @@
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
-#define F_CPU 16000000
+# define F_CPU 16000000  // CPU frequency in Hz required for UART_BAUD_SELECT
 #endif
 
 /* Includes ----------------------------------------------------------*/
@@ -47,7 +47,7 @@ int main(void)
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
 
     // Configure 16-bit Timer/Counter1 to update FSM
-    // Enable interrupt and set the overflow prescaler to 33 ms
+    // Set prescaler to 33 ms and enable interrupt
     TIM1_overflow_33ms();
     TIM1_overflow_interrupt_enable();
 
