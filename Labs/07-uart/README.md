@@ -9,6 +9,7 @@ After completing this lab you will be able to:
 * Understand the analog-to-digital conversion process
 * How to use internal ADC unit
 * Understand the UART communication
+* Use functions from UART library
 
 The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter. Another goal is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
 
