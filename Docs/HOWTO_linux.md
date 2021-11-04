@@ -62,7 +62,7 @@
 #### Tested on operating systems
 
 **Name**   | **Version**                | **Date (YYYY-MM-DD)** | **Note**
-:--------- | :------------------------- | :-------------------- | -----------
+:--------- | :------------------------- | :-------------------: | :-------
 Linux Mint | 20.1, Ulyssa               | 2021-06-28            | Office
 Linux Mint | 20.1, Ulyssa               | 2021-06-24            | Laptop
 Ubuntu     | 20.04.1 LTS, Focal Fossa   | 2020-12-22            | Student, VirtualBox
