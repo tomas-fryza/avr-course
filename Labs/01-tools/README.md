@@ -31,7 +31,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 1. Create an account on [GitHub](https://github.com/).
 
-2. **Optional task:** According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
+2. (Optional) According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
 
 ### Windows and Atmel Studio 7
