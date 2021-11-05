@@ -14,7 +14,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 8. [I2C/TWI serial communication](Labs/08-i2c)
 9. [C project: General instructions](Labs/project)
 
-## Materials
+## Components
 
 The following hardware and software components are mainly used in the lab.
 
