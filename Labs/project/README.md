@@ -48,7 +48,7 @@ The source code for the AVR must be written in C and must be implementable on Ar
 
 The README file contains a complete description of the problem, circuit diagram, graphical representation of the application (flowchart or state diagram), links to source files in the repository (do NOT include whole code listing to README), discussion of results, list of references, link to your video presentation, etc. Use this required structure of [project README file](Project.md).
 
-The deadline for submitting the project is Tuesday Dec 14, 2021. Use BUT e-learning web page, export your project README file to PDF and submit it.
+The deadline for submitting the project is **Tuesday Dec 14, 2021**. Use BUT e-learning web page, export your project README file to PDF and submit it.
 
 ![project schedule](Images/wavedrom.png)
 
