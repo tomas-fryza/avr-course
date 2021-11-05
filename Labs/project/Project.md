@@ -6,7 +6,7 @@
 * Member 2 (responsible for xxx)
 * Member 3 (responsible for xxx)
 * ...
-* 
+
 Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/project](https://github.com/...)
