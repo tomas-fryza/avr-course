@@ -5,7 +5,8 @@
 * Member 1 (responsible for xxx)
 * Member 2 (responsible for xxx)
 * Member 3 (responsible for xxx)
-
+* ...
+* 
 Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/project](https://github.com/...)
@@ -14,8 +15,8 @@ Link to this file in your GitHub repository:
 
 * [Project objectives](#objectives)
 * [Hardware description](#hardware)
-* [VHDL modules description and simulations](#modules)
-* [TOP module description and simulations](#top)
+* [Libraries description](#libs)
+* [Main application description](#main)
 * [Video](#video)
 * [References](#references)
 
@@ -31,15 +32,15 @@ Write your text here.
 
 Write your text here.
 
-<a name="modules"></a>
+<a name="libs"></a>
 
-## VHDL modules description and simulations
+## Libraries description
 
 Write your text here.
 
-<a name="top"></a>
+<a name="main"></a>
 
-## TOP module description and simulations
+## Main application description
 
 Write your text here.
 
