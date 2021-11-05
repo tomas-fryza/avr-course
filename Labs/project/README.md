@@ -22,19 +22,20 @@ The source code for the AVR must be written in C and must be implementable on Ar
 * Discussion of results
 * 5-minute video presentation in English, Czech, or Slovak
 
-## Bude hodnoceno
-
-* Obsah odeslaného souboru README (viz dále)
-* Obsah GiThub repozitáře
-* Složitost vytvořené aplikace, funkčnost
-* Přidání vlastní funkcionality nad rámec zadání
-* Zda práce odpovídá zadání
-* C guidelines, především: rozdělení kódu na funkce/knihovny, čistota a správnost kódu, odsazení, použití komentářů
-* Využití kódů a knihoven z předchozích cvičení namísto kopírování z internetu
-* Přítomnost kompletního projektu v C a vygenerovaný HEX soubor
-* Úplnost a jasnost dokumentace
-* Diskuse o výsledcích
-* 5minutová video prezentace v angličtině, češtině, nebo slovenštině
+> ## Bude hodnoceno
+>
+> * Obsah odeslaného souboru README (viz dále)
+> * Obsah GiThub repozitáře
+> * Složitost vytvořené aplikace, funkčnost
+> * Přidání vlastní funkcionality nad rámec zadání
+> * Zda práce odpovídá zadání
+> * C guidelines, především: rozdělení kódu na funkce/knihovny, čistota a správnost kódu, odsazení, použití komentářů
+> * Využití kódů a knihoven z předchozích cvičení namísto kopírování z internetu
+> * Přítomnost kompletního projektu v C a vygenerovaný HEX soubor
+> * Úplnost a jasnost dokumentace
+> * Diskuse o výsledcích
+> * 5minutová video prezentace v angličtině, češtině, nebo slovenštině
+>
 
 ## The repository folder itself must contain
 
