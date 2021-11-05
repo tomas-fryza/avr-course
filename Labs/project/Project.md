@@ -16,7 +16,7 @@ Link to this file in your GitHub repository:
 * [Project objectives](#objectives)
 * [Hardware description](#hardware)
 * [Libraries description](#libs)
-* [Main application description](#main)
+* [Main application](#main)
 * [Video](#video)
 * [References](#references)
 
@@ -40,7 +40,7 @@ Write your text here.
 
 <a name="main"></a>
 
-## Main application description
+## Main application
 
 Write your text here.
 
