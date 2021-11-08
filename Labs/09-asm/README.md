@@ -184,8 +184,6 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
    * Listing of C function,
    * Screenshot of SimulIDE circuit when "Power Circuit" is applied.
 
-The deadline for submitting the task is the day before the next laboratory exercise. Use [BUT e-learning](https://moodle.vutbr.cz/) web page and submit a single PDF file.
-
 
 ## References
 
