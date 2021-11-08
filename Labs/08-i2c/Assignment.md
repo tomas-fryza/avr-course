@@ -7,7 +7,7 @@ Link to this file in your GitHub repository:
 ### Arduino Uno pinout
 
 1. In the picture of the Arduino Uno board, mark the pins that can be used for the following functions:
-   * PWM generators
+   * PWM generators from Timer0, Timer1, Timer2
    * analog channels for ADC
    * UART pins
    * I2C pins
