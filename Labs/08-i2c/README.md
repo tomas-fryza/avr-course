@@ -129,7 +129,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 1. Create a new GCC C Executable Project for ATmega328P within `08-i2C` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * I2C/TWI files `twi.h`, `common.h`, [`twi.c`](../../Examples/library/twi.c) from `Examples/library/include` and `Examples/library` folders,
+   * I2C/TWI files `twi.h`, [`twi.c`](../../Examples/library/twi.c) from `Examples/library/include` and `Examples/library` folders,
    * UART library files `uart.h`, `uart.c` from the previous lab,
    * Timer library `timer.h` from the previous labs.
 
