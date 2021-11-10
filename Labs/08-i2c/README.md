@@ -133,14 +133,6 @@ Note that, most I2C devices support repeated start condition. This means that be
    * UART library files `uart.h`, `uart.c` from the previous lab,
    * Timer library `timer.h` from the previous labs.
 
-3. If necessary, add a CPU frequency definition to `twi.h`.
-
-```c
-#ifndef F_CPU
-# define F_CPU 16000000
-#endif
-```
-
 ### Version: Command-line toolchain
 
 1. Copy `main.c` and `Makefile` files from previous lab to `Labs/08-i2c` folder.
