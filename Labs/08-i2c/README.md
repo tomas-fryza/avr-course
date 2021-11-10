@@ -114,7 +114,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 ### Version: Real hardware
 
-1. Use breadboard to connect humidity/temperature DHT12 digital sensor and combined module with real time clock (RTC) device DS3231 and AT24C32 memory to Arduino Uno board. Use 3.3&nbsp;V voltage for both modules. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
+1. Use breadboard to connect humidity/temperature DHT12 digital sensor and combined module with real time clock (RTC) device DS3231 and AT24C32 memory to Arduino Uno board. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
 
    | **DHT12 pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
