@@ -96,9 +96,9 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
    | **Frame #** | **Description** |
    | :-: | :-- |
-   | 1 | Address frame with SLA+W = 0x5c (184) |
+   | 1 | Address frame with SLA+W = 184 (0x5c<<1 + 0) |
    | 2 | Data frame sent to the slave represents the ID of internal register |
-   | 3 | Address frame with SLA+R = 0x5c (185) |
+   | 3 | Address frame with SLA+R = 185 (0x5c<<1 + 1) |
    | 4 | Data frame with integer part of temperature read from slave |
    | 5 | Data frame with fractional part of temperature read from slave|
 
