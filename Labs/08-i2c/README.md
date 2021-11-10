@@ -118,11 +118,11 @@ Note that, most I2C devices support repeated start condition. This means that be
 
    | **DHT12 pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
-   | +<br>SDA<br>-<br>SCL | 3.3V<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
+   | +<br>SDA<br>-<br>SCL | 5V (or 3.3V)<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
 
    | **RTC+EEPROM pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
-   | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>3.3V<br>GND | ![RTC/EEPROM module](Images/rtc_eeprom.jpg) |
+   | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>5V (or 3.3V)<br>GND | ![RTC/EEPROM module](Images/rtc_eeprom.jpg) |
 
 ### Version: Atmel Studio 7
 
