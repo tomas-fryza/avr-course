@@ -210,7 +210,7 @@ typedef enum {  // FSM declaration
 > The figure above was created in [diagrams.net](https://app.diagrams.net/). It is an open source, online, desktop and container deployable diagramming software.
 >
 
-4. Form the UART output of your application to a hexadecimal table according to the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
+4. Form the UART output of your application to a hexadecimal table such as the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
 
 ```Makefile
    Scan I2C-bus for slave devices:
