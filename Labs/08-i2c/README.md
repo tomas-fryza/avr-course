@@ -252,6 +252,8 @@ typedef enum {  // FSM declaration
    | 0x03 | Temperature fractional part |
    | 0x04 | Checksum |
 
+   ![FSM for I2C temperature](Images/fsm_dht_i2c.png)
+
 2. Find out how checksum byte value is calculated.
 
 ## Synchronize repositories
