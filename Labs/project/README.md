@@ -55,7 +55,7 @@ The deadline for submitting the project is **Tuesday Dec 14, 2021**. Use BUT e-l
 
 ## Topics 2021/22
 
-TBD
+Coming soon...
 
 ## Topics 2020/21
 
