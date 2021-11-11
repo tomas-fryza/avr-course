@@ -77,9 +77,9 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM
-    static uint8_t addr = 7;            // I2C slave address
-    uint8_t result = 1;                 // ACK result from the bus
-    char uart_string[2] = "00"; // String for converting numbers by itoa()
+    static uint8_t addr = 7;    // I2C slave address
+    uint8_t value;              // Data obtained from the I2C bus
+    char uart_string[] = "00";  // String for converting numbers by itoa()
 
     // FSM
     switch (state)
@@ -100,10 +100,10 @@ ISR(TIMER1_OVF_vect)
         // | 7  6  5  4  3  2  1  0 |     ACK    |
         // |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
         // +------------------------+------------+
-        result = twi_start((addr<<1) + TWI_WRITE);
+        value = twi_start((addr<<1) + TWI_WRITE);
         twi_stop();
-        /* Test result from I2C bus. If it is 0 then move to ACK state, 
-         * otherwise move to IDLE */
+        /* Test value obtained from I2C bus. If it is 0 then move to ACK
+         * state, otherwise move to IDLE */
 
         break;
 
