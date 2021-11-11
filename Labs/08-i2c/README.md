@@ -254,6 +254,69 @@ typedef enum {  // FSM declaration
 
    ![FSM for I2C temperature](Images/fsm_dht_i2c.png)
 
+```c
+/* Variables ---------------------------------------------------------*/
+typedef enum {              // FSM declaration
+    STATE_IDLE = 1,
+    STATE_HUMID,
+    STATE_TEMP,
+    STATE_CHECK
+} state_t;
+
+...
+
+/* Interrupt service routines ----------------------------------------*/
+/**********************************************************************
+ * Function: Timer/Counter1 overflow interrupt
+ * Purpose:  Update Finite State Machine and test I2C slave addresses 
+ *           between 8 and 119.
+ **********************************************************************/
+ISR(TIMER1_OVF_vect)
+{
+    static state_t state = STATE_IDLE;  // Current state of the FSM
+    static uint8_t addr = 0x5c;  // I2C slave address of DHT12
+    uint8_t value;               // Data obtained from the I2C bus
+    char uart_string[] = "000";  // String for converting numbers by itoa()
+
+    // FSM
+    switch (state)
+    {
+    // Do nothing
+    case STATE_IDLE:
+        state = STATE_HUMID;
+        break;
+    
+    // Get humidity
+    case STATE_HUMID:
+        // WRITE YOUR CODE HERE
+        
+        // Move to the next state
+        state = STATE_TEMP;
+        break;
+
+    // Get temperature
+    case STATE_TEMP:
+        // WRITE YOUR CODE HERE
+
+        // Move to the next state
+        state = STATE_CHECK;
+        break;
+
+    // Get checksum
+    case STATE_CHECK:
+        // WRITE YOUR CODE HERE
+        
+        // Move to the next state
+        state = STATE_IDLE;
+        break;
+
+    default:
+        state = STATE_IDLE;
+        break;
+    }
+}
+```
+
 2. Find out how checksum byte value is calculated.
 
 ## Synchronize repositories
