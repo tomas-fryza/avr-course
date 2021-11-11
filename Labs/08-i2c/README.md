@@ -268,8 +268,8 @@ typedef enum {              // FSM declaration
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Update Finite State Machine and test I2C slave addresses 
- *           between 8 and 119.
+ * Purpose:  Update Finite State Machine and get humidity, temperature,
+ *           and checksum from DHT12 sensor.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
