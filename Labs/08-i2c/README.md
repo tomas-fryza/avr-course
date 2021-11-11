@@ -283,6 +283,7 @@ ISR(TIMER1_OVF_vect)
     {
     // Do nothing
     case STATE_IDLE:
+        // Move to the next state
         state = STATE_HUMID;
         break;
     
