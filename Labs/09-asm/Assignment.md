@@ -44,6 +44,7 @@ uint8_t rand4_c(uint8_t value)
 1. Code listing of assembly function to calculate the sum of the products. Always use syntax highlighting and meaningful comments:
 
 ```nasm
+
 ;**********************************************************************
 ;* Function: sop_asm
 ;* Purpose:  Sum of the product of two integer vectors with the same length.
@@ -57,6 +58,7 @@ uint8_t rand4_c(uint8_t value)
 sop_asm:
     ; WRITE YOUR CODE HERE
 
+    ret                     ; Return from subroutine
 ```
 
 ### Sorting function
