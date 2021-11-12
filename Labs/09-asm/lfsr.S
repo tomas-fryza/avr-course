@@ -4,7 +4,7 @@
 ;* Shift Register) pseudo-random generators.
 ;* ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
 ;*
-;* Copyright (c) 2017-2021 Tomas Fryza
+;* Copyright (c) 2017-Present Tomas Fryza
 ;* Dept. of Radio Electronics, Brno University of Technology, Czechia
 ;* This work is licensed under the terms of the MIT license.
 ;*
