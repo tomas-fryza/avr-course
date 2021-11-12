@@ -18,7 +18,7 @@ Link to this file in your GitHub repository:
 
 ### I2C
 
-1. Code listing of Timer1 overflow interrupt service routine for scanning I2C devices and rendering a clear table on the UART.
+1. Code listing of Timer1 overflow interrupt service routine for scanning I2C devices and rendering a clear table on the UART. Always use syntax highlighting and meaningful comments:
 
 ```c
 /**********************************************************************
