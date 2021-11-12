@@ -13,7 +13,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 7. [ADC and UART serial communication](Labs/07-uart)
 8. [I2C/TWI serial communication](Labs/08-i2c)
 9. [C project: General instructions](Labs/project)
-10. (Optional) [Combining C and assembly language](Labs/09-asm)
+10. (Self-study) [Combining C and assembly language](Labs/09-asm)
 
 ## Components
 
