@@ -1,12 +1,16 @@
 # C project: General instructions
 
-The aim of the C project is cooperation in small teams, study of assigned topic, design of own solution, simulation, implementation, creation of project documentation and presentation of results.
+The aim of the C project is cooperation in small teams, study of assigned topic, design of own solution, simulation, implementation, creation of project documentation and presentation of results. Students are divided into groups that represent small teams within a company. Their task will be to redistribute the work, fulfill the assigned task and defeat competing teams from the "company". The division of roles and tasks within the team is up to their members. All team members will be evaluated with the same number of points. *Any non-cooperation of some of the team members will be resolved individually*.
 
-Students will be divided into groups that represent small teams within a company. Their task will be to redistribute the work, fulfill the assigned task and defeat competing teams from the "company". The division of roles and tasks within the team is up to their members. All team members will be evaluated with the same number of points. _Any non-cooperation of some of the team members will be resolved individually_.
+* Students work on the project in laboratories from the 9th to 13th week of the semester in groups of 3 to 4 students.
 
-Students work on the project in laboratories from the 9th to 13th week of the semester in groups of 3 to 4 students. Students may consult the project within their own team, with their laboratory teacher and may not assign anyone else, including other students, academics, or PhD students. Consultations with the teacher will take place during the laboratories. Students present their results during the last laboratory in the 13th week of the semester.
+* Students may consult the project within their own team, with their laboratory teacher and may not assign anyone else, including other students, academics, or PhD students. Consultations with the teacher will take place during the laboratories.
 
-The source code for the AVR must be written in C and must be implementable on Arduino Uno board using toolchains used in the lab during the semester. Smaller functions can be written in AVR assembly as well.
+* Students present their results during the last laboratory in the 13th week of the semester.
+
+* The source code for the AVR must be written in C and must be implementable on Arduino Uno board using toolchains used in the lab during the semester. Any other development tool is not allowed.
+
+* Smaller functions can be written in AVR assembly as well.
 
 ## Will be evaluated
 
