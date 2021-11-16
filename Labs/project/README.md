@@ -77,6 +77,8 @@ Optional:
 
    > *Programování autonomní jízdy autíčka na autodráze. Lze využít integrované senzory a ovládání rychlosti (https://github.com/wykys/vut-arcar) pro nejrychlejší projetí neznámé dráhy.*
 
+![slot car](Images/slot_car.jpg)
+
 5. Four-wheel chassis control. The following can be used: 4 DC motors, 2 optical barriers, 2 H-bridge drivers L298N, Bluetooth, and others.
 
    > *Ovládání 4kolového podvozku. Lze využít: 4 SS motory, 2 optické bariéry pro kontrolu otáčení kol, 2 H-můstky L298, Bluetooth, a jiné.*
