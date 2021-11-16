@@ -59,7 +59,29 @@ The deadline for submitting the project is **Tuesday Dec 14, 2021**. Use BUT e-l
 
 ## Topics 2021/22
 
-Coming soon...
+1. Greenhouse monitoring and control system. The following can be used: soil moisture, light intensity, temperature sensors, irrigation pump control, DC fans, windows opening, and others.
+
+   > *Monitorování a ovládání skleníku. Mohou být využity: senzory vlhkosti půdy, intenzity světla, teploty, dále ovládání závlahy, ventilátoru, otevírání oken, a jiné.*
+
+2. Water tank controller. The following can be used: water level measurement, pump control, rain sensor, and others.
+
+   > *Měření výšky vodní hladiny v nádrži. Mohou být využity: měřiče pro výšku hladiny, ovládání čerpadla, senzor deště, a jiné.*
+
+3. Weather station with 2-axis solar tracking system. The following can be used: temperature, humidity, pressure, light intensity sensors, panel positioning motors, and others.
+
+   > *Meteostanice s 2osým natáčením solárního panelu za Sluncem. Mohou být využity: sensory teploty, vlhkosti, tlaku, intenzity osvětlení, dale motory pro natočení panelu, a jiné.*
+
+Optional:
+
+4. Programming of automated slot car. Sensors and speed control (https://github.com/wykys/vut-arcar) for the fastest pass of an unknown track can be used.
+
+   > *Programování autonomní jízdy autíčka na autodráze. Lze využít integrované senzory a ovládání rychlosti (https://github.com/wykys/vut-arcar) pro nejrychlejší projetí neznámé dráhy.*
+
+5. Four-wheel chassis control. The following can be used: 4 DC motors, 2 optical barriers, 2 H-bridge drivers L298N, Bluetooth, and others.
+
+   > *Ovládání 4kolového podvozku. Lze využít: 4 SS motory, 2 optické bariéry pro kontrolu otáčení kol, 2 H-můstky L298, Bluetooth, a jiné.*
+
+![4-wheel chassis](Images/four-wheel.jpg)
 
 ## Topics 2020/21
 
