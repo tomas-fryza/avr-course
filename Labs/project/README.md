@@ -73,9 +73,9 @@ The deadline for submitting the project is **Tuesday Dec 14, 2021**. Use BUT e-l
 
 Optional:
 
-4. Programming of automated slot car. Sensors and speed control (https://github.com/wykys/vut-arcar) for the fastest pass of an unknown track can be used.
+4. Programming of automated slot car. Sensors and speed control (https://github.com/tomas-fryza/arduino-slotcar) for the fastest pass of an unknown track can be used.
 
-   > *Programování autonomní jízdy autíčka na autodráze. Lze využít integrované senzory a ovládání rychlosti (https://github.com/wykys/vut-arcar) pro nejrychlejší projetí neznámé dráhy.*
+   > *Programování autonomní jízdy autíčka na autodráze. Lze využít integrované senzory a ovládání rychlosti (https://github.com/tomas-fryza/arduino-slotcar) pro nejrychlejší projetí neznámé dráhy.*
 
 ![slot car](Images/slot_car.jpg)
 
