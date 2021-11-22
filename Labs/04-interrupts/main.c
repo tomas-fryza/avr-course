@@ -26,7 +26,7 @@
 /**********************************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Toggle one LED on the Multi-function shield using 
-             the internal 8- or 16-bit Timer/Counter.
+ *           the internal 8- or 16-bit Timer/Counter.
  * Returns:  none
  **********************************************************************/
 int main(void)
