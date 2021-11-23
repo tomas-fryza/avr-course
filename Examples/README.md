@@ -1,9 +1,9 @@
 # List of examples
 
-* [Basic template -- blink application](blink/)
+* [Basic C template -- blink LED](blink/)
 
-* []()
+* [Project documentation -- Doxygen](doxygen)
 
-* []()
+* [C libraries](library)
 
-* []()
+* [Autonomous slot car](slot-car)
