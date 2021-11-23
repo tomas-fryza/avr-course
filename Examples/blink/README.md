@@ -1,3 +1,3 @@
-# Blink example
+# Blink LED
 
-TBD
+Coming soon...
