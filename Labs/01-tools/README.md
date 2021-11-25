@@ -91,18 +91,18 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 1. Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`. *Important: To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.*
 
-```bash
-## Windows Git Bash:
-$ cd d:/Documents/
-$ mkdir your-name
-$ cd your-name/
+   ```bash
+   ## Windows Git Bash:
+   $ cd d:/Documents/
+   $ mkdir your-name
+   $ cd your-name/
 
-## Linux:
-$ cd
-$ cd Documents/
-$ mkdir your-name
-$ cd your-name/
-```
+   ## Linux:
+   $ cd
+   $ cd Documents/
+   $ mkdir your-name
+   $ cd your-name/
+   ```
 
 2. With help of `git` command, clone a local copy of your public repository.
 
