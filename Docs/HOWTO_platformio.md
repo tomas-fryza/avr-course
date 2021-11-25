@@ -22,7 +22,7 @@ It may take a few minutes depending on your connection speed. Do not close any w
 
 7. Compile and upload the code. The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. Firts, compile (build) the project and then upload it to Arduino Uno board. You can clean up generated files as well.
 
-![Install PatformIO IDE](images/platformio_atmel.png)
+![Install PatformIO IDE](images/platformio_footer.png)
 
 #### Tested on operating systems
 
