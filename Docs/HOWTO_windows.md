@@ -1,4 +1,4 @@
-## How to use AVR template on Windows
+# How to use AVR template on Windows
 
 1. Download and install [Visual Studio Code](https://code.visualstudio.com/) source code editor.
 
@@ -65,7 +65,6 @@
     >
     > For Windows 10, you can install [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/install-win10) and then follow the AVR installation notes for Linux.
     >
-
 
 #### Tested on operating systems
 
