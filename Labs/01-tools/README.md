@@ -45,7 +45,7 @@ If you have option to use Arduino Uno board and logic analyzer, also download an
 * [avrdude](http://savannah.nongnu.org/projects/avrdude) - AVR downloader
 * [Saleae logic](https://www.saleae.com/downloads/)
 
-### PlatformIO (Windows, Linux, iOS)
+### PlatformIO (Windows, Linux, MacOS)
 
 Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platformio.md) and use this IDE instead of Microchip Studio.
 
