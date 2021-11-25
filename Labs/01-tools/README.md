@@ -33,7 +33,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 2. (Optional) According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
-### Windows and Microchip Studio 7
+### Microchip Studio 7 (Windows only)
 
 Download and install:
 * [Microchip Studio 7](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
@@ -49,13 +49,25 @@ If you have option to use Arduino Uno board and logic analyzer, also download an
 
 Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platform.md) and use this IDE instead of Microchip Studio. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
+If you have option to use logic analyzer, also download and install:
+* [Saleae logic](https://www.saleae.com/downloads/)
+
 ### Windows and command-line toolchain
 
 Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
+If you have option to use Arduino Uno board and logic analyzer, also download and install:
+* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+* [avrdude](http://savannah.nongnu.org/projects/avrdude) - AVR downloader
+* [Saleae logic](https://www.saleae.com/downloads/)
+
 ### Ubuntu-based Linux distributions
 
 Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+
+If you have option to use Arduino Uno board and logic analyzer, also download and install:
+* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
+* [Saleae logic](https://www.saleae.com/downloads/)
 
 <a name="part1"></a>
 ## Part 1: GitHub
