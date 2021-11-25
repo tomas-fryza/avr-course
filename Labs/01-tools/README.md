@@ -51,7 +51,7 @@ Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-
 
 Download and install:
 * [SimulIDE](https://www.simulide.com/p/home.html)
-* [git](https://git-scm.com/)
+* [git](https://git-scm.com/). During installation choose the default editor used by Git as **Use Visual Studio Code as Git's default editor**.
 
 If you have option to use logic analyzer, also download and install:
 * [Saleae logic](https://www.saleae.com/downloads/)
