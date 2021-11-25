@@ -47,14 +47,21 @@ If you have option to use Arduino Uno board and logic analyzer, also download an
 
 ### PlatformIO (Windows, Linux, iOS)
 
-Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platformio.md) and use this IDE instead of Microchip Studio. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platformio.md) and use this IDE instead of Microchip Studio.
+
+Download and install:
+* [SimulIDE](https://www.simulide.com/p/home.html)
+* [git](https://git-scm.com/)
 
 If you have option to use logic analyzer, also download and install:
 * [Saleae logic](https://www.saleae.com/downloads/)
 
 ### Windows and command-line toolchain
 
-Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain.
+
+Download and install:
+[SimulIDE](https://www.simulide.com/p/home.html)
 
 If you have option to use Arduino Uno board and logic analyzer, also download and install:
 * [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
