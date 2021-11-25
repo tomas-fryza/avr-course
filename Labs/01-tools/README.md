@@ -33,32 +33,29 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 2. (Optional) According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
-
-### Windows and Atmel Studio 7
+### Windows and Microchip Studio 7
 
 Download and install:
-* [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices),
-* [SimulIDE](https://www.simulide.com/p/home.html), and
-* [git](https://git-scm.com/).
+* [Microchip Studio 7](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
+* [SimulIDE](https://www.simulide.com/p/home.html)
+* [git](https://git-scm.com/)
 
-
-### Windows and command-line toolchain
-
-Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain instead of using Atmel Studio. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
-
-
-### Ubuntu-based Linux distributions
-
-Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
-
-
-### All versions
-
-If you have the option to use Arduino Uno board and logic analyzer, also download and install:
+If you have option to use Arduino Uno board and logic analyzer, also download and install:
 * [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
 * [avrdude](http://savannah.nongnu.org/projects/avrdude) - AVR downloader
 * [Saleae logic](https://www.saleae.com/downloads/)
 
+### PlatformIO (Windows, Linux, iOS)
+
+Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platform.md) and use this IDE instead of Microchip Studio. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+
+### Windows and command-line toolchain
+
+Follow the [instructions for Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
+
+### Ubuntu-based Linux distributions
+
+Follow the [instructions for Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
 
 <a name="part1"></a>
 ## Part 1: GitHub
