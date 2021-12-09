@@ -4,18 +4,6 @@ Coming soon
 
 
 ```c
-/***********************************************************************
- * 
- * Blink a LED and use function from the delay library.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
- *
- * Copyright (c) 2018-Present Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
- * 
- **********************************************************************/
-
-/* Defines -----------------------------------------------------------*/
 /* The preprocessor will process directives that are inserted into the C
  * source code. These directives allow additional actions to be taken on
  * the C source code before it is compiled into object code. Directives
@@ -31,15 +19,17 @@ Coming soon
                         // compilation. The #ifndef means "if not defined".
 # define F_CPU 16000000 // CPU frequency in Hz required for delay
 #endif                  // The #ifndef directive must be closed by #endif
+```
 
-/* Includes ----------------------------------------------------------*/
+```c
 /* Include another C language file into the current file at the location
  * of the #include statement prior to compiling the source code.
  */
 #include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
+```
 
-/* Function definitions ----------------------------------------------*/
+```c
 /**********************************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Toggle one LED and use delay library.
@@ -47,26 +37,33 @@ Coming soon
  **********************************************************************/
 int main(void)
 {
+    // This is a function's body
+}
+```
+
+```c
     // Set pin as output in Data Direction Register
     // DDRB = DDRB or 0010 0000
     DDRB = DDRB | (1<<LED_GREEN);
+```
 
+```c
     // Set pin LOW in Data Register (LED off)
     // PORTB = PORTB and 1101 1111
     PORTB = PORTB & ~(1<<LED_GREEN);
+```
 
+```c
+    // Invert LED in Data Register
+    // PORTB = PORTB xor 0010 0000
+    PORTB = PORTB ^ (1<<LED_GREEN);
+```
+
+```c
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(SHORT_DELAY);
+        // This is a loop's body
 
-        // Invert LED in Data Register
-        // PORTB = PORTB xor 0010 0000
-        PORTB = PORTB ^ (1<<LED_GREEN);
     }
-
-    // Will never reach this
-    return 0;
-}
 ```
