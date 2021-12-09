@@ -17,8 +17,8 @@
 #endif
 
 /* Includes ----------------------------------------------------------*/
-#include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
+#include <util/delay.h> // Functions for busy-wait delay loops
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
