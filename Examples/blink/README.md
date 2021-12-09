@@ -64,6 +64,5 @@ int main(void)
     while (1)
     {
         // This is a loop's body
-
     }
 ```
