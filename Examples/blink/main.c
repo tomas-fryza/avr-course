@@ -30,7 +30,6 @@ int main(void)
 {
     // Set pin as output in Data Direction Register
     DDRB = DDRB | (1<<LED_GREEN);
-
     // Set pin LOW in Data Register (LED off)
     PORTB = PORTB & ~(1<<LED_GREEN);
 
@@ -39,7 +38,6 @@ int main(void)
     {
         // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
-
         // Invert LED in Data Register
         PORTB = PORTB ^ (1<<LED_GREEN);
     }
