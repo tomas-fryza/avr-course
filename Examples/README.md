@@ -1,8 +1,8 @@
 # List of examples
 
-* [Basic C template -- blink LED](blink/)
+* [Basic C template, blink a LED](blink/)
 
-* [Project documentation -- Doxygen](doxygen)
+* [Project documentation with Doxygen](doxygen)
 
 * [C libraries](library)
 
