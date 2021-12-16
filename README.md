@@ -15,6 +15,13 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 9. [C project: General instructions](Labs/project)
 10. (Self-study) [Combining C and assembly language](Labs/09-asm)
 
+## List of examples
+
+* [Basic C template, blink a LED](Examples/blink/)
+* [Project documentation with Doxygen](Examples/doxygen)
+* [C libraries](Examples/library)
+* [Autonomous slot car](Examples/slot-car)
+
 ## Components
 
 The following hardware and software components are mainly used in the lab.
