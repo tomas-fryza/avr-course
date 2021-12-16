@@ -40,7 +40,7 @@ Logical operations are commonly used to process individual bits.
 
 Operation | Operator | Description
 :--: | :--: | :--
-OR  | `||` | Set bit to one
+OR  | `\|` | Set bit to one
 AND NOT | `& ~` | Clear bit to zero
 XOR | `^` | Toggle/invert bit value
 shift | `<<` | Shift bits to left
