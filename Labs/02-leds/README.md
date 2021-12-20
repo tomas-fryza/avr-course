@@ -42,7 +42,7 @@ The purpose of this laboratory exercise is to learn how to use basic input/outpu
 
 &nbsp;
 
-2. [Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical red and blue LEDs.
+2. [Calculate LED resistor value](https://electronicsclub.info/leds.htm) for typical LEDs. Let the LED current is 20 milli amps.
 
 &nbsp;
    ![ohms law](Images/ohms_law.png)
