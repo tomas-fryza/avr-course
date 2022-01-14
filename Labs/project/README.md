@@ -63,7 +63,7 @@ The deadline for submitting the project is ~Tuesday Dec 14, 2021~ **Thursday 16-
 
    > *Monitorování a ovládání skleníku. Mohou být využity: senzory vlhkosti půdy, intenzity světla, teploty, dále ovládání závlahy, ventilátoru, otevírání oken, a jiné.*
 
-2. Water tank controller. The following can be used: water level measurement, pump control, rain sensor, and others.
+2. [Water tank controller](https://github.com/amwellius/DE2_Project_2021-22). The following can be used: water level measurement, pump control, rain sensor, and others.
 
    > *Měření výšky vodní hladiny v nádrži. Mohou být využity: měřiče pro výšku hladiny, ovládání čerpadla, senzor deště, a jiné.*
 
