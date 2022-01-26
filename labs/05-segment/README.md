@@ -1,21 +1,21 @@
 # Lab 5: Display devices, 7-segment display
 
-![Multi-function shield](Images/arduino_uno_multi-shield_segments.jpg)
-
+![Multi-function shield](images/arduino_uno_multi-shield_segments.jpg)
 
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Use seven-segment displays
-   * Understand the SPI communication between MCU and shift registers
-   * Use library functions for seven-segment display
-   * Understand the time multiplexing of individual displays
-   * Use several interrupts within one application
+
+* Use seven-segment displays
+* Understand the SPI communication between MCU and shift registers
+* Use library functions for seven-segment display
+* Understand the time multiplexing of individual displays
+* Use several interrupts within one application
 
 The purpose of the laboratory exercise is to understand the serial control of four seven-segment displays (SSDs) using a pair of 74595 shift registers. In addition, the goal is to master the use of interrupts in applications with AVR.
 
-
 ### Table of contents
+
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Seven-segment display](#part2)
@@ -24,8 +24,8 @@ The purpose of the laboratory exercise is to understand the serial control of fo
 * [Lab assignment](#assignment)
 * [References](#references)
 
-
 <a name="preparation"></a>
+
 ## Preparation tasks (done before the lab at home)
 
 1. Read the [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html) and find out what is the difference between:
@@ -47,7 +47,7 @@ The purpose of the laboratory exercise is to understand the serial control of fo
    | 8 |   |   |   |   |   |   |   |   |
    | 9 |   |   |   |   |   |   |   |   |
 
-3. Use schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of seven-segment display. What is the purpose of two shift registers 74HC595?
+3. Use schematic of the [Multi-function shield](https://oshwlab.com/tomas.fryza/arduino-shields) and find out the connection of seven-segment display. What is the purpose of two shift registers 74HC595?
 
 &nbsp;
 
@@ -60,36 +60,37 @@ The purpose of the laboratory exercise is to understand the serial control of fo
 &nbsp;
 
 &nbsp;
-
 
 <a name="part1"></a>
+
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/05-segments` for this exercise.
-
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/05-segments` for this exercise.
 
 <a name="part2"></a>
+
 ## Part 2: Seven-segment display
 
 **Seven-segment display** (SSD) is an electronic device and consists of eight LEDs connected in parallel that can be lit in different combinations to display the numbers and letters [[1]](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html). These LEDs are called segments and they are titled a, b, ..., g.
 
 Depending upon the decimal digit to be displayed, the particular set of LEDs is forward biased. For instance, to display the numerical digit 0, we will need to light up six of the LED segments corresponding to a, b, c, d, e and f. Thus the various digits from 0 through 9 can be displayed using an SSD. If needed, also usefull letters can be displayed.
 
-![Common symbols for 7-segment display](Images/segment_hexa.png)
+![Common symbols for 7-segment display](images/segment_hexa.png)
 
 The basic ways to control an SSD include:
-   * Directly from AVR output pins,
-   * Using BCD to 7-segment decoder driver, such as 7447,
-   * Via shift register(s).
+
+* Directly from AVR output pins,
+* Using BCD to 7-segment decoder driver, such as 7447,
+* Via shift register(s).
 
 The shift register method is used in this laboratory. To control the communication, a serial bus (called SPI, Serial Peripheral Interface) is used. Although the ATmega328P includes a hardware SPI drive, in this exercise you shall emulate the serial bus with GPIO operations.
 
-Three signals shall be controlled, called LATCH, CLK, and DATA. These are connected to PD4, PD7 and PB0, respectively as shown in schematic of the [Multi-function shield](../../Docs/arduino_shield.pdf).
+Three signals shall be controlled, called LATCH, CLK, and DATA. These are connected to PD4, PD7 and PB0, respectively as shown in schematic of the [Multi-function shield](https://oshwlab.com/tomas.fryza/arduino-shields).
 
 Analyze timing of serial communication between ATmega328P and seven-segment displays via two shift registers 74HC595. Example: To display the number `3` at display position 0 (far right position), the following signals must be generated on the three AVR output pins.
 
 &nbsp;
-![Example of 7-segment timing](Images/segment_example.png)
+![Example of 7-segment timing](images/segment_example.png)
 &nbsp;
 
 > The figure above was created in [WaveDrom](https://wavedrom.com/) digital timing diagram online tool. The source of the figure is as follows:
@@ -118,7 +119,6 @@ Analyze timing of serial communication between ATmega328P and seven-segment disp
 }
 ```
 
-
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `05-segment` working folder and copy/paste [template code](main.c) to your `main.c` source file.
@@ -129,16 +129,15 @@ Analyze timing of serial communication between ATmega328P and seven-segment disp
 
 4. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add GPIO and Timer library files (`gpio.h`, `gpio.c`, `timer.h`) from the previous labs.
 
-
 ### Version: Command-line toolchain
 
-1. Copy `main.c` and `Makefile` files from previous lab to `Labs/05-segment` folder.
+1. Copy `main.c` and `Makefile` files from previous lab to `labs/05-segment` folder.
 
 2. Copy/paste [template code](main.c) to your `05-segment/main.c` source file.
 
-3. Create a new library header file in `Labs/library/include/segment.h` and copy/paste the [template code](../library/include/segment.h) into it.
+3. Create a new library header file in `labs/library/include/segment.h` and copy/paste the [template code](../library/include/segment.h) into it.
 
-4. Create a new `Labs/library/segment.c` library source file and copy/paste the [template code](../library/segment.c) into it.
+4. Create a new `labs/library/segment.c` library source file and copy/paste the [template code](../library/segment.c) into it.
 
 5. Add the source file of SSD library between the compiled files in `05-segment/Makefile`.
 
@@ -150,7 +149,6 @@ Analyze timing of serial communication between ATmega328P and seven-segment disp
 SRCS += $(LIBRARY_DIR)/gpio.c
 SRCS += $(LIBRARY_DIR)/segment.c
 ```
-
 
 ### Both versions
 
@@ -167,7 +165,7 @@ Study the function prototypes and macro defines in the `segment.h` header file.
 
 2. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical SSD connection using shift registers according to the Multi-function shield).
 
-   ![SimulIDE](Images/screenshot_simulide_ssd.png)
+   ![SimulIDE](images/screenshot_simulide_ssd.png)
 
 3. Verify that the library function works correctly and display values 0 to 9 in different positions on the display.
 
@@ -209,8 +207,8 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
     ...
 ```
 
-
 <a name="part3"></a>
+
 ## Part 3: Counter application
 
 1. Create a decimal counter from 0 to 9 with output on the 7-segment display. Configure a prescaler of 16-bit Timer/Counter1, enable an interrupt after its overflow, and program the ISR to increment the state of the decimal counter after each overflow. Display the value on the SSD.
@@ -227,15 +225,14 @@ ISR(TIMER0_OVF_vect)
 }
 ```
 
-![Multiplexing SSD](Images/segment_multiplexing.jpg)
-
+![Multiplexing SSD](images/segment_multiplexing.jpg)
 
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
-
+Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 <a name="experiments"></a>
+
 ## Experiments on your own
 
 1. Try extending the decimal counter to four positions and display stopwatch values from 00.00 to 59.59.
@@ -256,14 +253,13 @@ Extra. According to the [ATmega328P datasheet](https://www.microchip.com/wwwprod
 
 Program an application that uses any push button on Multi-function shield and Pin Change Interrupts 11:9 to reset the decimal counter value. Help: Configure Pin Change Interrupt Control Register (PCICR) and Pin Change Mask Register 1 (PCMSK1).
 
-
 <a name="assignment"></a>
 
 ## Lab assignment
 
-*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 >
 
 <a name="references"></a>
@@ -272,9 +268,9 @@ Program an application that uses any push button on Multi-function shield and Pi
 
 1. AspenCore, Inc. [7-segment display tutorial](https://www.electronics-tutorials.ws/blog/7-segment-display-tutorial.html)
 
-2. Tomas Fryza. [Schematic of Multi-function shield](../../Docs/arduino_shield.pdf)
+2. Tomas Fryza. [Schematic of Multi-function shield](https://oshwlab.com/tomas.fryza/arduino-shields)
 
-3. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+3. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
 4. Aleksei Tepljakov. [7 segment display application: snake](https://www.youtube.com/watch?v=5cIfiIujSPs)
 
