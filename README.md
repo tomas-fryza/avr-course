@@ -4,23 +4,23 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 ## Exercises
 
-1. [Git version-control system, AVR tools](Labs/01-tools)
-2. [Control of GPIO, LED, push button](Labs/02-leds)
-3. [User library for GPIO control](Labs/03-gpio)
-4. [Interrupts, timers](Labs/04-interrupts)
-5. [Display devices, 7-segment display](Labs/05-segment)
-6. [Display devices, LCD display](Labs/06-lcd)
-7. [ADC and UART serial communication](Labs/07-uart)
-8. [I2C/TWI serial communication](Labs/08-i2c)
-9. [C project: General instructions](Labs/project)
-10. (Self-study) [Combining C and assembly language](Labs/09-asm)
+1. [Git version-control system, AVR tools](labs/01-tools)
+2. [Control of GPIO, LED, push button](labs/02-leds)
+3. [User library for GPIO control](labs/03-gpio)
+4. [Interrupts, timers](labs/04-interrupts)
+5. [Display devices, 7-segment display](labs/05-segment)
+6. [Display devices, LCD display](labs/06-lcd)
+7. [ADC and UART serial communication](labs/07-uart)
+8. [I2C/TWI serial communication](labs/08-i2c)
+9. [C project: General instructions](labs/project)
+10. (Self-study) [Combining C and assembly language](labs/09-asm)
 
 ## List of examples
 
-* [Basic C template, blink a LED](Examples/blink/)
-* [Project documentation with Doxygen](Examples/doxygen)
-* [C libraries](Examples/library)
-* [Autonomous slot car](Examples/slot-car)
+* [Basic C template, blink a LED](examples/blink/)
+* [Project documentation with Doxygen](examples/doxygen)
+* [C libraries](examples/library)
+* [Autonomous slot car](examples/slot-car)
 
 ## Components
 
@@ -36,11 +36,11 @@ The following hardware and software components are mainly used in the lab.
   * [LCD and keypad shield](https://arduino-shop.cz/en/arduino-platform/899-arduino-lcd-shield-1420670167.html) with LCD and five push buttons
 
 * Sensors and modules:
-  * [DHT12](https://arduino-shop.cz/arduino/1977-i2c-teplomer-a-vlhkomer-dht12-digitalni.html) I2C humidity and temperature sensor: [data sheet](Docs/dht12_manual.pdf)
-  * [DS3231](https://arduino-shop.cz/hledani.php?q=DS3231&n_q=) I2C real time clock: [data sheet](Docs/ds3231_manual.pdf)
+  * [DHT12](https://arduino-shop.cz/arduino/1977-i2c-teplomer-a-vlhkomer-dht12-digitalni.html) I2C humidity and temperature sensor: [data sheet](docs/dht12_manual.pdf)
+  * [DS3231](https://arduino-shop.cz/hledani.php?q=DS3231&n_q=) I2C real time clock: [data sheet](docs/ds3231_manual.pdf)
   * [HC-SR04](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) ultrasonic sensor
   * Analog [joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html)
-  * [ESP8266](https://arduino-shop.cz/arduino/911-internet-veci-je-tady-tcp-ip-wifi-esp8266-1420990568.html) Wi-Fi module: [AT commands](Docs/esp8266_at_instruction_set.pdf)
+  * [ESP8266](https://arduino-shop.cz/arduino/911-internet-veci-je-tady-tcp-ip-wifi-esp8266-1420990568.html) Wi-Fi module: [AT commands](docs/esp8266_at_instruction_set.pdf)
 
 * Analyzers:
   * 24MHz 8-channel [logic analyzer](https://www.ebay.com/sch/i.html?LH_CAds=&_ex_kw=&_fpos=&_fspt=1&_mPrRngCbx=1&_nkw=24mhz%20logic%20analyzer&_sacat=&_sadis=&_sop=12&_udhi=&_udlo=): [software](https://www.saleae.com/)
@@ -57,8 +57,8 @@ The following hardware and software components are mainly used in the lab.
 
 ## References
 
-1. [How to use AVR template on Linux](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_linux.md)
-2. [How to use AVR template on Windows](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_windows.md)
-3. [How to use AVR template with PlatformIO](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/HOWTO_platformio.md)
+1. [How to use AVR template on Linux](docs/HOWTO_linux.md)
+2. [How to use AVR template on Windows](docs/HOWTO_windows.md)
+3. [How to use AVR template with PlatformIO](docs/HOWTO_platformio.md)
 4. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
 5. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
