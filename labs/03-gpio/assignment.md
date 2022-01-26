@@ -4,20 +4,18 @@ Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
-
 ### Data types in C
 
 1. Complete table.
 
 | **Data type** | **Number of bits** | **Range** | **Description** |
-| :-: | :-: | :-: | :-- | 
+| :-: | :-: | :-: | :-- |
 | `uint8_t`  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
 | `int8_t`   |  |  |  |
 | `uint16_t` |  |  |  |
 | `int16_t`  |  |  |  |
 | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
 | `void`     |  |  |  |
-
 
 ### GPIO library
 
@@ -40,7 +38,6 @@ Link to this file in your GitHub repository:
         // WRITE YOUR CODE HERE
     }
 ```
-
 
 ### Traffic light
 

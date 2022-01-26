@@ -1,19 +1,19 @@
 # Lab 3: User library for GPIO control
 
-![Atmel Studio 7](Images/screenshot_atmel_studio_gpio.png)
-
+![Atmel Studio 7](images/screenshot_atmel_studio_gpio.png)
 
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Understand the difference between header and source files
-   * Create your own library
-   * Understand how to call a function with pointer parameters
+
+* Understand the difference between header and source files
+* Create your own library
+* Understand how to call a function with pointer parameters
 
 The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
 
-
 ### Table of contents
+
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Library header file](#part2)
@@ -23,14 +23,14 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 * [Lab assignment](#assignment)
 * [References](#references)
 
-
 <a name="preparation"></a>
+
 ## Preparation tasks (done before the lab at home)
 
 1. Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
 
    | **Data type** | **Number of bits** | **Range** | **Description** |
-   | :-: | :-: | :-: | :-- | 
+   | :-: | :-: | :-: | :-- |
    | `uint8_t`  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
    | `int8_t`   |  |  |  |
    | `uint16_t` |  |  |  |
@@ -73,8 +73,8 @@ int main(void)
 }
 ```
 
-
 <a name="part1"></a>
+
 ## Part 1: Synchronize repositories and create a new folder
 
 Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
@@ -84,8 +84,8 @@ Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, 
 $ cd d:/Documents/
 $ cd your-name/
 $ ls
-Digital-electronics-2/
-$ cd Digital-electronics-2/
+digital-electronics-2/
+$ cd digital-electronics-2/
 $ git pull
 
 ## Linux:
@@ -93,21 +93,21 @@ $ cd
 $ cd Documents/
 $ cd your-name/
 $ ls
-Digital-electronics-2/
-$ cd Digital-electronics-2/
+digital-electronics-2/
+$ cd digital-electronics-2/
 $ git pull
 ```
 
-Create a new working folder `Labs/03-gpio` for this exercise.
+Create a new working folder `labs/03-gpio` for this exercise.
 
 ```bash
 ## Windows Git Bash or Linux:
-$ cd Labs/
+$ cd labs/
 $ mkdir 03-gpio
 ```
 
-
 <a name="part2"></a>
+
 ## Part 2: Library header file
 
 For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
@@ -117,9 +117,10 @@ For clarity and efficiency of the code, the individual parts of the application 
 C programs are highly dependent on functions. Functions are the basic building blocks of C programs and every C program is combination of one or more functions. There are two types of functions in C: **built-in functions** which are the part of C compiler and **user defined functions** which are written by programmers according to their requirement.
 
 To use a user-defined function, there are three parts to consider:
-   * Function prototype or Function declaration (`*.h` file)
-   * Function definition (`*.c` file)
-   * Function call (`*.c` file)
+
+* Function prototype or Function declaration (`*.h` file)
+* Function definition (`*.c` file)
+* Function call (`*.c` file)
 
 *[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A **function prototype** gives information to the compiler that the function may later be used in the program.*
 
@@ -129,7 +130,7 @@ To use a user-defined function, there are three parts to consider:
 
 A header file can be shared between several source files by including it with the C preprocessing directive `#include`. If a header file happens to be included twice, the compiler will process its contents twice and it will result in an error. The standard way to prevent this is to enclose the entire real contents of the file in a conditional, like this:
 
-```C
+```c
 #ifndef HEADER_FILE_NAME        // Preprocessor directive allows for conditional compilation. If not defined.
 # define HEADER_FILE_NAME       // Definition of constant within your source code.
 
@@ -140,13 +141,11 @@ A header file can be shared between several source files by including it with th
 
 This construct is commonly known as a wrapper `#ifndef`. When the header is included again, the conditional will be false, because `HEADER_FILE_NAME` is already defined. The preprocessor will skip over the entire contents of the file, and the compiler will not see it twice.
 
-
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
-
 
 ### Version: Command-line toolchain
 
@@ -154,17 +153,16 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 ```bash
 ## Linux:
-$ cp -r ../Examples/library .
+$ cp -r ../examples/library .
 $ ls
 01-tools  02-leds  03-gpio  Makefile.in  library
 ```
 
-2. Copy `main.c` and `Makefile` files from previous lab to `Labs/03-gpio` folder.
+2. Copy `main.c` and `Makefile` files from previous lab to `labs/03-gpio` folder.
 
 3. Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
 
-4. Create a new library header file in `Labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
-
+4. Create a new library header file in `labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
 
 ### Both versions
 
@@ -189,18 +187,17 @@ Note that the C notation `*variable` representing a pointer to memory location w
 > ![Understanding C pointers](Images/pointer-variable-ampersand-and-asterisk.png)
 >
 
-
 <a name="part3"></a>
+
 ## Part 3: Library source file
 
 ### Version: Atmel Studio 7
 
 1. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `gpio.c`. Copy/paste the [template code](../library/gpio.c) into it.
 
-
 ### Version: Command-line toolchain
 
-1. Create a new `Labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
+1. Create a new `labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
 
 2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
 
@@ -211,7 +208,6 @@ Note that the C notation `*variable` representing a pointer to memory location w
 #SRCS += $(LIBRARY_DIR)/twi.c
 SRCS += $(LIBRARY_DIR)/gpio.c
 ```
-
 
 ### Both versions
 
@@ -227,8 +223,8 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 }
 ```
 
-
 <a name="part4"></a>
+
 ## Part 4: Final application
 
 1. In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
@@ -240,13 +236,12 @@ void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 
 2. Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
 
-
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
-
+Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 <a name="experiments"></a>
+
 ## Experiments on your own
 
 1. Complete declarations (`*.h`) and definitions (`*.c`) of all functions from the GPIO library.
@@ -259,9 +254,9 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 ## Lab assignment
 
-*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 >
 
 <a name="references"></a>
@@ -274,6 +269,6 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 3. avr-libc. [How do I pass an IO port as a parameter to a function?](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass)
 
-4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
 5. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)

@@ -191,7 +191,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
 1. Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor (if internal pull-up resistor is not used) and push button to Arduino input pin in active-low way. **Let the push button is connected to port D.**
 
-2. Use code from previous part and program an application that toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. 
+2. Use code from previous part and program an application that toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change.
 
 3. Configure the pin to which the push button is connected as an input and enable the internal pull-up resistor.
 

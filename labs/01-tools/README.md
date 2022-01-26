@@ -244,6 +244,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 5. Use the following commands step by step in the internal terminal to find out what they mean. Note: these commands are defined in `Makefile`.
 
    ```bash
+   ## Type this commands
    $ make all
    $ make clean
    $ make size
