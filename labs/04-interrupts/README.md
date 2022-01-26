@@ -1,20 +1,20 @@
 # Lab 4: Interrupts, timers
 
-![Multi-function shield](Images/arduino_uno_multi-shield.jpg)
-
+![Multi-function shield](images/arduino_uno_multi-shield.jpg)
 
 ### Learning objectives
 
 After completing this lab you will be able to:
-   * Use `#define` compiler directives
-   * Use internal microcontroller timers
-   * Understand overflow
-   * Use additional shields with other peripherals
+
+* Use `#define` compiler directives
+* Use internal microcontroller timers
+* Understand overflow
+* Use additional shields with other peripherals
 
 The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
-
 ### Table of contents
+
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Timers](#part2)
@@ -25,14 +25,14 @@ The purpose of the laboratory exercise is to understand the function of the inte
 * [Lab assignment](#assignment)
 * [References](#references)
 
-
 <a name="preparation"></a>
+
 ## Preparation tasks (done before the lab at home)
 
 Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an **overflow**. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
 &nbsp;
-![Timer overflow](Images/timer_overflow.png)
+![Timer overflow](images/timer_overflow.png)
 &nbsp;
 
 1. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128 and other timers have only 5 prescaler values.
@@ -43,7 +43,7 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
    | Timer/Counter1 | 16 |     |      | -- | | -- | | |
    | Timer/Counter2 | 8  |     |      |    | |    | | |
 
-2. Shields are boards that can be attached to an Arduino board, significantly expand its capabilities, and makes prototyping much faster. See schematic of [Multi-function shield](../../Docs/arduino_shield.pdf) and find out the connection of four LEDs (D1, D2, D3, D4) and three push buttons (S1-A1, S2-A2, S3-A3).
+2. Shields are boards that can be attached to an Arduino board, significantly expand its capabilities, and makes prototyping much faster. See schematic of [Multi-function shield](https://oshwlab.com/tomas.fryza/arduino-shields) and find out the connection of four LEDs (D1, D2, D3, D4) and three push buttons (S1-A1, S2-A2, S3-A3).
 
 &nbsp;
 
@@ -56,21 +56,22 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
 &nbsp;
 
 &nbsp;
-
 
 <a name="part1"></a>
+
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/04-interrupts` for this exercise.
-
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/04-interrupts` for this exercise.
 
 <a name="part2"></a>
+
 ## Part 2: Timers
 
 A timer (or counter) is a hardware block within an MCU and can be used to measure time events. ATmega328P has three timers, called:
-   * Timer/Counter0,
-   * Timer/Counter1, and
-   * Timer/Counter2.
+
+* Timer/Counter0,
+* Timer/Counter1, and
+* Timer/Counter2.
 
 T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65,535 (for 16-bit). Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024, and others.
 
@@ -82,7 +83,6 @@ The timer modules can be configured with several special purpose registers. Acco
 | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
 | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
-
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `04-interrupts` working folder and copy/paste [template code](main.c) to your `main.c` source file.
@@ -91,25 +91,23 @@ The timer modules can be configured with several special purpose registers. Acco
 
 3. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** twice and add both GPIO library files (`gpio.h`, `gpio.c`) from the previous lab.
 
-   ![Atmel Studio 7](Images/screenshot_atmel_studio_files.png)
-
+   ![Atmel Studio 7](images/screenshot_atmel_studio_files.png)
 
 ### Version: Command-line toolchain
 
 1. Check if `library` folder and `Makefile.in` settings file exist within `Labs` folder. If not, copy them from the `Examples` folder.
 
-2. Copy `main.c` and `Makefile` files from previous lab to `Labs/04-interrupts` folder.
+2. Copy `main.c` and `Makefile` files from previous lab to `labs/04-interrupts` folder.
 
 3. Copy/paste [template code](main.c) to your `04-interrupts/main.c` source file.
 
-4. Create a new library header file in `Labs/library/include/timer.h` and copy/paste the [template code](../library/include/timer.h) into it.
-
+4. Create a new library header file in `labs/library/include/timer.h` and copy/paste the [template code](../library/include/timer.h) into it.
 
 ### Both versions
 
 For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 define macros in `timer.h` with suitable names, which will replace the setting at low level. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-```C
+```c
 #ifndef TIMER_H
 # define TIMER_H
 
@@ -137,8 +135,8 @@ For easier setting of control registers, for Timer/Counter0 and Timer/Counter1 d
 #endif
 ```
 
-
 <a name="part3"></a>
+
 ## Part 3: Polling and Interrupts
 
 The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
@@ -147,7 +145,7 @@ While polling is a simple way to check for state changes, there's a cost. If the
 
 An alternative approach is to utilize **interrupts**. With this method, the state change generates an interrupt signal that causes the CPU to suspend its current operation (and save its current state), then execute the processing associated with the interrupt, and then restore its previous state and resume where it left off.
 
-![Interrupts versus polling](Images/interrupts_vs_polling.jpg)
+![Interrupts versus polling](images/interrupts_vs_polling.jpg)
 
 An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[4]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
@@ -174,21 +172,21 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
-
 <a name="part4"></a>
+
 ## Part 4: Final application
 
 In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library. Use Multi-function shield and toggle D1 LED with one of the internal timers. Select its prescaler value and enable overflow interrupt. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
 
 In addition, if you want to use interrupts in your application, you must:
-   * insert the header file `#include <avr/interrupt.h>`,
-   * make peripheral function settings (such as prescaler),
-   * enable specific interrupts (such as overflow),
-   * define interrupt handlers (such as `ISR(TIMER1_OVF_vect)`), and
-   * allow such handlers to run by `sei()` macro.
 
+* insert the header file `#include <avr/interrupt.h>`,
+* make peripheral function settings (such as prescaler),
+* enable specific interrupts (such as overflow),
+* define interrupt handlers (such as `ISR(TIMER1_OVF_vect)`), and
+* allow such handlers to run by `sei()` macro.
 
-```C
+```c
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 ...
 
@@ -242,19 +240,20 @@ void IRQHandler()
 }
 ```
 
-
 <a name="part5"></a>
+
 ## Part 5: PWM (Pulse Width Modulation)
 
 Pulse Width Modulation or PWM is a common technique used to vary the width of the pulses in a pulse-train. PWM has many applications such as controlling servos and speed controllers, limiting the effective power of motors and LEDs [[8]](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm). There are various terms associated with PWM:
-   * On-Time: duration of time signal is high,
-   * Off-Time: duration of time signal is low,
-   * Period: the sum of on-time and off-time of PWM signal,
-   * Duty Cycle: the percentage of time signal that remains on during the period of the PWM signal.
 
-![PWM](Images/pwm.png)
+* On-Time: duration of time signal is high,
+* Off-Time: duration of time signal is low,
+* Period: the sum of on-time and off-time of PWM signal,
+* Duty Cycle: the percentage of time signal that remains on during the period of the PWM signal.
 
-Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Docs/arduino_shield.pdf) board or [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and in the following table write which Arduino Uno pins can be used to generate the PWM signal by internal timer modules.
+![PWM](images/pwm.png)
+
+Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board or [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and in the following table write which Arduino Uno pins can be used to generate the PWM signal by internal timer modules.
 
 | **Module** | **Description** | **MCU pin** | **Arduino pin** |
 | :-: | :-: | :-: | :-: |
@@ -265,13 +264,12 @@ Use schematic of [Arduino Uno](https://github.com/tomas-fryza/Digital-electronic
 | Timer/Counter2 | OC2A |     |    |
 |                | OC2B |     |    |
 
-
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
-
+Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 <a name="experiments"></a>
+
 ## Experiments on your own
 
 1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
@@ -283,11 +281,11 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 
    Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`. Clear the OCR1B value when it reaches its maximum, ie 0x03FF.
 
-   Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library. 
+   Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library.
 
    Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
 
-   ![SimulIDE](Images/screenshot_simulide_pwm.png)
+   ![SimulIDE](images/screenshot_simulide_pwm.png)
 
 2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
    * Normal mode,
@@ -301,16 +299,16 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 ## Lab assignment
 
-*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 >
 
 <a name="references"></a>
 
 ## References
 
-1. Tomas Fryza. [Schematic of Arduino Uno board](../../Docs/arduino_shield.pdf)
+1. Tomas Fryza. [Schematic of Arduino Uno board](https://oshwlab.com/tomas.fryza/arduino-shields)
 
 2. Microchip Technology Inc. [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p)
 
@@ -326,6 +324,6 @@ Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#
 
 8. Tutorials Point. [Arduino - Pulse Width Modulation](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
 10. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
