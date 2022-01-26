@@ -4,7 +4,6 @@ Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
-
 ### Active-low and active-high LEDs
 
 1. Complete tables according to the AVR manual.
@@ -54,7 +53,6 @@ int main(void)
 }
 ```
 
-
 ### Push button
 
 1. Part of the C code listing which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D. Always use syntax highlighting and meaningful comments:
@@ -72,7 +70,6 @@ int main(void)
         // WRITE YOUR CODE HERE
     }
 ```
-
 
 ### Knight Rider
 

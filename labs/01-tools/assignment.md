@@ -4,7 +4,6 @@ Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
-
 ### Blink example
 
 1. What is the meaning of the following binary operators in C?
@@ -23,7 +22,6 @@ Link to this file in your GitHub repository:
 | 0 | 1 |  |  |  |  |
 | 1 | 0 |  |  |  |  |
 | 1 | 1 |  |  |  |  |
-
 
 ### Morse code
 
@@ -53,7 +51,6 @@ int main(void)
     return 0;
 }
 ```
-
 
 2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
