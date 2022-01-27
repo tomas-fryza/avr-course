@@ -1,6 +1,6 @@
 # Lab 7: ADC and UART serial communication
 
-![LCD-keypad shield](Images/arduino_uno_adc.jpg)
+![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
 ### Learning objectives
 
@@ -27,7 +27,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 ## Preparation tasks (done before the lab at home)
 
-1. Use schematic of the [LCD keypad shield](../../Docs/arduino_shield.pdf) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
+1. Use schematic of the [LCD keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
 
    &nbsp;
 
@@ -43,33 +43,33 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 2. According to the connection, calculate the voltage values on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively.
 
-   ![Equation: Voltage divider](Images/eq_divider1.png)
+   ![Equation: Voltage divider](images/eq_divider1.png)
 
-   ![Equation: Voltage divider](Images/eq_divider2.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](Images/eq_divider3.png)
+   ![Equation: Voltage divider](images/eq_divider2.png)
 
    &nbsp;
 
-   ![Equation: Voltage divider](Images/eq_divider4.png)
+   ![Equation: Voltage divider](images/eq_divider3.png)
 
    &nbsp;
 
-   ![Equation: Voltage divider](Images/eq_divider5.png)
+   ![Equation: Voltage divider](images/eq_divider4.png)
+
+   &nbsp;
+
+   ![Equation: Voltage divider](images/eq_divider5.png)
 
    &nbsp;
 
 3. Calculate the voltage value if none of the push buttons is pressed.
 
-   ![Equation: Voltage divider](Images/eq_divider6.png)
+   ![Equation: Voltage divider](images/eq_divider6.png)
 
    &nbsp;
 
 4. Calculate the ADC values for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
 
-   ![Equation: ADC conversion](Images/eq_adc.png)
+   ![Equation: ADC conversion](images/eq_adc.png)
 
    | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** |
    | :-: | :-: | :-: | :-: |
@@ -84,7 +84,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/07-uart` for this exercise.
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/07-uart` for this exercise.
 
 <a name="part2"></a>
 
@@ -115,13 +115,13 @@ The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADC
 1. Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `Examples/library/include` and `Examples/library` folders,
+   * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `examples/library/include` and `examples/library` folders,
    * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
    * Timer library `timer.h` from the previous labs.
 
 ### Version: Command-line toolchain
 
-1. Copy `main.c` and `Makefile` files from previous lab to `Labs/07-uart` folder.
+1. Copy `main.c` and `Makefile` files from previous lab to `labs/07-uart` folder.
 
 2. Copy/paste [template code](main.c) to your `07-uart/main.c` source file.
 
@@ -140,7 +140,7 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 1. Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
 
-   ![SimulIDE](Images/screenshot_simulide_lcd_probe.png)
+   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
 
 2. In `main.c` configure ADC as follows:
    * voltage reference: AVcc with external capacitor
@@ -153,7 +153,7 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
    Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
 
-   ![LCD-keypad shield](Images/arduino_uno_adc.jpg)
+   ![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
 ```c
 /**********************************************************************
@@ -174,7 +174,7 @@ ISR(ADC_vect)
 
 3. Write the values to the table from Preparation tasks section and compare them with the calculated ones.
 
-   ![SimulIDE](Images/screenshot_simulide_lcd_buttons.png)
+   ![SimulIDE](images/screenshot_simulide_lcd_buttons.png)
 
 <a name="part3"></a>
 
@@ -192,14 +192,14 @@ The amount of **data** in each packet can be set from 5 to 9 bits. If it is not 
 
 One of the most common UART formats is called **9600 8N1**, which means 8 data bits, no parity, 1 stop bit and a symbol rate of 9600&nbsp;Bd.
 
-![UART frame 8N1](Images/uart_frame_8n1.png)
+![UART frame 8N1](images/uart_frame_8n1.png)
 
 ### Example of UART communication
 
 > **Question:** Let the following image shows one frame of UART communication transmitting from the ATmega328P in 8N1 mode. What ASCII code/character does it represent? According to bit period, estimate the symbol rate.
 >
    &nbsp;
-   ![Timing of UART](Images/uart_capture_E.png)
+   ![Timing of UART](images/uart_capture_E.png)
 
 > **Answer:** 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x45) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents the letter `E`.
 >
@@ -227,21 +227,21 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 1. In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-   ![SimulIDE](Images/screenshot_simulide_lcd_uart.png)
+   ![SimulIDE](images/screenshot_simulide_lcd_uart.png)
 
 ### Version: Real hardware
 
 1. Use PuTTY SSH Client to receive values from Arduino board. Set connection type to **Serial** and check that the configuration is the same as in the ATmega328 application. Note that, serial line to connect to (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
 
-   ![PuTTY](Images/screenshot_putty_type.png)
-   ![PuTTY](Images/screenshot_putty_config.png)
+   ![PuTTY](images/screenshot_putty_type.png)
+   ![PuTTY](images/screenshot_putty_config.png)
 
 > WARNING: Before Arduino board re-programming process, PuTTY SSH Client must be closed!
 >
 
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 <a name="experiments"></a>
 
@@ -271,7 +271,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 #endif
 ```
 
-   ![SimulIDE](Images/screenshot_simulide_lcd_final.png)
+   ![SimulIDE](images/screenshot_simulide_lcd_final.png)
 
 2. Design a piece of code to calculate the parity bit from the specified value. Display the parity of ADC converted value on the LCD and UART.
 
@@ -283,7 +283,7 @@ Extra. Design your own library for working with analog to digital convertor.
 
 4. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
-   ```C
+   ```c
    /* Color/formatting sequence always starts by "\033[" and ends by "m" strings.
    * One or more formatting codes "#", separated by ";" can be used within
    * one line, such as:
@@ -307,7 +307,7 @@ Extra. Design your own library for working with analog to digital convertor.
 
    After pressing the '1' key on computer keyboard, ATmega328P receives ASCII code of the key and sends the current Timer1 value back to PuTTY. After pressing the '2' key, ATmega328P resets Timer1 value, etc. Use ANSI escape sequences to highlight information within PuTTY console.
 
-   ```C
+   ```c
    uint8_t c;
    ...
 
@@ -325,16 +325,16 @@ Extra. Design your own library for working with analog to digital convertor.
 
 ## Lab assignment
 
-*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 >
 
 <a name="references"></a>
 
 ## References
 
-1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
+1. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
 
 2. EETech Media, LLC. [Voltage Divider Calculator](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/)
 
@@ -350,6 +350,6 @@ Extra. Design your own library for working with analog to digital convertor.
 
 8. Peter Fleury. [UART library](http://www.peterfleury.epizy.com/avr-software.html)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
 10. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
