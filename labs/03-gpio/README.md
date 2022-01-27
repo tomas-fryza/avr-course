@@ -184,7 +184,7 @@ Note that the C notation `*variable` representing a pointer to memory location w
 
 > [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
 >
-> ![Understanding C pointers](Images/pointer-variable-ampersand-and-asterisk.png)
+> ![Understanding C pointers](images/pointer-variable-ampersand-and-asterisk.png)
 >
 
 <a name="part3"></a>
