@@ -51,11 +51,11 @@ The aim of the C project is cooperation in small teams, study of assigned topic,
 
 ## README template
 
-The README file contains a complete description of the problem, circuit diagram, graphical representation of the application (flowchart or state diagram), links to source files in the repository (do NOT include whole code listing to README), discussion of results, list of references, link to your video presentation, etc. Use this required structure of [project README file](Project.md).
+The README file contains a complete description of the problem, circuit diagram, graphical representation of the application (flowchart or state diagram), links to source files in the repository (do NOT include whole code listing to README), discussion of results, list of references, link to your video presentation, etc. Use this required structure of [project README file](project.md).
 
 The deadline for submitting the project is ~Tuesday Dec 14, 2021~ **Thursday 16-Dec-21**. Use BUT e-learning web page, export your project README file to PDF and submit it.
 
-![project schedule](Images/wavedrom.png)
+![project schedule](images/wavedrom.png)
 
 ## Topics 2021/22
 
@@ -73,17 +73,17 @@ The deadline for submitting the project is ~Tuesday Dec 14, 2021~ **Thursday 16-
 
 Optional:
 
-4. Programming of automated slot car. Sensors and speed control (https://github.com/tomas-fryza/arduino-slotcar) for the fastest pass of an unknown track can be used.
+4. Programming of [automated slot car](https://github.com/tomas-fryza/arduino-slotcar). Sensors and speed control for the fastest pass of an unknown track can be used.
 
-   > *Programování autonomní jízdy autíčka na autodráze. Lze využít integrované senzory a ovládání rychlosti (https://github.com/tomas-fryza/arduino-slotcar) pro nejrychlejší projetí neznámé dráhy.*
+   > *Programování autonomní jízdy [autíčka na autodráze](https://github.com/tomas-fryza/arduino-slotcar). Lze využít integrované senzory a ovládání rychlosti pro nejrychlejší projetí neznámé dráhy.*
 
-![slot car](Images/slot_car.jpg)
+![slot car](images/slot_car.jpg)
 
 5. Four-wheel chassis control. The following can be used: 4 DC motors, 2 optical barriers, 2 H-bridge drivers L298N, Bluetooth, and others.
 
    > *Ovládání 4kolového podvozku. Lze využít: 4 SS motory, 2 optické bariéry pro kontrolu otáčení kol, 2 H-můstky L298, Bluetooth, a jiné.*
 
-![4-wheel chassis](Images/four-wheel.jpg)
+![4-wheel chassis](images/four-wheel.jpg)
 
 ## Topics 2020/21
 
