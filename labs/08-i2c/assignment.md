@@ -14,58 +14,58 @@ Link to this file in your GitHub repository:
    * SPI pins
    * external interrupt pins INT0, INT1
 
-   ![your figure](Images/arduino_uno_pinout.png)
+   ![your figure](images/arduino_uno_pinout.png)
 
 ### I2C
 
-1. Code listing of Timer1 overflow interrupt service routine for scanning I2C devices and rendering a clear table on the UART. Always use syntax highlighting and meaningful comments:
+1. Code listing of Timer1 overflow interrupt service routine for reading temperature and checksum values from DHT12 sensor. Always use syntax highlighting and meaningful comments:
 
 ```c
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Update Finite State Machine and test I2C slave addresses 
- *           between 8 and 119.
+ * Purpose:  Update Finite State Machine and get humidity, temperature,
+ *           and checksum from DHT12 sensor.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM
-    static uint8_t addr = 7;            // I2C slave address
-    uint8_t result = 1;                 // ACK result from the bus
-    char uart_string[2] = "00"; // String for converting numbers by itoa()
+    static uint8_t addr = 0x5c;  // I2C slave address of DHT12
+    uint8_t value;               // Data obtained from the I2C bus
+    char uart_string[] = "000";  // String for converting numbers by itoa()
 
     // FSM
     switch (state)
     {
-    // Increment I2C slave address
+    // Do nothing
     case STATE_IDLE:
-        addr++;
-        // If slave address is between 8 and 119 then move to SEND state
-
+        // Move to the next state
+        state = STATE_HUMID;
         break;
     
-    // Transmit I2C slave address and get result
-    case STATE_SEND:
-        // I2C address frame:
-        // +------------------------+------------+
-        // |      from Master       | from Slave |
-        // +------------------------+------------+
-        // | 7  6  5  4  3  2  1  0 |     ACK    |
-        // |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
-        // +------------------------+------------+
-        result = twi_start((addr<<1) + TWI_WRITE);
-        twi_stop();
-        /* Test result from I2C bus. If it is 0 then move to ACK state, 
-         * otherwise move to IDLE */
-
+    // Get humidity
+    case STATE_HUMID:
+        // WRITE YOUR CODE HERE
+        
+        // Move to the next state
+        state = STATE_TEMP;
         break;
 
-    // A module connected to the bus was found
-    case STATE_ACK:
-        // Send info about active I2C slave to UART and move to IDLE
+    // Get temperature
+    case STATE_TEMP:
+        // WRITE YOUR CODE HERE
 
+        // Move to the next state
+        state = STATE_CHECK;
         break;
 
-    // If something unexpected happens then move to IDLE
+    // Get checksum
+    case STATE_CHECK:
+        // WRITE YOUR CODE HERE
+        
+        // Move to the next state
+        state = STATE_IDLE;
+        break;
+
     default:
         state = STATE_IDLE;
         break;

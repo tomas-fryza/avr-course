@@ -1,6 +1,6 @@
 # Lab 8: I2C/TWI serial communication
 
-![I2C scan](Images/arduino_uno_i2c.jpg)
+![I2C scan](images/arduino_uno_i2c.jpg)
 
 ### Learning objectives
 
@@ -27,7 +27,7 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 
 ## Preparation tasks (done before the lab at home)
 
-1. Use schematic of the [Arduino Uno](../../Docs/arduino_shield.pdf) board and find out to which pins the SDA and SCL signals are connected.
+1. Use schematic of the [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board and find out to which pins the SDA and SCL signals are connected.
 
    | **Signal** | **MCU pin** | **Arduino pin(s)** |
    | :-: | :-: | :-: |
@@ -45,7 +45,7 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `Labs/08-i2c` for this exercise.
+Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/08-i2c` for this exercise.
 
 <a name="part2"></a>
 
@@ -55,7 +55,7 @@ I2C is a serial protocol for two-wire interface to connect low-speed devices lik
 
 I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages.
 
-![I2C bus](Images/i2c-bus.png)
+![I2C bus](images/i2c-bus.png)
 
 The initial I2C specifications defined maximum clock frequency of 100 kHz. This was later increased to 400 kHz as Fast mode. There is also a High speed mode which can go up to 3.4 MHz and there is also a 5 MHz ultra-fast mode.
 
@@ -63,7 +63,7 @@ In normal state both lines (SCL and SDA) are high. The communication is initiate
 
 The address byte is followed by one or more data bytes, where each contains 8 bits and is again terminated by ACK/NACK. Once all bytes are read or written the master device generates Stop condition (P). This means that the master device switches the SDA line from low voltage level to high voltage level before the SCL line switches from high to low [[3]](https://www.electronicshub.org/basics-i2c-communication/).
 
-![I2C protocol](Images/i2c_protocol.jpg)
+![I2C protocol](images/i2c_protocol.jpg)
 
 Note that, most I2C devices support repeated start condition. This means that before the communication ends with a stop condition, master device can repeat start condition with address byte and change the mode from writing to reading.
 
@@ -72,7 +72,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 > **Question:** Let the following image shows several frames of I2C communication between ATmega328P and slave device. What circuit is it and what information was sent over the bus?
 >
    &nbsp;
-   ![Temperature reception from DHT12 sensor](Images/twi-dht12_temperature_decoded.png)
+   ![Temperature reception from DHT12 sensor](images/twi-dht12_temperature_decoded.png)
 
 > **Answer:** This communication example contains a total of five frames. After the start condition, which is initiated by the master, the address frame is always sent. It contains a 7-bit address of the slave device, supplemented by information on whether the data will be written to the slave or read from it to the master. The ninth bit of the address frame is an acknowledgment provided by the receiving side.
 >
@@ -80,7 +80,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../Docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
 >
    | **Register address** | **Description** |
    | :-: | :-- |
@@ -110,26 +110,26 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 1. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a connection according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
-   ![I2C scanner circuit](Images/screenshot_simulide_i2c_scan.png)
+   ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
 ### Version: Real hardware
 
-1. Use breadboard to connect humidity/temperature [DHT12](../../Docs/dht12_manual.pdf) digital sensor and combined module with real time clock (RTC) device [DS3231](../../Docs/ds3231_manual.pdf) and [AT24C32](../../Docs/at24c32_manual.pdf) memory to Arduino Uno board. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
+1. Use breadboard to connect humidity/temperature [DHT12](../../docs/dht12_manual.pdf) digital sensor and combined module with real time clock (RTC) device [DS3231](../../docs/ds3231_manual.pdf) and [AT24C32](../../docs/at24c32_manual.pdf) memory to Arduino Uno board. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
 
    | **DHT12 pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
-   | +<br>SDA<br>-<br>SCL | 5V (or 3.3V)<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](Images/dht12.jpg) |
+   | +<br>SDA<br>-<br>SCL | 5V (or 3.3V)<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](images/dht12.jpg) |
 
    | **RTC+EEPROM pin** | **Arduino Uno pin** |  |
    | :-: | :-: | :-: |
-   | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>5V (or 3.3V)<br>GND | ![RTC/EEPROM module](Images/rtc_eeprom.jpg) |
+   | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>5V (or 3.3V)<br>GND | ![RTC/EEPROM module](images/rtc_eeprom.jpg) |
 
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `08-i2C` working folder and copy/paste [template code](main.c) to your `main.c` source file.
 
 2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * I2C/TWI files `twi.h`, [`twi.c`](../../Examples/library/twi.c) from `Examples/library/include` and `Examples/library` folders,
+   * I2C/TWI files `twi.h`, [`twi.c`](../../examples/library/twi.c) from `examples/library/include` and `examples/library` folders,
    * UART library files `uart.h`, `uart.c` from the previous lab,
    * Timer library `timer.h` from the previous labs.
 
@@ -152,7 +152,7 @@ SRCS += $(LIBRARY_DIR)/twi.c
 
 ### All versions
 
-1. Use the [`twi.h`](../../Examples/library/include/twi.h) header file from the I2C/TWI library to complete the description of the functions in the following table.
+1. Use the [`twi.h`](../../examples/library/include/twi.h) header file from the I2C/TWI library to complete the description of the functions in the following table.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
@@ -205,7 +205,7 @@ typedef enum {  // FSM declaration
 
 3. Complete the Timer/Counter1 overflow routine according to the following state diagram and scan slave addresses. Transmit useful information via UART to PuTTY SSH Client or Serial monitor.
 
-   ![FSM for I2C scanner](Images/fsm_scan_i2c.png)
+   ![FSM for I2C scanner](images/fsm_scan_i2c.png)
 
 > The figure above was created in [diagrams.net](https://app.diagrams.net/). It is an open source, online, desktop and container deployable diagramming software.
 >
@@ -236,13 +236,13 @@ typedef enum {  // FSM declaration
 
 1. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
-   ![I2C LED bar](Images/screenshot_simulide_i2c_leds.png)
+   ![I2C LED bar](images/screenshot_simulide_i2c_leds.png)
 
 2. Create an application that sequentially turns on one of the eight LEDs. ie first LED0, then LED1 and finally LED7, then start again from the beginning. Use Timer/Counter1 and change the value every 262 ms. Send the status of the LEDs to the UART. Try to complement the LED controls according to the Knight Rider style, ie light the LEDs in one direction and then in the opposite one.
 
 ### Version: Real hardware
 
-1. Program an FSM application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../Docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
+1. Program an FSM application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
    | **Register address** | **Description** |
    | :-: | :-- |
@@ -252,7 +252,7 @@ typedef enum {  // FSM declaration
    | 0x03 | Temperature fractional part |
    | 0x04 | Checksum |
 
-   ![FSM for I2C temperature](Images/fsm_dht_i2c.png)
+   ![FSM for I2C temperature](images/fsm_dht_i2c.png)
 
 ```c
 /* Variables ---------------------------------------------------------*/
@@ -322,7 +322,7 @@ ISR(TIMER1_OVF_vect)
 
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
 <a name="experiments"></a>
 
@@ -334,7 +334,7 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 
 ### Version: Real hardware
 
-1. Extend the humidity/temperature application, use the RTC/EEPROM module and read second and minute values from RTC DS3231 device, and send them via UART to PuTTY SSH Client. According to the [DS3231 manual](../../Docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
+1. Extend the humidity/temperature application, use the RTC/EEPROM module and read second and minute values from RTC DS3231 device, and send them via UART to PuTTY SSH Client. According to the [DS3231 manual](../../docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
 
    | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
    | :-: | :-: | :-: | :-: |
@@ -348,16 +348,16 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 
 ## Lab assignment
 
-*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](Assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Prepare all parts of the assignment in Czech, Slovak or English, insert them in this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](Assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce, vložte je do této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 >
 
 <a name="references"></a>
 
 ## References
 
-1. Tomas Fryza. [Schematic of LCD Keypad shield](../../Docs/arduino_shield.pdf)
+1. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
 
 2. Ezoic. [I2C Info - I2C Bus, Interface and Protocol](https://i2c.info/)
 
@@ -365,12 +365,12 @@ Use [git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Use
 
 4. Adafruit. [List of I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list)
 
-5. Aosong. [Digital temperature DHT12](../../Docs/dht12_manual.pdf)
+5. Aosong. [Digital temperature DHT12](../../docs/dht12_manual.pdf)
 
 6. JGraph Ltd. [diagrams.net](https://app.diagrams.net/)
 
 7. NXP. [I2C-bus specification and user manual](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435)
 
-8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/Digital-electronics-2/wiki/Useful-Git-commands)
+8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
-9. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../Docs/ds3231_manual.pdf)
+9. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../docs/ds3231_manual.pdf)
