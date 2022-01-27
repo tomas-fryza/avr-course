@@ -4,7 +4,6 @@ Link to this file in your GitHub repository:
 
 [https://github.com/your-github-account/repository-name/lab_name](https://github.com/...)
 
-
 ### LCD display module
 
 1. In your words, describe what ASCII table is.
@@ -14,13 +13,11 @@ Link to this file in your GitHub repository:
 
    ![your figure]()
 
-
 ### Stopwatch
 
 1. Flowchart figure for `TIMER2_OVF_vect` interrupt service routine which overflows every 16&nbsp;ms but it updates the stopwatch LCD approximately every 100&nbsp;ms (6 x 16&nbsp;ms = 100&nbsp;ms). Display tenths of a second and seconds `00:seconds.tenths`. Let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
    ![your figure]()
-
 
 ### Custom characters
 
@@ -34,7 +31,6 @@ uint8_t customChar[16] = {
 
 };
 ```
-
 
 ### Kitchen alarm
 
