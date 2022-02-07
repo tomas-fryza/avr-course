@@ -33,6 +33,8 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 2. (Optional) According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
 
+3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/).
+
 ### Microchip Studio 7 (Windows only)
 
 Download and install:
@@ -89,7 +91,7 @@ If you have option to use Arduino Uno board and logic analyzer, also download an
 
 GitHub is a code hosting platform for collaboration and version control. GitHub lets you (and others) work together on projects.
 
-1. In GitHub, create a new public repository titled **Digital-electronics-2**. Initialize a README, .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
+1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
 
 2. Use one of the available git manuals, such as [1](https://medium.com/swlh/how-to-make-the-perfect-readme-md-on-github-92ed5771c061), [2](https://help.github.com/en/articles/basic-writing-and-formatting-syntax), or [3](https://guides.github.com/features/mastering-markdown/), and add the following sections to your README file.
 
@@ -104,7 +106,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 ## Part 2: Local repository
 
-1. Run Git Bash (Windows) of Terminal (Linux) and create your own home folder inside `Documents`. *Important: To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.*
+1. Run Git Bash (Windows), Terminal (Linux), or your favorite file manager, and create your own home folder inside `Documents`. *Important: To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.*
 
    ```bash
    ## Windows Git Bash:
