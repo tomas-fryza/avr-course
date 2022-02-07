@@ -6,9 +6,9 @@ The aim of the C project is cooperation in small teams, study of assigned topic,
 
 * Students may consult the project within their own team, with their laboratory teacher and may not assign anyone else, including other students, academics, or PhD students. Consultations with the teacher will take place during the laboratories.
 
-* Students present their results during the last laboratory in the 13th week of the semester.
+* Students present their results in the 13th week of the semester.
 
-* The source code for the AVR must be written in C and must be implementable on Arduino Uno board using toolchains used in the lab during the semester. Any other development tool is not allowed.
+* The source code for the AVR must be written in C and must be implementable on Arduino Uno board using toolchains used in the lab during the semester. Any other development tools are not allowed.
 
 * Smaller functions can be written in AVR assembly as well.
 
@@ -29,7 +29,7 @@ The aim of the C project is cooperation in small teams, study of assigned topic,
 > ## Bude hodnoceno
 >
 > * Obsah odeslaného souboru README (viz dále)
-> * Obsah GiThub repozitáře
+> * Obsah GitHub repozitáře
 > * Složitost vytvořené aplikace, funkčnost
 > * Přidání vlastní funkcionality nad rámec zadání
 > * Zda práce odpovídá zadání
@@ -47,6 +47,7 @@ The aim of the C project is cooperation in small teams, study of assigned topic,
 * Complete project in Microchip/Atmel Studio 7 or Command-line tool with AVR 8-bit Toolchain v3.62 for Windows or 3.6.2 for Linux. All source files must be written in English
 * Libraries of all components that you have developed, including its documentation
 * External circuit diagrams and their simulations, if needed
+* Any other files, such as PCB of proposed circuit, production documentation, etc.
 * Literature references you used
 
 ## README template
@@ -62,26 +63,31 @@ The deadline for submitting the project is ~Tuesday Dec 14, 2021~ **Thursday 16-
 1. Greenhouse monitoring and control system. The following can be used: soil moisture, light intensity, temperature sensors, irrigation pump control, DC fans, windows opening, and others.
 
    > *Monitorování a ovládání skleníku. Mohou být využity: senzory vlhkosti půdy, intenzity světla, teploty, dále ovládání závlahy, ventilátoru, otevírání oken, a jiné.*
+   > 
 
 2. [Water tank controller](https://github.com/amwellius/DE2_Project_2021-22). The following can be used: water level measurement, pump control, rain sensor, and others.
 
    > *Měření výšky vodní hladiny v nádrži. Mohou být využity: měřiče pro výšku hladiny, ovládání čerpadla, senzor deště, a jiné.*
+   > 
 
 3. Weather station with 2-axis solar tracking system. The following can be used: temperature, humidity, pressure, light intensity sensors, panel positioning motors, and others.
 
    > *Meteostanice s 2osým natáčením solárního panelu za Sluncem. Mohou být využity: sensory teploty, vlhkosti, tlaku, intenzity osvětlení, dale motory pro natočení panelu, a jiné.*
+   > 
 
 Optional:
 
 4. Programming of [automated slot car](https://github.com/tomas-fryza/arduino-slotcar). Sensors and speed control for the fastest pass of an unknown track can be used.
 
    > *Programování autonomní jízdy [autíčka na autodráze](https://github.com/tomas-fryza/arduino-slotcar). Lze využít integrované senzory a ovládání rychlosti pro nejrychlejší projetí neznámé dráhy.*
+   > 
 
 ![slot car](images/slot_car.jpg)
 
 5. Four-wheel chassis control. The following can be used: 4 DC motors, 2 optical barriers, 2 H-bridge drivers L298N, Bluetooth, and others.
 
    > *Ovládání 4kolového podvozku. Lze využít: 4 SS motory, 2 optické bariéry pro kontrolu otáčení kol, 2 H-můstky L298, Bluetooth, a jiné.*
+   > 
 
 ![4-wheel chassis](images/four-wheel.jpg)
 
