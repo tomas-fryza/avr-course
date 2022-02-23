@@ -16,7 +16,7 @@
 
 4. Create a new project. Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Open > New Project**. Type `blink` as project name, select `Arduino Uno` board, keep `Arduino` framework, and select location to your working folder. Click on the **Finish** button.
 
-5. Code the application. Copy/paste [blink example code](https://github.com/tomas-fryza/Digital-electronics-2/blob/master/Examples/blink/main.c) from this repository to your `BLINK > src > main.cpp` file.
+5. Code the application. Copy/paste [blink example code](https://github.com/tomas-fryza/digital-electronics-2/blob/master/examples/blink/main.c) from this repository to your `BLINK > src > main.cpp` file.
 
 6. Compile and upload the code. The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. Firts, compile (build) the project and then upload it to Arduino Uno board. You can clean up generated files as well.
 
