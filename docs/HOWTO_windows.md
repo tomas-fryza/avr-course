@@ -68,9 +68,9 @@
 
 #### Tested on operating systems
 
-| **Version**                | **Date (YYYY-MM-DD)** | **Note**    |
-| :------------------------- | :-------------------: | :---------- |
-| Windows 10                 | 2021-10-21            | Office      |
-| Windows 10                 | 2020-09-03            | Lab SC 6.61 |
-| Windows 10                 | 2019-11-26            | Lab SC 6.66 |
-| Windows 7                  | 2019-05-17            | Lab SC 6.61 |
+| **Version** | **Result (yyyy-mm-dd)** | **Note**    |
+| :---------- | :---------------------: | :---------- |
+| Windows 10  | OK (2021-10-21)         | Office      |
+| Windows 10  | OK (2020-09-03)         | Lab SC 6.61 |
+| Windows 10  | OK (2019-11-26)         | Lab SC 6.66 |
+| Windows 7   | OK (2019-05-17)         | Lab SC 6.61 |
