@@ -61,16 +61,16 @@
 
 #### Tested on operating systems
 
-**Name**   | **Version**                | **Date (YYYY-MM-DD)** | **Note**            |
-:--------- | :------------------------- | :-------------------: | :------------------ |
-Linux Mint | 20.1, Ulyssa               | 2021-06-28            | Office              |
-Linux Mint | 20.1, Ulyssa               | 2021-06-24            | Laptop              |
-Ubuntu     | 20.04.1 LTS, Focal Fossa   | 2020-12-22            | Student, VirtualBox |
-Ubuntu     | 20.04.1 LTS, Focal Fossa   | 2020-12-10            | Student, Laptop     |
-Linux Mint | 18.3, Sylvia               | 2019-06-13            | Laptop              |
-Linux Mint | 18.2, Sonya                | 2019-05-17            | Lab SC 6.61         |
-Ubuntu     | 18.04.1 LTS, Bionic Beaver | 2019-05-15            | Office              |
-Ubuntu     | 16.04, Xenial Xerus        | 2018-09-15            | Office              |
+**Version**                       | **Result (yyyy-mm-dd)** | **Note**            |
+:-------------------------------- | :---------------------: | :------------------ |
+Linux Mint 20.1, Ulyssa           | OK (2021-06-28)         | Office              |
+Linux Mint 20.1, Ulyssa           | OK (2021-06-24)         | Laptop              |
+Ubuntu 20.04.1 LTS, Focal Fossa   | OK (2020-12-22)         | Student, VirtualBox |
+Ubuntu 20.04.1 LTS, Focal Fossa   | OK (2020-12-10)         | Student, Laptop     |
+Linux Mint 18.3, Sylvia           | OK (2019-06-13)         | Laptop              |
+Linux Mint 18.2, Sonya            | OK (2019-05-17)         | Lab SC 6.61         |
+Ubuntu 18.04.1 LTS, Bionic Beaver | OK (2019-05-15)         | Office              |
+Ubuntu 16.04, Xenial Xerus        | OK (2018-09-15)         | Office              |
 
 ```bash
 # FYI: How to check OS version in Linux
