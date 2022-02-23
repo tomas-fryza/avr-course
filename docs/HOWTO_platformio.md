@@ -24,7 +24,7 @@
 
 #### Tested on operating systems
 
-| **Version**                | **Date (YYYY-MM-DD)** | **Note**    |
+| **Version**                | **Date (yyyy-mm-dd)** | **Note**    |
 | :------------------------- | :-------------------: | :---------- |
 | Linux Mint 20.3 (Una)      | 2022-02-23            | Laptop      |
 | Windows 10                 | 2021-11-25            | Office      |
