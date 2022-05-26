@@ -1,5 +1,7 @@
 # Blink a LED
 
+Source code is [here](main.c).
+
 The preprocessor will process directives that are inserted into the C source code. These directives allow additional actions to be taken on the C source code before it is compiled into object code. Directives are not part of the C language itself. Preprocessor directives begin with a pound (`#`) symbol and may have several arguments. Do NOT put a semicolon character at the end of directives. This is a common mistake.
 
 ```c
