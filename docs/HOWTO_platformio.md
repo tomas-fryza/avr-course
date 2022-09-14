@@ -24,7 +24,8 @@
 
 #### Tested on operating systems
 
-| **Version**                | **Result (yyyy-mm-dd)** | **Note** |
-| :------------------------- | :---------------------: | :------- |
-| Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop   |
-| Windows 10                 | OK (2021-11-25)         | Office   |
+| **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
+| :------------------------- | :---------------------: | :---------- |
+| Windows 10                 | OK (2022-09-08)         | Lab SC 6.61 |
+| Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop      |
+| Windows 10                 | OK (2021-11-25)         | Office      |
