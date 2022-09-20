@@ -90,7 +90,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
    * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-4. Use bread board, wires, and connect a second LED to GPIO output.
+4. Use bread board, wires, connect a second LED to a GPIO output, and modify your code to blink both LEDs.
 
    ![active_low_high_led](images/gpio_high_low.png)
 
