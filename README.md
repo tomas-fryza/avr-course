@@ -5,6 +5,8 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 ## Exercises
 
 1. [Git version-control system, AVR tools](labs/01-tools)
+
+<!--
 2. [Control of GPIO, LED, push button](labs/02-leds)
 3. [User library for GPIO control](labs/03-gpio)
 4. [Interrupts, timers](labs/04-interrupts)
@@ -14,10 +16,11 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 8. [I2C/TWI serial communication](labs/08-i2c)
 9. [C project: General instructions](labs/project)
 10. (Self-study) [Combining C and assembly language](labs/09-asm)
+-->
 
 ## List of examples
 
-* [Basic C template, blink a LED](examples/blink/)
+* [Basic C template, blink a LED](examples/blink_arduino/)
 * [Project documentation with Doxygen](examples/doxygen)
 * [C libraries](examples/library)
 * [Autonomous slot car](examples/slot-car)
@@ -47,8 +50,9 @@ The following hardware and software components are mainly used in the lab.
   * Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng)
 
 * Development tools:
-  * [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
   * [Visual Studio Code](https://code.visualstudio.com/)
+  * [PlatformIO](https://platformio.org/)
+  * [Atmel Studio 7 (Microchip Studio 7)](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
   * [GCC Compilers for AVR](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
 
 * Other tools:
