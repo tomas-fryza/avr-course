@@ -1,6 +1,8 @@
 # Lab 1: Git version-control system, AVR tools
 
+<!--
 ![Atmel Studio 7](images/screenshot_atmel_studio_blink.png)
+-->
 
 ### Learning objectives
 
@@ -15,75 +17,27 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 ### Table of contents
 
-* [Preparation tasks](#preparation)
+* [Pre-Lab preparation](#preparation)
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
 * [Part 3: Test AVR tools](#part3)
 * [Part 4: SimulIDE](#part4)
 * [Part 5: Logic analyzer](#part5)
 * [Experiments on your own](#experiments)
-* [Lab assignment](#assignment)
+* [Post-Lab report](#report)
 * [References](#references)
 
 <a name="preparation"></a>
 
-## Preparation tasks (done before the lab at home)
+## Pre-Lab preparation
 
-1. Create an account on [GitHub](https://github.com/).
+1. If you don't have any, create a free account on [GitHub](https://github.com/signup?source=login).
 
-2. (Optional) According to your preferences, choose one of the variants below and prepare the development chain on your own computer.
+3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/). Git is free, open source, and available on Windows, Mac, and Linux platforms. Window users will also need to use the Git Bash application (installed automatically with git) for command line operations.
 
-3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/).
+3. (Optional) Download and install [SimulIDE](https://www.simulide.com/p/home.html) electronic circuit simulator.
 
-### Microchip Studio 7 (Windows only)
-
-Download and install:
-
-* [Microchip Studio 7](https://www.microchip.com/en-us/development-tools-tools-and-software/microchip-studio-for-avr-and-sam-devices)
-* [SimulIDE](https://www.simulide.com/p/home.html)
-* [git](https://git-scm.com/)
-
-If you have option to use Arduino Uno board and logic analyzer, also download and install:
-
-* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
-* [avrdude](http://savannah.nongnu.org/projects/avrdude) - AVR downloader
-* [Saleae logic](https://www.saleae.com/downloads/)
-
-### PlatformIO (Windows, Linux, MacOS)
-
-Follow the [instructions for PlatformIO](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_platformio.md) and use this IDE instead of Microchip Studio.
-
-Download and install:
-
-* [SimulIDE](https://www.simulide.com/p/home.html)
-* [git](https://git-scm.com/). During installation choose the default editor used by Git as **Use Visual Studio Code as Git's default editor**.
-
-If you have option to use logic analyzer, also download and install:
-
-* [Saleae logic](https://www.saleae.com/downloads/)
-
-### Windows and command-line toolchain
-
-Follow the [instructions for Windows](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_windows.md) and create an entire comand-line toolchain.
-
-Download and install:
-
-* [SimulIDE](https://www.simulide.com/p/home.html)
-
-If you have option to use Arduino Uno board and logic analyzer, also download and install:
-
-* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
-* [avrdude](http://savannah.nongnu.org/projects/avrdude) - AVR downloader
-* [Saleae logic](https://www.saleae.com/downloads/)
-
-### Ubuntu-based Linux distributions
-
-Follow the [instructions for Linux](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_linux.md) and create an entire comand-line toolchain. Download and install [SimulIDE](https://www.simulide.com/p/home.html).
-
-If you have option to use Arduino Uno board and logic analyzer, also download and install:
-
-* [CH340 driver](https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers/all)
-* [Saleae logic](https://www.saleae.com/downloads/)
+4. (Optional) If you have option to use Arduino Uno board and logic analyzer, also download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links).
 
 <a name="part1"></a>
 
@@ -106,156 +60,63 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 ## Part 2: Local repository
 
-1. Run Git Bash (Windows), Terminal (Linux), or your favorite file manager, and create your own home folder inside `Documents`. *Important: To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.*
-
-   ```bash
-   ## Windows Git Bash:
-   $ cd d:/Documents/
-   $ mkdir your-name
-   $ cd your-name/
-
-   ## Linux:
-   $ cd
-   $ cd Documents/
-   $ mkdir your-name
-   $ cd your-name/
-   ```
+1. Use your favorite file manager and run Git Bash (Windows) or Terminal (Linux) inside your home folder `Documents`.
 
 2. With help of `git` command, clone a local copy of your public repository.
+
+   > Useful git command is: `git clone` - Create a local copy of remote repository. This command is executed just once; later synchronization between remote and local repositories is performed differently.
+   >
+   > Useful bash commands are: `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory.
+   >
 
    ```bash
    ## Windows Git Bash or Linux:
    $ git clone https://github.com/your-github-account/digital-electronics-2
    $ cd digital-electronics-2/
    $ ls
-   LICENSE  README.md
-   ```
-
-3. Download `docs` and `examples` folders from [this repository](https://github.com/tomas-fryza/digital-electronics-2) and copy them to your `digital-electronics-2` local repository.
-
-   ```bash
-   ## Windows Git Bash or Linux:
-   $ ls
-   docs  examples  LICENSE  README.md
-   ```
-
-4. Create a new working folder `labs/01-tools` for this exercise.
-
-   ```bash
-   ## Windows Git Bash or Linux:
-   $ mkdir labs
-   $ cd labs/
-   $ mkdir 01-tools
+   .gitignore  LICENSE  README.md
    ```
 
 <a name="part3"></a>
 
 ## Part 3: Test AVR tools
 
-### Version: Windows and Atmel Studio 7
+1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_platformio.md) and install the PlatformIO plugin.
 
-1. Follow any online tutorial, such as [1](../../docs/CProgrammingInAtmelStudio7.pdf) or [2](https://unboxing-tomorrow.com/programming-atmel-microcontrollers-with-atmel-studio-7/), create a new GCC C Executable Project `led` within `01-tools` working folder for ATmega328P device and copy/paste [blink example code](../../examples/blink/main.c) to your `main.c` source file. Examine all lines of source code. What is the meaning of individual commands?
+2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`.
 
-2. Build (compile) the project: **Build >> Build Solution F7**
+3. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
 
-3. Simulate the project in Atmel Studio 7: **Debug > Start Debugging and Break (Alt+F5)**. Use Run To Cursor, and/or Step Over buttons and see changes at **I/O Port (PORTB)**. Exit the simulator by **Debug > Stop Debugging Ctrl+Shift+F5**.
+   * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
+   * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-4. Connect Arduino board to USB port (in lab's configuration it supposed to be COM3), run external programmer in menu **Tools > Send to Arduino UNO** and download the compiled code to Arduino Uno board. Note that, this external tool is configured according to [How to Flash AVR from Atmel Studio](https://www.elecrom.com/program-flash-arduino-uno-atmel-studio/).
+4. Use bread board, wires, and connect a second LED to GPIO output.
 
-   | Parameter | Value |
-   | :-- | :-- |
-   | Title: | `Send to Arduino Uno`
-   | Command: | `C:\APPZ\avrdude\avrdude.exe`
-   | Arguments: | `-p m328p -c arduino -D -V -u -q -U flash:w:$(TargetName).hex:i -P COM3`
-   | Initial directory: | `$(TargetDir)`
-   | Use Output window: | checked
+   ![active_low_high_led](images/gpio_high_low.png)
 
-   ![Set external tool](images/external_tool.png)
+4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README.md` file.
 
-### Version: Windows and command-line toolchain
+5. Synchronize the contents of your working folder with the local and remote repository. Use git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
-1. Copy `main.c` and `Makefile` files from blink example to `labs\01-tools` folder.
-
-2. Copy `example\Makefile.in` settings file to `Labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Windows settings in this file. Make sure the values for `PREFIX` and `AVRDUDE` contain the correct paths and `USBPORT` contains port where Arduino board is connected.
-
-   ```Makefile
-   ## Linux
-   #PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
-   #AVRDUDE = avrdude
-   #RM      = rm -f
-   ## See "dmesg" command output
-   #USBPORT = /dev/ttyUSB0
-   
-   ## Windows
-   PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
-   AVRDUDE = C:\APPZ\avrdude\avrdude.exe
-   RM      = del
-   # See USB-SERIAL CH340 port in Device Manager
-   USBPORT = COM3
-   ```
-
-3. Run Visual Studio Code source code editor, open your `digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `labs\01-tools`.
+   > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   >
 
    ```bash
-   cd labs\01-tools\
+   ## Windows Git Bash or Linux:
+   $ git status
+   $ git add -A
+   $ git status
+   $ git commit -m "Creating lab1-blink program"
+   $ git status
+   $ git push
+   $ git status
    ```
 
-4. Open `main.c` source file. What is the meaning of each line of this source code?
-
-5. Use the following commands step by step in the internal terminal to find out what they mean. Note: these commands are defined in `Makefile`.
-
-   ```bash
-   mingw32-make.exe all
-   mingw32-make.exe clean
-   mingw32-make.exe size
-   mingw32-make.exe flash
-   ```
-
-   ![Visual Studio Code](images/screenshot_vscode.png)
-
-### Version: Ubuntu-based Linux distributions
-
-1. Copy `main.c` and `Makefile` files from blink example to `labs/01-tools` folder.
-
-2. Copy `example/Makefile.in` settings file to `labs` folder. Note that, this file contains parameters and settings that are identical for all (future) projects located in this folder. Uncomment the Linux settings in this file. Make sure the values for `PREFIX` and `AVRDUDE` contain the correct paths and `USBPORT` contains port where Arduino board is connected.
-
-   ```Makefile
-   ## Linux
-   PREFIX  = /opt/avr8-gnu-toolchain-linux_x86_64
-   AVRDUDE = avrdude
-   RM      = rm -f
-   # See "dmesg" command output
-   USBPORT = /dev/ttyUSB0
-   
-   ## Windows
-   #PREFIX  = C:\APPZ\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain
-   #AVRDUDE = C:\APPZ\avrdude\avrdude.exe
-   #RM      = del
-   ## See USB-SERIAL CH340 port in Device Manager
-   #USBPORT = COM3
-   ```
-
-3. Run Visual Studio Code source code editor, open your `digital-electronics-2` working folder, run internal terminal in menu **Terminal > New Terminal**, and change path to `labs/01-tools`.
-
-   ```bash
-   cd labs/01-tools/
-   ```
-
-4. Open `main.c` source file. What is the meaning of each line of this source code?
-
-5. Use the following commands step by step in the internal terminal to find out what they mean. Note: these commands are defined in `Makefile`.
-
-   ```bash
-   ## Type this commands
-   $ make all
-   $ make clean
-   $ make size
-   $ make flash
-   ```
+   ![git](images/git_basics.png)
 
 <a name="part4"></a>
 
-## Part 4: SimulIDE
+## Part 4: (Optional) SimulIDE
 
 1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
 
@@ -275,7 +136,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part5"></a>
 
-## Part 5: Logic analyzer
+## Part 5: (Optional) Logic analyzer
 
 1. Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
 
@@ -283,41 +144,23 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    ![Logic analyzer](images/screenshot_saleae.png "Saleae Logic software")
 
-## Synchronize git
-
-When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes.
-
-Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Note that, a detailed description of all git commands can be found [here](https://github.com/joshnh/Git-Commands). Check the repository at GitHub web page for changes.
-
-   ```bash
-   ## Windows Git Bash or Linux:
-   $ git status
-   $ git add -A
-   $ git status
-   $ git commit -m "[LAB] Creating 01-tools lab"
-   $ git status
-   $ git push
-   $ git status
-   ```
-
 <a name="experiments"></a>
 
 ## Experiments on your own
 
-1. Choose one variant and install the AVR development tools on your computer.
+1. Install the AVR development tools on your computer.
 
-2. Modify the code from `led` example and build an application that will repeatedly displayed the string `DE2` on a LED in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation.
+2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `DE2` on a LED in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation.
 
 3. Simulate the Morse code application in SimulIDE.
 
-<a name="assignment"></a>
+<a name="report"></a>
 
-## Lab assignment
+## Post-Lab report
 
-*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Complete all parts of `LAB1-BLINK_ARDUINO > test > README.md` file in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce dle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
->
+*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > test > README.md` v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
