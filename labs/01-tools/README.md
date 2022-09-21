@@ -66,14 +66,14 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    > Useful git command is: `git clone` - Create a local copy of remote repository. This command is executed just once; later synchronization between remote and local repositories is performed differently.
    >
-   > Useful bash commands are: `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory.
+   > Useful bash commands are: `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `ls -a` - List information aout all files in the current directory. `pwd` - Print the name of the current working directory.
    >
 
    ```bash
    ## Windows Git Bash or Linux:
    $ git clone https://github.com/your-github-account/digital-electronics-2
    $ cd digital-electronics-2/
-   $ ls
+   $ ls -a
    .gitignore  LICENSE  README.md
    ```
 
