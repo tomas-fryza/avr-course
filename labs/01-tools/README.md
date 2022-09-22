@@ -77,6 +77,19 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    .gitignore  LICENSE  README.md
    ```
 
+3. Set username and email for your repository (values will be associated with your later commits):
+
+   ```shell
+   $ git config user.name "your-git-user-name"
+   $ git config user.email "your-email@address.com"
+   ```
+   
+   You can varify that the changes were made correctly by:
+   
+   ```shell
+   $ git config --list
+   ```
+
 <a name="part3"></a>
 
 ## Part 3: Test AVR tools
