@@ -20,9 +20,9 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 * [Pre-Lab preparation](#preparation)
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
-* [Part 3: Test AVR tools](#part3)
-* [Part 4: SimulIDE](#part4)
-* [Part 5: Logic analyzer](#part5)
+* [Part 3: Ibstall and test AVR tools](#part3)
+* [Part 4: (Optional) SimulIDE](#part4)
+* [Part 5: (Optional) Logic analyzer](#part5)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -92,24 +92,24 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part3"></a>
 
-## Part 3: Test AVR tools
+## Part 3: Install and test AVR tools
 
 1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_platformio.md) and install the PlatformIO plugin.
 
-2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.cpp) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
 3. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
    * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-4. Use bread board, wires, connect a second LED to a GPIO output, and modify your code to blink both LEDs.
+4. Use breadboard, wires, resistor, and a second LED. Connect in to a GPIO output in active-low way and modify your code to blink both LEDs.
 
    ![active_low_high_led](images/gpio_high_low.png)
 
 5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README.md` file.
 
-6. Synchronize the contents of your working folder with the local and remote repository. Use git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
+6. Synchronize the contents of your working folder with the local and remote repository. Use git commands or **Source Control (Ctrl+Shift+G) in Visual Studio Code** to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
    > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
    >
@@ -163,7 +163,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 1. Install the AVR development tools on your computer.
 
-2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `DE2` on a LED in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation.
+2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `PARIS` on a LED in the Morse code. Choose the durations of the "dot" and "comma" so that they are visible during the simulation and/or implementation. Note that the proper Morse code timing is explained [here](https://morsecode.world/international/timing.html).
 
 3. Simulate the Morse code application in SimulIDE.
 
@@ -173,7 +173,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 *Complete all parts of `LAB1-BLINK_ARDUINO > test > README.md` file (see Part 3.5) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > test > README.md` v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > test > README.md` (viz Část 3.5) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
@@ -190,3 +190,5 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 5. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
 6. Joshua Hibbert. [Git Commands](https://github.com/joshnh/Git-Commands)
+
+7. Stephen C. Phillips. [Morse Code Timing](https://morsecode.world/international/timing.html)
