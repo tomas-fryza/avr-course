@@ -94,7 +94,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 ## Part 3: Install and test AVR tools
 
-1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/HOWTO_platformio.md) and install the PlatformIO plugin.
+1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) and install the PlatformIO plugin.
 
 2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.cpp) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
