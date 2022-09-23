@@ -61,9 +61,9 @@ The following hardware and software components are mainly used in the lab.
 
 ## References
 
-1. [How to use AVR template on Linux](docs/HOWTO_linux.md)
-2. [How to use AVR template on Windows](docs/HOWTO_windows.md)
-3. [How to use AVR template with PlatformIO](docs/HOWTO_platformio.md)
+1. [How to use AVR template with PlatformIO](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO)
+2. [How to use AVR template on Windows](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-on-Windows)
+3. [How to use AVR template on Linux](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-on-Linux)
 4. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
 5. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
 6. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
