@@ -1,4 +1,4 @@
-# Lab 1: YOUR_FIRSTNAME LASTNAMEE
+# Lab 1: YOUR_FIRSTNAME LASTNAME
 
 ### Morse code
 
