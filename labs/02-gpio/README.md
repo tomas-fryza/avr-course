@@ -1,26 +1,36 @@
-# Lab 3: User library for GPIO control
+# Lab 2: User library for GPIO control
 
+<!--
 ![Atmel Studio 7](images/screenshot_atmel_studio_gpio.png)
+-->
 
 ### Learning objectives
 
 After completing this lab you will be able to:
 
+* Config input/output ports of AVR using control registers
+* Use ATmega328P manual and find information
 * Understand the difference between header and source files
 * Create your own library
 * Understand how to call a function with pointer parameters
 
-The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins.
+The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins with help of control registers.
 
 ### Table of contents
 
-* [Preparation tasks](#preparation)
+* [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
-* [Part 2: Library header file](#part2)
+* [Part 2: GPIO control registers](#part2)
+* [Part 3: Library header file](#part3)
+
+
+
+
+
 * [Part 3: Library source file](#part3)
 * [Part 4: Final application](#part4)
 * [Experiments on your own](#experiments)
-* [Lab assignment](#assignment)
+* [Post-Lab report](#report)
 * [References](#references)
 
 <a name="preparation"></a>
@@ -44,71 +54,116 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 #include <avr/io.h>
 
 // Function declaration (prototype)
-uint16_t calculate(uint8_t, ...    );
+uint16_t calculate(uint8_t, ***    );
 
 int main(void)
 {
-    uint8_t a = 156;
-    uint8_t b = 14;
+    uint8_t a = 210;
+    uint8_t b = 15;
     uint16_t c;
 
     // Function call
-    c = ...      (a, b);
+    c = ***      (a, b);
 
-    while (1)
-    {
-    }
+    // Infinite loop
+    while (1) ;
+
+    // Will never reach this
     return 0;
 }
 
 // Function definition (body)
-...      calculate(uint8_t x, uint8_t y)
+***      calculate(uint8_t x, uint8_t y)
 {
     uint16_t result;    // result = x^2 + 2xy + y^2
 
     result = x*x;
-    ...
-    ...
+    ***
+    ***
     return result;
 }
 ```
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new folder
+## Part 1: Synchronize repositories and create a new project
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
+1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
 
-```bash
-## Windows Git Bash:
-$ cd d:/Documents/
-$ cd your-name/
-$ ls
-digital-electronics-2/
-$ cd digital-electronics-2/
-$ git pull
+   > Useful bash and git commands are: `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+   >
 
-## Linux:
-$ cd
-$ cd Documents/
-$ cd your-name/
-$ ls
-digital-electronics-2/
-$ cd digital-electronics-2/
-$ git pull
-```
+2. Run Visual Studio Code and create a new PlatformIO project `lab2-gpio_library` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
-Create a new working folder `labs/03-gpio` for this exercise.
-
-```bash
-## Windows Git Bash or Linux:
-$ cd labs/
-$ mkdir 03-gpio
-```
+3. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/02-gpio/report.md) to your `LAB2-GPIO_LIBRARY > test > README.md` file.
 
 <a name="part2"></a>
 
-## Part 2: Library header file
+## Part 2: GPIO control registers
+
+AVR microcontroller associates pins into so-called ports, which are marked with the letters A, B, C, etc. Each of the pins is controlled separately and can function as an input (entry) or output (exit) point of the microcontroller. Control is possible exclusively by software via control registers.
+
+There are exactly three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port A these are registers DDRA, PORTA and PINA, for port B registers DDRB, PORTB, PINB, etc.
+
+DDR (Data Direction Register) is used to set the input/output direction of port communication, PORT is the output data port and PIN works for reading input values from the port.
+
+A detailed description of working with input/output ports can be found in [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) in section I/O-Ports.
+
+1. Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
+
+   | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
+   | :-: | :-: | :-: | :-: | :-- |
+   | 0 | 0 | input | no | Tri-state, high-impedance |
+   | 0 | 1 | | | |
+   | 1 | 0 | | | |
+   | 1 | 1 | | | |
+
+2. To control individual bits, the following binary and logic operations are used.
+
+* `|`: OR
+* `&`: AND
+* `^`: XOR
+* `~`: NOT
+* `<<`: binary shift to left
+* `>>`: binary shift to right
+
+   Complete truth table with operators: `|`, `&`, `^`, `~`
+
+   | **b** | **a** |**b or a** | **b and a** | **b xor a** | **not b** |
+   | :-: | :-: | :-: | :-: | :-: | :-: |
+   | 0 | 0 |  |  |  |  |
+   | 0 | 1 |  |  |  |  |
+   | 1 | 0 |  |  |  |  |
+   | 1 | 1 |  |  |  |  |
+
+   ![binary operations](images/binary_operations.png)
+
+3. Copy/paste your solution with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.cpp`. Compile (build) the project and note its size in bytes.
+
+   | **Version** | **Size [B]** |
+   | :-- | :-: |
+   | Arduino-style |  |
+   | Registers |  |
+   | Library functions |  |
+
+   Use binary operations with control registers and rewrite the application. Note its size after compilation.
+
+<a name="part3"></a>
+
+## Part 3: Library header file
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
 
