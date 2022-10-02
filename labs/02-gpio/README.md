@@ -176,13 +176,11 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Read a value from input pin |
 
    > Suggestions for other features you can add:
-   > | `void` | `GPIO_mode_input_nopull` | `volatile uint8_t *reg, uint8_t pin` | Configure one input pin without pull-up resistor |
-   > | `void` | `GPIO_write_toggle` | `volatile uint8_t *reg, uint8_t pin` | Toggle one pin value |
+   > * `void GPIO_mode_input_nopull(volatile uint8_t *reg, uint8_t pin)` Configure one input pin without pull-up resistor
+   > * `void GPIO_write_toggle(volatile uint8_t *reg, uint8_t pin)` Toggle one pin value
    >
 
-   The register name parameter must be `volatile` to avoid a compiler warning.
-
-   Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
+   The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
    ```c
    #include <gpio.h>
