@@ -95,7 +95,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
    ![binary operations](images/binary_operations.png)
 
-3. Copy/paste [your solution](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab1-blink_arduino/src/main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.cpp` source file. Compile (build) the project and note its size in bytes.
+3. Copy/paste [your solution](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab1-blink_arduino/src/main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.c` source file. Compile (build) the project and note its size in bytes.
 
    | **Version** | **Size [B]** |
    | :-- | :-: |
