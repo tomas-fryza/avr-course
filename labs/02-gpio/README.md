@@ -152,8 +152,8 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
       |- main.c
    ```
 
-   * Copy/paste [header file](../library/include/gpio.h) to `gpio.h`.
-   * Copy/paste [library source file](../library/gpio.c) to `gpio.c`.
+   * Copy/paste [header file]([../library/include/gpio.h](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h)) to `gpio.h`.
+   * Copy/paste [library source file]([../library/gpio.c](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c)) to `gpio.c`.
    * Include header file to `src > main.c`:
 
    ```c
