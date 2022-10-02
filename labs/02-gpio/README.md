@@ -121,6 +121,8 @@ To use a user-defined function, there are three parts to consider:
 * Function definition (`*.c` file)
 * Function call (`*.c` file)
 
+   ![user library](images/user_library.png)
+
 *[A function prototype](https://www.programiz.com/c-programming/c-user-defined-functions) is simply the declaration of a function that specifies function's name, parameters and return type. It doesn't contain function body. A **function prototype** gives information to the compiler that the function may later be used in the program.*
 
 ***Function definition** contains the block of code to perform a specific task.*
