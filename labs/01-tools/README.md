@@ -99,6 +99,8 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.cpp) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
+   Rename source file `main.cpp` to `main.c`, ie change the extension to `.c`.
+
 3. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
