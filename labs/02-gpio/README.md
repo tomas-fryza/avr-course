@@ -142,7 +142,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
-   ```bash
+   ```
    |--lib
    |  |
    |  |--gpio
