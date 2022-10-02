@@ -21,7 +21,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 * [Pre-Lab preparation](#preparation)
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
-* [Part 3: Ibstall and test AVR tools](#part3)
+* [Part 3: Install and test AVR tools](#part3)
 * [Part 4: (Optional) SimulIDE](#part4)
 * [Part 5: (Optional) Logic analyzer](#part5)
 * [Experiments on your own](#experiments)
