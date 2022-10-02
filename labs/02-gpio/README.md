@@ -19,7 +19,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: GPIO control registers](#part2)
 * [Part 3: GPIO library files](#part3)
 * [Experiments on your own](#experiments)
@@ -28,7 +28,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
 <a name="preparation"></a>
 
-## Preparation tasks (done before the lab at home)
+## Pre-Lab preparation
 
 1. Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
 
