@@ -21,14 +21,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: GPIO control registers](#part2)
-* [Part 3: Library header file](#part3)
-
-
-
-
-
-* [Part 3: Library source file](#part3)
-* [Part 4: Final application](#part4)
+* [Part 3: GPIO library files](#part3)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -48,42 +41,6 @@ The purpose of this laboratory exercise is to learn how to create your own libra
    | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
    | `void`     |  |  |  |
 
-2. Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
-
-```c
-#include <avr/io.h>
-
-// Function declaration (prototype)
-uint16_t calculate(uint8_t, ***    );
-
-int main(void)
-{
-    uint8_t a = 210;
-    uint8_t b = 15;
-    uint16_t c;
-
-    // Function call
-    c = ***      (a, b);
-
-    // Infinite loop
-    while (1) ;
-
-    // Will never reach this
-    return 0;
-}
-
-// Function definition (body)
-***      calculate(uint8_t x, uint8_t y)
-{
-    uint16_t result;    // result = x^2 + 2xy + y^2
-
-    result = x*x;
-    ***
-    ***
-    return result;
-}
-```
-
 <a name="part1"></a>
 
 ## Part 1: Synchronize repositories and create a new project
@@ -95,7 +52,9 @@ int main(void)
 
 2. Run Visual Studio Code and create a new PlatformIO project `lab2-gpio_library` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
-3. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/02-gpio/report.md) to your `LAB2-GPIO_LIBRARY > test > README.md` file.
+3. IMPORTANT: Rename `LAB2-GPIO_LIBRARY > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
+4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/02-gpio/report.md) to your `LAB2-GPIO_LIBRARY > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
 
 <a name="part2"></a>
 
@@ -127,18 +86,16 @@ A detailed description of working with input/output ports can be found in [ATmeg
 * `<<`: binary shift to left
 * `>>`: binary shift to right
 
-   Complete truth table with operators: `|`, `&`, `^`, `~`
-
    | **b** | **a** |**b or a** | **b and a** | **b xor a** | **not b** |
    | :-: | :-: | :-: | :-: | :-: | :-: |
-   | 0 | 0 |  |  |  |  |
-   | 0 | 1 |  |  |  |  |
-   | 1 | 0 |  |  |  |  |
-   | 1 | 1 |  |  |  |  |
+   | 0 | 0 | 0 | 0 | 0 | 1 |
+   | 0 | 1 | 1 | 0 | 1 | 1 |
+   | 1 | 0 | 1 | 0 | 1 | 0 |
+   | 1 | 1 | 1 | 1 | 0 | 0 |
 
    ![binary operations](images/binary_operations.png)
 
-3. Copy/paste your solution with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.cpp`. Compile (build) the project and note its size in bytes.
+3. Copy/paste [your solution](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab1-blink_arduino/src/main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.cpp` source file. Compile (build) the project and note its size in bytes.
 
    | **Version** | **Size [B]** |
    | :-- | :-: |
@@ -146,28 +103,15 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | Registers |  |
    | Library functions |  |
 
-   Use binary operations with control registers and rewrite the application. Note its size after compilation.
+   Comment Arduino-style defines and functions, use binary operations with control registers (DDRB, PORTB) and rewrite the application. Note its size after the compilation. Use breadborad, LED, resistor, and wires and connect second LED in actve-low way. Flash the code into the ATmega328P and verify its functionality.
 
 <a name="part3"></a>
 
-## Part 3: Library header file
+## Part 3: GPIO library files
 
+For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files. Note that together they form one module.
 
-
-
-
-
-
-
-
-
-
-
-
-
-For clarity and efficiency of the code, the individual parts of the application in C are divided into two types of files: header files and source files.
-
-**Header file** is a file with extension `.h` and generally contains definitions of data types, function prototypes and C preprocessor commands. **Source file** is a file with extension `.c` and is used for implementations and source code. It is bad practice to mix usage of the two although it is possible.
+**Header file** is a file with extension `.h` and generally contains definitions of data types, function prototypes and C preprocessor commands. **Source file** has the extension `.c` and is used to implementation the code. It is bad practice to mix usage of the two although it is possible.
 
 C programs are highly dependent on functions. Functions are the basic building blocks of C programs and every C program is combination of one or more functions. There are two types of functions in C: **built-in functions** which are the part of C compiler and **user defined functions** which are written by programmers according to their requirement.
 
@@ -196,123 +140,94 @@ A header file can be shared between several source files by including it with th
 
 This construct is commonly known as a wrapper `#ifndef`. When the header is included again, the conditional will be false, because `HEADER_FILE_NAME` is already defined. The preprocessor will skip over the entire contents of the file, and the compiler will not see it twice.
 
-### Version: Atmel Studio 7
+1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
-1. Create a new GCC C Executable Project for ATmega328P within `03-gpio` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+   ```bash
+   |--lib
+   |  |
+   |  |--gpio
+   |     |- gpio.c
+   |     |- gpio.h
+   |--src
+      |- main.c
+   ```
 
-2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C/C++ Include File `gpio.h`. Copy/paste the [template code](../library/include/gpio.h) into it.
+   * Copy/paste [header file](../library/include/gpio.h) to `gpio.h`.
+   * Copy/paste [library source file](../library/gpio.c) to `gpio.c`.
+   * Include header file to `src > main.c`:
 
-### Version: Command-line toolchain
+   ```c
+   #include <gpio.h>
 
-1. If you haven't already done so, copy folder `library` from `Examples` to `Labs`. Check if `Makefile.in` settings file exists in `Labs` folder.
+   int main(void)
+   {
+       ...
+   }
+   ```
 
-```bash
-## Linux:
-$ cp -r ../examples/library .
-$ ls
-01-tools  02-leds  03-gpio  Makefile.in  library
-```
+2. Go through both files and make sure you understand each line. The GPIO library defines the following functions.
 
-2. Copy `main.c` and `Makefile` files from previous lab to `labs/03-gpio` folder.
+   | **Return** | **Function name** | **Function parameters** | **Description** |
+   | :-: | :-- | :-- | :-- |
+   | `void` | `GPIO_mode_output` | `volatile uint8_t *reg, uint8_t pin` | Configure one output pin |
+   | `void` | `GPIO_mode_input_pullup` | `volatile uint8_t *reg, uint8_t pin` | Configure one input pin and enable pull-up resistor |
+   | `void` | `GPIO_write_low` | `volatile uint8_t *reg, uint8_t pin` | Write one pin to low value |
+   | `void` | `GPIO_write_high` | `volatile uint8_t *reg, uint8_t pin` | Write one pin to high value |
+   | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Read a value from input pin |
 
-3. Copy/paste [template code](main.c) to your `03-gpio/main.c` source file.
+   > Suggestions for other features you can add:
+   > | `void` | `GPIO_mode_input_nopull` | `volatile uint8_t *reg, uint8_t pin` | Configure one input pin without pull-up resistor |
+   > | `void` | `GPIO_write_toggle` | `volatile uint8_t *reg, uint8_t pin` | Toggle one pin value |
+   >
 
-4. Create a new library header file in `labs/library/include/gpio.h` and copy/paste the [template code](../library/include/gpio.h) into it.
+   The register name parameter must be `volatile` to avoid a compiler warning.
 
-### Both versions
+   Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
-Complete the function prototypes definition in `gpio.h` file according to the following table.
+   ```c
+   #include <gpio.h>
 
-| **Return** | **Function name** | **Function parameters** | **Description** |
-| :-: | :-- | :-- | :-- |
-| `void` | `GPIO_config_output` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one output pin in Data Direction Register |
-| `void` | `GPIO_config_input_nopull` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one input pin in DDR without pull-up resistor |
-| `void` | `GPIO_config_input_pullup` | `volatile uint8_t *reg_name, uint8_t pin_num` | Configure one input pin in DDR and enable pull-up resistor |
-| `void` | `GPIO_write_low` | `volatile uint8_t *reg_name, uint8_t pin_num` | Set one output pin in PORT register to low |
-| `void` | `GPIO_write_high` | `volatile uint8_t *reg_name, uint8_t pin_num` | Set one output pin in PORT register to high |
-| `void` | `GPIO_toggle` | `volatile uint8_t *reg_name, uint8_t pin_num` | Toggle one output pin value in PORT register |
-| `uint8_t` | `GPIO_read` | `volatile uint8_t *reg_name, uint8_t pin_num` | Get input pin value from PIN register |
+   int main(void)
+   {
+       GPIO_mode_output(&DDRB, LED_GREEN);
+       ...
+   }
+   ```
 
-The register name parameter must be `volatile` to avoid a compiler warning.
+   > [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+   >
+   > ![Understanding C pointers](images/pointer-variable-ampersand-and-asterisk.png)
+   >
+   > Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
-Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
+3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
 
-> [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
->
-> ![Understanding C pointers](images/pointer-variable-ampersand-and-asterisk.png)
->
-
-<a name="part3"></a>
-
-## Part 3: Library source file
-
-### Version: Atmel Studio 7
-
-1. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new C File `gpio.c`. Copy/paste the [template code](../library/gpio.c) into it.
-
-### Version: Command-line toolchain
-
-1. Create a new `labs/library/gpio.c` library source file and copy/paste the [template code](../library/gpio.c) into it.
-
-2. Add the source file of gpio library between the compiled files in `03-gpio/Makefile`.
-
-```Makefile
-# Add or comment libraries you are using in the project
-#SRCS += $(LIBRARY_DIR)/lcd.c
-#SRCS += $(LIBRARY_DIR)/uart.c
-#SRCS += $(LIBRARY_DIR)/twi.c
-SRCS += $(LIBRARY_DIR)/gpio.c
-```
-
-### Both versions
-
-Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass). Complete the definition of all functions in `gpio.c` file according to the example.
-
-```c
-#include "gpio.h"
-
-/* Function definitions ----------------------------------------------*/
-void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
-{
-    *reg_name = *reg_name | (1<<pin_num);
-}
-```
-
-<a name="part4"></a>
-
-## Part 4: Final application
-
-1. In `03-gpio/main.c` rewrite the LED switching application from the previous exercise using the library functions; make sure that only one LED is turn on at a time, while the other is off. Do not forget to include gpio header file to your main application `#include "gpio.h"`. When calling a function with a pointer, use the address-of-operator `&variable` according to the following example:
-
-```c
-    /* GREEN LED */
-    GPIO_config_output(&DDRB, LED_GREEN);
-```
-
-2. Compile it and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit. Observe the correct function of the application using the flashing LEDs and the push button.
+4. Optional: Connect the push button as active-low to the application. When you press and release the button, the LEDs will start to blink.
 
 ## Synchronize repositories
 
-Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+When you finish working, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. Use Visual Studio Code **Source Control (Ctrl+Shift+G)** or git commands.
+
+   > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   >
 
 <a name="experiments"></a>
 
 ## Experiments on your own
 
-1. Complete declarations (`*.h`) and definitions (`*.c`) of all functions from the GPIO library.
+1. Complete declarations (`*.h`) and definitions (`*.c`) of suggested functions in the GPIO library.
 
-2. Use the GPIO library functions and reprogram the Knight Rider application from the previous lab.
+2. Connect at least five LEDs and one push button to the microcontroller and program an application in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). When you press and release a push button once, the LEDs starts to switched on and off; ensure that only one of LEDs is switched on at a time. Do not implement the blinking speed changing.
 
-Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `gpio.h` library for later easy generation of PDF documentation. Get inspired by the `GPIO_config_output` function in the `gpio.h` file.
+3. Simulate the Knight Rider application in SimulIDE.
 
-<a name="assignment"></a>
+<a name="report"></a>
 
-## Lab assignment
+## Post-Lab report
 
-*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Complete all parts of `LAB2-GPIO_LIBRARY > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce podle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
->
+*Vypracujte všechny části ze souboru `LAB2-GPIO_LIBRARY > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
