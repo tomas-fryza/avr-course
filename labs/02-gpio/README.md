@@ -200,7 +200,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
 
-4. Optional: Connect the push button as active-low to the application. When you press and release the button, the LEDs will start to blink.
+4. (Optional) Connect the push button as active-low to the application. When you press and release the button, the LEDs will start to blink.
 
 ## Synchronize repositories
 
