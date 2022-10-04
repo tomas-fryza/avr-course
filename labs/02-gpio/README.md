@@ -86,11 +86,11 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | 1 | 1 | | | |
 
 3. To control individual bits, the following binary and logic operations are used.
-   * `|` OR
-   * `&` AND
-   * `^` XOR
-   * `~` NOT
-   * `<<` binary shift to left
+   1. `|` OR
+   2. `&` AND
+   3. `^` XOR
+   4. `~` NOT
+   5. `<<` binary shift to left
 
    | **b** | **a** |**b OR a** | **b AND a** | **b XOR a** | **NOT b** |
    | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -101,7 +101,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
    ![binary operations](images/binary_operations.png)
 
-4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note its size after the compilation. Use breadborad, LED, resistor, and wires and connect second LED in actve-low way. Upload the code into the ATmega328P and verify its functionality.
+4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note its size after the compilation. Use breadboard, LED, resistor, and wires and connect second LED in actve-low way. Upload the code into the ATmega328P and verify its functionality.
 
 <a name="part3"></a>
 
@@ -191,6 +191,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
        ...
        GPIO_write_low(&PORTB, LED_GREEN);
        ....
+       GPIO_read(&PIND, BTN);
    }
    ```
 
@@ -202,7 +203,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
 
-4. (Optional) On a breadbord, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
+4. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
 ## Synchronize repositories
 
