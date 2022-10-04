@@ -87,11 +87,11 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
 3. To control individual bits, the following binary and logic operations are used.
 
-* `|`: OR
-* `&`: AND
-* `^`: XOR
-* `~`: NOT
-* `<<`: binary shift to left
+* `|` OR
+* `&` AND
+* `^` XOR
+* `~` NOT
+* `<<` binary shift to left
 
    | **b** | **a** |**b OR a** | **b AND a** | **b XOR a** | **NOT b** |
    | :-: | :-: | :-: | :-: | :-: | :-: |
