@@ -192,6 +192,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
        GPIO_write_low(&PORTB, LED_GREEN);
        ....
        GPIO_read(&PIND, BTN);
+       ...
    }
    ```
 
