@@ -153,18 +153,18 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
       |- main.c
    ```
 
-   * Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
-   * Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `gpio.c`
-   * Include header file to `src > main.c`:
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
+   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `gpio.c`
+   3. Include header file to `src > main.c`:
 
-   ```c
-   #include <gpio.h>
+      ```c
+      #include <gpio.h>
 
-   int main(void)
-   {
-       ...
-   }
-   ```
+      int main(void)
+      {
+          ...
+      }
+      ```
 
 2. Go through both files and make sure you understand each line. The GPIO library defines the following functions.
 
