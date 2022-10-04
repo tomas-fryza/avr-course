@@ -183,15 +183,16 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
    ```c
-   #include <gpio.h>
+   #include <gpio.h>  // Do not forget to include GPIO header file
 
    int main(void)
    {
-       GPIO_mode_output(&DDRB, LED_GREEN);
+       // Examples of various function calls
+       GPIO_mode_output(&DDRB, LED_GREEN);  // Set output mode in DDRB reg
        ...
-       GPIO_write_low(&PORTB, LED_GREEN);
+       GPIO_write_low(&PORTB, LED_GREEN);   // Set output low in PORTB reg
        ....
-       GPIO_read(&PIND, BTN);
+       temp = GPIO_read(&PIND, BTN);        // Read input value from PIND reg
        ...
    }
    ```
