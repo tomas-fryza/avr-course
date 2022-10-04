@@ -153,8 +153,8 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
       |- main.c
    ```
 
-   * Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`.
-   * Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `gpio.c`.
+   * Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
+   * Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `gpio.c`
    * Include header file to `src > main.c`:
 
    ```c
@@ -190,6 +190,8 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    {
        GPIO_mode_output(&DDRB, LED_GREEN);
        ...
+       GPIO_write_low(&PORTB, LED_GREEN);
+       ....
    }
    ```
 
@@ -201,7 +203,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
 
-4. (Optional) Connect the push button as active-low to the application. When you press and release the button, the LEDs will start to blink.
+4. (Optional) On a breadbord, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
 ## Synchronize repositories
 
