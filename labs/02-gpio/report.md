@@ -17,9 +17,9 @@
 
    | **Version** | **Size [B]** |
    | :-- | :-: |
-   | Arduino-style     |  |
-   | Registers         |  |
-   | Library functions |  |
+   | Ver. 1: Arduino-style |  |
+   | Ver. 2: Registers |  |
+   | Ver. 3: Library functions |  |
 
 ### Traffic light
 
