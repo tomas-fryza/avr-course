@@ -41,29 +41,31 @@
  **********************************************************************/
 int main(void)
 {
-    uint8_t led_value = LOW;  // Local variable to keep LED status
+    uint8_t led_value = 0;  // Local variable to keep LED status
 
-    // Set pin where on-board LED is connected as output
+    // Set pins where LEDs are connected as output
     pinMode(LED_GREEN, OUTPUT);
-    // Set second pin as output
     pinMode(LED_RED, OUTPUT);
 
     // Infinite loop
     while (1)
     {
-        // Turn ON/OFF on-board LED ...
-        digitalWrite(LED_GREEN, led_value);
-        // ... and external LED as well
-        digitalWrite(LED_RED, led_value);
-
         // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
 
         // Change LED value
-        if (led_value == LOW)
-            led_value = HIGH;
-        else
-            led_value = LOW;
+        if (led_value == 0) {
+            led_value = 1;
+            // Set pin(s) to HIGH
+            digitalWrite(LED_GREEN, HIGH);
+            digitalWrite(LED_RED, HIGH);
+        }
+        else {
+            led_value = 0;
+            // Clear pin(s) to LOW
+            digitalWrite(LED_GREEN, LOW);
+            digitalWrite(LED_RED, LOW);
+        }
     }
 
     // Will never reach this
