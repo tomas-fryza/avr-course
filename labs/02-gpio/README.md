@@ -68,13 +68,13 @@ DDR (Data Direction Register) is used to set the input/output direction of port 
 
 A detailed description of working with input/output ports can be found in [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) in section I/O-Ports.
 
-1. Copy/paste [your solution](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab1-blink_arduino/src/main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.c` source file. Compile (build) the project and note its size in bytes.
+1. Copy/paste [your solution](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab1-blink_arduino/src/main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.c` source file. Compile (build) the project and note the first-version size in bytes.
 
    | **Version** | **Size [B]** |
    | :-- | :-: |
-   | Arduino-style |  |
-   | Registers |  |
-   | Library functions |  |
+   | Ver. 1: Arduino-style |  |
+   | Ver. 2: Registers |  |
+   | Ver. 3: Library functions |  |
 
 2. Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
 
@@ -102,6 +102,27 @@ A detailed description of working with input/output ports can be found in [ATmeg
    ![binary operations](images/binary_operations.png)
 
 4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note its size after the compilation. Use breadboard, LED, resistor, and wires and connect second LED in actve-low way. Upload the code into the ATmega328P and verify its functionality.
+
+   ```c
+   ...
+   // #include "Arduino.h"
+   // #define PB5 13          // In Arduino world, PB5 is called "13"
+   // #define PB0 8
+
+   int main(void)
+   {
+       uint8_t led_value = 0;  // Local variable to keep LED status
+
+       // Set pins where LEDs are connected as output
+       // Ver 1: Arduino style
+       // pinMode(LED_GREEN, OUTPUT);
+       // pinMode(LED_RED, OUTPUT);
+
+       // Ver 2: Low-level (register) style
+       DDRB = DDRB | (1<<LED_GREEN);
+       ...
+   }
+   ```
 
 <a name="part3"></a>
 
@@ -204,6 +225,28 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    > Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
+
+   ```c
+   #include <gpio.h>
+
+   int main(void)
+   {
+       uint8_t led_value = 0;  // Local variable to keep LED status
+
+       // Set pins where LEDs are connected as output
+       // Ver 1: Arduino style
+       // pinMode(LED_GREEN, OUTPUT);
+       // pinMode(LED_RED, OUTPUT);
+
+       // Ver 2: Low-level (register) style
+       // DDRB = DDRB | (1<<LED_GREEN);
+       // DDRB = DDRB | (1<<LED_RED);
+
+       // Ver 3: Library function style
+       GPIO_mode_output(&DDRB, LED_GREEN);
+       ...
+   }
+   ```
 
 4. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
