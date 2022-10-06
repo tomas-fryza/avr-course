@@ -110,7 +110,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    ![active_low_high_led](images/gpio_high_low.png)
 
-5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README.md` file.
+5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
 
 6. Synchronize the contents of your working folder with the local and remote repository. Use git commands or **Source Control (Ctrl+Shift+G) in Visual Studio Code** to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
