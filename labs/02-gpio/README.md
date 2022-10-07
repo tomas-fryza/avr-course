@@ -101,7 +101,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
    ![binary operations](images/binary_operations.png)
 
-4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note its size after the compilation. Use breadboard, LED, resistor, and wires and connect second LED in actve-low way. Upload the code into the ATmega328P and verify its functionality.
+4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note its size after the compilation. Use breadboard, LED, resistor, and wires and connect second LED to PB0 in actve-low way. Upload the code into the ATmega328P and verify its functionality.
 
    ```c
    ...
