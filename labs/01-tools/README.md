@@ -22,7 +22,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
 * [Part 3: Install and test AVR tools](#part3)
-* [Part 4: (Optional) SimulIDE](#part4)
+* [Part 4: SimulIDE electronic circuit simulator](#part4)
 * [Part 5: (Optional) Logic analyzer](#part5)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
@@ -132,23 +132,23 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part4"></a>
 
-## Part 4: (Optional) SimulIDE
+## Part 4: SimulIDE electronic circuit simulator
 
 1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
 
-2. All circuit and control elements are available in the **Components** tab. Use the following components ATmega328 (**Micro > AVR > atmega > atmega328**), resistor (**Passive > Resistor**), LED (**Outputs > Led**), and GND (**Sources > Ground (0 V)**) and connect them as shown.
+2. All circuit and control elements are available in the **Components** tab. Use the following components: ATmega328 (**Micro > AVR > atmega > atmega328**), resistor (**Passive > Resistors > Resistor**), LED (**Outputs > Leds > Led**), and GND (**Sources > Ground (0 V)**) and connect them as shown.
 
    ![SimulIDE](images/screenshot_simulide.png)
 
-3. Right-click on the ATmega package and select **Load firmware**. In your project folder, find the `*.hex` file that was created by compiling in the previous point.
+3. Right-click on the ATmega package and select **Load firmware**. In your project folder, find the `*.hex` file that was created by the previous compilation process.
 
-4. Register values can be displayed in the **RamTable** tab. In the **Reg.** column, type `DDRB` on the first line and `PORTB` on the second.
+4. Right-click on the ATmega package and select **Open Mcu Monitor** to view internal registers and memory contents. Select **Variable** folder. In the **Reg.** column, type `DDRB` on the first line and `PORTB` on the second.
 
-5. Click to **Power Circuit** button, simulate the project, and monitor the LED status and register values. The simulation can be paused with the **Pause Simulation** button and stopped by pressing the **Power Circuit** button again.
+5. Click to **Power Circuit** button at the top of the window to simulate the project and monitor the LED status and register values. The simulation can be paused with the **Pause Simulation** button and stopped by pressing the **Power Circuit** button again.
 
-6. You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope**), or a voltmeter (**Meters > Voltimeter**) to output B5 and observe the voltage.
+6. You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope**), a voltmeter (**Meters > Voltimeter**), or a frequency meter (**Meters > Frequencimeter**) to output B5 and observe the signal.
 
-7. The properties of each component can be found/changed in the **Properties** tab.
+7. Properties of individual components can be found/changed by right-clicking on the component and selecting **Properties**.
 
 <a name="part5"></a>
 
