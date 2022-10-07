@@ -2,18 +2,19 @@
 
 ### Morse code
 
-1. Listing of C code which repeats one "dot" and one "comma" (BTW, in Morse code it is letter `A`) on a LED. Always use syntax highlighting, meaningful comments, and follow C guidelines:
+1. Listing of C code which repeatedly sends the character `A` or the string `PARIS` in Morse code on LEDs. Let the "dot" be displayed on one LED and the "dash" on the other. Always use syntax highlighting, meaningful comments, and follow C guidelines:
 
 ```c
 int main(void)
 {
-    // Set pin where on-board LED is connected as output
+    // Set pins where LEDs are connected as output
     pinMode(LED_GREEN, OUTPUT);
+    pinMode(LED_RED, OUTPUT);
 
     // Infinite loop
     while (1)
     {
-        // Generate a lettre `A` Morse code
+        // Generate Morse code here
 
         // WRITE YOUR CODE HERE
 
@@ -24,6 +25,6 @@ int main(void)
 }
 ```
 
-2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
+2. Scheme of Morse code application, i.e. connection of AVR device, two LEDs (one in active-high, second in active-low way), two resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
    ![your figure]()
