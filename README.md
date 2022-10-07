@@ -5,10 +5,9 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 ## Exercises
 
 1. [Git version-control system, AVR tools](labs/01-tools)
-2. [User library for GPIO control](labs/02-gpio)
+2. [Control of GPIO pins](labs/02-gpio)
 
 <!--
-2. [Control of GPIO, LED, push button](labs/02-leds)
 4. [Interrupts, timers](labs/04-interrupts)
 5. [Display devices, 7-segment display](labs/05-segment)
 6. [Display devices, LCD display](labs/06-lcd)
