@@ -1,4 +1,4 @@
-# Lab 2: GPIO control
+# Lab 2: Control of GPIO pins
 
 <!--
 ![Atmel Studio 7](images/screenshot_atmel_studio_gpio.png)
