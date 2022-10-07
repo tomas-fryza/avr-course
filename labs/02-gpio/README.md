@@ -1,4 +1,4 @@
-# Lab 2: User library for GPIO control
+# Lab 2: GPIO control
 
 <!--
 ![Atmel Studio 7](images/screenshot_atmel_studio_gpio.png)
