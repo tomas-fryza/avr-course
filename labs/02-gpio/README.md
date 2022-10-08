@@ -163,12 +163,12 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
-   ```
+   ```c
    |--lib
-   |  |
    |  |--gpio
    |     |- gpio.c
    |     |- gpio.h
+   |
    |--src
       |- main.c
    ```
@@ -197,6 +197,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    | `uint8_t` | `GPIO_read` | `volatile uint8_t *reg, uint8_t pin` | Read a value from input pin |
 
    > Suggestions for other features you can add:
+   >
    > * `void GPIO_mode_input_nopull(volatile uint8_t *reg, uint8_t pin)` Configure one input pin without pull-up resistor
    > * `void GPIO_write_toggle(volatile uint8_t *reg, uint8_t pin)` Toggle one pin value
    >
