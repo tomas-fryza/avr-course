@@ -79,7 +79,7 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
    | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
    | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
-2. Copy/paste [template code](main.c) to `LAB3-INTERRUPTS_TIMER > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/main.c) to `LAB3-INTERRUPTS_TIMER > src > main.c` source file.
 
 3. In PlatformIO project, create a new folder `LAB3-INTERRUPTS_TIMER > lib > gpio`. Copy your GPIO library files [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) and [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) from the previous lab to this folder.
 
