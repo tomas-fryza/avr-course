@@ -70,3 +70,55 @@ Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) 
 
 
 
+
+1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
+   * Select Compare output mode, Fast PWM in register TCCR1A: **non-inverting mode** (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
+   * Select Waveform generation in registers TCCR1A and TCCR1B: **Fast PWM, 10-bit**,
+   * Select clock prescaler in TCCR1B: **8**,
+   * Set default duty cycle in OCR1B to 50%: **0x01FF**,
+   * Enable Output Compare B Match Interrupt in TIMSK1: **OCIE1B**.
+
+   Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`. Clear the OCR1B value when it reaches its maximum, ie 0x03FF.
+
+   Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library.
+
+   Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
+
+   ![SimulIDE](images/screenshot_simulide_pwm.png)
+
+
+
+4. Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
+
+   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the line `static uint16_t i=0;` will only run the first time.
+
+```c
+void IRQHandler()
+{
+    static uint16_t i=0;  // This line only run the first time
+
+    if (i>=500)
+    {
+        i=0;  // Variable is reset when function IRQHandler is executed 500 times
+    }
+    else
+    {
+        i++;  // Static variable is incremented any time function IRQHandler is executed
+    }
+}
+```
+
+
+Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
+
+
+2. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin. See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **External Interrupts**) and config INT0. When push button is pressed, the Timer0 prescaler setting is changed.
+
+
+
+*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+
+> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce podle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+>
+
+

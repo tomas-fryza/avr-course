@@ -1,4 +1,4 @@
-# Lab 3: Interrupt usage
+# Lab 3: Interrupts and polling
 
 <!--
 ![Multi-function shield](images/arduino_uno_multi-shield.jpg)
@@ -20,17 +20,8 @@ The purpose of the laboratory exercise is to understand the function of the inte
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: Timer overflow](#part2)
-
-
-
-
-
-
-
-
-
-* [Part 3: Polling and Interrupts](#part3)
-* [Part 4: Final application](#part4)
+* [Part 3: Polling and interrupts](#part3)
+* [Part 4: Extend the overflow](#part4)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -90,7 +81,7 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
 
 2. Copy/paste [template code](main.c) to `LAB3-INTERRUPTS_TIMER > src > main.c` source file.
 
-3. In PlatformIO project, create a new folder `LAB3-INTERRUPTS_TIMER > lib > gpio`. Copy your GPIO library files `gpio.h` and `gpio.c` from the previous lab to this folder.
+3. In PlatformIO project, create a new folder `LAB3-INTERRUPTS_TIMER > lib > gpio`. Copy your GPIO library files [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) and [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) from the previous lab to this folder.
 
 4. In PlatformIO project, create a new file `LAB3-INTERRUPTS_TIMER > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
@@ -109,20 +100,36 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
 
    For easier setting of control registers, the Timer/Counter1 macros with suitable names were defined in `timer.h`. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board.
+5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
-6. In `timer.h` header file, define similar macros also for Timer/Counter0, modify `main.c` file, and use two interrupts for controling both LEDs.
+   ```c
+   #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
+   #include <gpio.h>           // GPIO library for AVR-GCC
+   #include "timer.h"          // Timer library for AVR-GCC
 
+   int main(void)
+   {
+       ...
+       // Enable overflow interrupt
+       TIM1_overflow_interrupt_enable();
+       ...
+       // Enables interrupts by setting the global interrupt mask
+       sei();
+       ...
+   }
 
+   // Interrupt service routines
+   ISR(TIMER1_OVF_vect)
+   {
+       ...
+   }
+   ```
 
-
-
-
-
+6. In `timer.h` header file, define similar macros also for Timer/Counter0, modify `main.c` file, and use two interrupts for controling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0.
 
 <a name="part3"></a>
 
-## Part 3: Polling and Interrupts
+## Part 3: Polling and interrupts
 
 The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
 
@@ -157,110 +164,42 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
-
-
-
-
-
-
+1. Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part4"></a>
 
-## Part 4: Final application
+## Part 4: Extend the overflow
 
-In `04-interrupts/main.c` file, rewrite the application for flashing a LED but this time without using the `delay.h` library. Use Multi-function shield and toggle D1 LED with one of the internal timers. Select its prescaler value and enable overflow interrupt. Do not forget to include both gpio and timer header files to your main application `#include "gpio.h"` and `#include "timer.h"`.
+1. Use Timer/Counter1 16-ms overflow and toggle `LED_GREEN` value approximately every 100&nbsp;ms (6 oveflows x 16 ms = 100 ms).
 
-In addition, if you want to use interrupts in your application, you must:
+   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t no_of_overflows = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
 
-* insert the header file `#include <avr/interrupt.h>`,
-* make peripheral function settings (such as prescaler),
-* enable specific interrupts (such as overflow),
-* define interrupt handlers (such as `ISR(TIMER1_OVF_vect)`), and
-* allow such handlers to run by `sei()` macro.
+   ```c
+   ISR(TIMER1_OVF_vect)
+   {
+       static uint8_t no_of_overflows = 0;
 
-```c
-#include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-...
+       no_of_overflows++;
+       if (no_of_overflows >= 6)
+       {
+           // Do this every 6 x 16 ms = 100 ms
+           no_of_overflows = 0;
+           ...
+       }
+       // Else do nothing and exit the ISR
+   }
+   ```
 
-int main(void)
-{
-    ...
+3. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
-    // Enables interrupts by setting the global interrupt mask
-    sei();
-
-    // Infinite loop
-    while (1)
-    {
-        /* Empty loop. All subsequent operations are performed exclusively 
-         * inside interrupt service routines ISRs */
-    }
-
-    // Will never reach this
-    return 0;
-}
-
-ISR(TIMER1_OVF_vect)
-{
-    // WRITE YOUR CODE HERE
-}
-```
-
-1. Compile the code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical LED connection according to the Multi-function shield).
-
-2. Observe the correct function of the application on the flashing LED or measure its signal using a logic analyzer or oscilloscope. Try different overflow times.
-
-3. Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
-
-4. Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
-
-   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the line `static uint16_t i=0;` will only run the first time.
-
-```c
-void IRQHandler()
-{
-    static uint16_t i=0;  // This line only run the first time
-
-    if (i>=500)
-    {
-        i=0;  // Variable is reset when function IRQHandler is executed 500 times
-    }
-    else
-    {
-        i++;  // Static variable is incremented any time function IRQHandler is executed
-    }
-}
-```
-
-
-
-
-
-
-
-
-## Synchronize repositories
-
-Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
+   > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   >
 
 <a name="experiments"></a>
 
 ## Experiments on your own
 
-1. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **16-bit Timer/Counter1 with PWM > Register Description**) and configure Timer/Counter1 to generate a PWM (Pulse Width Modulation) signal on channel B (pin PB2, OC1B). Configure Timer/Counter1 as follows:
-   * Select Compare output mode, Fast PWM in register TCCR1A: **non-inverting mode** (Clear OC1A/OC1B on Compare Match, set OC1A/OC1B at BOTTOM),
-   * Select Waveform generation in registers TCCR1A and TCCR1B: **Fast PWM, 10-bit**,
-   * Select clock prescaler in TCCR1B: **8**,
-   * Set default duty cycle in OCR1B to 50%: **0x01FF**,
-   * Enable Output Compare B Match Interrupt in TIMSK1: **OCIE1B**.
-
-   Do not forget to enable interrupts by setting the global interrupt mask `sei()` and increment the duty cycle in OCR1B when the timer value is equal to compare value, ie. within interrupt handler `ISR(TIMER1_COMPB_vect)`. Clear the OCR1B value when it reaches its maximum, ie 0x03FF.
-
-   Note that, the 16-bit value of the output compare register pair OCR1BH:L is directly accessible using the OCR1B variable defined in the AVR Libc library.
-
-   Connect an oscilloscope to PB2 pin (in SimulIDE **Meters > Oscope**) and observe the changes in the generated signal.
-
-   ![SimulIDE](images/screenshot_simulide_pwm.png)
+1. In `timer.h` header file, define macros also for Timer/Counter2.
 
 2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
    * Normal mode,
@@ -268,16 +207,15 @@ Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Use
    * Fast PWM mode, and
    * Phase Correct PWM Mode.
 
-Extra. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
+3. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
 
-<a name="assignment"></a>
+<a name="report"></a>
 
-## Lab assignment
+## Post-Lab report
 
-*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
+*Complete all parts of `LAB3-INTERRUPTS_TIMER > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce podle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
->
+*Vypracujte všechny části ze souboru `LAB3-INTERRUPTS_TIMER > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
