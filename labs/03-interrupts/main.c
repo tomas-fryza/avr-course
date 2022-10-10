@@ -1,39 +1,40 @@
 /***********************************************************************
  * 
- * Control LEDs using functions from GPIO and Timer libraries. Do not 
+ * Blink two LEDs using functions from GPIO and Timer libraries. Do not 
  * use delay library any more.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
- * Copyright (c) 2018-Present Tomas Fryza
+ * Copyright (c) 2018 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
  **********************************************************************/
 
+
 /* Defines -----------------------------------------------------------*/
-#define LED_D1  PB5
-#define LED_D2  PB4
-#define LED_D3  PB3
-#define LED_D4  PB2
+#define LED_GREEN PB5  // Arduino Uno on-board LED
+#define LED_RED PB0    // External active-low LED
+
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-#include "gpio.h"           // GPIO library for AVR-GCC
+#include <gpio.h>           // GPIO library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Toggle one LED on the Multi-function shield using 
- *           the internal 8- or 16-bit Timer/Counter.
+ * Purpose:  Toggle two LEDs using the internal 8- and 16-bit 
+ *           Timer/Counter.
  * Returns:  none
  **********************************************************************/
 int main(void)
 {
-    // Configuration of LED(s) at port B
-    GPIO_config_output(&DDRB, LED_D1);
-    GPIO_write_low(&PORTB, LED_D1);
+    // Set pins where LEDs are connected as output
+    GPIO_mode_output(&DDRB, LED_GREEN);
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
     // Set the overflow prescaler to 262 ms and enable interrupt
@@ -47,20 +48,20 @@ int main(void)
     while (1)
     {
         /* Empty loop. All subsequent operations are performed exclusively 
-         * inside interrupt service routines ISRs */
+         * inside interrupt service routines, ISRs */
     }
 
     // Will never reach this
     return 0;
 }
 
+
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Toggle D1 LED on Multi-function shield.
+ * Purpose:  Toggle on-board LED.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // WRITE YOUR CODE HERE
-
+    PORTB = PORTB ^ (1<<LED_GREEN);
 }
