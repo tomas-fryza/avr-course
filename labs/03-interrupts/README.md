@@ -28,7 +28,7 @@ The purpose of the laboratory exercise is to understand the function of the inte
 
 <a name="preparation"></a>
 
-## Preparation tasks (done before the lab at home)
+## Pre-Lab preparation
 
 Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an **overflow**. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
