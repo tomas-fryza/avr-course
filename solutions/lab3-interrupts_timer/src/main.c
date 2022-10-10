@@ -21,7 +21,7 @@
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <gpio.h>           // GPIO library for AVR-GCC
-#include <timer.h>          // Timer library for AVR-GCC
+#include "timer.h"          // Timer library for AVR-GCC
 
 
 /* Function definitions ----------------------------------------------*/
@@ -39,7 +39,7 @@ int main(void)
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
     // Set the overflow prescaler to 262 ms and enable interrupt
-    TIM1_overflow_256();
+    TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
