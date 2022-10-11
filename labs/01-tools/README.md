@@ -85,7 +85,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    $ git config user.email "your-email@address.com"
    ```
    
-   You can varify that the changes were made correctly by:
+   You can verify that the changes were made correctly by:
    
    ```shell
    $ git config --list
@@ -166,7 +166,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 1. Install the AVR development tools on your computer.
 
-2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `PARIS` on a LED in the Morse code. Choose the durations of the "dot" and "dash" so that they are visible during the simulation and/or implementation. Note that the proper Morse code timing is explained [here](https://morsecode.world/international/timing.html).
+2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `PARIS` on a LED in the Morse code. Choose the duration of "dot" and "dash" so that they are visible during the simulation and/or implementation. Note that the proper Morse code timing is explained [here](https://morsecode.world/international/timing.html).
 
 3. Simulate the Morse code application in SimulIDE.
 
