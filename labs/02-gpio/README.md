@@ -8,7 +8,7 @@
 
 After completing this lab you will be able to:
 
-* Config input/output ports of AVR using control registers
+* Configure input/output ports of AVR using control registers
 * Use ATmega328P manual and find information
 * Understand the difference between header and source files
 * Create your own library
