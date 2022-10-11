@@ -64,6 +64,21 @@
  * @note  t_OVF = 1/F_CPU * prescaler * 2^n where n = 8, F_CPU = 16 MHz
  */
 // WRITE YOUR CODE HERE
+/** @brief Stop timer, prescaler 000 --> STOP */
+#define TIM0_stop()  TCCR0B &= ~((1<<CS02) | (1<<CS01) | (1<<CS00));
+
+// #define TIM0_overflow_16us()  ...
+// #define TIM0_overflow_128us()  ...
+// #define TIM0_overflow_1ms()  ...
+// #define TIM0_overflow_4ms()  ...
+
+/** @brief Set overflow 16ms, prescaler // 101 --> 1024 */
+#define TIM0_overflow_16ms()  TCCR0B &= ~(1<<CS01); TCCR0B |= (1<<CS02) | (1<<CS00);
+
+/** @brief Enable overflow interrupt, 1 --> enable */
+#define TIM0_overflow_interrupt_enable()  TIMSK0 |= (1<<TOIE0);
+/** @brief Disable overflow interrupt, 0 --> disable */
+#define TIM0_overflow_interrupt_disable() TIMSK0 &= ~(1<<TOIE0);
 
 
 /**
