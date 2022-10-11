@@ -11,7 +11,7 @@ After completing this lab you will be able to:
 * Use `#define` compiler directives
 * Use internal microcontroller timers
 * Understand overflow
-* Combine diferent interrupts
+* Combine different interrupts
 
 The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
@@ -125,7 +125,7 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
    }
    ```
 
-6. In `timer.h` header file, define similar macros also for Timer/Counter0, modify `main.c` file, and use two interrupts for controling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0.
+6. In `timer.h` header file, define similar macros also for Timer/Counter0, modify `main.c` file, and use two interrupts for controlling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0.
 
 <a name="part3"></a>
 
@@ -170,7 +170,7 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 ## Part 4: Extend the overflow
 
-1. Use Timer/Counter1 16-ms overflow and toggle `LED_GREEN` value approximately every 100&nbsp;ms (6 oveflows x 16 ms = 100 ms).
+1. Use Timer/Counter1 16-ms overflow and toggle `LED_GREEN` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
 
    FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t no_of_overflows = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
 
