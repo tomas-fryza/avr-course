@@ -42,7 +42,7 @@ int main(void)
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
-    // Config of 8-bit Timer0 for red LED blink
+    // Config of 8-bit Timer0 for red LED blinking every 16 ms
     TIM0_overflow_16ms();
     TIM0_overflow_interrupt_enable();
 
@@ -81,8 +81,19 @@ ISR(TIMER0_OVF_vect)
     static uint8_t no_of_overflows = 0;
 
     no_of_overflows++;
-    if (no_of_overflows >= 30) {
+    if (no_of_overflows >= 12) {
         PORTB = PORTB ^ (1<<LED_RED);
+        no_of_overflows = 0;
+    }
+}
+
+
+
+/*
+    static uint8_t no_of_overflows = 0;
+
+    no_of_overflows++;
+    if (no_of_overflows >= 30) {
         no_of_overflows = 0;
     }
 
@@ -90,4 +101,4 @@ ISR(TIMER0_OVF_vect)
     TCNT0 = 128;
     // t_ovf = 1/16e6 * 1024 * 256 = 16 ms
     // t_ovf = 1/16e6 * 1024 * (256-128) = 8 ms
-}
+*/
