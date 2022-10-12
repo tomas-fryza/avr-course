@@ -125,7 +125,7 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
    }
    ```
 
-6. In `timer.h` header file, define similar macros also for Timer/Counter0, modify `main.c` file, and use two interrupts for controlling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0.
+6. In `timer.h` header file, define similar macros also for Timer/Counter0. Use breadboard, LED, resistor, and wires and connect second LED to PB0 in actve-low way. Modify `main.c` file, and use two interrupts for controlling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0. Build and upload the code into ATmega328P and verify its functionality.
 
 <a name="part3"></a>
 
