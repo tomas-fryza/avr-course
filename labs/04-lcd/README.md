@@ -159,45 +159,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd.h) to `lcd.h`
    2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd_definitions.h) to `lcd_definitions.h`
-   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `lcd.c`
+   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/lcd.c) to `lcd.c`
 
-6. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
-
-   ```c
-   #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-   #include <gpio.h>           // GPIO library for AVR-GCC
-   #include "timer.h"          // Timer library for AVR-GCC
-
-   xxxxxxxxxxxxxxxxxxxxxxx
-
-
-
-
-
-
-
-
-
-
-   #include <stdlib.h>         // C library. Needed for number conversions
-
-   int main(void)
-   {
-       ...
-       // Enable overflow interrupt
-       TIM1_overflow_interrupt_enable();
-       ...
-       // Enables interrupts by setting the global interrupt mask
-       sei();
-       ...
-   }
-
-   // Interrupt service routines
-   ISR(TIMER1_OVF_vect)
-   {
-       ...
-   }
-   ```
+6. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
 7. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a cursor after letter "c".
 
@@ -206,13 +170,13 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 > The figure above was created by online [LCD Display Screenshot Generator](http://avtanski.net/projects/lcd/).
 >
 
-8. Use the PB2 pin to control the backlight of the LCD screen. Create a new library function for this purpose.
+8. Use the PB2 pin to control the backlight of the LCD screen. (Optionaly: Create a new library function for this purpose.)
 
 <a name="part4"></a>
 
 ## Part 4: Stopwatch
 
-1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second and seconds `00:seconds.tenths`.
+1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second and seconds `00:seconds.tenths`. Let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again.
 
    ![LCD screenshot](images/screenshot_lcd_seconds.png)
 
@@ -223,46 +187,33 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    ISR(TIMER2_OVF_vect)
    {
        static uint8_t no_of_overflows = 0;
-       static uint8_t tens = 0;  // Tenths of a second
-       static uint8_t secs = 0;  // Seconds
-       char string[2] = "  ";    // String for converted numbers by itoa()
+       static uint8_t tenths = 0;  // Tenths of a second
+       char string[2];             // String for converted numbers by itoa()
 
        no_of_overflows++;
        if (no_of_overflows >= 6)
        {
            // Do this every 6 x 16 ms = 100 ms
            no_of_overflows = 0;
+
+           // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
            ...
 
-           itoa(tens, string, 10);  // Convert decimal value to string
+           itoa(tenths, string, 10);  // Convert decimal value to string
+           lcd_gotoxy(7, 0);
            lcd_puts(string);
-           ...
        }
        // Else do nothing and exit the ISR
    }
    ```
 
-   Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
+   IMPORTANT: Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
 
+2. A flowchart is a visual representation of a certain process or flow of instructions of an algorithm that helps to understand it. A flowchart basically uses rectangles, diamonds, ovals and various other shapes to make the problem easier to understand.
 
+   ![basic flow charts](images/flowcharts.png)
 
-
-
-
-
-
-
-
-
-
-
-
-
-TODO:
-
-2. Flowchart figure for `TIMER2_OVF_vect` interrupt service routine which overflows every 16&nbsp;ms but it updates the stopwatch LCD approximately every 100&nbsp;ms (6 x 16&nbsp;ms = 100&nbsp;ms). Display tenths of a second and seconds `00:seconds.tenths`. Let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
-
-   ![your figure]()
+   Draw a flowchart of the Timer/Counter2 interrupt service routine that updates the tenths of a second on the stopwatch.
 
 <a name="part5"></a>
 
@@ -317,7 +268,7 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
        ...
    ```
 
-2. Design at least one other custom character, store it in CGRAM according to the previous code and display all new characters on the LCD screen.
+2. Design at least one more custom character, store it in CGRAM memory according to the previous code, and display all new characters on the LCD screen.
 
 3. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
