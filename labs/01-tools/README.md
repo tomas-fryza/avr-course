@@ -106,7 +106,15 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
    * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-4. Use [breadboard](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746), wires, resistor, and a second LED. Connect in to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
+4. Use breadboard, wires, resistor, and a second LED. Connect in to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
+
+   * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
+   * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
+
+   ![schema od active-low LED](images/schema_led_active-low.png)
+
+   > Picture was created by [Autodesk Tinkercad](https://www.tinkercad.com/)
+   >
 
    ![active_low_high_led](images/gpio_high_low.png)
 
