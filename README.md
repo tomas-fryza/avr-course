@@ -7,9 +7,9 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 1. [Git version-control system, AVR tools](labs/01-tools)
 2. [Control of GPIO pins](labs/02-gpio)
 3. [Interrupts and polling](labs/03-interrupts)
+4. [Liquid Crystal Display (LCD)](labs/04-lcd)
+
 <!--
-5. [Display devices, 7-segment display](labs/05-segment)
-6. [Display devices, LCD display](labs/06-lcd)
 7. [ADC and UART serial communication](labs/07-uart)
 8. [I2C/TWI serial communication](labs/08-i2c)
 9. [C project: General instructions](labs/project)
