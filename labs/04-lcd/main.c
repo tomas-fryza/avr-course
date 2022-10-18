@@ -44,7 +44,7 @@
 int main(void)
 {
     // Initialize LCD display
-    lcd_init(LCD_DISP_ON_BLINK);
+    lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
     // Put string(s) on LCD screen
     lcd_gotoxy(6, 1);
