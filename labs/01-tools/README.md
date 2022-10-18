@@ -110,13 +110,16 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
    * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
+   * Connection of external LED in active-low way:
 
-   ![schema od active-low LED](images/schema_led_active-low.png)
+      ![schema od active-low LED](images/schema_led_active-low.png)
 
-   > Picture was created by [Autodesk Tinkercad](https://www.tinkercad.com/)
-   >
+      > Picture was created by [Autodesk Tinkercad](https://www.tinkercad.com/)
+      >
 
-   ![active_low_high_led](images/gpio_high_low2.png)
+   * General connections of LEDs and push buttons in active-low and active-high way:
+
+      ![active_low_high_led](images/gpio_high_low2.png)
 
 5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
 
