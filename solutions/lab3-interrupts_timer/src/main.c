@@ -81,12 +81,13 @@ ISR(TIMER0_OVF_vect)
     static uint8_t no_of_overflows = 0;
 
     no_of_overflows++;
-    if (no_of_overflows >= 12) {
-        PORTB = PORTB ^ (1<<LED_RED);
+    if (no_of_overflows >= 6) {
+        // Do this every 6 x 16 ms = 100 ms
         no_of_overflows = 0;
+        PORTB = PORTB ^ (1<<LED_RED);
     }
+    // Else do nothing and exit the ISR
 }
-
 
 
 /*
