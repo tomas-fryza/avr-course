@@ -44,16 +44,31 @@
 int main(void)
 {
     // Initialize LCD display
-    lcd_init(LCD_DISP_ON_BLINK);
+    lcd_init(LCD_DISP_ON_CURSOR);
 
     // Put string(s) on LCD screen
-    lcd_gotoxy(6, 1);
-    lcd_puts("LCD Test");
-    lcd_putc('!');
+    // lcd_gotoxy(6, 1);
+    // lcd_puts("LCD Test");
+    // lcd_putc('!');
+    lcd_gotoxy(1,0);
+    lcd_puts("00:00.0");
+
+    lcd_gotoxy(11,0);
+    lcd_puts("a");
+
+    lcd_gotoxy(1,1);
+    lcd_puts("b");
+
+    lcd_gotoxy(11,1);
+    lcd_puts("c");
+
+    // GPIO_mode_output(&DDRB, PB2);
+    // GPIO_write_low(&PORTB, PB2);
 
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
     // Set the overflow prescaler to 16 ms and enable interrupt
-
+    TIM2_overflow_16ms();
+    TIM2_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -81,6 +96,7 @@ ISR(TIMER2_OVF_vect)
     static uint8_t no_of_overflows = 0;
     static uint8_t tenths = 0;  // Tenths of a second
     char string[2];             // String for converted numbers by itoa()
+    static uint8_t secs = 0;    // Seconds
 
     no_of_overflows++;
     if (no_of_overflows >= 6)
@@ -89,8 +105,25 @@ ISR(TIMER2_OVF_vect)
         no_of_overflows = 0;
 
         // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
-
-
+        tenths++;
+        if (tenths > 9)
+        {
+            tenths = 0;
+            secs++;
+            if (secs > 59)
+            {
+                secs = 0;
+            }
+            // Display seconds
+            itoa(secs, string, 10);
+            lcd_gotoxy(4, 0);
+            if (secs < 10)
+            {
+                lcd_puts("0");
+            }
+            lcd_puts(string);
+        }
+        // Display tenths of a second
         itoa(tenths, string, 10);  // Convert decimal value to string
         lcd_gotoxy(7, 0);
         lcd_puts(string);
