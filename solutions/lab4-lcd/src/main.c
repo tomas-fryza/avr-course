@@ -43,6 +43,7 @@
  **********************************************************************/
 int main(void)
 {
+    // Custom character definition using https://omerk.github.io/lcdchargen/
     uint8_t customChar[16] = {
         // First character
         0b11100,
@@ -64,18 +65,18 @@ int main(void)
         0b00011
     };
 
-    // Initialize LCD display
+    // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR);
 
-    // Set pointer to beginning of CGRAM memory
-    lcd_command(1 << LCD_CGRAM);
+    // Set pointer to beginning of Character Generator RAM
+    lcd_command(1<<LCD_CGRAM);
     for (uint8_t i = 0; i < 16; i++)
     {
-        // Store all new chars to memory line by line
+        // Store all new chars line by line
         lcd_data(customChar[i]);
     }
-    // Set DDRAM address to display characters
-    lcd_command(1 << LCD_DDRAM);
+    // Set Display Data RAM again
+    lcd_command(1<<LCD_DDRAM);
 
     // Put string(s) on LCD screen
     // lcd_gotoxy(6, 1);
@@ -93,7 +94,7 @@ int main(void)
     lcd_gotoxy(11, 1);
     lcd_puts("c");
 
-    // Two custom characters
+    // Display two custom characters
     lcd_gotoxy(13, 1);
     lcd_putc(0x00);
     lcd_putc(0x01);
@@ -162,6 +163,7 @@ ISR(TIMER2_OVF_vect)
         }
         // Show tenths of a second on LCD screen
         itoa(tenths, string, 10);  // Convert decimal value to string
+        // Display "00:00.tenths"
         lcd_gotoxy(7, 0);
         lcd_puts(string);
     }
