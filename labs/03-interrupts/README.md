@@ -164,18 +164,18 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
-1. Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+1. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part4"></a>
 
 ## Part 4: Extend the overflow
 
-1. Use Timer/Counter1 16-ms overflow and toggle `LED_GREEN` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
+1. Use Timer/Counter0 16-ms overflow and toggle `LED_RED` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
 
    FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t no_of_overflows = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
 
    ```c
-   ISR(TIMER1_OVF_vect)
+   ISR(TIMER0_OVF_vect)
    {
        static uint8_t no_of_overflows = 0;
 
@@ -187,6 +187,26 @@ All interrupts are disabled by default. If you want to use them, you must first 
            ...
        }
        // Else do nothing and exit the ISR
+   }
+   ```
+
+2. Reduce the overflow time by storing a non-zero value in the Timer/Counter0 data register TCNT0 after each overflow.
+
+   ```c
+   ISR(TIMER0_OVF_vect)
+   {
+       static uint8_t no_of_overflows = 0;
+
+       no_of_overflows++;
+       if (no_of_overflows >= 6)
+       {
+           no_of_overflows = 0;
+           ...
+       }
+
+       TCNT0 = 128;
+       // Normal counting:    t_ovf = 1/16e6 * 1024 * 256 = 16 ms
+       // Shortened counting: t_ovf = 1/16e6 * 1024 * (256-128) = 8 ms
    }
    ```
 
