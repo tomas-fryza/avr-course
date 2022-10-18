@@ -176,9 +176,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 ## Part 4: Stopwatch
 
-1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second and seconds `00:seconds.tenths`. Let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again.
+1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again.
 
-   ![LCD screenshot](images/screenshot_lcd_seconds.png)
+   ![LCD screenshot](images/screenshot_lcd_tenths.png)
 
    ```c
    #include <stdlib.h>         // C library. Needed for number conversions
@@ -200,6 +200,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
            ...
 
            itoa(tenths, string, 10);  // Convert decimal value to string
+           // Display "00:00.tenths"
            lcd_gotoxy(7, 0);
            lcd_puts(string);
        }
@@ -213,7 +214,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
    ![basic flow charts](images/flowcharts.png)
 
-   Draw a flowchart of the Timer/Counter2 interrupt service routine that updates the tenths of a second on the stopwatch.
+3. Complete the stopwatch flowchart of the Timer/Counter2 interrupt service routine with seconds. According to the flowchart, program the `ISR()` source code, let the stopwatch counts from `00:00.0` to `00:59.9` and then starts again.
+
+   ![LCD screenshot](images/screenshot_lcd_seconds.png)
 
 <a name="part5"></a>
 
@@ -250,18 +253,18 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
            0b00011
        };
 
-       // Initialize LCD display
+       // Initialize display
        lcd_init(LCD_DISP_ON);
 
-       // Set pointer to beginning of CGRAM memory
-       lcd_command(1 << LCD_CGRAM);
+       // Set pointer to beginning of Character Generator RAM
+       lcd_command(1<<LCD_CGRAM);
        for (uint8_t i = 0; i < 8; i++)
        {
-           // Store all new chars to memory line by line
+           // Store all new chars line by line
            lcd_data(customChar[i]);
        }
-       // Set DDRAM address to display characters
-       lcd_command(1 << LCD_DDRAM);
+       // Set Display Data RAM again
+       lcd_command(1<<LCD_DDRAM);
     
        // Display first custom character at address 0
        lcd_putc(0x00);
