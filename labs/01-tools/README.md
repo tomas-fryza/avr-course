@@ -111,7 +111,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
    * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
 
-   ![schema od active-low LED](images/schema_led_active-low.png)
+   ![schema od active-low LED](images/schema_led_active-low2.png)
 
    > Picture was created by [Autodesk Tinkercad](https://www.tinkercad.com/)
    >
