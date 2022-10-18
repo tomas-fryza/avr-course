@@ -1,7 +1,7 @@
 /***********************************************************************
  * 
  * Stopwatch by Timer/Counter2 on the Liquid Crystal Display (LCD)
-
+ *
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
  * Copyright (c) 2017 Tomas Fryza
@@ -21,7 +21,7 @@
  *     D5   - PD5 (Data bit 5)
  *     D6   - PD6 (Data bit 3)
  *     D7   - PD7 (Data bit 2)
- *     A+K  - Back-light enabled by PB2
+ *     A+K  - Back-light enabled/disabled by PB2
  * 
  **********************************************************************/
 
