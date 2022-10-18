@@ -234,22 +234,22 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 1. To design a new custom character, store it in CGRAM according to the following code.
 
    ```c
-   /* Global variables --------------------------------------------------*/
-   // Custom character definition using https://omerk.github.io/lcdchargen/
-   uint8_t customChar[8] = {
-       0b00111,
-       0b01110,
-       0b11100,
-       0b11000,
-       0b11100,
-       0b01110,
-       0b00111,
-       0b00011
-   };
    ...
 
    int main(void)
    {
+       // Custom character definition using https://omerk.github.io/lcdchargen/
+       uint8_t customChar[8] = {
+           0b00111,
+           0b01110,
+           0b11100,
+           0b11000,
+           0b11100,
+           0b01110,
+           0b00111,
+           0b00011
+       };
+
        // Initialize LCD display
        lcd_init(LCD_DISP_ON);
 
@@ -264,7 +264,7 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
        lcd_command(1 << LCD_DDRAM);
     
        // Display first custom character at address 0
-       lcd_putc(0);
+       lcd_putc(0x00);
        ...
    ```
 
