@@ -43,7 +43,7 @@
  **********************************************************************/
 int main(void)
 {
-    // Initialize LCD display
+    // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
     // Put string(s) on LCD screen
@@ -92,6 +92,7 @@ ISR(TIMER2_OVF_vect)
 
 
         itoa(tenths, string, 10);  // Convert decimal value to string
+        // Display "00:00.tenths"
         lcd_gotoxy(7, 0);
         lcd_puts(string);
     }
