@@ -163,7 +163,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 6. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
-7. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a cursor after letter "c".
+7. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a non-blinking cursor after letter "c".
 
    ![LCD screenshot](images/screenshot_lcd_init.png)
 
