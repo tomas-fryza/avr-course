@@ -256,14 +256,14 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
        // Initialize display
        lcd_init(LCD_DISP_ON);
 
-       // Set pointer to beginning of Character Generator RAM
+       // Set addressing to CGRAM (Character Generator RAM)
+       // ie to individual lines of character patterns
        lcd_command(1<<LCD_CGRAM);
+       // Copy new chars line by line as CGRAM data
        for (uint8_t i = 0; i < 8; i++)
-       {
-           // Store all new chars line by line
            lcd_data(customChar[i]);
-       }
-       // Set Display Data RAM again
+       // Set addressing back to DDRAM (Display Data RAM)
+       // ie to character codes
        lcd_command(1<<LCD_DDRAM);
     
        // Display first custom character at address 0
