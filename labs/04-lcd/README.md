@@ -316,7 +316,7 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
        static uint8_t symbol = 0;
        static uint8_t position = 0;
 
-       lcd_gotoxy(1 + position, 1);
+       lcd_gotoxy(1+position, 1);
        lcd_putc(symbol);
 
        // WRITE YOUR CODE HERE
