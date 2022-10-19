@@ -70,7 +70,7 @@ int main(void)
 
     lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
                                      // ie to individual lines of character patterns
-    for (uint8_t i = 0; i < 8; i++)  // Copy new character patterns line by line to CGRAM
+    for (uint8_t i = 0; i < 16; i++)  // Copy new character patterns line by line to CGRAM
         lcd_data(customChar[i]);
     lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
                                      // ie to character codes
