@@ -140,21 +140,18 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. See the project structure:
 
    ```c
-   |--include
-   |  |--timer.h
-   |
-   |--lib
-   |  |--gpio
-   |  |  |- gpio.c
-   |  |  |- gpio.h
-   |  |
-   |  |--lcd
-   |     |- lcd.c
-   |     |- lcd.h
-   |     |- lcd_definitions.h
-   |
-   |--src
-      |- main.c
+   ├── include
+   │   └── timer.h
+   ├── lib
+   │   ├── gpio
+   |   │   ├── gpio.c
+   |   |   └── gpio.h
+   │   └── lcd
+   |       ├── lcd.c
+   |       ├── lcd.h
+   |       └── lcd_definitions.h
+   └── src
+       └── main.c
    ```
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd.h) to `lcd.h`
