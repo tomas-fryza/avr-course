@@ -22,7 +22,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 * [Part 2: LCD display module](#part2)
 * [Part 3: Library for HD44780 based LCDs](#part3)
 * [Part 4: Stopwatch](#part4)
-* [Part 5: Defined and custom characters](#part5)
+* [Part 5: Custom characters](#part5)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -220,7 +220,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 <a name="part5"></a>
 
-## Part 5: Defined and custom characters
+## Part 5: Custom characters
 
 All LCD displays based on the Hitachi HD44780 controller have two types of memory that store defined characters: CGROM and CGRAM (Character Generator ROM & RAM). The CGROM memory is non-volatile and cannot be modified, while the CGRAM memory is volatile and can be modified at any time [[4]](https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/).
 
