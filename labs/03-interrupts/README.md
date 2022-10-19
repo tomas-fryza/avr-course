@@ -86,16 +86,14 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
 4. In PlatformIO project, create a new file `LAB3-INTERRUPTS_TIMER > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
-   |--include
-   |  |--timer.h
-   |
-   |--lib
-   |  |--gpio
-   |     |- gpio.c
-   |     |- gpio.h
-   |
-   |--src
-      |- main.c
+   ├── include
+   │   └── timer.h
+   ├── lib
+   │   └── gpio
+   |       ├── gpio.c
+   |       └── gpio.h
+   └── src
+       └── main.c
    ```
 
    For easier setting of control registers, the Timer/Counter1 macros with suitable names were defined in `timer.h`. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
