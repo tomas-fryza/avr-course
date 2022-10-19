@@ -68,15 +68,12 @@ int main(void)
     // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR);
 
-    // Set pointer to beginning of Character Generator RAM
-    lcd_command(1<<LCD_CGRAM);
-    for (uint8_t i = 0; i < 16; i++)
-    {
-        // Store all new chars line by line
+    lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
+                                     // ie to individual lines of character patterns
+    for (uint8_t i = 0; i < 8; i++)  // Copy new character patterns line by line to CGRAM
         lcd_data(customChar[i]);
-    }
-    // Set Display Data RAM again
-    lcd_command(1<<LCD_DDRAM);
+    lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
+                                     // ie to character codes
 
     // Put string(s) on LCD screen
     // lcd_gotoxy(6, 1);
