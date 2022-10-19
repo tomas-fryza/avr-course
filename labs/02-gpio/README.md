@@ -164,13 +164,12 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
    ```c
-   |--lib
-   |  |--gpio
-   |     |- gpio.c
-   |     |- gpio.h
-   |
-   |--src
-      |- main.c
+   ├── lib
+   │   └── gpio
+   |       ├── gpio.c
+   |       └── gpio.h
+   └── src
+       └── main.c
    ```
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
