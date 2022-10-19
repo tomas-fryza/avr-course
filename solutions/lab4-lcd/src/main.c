@@ -74,11 +74,16 @@ int main(void)
         lcd_data(customChar[i]);
     lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
                                      // ie to character codes
+    // Display two custom characters
+    lcd_gotoxy(13, 1);
+    lcd_putc(0x00);
+    lcd_putc(0x01);
 
     // Put string(s) on LCD screen
     // lcd_gotoxy(6, 1);
     // lcd_puts("LCD Test");
     // lcd_putc('!');
+
     lcd_gotoxy(1, 0);
     lcd_puts("00:00.0");
 
@@ -90,11 +95,6 @@ int main(void)
 
     lcd_gotoxy(11, 1);
     lcd_puts("c");
-
-    // Display two custom characters
-    lcd_gotoxy(13, 1);
-    lcd_putc(0x00);
-    lcd_putc(0x01);
 
     // Set back light at PB2
     GPIO_mode_output(&DDRB, PB2);
