@@ -218,11 +218,9 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    }
    ```
 
-   > [Understanding C Pointers: A Beginner's Guide](https://www.codewithc.com/understanding-c-pointers-beginners-guide/)
+   > ![pointers](images/pointers.png)
    >
-   > ![Understanding C pointers](images/pointer-variable-ampersand-and-asterisk.png)
-   >
-   > Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
+   > Understanding C Pointers: A Beginner's Guide is available [here](https://www.codewithc.com/understanding-c-pointers-beginners-guide/). Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation. Try to optimize code to the most effective way.
 
