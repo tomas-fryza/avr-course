@@ -201,10 +201,20 @@ All interrupts are disabled by default. If you want to use them, you must first 
            no_of_overflows = 0;
            ...
        }
-
+       // Change 8-bit timer value anytime it overflows
        TCNT0 = 128;
-       // Normal counting:    t_ovf = 1/16e6 * 1024 * 256 = 16 ms
-       // Shortened counting: t_ovf = 1/16e6 * 1024 * (256-128) = 8 ms
+       // Overflow time: t_ovf = 1/f_cpu * (2^bit-init) * prescaler
+       // Normal counting:
+       // TCNT0 = 0, 1, 2, ...., 128, 129, ...., 254, 255, 0, 1
+       //        |---------------------------------------|
+       //                         16 ms
+       // t_ovf = 1/16e6 * 256 * 1024 = 16 ms
+       //
+       // Shortened counting:
+       // TCNT0 = 0, 128, 129, ...., 254, 255, 0, 128, ....
+       //        |---------------------------|
+       //                     8 ms
+       // t_ovf = 1/16e6 * (256-128) * 1024 = 8 ms
    }
    ```
 
