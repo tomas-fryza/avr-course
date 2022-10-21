@@ -19,8 +19,8 @@
  *     D3:0 - NC (Data bits 3..0, Not Connected)
  *     D4   - PD4 (Data bit 4)
  *     D5   - PD5 (Data bit 5)
- *     D6   - PD6 (Data bit 3)
- *     D7   - PD7 (Data bit 2)
+ *     D6   - PD6 (Data bit 6)
+ *     D7   - PD7 (Data bit 7)
  *     A+K  - Back-light enabled/disabled by PB2
  * 
  **********************************************************************/
