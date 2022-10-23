@@ -55,13 +55,14 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
    ![voltage divider](images/voltage_divider.png)
 
-<!--
+   <!--
    ![Equation: Voltage divider](images/eq_divider1.png)
 
    ![Equation: Voltage divider](images/eq_divider2.png)
 
    &nbsp;
--->
+   -->
+
    ![Equation: Voltage divider](images/eq_divider3.png)
 
    &nbsp;
