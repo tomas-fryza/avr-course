@@ -53,9 +53,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Note your values to the **PC0[A0] voltage** column in the following table.
 
+   <!--
    ![voltage divider](images/voltage_divider.png)
 
-   <!--
    ![Equation: Voltage divider](images/eq_divider1.png)
 
    ![Equation: Voltage divider](images/eq_divider2.png)
@@ -83,7 +83,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
    | :-: | :-: | :-: | :-: |
    | Right  | 0&nbsp;V | 0   |  |
    | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   | 1.203nbsp;V | 246 |  |
+   | Down   | 1.203&nbsp;V | 246 |  |
    | Left   |       |     |  |
    | Select |       |     |  |
    | none   |       |     |  |
