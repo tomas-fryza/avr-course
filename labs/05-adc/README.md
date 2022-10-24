@@ -102,7 +102,11 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 1. Convert the voltages from the previous part according to the following equation. Note that reference is Vref=5V and number of bits for analog to digital conversion is n=10. Write the values to **ADC value (calculated)** column in the table from Part 2.3.
 
+   &nbsp;
+   
    ![Equation: ADC conversion](images/eq_adc.png)
+
+   &nbsp;
 
 2. The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADCH, ADCSRB, and DIDR0 registers. See [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Analog-to-Digital Converter > Register Description**) and complete the following table.
 
