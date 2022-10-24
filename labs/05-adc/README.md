@@ -88,6 +88,8 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    | Select |       |     |  |
    | none   |       |     |  |
 
+   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
+
 <a name="part3"></a>
 
 ## Part 3: Analog-to-Digital Conversion
@@ -146,8 +148,6 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
    * clock prescaler: 128
    * enable ADC module
    * enable interrupt
-
-   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
 
    ![adc timing](images/timing_adc.png)
 
