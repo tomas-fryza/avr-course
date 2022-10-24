@@ -176,7 +176,7 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
    ![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
-6. Test all push buttons and write values to the table from Preparation tasks section and compare them with the calculated ones.
+6. Test all push buttons and write converted values to the **PC0[A0] voltage** column in the table from Part 2.1.
 
 7. Apply the "extending" method from past labs and start the ADC conversion not every 33 milliseconds but every 100 milliseconds.
 
