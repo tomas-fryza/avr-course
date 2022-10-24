@@ -10,9 +10,9 @@ After completing this lab you will be able to:
 
 * Calculate the voltage divider
 * Understand the analog-to-digital conversion process
-* How to configure and use internal ADC unit
+* Configure and use internal ADC unit
 
-The purpose of the laboratory exercise is to understand analog-to-digital number conversion and the use of an internal 8-channel 10-bit AD converter.
+The purpose of the laboratory exercise is to understand analog-to-digital conversion and the use of an internal 8-channel 10-bit analog-to-digital converter.
 
 ### Table of contents
 
@@ -51,7 +51,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 ## Part 2: Voltage divider
 
-1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Note your values to the **PC0[A0] voltage** column in the following table.
+1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0[A0] for each pressed buttons. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Write your values to the **PC0[A0] voltage** column in the following table.
 
    ![voltage divider](images/voltage_divider.png)
 
@@ -96,7 +96,7 @@ An [Analog to Digital Converter](https://components101.com/articles/analog-to-di
 
 The internal ADC module of ATmega328P can be used in relatively slow and not extremely accurate data acquisitions. But it is a good choice in most situations, like reading sensor data or push button signals.
 
-AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[4]](https://embedds.com/adc-on-atmega328-part-1/).
+AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9&nbsp;kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[4]](https://embedds.com/adc-on-atmega328-part-1/).
 
 1. Convert the voltages from the previous part according to the following equation. Note that reference is Vref=5V and number of bits for analog to digital conversion is n=10. Write the values to **ADC value (calculated)** column in the table from Part 2.3.
 
@@ -116,7 +116,7 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-adc/main.c) to `LAB5-ADC > src > main.c` source file.
 
-4. Use your favorite file manager and copy `timer`, `gpio`, and `lcd` libraries from the previous lab to the proper location within the `LAB5-ADC` project. The final structure is:
+4. Use your favorite file manager and copy `timer`, `gpio`, and `lcd` libraries from the previous lab to the proper location within the `LAB5-ADC` project. The final structure should be as:
 
    ```c
    ├── include
@@ -133,65 +133,46 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
        └── main.c
    ```
 
-5. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board.
+5. Go through the `main.c` file and make sure you understand each line. Use ATmega328P datasheet and complete the ADC configuration as follows:
 
-
-
-
-
-
-
-   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
-
-2. In `main.c` configure ADC as follows:
    * voltage reference: AVcc with external capacitor
    * input channel: ADC0
    * clock prescaler: 128
    * enable ADC module
    * enable interrupt
 
+   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
+
    ![adc timing](images/timing_adc.png)
 
-   Use single conversion mode and start the conversion four times per second (use Timer/Counter1 overflow). When analog to digital conversion is finished, read the voltage level on push buttons, and display it in decimal at LCD display position `a`. Display the same value also in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
+   Use single conversion mode and start the conversion every 33 ms (use Timer/Counter1 overflow). When analog to digital conversion is finished, read the voltage level on push buttons and display it in decimal at LCD display position `a`. Display the same value also in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
+
+   ```c
+   /**********************************************************************
+    * Function: ADC complete interrupt
+    * Purpose:  Display converted value on LCD screen.
+    **********************************************************************/
+   ISR(ADC_vect)
+   {
+       uint16_t value;
+       char string[4];  // String for converted numbers by itoa()
+
+       // Read converted value
+       // Note that, register pair ADCH and ADCL can be read as a 16-bit value ADC
+       value = ADC;
+       // Convert "value" to "string" and display it
+   }
+   ```
+
+   Use standard C library and display converted value as string. Build the application and upload it to Arduino Uno board
 
    ![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
-```c
-/**********************************************************************
- * Function: ADC complete interrupt
- * Purpose:  Display value on LCD and send it to UART.
- **********************************************************************/
-ISR(ADC_vect)
-{
-    uint16_t value = 0;
-    char lcd_string[4] = "0000";
+6. Test all push buttons and write values to the table from Preparation tasks section and compare them with the calculated ones.
 
-    value = ADC;                  // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);  // Convert decimal value to string
+7. Apply the "extending" method from past labs and start the ADC conversion not every 33 milliseconds but every 100 milliseconds.
 
-    // WRITE YOUR CODE HERE
-}
-```
-
-
-
-
-
-3. Write the values to the table from Preparation tasks section and compare them with the calculated ones.
-
-   ![SimulIDE](images/screenshot_simulide_lcd_buttons.png)
-
-
-
-
-
-
-
-
-
-
-
-3. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+8. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
    > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
    >
@@ -200,25 +181,9 @@ ISR(ADC_vect)
 
 ## Experiments on your own
 
+1. Based on the converted values, distinguish which push button was pressed and display the information at LCD position `c`.
 
-
-
-
-
-
-
-
-
-
-
-1. Based on the converted values, write the part of the code that distinguishes which push button was pressed and display the information at LCD position `c`. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
-
-
-
-
-
-
-
+2. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
 
 <a name="report"></a>
 
