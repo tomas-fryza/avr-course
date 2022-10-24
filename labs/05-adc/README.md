@@ -191,7 +191,7 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 ## Experiments on your own
 
-1. Try to recalculate the input voltage values in mV. Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.
+1. Try to recalculate the input voltage values in mV. *Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.*
 
 2. Create a library for Analog-to-Digital Converter. Create new files `adc.h` and `adc.c`, suggest function names, their parameters, and program their bodies.
 
