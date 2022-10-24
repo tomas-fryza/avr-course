@@ -149,7 +149,9 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
    * enable ADC module
    * enable interrupt
 
+   <!--
    ![adc timing](images/timing_adc.png)
+   -->
 
    Use single conversion mode and start the conversion every 33 ms (use Timer/Counter1 overflow). When analog to digital conversion is finished, read the voltage level on push buttons and display it in decimal at LCD display position `a`. Display the same value also in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
 
