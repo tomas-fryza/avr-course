@@ -21,6 +21,6 @@ Consider an application for temperature measurement. Use analog temperature sens
 
    ![your figure]()
 
-3. Draw a flowchart for `main()` function and `TIMER1_OVF_vect` interrupt service routine which overflows every 1&nbsp;sec. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
+3. Draw two flowcharts for `main` function and `TIMER1_OVF_vect` interrupt service routine which overflows every 1&nbsp;sec. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
    ![your figure]()
