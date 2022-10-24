@@ -61,9 +61,9 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    ![Equation: Voltage divider](images/eq_divider2.png)
 
    ![Equation: Voltage divider](images/eq_divider3.png)
+   -->
 
    &nbsp;
-   -->
 
    ![Equation: Voltage divider](images/eq_divider4.png)
 
