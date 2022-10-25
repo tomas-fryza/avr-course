@@ -40,15 +40,15 @@ int main(void)
 
     // Configure Analog-to-Digital Convertion unit
     // Select ADC voltage reference to "AVcc with external capacitor at AREF pin"
-    ADMUX |= (1<<REFS0);
+    ADMUX = ADMUX | (1<<REFS0);
     // Select input channel ADC0 (voltage divider pin)
-    ADMUX &= ~(1<<MUX3 | 1<<MUX2 | 1<<MUX1 | 1<<MUX0);
+    
     // Enable ADC module
-    ADCSRA |= (1<<ADEN);
+    ADCSRA = ADCSRA | (1<<ADEN);
     // Enable conversion complete interrupt
-    ADCSRA |= (1<<ADIE);
+    ADCSRA = ADCSRA | (1<<ADIE);
     // Set clock prescaler to 128
-    ADCSRA |= (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
+    ADCSRA = ADCSRA | (1<<ADPS2 | 1<<ADPS1 | 1<<ADPS0);
 
     // Configure 16-bit Timer/Counter1 to start ADC conversion
     // Set prescaler to 33 ms and enable overflow interrupt
@@ -73,12 +73,12 @@ int main(void)
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Use single conversion mode and start conversion every 100 ms.
+ * Purpose:  Use Single Conversion mode and start conversion every 100 ms.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     // Start ADC conversion
-    ADCSRA |= (1<<ADSC);
+    ADCSRA = ADCSRA | (1<<ADSC);
 }
 
 /**********************************************************************
@@ -98,10 +98,5 @@ ISR(ADC_vect)
     lcd_gotoxy(8, 0);
     lcd_puts("    ");
     lcd_gotoxy(8, 0);
-    lcd_puts(string);
-    itoa(value, string, 16);
-    lcd_gotoxy(13, 0);
-    lcd_puts("   ");
-    lcd_gotoxy(13, 0);
     lcd_puts(string);
 }
