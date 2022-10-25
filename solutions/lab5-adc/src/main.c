@@ -42,13 +42,13 @@ int main(void)
     // Select ADC voltage reference to "AVcc with external capacitor at AREF pin"
     ADMUX = ADMUX | (1<<REFS0);
     // Select input channel ADC0 (voltage divider pin)
-    
+    ADMUX = ADMUX & ~(1<<MUX3 | 1<<MUX2 | 1<<MUX1 | 1<<MUX0);
     // Enable ADC module
-    ADCSRA = ADCSRA | (1<<ADEN);
+    ADCSRA |= (1<<ADEN);
     // Enable conversion complete interrupt
-    ADCSRA = ADCSRA | (1<<ADIE);
+    ADCSRA |= (1<<ADIE);
     // Set clock prescaler to 128
-    ADCSRA = ADCSRA | (1<<ADPS2 | 1<<ADPS1 | 1<<ADPS0);
+    ADCSRA |= (1<<ADPS2) | (1<<ADPS1) | (1<<ADPS0);
 
     // Configure 16-bit Timer/Counter1 to start ADC conversion
     // Set prescaler to 33 ms and enable overflow interrupt
@@ -78,7 +78,7 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     // Start ADC conversion
-    ADCSRA = ADCSRA | (1<<ADSC);
+    ADCSRA |= (1<<ADSC);
 }
 
 /**********************************************************************
@@ -99,4 +99,22 @@ ISR(ADC_vect)
     lcd_puts("    ");
     lcd_gotoxy(8, 0);
     lcd_puts(string);
+
+    // ADC measured:
+    // none: 1023
+    // select: 640
+    // left: 410
+    // down: 258
+    // up: 99
+    // right: 0
+    lcd_gotoxy(8, 1);
+    lcd_puts("      ");
+    lcd_gotoxy(8, 1);
+    if (value > 830)
+        lcd_puts("none");
+    else if (value > 520)
+        lcd_puts("select");
+    else if (value > 330)
+        lcd_puts("left");
+    // ...
 }
