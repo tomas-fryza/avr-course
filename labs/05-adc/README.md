@@ -51,7 +51,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 
 ## Part 2: Voltage divider
 
-1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0[A0] for each pressed buttons. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Write your values to the **PC0[A0] voltage** column in the following table.
+1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0 for each pressed buttons. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Write your values to the **PC0 voltage** column in the following table.
 
    ![voltage divider](images/voltage_divider.png)
 
@@ -79,7 +79,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    &nbsp;
    -->
 
-   | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** | **ADC value (measured, hex)** |
+   | **Push button** | **PC0 voltage** | **ADC value (calculated)** | **ADC value (measured)** | **ADC value (measured, hex)** |
    | :-: | :-: | :-: | :-: | :-: |
    | Right  | 0&nbsp;V | 0   | 0 | 0 |
    | Up     | 0.495&nbsp;V | 101 |  |  |
