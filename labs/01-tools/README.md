@@ -119,7 +119,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    * General connections of LEDs and push buttons in active-low and active-high way:
 
-      ![active_low_high_led](images/gpio_high_low2.png)
+      ![active_low_high_led](images/gpio_high_low.png)
       
       > Picture was created by [EasyEDA](https://easyeda.com/).
       >
