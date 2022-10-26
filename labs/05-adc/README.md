@@ -55,14 +55,6 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 
    ![voltage divider](images/voltage_divider.png)
 
-   <!--
-   ![Equation: Voltage divider](images/eq_divider1.png)
-
-   ![Equation: Voltage divider](images/eq_divider2.png)
-
-   ![Equation: Voltage divider](images/eq_divider3.png)
-   -->
-
    &nbsp;
 
    ![Equation: Voltage divider](images/eq_divider4.png)
@@ -72,12 +64,6 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    ![Equation: Voltage divider](images/eq_divider5.png)
 
    &nbsp;
-
-   <!--
-   ![Equation: Voltage divider](images/eq_divider6.png)
-
-   &nbsp;
-   -->
 
    | **Push button** | **PC0 voltage** | **ADC value (calculated)** | **ADC value (measured)** | **ADC value (measured, hex)** |
    | :-: | :-: | :-: | :-: | :-: |
@@ -139,11 +125,11 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 5. Go through the `main.c` file and make sure you understand each line. Use ATmega328P datasheet and complete the ADC configuration as follows:
 
-   * voltage reference: AVcc with external capacitor
+   * voltage reference: AVcc with external capacitor at AREF pin
    * input channel: ADC0
-   * clock prescaler: 128
    * enable ADC module
    * enable interrupt
+   * clock prescaler: 128
 
    ![adc timing](images/adc_timing.png)
 
