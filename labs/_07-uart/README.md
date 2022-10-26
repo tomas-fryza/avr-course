@@ -1,6 +1,4 @@
-# Lab 7: ADC and UART serial communication
-
-![LCD-keypad shield](images/arduino_uno_adc.jpg)
+# Lab 7: UART serial communication
 
 ### Learning objectives
 
@@ -17,8 +15,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 * [Preparation tasks](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
-* [Part 2: Analog-to-Digital Conversion](#part2)
-* [Part 3: UART communication](#part3)
+* [Part 2: UART communication](#part2)
 * [Experiments on your own](#experiments)
 * [Lab assignment](#assignment)
 * [References](#references)
@@ -27,158 +24,17 @@ The purpose of the laboratory exercise is to understand analog-to-digital number
 
 ## Preparation tasks (done before the lab at home)
 
-1. Use schematic of the [LCD keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields) and find out the connection of five push buttons: Select, Left, Up, Down, and Right.
-
-   &nbsp;
-
-   &nbsp;
-
-   &nbsp;
-
-   &nbsp;
-
-   &nbsp;
-
-   &nbsp;
-
-2. According to the connection, calculate the voltage values on pin PC0[A0] if one button is pressed at a time. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively.
-
-   ![Equation: Voltage divider](images/eq_divider1.png)
-
-   ![Equation: Voltage divider](images/eq_divider2.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](images/eq_divider3.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](images/eq_divider4.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](images/eq_divider5.png)
-
-   &nbsp;
-
-3. Calculate the voltage value if none of the push buttons is pressed.
-
-   ![Equation: Voltage divider](images/eq_divider6.png)
-
-   &nbsp;
-
-4. Calculate the ADC values for these voltages according to the following equation if reference is Vref=5V and number of bits for analog to digital conversion is n=10.
-
-   ![Equation: ADC conversion](images/eq_adc.png)
-
-   | **Push button** | **PC0[A0] voltage** | **ADC value (calculated)** | **ADC value (measured)** |
-   | :-: | :-: | :-: | :-: |
-   | Right  | 0&nbsp;V | 0   |  |
-   | Up     | 0.495&nbsp;V | 101 |  |
-   | Down   |       |     |  |
-   | Left   |       |     |  |
-   | Select |       |     |  |
-   | none   |       |     |  |
+xxx
 
 <a name="part1"></a>
 
 ## Part 1: Synchronize repositories and create a new folder
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/07-uart` for this exercise.
+xxx
 
 <a name="part2"></a>
 
-## Part 2: Analog-to-Digital Conversion
-
-We live in an analog world, surrounded by digital devices. Everything we see, feel or measure is analog in nature such as light, temperature, speed, pressure etc. It is obvious that we need something that could convert these analog parameters to digital value for a microcontroller or micro-processor to understand it.
-
-An [Analog to Digital Converter](https://components101.com/articles/analog-to-digital-adc-converters) (ADC) is a circuit that converts a continuous voltage value (analog) to a binary value (digital) that can be understood by a digital device which could then be used for digital computation. These ADC circuits can be found as an individual ADC ICs by themselves or embedded into a modern microcontroller.
-
-The internal ADC module of ATmega328P can be used in relatively slow and not extremely accurate data acquisitions. But it is a good choice in most situations, like reading sensor data or reading waveforms.
-
-AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns a 10-bit integer value, i.e. a range of 0 to 1023. It can convert data at up to 76.9kSPS, which goes down when higher resolution is used. We mentioned that there are 8 ADC channels available on pins, but there are also three internal channels that can be selected with the multiplexer decoder. These are temperature sensor (channel 8), bandgap reference (1.1V) and GND (0V) [[4]](https://embedds.com/adc-on-atmega328-part-1/).
-
-The operation with the AD converter is performed through ADMUX, ADCSRA, ADCL+ADCH, ADCSRB, and DIDR0 registers. See [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (**Analog-to-Digital Converter > Register Description**) and complete the following table.
-
-   | **Operation** | **Register(s)** | **Bit(s)** | **Description** |
-   | :-- | :-: | :-: | :-- |
-   | Voltage reference    | ADMUX | REFS1:0 | 00: ..., 01: AVcc voltage reference (5V), ... |
-   | Input channel        | ADMUX | MUX3:0 | 0000: ADC0, 0001: ADC1, ... |
-   | ADC enable           | ADCSRA |  |  |
-   | Start conversion     |  |  |  |
-   | ADC interrupt enable |  |  |  |
-   | ADC clock prescaler  |  | ADPS2:0 | 000: Division factor 2, 001: 2, 010: 4, ...|
-   | ADC 10-bit result    |  |  |  |
-
-### Version: Atmel Studio 7
-
-1. Create a new GCC C Executable Project for ATmega328P within `07-uart` working folder and copy/paste [template code](main.c) to your `main.c` source file.
-
-2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * UART files [`uart.h`](../library/include/uart.h), [`uart.c`](../library/uart.c) from `examples/library/include` and `examples/library` folders,
-   * LCD library files `lcd.h`, `lcd_definitions.h`, `lcd.c` from the previous labs,
-   * Timer library `timer.h` from the previous labs.
-
-### Version: Command-line toolchain
-
-1. Copy `main.c` and `Makefile` files from previous lab to `labs/07-uart` folder.
-
-2. Copy/paste [template code](main.c) to your `07-uart/main.c` source file.
-
-3. Add the source files of UART and LCD libraries between the compiled files in `07-uart/Makefile`.
-
-```Makefile
-# Add or comment libraries you are using in the project
-SRCS += $(LIBRARY_DIR)/lcd.c
-SRCS += $(LIBRARY_DIR)/uart.c
-#SRCS += $(LIBRARY_DIR)/twi.c
-#SRCS += $(LIBRARY_DIR)/gpio.c
-#SRCS += $(LIBRARY_DIR)/segment.c
-```
-
-### Both versions
-
-1. Compile the template code and download to Arduino Uno board or load `*.hex` firmware to SimulIDE circuit (create an identical connection to the LCD keypad shield).
-
-   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
-
-2. In `main.c` configure ADC as follows:
-   * voltage reference: AVcc with external capacitor
-   * input channel: ADC0
-   * clock prescaler: 128
-   * enable ADC module
-   * enable interrupt
-
-   Use single conversion mode and start each conversion every second (use Timer/Counter1 overflow).
-
-   Read the voltage level when a push button is pressed and display it in decimal at LCD display position `a`. Display the same value but in hexadecimal at position `b`. Note that you can use the 16-bit ADC variable--which is declared in the AVR library--to read the value from both converter registers ADCH:L.
-
-   ![LCD-keypad shield](images/arduino_uno_adc.jpg)
-
-```c
-/**********************************************************************
- * Function: ADC complete interrupt
- * Purpose:  Display value on LCD and send it to UART.
- **********************************************************************/
-ISR(ADC_vect)
-{
-    uint16_t value = 0;
-    char lcd_string[4] = "0000";
-
-    value = ADC;                  // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);  // Convert decimal value to string
-
-    // WRITE YOUR CODE HERE
-}
-```
-
-3. Write the values to the table from Preparation tasks section and compare them with the calculated ones.
-
-   ![SimulIDE](images/screenshot_simulide_lcd_buttons.png)
-
-<a name="part3"></a>
-
-## Part 3: UART communication
+## Part 2: UART communication
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
