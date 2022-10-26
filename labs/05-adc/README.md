@@ -150,7 +150,7 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 7. Apply the "extending" method from past labs and start the ADC conversion not every 33 milliseconds but every 100 milliseconds.
 
-8. (Optional) Based on the converted values, distinguish which push button was pressed and display the information at LCD position `c`.
+8. Based on the converted values, distinguish which push button was pressed and display the information at LCD position `c`.
 
 9. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
