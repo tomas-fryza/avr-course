@@ -55,16 +55,6 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 
    ![voltage divider](images/voltage_divider.png)
 
-   &nbsp;
-
-   ![Equation: Voltage divider](images/eq_divider4.png)
-
-   &nbsp;
-
-   ![Equation: Voltage divider](images/eq_divider5.png)
-
-   &nbsp;
-
    | **Push button** | **PC0 voltage** | **ADC value (calculated)** | **ADC value (measured)** | **ADC value (measured, hex)** |
    | :-: | :-: | :-: | :-: | :-: |
    | Right  | 0&nbsp;V | 0   | 0 | 0 |
