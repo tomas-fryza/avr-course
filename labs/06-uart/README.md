@@ -244,16 +244,15 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    After pressing the '1' key on computer keyboard, ATmega328P receives ASCII code of the key and sends the current Timer1 value back to PuTTY. After pressing the '2' key, ATmega328P resets Timer1 value, etc. Use ANSI escape sequences to highlight information within PuTTY console.
 
    ```c
-   uint8_t c;
+   uint8_t value;
    ...
-
-   c = uart_getc();
-   if (c != '\0') {        // Data available from UART
-       if (c == '1') {     // Key '1' received
+   value = uart_getc();
+   if (value != '\0') {     // Data available from UART
+       if (value == `1`) {  // Key `1` received
            ...
        }
    }
-   ```
+   ...
 
 <a name="report"></a>
 
