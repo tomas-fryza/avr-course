@@ -137,7 +137,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 4. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) from the previous lab to this file.
 
-5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. See the project structure:
+5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
 
    ```c
    ├── include
