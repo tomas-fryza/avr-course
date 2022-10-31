@@ -135,14 +135,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    > WARNING: Before Arduino board re-programming process, PuTTY app must be closed!
    >
+   > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
+   >
 
 6. Configure Timer1 to overflow four times per second and transmit UART string `Paris`. Use Logic Analyzer to visualize and decode transmitting strings.
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
    > Note that, you have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
-   >
-   > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
    >
 
 7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver.
