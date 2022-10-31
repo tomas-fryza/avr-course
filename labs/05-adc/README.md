@@ -96,15 +96,12 @@ AVR ADC module has 10-bit resolution with +/-2LSB accuracy. It means it returns 
 
 3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-adc/main.c) to `LAB5-ADC > src > main.c` source file.
 
-4. Use your favorite file manager and copy `timer`, `gpio`, and `lcd` libraries from the previous lab to the proper locations within the `LAB5-ADC` project. The final project structure should be as:
+4. Use your favorite file manager and copy `timer` and `lcd` libraries from the previous lab to the proper locations within the `LAB5-ADC` project. The final project structure should look like this:
 
    ```c
    ├── include
    │   └── timer.h
    ├── lib
-   │   ├── gpio
-   |   │   ├── gpio.c
-   |   |   └── gpio.h
    │   └── lcd
    |       ├── lcd.c
    |       ├── lcd.h
