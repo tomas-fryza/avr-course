@@ -27,22 +27,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 1. Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) and find out on which Arduino Uno pins the UART transmitter (Tx) and receiver (Rx) are located.
 
-2. Remind yourself, what an [ASCII table](http://www.asciitable.com/) is. What are the codes/binary values for uppercase letters `A` to `Z`, lowercase letters `a` to `z`, and numbers `0` to `9` in this table? What codes are defined for ASCII control characters `\r`, `\n`, and `\t`?
-
-   | **Char** | **Decimal** | **Hexadecimal** | **Binary** |
-   | :-: | :-: | :-: | :-: |
-   | `A` | 65 | 0x41 | `0b0100_0001` |
-   | `B` |  |  |  |
-   | ... |  |  |  |
-   | `a` | 97 | 0x61 | `0b0110_0001` |
-   | `b` |  |  |  |
-   | ... |  |  |  |
-   | `0` | 48 | 0x30 | `0b0011_0000` |
-   | `1` |  |  |  |
-   | ... |  |  |  |
-   | `\r` |  |  |  |
-   | `\n` |  |  |  |
-   | `\t` |  |  |  |
+2. Remind yourself, what an [ASCII table](http://www.asciitable.com/) is. What codes are defined for control characters `Esc`, `Space`, `Tab`, and `Enter`?
 
 <a name="part1"></a>
 
@@ -145,7 +130,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    > Note that, you have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
    >
 
-7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver.
+7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
 
    ```c
    ISR(TIMER1_OVF_vect)
@@ -160,6 +145,20 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
        }
    }
    ```
+
+   | **Char** | **Decimal** | **Hexadecimal** | **Binary** |
+   | :-: | :-: | :-: | :-: |
+   | `a` | 97 | 0x61 | `0b0110_0001` |
+   | `b` |  |  |  |
+   | `c` |  |  |  |
+   | `0` | 48 | 0x30 | `0b0011_0000` |
+   | `1` |  |  |  |
+   | `2` |  |  |  |
+   | `Esc` |  |  |  |
+   | `Space` |  |  |  |
+   | `Tab` |  |  |  |
+   | `Backspace` |  |  |  |
+   | `Enter` |  |  |  |
 
 8. (Optional) Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
 
