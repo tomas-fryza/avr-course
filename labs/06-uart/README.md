@@ -161,7 +161,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    }
    ```
 
-8. (Optional) Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect the Wi-Fi module to the Arduino Uno according to the following instructions.
+8. (Optional) Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to the Arduino Uno according to the following instructions.
 
    | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
    | :-: | :-: | :-: | :-: |
