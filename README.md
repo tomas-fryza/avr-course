@@ -9,9 +9,8 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 3. [Interrupts and polling](labs/03-interrupts)
 4. [Liquid Crystal Display (LCD)](labs/04-lcd)
 5. [Analog-to-Digital Converter (ADC)](labs/05-adc)
-
+6. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
 <!--
-7. [UART serial communication](labs/07-uart)
 8. [I2C/TWI serial communication](labs/08-i2c)
 9. [C project: General instructions](labs/project)
 10. (Self-study) [Combining C and assembly language](labs/09-asm)
