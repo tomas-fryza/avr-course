@@ -200,14 +200,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    *    \033[#;#m    or
    *    \033[#;#;#m  etc. */
    uart_puts("\033[4;32m");        // 4: underline style; 32: green foreground
-   uart_puts("This is all Green and Underlined.");
+   uart_puts("This is all Green and Underlined\r\n");
    uart_puts("\033[0m");           // 0: reset all attributes
-   uart_puts("This is Normal text again.");
+   uart_puts("This is Normal text again\r\n");
    ```
 
-2. Program a piece of code to calculate the parity bit from the specified value.
+2. Program a piece of code to calculate even parity bit from received value.
 
-   > Note: Keep UART strings as shot as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
+   > Note: Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
    >
    >```c
    >/** @brief  Size of the circular receive buffer, must be power of 2
