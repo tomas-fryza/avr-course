@@ -19,7 +19,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: LCD display module](#part2)
+* [Part 2: LCD screen module](#part2)
 * [Part 3: Library for HD44780 based LCDs](#part3)
 * [Part 4: Stopwatch](#part4)
 * [Part 5: Custom characters](#part5)
@@ -73,7 +73,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 
 <a name="part2"></a>
 
-## Part 2: LCD display module
+## Part 2: LCD screen module
 
 **LCD (Liquid Crystal Display)** is an electronic device which is used for display any ASCII text. There are many different screen sizes e.g. 16x1, 16x2, 16x4, 20x4, 40x4 characters and each character is made of 5x8 matrix pixel dots. LCD displays have different LED backlight in yellow-green, white and blue color. LCD modules are mostly available in COB (Chip-On-Board) type. With this method, the controller IC chip or driver (here: HD44780) is directly mounted on the backside of the LCD module itself.
 
