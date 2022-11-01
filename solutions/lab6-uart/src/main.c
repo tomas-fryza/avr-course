@@ -36,7 +36,6 @@ int main(void)
 {
     // Initialize UART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
-    // uart_init(UART_BAUD_SELECT(115200, F_CPU));
     
     // Configure 16-bit Timer/Counter1 to transmit UART data
     // Set prescaler to 262 ms and enable overflow interrupt
@@ -73,11 +72,21 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
+    // Transmit UART string(s)
+}
+
+
+
+
+
+
+    // uart_init(UART_BAUD_SELECT(115200, F_CPU));
+
+
+
+
     // uint8_t value;
     // char string[8];  // String for converted numbers by itoa()
-
-    // Transmit UART string(s)
-    // uart_puts("Paris\r\n");
     // uart_puts("AT+GMR\r\n");
 
 /*    value = uart_getc();
@@ -91,4 +100,3 @@ ISR(TIMER1_OVF_vect)
         uart_puts("\r\n");
     }
 */
-}
