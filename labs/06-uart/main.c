@@ -34,7 +34,7 @@
  **********************************************************************/
 int main(void)
 {
-    // Initialize UART to asynchronous, 8N1, 9600
+    // Initialize USART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
     
     // Configure 16-bit Timer/Counter1 to transmit UART data
