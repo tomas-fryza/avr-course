@@ -193,15 +193,19 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 1. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles. Because the PlatformIO Serial Monitor does not support the ANSI Excape Sequences, you have to use PuTTY application.
 
    ```c
-   /* Color/formatting sequence always starts by "\033[" and ends by "m" strings.
-   * One or more formatting codes "#", separated by ";" can be used within
-   * one line, such as:
-   *    \033[#m      or
-   *    \033[#;#m    or
-   *    \033[#;#;#m  etc. */
-   uart_puts("\033[4;32m");        // 4: underline style; 32: green foreground
+   /* 
+    * Color/formatting sequence is prefixed with `Escape` (`\x1b` in hexadecimal),
+    * followed by opening square bracket `[`, commands delimeted by semi colon `;`
+    * and ended by `m` character.
+    *
+    * Examples:
+    *   \x1b[1;31m  - Set style to bold, red foreground
+    *   \x1b[4,32m  - Set underline style, green foreground
+    *   \x1b[0m     - Reset all attributes
+    */
+   uart_puts("\x1b[4;32m");    // 4: underline style; 32: green foreground
    uart_puts("This is all Green and Underlined\r\n");
-   uart_puts("\033[0m");           // 0: reset all attributes
+   uart_puts("\x1b[0m");       // 0: reset all attributes
    uart_puts("This is Normal text again\r\n");
    ```
 
