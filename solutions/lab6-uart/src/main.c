@@ -49,11 +49,11 @@ int main(void)
     // uart_puts("Print \tone \tline... ");
     // uart_puts("done\r\n");
 
-    uart_puts("\x1b[4;32m");        // 4: underline style; 32: green foreground
+    uart_puts("\x1b[4;32m");  // 4: underline style; 32: green foreground
     uart_puts("This is all Green and Underlined\r\n");
-    uart_puts("\x1b[4;31m");        // 4: underline style; 31: red foreground
+    uart_puts("\x1b[4;31m");  // 4: underline style; 31: red foreground
     uart_puts("ERROR\r\n");
-    uart_puts("\x1b[0m");           // 0: reset all attributes
+    uart_puts("\x1b[0m");     // 0: reset all attributes
     uart_puts("This is Normal text again\r\n");
 
     uart_puts("Chr \tDec \tHx \tBin \t\tEven \r\n");
