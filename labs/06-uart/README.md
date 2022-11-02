@@ -164,14 +164,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
    | :-: | :-: | :-: | :-: |
-   | U0TXD | Rx (pin 0) | GND | GND |
+   | U0TXD | Tx (pin 1) | GND | GND |
    | CHIP_EN | 3.3V | GPIO2 | Not connected |
    | EXT_RSTB | Not connected | GPIO0 | Not connected |
-   | 3.3V | 3.3V | U0RXD | Tx (pin 1) |
+   | 3.3V | 3.3V | U0RXD | Rx (pin 0) |
 
    ![ESP8266 interconnection](images/cv_esp8266_foto_description.jpg)
 
-   In your code, initialize UART to 8N1 mode, 115200 Bd and in Timer1 overflow transmit one of the following AT commands; make sure command string ends by `\r\n`. Use Logic analyzer to read the response of Wi-Fi module.
+   In your code, disable interrupttions by commenting `// sei();` function. The reason is the micro controller will not affect UART lines and whole communication will be done between Serial Monitor and Wi-Fi module. To use PlatfomIO Serial Monitor, add the following command to `platformio.ini` project configuration file: `monitor_speed = 115200`. Compile and upload the application. Test the following AT commands and see the module's responces. If needed, use Logic analyzer to read the response of Wi-Fi module.
 
    * `AT` - Check the communication with module
    * `AT+CWMODE=1` - Set the module mode
