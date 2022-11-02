@@ -203,9 +203,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
     *   \x1b[4,32m  - Set underline style, green foreground
     *   \x1b[0m     - Reset all attributes
     */
-   uart_puts("\x1b[4;32m");    // 4: underline style; 32: green foreground
+   uart_puts("\x1b[4;32m");  // 4: underline style; 32: green foreground
    uart_puts("This is all Green and Underlined\r\n");
-   uart_puts("\x1b[0m");       // 0: reset all attributes
+   uart_puts("\x1b[0m");     // 0: reset all attributes
    uart_puts("This is Normal text again\r\n");
    ```
 
