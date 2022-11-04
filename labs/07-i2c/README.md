@@ -1,6 +1,8 @@
-# Lab 8: I2C/TWI serial communication
+# Lab 7: Inter-Integrated Circuits (I2C)
 
+<!--
 ![I2C scan](images/arduino_uno_i2c.jpg)
+-->
 
 ### Learning objectives
 
@@ -8,50 +10,48 @@ After completing this lab you will be able to:
 
 * Understand the I2C communication
 * Use functions from I2C library
-* Use FSM-type of application
+* Perform data transfers between I2C devices and MCU
 
-The purpose of the laboratory exercise is to understand serial synchronous communication using the I2C (Inter-Integrated Circuit) bus, as well as the structure of the address and data frame and the possibilities of communication using the internal TWI (Two Wire Interface) unit. Another goal is to understand the structure of FSM (Finite-State Machine) in C.
+The purpose of the laboratory exercise is to understand serial synchronous communication using the I2C (Inter-Integrated Circuit) bus, as well as the structure of the address and data frame and the possibilities of communication using the internal TWI (Two Wire Interface) unit.
 
 ### Table of contents
 
-* [Preparation tasks](#preparation)
+* [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: I2C bus](#part2)
 * [Part 3: I2C scanner](#part3)
 * [Part 4: Final application](#part4)
 * [Experiments on your own](#experiments)
-* [Lab assignment](#assignment)
+* [Post-Lab report](#report)
 * [References](#references)
 
 <a name="preparation"></a>
 
-## Preparation tasks (done before the lab at home)
+## Pre-Lab preparation
 
-1. Use schematic of the [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board and find out to which pins the SDA and SCL signals are connected.
+1. Use schematic of the [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board and find out on which Arduino Uno pins the SDA and SCL signals are located.
 
-   | **Signal** | **MCU pin** | **Arduino pin(s)** |
-   | :-: | :-: | :-: |
-   | SDA (data)  |  |  |
-   | SCL (clock) |  |  |
-
-2. What is the general structure of I2C address and data frames?
-
-   | **Frame type** | **8** | **7** | **6** | **5** | **4** | **3** | **2** | **1** | **0** | **Description**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-   | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-- |
-   | Address | | | | | | | | | | |
-   | Data    | | | | | | | | | | |
+2. Remind yourself, what the general structure of [I2C address and data frames](https://www.electronicshub.org/basics-i2c-communication/) is.
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new folder
+## Part 1: Synchronize repositories and create a new project
 
-Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository. Create a new working folder `labs/08-i2c` for this exercise.
+1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. Run Visual Studio Code and create a new PlatformIO project `lab7-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB7-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
+4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-i2c/report.md) to your `LAB7-I2C > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
 
 <a name="part2"></a>
 
 ## Part 2: I2C bus
 
-I2C is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers. Each slave device has a unique address [[2]](https://i2c.info/).
+I2C (Inter-Integrated Circuit) is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers. Each slave device has a unique address [[2]](https://i2c.info/).
 
 I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages.
 
@@ -67,62 +67,89 @@ The address byte is followed by one or more data bytes, where each contains 8 bi
 
 Note that, most I2C devices support repeated start condition. This means that before the communication ends with a stop condition, master device can repeat start condition with address byte and change the mode from writing to reading.
 
-### Example of I2C communication
-
-> **Question:** Let the following image shows several frames of I2C communication between ATmega328P and slave device. What circuit is it and what information was sent over the bus?
+> ### Example of I2C communication
 >
-   &nbsp;
-   ![Temperature reception from DHT12 sensor](images/twi-dht12_temperature_decoded.png)
-
+> **Question:** Let the following image shows several frames of I2C communication between ATmega328P and a slave device. What circuit is it and what information was sent over the bus?
+>
+> &nbsp;
+> ![Temperature reception from DHT12 sensor](images/twi-dht12_temperature_decoded.png)
+>
 > **Answer:** This communication example contains a total of five frames. After the start condition, which is initiated by the master, the address frame is always sent. It contains a 7-bit address of the slave device, supplemented by information on whether the data will be written to the slave or read from it to the master. The ninth bit of the address frame is an acknowledgment provided by the receiving side.
 >
 > Here, the address is 184 (decimal), i.e. `1011100_0` in binary including R/W=0. The slave address is therefore 1011100 (0x5c) and master will write data to the slave. The slave has acknowledged the address reception, so that the communication can continue.
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](../../docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
 >
-   | **Register address** | **Description** |
-   | :-: | :-- |
-   | 0x00 | Humidity integer part |
-   | 0x01 | Humidity fractional part |
-   | 0x02 | Temperature integer part |
-   | 0x03 | Temperature fractional part |
-   | 0x04 | Checksum |
-
+> | **Register address** | **Description** |
+> | :-: | :-- |
+> | 0x00 | Humidity integer part |
+> | 0x01 | Humidity fractional part |
+> | 0x02 | Temperature integer part |
+> | 0x03 | Temperature fractional part |
+> | 0x04 | Checksum |
+>
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
 >
 > The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees celsius.
 >
-   | **Frame #** | **Description** |
-   | :-: | :-- |
-   | 1 | Address frame with SLA+W = 184 (0x5c<<1 + 0) |
-   | 2 | Data frame sent to the slave represents the ID of internal register |
-   | 3 | Address frame with SLA+R = 185 (0x5c<<1 + 1) |
-   | 4 | Data frame with integer part of temperature read from slave |
-   | 5 | Data frame with fractional part of temperature read from slave|
+> | **Frame #** | **Description** |
+> | :-: | :-- |
+> | 1 | Address frame with SLA+W = 184 (0x5c<<1 + 0) |
+> | 2 | Data frame sent to the slave represents the ID of internal register |
+> | 3 | Address frame with SLA+R = 185 (0x5c<<1 + 1) |
+> | 4 | Data frame with integer part of temperature read from slave |
+> | 5 | Data frame with fractional part of temperature read from slave|
 
 <a name="part3"></a>
 
 ## Part 3: I2C scanner
 
-### Version: SimulIDE
+The goal of this task is to create a program that will verify the presence of unknown devices connected to the I2C bus by sequentially trying all address combinations.
 
-1. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a connection according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
-   ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
-### Version: Real hardware
 
-1. Use breadboard to connect humidity/temperature [DHT12](../../docs/dht12_manual.pdf) digital sensor and combined module with real time clock (RTC) device [DS3231](../../docs/ds3231_manual.pdf) and [AT24C32](../../docs/at24c32_manual.pdf) memory to Arduino Uno board. Instead of external pull-up resistors on the SDA and SCL pins, it is possible to use the internal ones, directly in the microcontroller.
+1. Use breadboard and connect available I2C modules to Arduino Uno board, such as humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor, combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory, or [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor). Instead of external pull-up resistors on the SDA and SCL pins, the internal ones will be used.
 
-   | **DHT12 pin** | **Arduino Uno pin** |  |
-   | :-: | :-: | :-: |
-   | +<br>SDA<br>-<br>SCL | 5V (or 3.3V)<br>SDA<br>GND<br>SCL | ![Humidity/temperature sensor DHT12](images/dht12.jpg) |
+   | **DHT12 pin** | **Arduino Uno pin** |
+   | :-: | :-: |
+   | + | 5V (or 3.3V) |
+   | SDA | SDA |
+   | - | GND |
+   | SCL | SCL |
 
-   | **RTC+EEPROM pin** | **Arduino Uno pin** |  |
-   | :-: | :-: | :-: |
-   | 32K<br>SQW<br>SCL<br>SDA<br>VCC<br>GND | Not connected<br>Not connected<br>SCL<br>SDA<br>5V (or 3.3V)<br>GND | ![RTC/EEPROM module](images/rtc_eeprom.jpg) |
+   | **RTC+EEPROM pin** | **Arduino Uno pin** |
+   | :-: | :-: |
+   | 32K | Not connected |
+   | SQW | Not connected |
+   | SCL | SCL |
+   | SDA | SDA |
+   | VCC | 5V (or 3.3V) |
+   | GND | GND |
+
+   | **GY-521 pin** | **Arduino Uno pin** |
+   | :-: | :-: |
+   | VCC | 5V (or 3.3V) |
+   | GND | GND |
+   | SCL | SCL |
+   | SDA | SDA |
+   | XDA | Not connected |
+   | XCL | Not connected |
+   | ADO | Not connected |
+   | INT | Not connected |
+
+
+
+
+
+
+
+
+
+
+
 
 ### Version: Atmel Studio 7
 
@@ -324,9 +351,34 @@ ISR(TIMER1_OVF_vect)
 
 Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
 
+
+
+
+
+
+
+
+
+
+
+
 <a name="experiments"></a>
 
 ## Experiments on your own
+
+
+
+
+
+
+1. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a connection according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
+
+   ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
+
+
+
+
+
 
 ### Version: SimulIDE
 
@@ -357,7 +409,7 @@ Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Use
 
 ## References
 
-1. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
+1. Tomas Fryza. [Schematic of Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board
 
 2. Ezoic. [I2C Info - I2C Bus, Interface and Protocol](https://i2c.info/)
 
