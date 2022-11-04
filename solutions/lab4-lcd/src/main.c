@@ -8,7 +8,7 @@
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
- * Components:
+ * Components list:
  *   16x2 character LCD with parallel interface
  *     VSS  - GND (Power supply ground)
  *     VDD  - +5V (Positive power supply)
@@ -24,6 +24,7 @@
  *     A+K  - Back-light enabled/disabled by PB2
  * 
  **********************************************************************/
+
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions

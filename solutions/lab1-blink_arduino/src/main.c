@@ -1,6 +1,7 @@
 /***********************************************************************
  * 
  * Blink LEDs in Arduino-style and use function from the delay library.
+ * 
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
  * Copyright (c) 2022 Tomas Fryza
@@ -18,6 +19,7 @@
 #ifndef F_CPU
 # define F_CPU 16000000 // CPU frequency in Hz required for delay funcs
 #endif
+
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>     // AVR device-specific IO definitions
