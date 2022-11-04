@@ -64,7 +64,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    | Select |  |  |  |  |
    | none   |  |  |  |  |
 
-   ![SimulIDE](images/screenshot_simulide_lcd_probe.png)
+   ![SimulIDE](images/screenshot_simulide_voltage_divider.png)
 
 <a name="part3"></a>
 
@@ -122,6 +122,8 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
 
    Use single conversion mode and start the AD conversion every 33 ms by Timer/Counter1 overflow. When analog to digital conversion is finished, read the voltage level on push buttons and display it in decimal at LCD display position `a`. Display the same value in hexadecimal at position `b`. Note that you can use the 16-bit `ADC` variable (declared in the AVR library) to read the value from both converter registers ADCH:L.
 
+   ![LCD init screenshot](images/screenshot_lcd_adc_init.png)
+
    ```c
    /**********************************************************************
     * Function: ADC complete interrupt
@@ -139,7 +141,7 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
    }
    ```
 
-   Use standard C library and display converted value as string. Build the application and upload it to Arduino Uno board
+   Use standard C library and display converted value as string. Build the application and upload it to Arduino Uno board.
 
    ![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
