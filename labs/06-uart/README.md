@@ -13,7 +13,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 ### Table of contents
 
-* [Preparation tasks](#preparation)
+* [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: Basics of UART communication](#part2)
 * [Part 3: Communication between Arduino board and computer](#part3)
@@ -25,7 +25,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 ## Pre-Lab preparation
 
-1. Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) and find out on which Arduino Uno pins the UART transmitter (Tx) and receiver (Rx) are located.
+1. Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board and find out on which Arduino Uno pins the UART transmitter (Tx) and receiver (Rx) are located.
 
 2. Remind yourself, what an [ASCII table](http://www.asciitable.com/) is. What codes are defined for control characters `Esc`, `Space`, `Tab`, and `Enter`?
 
@@ -267,7 +267,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 ## References
 
-1. Tomas Fryza. [Schematic of Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields)
+1. Tomas Fryza. [Schematic of Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board
 
 2. [ASCII Table](http://www.asciitable.com/)
 
