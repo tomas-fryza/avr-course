@@ -15,7 +15,6 @@
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
-#include <gpio.h>           // GPIO library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
@@ -81,6 +80,7 @@ ISR(TIMER1_OVF_vect)
     ADCSRA = ADCSRA | (1<<ADSC);
 }
 
+
 /**********************************************************************
  * Function: ADC complete interrupt
  * Purpose:  Display converted value on LCD screen.
@@ -125,10 +125,3 @@ ISR(ADC_vect)
         lcd_puts("left");
     // ...
 }
-
-
-
-
-/*
-
-*/
