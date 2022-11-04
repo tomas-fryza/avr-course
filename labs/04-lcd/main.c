@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- * Stopwatch by Timer/Counter2 on the Liquid Crystal Display (LCD)
+ * Stopwatch by Timer/Counter2 on the Liquid Crystal Display (LCD).
  *
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
@@ -8,7 +8,7 @@
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
- * Components:
+ * Components list:
  *   16x2 character LCD with parallel interface
  *     VSS  - GND (Power supply ground)
  *     VDD  - +5V (Positive power supply)
