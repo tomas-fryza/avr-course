@@ -83,9 +83,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    $ git config user.name "your-git-user-name"
    $ git config user.email "your-email@address.com"
    ```
-   
+
    You can verify that the changes were made correctly by:
-   
+
    ```shell
    $ git config --list
    ```
@@ -118,7 +118,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * General connections of LEDs and push buttons in active-low and active-high way:
 
       ![active_low_high_led](images/gpio_high_low_easyEda.png)
-      
+
       > **Note:** Picture was created by [EasyEDA](https://easyeda.com/).
 
 5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
