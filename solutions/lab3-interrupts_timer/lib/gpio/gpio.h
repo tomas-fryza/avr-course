@@ -4,7 +4,8 @@
 /***********************************************************************
  * 
  * GPIO library for AVR-GCC.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
  * Copyright (c) 2019 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
@@ -15,7 +16,7 @@
 /**
  * @file 
  * @defgroup fryza_gpio GPIO Library <gpio.h>
- * @code #include "gpio.h" @endcode
+ * @code #include <gpio.h> @endcode
  *
  * @brief GPIO library for AVR-GCC.
  *

@@ -52,7 +52,7 @@
  * LCD and target specific definitions below can be defined in a separate include file with name lcd_definitions.h instead modifying this file
  * All definitions added to the file lcd_definitions.h will override the default definitions from lcd.h
  */
-#include "lcd_definitions.h"
+#include <lcd_definitions.h>
 
 
 /**

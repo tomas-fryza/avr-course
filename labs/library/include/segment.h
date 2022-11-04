@@ -4,9 +4,10 @@
 /***********************************************************************
  * 
  * Seven-segment display library for AVR-GCC.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
- * Copyright (c) 2019-Present Tomas Fryza
+ * Copyright (c) 2019 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
@@ -15,7 +16,7 @@
 /**
  * @file 
  * @defgroup fryza_segment Seven-segment Library <segment.h>
- * @code #include "segment.h" @endcode
+ * @code #include <segment.h> @endcode
  *
  * @brief Seven-segment display library for AVR-GCC.
  *
@@ -24,7 +25,7 @@
  *
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
- * @copyright (c) 2019-Present Tomas Fryza, This work is licensed under 
+ * @copyright (c) 2019 Tomas Fryza, This work is licensed under 
  *                the terms of the MIT license
  * @{
  */

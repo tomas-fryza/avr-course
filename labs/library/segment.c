@@ -1,13 +1,15 @@
 /***********************************************************************
  * 
  * Seven-segment display library for AVR-GCC.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
- * Copyright (c) 2019-Present Tomas Fryza
+ * Copyright (c) 2019 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  *
  **********************************************************************/
+
 
 /* Includes ----------------------------------------------------------*/
 #ifndef F_CPU
@@ -16,6 +18,7 @@
 #include <util/delay.h>
 #include "gpio.h"
 #include "segment.h"
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -30,6 +33,7 @@ void SEG_init(void)
     GPIO_config_output(&DDRD, SEG_CLK);
     GPIO_config_output(&DDRB, SEG_DATA);
 }
+
 
 /**********************************************************************
  * Function: SEG_update_shift_regs()
@@ -91,9 +95,11 @@ void SEG_update_shift_regs(uint8_t segments, uint8_t position)
 
 }
 
+
 /**********************************************************************
  * Function: SEG_clear()
  **********************************************************************/
+
 
 /**********************************************************************
  * Function: SEG_clk_2us()

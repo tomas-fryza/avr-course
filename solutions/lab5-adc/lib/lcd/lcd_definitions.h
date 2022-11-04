@@ -6,7 +6,8 @@
  * Adjusting the display settings. All definitions added to the file 
  * "lcd_definitions.h" will override the default definitions from 
  * "lcd.h" (see Peter Fleury's LCD library for HD44780 based LCDs).
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
  * Copyright (c) 2019 Tomas Fryza, Peter Fleury
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
@@ -17,7 +18,7 @@
 /**
  * @file 
  * @defgroup fryza_lcd LCD Definitions <lcd_definitions.h>
- * @code #include "lcd_definitions.h" @endcode
+ * @code #include <lcd_definitions.h> @endcode
  *
  * @brief Adjusting the display settings.
  *

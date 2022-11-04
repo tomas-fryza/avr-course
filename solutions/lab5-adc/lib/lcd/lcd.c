@@ -30,7 +30,7 @@
 # define F_CPU 16000000
 #endif
 #include <util/delay.h>
-#include "lcd.h"
+#include <lcd.h>
 
 
 /*
