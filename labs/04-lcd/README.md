@@ -42,7 +42,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
    | D[7:4] |  |  |
    | K |  |  |
 
-2. What is the ASCII table? What are the codes/values for uppercase letters `A` to `Z`, lowercase letters `a` to `z`, and numbers `0` to `9` in this table?
+2. What is the ASCII table? What are the codes/values for uppercase letters `A` to `E`, lowercase letters `a` to `e`, and numbers `0` to `4` in this table?
 
    | **Char** | **Decimal** | **Hexadecimal** |
    | :-: | :-: | :-: |
@@ -128,8 +128,6 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    | `lcd_gotoxy` | | | |
    | `lcd_putc` | | | |
    | `lcd_puts` | | | |
-   | `lcd_command` | | | |
-   | `lcd_data` | | | |
 
 2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/04-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
 
