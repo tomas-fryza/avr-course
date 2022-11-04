@@ -1,4 +1,4 @@
-# Lab 3: Interrupts and polling
+# Lab 3: Timers
 
 <!--
 ![Multi-function shield](images/arduino_uno_multi-shield.jpg)
