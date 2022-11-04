@@ -35,8 +35,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
 
-   > Useful bash and git commands are: `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-   >
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
 2. Run Visual Studio Code and create a new PlatformIO project `lab6-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
@@ -72,7 +71,6 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 > **Answer:** 8N1 means that 8 data bits are transmitted, no parity is used, and the number of stop bits is one. Because the frame always starts with a low level start bit and the order of the data bits is from LSB to MSB, the data transmitted bu UART is therefore `0100_0101` (0x45) and according to the [ASCII](http://www.asciitable.com/) (American Standard Code for Information Interchange) table, it represents the letter `E`.
 >
 > The figure further shows that the bit period, i.e. the duration of one bit, is 104&nbsp;us. The symbol rate of the communication is thus 1/104e-6 = 9615, i.e. approximately 9600&nbsp;Bd.
->
 
 <a name="part3"></a>
 
@@ -118,17 +116,15 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    ![PuTTY](images/screenshot_putty_type.png)
    ![PuTTY](images/screenshot_putty_config.png)
 
-   > WARNING: Before Arduino board re-programming process, PuTTY app must be closed!
+   > **WARNING:** Before Arduino board re-programming process, PuTTY app must be closed!
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
-   >
 
 6. Configure Timer1 to overflow four times per second and transmit UART string `Paris`. Use Logic Analyzer to visualize and decode transmitting strings.
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
-   > Note that, you have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
-   >
+   > **Note:** You have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
 
 7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
 
@@ -183,8 +179,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 9. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
-   > Useful git commands are: `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
-   >
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
@@ -211,28 +206,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 2. Program a piece of code to calculate even parity bit from received value.
 
-   > Note: Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
-   >
-   >```c
-   >/** @brief  Size of the circular receive buffer, must be power of 2
-   > *
-   > *  You may need to adapt this constant to your target and your application by adding
-   > *  CDEFS += -DUART_RX_BUFFER_SIZE=nn to your Makefile.
-   > */
-   >#ifndef UART_RX_BUFFER_SIZE
-   ># define UART_RX_BUFFER_SIZE 128
-   >#endif
-   >
-   >/** @brief  Size of the circular transmit buffer, must be power of 2
-   > *
-   > *  You may need to adapt this constant to your target and your application by adding
-   > *  CDEFS += -DUART_TX_BUFFER_SIZE=nn to your Makefile.
-   > */
-   >#ifndef UART_TX_BUFFER_SIZE
-   ># define UART_TX_BUFFER_SIZE 128
-   >#endif
-   >```
-   >
+   ![Flowchart for Even parity](images/flowchart_parity_algo.png)
 
 3. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
@@ -257,6 +231,29 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
        }
    }
    ...
+   ```
+
+   > **Note:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
+   >
+   >```c
+   >/** @brief  Size of the circular receive buffer, must be power of 2
+   > *
+   > *  You may need to adapt this constant to your target and your application by adding
+   > *  CDEFS += -DUART_RX_BUFFER_SIZE=nn to your Makefile.
+   > */
+   >#ifndef UART_RX_BUFFER_SIZE
+   ># define UART_RX_BUFFER_SIZE 128
+   >#endif
+   >
+   >/** @brief  Size of the circular transmit buffer, must be power of 2
+   > *
+   > *  You may need to adapt this constant to your target and your application by adding
+   > *  CDEFS += -DUART_TX_BUFFER_SIZE=nn to your Makefile.
+   > */
+   >#ifndef UART_TX_BUFFER_SIZE
+   ># define UART_TX_BUFFER_SIZE 128
+   >#endif
+   >```
 
 <a name="report"></a>
 
