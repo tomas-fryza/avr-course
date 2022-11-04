@@ -116,7 +116,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    ![PuTTY](images/screenshot_putty_type.png)
    ![PuTTY](images/screenshot_putty_config.png)
 
-   > **WARNING:** Before Arduino board re-programming process, PuTTY app must be closed!
+   > **Warning:** Before Arduino board re-programming process, PuTTY app must be closed!
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
@@ -233,7 +233,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    ...
    ```
 
-   > **Note:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
+   > **Warning:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
    >
    >```c
    >/** @brief  Size of the circular receive buffer, must be power of 2
@@ -259,9 +259,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 ## Post-Lab report
 
-*Complete all parts of `LAB4-LCD > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB6-UART > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-*Vypracujte všechny části ze souboru `LAB4-LCD > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB6-UART > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
