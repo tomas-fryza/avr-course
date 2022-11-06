@@ -10,8 +10,9 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 4. [Liquid Crystal Display (LCD)](labs/04-lcd)
 5. [Analog-to-Digital Converter (ADC)](labs/05-adc)
 6. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
+7. [Inter-Integrated Circuits (I2C)](labs/08-i2c)
+
 <!--
-8. [I2C/TWI serial communication](labs/08-i2c)
 9. [C project: General instructions](labs/project)
 10. (Self-study) [Combining C and assembly language](labs/09-asm)
 -->
@@ -20,7 +21,6 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 * [Basic C template, blink a LED](examples/blink_arduino/)
 * [Project documentation with Doxygen](examples/doxygen)
-* [C libraries](examples/library)
 * [Autonomous slot car](examples/slot-car)
 
 ## Components

@@ -20,7 +20,7 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 * [Part 1: Synchronize repositories and create a new folder](#part1)
 * [Part 2: I2C bus](#part2)
 * [Part 3: I2C scanner](#part3)
-* [Part 4: Final application](#part4)
+* [Part 4: Communication with I2C devices](#part4)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -85,9 +85,9 @@ Note that, most I2C devices support repeated start condition. This means that be
 > | **Register address** | **Description** |
 > | :-: | :-- |
 > | 0x00 | Humidity integer part |
-> | 0x01 | Humidity fractional part |
+> | 0x01 | Humidity decimal part |
 > | 0x02 | Temperature integer part |
-> | 0x03 | Temperature fractional part |
+> | 0x03 | Temperature decimal part |
 > | 0x04 | Checksum |
 >
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
@@ -108,10 +108,43 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 The goal of this task is to create a program that will verify the presence of unknown devices connected to the I2C bus by sequentially trying all address combinations.
 
+1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-i2c/main.c) to `LAB7-I2C > src > main.c` source file.
 
+2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB7-IC2` project.
 
+3. In PlatformIO project, create a new folder `LAB7-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`.
 
-1. Use breadboard and connect available I2C modules to Arduino Uno board, such as humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor, combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory, or [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor). Instead of external pull-up resistors on the SDA and SCL pins, the internal ones will be used.
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/twi.c) to `twi.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/twi.h) to `twi.h`
+
+   The final project structure should look like this:
+
+   ```c
+   ├── include
+   │   └── timer.h
+   ├── lib
+   │   ├── twi
+   │   │   ├── twi.c
+   │   │   └── twi.h
+   │   └── uart
+   │       ├── uart.c
+   │       └── uart.h
+   └── src
+       └── main.c
+   ```
+
+4. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the [`twi.h`](../library/include/twi.h) header file and add input parameters and description of the following functions.
+
+   | **Function name** | **Function parameters** | **Description** | **Example** |
+   | :-- | :-- | :-- | :-- |
+   | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
+   | `twi_start` |  | <br>&nbsp; | `twi_start(addr, TWI_READ);` |
+   | `twi_write` |  | <br>&nbsp; |  |
+   | `twi_read_ack` | <br>&nbsp; |  |  |
+   | `twi_read_nack` | <br>&nbsp; |  |  |
+   | `twi_stop` |  |  | `twi_stop();` |
+
+5. Use breadboard and connect available I2C modules to Arduino Uno board, such as humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor, combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory, or [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor). Instead of external pull-up resistors on the SDA and SCL pins, the internal ones will be used.
 
    | **DHT12 pin** | **Arduino Uno pin** |
    | :-: | :-: |
@@ -140,104 +173,65 @@ The goal of this task is to create a program that will verify the presence of un
    | ADO | Not connected |
    | INT | Not connected |
 
+6. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
 
+   Complete the Timer1 overflow handler and test all Slave addresses from the range 8 to 119. If Slave device address is detected, send the information via UART. What Slave addresses were detected?
 
+<a name="part4"></a>
 
+## Part 4: Communication with I2C devices
 
+1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
+   | **Register address** | **Description** |
+   | :-: | :-- |
+   | 0x00 | Humidity integer part |
+   | 0x01 | Humidity decimal part |
+   | 0x02 | Temperature integer part |
+   | 0x03 | Temperature decimal part |
+   | 0x04 | Checksum |
 
+   Note that a structured variable in C can be used for read values.
 
+   ```c
+   /* Global variables --------------------------------------------------*/
+   // Declaration of "air" variable with structure "Air_parameters_structure"
+   struct Air_parameters_structure {
+       uint8_t humid_int;
+       uint8_t humid_dec;
+       uint8_t temp_int;
+       uint8_t temp_dec;
+       uint8_t checksum;
+   } air;
 
+   ...
+   air.humid_int = twi_read_ack();  // Store one byte to structured variable
+   ```
 
+2. (Optional) Find out how checksum byte value is calculated.
 
+3. Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../../docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
 
-### Version: Atmel Studio 7
+   | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
+   | :-: | :-: | :-: | :-: |
+   | 0x00 | 0 | 10 Seconds | Seconds |
+   | 0x01 | 0 | 10 Minutes | Minutes |
+   | 0x02 | 0 | 12/24 AM/PM 10 Hour | Hour |
+   | ... | ... | ... | ... |
 
-1. Create a new GCC C Executable Project for ATmega328P within `08-i2C` working folder and copy/paste [template code](main.c) to your `main.c` source file.
+4. (Optional) Verify the I2C communication with logic analyzer.
 
-2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * I2C/TWI files `twi.h`, [`twi.c`](../../examples/library/twi.c) from `examples/library/include` and `examples/library` folders,
-   * UART library files `uart.h`, `uart.c` from the previous lab,
-   * Timer library `timer.h` from the previous labs.
+5. (Optional) Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
 
-### Version: Command-line toolchain
+6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
-1. Copy `main.c` and `Makefile` files from previous lab to `Labs/08-i2c` folder.
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
-2. Copy/paste [template code](main.c) to your `08-i2c/main.c` source file.
+<a name="experiments"></a>
 
-3. Add the source files of I2C/TWI and UART libraries between the compiled files in `08-i2c/Makefile`.
+## Experiments on your own
 
-```Makefile
-# Add or comment libraries you are using in the project
-#SRCS += $(LIBRARY_DIR)/lcd.c
-SRCS += $(LIBRARY_DIR)/uart.c
-SRCS += $(LIBRARY_DIR)/twi.c
-#SRCS += $(LIBRARY_DIR)/gpio.c
-#SRCS += $(LIBRARY_DIR)/segment.c
-```
-
-### All versions
-
-1. Use the [`twi.h`](../../examples/library/include/twi.h) header file from the I2C/TWI library to complete the description of the functions in the following table.
-
-   | **Function name** | **Function parameters** | **Description** | **Example** |
-   | :-- | :-- | :-- | :-- |
-   | `twi_init` | None | Initialize TWI, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
-   | `twi_start` |  | <br>&nbsp; | `twi_start((addr<<1)+TWI_READ);` |
-   | `twi_write` |  | <br>&nbsp; |  |
-   | `twi_read_ack` | <br>&nbsp; |  |  |
-   | `twi_read_nack` | <br>&nbsp; |  |  |
-   | `twi_stop` |  |  | `twi_stop();` |
-
-2. Explore the use of Finite State Machine (FSM) in the `main.c` source file. Note that state names are declared using `typedef enum` as follows
-
-```c
-typedef enum {  // FSM declaration
-    STATE_IDLE = 1,
-    STATE_SEND,
-    STATE_ACK
-} state_t;
-```
-
-  and the body and transitions between states are defined using `switch`/`case` C structure.
-
-```c
-    static state_t state = STATE_IDLE;  // Current state of the FSM
-
-    // FSM
-    switch (state)
-    {
-    // Increment I2C slave address
-    case STATE_IDLE:
-        ...
-        break;
-    
-    // Transmit I2C slave address and get result
-    case STATE_SEND:
-        ...
-        break;
-
-    // A module connected to the bus was found
-    case STATE_ACK:
-        ...
-        break;
-
-    // If something unexpected happens then move to IDLE
-    default:
-        state = STATE_IDLE;
-        break;
-    }
-```
-
-3. Complete the Timer/Counter1 overflow routine according to the following state diagram and scan slave addresses. Transmit useful information via UART to PuTTY SSH Client or Serial monitor.
-
-   ![FSM for I2C scanner](images/fsm_scan_i2c.png)
-
-> The figure above was created in [diagrams.net](https://app.diagrams.net/). It is an open source, online, desktop and container deployable diagramming software.
->
-
-4. Form the UART output of your application to a hexadecimal table such as the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
+1. Form the UART output of I2C scanner application to a hexadecimal table such as the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
 
 ```Makefile
    Scan I2C-bus for slave devices:
@@ -255,155 +249,25 @@ typedef enum {  // FSM declaration
    Number of detected devices: 1
 ```
 
-<a name="part4"></a>
-
-## Part 4: Final application
-
-### Version: SimulIDE
-
-1. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
+2. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
    ![I2C LED bar](images/screenshot_simulide_i2c_leds.png)
 
-2. Create an application that sequentially turns on one of the eight LEDs. ie first LED0, then LED1 and finally LED7, then start again from the beginning. Use Timer/Counter1 and change the value every 262 ms. Send the status of the LEDs to the UART. Try to complement the LED controls according to the Knight Rider style, ie light the LEDs in one direction and then in the opposite one.
+   Create an application that sequentially turns on one of the eight LEDs. ie first LED0, then LED1 and finally LED7, then start again from the beginning. Use Timer/Counter1 and change the value every 262 ms. Send the status of the LEDs to the UART. Try to complement the LED controls according to the Knight Rider style, ie light the LEDs in one direction and then in the opposite one.
 
-### Version: Real hardware
-
-1. Program an FSM application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
-
-   | **Register address** | **Description** |
-   | :-: | :-- |
-   | 0x00 | Humidity integer part |
-   | 0x01 | Humidity fractional part |
-   | 0x02 | Temperature integer part |
-   | 0x03 | Temperature fractional part |
-   | 0x04 | Checksum |
-
-   ![FSM for I2C temperature](images/fsm_dht_i2c.png)
-
-```c
-/* Variables ---------------------------------------------------------*/
-typedef enum {              // FSM declaration
-    STATE_IDLE = 1,
-    STATE_HUMID,
-    STATE_TEMP,
-    STATE_CHECK
-} state_t;
-
-...
-
-/* Interrupt service routines ----------------------------------------*/
-/**********************************************************************
- * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Update Finite State Machine and get humidity, temperature,
- *           and checksum from DHT12 sensor.
- **********************************************************************/
-ISR(TIMER1_OVF_vect)
-{
-    static state_t state = STATE_IDLE;  // Current state of the FSM
-    static uint8_t addr = 0x5c;  // I2C slave address of DHT12
-    uint8_t value;               // Data obtained from the I2C bus
-    char uart_string[] = "000";  // String for converting numbers by itoa()
-
-    // FSM
-    switch (state)
-    {
-    // Do nothing
-    case STATE_IDLE:
-        // Move to the next state
-        state = STATE_HUMID;
-        break;
-    
-    // Get humidity
-    case STATE_HUMID:
-        // WRITE YOUR CODE HERE
-        
-        // Move to the next state
-        state = STATE_TEMP;
-        break;
-
-    // Get temperature
-    case STATE_TEMP:
-        // WRITE YOUR CODE HERE
-
-        // Move to the next state
-        state = STATE_CHECK;
-        break;
-
-    // Get checksum
-    case STATE_CHECK:
-        // WRITE YOUR CODE HERE
-        
-        // Move to the next state
-        state = STATE_IDLE;
-        break;
-
-    default:
-        state = STATE_IDLE;
-        break;
-    }
-}
-```
-
-2. Find out how checksum byte value is calculated.
-
-## Synchronize repositories
-
-Use [git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) to add, commit, and push all local changes to your remote repository. Check the repository at GitHub web page for changes.
-
-
-
-
-
-
-
-
-
-
-
-
-<a name="experiments"></a>
-
-## Experiments on your own
-
-
-
-
-
-
-1. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a connection according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
+3. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a schematic according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the Slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
    ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
+   Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third one. Send the first ten values from each memory module to the UART.
 
+<a name="report"></a>
 
+## Post-Lab report
 
+*Complete all parts of `LAB7-I2C > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
 
-
-### Version: SimulIDE
-
-1. Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third one. Send the first ten values from each memory module to the UART.
-
-### Version: Real hardware
-
-1. Extend the humidity/temperature application, use the RTC/EEPROM module and read second and minute values from RTC DS3231 device, and send them via UART to PuTTY SSH Client. According to the [DS3231 manual](../../docs/ds3231_manual.pdf), the internal RTC registers have the following structure.
-
-   | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
-   | :-: | :-: | :-: | :-: |
-   | 0x00 | 0 | 10 Seconds | Seconds |
-   | 0x01 | 0 | 10 Minutes | Minutes |
-   | ... | ... | ... | ... |
-
-2. Verify the I2C communication with logic analyzer. Find out in what format the hour information is stored in the circuit. Implement an application that reads the hours and displays it in both 12-hour and 24-hour formats.
-
-<a name="assignment"></a>
-
-## Lab assignment
-
-*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
-
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce podle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
->
+*Vypracujte všechny části ze souboru `LAB7-I2C > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
 
 <a name="references"></a>
 
