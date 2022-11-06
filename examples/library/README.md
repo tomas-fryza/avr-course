@@ -1,3 +1,0 @@
-# C libraries
-
-Coming soon
