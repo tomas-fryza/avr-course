@@ -17,7 +17,7 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new folder](#part1)
+* [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: I2C bus](#part2)
 * [Part 3: I2C scanner](#part3)
 * [Part 4: Communication with I2C devices](#part4)
