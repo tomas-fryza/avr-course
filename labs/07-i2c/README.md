@@ -80,7 +80,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its fractional part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
 > | **Register address** | **Description** |
 > | :-: | :-- |
@@ -97,10 +97,10 @@ Note that, most I2C devices support repeated start condition. This means that be
 > | **Frame #** | **Description** |
 > | :-: | :-- |
 > | 1 | Address frame with SLA+W = 184 (0x5c<<1 + 0) |
-> | 2 | Data frame sent to the slave represents the ID of internal register |
+> | 2 | Data frame sent to the Slave represents the ID of internal register |
 > | 3 | Address frame with SLA+R = 185 (0x5c<<1 + 1) |
-> | 4 | Data frame with integer part of temperature read from slave |
-> | 5 | Data frame with fractional part of temperature read from slave|
+> | 4 | Data frame with integer part of temperature read from Slave |
+> | 5 | Data frame with decimal part of temperature read from Slave |
 
 <a name="part3"></a>
 
