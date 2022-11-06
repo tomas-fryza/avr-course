@@ -3,7 +3,7 @@
 
 /***********************************************************************
  * 
- * TWI library for AVR-GCC.
+ * I2C/TWI library for AVR-GCC.
  * 
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
@@ -25,7 +25,7 @@
  * @defgroup fryza_twi TWI Library <twi.h>
  * @code #include <twi.h> @endcode
  *
- * @brief TWI library for AVR-GCC.
+ * @brief I2C/TWI library for AVR-GCC.
  *
  * This library defines functions for the TWI (I2C) communication between
  * AVR and Slave device(s). Functions use internal TWI module of AVR.

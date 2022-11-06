@@ -1,6 +1,6 @@
 /***********************************************************************
  * 
- * TWI library for AVR-GCC.
+ * I2C/TWI library for AVR-GCC.
  * 
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
