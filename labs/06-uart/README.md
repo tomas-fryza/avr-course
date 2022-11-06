@@ -78,7 +78,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury.
 
-1. Use online manual of UART library and add the input parameters and description of the following functions.
+1. Use online manual of UART library and add input parameters and description of the following functions.
 
    | **Function name** | **Function parameter(s)** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
