@@ -233,7 +233,7 @@ The goal of this task is to create a program that will verify the presence of un
 
 1. Form the UART output of I2C scanner application to a hexadecimal table such as the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
 
-```Makefile
+   ```Makefile
    Scan I2C-bus for slave devices:
 
          .0 .1 .2 .3 .4 .5 .6 .7 .8 .9 .a .b .c .d .e .f
@@ -247,9 +247,9 @@ The goal of this task is to create a program that will verify the presence of un
    0x7.: -- -- -- -- -- -- -- -- RA RA RA RA RA RA RA RA
    
    Number of detected devices: 1
-```
+   ```
 
-3. Program functions that will be able to read only one value from the RTC DS3231 at a time.
+2. Program functions that will be able to read only one value from the RTC DS3231 at a time.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
@@ -257,15 +257,15 @@ The goal of this task is to create a program that will verify the presence of un
    | `rtc_read_minutes` | None | Read minutes from RTC | `rtc.mins = rtc_read_minutes();` |
    | `rtc_read_hours` | None | Read hours from RTC | `rtc.hours = rtc_read_hours();` |
 
-4. Program the functions that will be able to save the current time values to the RTC DS3231.
+3. Program the functions that will be able to save the current time values to the RTC DS3231.
 
-5. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
+4. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
    ![I2C LED bar](images/screenshot_simulide_i2c_leds.png)
 
    Create an application that sequentially turns on one of the eight LEDs. ie first LED0, then LED1 and finally LED7, then start again from the beginning. Use Timer/Counter1 and change the value every 262 ms. Send the status of the LEDs to the UART. Try to complement the LED controls according to the Knight Rider style, ie light the LEDs in one direction and then in the opposite one.
 
-6. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a schematic according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the Slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
+5. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a schematic according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the Slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
    ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
