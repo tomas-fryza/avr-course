@@ -51,9 +51,9 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 
 ## Part 2: I2C bus
 
-I2C (Inter-Integrated Circuit) is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers. Each slave device has a unique address [[2]](https://i2c.info/).
+I2C (Inter-Integrated Circuit) is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers.
 
-I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages.
+I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages. On I2C bus, there is always one Master and one or several Slave devices. Each Slave device has a unique address [[2]](https://i2c.info/).
 
 ![I2C bus](images/i2c-bus.png)
 
