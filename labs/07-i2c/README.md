@@ -155,8 +155,8 @@ The goal of this task is to create a program that will verify the presence of un
 
    | **[RTC+EEPROM pin](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)** | **Arduino Uno pin** |
    | :-: | :-: |
-   | 32K | Not connected |
-   | SQW | Not connected |
+   | 32K (reference clock -- output) | Not connected |
+   | SQW (swuare-wave -- output) | Not connected |
    | SCL | SCL |
    | SDA | SDA |
    | VCC | 5V (or 3.3V) |
