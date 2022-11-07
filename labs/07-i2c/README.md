@@ -153,7 +153,7 @@ The goal of this task is to create a program that will verify the presence of un
    | - | GND |
    | SCL | SCL |
 
-   | **RTC+EEPROM pin** | **Arduino Uno pin** |
+   | **[RTC+EEPROM pin](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)** | **Arduino Uno pin** |
    | :-: | :-: |
    | 32K | Not connected |
    | SQW | Not connected |
@@ -293,10 +293,11 @@ The goal of this task is to create a program that will verify the presence of un
 
 5. Aosong. [Digital temperature DHT12](../../docs/dht12_manual.pdf)
 
-6. JGraph Ltd. [diagrams.net](https://app.diagrams.net/)
+6. NXP. [I2C-bus specification and user manual](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435)
 
-7. NXP. [I2C-bus specification and user manual](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435)
+7. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../docs/ds3231_manual.pdf)
+
+8. LastMinuteEngineers. [Interface DS3231 Precision RTC Module with Arduino](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
 
 8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
 
-9. Maxim Integrated. [DS3231, Extremely accurate I2C-Integrated RTC/TCXO/Crystal](../../docs/ds3231_manual.pdf)
