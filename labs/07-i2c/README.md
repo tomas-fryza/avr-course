@@ -80,7 +80,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was writen to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
 > | **Register address** | **Description** |
 > | :-: | :-- |
@@ -92,7 +92,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > After the repeated start, the same circuit address is sent on the I2C bus, but this time with the read bit R/W=1 (185, `1011100_1`). Subsequently, data frames are sent from the slave to the master until the last of them is confirmed by the NACK value. Then the master generates a stop condition on the bus and the communication is terminated.
 >
-> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees celsius.
+> The communication in the picture therefore records the temperature transfer from the sensor, when the measured temperature is 25.3 degrees Celsius.
 >
 > | **Frame #** | **Description** |
 > | :-: | :-- |
@@ -156,7 +156,7 @@ The goal of this task is to create a program that will verify the presence of un
    | **[RTC+EEPROM pin](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)** | **Arduino Uno pin** |
    | :-- | :-: |
    | 32K (reference clock - output) | Not connected |
-   | SQW (swuare-wave - output) | Not connected |
+   | SQW (square-wave - output) | Not connected |
    | SCL | SCL |
    | SDA | SDA |
    | VCC | 5V (or 3.3V) |
