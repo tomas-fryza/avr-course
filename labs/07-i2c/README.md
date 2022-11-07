@@ -257,7 +257,7 @@ The goal of this task is to create a program that will verify the presence of un
    | `rtc_read_minutes` | None | Read minutes from RTC | `rtc.mins = rtc_read_minutes();` |
    | `rtc_read_hours` | None | Read hours from RTC | `rtc.hours = rtc_read_hours();` |
 
-4.Program the functions that will be able to save the current time values to the RTC DS3231.
+4. Program the functions that will be able to save the current time values to the RTC DS3231.
 
 5. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
