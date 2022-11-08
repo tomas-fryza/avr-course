@@ -62,8 +62,8 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to test one I2C address
     // Set prescaler to 33 ms and enable interrupt
-    // TIM1_overflow_33ms();
-    TIM1_overflow_1s();
+    TIM1_overflow_33ms();
+    // TIM1_overflow_1s();
     TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -91,45 +91,78 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static uint8_t addr = 8;  // I2C Slave address
+    static uint8_t sla = 8;  // I2C Slave address
     uint8_t ack;              // ACK response from Slave
     char string[3];           // String for converting numbers by itoa()
-/*
-    // Scan possible addresses
-    if (addr < 120) {
-        // Start communication, transmit I2C Slave address, get result,
-        // and Stop communication
-        ack = twi_start(addr, TWI_WRITE);
+
+    // Read temperature and humidity from DHT12, SLA = 0x5c
+    sla = 0x5c;
+    ack = twi_start(sla, TWI_WRITE);
+    if (ack == 0) {
+        // twi_write(0x02);  // 0x02 @ Temperature
+        twi_write(0x00);  // 0x00 @ Humidity
+        twi_stop();
+        twi_start(sla, TWI_READ);
+        air.humid_int = twi_read_ack();
+        air.humid_dec = twi_read_ack();
+        air.temp_int = twi_read_ack();
+        air.temp_dec = twi_read_nack();
         twi_stop();
 
-        // Test ACK/NACK value obtained from I2C bus and send info to UART
-        itoa(addr, string, 10);
+        // Print Humidity
+        itoa(air.humid_int, string, 10);
         uart_puts(string);
+        uart_puts(".");
+        itoa(air.humid_dec, string, 10);
+        uart_puts(string);
+        uart_puts(" %\t");
+
+        // Print Temperature
+        itoa(air.temp_int, string, 10);
+        uart_puts(string);
+        uart_puts(".");
+        itoa(air.temp_dec, string, 10);
+        uart_puts(string);
+        uart_puts(" °C\r\n");
+    }
+/*
+    // I2C scanner
+    if (sla < 120) {
+        ack = twi_start(sla, TWI_WRITE);
+        twi_stop();
+
+        itoa(sla, string, 10);
+        uart_puts(string);
+
+        itoa(sla, string, 16);
         uart_puts("\tHex: ");
-        itoa(addr, string, 16);
         uart_puts(string);
 
         if (ack == 0) {
-            uart_puts("\tOK");
+            uart_puts("\t");
+            uart_puts("OK");
         }
+
+        sla++;
         uart_puts("\r\n");
-
-        // Move to the next Slave address
-        addr++;
-
         // Known devices:
-        // 5c ... Temp+Humid
         // 57 ... EEPROM
+        // 5c ... Temp+Humid
         // 68 ... RTC
     }
 */
+}
+
+
+
+/*
     // Read Time from RTC DS3231; SLA = 0x68
-    addr = 0x68;
-    ack = twi_start(addr, TWI_WRITE);
+    sla = 0x68;
+    ack = twi_start(sla, TWI_WRITE);
     if (ack == 0) {       // Slave device accessible
         twi_write(0x00);  // 0x00: Seconds
         twi_stop();
-        twi_start(addr, TWI_READ);
+        twi_start(sla, TWI_READ);
         time.secs = twi_read_ack();
         time.mins = twi_read_ack();
         time.hours = twi_read_nack();
@@ -147,26 +180,4 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts("\t");
     }
-
-    // Read Temperature and Humidity from DHT12; SLA = 0x5C
-    addr = 0x5c;
-    ack = twi_start(addr, TWI_WRITE);
-    if (ack == 0) {       // Slave device accessible
-        twi_write(0x00);  // 0x00: Humidity integer
-        twi_stop();
-        twi_start(addr, TWI_READ);
-        air.humid_int = twi_read_ack();
-        air.humid_dec = twi_read_ack();
-        air.temp_int = twi_read_ack();
-        air.temp_dec = twi_read_nack();
-        twi_stop();
-
-        // Send values to UART
-        itoa(air.humid_int, string, 10);
-        uart_puts(string);
-        uart_puts("%\t");
-        itoa(air.temp_int, string, 10);
-        uart_puts(string);
-        uart_puts("°C\r\n");
-    }
-}
+*/
