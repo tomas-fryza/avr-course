@@ -138,7 +138,7 @@ The goal of this task is to create a program that will verify the presence of un
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
-   | `twi_start` |  | <br>&nbsp; | `twi_start(addr, TWI_READ);` |
+   | `twi_start` |  | <br>&nbsp; | `twi_start(sla, TWI_WRITE);` |
    | `twi_write` |  | <br>&nbsp; |  |
    | `twi_read_ack` | <br>&nbsp; |  |  |
    | `twi_read_nack` | <br>&nbsp; |  |  |
