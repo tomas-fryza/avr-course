@@ -73,13 +73,13 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static uint8_t addr = 8;  // I2C Slave address
-    uint8_t ack;              // ACK response from Slave
-    char string[3];           // String for converting numbers by itoa()
+    static uint8_t sla = 8;  // I2C Slave address
+    uint8_t ack;             // ACK response from Slave
+    char string[3];          // String for converting numbers by itoa()
 
     // Start communication, transmit I2C Slave address, get result,
     // and Stop communication
-    ack = twi_start(addr, TWI_WRITE);
+    ack = twi_start(sla, TWI_WRITE);
     twi_stop();
 
     // Test ACK/NACK value obtained from I2C bus and send info to UART
