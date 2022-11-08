@@ -177,6 +177,8 @@ The goal of this task is to create a program that will verify the presence of un
 
    Complete the Timer1 overflow handler and test all Slave addresses from the range 8 to 119. If Slave device address is detected, send the information via UART. What Slave addresses were detected?
 
+   ![I2C bus scanning algo](images/flowchart_i2c_scanning_algo.png)
+
 <a name="part4"></a>
 
 ## Part 4: Communication with I2C devices
