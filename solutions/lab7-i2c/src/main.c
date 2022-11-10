@@ -94,7 +94,7 @@ ISR(TIMER1_OVF_vect)
     static uint8_t sla = 8;  // I2C Slave address
     uint8_t ack;              // ACK response from Slave
     char string[3];           // String for converting numbers by itoa()
-
+/*
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
     ack = twi_start(sla, TWI_WRITE);
@@ -125,7 +125,8 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts(" °C\r\n");
     }
-/*
+*/
+
     // I2C scanner
     if (sla < 120) {
         ack = twi_start(sla, TWI_WRITE);
@@ -149,11 +150,9 @@ ISR(TIMER1_OVF_vect)
         // 57 ... EEPROM
         // 5c ... Temp+Humid
         // 68 ... RTC
+        // 68 ... GY521
+        // 76 ... BME280
     }
-*/
-}
-
-
 
 /*
     // Read Time from RTC DS3231; SLA = 0x68
@@ -181,3 +180,4 @@ ISR(TIMER1_OVF_vect)
         uart_puts("\t");
     }
 */
+}
