@@ -92,8 +92,8 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     static uint8_t sla = 8;  // I2C Slave address
-    uint8_t ack;              // ACK response from Slave
-    char string[3];           // String for converting numbers by itoa()
+    uint8_t ack;             // ACK response from Slave
+    char string[3];          // String for converting numbers by itoa()
 /*
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
