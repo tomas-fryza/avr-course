@@ -170,14 +170,14 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 ```
 
 1. Open Doxywizard and set the basic settings as follows:
-   * Select working directory with your project `Documents\digital-electronics-2\lab8-asm`
-   * In **Wizard > Project** set **Project name**
-   * In **Wizard > Project** check **Scan recursively**
-   * In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab8-asm\doxygen`
-   * In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
-   * In **Wizard > Output > HTML** unselect **With search function**
-   * In **Wizard > Output** unselect LaTeX and keep just HTML generation
-   * In **Run** click to button **Run doxygen** and then **Show HTML output**
+   1. Select working directory with your project `Documents\digital-electronics-2\lab8-asm`
+   2. In **Wizard > Project** set **Project name**
+   3. In **Wizard > Project** check **Scan recursively**
+   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab8-asm\doxygen`
+   5. In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
+   6. In **Wizard > Output > HTML** unselect **With search function**
+   7. In **Wizard > Output** unselect LaTeX and keep just HTML generation
+   8. In **Run** click to button **Run doxygen** and then **Show HTML output**
 
       ![Doxywizard main settings](images/screenshot_doxygen_project.png)
 
