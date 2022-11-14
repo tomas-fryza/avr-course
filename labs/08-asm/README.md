@@ -96,7 +96,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    │       └── uart.h
    └── src
        ├── lfsr.S    // Assembly inplemetation of LFSR-based generator
-       ├── mac.S     // Assembly example Multiply-and-Accumulate
+       ├── mac.S     // Assembly example of Multiply-and-Accumulate
        └── main.c
    ```
 
