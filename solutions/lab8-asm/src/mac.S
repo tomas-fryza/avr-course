@@ -26,7 +26,7 @@
 ;* Function definitions ------------------------------------------------
 ;**********************************************************************
 ;* Function: multiply_accumulate_asm
-;* Purpose:  Multiply-and-Accumulate: in_out_reg = in_out_reg + (a*b).
+;* Purpose:  Multiply-and-Accumulate operation: in_out_reg = in_out_reg + (a*b).
 ;* Input(s): r24 - Current MAC value
 ;*           r22 - Value A
 ;*           r20 - Value B
