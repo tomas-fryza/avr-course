@@ -1,113 +1,90 @@
 ;* ---------------------------------------------------------------------
 ;*
-;* Assembly implementation of 4- and 8-bit LFSR-based (Linear Feedback
-;* Shift Register) pseudo-random generators.
-;* ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+;* Assembly implementation of 4- and 8-bit pseudo-random generators based
+;* on LFSR (Linear Feedback Shift Register) with Fibonacci architecture.
 ;*
-;* Copyright (c) 2017-Present Tomas Fryza
+;* ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+;*
+;* Copyright (c) 2017 Tomas Fryza
 ;* Dept. of Radio Electronics, Brno University of Technology, Czechia
 ;* This work is licensed under the terms of the MIT license.
 ;*
-;* https://www.xilinx.com/support/documentation/application_notes/xapp052.pdf
-;* http://courses.cse.tamu.edu/walker/csce680/lfsr_table.pdf
+;* Inspired by:
+;*   http://www.physics.otago.ac.nz/reports/electronics/ETR2012-1.pdf
+;*   http://courses.cse.tamu.edu/walker/csce680/lfsr_table.pdf
+;*   https://repository.uobabylon.edu.iq/mirror/resources/paper_1_17528_649.pdf
+;*   https://courses.cs.washington.edu/courses/cse369/15au/labs/xapp052_LFSRs.pdf
 ;*
 ;* ---------------------------------------------------------------------
+
 
 ;* Includes ------------------------------------------------------------
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
 #define __SFR_OFFSET    0
 #include <avr/io.h>
 
+
 ;* Defines -------------------------------------------------------------
-#define register    r24
-#define input0      r16
-#define input1      r17
+#define in_out_reg r24
+#define temp0      r26
+#define temp1      r27
+
 
 ;* Function definitions ------------------------------------------------
 ;**********************************************************************
-;* Function: rand4_asm
-;* Purpose:  LFSR-based 4-bit pseudo-random generator. Taps are equal 
-;*           to 3, 1.
-;* Input:    r24 - Current value of shift register
-;* Return:   r24 - New value of shift register
+;* Function: lfsr4_fibonacci_asm
+;* Purpose:  LFSR-based 4-bit pseudo-random generator with Fibonacci
+;*           architecture. Taps are 4, 3.
+;*
+;*   in_out_reg:       3   2   1   0                 +-----+
+;*   +---+---+---+---+---+---+---+---+    +-----+    |     |-------+
+;*   | x | x | x | x | 4 | 3 |   |   |<---| NOT |<---| XOR |       |
+;*   +---+---+---+---+---+---+---+---+    +-----+    |     |---+   |
+;*                     |   |                         +-----+   |   |
+;*                     |   +-----------------------------------+   |
+;*                     |                                           |
+;*                     +-------------------------------------------+
+;*
+;* Input:    r24 - Current value of LFSR
+;* Return:   r24 - New value of LFSR
 ;**********************************************************************/
-.global rand4_asm
-rand4_asm:
-    push input0             ; Save used registers on Stack
-    push input1
+.global lfsr4_fibonacci_asm
+lfsr4_fibonacci_asm:
+    push temp0             ; Save used registers on Stack
+    push temp1
+    bst in_out_reg, 3      ; Copy FIRST tap to T-flag bit...
+    bld temp0, 0           ; ...and then to temp0 at position 0
+                           ; temp0:                        0
+                           ; +---+---+---+---+---+---+---+---+
+                           ; | x | x | x | x | x | x | x | 4 |
+                           ; +---+---+---+---+---+---+---+---+
 
-    ; register:         3   2   1   0
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   |   | 3 |   | 1 |   |
-    ; +---+---+---+---+---+---+---+---+
-    bst register, 3         ; Copy FIRST tap to T flag...
-    bld input0, 0           ; ...and then to input0 bit 0
-    ; input0:                       0
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   |   |   |   |   | 3 |
-    ; +---+---+---+---+---+---+---+---+
-    bst register, 1         ; Copy SECOND tap to T flag
-    bld input1, 0           ; ...and then to input1 bit 0
-    ; input1:                       0
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   |   |   |   |   | 1 |
-    ; +---+---+---+---+---+---+---+---+
-    eor input0, input1      ; Xor both taps
-    com input0              ; Invert Xor
-    ror input0              ; Move bit0 to C flag
-    ; input0:
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   |   |   |   |   | * | --> C
-    ; +---+---+---+---+---+---+---+---+
-    rol register            ; Shift register left with C flag
-    ; register:         3   2   1   0
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   | 3 | 2 | 1 | 0 | C | <-- C
-    ; +---+---+---+---+---+---+---+---+
-    andi register, 0x0f     ; Clear four upper bits in register
-    ; register:         3   2   1   0
-    ; +---+---+---+---+---+---+---+---+
-    ; |   |   |   |   | 2 | 1 | 0 | C |
-    ; +---+---+---+---+---+---+---+---+
+    bst in_out_reg, 2      ; Copy SECOND tap to T-flag bit...
+    bld temp1, 0           ; ...and then to temp1 at position 0
+                           ; temp1:                        0
+                           ; +---+---+---+---+---+---+---+---+
+                           ; | x | x | x | x | x | x | x | 3 |
+                           ; +---+---+---+---+---+---+---+---+
 
-    pop input1              ; Restore used registers from Stack
-    pop input0
-    ret                     ; Return from subroutine
+    eor temp0, temp1       ; Xor both taps
+    com temp0              ; Invert Xor
+    ror temp0              ; Rotate register right and move bit0 to C-flag
+                           ; temp0:
+                           ; +---+---+---+---+---+---+---+---+
+                           ; | x | x | x | x | x | x | x | x | --> C
+                           ; +---+---+---+---+---+---+---+---+
 
-;**********************************************************************
-;* Function: rand8_asm
-;* Purpose:  LFSR-based 8-bit pseudo-random generator. Taps are equal 
-;*           to 7, 5, 4, 3.
-;* Input:    r24 - Current value of shift register
-;* Return:   r24 - New value of shift register
-;**********************************************************************/
-.global rand8_asm
-rand8_asm:
-    push input0             ; Save used registers on Stack
-    push input1
+    rol in_out_reg         ; Rotate register left and move C-flag to bit0
+                           ; in_out_reg:       3   2   1   0
+                           ; +---+---+---+---+---+---+---+---+
+                           ; | x | x | x | 3 | 2 | 1 | 0 | C | <-- C
+                           ; +---+---+---+---+---+---+---+---+
+    andi in_out_reg, 0x0f  ; Need only 4-bit, so clear four upper bits
+                           ; in_out_reg:       3   2   1   0
+                           ; +---+---+---+---+---+---+---+---+
+                           ; | 0 | 0 | 0 | 0 | 2 | 1 | 0 | C |
+                           ; +---+---+---+---+---+---+---+---+
 
-    ; register: 5   4   3   2   1   0
-    ; +---+---+---+---+---+---+---+---+
-    ; | 7 |   | 5 | 4 | 3 |   |   |   |
-    ; +---+---+---+---+---+---+---+---+
-    bst register, 7         ; Xor taps 7 and 5
-    bld input0, 0
-    bst register, 5
-    bld input1, 0
-    eor input0, input1
-
-    bst register, 4         ; Xor tap 4 with subresult in input0
-    bld input1, 0
-    eor input0, input1
-
-    bst register, 3         ; Xor tap 3 with subresult in input0
-    bld input1, 0
-    eor input0, input1
-
-    com input0              ; Invert Xor
-    ror input0              ; Move bit0 to C flag
-    rol register            ; Shift register left with C flag
-
-    pop input1              ; Restore used registers from Stack
-    pop input0
-    ret                     ; Return from subroutine
+    pop temp1              ; Restore used registers from Stack
+    pop temp0
+    ret                    ; Return from subroutine

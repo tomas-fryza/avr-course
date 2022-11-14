@@ -33,22 +33,18 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 
    | **Instruction** | **Operation** | **Description** | **Cycles** |
    | :-- | :-: | :-- | :-: |
-   | `add Rd, Rr` | Rd = Rd + Rr | Adds two registers without Carry flag | 1 |
+   | `add Rd, Rr` |  |  |  |
    | `andi Rd, K` | Rd = Rd and K | Logical AND between register Rd and 8-bit constant K | 1 |
    | `bld Rd, b` |  |  |  |
-   | `brne k` |  |  |  |
    | `bst Rd, b` |  |  |  |
-   | `eor Rd, Re` |  |  |  |
-   | `ldi Rd, K` |  |  |  |
-   | `mov Rd, Rr` |  |  |  |
-   | `out A, Rr` |  |  |  |
+   | `com Rd` |  |  |  |
+   | `eor Rd, Rr` |  |  |  |
+   | `mul Rd, Rr` |  |  |  |
+   | `pop Rd` |  |  |  |
    | `push Rr` |  |  |  |
-   | `rcall k` |  |  |  |
-   | `rjmp k` |  |  |  |
+   | `ret` |  |  |  |
    | `rol Rd` |  |  |  |
    | `ror Rd` |  |  |  |
-   | `sbi A, b` |  |  |  |
-   | `nop` |  |  |  |
 
 <a name="part1"></a>
 
@@ -80,6 +76,56 @@ For time- or memory space-critical applications, it can often be desirable to co
 
 Parameters between C and assembly may be passed via registers and/or the Stack memory. Using the register way, parameters are passed via R25:R8 (18 regs, first function parameter is stored in R25:24, second in R23:22, etc.). If the parameters require more memory, then the Stack is used to pass additional parameters. Return value is placed in the same registers, ie. an 8-bit value gets returned in R24, an 16-bit value in two registers R25:24, an 32-bit value gets returned in four registers R25:22, and an 64-bit value gets returned in R25:18 [[3]](https://msoe.us/taylor/tutorial/ce2810/candasm).
 
+1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/main.c) to `LAB8-ASM > src > main.c` source file.
+
+2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB8-ASM` project.
+
+3. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB8-ASM > src` source folder.
+
+   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/mac.S) file to `mac.S`
+   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/lfsr.S) generator to `lfsr.S`
+
+   The final project structure should look like this:
+
+   ```c
+   ├── include
+   │   └── timer.h
+   ├── lib
+   │   └── uart
+   │       ├── uart.c
+   │       └── uart.h
+   └── src
+       ├── lfsr.S    // Assembly inplemetation of LFSR-based generator
+       ├── mac.S     // Assembly example Multiply-and-Accumulate
+       └── main.c
+   ```
+
+4. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/), find the description of instructions used in `mac.S`, and complete the table.
+
+   | **Instruction** | **Operation** | **Description** | **Cycles** |
+   | :-- | :-: | :-- | :-: |
+   | `add Rd, Rr` |  |  |  |
+   | `mul Rd, Rr` |  |  |  |
+   | `ret` |  |  |  |
+
+5. Use manual's 16-bit Opcodes and convert used instructions to hexadecimal.
+
+   | **Instruction** | **Binary opcode** | **Hexadecimal opcode** | **Compiler Hexadecimal opcode** |
+   | :-- | :-: | :-- | :-: |
+   | `add r24, r0` |  |  |  |
+   | `mul r22, r20` |  |  |  |
+   | `ret` |  |  |  |
+
+6. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
+
+7. In Visual Studio Code select **Terminal > New Terimnal Ctrl+Shift+;** and run the following command to generate the listing file:
+
+   ```shell
+   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+   ```
+
+   Compare your conversion from previous table and the compiler's.
+
 <a name="part3"></a>
 
 ## Part 3: LFSR-based pseudo random generator
@@ -90,124 +136,24 @@ There are two different (but equivalent) types of LFSR implementation the Fibona
 
 A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible 2^N−1 states which look like pseudo-random values. If XOR gates are used, the illegal state is all zeros because this case will never change. A state with all ones is illegal when using an XNOR feedback, because the counter would remain locked-up in this state.
 
+1. Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [4, 3] and the initial value is 0000 [[5]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). Explore LFSR algorithm within `lfsr4_fibonacci_asm` assembly function, complete Timer1 overflow handler and generate 4-bit pseudo-random seguences for different Tap positions. How many states are generated for every settings?
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1. Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [3, 1]. In the following table, complete the individual states in the registry if the initial value was 0000 [[5]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). How many states are generated in this way?
-
-   | **Index** | **3** | **2** | **1** | **0** | **3 xnor 1** |
-   | :-: | :-: | :-: | :-: | :-: | :-: |
-   | 0 | 0 | 0 | 0 | 0 | 1 |
-   | 1 | 0 | 0 | 0 | 1 | 1 |
-   | 2 | 0 | 0 | 1 | 1 | 0 |
-   | 3 |  |  |  |  |  |
-   | 4 |  |  |  |  |  |
-   | 5 |  |  |  |  |  |
-   | 6 |  |  |  |  |  |
-   | 7 |  |  |  |  |  |
-
-
-
-
-
-
-
-
-
-
-### Version: Atmel Studio 7
-
-1. Create a new GCC C Executable Project for ATmega328P within `09-asm` working folder and copy/paste [template code](main.c) to your `main.c` source file.
-
-2. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add New Item... Ctrl+Shift+A** and add a new Preprocessing Assembler File (.S) `lfsr.S`. Copy/paste [template code](lfsr.S) into it.
-
-3. In **Solution Explorer** click on the project name, then in menu **Project**, select **Add Existing Item... Shift+Alt+A** and add:
-   * UART library files `uart.h`, `uart.c` from the previous lab,
-   * Timer library `timer.h` from the previous labs.
-
-### Version: Command-line toolchain
-
-1. Copy `main.c` and `Makefile` files from previous lab to `Labs/09-asm` folder.
-
-2. Copy/paste [template code](main.c) to your `09-asm/main.c` source file.
-
-3. Create a new source file `lfsr.S` and copy/paste [template code](lfsr.S) into it.
-
-4. Add the source file of UART library between the compiled files in `09-asm/Makefile`.
-
-```Makefile
-# Add or comment libraries you are using in the project
-#SRCS += $(LIBRARY_DIR)/lcd.c
-SRCS += $(LIBRARY_DIR)/uart.c
-#SRCS += $(LIBRARY_DIR)/twi.c
-#SRCS += $(LIBRARY_DIR)/gpio.c
-#SRCS += $(LIBRARY_DIR)/segment.c
-```
-
-### All versions
-
-1. Set Timer/Counter1 overflow, generate pseudo-random sequences, and transmit results via UART to PuTTY SSH Client or Serial monitor. (In SimulIDE, also display sequences using LEDs.)
-
-   ![LFSR 4-bit generator](images/screenshot_simulide_asm_lfsr4.png)
-
-2. Explore the LFSR algorithm within `rand4_asm` function. Verify which feedback taps generate a maximum length LFSR sequence for 4-structure.
-
-   | **Taps** | **4-bit LFSR sequence**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | **Length** |
+   | **Tap position** | **Generated values** | **Length** |
    | :-: | :-- | :-: |
-   | 1, 0 |  |  |
-   | 2, 0 |  |  |
-   | 3, 0 |  |  |
-   | 2, 1 |  |  |
-   | 3, 1 | 0, 1, 3, 6, c, 8 | 6 |
-   | 3, 2 |  |  |
+   | 4, 3 |  |  |
+   | 4, 2 |  |  |
+   | 4, 1 |  |  |
 
-3. See **Output Files** in Solution Explorer in Atmel Studio or use `make list` command to generate listing file `.lss` by the compiler. In this file, check: (a) interrupt vectors (How many interrupt routines are used?), (b) body of `rand4_asm` function. Is there any pseudo-instruction?
-
-4. Use AVR® Instruction Set Manual, convert one instruction from assembly to machine code, and verify your result with listing file.
-
-5. For each instruction from `rand4_asm` function, determine the number of iterations and use the CPU cycles values to calculate the total duration of this function.
-
-6. In the `main.c` file, program the function `uint8_t rand4_c(uint8_t value)` in C, which generates a 4-bit LFSR sequence with a maximum length. In the `.lss` file compare both functions, in assembly and your in C. What is the duration of both functions in CPU cycles?
+2. (Optional) In `main.c` file, program the C function `uint8_t lfsr4_fibonacci_c(uint8_t value)`, which generates a 4-bit LFSR sequence with a maximum length. In the `.lst` file compare both functions, in assembly and your C-realization. What is the duration of both functions in CPU cycles?
 
    | **Function** | **Number of instructions** | **Total number of CPU cycles** |
    | :-- | :-: | :-: |
-   | `rand4_asm` | | |
-   | `rand4_c` | | |
+   | `lfsr4_fibonacci_asm` | | |
+   | `lfsr4_fibonacci_c` | | |
 
-<a name="part4"></a>
+3. (Optional) In `lfsr.S` file, program the assembly function `uint8_t lfsr8_fibonacci_asm(uint8_t value)`, which generates a 8-bit LFSR sequence with Tap positions 8, 6, 5, 4. What is the sequence length? What is the duration of the function in CPU cycles?
 
-## Part 4: Sum of the products (SoP)
-
-1. Create a new project `09-asm_sop` and copy needed files from previous project(s).
-
-2. In assembly, program the `uint8_t sop_asm(*uint8_t a, *uint8_t b, uint8_t length)` function to calculate the sum of the products of two integer vectors `a` and `b`, which have the same number of elements `length`. Transmit the SoP result via UART. For simplicity, consider only 8-bit sum and multiplication operations.
-
-3. Write the same function `uint8_t sop_c(*uint8_t a, *uint8_t b, uint8_t length)` in C language and compare the duration of both functions using the file `.lss`.
-
-
-
-
-
-
-
-
-
-6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+4. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
@@ -215,23 +161,13 @@ SRCS += $(LIBRARY_DIR)/uart.c
 
 ## Experiments on your own
 
-### Version: Real hardware
+1. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
 
-1. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
+2. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
 
-2. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+3. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
 
-### Version: Both SimulIDE and real hardware
-
-3. Verify that assembly function `rand8_asm` is able to generate an 8-bit sequence of maximum length for taps 7, 5, 4, 3.
-
-4. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
-
-5. In assembly, program a function to find a maximum value of input array. Transmit the result via UART.
-
-6. In assembly, program a function for sorting three input values in descending order.
-
-7. In assembly, program interrupt service routine for Timer/Counter1 overflow.
+4. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
 
 <a name="report"></a>
 

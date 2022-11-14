@@ -2,49 +2,64 @@
  * 
  * Implementation of LFSR-based (Linear Feedback Shift Register) 
  * pseudo-random generator in AVR assembly.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
+ * 
+ * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
- * Copyright (c) 2017-2021 Tomas Fryza
+ * Copyright (c) 2017 Tomas Fryza
  * Dept. of Radio Electronics, Brno University of Technology, Czechia
  * This work is licensed under the terms of the MIT license.
  * 
+ * NOTE:
+ *   To see assembly listing, run the following command in Terminal
+ *   after the compilation.
+ * 
+ *   Windows:
+ *   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+ * 
+ *   Linux:
+ *   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+ * 
+ * SEE:
+ *   https://five-embeddev.com/baremetal/platformio/
+ *
  **********************************************************************/
+
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
-# define F_CPU 16000000
+# define F_CPU 16000000  // CPU frequency in Hz required for UART_BAUD_SELECT
 #endif
+
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
-#include <stdlib.h>         // C library. Needed for conversion function
-#include "uart.h"           // Peter Fleury's UART library
+#include <uart.h>           // Peter Fleury's UART library
+#include <stdlib.h>         // C library. Needed for number conversions
+
 
 /* Function prototypes -----------------------------------------------*/
-uint8_t rand4_asm(uint8_t value);
-uint8_t rand8_asm(uint8_t value);
+// Function(s) written in Assembly and/or C language
+uint8_t multiply_accumulate_asm(uint8_t result, uint8_t a, uint8_t b);
+uint8_t lfsr4_fibonacci_asm(uint8_t value);
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Use Timer/Counter1 and generate pseudo-random values 
- *           using 4- and 8-bit LFSR structure.
+ * Purpose:  Use Timer/Counter1 and generate a new pseudo-random value 
+ *           using 4- and/or 8-bit LFSR structure every 262 ms. Send 
+ *           information about LFSR process to UART.
  * Returns:  none
  **********************************************************************/
 int main(void)
 {
-    // Set all pins from port B as output
-    DDRB = 0xff;
-    // Set all pins from port B to low
-    PORTB = 0x00;
-
-    // Initialize UART to asynchronous, 8N1, 9600
+    // Initialize USART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
 
-    // Configure 16-bit Timer/Counter1 to update FSM
-    // Enable interrupt and set the overflow prescaler to 262 ms
+    // Configure 16-bit Timer/Counter1 to generate one LFSR state
+    // Set prescaler to 262 ms and enable interrupt
     TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
@@ -65,44 +80,33 @@ int main(void)
     return 0;
 }
 
+
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Update Finite State Machine and generate 4- and 8-bit 
-             pseudo-random sequences.
+ * Purpose:  Generate one pseudo-random value using 4- and/or 8-bit
+             LFSR structure.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // Type of LFSR structure (0 @ 4-bit, 1 @ 8-bit, 2 @ nothing)
-    static uint8_t type = 0;
-    static uint8_t value = 0;
-    static uint8_t number_of_values = 0;
-    // String for converting numbers by itoa()
-    char uart_string[8] = "00000000";
+    static uint8_t value = 0;  // LFSR value
+    static uint8_t no_of_values = 0;
+    char string[8];            // String for converting numbers by itoa()
 
-    // If TYPE is 0 then generate a 4-bit sequence
-    if (type == 0)
-    {
-        // Transmit LFSR value via UART in hexadecimal, binary, and decimal
+    // Multiply-and-accumulate Assembly example
+    uint8_t a = 2;
+    uint8_t b = 3;
+    value = multiply_accumulate_asm(value, a, b);
+    itoa(value, string, 10);
+    uart_puts(string);
+    uart_puts("\r\n");
 
-        // Display LFSR value by LEDs
 
-        // Generate one LFSR value
-        value = rand4_asm(value);
+    // LFSR generator
+    // Transmit LFSR value via UART in decimal
 
-        // Increment number of generated LFSR values
-        number_of_values++;
+    // Generate one LFSR value and increment number of generated LFSR values
 
-        // If VALUE is equal to 0 then print length info and change LFSR type
-        if (value == 0)
-        {
-            uart_puts("Length of sequence: ");
-            // Print length of generated sequence
+    // If LFSR value is equal to 0 then print length info and start again
 
-            // Change LFSR type and reset values
-            type++;
-            value = 0;
-            number_of_values = 0;
-        }
-    }
 }
