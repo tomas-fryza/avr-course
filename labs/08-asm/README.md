@@ -110,7 +110,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 5. Use manual's 16-bit Opcodes and convert used instructions to hexadecimal.
 
-   | **Instruction** | **Binary opcode** | **Hexa opcode** | **Compiler Hexa opcode** |
+   | **Instruction** | **Binary opcode** | **Hex opcode** | **Compiler Hex opcode** |
    | :-- | :-: | :-- | :-: |
    | `add r24, r0` |  |  |  |
    | `mul r22, r20` |  |  |  |
