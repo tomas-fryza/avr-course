@@ -14,13 +14,6 @@
  **********************************************************************/
 
 /**
- * @mainpage
- * Collection of AVR libraries for the course Digital Electronics 2, 
- * Brno University of Technology, Czechia
- * @author Tomas Fryza, Peter Fleury
- * @copyright (c) 2018 Tomas Fryza, This work is licensed under 
- *                the terms of the MIT license
- *
  * @file 
  * @defgroup fryza_twi TWI Library <twi.h>
  * @code #include <twi.h> @endcode
