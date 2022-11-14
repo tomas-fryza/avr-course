@@ -19,10 +19,23 @@
  *   Linux:
  *   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
  * 
- * SEE:
+ * SEE ALSO:
  *   https://five-embeddev.com/baremetal/platformio/
  *
  **********************************************************************/
+
+
+// Settings for main page of Doxygen manual
+/**
+ * @mainpage
+ * 
+ * Collection of AVR libraries used in bachelor course Digital 
+ * Electronics 2 at Brno University of Technology, Czechia.
+ * 
+ * @author Tomas Fryza, Peter Fleury
+ * @copyright (c) 2018 Tomas Fryza, This work is licensed under 
+ *                the terms of the MIT license
+ */
 
 
 /* Defines -----------------------------------------------------------*/
@@ -39,10 +52,35 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
+// Goxygen module with assembly functions starts here
+/**
+ * @defgroup fryza_asm Assembly functions
+ * @brief Function(s) written in AVR Assembly language.
+ * @{
+ */
+
 /* Function prototypes -----------------------------------------------*/
-// Function(s) written in Assembly and/or C language
+/**
+ * @brief  Multiply-and-Accumulate operation, ie. result = result + (a*b).
+ * @param  result Current MAC value
+ * @param  a Value A
+ * @param  b Value B
+ * @return New MAC value
+ * @note   Function programmed in AVR assembly language.
+ */
 uint8_t multiply_accumulate_asm(uint8_t result, uint8_t a, uint8_t b);
+
+/**
+ * @brief  LFSR-based 4-bit pseudo-random generator with Fibonacci
+ *         architecture. Taps are 4, 3.
+ * @param  value Current value of LFSR
+ * @return New value of LFSR
+ * @note   Function programmed in AVR assembly language.
+ */
 uint8_t lfsr4_fibonacci_asm(uint8_t value);
+
+// Goxygen module with assembly functions ends here
+/** @} */
 
 
 /* Function definitions ----------------------------------------------*/
@@ -109,6 +147,7 @@ ISR(TIMER1_OVF_vect)
 
     // If LFSR value is equal to 0 then print length info and start again
 }
+
 
 
 
