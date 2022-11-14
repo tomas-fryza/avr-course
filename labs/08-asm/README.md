@@ -20,7 +20,7 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 * [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: Assembly language](#part2)
 * [Part 3: LFSR-based pseudo random generator](#part3)
-* [Part 4: Sum of the products (SoP)](#part4)
+* [Part 4: Generate documentation from source code](#part4)
 * [Experiments on your own](#experiments)
 * [Post-Lab report](#report)
 * [References](#references)
@@ -151,9 +151,37 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
    | `lfsr4_fibonacci_asm` | | |
    | `lfsr4_fibonacci_c` | | |
 
-3. (Optional) In `lfsr.S` file, program the assembly function `uint8_t lfsr8_fibonacci_asm(uint8_t value)`, which generates a 8-bit LFSR sequence with Tap positions 8, 6, 5, 4. What is the sequence length? What is the duration of the function in CPU cycles?
+<a name="part4"></a>
 
-4. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+## Part 4: Generate documentation from source code
+
+[Doxygen](https://www.doxygen.nl/) is a free, multiplatform (Linux, Windows, Mac, ...) tool for easy generation of program manuals. It supports popular programming languages such as C++, C, C#, PHP, Java, Python, Fortran. Doxygen also supports the hardware description language VHDL. It can generate an on-line documentation browser (in HTML) and/or an off-line reference manual (in LaTeX) from a set of documented source files. There is also support for generating output in RTF (MS-Word), PostScript, hyperlinked PDF, compressed HTML, and Unix man pages. The documentation is extracted directly from the sources, which makes it much easier to keep the documentation consistent with the source code.
+
+Doxygen uses several keywords that are inserted into your block comments. For C, these comments must begin with a triple character with two asterisks:
+
+```c
+/**
+ * Doxygen will search this block
+ */
+
+/* 
+ * Classic C block comment; Doxygen will not search it
+ */
+```
+
+1. Open Doxywizard and set the basic settings as follows:
+   * Select working directory with your project `Documents\digital-electronics-2\lab8-asm`
+   * In **Wizard > Project** set **Project name**
+   * In **Wizard > Project** check **Scan recursively**
+   * In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab8-asm\doxygen`
+   * In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
+   * In **Wizard > Output > HTML** unselect **With search function**
+   * In **Wizard > Output** unselect LaTeX and keep just HTML generation
+   * In **Run** click to button **Run doxygen** and then **Show HTML output**
+
+      ![Doxywizard main settings](images/screenshot_doxygen_project.png)
+
+2. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
@@ -161,13 +189,17 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
 
 ## Experiments on your own
 
-1. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
+1. In `lfsr.S` file, program the assembly function `uint8_t lfsr8_fibonacci_asm(uint8_t value)`, which generates a 8-bit LFSR sequence with Tap positions 8, 6, 5, 4. What is the sequence length? What is the duration of the function in CPU cycles? Use eight LEDs and display each generated LFSR value. Simulate the application in SimulIDE.
 
-2. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
+   ![4-bit LFSR simulation](images/screenshot_simulide_asm_lfsr4.png)
 
-3. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+2. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
 
-4. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
+3. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
+
+4. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+
+5. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
 
 <a name="report"></a>
 
@@ -191,6 +223,8 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
 
 5. Clive Maxfield. [Tutorial: Linear Feedback Shift Registers (LFSRs) – Part 1](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/)
 
-6. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+6. [Doxygen tool](https://doxygen.nl/)
 
-7. B. H. Suits. [Physics of Music - Notes](https://pages.mtu.edu/~suits/notefreqs.html)
+7. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+
+8. B. H. Suits. [Physics of Music - Notes](https://pages.mtu.edu/~suits/notefreqs.html)
