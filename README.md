@@ -11,10 +11,10 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 5. [Analog-to-Digital Converter (ADC)](labs/05-adc)
 6. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
 7. [Inter-Integrated Circuits (I2C)](labs/07-i2c)
+8. [Combining C and assembly language](labs/08-asm)
 
 <!--
 9. [C project: General instructions](labs/project)
-10. (Self-study) [Combining C and assembly language](labs/09-asm)
 -->
 
 ## List of examples
