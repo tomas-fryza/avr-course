@@ -62,8 +62,8 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to test one I2C address
     // Set prescaler to 33 ms and enable interrupt
-    TIM1_overflow_33ms();
-    // TIM1_overflow_1s();
+    // TIM1_overflow_33ms();
+    TIM1_overflow_1s();
     TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -123,7 +123,7 @@ ISR(TIMER1_OVF_vect)
         // 76 ... BME280
     }
 */
-
+/*
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
     ack = twi_start(sla, TWI_WRITE);
@@ -154,8 +154,8 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts(" °C\r\n");
     }
+*/
 
-/*
     // Read Time from RTC DS3231; SLA = 0x68
     sla = 0x68;
     ack = twi_start(sla, TWI_WRITE);
@@ -180,5 +180,5 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts("\t");
     }
-*/
+
 }
