@@ -190,7 +190,7 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
       ![Doxywizard main settings](images/screenshot_doxygen_project.png)
 
-   > **Note:** Complete guide on using Doxygen to document C source code is [here](https://embeddedinventor.com/guide-to-configure-doxygen-to-document-c-source-code-for-beginners/)
+   > **Note:** Complete guide on using Doxygen to document C source code is [here](https://embeddedinventor.com/guide-to-configure-doxygen-to-document-c-source-code-for-beginners/).
 
 2. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
