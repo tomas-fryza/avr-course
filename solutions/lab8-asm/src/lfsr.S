@@ -100,33 +100,33 @@ lfsr4_fibonacci_asm:
 ;* Input:    r24 - Current value of shift register
 ;* Return:   r24 - New value of shift register
 ;**********************************************************************/
-.global rand8_asm
-rand8_asm:
-    push input0             ; Save used registers on Stack
-    push input1
+;.global rand8_asm
+;rand8_asm:
+    ;push input0             ; Save used registers on Stack
+    ;push input1
 
     ; register: 5   4   3   2   1   0
     ; +---+---+---+---+---+---+---+---+
     ; | 7 |   | 5 | 4 | 3 |   |   |   |
     ; +---+---+---+---+---+---+---+---+
-    bst register, 7         ; Xor taps 7 and 5
-    bld input0, 0
-    bst register, 5
-    bld input1, 0
-    eor input0, input1
+    ;bst register, 7         ; Xor taps 7 and 5
+    ;bld input0, 0
+    ;bst register, 5
+    ;bld input1, 0
+    ;eor input0, input1
 
-    bst register, 4         ; Xor tap 4 with subresult in input0
-    bld input1, 0
-    eor input0, input1
+    ;bst register, 4         ; Xor tap 4 with subresult in input0
+    ;bld input1, 0
+    ;eor input0, input1
 
-    bst register, 3         ; Xor tap 3 with subresult in input0
-    bld input1, 0
-    eor input0, input1
+    ;bst register, 3         ; Xor tap 3 with subresult in input0
+    ;bld input1, 0
+    ;eor input0, input1
 
-    com input0              ; Invert Xor
-    ror input0              ; Move bit0 to C flag
-    rol register            ; Shift register left with C flag
+    ;com input0              ; Invert Xor
+    ;ror input0              ; Move bit0 to C flag
+    ;rol register            ; Shift register left with C flag
 
-    pop input1              ; Restore used registers from Stack
-    pop input0
-    ret                     ; Return from subroutine
+    ;pop input1              ; Restore used registers from Stack
+    ;pop input0
+    ;ret                     ; Return from subroutine

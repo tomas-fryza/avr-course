@@ -14,7 +14,7 @@
  *   after the compilation.
  * 
  *   Windows:
- *   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+ *   C:\Users\YOUR-LOGIN\.platformio\packages\toolchain-atmelavr\bin\avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
  * 
  *   Linux:
  *   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
@@ -139,13 +139,13 @@ ISR(TIMER1_OVF_vect)
     uart_puts(string);
     uart_puts("\r\n");
 
-
     // LFSR generator
     // Transmit LFSR value via UART in decimal
 
     // Generate one LFSR value and increment number of generated LFSR values
 
     // If LFSR value is equal to 0 then print length info and start again
+
 }
 
 
