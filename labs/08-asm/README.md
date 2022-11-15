@@ -114,7 +114,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    | :-- | :-: | :-- | :-: |
    | `add r24, r0` |  |  |  |
    | `mul r22, r20` |  |  |  |
-   | `ret` |  |  |  |
+   | `ret` | `1001_0101_0000_1000` | 9508 |  |
 
 6. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
 
