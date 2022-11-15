@@ -68,7 +68,7 @@ Any program is just a series of instructions, that fetch and manipulate data. In
 
 A number of simple binary instructions are used to perform these basic tasks, and each has an equivalent assembly language instruction that people can understand. Using assembly language allows you to understand much more about how the micro controller works and how it is put together. It also produces very small and therefore fast code. The disadvantage is that you as a programmer have to do everything, including memory management and program structure, which can be very time consuming.
 
-To avoid this, higher-level languages are more often used to write programs for micro controllers, expecially C but also Basic and Java. A high level means that each line of C (or other language) can be translated into one or many lines of assembly language.
+To avoid this, higher-level languages are more often used to write programs for micro controllers, especially C but also Basic and Java. A high level means that each line of C (or other language) can be translated into one or many lines of assembly language.
 
 The compiler also deals with program structure and memory management, making writing code much easier. Commonly used routines, such as delays, can also be stored in libraries and easily reused. In addition, the C compiler makes it easier to work with numbers larger than one byte.
 
@@ -95,7 +95,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    │       ├── uart.c
    │       └── uart.h
    └── src
-       ├── lfsr.S    // Assembly inplemetation of LFSR-based generator
+       ├── lfsr.S    // Assembly implementation of LFSR-based generator
        ├── mac.S     // Assembly example of Multiply-and-Accumulate
        └── main.c
    ```
@@ -118,7 +118,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 6. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
 
-7. In Visual Studio Code select **Terminal > New Terimnal Ctrl+Shift+;** and run the following command to generate the listing file:
+7. In Visual Studio Code select **Terminal > New Terminal Ctrl+Shift+;** and run the following command to generate the listing file:
 
    ```shell
    # Windows:
@@ -140,7 +140,7 @@ There are two different (but equivalent) types of LFSR implementation the Fibona
 
 A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible 2^N−1 states which look like pseudo-random values. If XOR gates are used, the illegal state is all zeros because this case will never change. A state with all ones is illegal when using an XNOR feedback, because the counter would remain locked-up in this state.
 
-1. Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [4, 3] and the initial value is 0000 [[5]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). Explore LFSR algorithm within `lfsr4_fibonacci_asm` assembly function, complete Timer1 overflow handler and generate 4-bit pseudo-random seguences for different Tap positions. How many states are generated for every settings?
+1. Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [4, 3] and the initial value is 0000 [[5]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). Explore LFSR algorithm within `lfsr4_fibonacci_asm` assembly function, complete Timer1 overflow handler and generate 4-bit pseudo-random sequences for different Tap positions. How many states are generated for every settings?
 
    | **Tap position** | **Generated values** | **Length** |
    | :-: | :-- | :-: |
@@ -148,12 +148,13 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
    | 4, 2 |  |  |
    | 4, 1 |  |  |
 
-2. (Optional) In `main.c` file, program the C function `uint8_t lfsr4_fibonacci_c(uint8_t value)`, which generates a 4-bit LFSR sequence with a maximum length. In the `.lst` file compare both functions, in assembly and your C-realization. What is the duration of both functions in CPU cycles?
+2. Change [LFSR tap positions](https://courses.cs.washington.edu/courses/cse369/15au/labs/xapp052_LFSRs.pdf) in `lfsr4_fibonacci_asm` function and generate 5-, 6-, and 7-bit versions of pseudorandom sequence. Do not forget to change the binary mask used to clear unused bits in input/output register.
 
-   | **Function** | **Number of instructions** | **Total number of CPU cycles** |
-   | :-- | :-: | :-: |
-   | `lfsr4_fibonacci_asm` | | |
-   | `lfsr4_fibonacci_c` | | |
+   | **Tap position** | **Generated values** | **Length** |
+   | :-: | :-- | :-: |
+   |  |  |  |
+   |  |  |  |
+   |  |  |  |
 
 <a name="part4"></a>
 
@@ -197,13 +198,20 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
    ![4-bit LFSR simulation](images/screenshot_simulide_asm_lfsr4.png)
 
-2. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
+2. (Optional) In `main.c` file, program the C function `uint8_t lfsr4_fibonacci_c(uint8_t value)`, which generates a 4-bit LFSR sequence with a maximum length. In the `.lst` file compare both functions, in assembly and your C-realization. What is the duration of both functions in CPU cycles?
 
-3. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
+   | **Function** | **Number of instructions** | **Total number of CPU cycles** |
+   | :-- | :-: | :-: |
+   | `lfsr4_fibonacci_asm` | | |
+   | `lfsr4_fibonacci_c` | | |
 
-4. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+3. Program a 16-bit LFSR-based pseudo-random generator in assembly language and display values at UART. What LFSR taps provide the maximum length of generated sequence?
 
-5. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
+4. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
+
+5. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+
+6. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
 
 <a name="report"></a>
 
