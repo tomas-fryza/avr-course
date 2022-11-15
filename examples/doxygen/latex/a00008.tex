@@ -1,197 +1,165 @@
-\hypertarget{a00008}{}\subsection{T\+WI Library $<$twi.\+h$>$}
-\label{a00008}\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
+\hypertarget{a00008}{}\doxysubsection{lcd.\+h File Reference}
+\label{a00008}\index{lcd.h@{lcd.h}}
+{\ttfamily \#include $<$inttypes.\+h$>$}\newline
+{\ttfamily \#include $<$avr/pgmspace.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}lcd\+\_\+definitions.\+h\char`\"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{Indent}\textbf{ Definition for L\+CD controller type}\par
+{\em Use 0 for H\+D44780 controller, change to 1 for displays with K\+S0073 controller. }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00042_ga63574b03f72a197aeee823aae95dc3b7}{L\+C\+D\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+K\+S0073}}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Definitions for Display Size}\par
+{\em Change these definitions to adapt setting to your display
 
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding -\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE to the C\+D\+E\+FS section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00008}{lcd.\+h}} }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00042_gae59a728d9dee9f12c817b29d38746ed9}{L\+C\+D\+\_\+\+L\+I\+N\+E\+\_\+\+L\+E\+N\+G\+TH}}~0x40
+\item 
+\#define \mbox{\hyperlink{a00042_gabd056d70a1488ea2eb1aef87e248e234}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E1}}~0x00
+\item 
+\#define \mbox{\hyperlink{a00042_ga7b317b21058ef031716ba040ef75430a}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E2}}~0x40
+\item 
+\#define \mbox{\hyperlink{a00042_gae7cca16353048a062baeb3a52da55249}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E3}}~0x14
+\item 
+\#define \mbox{\hyperlink{a00042_gab1b73e05bdb5cc12cdff5a1cf6c4f2a2}{L\+C\+D\+\_\+\+S\+T\+A\+R\+T\+\_\+\+L\+I\+N\+E4}}~0x54
+\item 
+\#define \mbox{\hyperlink{a00042_gadb35ff6cb242e48ba0545ea919ffc5d3}{L\+C\+D\+\_\+\+W\+R\+A\+P\+\_\+\+L\+I\+N\+ES}}~0
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Definitions for 4-\/bit IO mode}\par
+{\em The four L\+CD data lines and the three control lines RS, RW, E can be on the same port or on different ports. Change L\+C\+D\+\_\+\+R\+S\+\_\+\+P\+O\+RT, L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT, L\+C\+D\+\_\+\+E\+\_\+\+P\+O\+RT if you want the control lines on different ports.
 
-T\+WI library for A\+V\+R-\/\+G\+CC.  
+Normally the four data lines should be mapped to bit 0..3 on one port, but it is possible to connect these data lines in different order or even on different ports by adapting the L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+O\+RT and L\+C\+D\+\_\+\+D\+A\+T\+Ax\+\_\+\+P\+IN definitions.
 
+Adjust these definitions to your target.~\newline
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding {\bfseries{-\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE}} to the {\bfseries{C\+D\+E\+FS}} section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00008}{lcd.\+h}} }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00042_ga659fcdf979f69bbd14f852f525f25e02}{L\+C\+D\+\_\+\+I\+O\+\_\+\+M\+O\+DE}}~1
+\item 
+\#define \mbox{\hyperlink{a00042_gae8772bdf31db863b81805c837bdc2da2}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+O\+RT}}~L\+C\+D\+\_\+\+P\+O\+RT
+\item 
+\#define \mbox{\hyperlink{a00042_ga3ac938dd5fc02a9a232df6605b5f6aa8}{L\+C\+D\+\_\+\+R\+W\+\_\+\+P\+IN}}~5
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Definitions of delays}\par
+{\em Used to calculate delay timers. Adapt the F\+\_\+\+C\+PU define in the Makefile to the clock frequency in Hz of your target
 
-\subsubsection*{Definition of frequencies}
+These delay times can be adjusted, if some displays require different delays.~\newline
+These definitions can be defined in a separate include file {\bfseries{\mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}}}} instead modifying this file by adding {\bfseries{-\/D\+\_\+\+L\+C\+D\+\_\+\+D\+E\+F\+I\+N\+I\+T\+I\+O\+N\+S\+\_\+\+F\+I\+LE}} to the {\bfseries{C\+D\+E\+FS}} section in the Makefile. All definitions added to the file \mbox{\hyperlink{a00011}{lcd\+\_\+definitions.\+h}} will override the default definitions from \mbox{\hyperlink{a00008}{lcd.\+h}} }\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{a00042_ga79ca3fe83448ab158a4c566bf292c260}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+O\+O\+T\+UP}}~16000
+\item 
+\#define \mbox{\hyperlink{a00042_gab6ba3c8cdcf1a96b0d4c476eff8f8617}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+IT}}~5000
+\item 
+\#define \mbox{\hyperlink{a00042_ga2ce1ac9b146b7baa7169e27f9cf3a99e}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+\+R\+EP}}~64
+\item 
+\#define \mbox{\hyperlink{a00042_gadf773dcbd0827cd15c788065c9197459}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+I\+N\+I\+T\+\_\+4\+B\+IT}}~64
+\item 
+\#define \mbox{\hyperlink{a00042_ga73b2370827e2d350cedd45e08a9eb0b2}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+B\+U\+S\+Y\+\_\+\+F\+L\+AG}}~4
+\item 
+\#define \mbox{\hyperlink{a00042_ga5b0632f09757ffe6f018c6ef88cc3296}{L\+C\+D\+\_\+\+D\+E\+L\+A\+Y\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+U\+L\+SE}}~1
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}\textbf{ Definitions for L\+CD command instructions}\par
+{\em The constants define the various L\+CD controller instructions which can be passed to the function \mbox{\hyperlink{a00042_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command()}}, see H\+D44780 data sheet for a complete description. }\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+LR}~0 /$\ast$ D\+B0\+: clear display                  $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+H\+O\+ME}~1 /$\ast$ D\+B1\+: return to home position        $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE}~2 /$\ast$ D\+B2\+: set entry mode                 $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC}~1 /$\ast$   D\+B1\+: 1=increment, 0=decrement     $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+S\+H\+I\+FT}~0 /$\ast$   D\+B2\+: 1=display shift on           $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+ON}~3 /$\ast$ D\+B3\+: turn lcd/cursor on             $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+D\+I\+S\+P\+L\+AY}~2 /$\ast$   D\+B2\+: turn display on              $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~1 /$\ast$   D\+B1\+: turn cursor on               $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0 /$\ast$     D\+B0\+: blinking cursor ?          $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+VE}~4 /$\ast$ D\+B4\+: move cursor/display            $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+SP}~3 /$\ast$   D\+B3\+: move display (0-\/$>$ cursor) ?  $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+R\+I\+G\+HT}~2 /$\ast$   D\+B2\+: move right (0-\/$>$ left) ?      $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}~5 /$\ast$ D\+B5\+: function set                   $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+IT}~4 /$\ast$   D\+B4\+: set 8B\+IT mode (0-\/$>$4B\+IT mode) $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+2\+L\+I\+N\+ES}~3 /$\ast$   D\+B3\+: two lines (0-\/$>$one line)      $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+10\+D\+O\+TS}~2 /$\ast$   D\+B2\+: 5x10 font (0-\/$>$5x7 font)      $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+C\+G\+R\+AM}~6 /$\ast$ D\+B6\+: set CG R\+AM address             $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+D\+R\+AM}~7 /$\ast$ D\+B7\+: set DD R\+AM address             $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+B\+U\+SY}~7 /$\ast$ D\+B7\+: L\+CD is busy                    $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+EC}~0x04 /$\ast$ display shift off, dec cursor move dir $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+D\+E\+C\+\_\+\+S\+H\+I\+FT}~0x05 /$\ast$ display shift on,  dec cursor move dir $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+}~0x06 /$\ast$ display shift off, inc cursor move dir $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+N\+C\+\_\+\+S\+H\+I\+FT}~0x07 /$\ast$ display shift on,  inc cursor move dir $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+FF}~0x08 /$\ast$ display off                            $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+ON}~0x0C /$\ast$ display on, cursor off                 $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+B\+L\+I\+NK}~0x0D /$\ast$ display on, cursor off, blink char     $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+OR}~0x0E /$\ast$ display on, cursor on                  $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+D\+I\+S\+P\+\_\+\+O\+N\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+B\+L\+I\+NK}~0x0F /$\ast$ display on, cursor on, blink char      $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+L\+E\+FT}~0x10 /$\ast$ move cursor left  (decrement)          $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+C\+U\+R\+S\+O\+R\+\_\+\+R\+I\+G\+HT}~0x14 /$\ast$ move cursor right (increment)          $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+L\+E\+FT}~0x18 /$\ast$ shift display left                     $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+V\+E\+\_\+\+D\+I\+S\+P\+\_\+\+R\+I\+G\+HT}~0x1C /$\ast$ shift display right                    $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+1\+L\+I\+NE}~0x20 /$\ast$ 4-\/bit interface, single line, 5x7 dots $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+4\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}~0x28 /$\ast$ 4-\/bit interface, dual line,   5x7 dots $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+1\+L\+I\+NE}~0x30 /$\ast$ 8-\/bit interface, single line, 5x7 dots $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+8\+B\+I\+T\+\_\+2\+L\+I\+N\+ES}~0x38 /$\ast$ 8-\/bit interface, dual line,   5x7 dots $\ast$/
+\item 
+\#define {\bfseries L\+C\+D\+\_\+\+M\+O\+D\+E\+\_\+\+D\+E\+F\+A\+U\+LT}~((1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+M\+O\+DE) $\vert$ (1 $<$$<$ L\+C\+D\+\_\+\+E\+N\+T\+R\+Y\+\_\+\+I\+NC) )
+\end{DoxyCompactItemize}
+\end{Indent}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{a00008_ga43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}~16000000\hypertarget{a00008_ga43bafb28b29491ec7f871319b5a3b2f8}{}\label{a00008_ga43bafb28b29491ec7f871319b5a3b2f8}
-
-\begin{DoxyCompactList}\small\item\em C\+PU frequency in Hz required for delay. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga7a1c522bed64982971384489ee477bd3}{F\+\_\+\+S\+CL}~50000\hypertarget{a00008_ga7a1c522bed64982971384489ee477bd3}{}\label{a00008_ga7a1c522bed64982971384489ee477bd3}
-
-\begin{DoxyCompactList}\small\item\em T\+WI bit rate. Must be greater than 31000. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga801c158406ca2334b446e442a2debe37}{T\+W\+I\+\_\+\+B\+I\+T\+\_\+\+R\+A\+T\+E\+\_\+\+R\+EG}~((\hyperlink{a00008_ga43bafb28b29491ec7f871319b5a3b2f8}{F\+\_\+\+C\+PU}/\hyperlink{a00008_ga7a1c522bed64982971384489ee477bd3}{F\+\_\+\+S\+CL} -\/ 16) / 2)\hypertarget{a00008_ga801c158406ca2334b446e442a2debe37}{}\label{a00008_ga801c158406ca2334b446e442a2debe37}
-
-\begin{DoxyCompactList}\small\item\em T\+WI bit rate register value. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsubsection*{Definition of ports and pins}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00008_ga762c164f4acd04d3ce3627fe73e7c018}{T\+W\+I\+\_\+\+P\+O\+RT}~P\+O\+R\+TC\hypertarget{a00008_ga762c164f4acd04d3ce3627fe73e7c018}{}\label{a00008_ga762c164f4acd04d3ce3627fe73e7c018}
-
-\begin{DoxyCompactList}\small\item\em Port of T\+WI hardware unit. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga3f14ed8491293d0dda1372cceaa39851}{T\+W\+I\+\_\+\+S\+D\+A\+\_\+\+P\+IN}~4\hypertarget{a00008_ga3f14ed8491293d0dda1372cceaa39851}{}\label{a00008_ga3f14ed8491293d0dda1372cceaa39851}
-
-\begin{DoxyCompactList}\small\item\em S\+DA pin of T\+WI hardware unit. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_gac0ad8b33f1be48e211f1eeae2dd65cee}{T\+W\+I\+\_\+\+S\+C\+L\+\_\+\+P\+IN}~5\hypertarget{a00008_gac0ad8b33f1be48e211f1eeae2dd65cee}{}\label{a00008_gac0ad8b33f1be48e211f1eeae2dd65cee}
-
-\begin{DoxyCompactList}\small\item\em S\+CL pin of T\+WI hardware unit. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsubsection*{Other definitions}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00008_gaaf9a8abccd811954f9cc316f2b2f87b3}{T\+W\+I\+\_\+\+R\+E\+AD}~1\hypertarget{a00008_gaaf9a8abccd811954f9cc316f2b2f87b3}{}\label{a00008_gaaf9a8abccd811954f9cc316f2b2f87b3}
-
-\begin{DoxyCompactList}\small\item\em Data direction for reading from T\+WI device. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga3b68e8e777b71520f9dbfac733774d5f}{T\+W\+I\+\_\+\+W\+R\+I\+TE}~0\hypertarget{a00008_ga3b68e8e777b71520f9dbfac733774d5f}{}\label{a00008_ga3b68e8e777b71520f9dbfac733774d5f}
-
-\begin{DoxyCompactList}\small\item\em Data direction for writing to T\+WI device. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga6c0346728feb274834cad94daca316ee}{D\+DR}(\+\_\+x)~($\ast$(\&\+\_\+x -\/ 1))\hypertarget{a00008_ga6c0346728feb274834cad94daca316ee}{}\label{a00008_ga6c0346728feb274834cad94daca316ee}
-
-\begin{DoxyCompactList}\small\item\em Define address of Data Direction Register of port \+\_\+x. \end{DoxyCompactList}\item 
-\#define \hyperlink{a00008_ga740f9eb9c9f9e33500ee61ec53945f6a}{P\+IN}(\+\_\+x)~($\ast$(\&\+\_\+x -\/ 2))\hypertarget{a00008_ga740f9eb9c9f9e33500ee61ec53945f6a}{}\label{a00008_ga740f9eb9c9f9e33500ee61ec53945f6a}
-
-\begin{DoxyCompactList}\small\item\em Define address of input register of port \+\_\+x. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsubsection*{Functions}
-\begin{DoxyCompactItemize}
-\item 
-void \hyperlink{a00008_ga16f0e6b2fa5a26eadbf4086ab6d54467}{twi\+\_\+init} (void)
-\begin{DoxyCompactList}\small\item\em Initialize T\+WI, enable internal pull-\/ups, set S\+CL frequency. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{a00008_ga36b3c950a1804f75057a870afdf81d55}{twi\+\_\+start} (uint8\+\_\+t slave\+\_\+address)
-\begin{DoxyCompactList}\small\item\em Start communication on T\+WI bus and send address of T\+WI slave. \end{DoxyCompactList}\item 
-void \hyperlink{a00008_gab45679e1a7b3b8f97b636d825e7d14f7}{twi\+\_\+write} (uint8\+\_\+t data)
-\begin{DoxyCompactList}\small\item\em Send one data byte to T\+WI slave device. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{a00008_ga7a2cd23dea30ee2c99c1ccffb3402d79}{twi\+\_\+read\+\_\+ack} (void)
-\begin{DoxyCompactList}\small\item\em Read one byte from T\+WI slave device and acknowledge it by A\+CK. \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{a00008_gaa21e972557bab9a799720874660cf152}{twi\+\_\+read\+\_\+nack} (void)
-\begin{DoxyCompactList}\small\item\em Read one byte from T\+WI slave device and acknowledge it by N\+A\+CK. \end{DoxyCompactList}\item 
-void \hyperlink{a00008_gacf52d6c93df110dee6d402b389e5042e}{twi\+\_\+stop} (void)
-\begin{DoxyCompactList}\small\item\em Generates stop condition on T\+WI bus. \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsubsection{Detailed Description}
-T\+WI library for A\+V\+R-\/\+G\+CC. 
-
-
-\begin{DoxyCode}
-\textcolor{preprocessor}{#include "\hyperlink{a00004}{twi.h}"} 
-\end{DoxyCode}
-
-
-This library defines functions for the T\+WI (I2C) communication between A\+VR and slave device(s). Functions use internal T\+WI module of A\+VR.
-
-\begin{DoxyNote}{Note}
-Based on Microchip Atmel A\+Tmega16 and A\+Tmega328P manuals. 
-\end{DoxyNote}
-\begin{DoxyAuthor}{Author}
-Tomas Fryza, Dept. of Radio Electronics, Brno University of Technology, Czechia 
-\end{DoxyAuthor}
-\begin{DoxyCopyright}{Copyright}
-(c) 2018-\/2021 Tomas Fryza, This work is licensed under the terms of the M\+IT license 
-\end{DoxyCopyright}
-
-
-\subsubsection{Function Documentation}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+init@{twi\+\_\+init}}
-\index{twi\+\_\+init@{twi\+\_\+init}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+init(void)}{twi_init(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void twi\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_ga16f0e6b2fa5a26eadbf4086ab6d54467}{}\label{a00008_ga16f0e6b2fa5a26eadbf4086ab6d54467}
-
-
-Initialize T\+WI, enable internal pull-\/ups, set S\+CL frequency. 
-
-\begin{DoxyParagraph}{Implementation notes\+:}
-
-\begin{DoxyItemize}
-\item A\+VR internal pull-\/up resistors at pins T\+W\+I\+\_\+\+S\+D\+A\+\_\+\+P\+IN and T\+W\+I\+\_\+\+S\+C\+L\+\_\+\+P\+IN are enabled
-\item T\+WI bit rate register value is calculated as follows fscl = fcpu/(16 + 2$\ast$\+T\+W\+BR) 
-\end{DoxyItemize}
-\end{DoxyParagraph}
-\begin{DoxyReturn}{Returns}
-none 
-\end{DoxyReturn}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+read\+\_\+ack@{twi\+\_\+read\+\_\+ack}}
-\index{twi\+\_\+read\+\_\+ack@{twi\+\_\+read\+\_\+ack}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+read\+\_\+ack(void)}{twi_read_ack(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t twi\+\_\+read\+\_\+ack (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_ga7a2cd23dea30ee2c99c1ccffb3402d79}{}\label{a00008_ga7a2cd23dea30ee2c99c1ccffb3402d79}
-
-
-Read one byte from T\+WI slave device and acknowledge it by A\+CK. 
-
-\begin{DoxyReturn}{Returns}
-Received data byte 
-\end{DoxyReturn}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+read\+\_\+nack@{twi\+\_\+read\+\_\+nack}}
-\index{twi\+\_\+read\+\_\+nack@{twi\+\_\+read\+\_\+nack}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+read\+\_\+nack(void)}{twi_read_nack(void)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t twi\+\_\+read\+\_\+nack (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_gaa21e972557bab9a799720874660cf152}{}\label{a00008_gaa21e972557bab9a799720874660cf152}
-
-
-Read one byte from T\+WI slave device and acknowledge it by N\+A\+CK. 
-
-\begin{DoxyReturn}{Returns}
-Received data byte 
-\end{DoxyReturn}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+start@{twi\+\_\+start}}
-\index{twi\+\_\+start@{twi\+\_\+start}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+start(uint8\+\_\+t slave\+\_\+address)}{twi_start(uint8_t slave_address)}}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t twi\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{slave\+\_\+address}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_ga36b3c950a1804f75057a870afdf81d55}{}\label{a00008_ga36b3c950a1804f75057a870afdf81d55}
-
-
-Start communication on T\+WI bus and send address of T\+WI slave. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em slave\+\_\+address} & S\+L\+A+R or S\+L\+A+W address \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{Return values}
-{\em 0} & -\/ Slave device accessible \\
-\hline
-{\em 1} & -\/ Failed to access slave device \\
-\hline
-\end{DoxyRetVals}
-\begin{DoxyNote}{Note}
-Function returns 0 only if 0x18 or 0x40 status code is detected~\newline
- 0x18\+: S\+L\+A+W has been transmitted and A\+CK has been received~\newline
- 0x40\+: S\+L\+A+R has been transmitted and A\+CK has been received~\newline
-
-\end{DoxyNote}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+stop@{twi\+\_\+stop}}
-\index{twi\+\_\+stop@{twi\+\_\+stop}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+stop(void)}{twi_stop(void)}}]{\setlength{\rightskip}{0pt plus 5cm}void twi\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_gacf52d6c93df110dee6d402b389e5042e}{}\label{a00008_gacf52d6c93df110dee6d402b389e5042e}
-
-
-Generates stop condition on T\+WI bus. 
-
-\begin{DoxyReturn}{Returns}
-none 
-\end{DoxyReturn}
-\index{T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}!twi\+\_\+write@{twi\+\_\+write}}
-\index{twi\+\_\+write@{twi\+\_\+write}!T\+W\+I Library $<$twi.\+h$>$@{T\+W\+I Library $<$twi.\+h$>$}}
-\paragraph[{\texorpdfstring{twi\+\_\+write(uint8\+\_\+t data)}{twi_write(uint8_t data)}}]{\setlength{\rightskip}{0pt plus 5cm}void twi\+\_\+write (
-\begin{DoxyParamCaption}
-\item[{uint8\+\_\+t}]{data}
-\end{DoxyParamCaption}
-)}\hypertarget{a00008_gab45679e1a7b3b8f97b636d825e7d14f7}{}\label{a00008_gab45679e1a7b3b8f97b636d825e7d14f7}
-
-
-Send one data byte to T\+WI slave device. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em data} & Byte to be transmitted \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-none 
-\end{DoxyReturn}
+\#define \mbox{\hyperlink{a00042_ga4f1928f1515e21422d5a33af2949f2f7}{lcd\+\_\+puts\+\_\+P}}(\+\_\+\+\_\+s)~\mbox{\hyperlink{a00042_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}}(P\+S\+TR(\+\_\+\+\_\+s))
+\begin{DoxyCompactList}\small\item\em macros for automatically storing string constant in program memory \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_ga9af28b2779326b63ff4356e2b1828984}{lcd\+\_\+init}} (uint8\+\_\+t disp\+Attr)
+\begin{DoxyCompactList}\small\item\em Initialize display and select type of cursor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_gaf8da853dba4b9d5f2aea4e294444e14d}{lcd\+\_\+clrscr}} (void)
+\begin{DoxyCompactList}\small\item\em Clear display and set cursor to home position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_ga3aabf730aa4e0393bb5c959583c00a8e}{lcd\+\_\+home}} (void)
+\begin{DoxyCompactList}\small\item\em Set cursor to home position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_gadbf47a5efdf02367ded1ebf8f9edb5fe}{lcd\+\_\+gotoxy}} (uint8\+\_\+t x, uint8\+\_\+t y)
+\begin{DoxyCompactList}\small\item\em Set cursor to specified position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_gafa7e36b95c43d603f510273ad077cbbe}{lcd\+\_\+putc}} (char c)
+\begin{DoxyCompactList}\small\item\em Display character at current cursor position. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_ga8ffdfcac7638368ff04364c14984266e}{lcd\+\_\+puts}} (const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em Display string without auto linefeed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_ga9022a24a56a9b15681f62eb6ba77e5de}{lcd\+\_\+puts\+\_\+p}} (const char $\ast$progmem\+\_\+s)
+\begin{DoxyCompactList}\small\item\em Display string from program memory without auto linefeed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_gaea9d14f02df06f948cb5a56776980826}{lcd\+\_\+command}} (uint8\+\_\+t cmd)
+\begin{DoxyCompactList}\small\item\em Send L\+CD controller instruction command. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{a00042_gad0729d2cba627825a089ca1fff12ba29}{lcd\+\_\+data}} (uint8\+\_\+t data)
+\begin{DoxyCompactList}\small\item\em Send data byte to L\+CD controller. \end{DoxyCompactList}\end{DoxyCompactItemize}

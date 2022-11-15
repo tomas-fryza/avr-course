@@ -146,6 +146,8 @@ The goal of this task is to create a program that will verify the presence of un
 
 5. Use breadboard and connect available I2C modules to Arduino Uno board, such as humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor, combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory, or [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor). Instead of external pull-up resistors on the SDA and SCL pins, the internal ones will be used.
 
+   > **Important:** Connect the components on the breadboard only when the supply voltage/USB is disconnected!
+
    | **DHT12 pin** | **Arduino Uno pin** |
    | :-: | :-: |
    | + | 5V (or 3.3V) |
@@ -173,11 +175,11 @@ The goal of this task is to create a program that will verify the presence of un
    | ADO | Not connected |
    | INT | Not connected |
 
-6. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
-
-   Complete the Timer1 overflow handler and test all Slave addresses from the range 8 to 119. If Slave device address is detected, send the information via UART. What Slave addresses were detected?
+6. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board. Complete the Timer1 overflow handler and test all Slave addresses from the range 8 to 119. If Slave device address is detected, send the information via UART. What Slave addresses were detected?
 
    ![I2C bus scanning algo](images/flowchart_i2c_scanning_algo.png)
+
+   > **Important:** If the received characters are not displayed on the Serial Monitor, exit and restart the monitor again.
 
 <a name="part4"></a>
 

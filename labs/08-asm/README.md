@@ -128,7 +128,9 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
    ```
 
-   Compare your conversion from previous table and the compiler's.
+   From the project root folder, open the generated liting file `firmware.lst`. Compare your conversion from previous table with the compiler's.
+
+   > **Note:** By default, there is no highlighting mode for `*.lst` listing file. You can select the Language mode by clicking on the **Plain Text** identifier in the lower right corner of VS Code. Select **Assembly** mode, or if you have installed the `AVR Support` extension, choose **AVR Assembler** mode.
 
 <a name="part3"></a>
 
