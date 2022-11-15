@@ -111,17 +111,21 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 5. Use manual's 16-bit Opcodes and convert used instructions to hexadecimal.
 
    | **Instruction** | **Binary opcode** | **Hex opcode** | **Compiler Hex opcode** |
-   | :-- | :-: | :-- | :-: |
+   | :-- | :-: | :-: | :-: |
    | `add r24, r0` |  |  |  |
    | `mul r22, r20` |  |  |  |
-   | `ret` |  |  |  |
+   | `ret` | `1001_0101_0000_1000` | 9508 |  |
 
 6. Build and upload the code to Arduino Uno board. Use **PlatformIO: Serial Monitor** to receive values from Arduino board.
 
 7. In Visual Studio Code select **Terminal > New Terimnal Ctrl+Shift+;** and run the following command to generate the listing file:
 
    ```shell
-   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+   # Windows:
+   C:\Users\YOUR-LOGIN\.platformio\packages\toolchain-atmelavr\bin\avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+
+   # Linux:
+   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
    ```
 
    Compare your conversion from previous table and the compiler's.
