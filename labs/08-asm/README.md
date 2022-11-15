@@ -142,6 +142,8 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
 
 1. Consider a 4-bit shift register whose input (LSB bit) is formed by an XNOR gate with taps [4, 3] and the initial value is 0000 [[5]](https://www.edn.com/tutorial-linear-feedback-shift-registers-lfsrs-part-1/). Explore LFSR algorithm within `lfsr4_fibonacci_asm` assembly function, complete Timer1 overflow handler and generate 4-bit pseudo-random sequences for different Tap positions. How many states are generated for every settings?
 
+   ![LFSR generation algo](images/flowchart_lfsr-value_algo.png)
+
    | **Tap position** | **Generated values** | **Length** |
    | :-: | :-- | :-: |
    | 4, 3 |  |  |
@@ -150,11 +152,11 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
 
 2. Change [LFSR tap positions](https://courses.cs.washington.edu/courses/cse369/15au/labs/xapp052_LFSRs.pdf) in `lfsr4_fibonacci_asm` function and generate 5-, 6-, and 7-bit versions of pseudorandom sequence. Do not forget to change the binary mask used to clear unused bits in input/output register.
 
-   | **Tap position** | **Generated values** | **Length** |
-   | :-: | :-- | :-: |
-   | &nbsp; |  |  |
-   | &nbsp; |  |  |
-   | &nbsp; |  |  |
+   | **Tap position** | **Length** |
+   | :-: | :-: |
+   | &nbsp; |  |
+   | &nbsp; |  |
+   | &nbsp; |  |
 
 <a name="part4"></a>
 
