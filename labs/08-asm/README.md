@@ -121,7 +121,11 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 7. In Visual Studio Code select **Terminal > New Terimnal Ctrl+Shift+;** and run the following command to generate the listing file:
 
    ```shell
-   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+   # Windows:
+   C:\Users\YOUR-LOGIN\.platformio\packages\toolchain-atmelavr\bin\avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+
+   # Linux:
+   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
    ```
 
    Compare your conversion from previous table and the compiler's.
