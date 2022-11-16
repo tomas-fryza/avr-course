@@ -132,8 +132,8 @@ ISR(TIMER1_OVF_vect)
     char string[8];            // String for converting numbers by itoa()
 /*
     // Multiply-and-accumulate Assembly example
-    uint8_t a = 8;
-    uint8_t b = 6;
+    uint8_t a = 2;
+    uint8_t b = 3; 
     value = multiply_accumulate_asm(value, a, b);
     itoa(value, string, 10);
     uart_puts(string);
@@ -151,8 +151,8 @@ ISR(TIMER1_OVF_vect)
 
     // If LFSR value is equal to 0 then print length info and start again
     if (value == 0) {
-        uart_puts(" Length: ");
         itoa(no_of_values, string, 10);
+        uart_puts(" Length: ");
         uart_puts(string);
         uart_puts("\r\n");
         no_of_values = 0;
