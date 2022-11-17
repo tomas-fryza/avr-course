@@ -185,13 +185,13 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 ## Experiments on your own
 
-1. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles. Because the PlatformIO Serial Monitor does not support the ANSI Excape Sequences, you have to use PuTTY application.
+1. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
    ```c
    /* 
-    * Color/formatting sequence is prefixed with `Escape` (`\x1b` in hexadecimal),
-    * followed by opening square bracket `[`, commands delimited by semi colon `;`
-    * and ended by `m` character.
+    * Color/formatting sequence is prefixed with `Escape` (`\x1b` in hexadecimal,
+    * \033, etc), followed by opening square bracket `[`, commands delimited by 
+    * semi colon `;` and ended by `m` character.
     *
     * Examples:
     *   \x1b[1;31m  - Set style to bold, red foreground
@@ -202,6 +202,13 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    uart_puts("This is all Green and Underlined\r\n");
    uart_puts("\x1b[0m");     // 0: reset all attributes
    uart_puts("This is Normal text again\r\n");
+   ```
+
+   To enable ANSI color codes in PlatformOI serial monitor, add the following line to `platformio.ini` project configuration file.
+   
+   ```bash
+   # Enable ANSI color codes in serial monitor
+   monitor_raw = yes
    ```
 
 2. Program a piece of code to calculate even parity bit from received value.
