@@ -70,7 +70,13 @@ int main(void)
     sei();
 
     // Put strings to ringbuffer for transmitting via UART
-    uart_puts("Scan I2C bus for devices:\r\n");
+    // uart_puts("Scan I2C bus for devices:\r\n");
+
+    // MPU-6050 reset
+    // twi_start(0x68, TWI_WRITE);
+    // twi_write(0x6b);
+    // twi_write(0x00);
+    // twi_stop();
 
     // Infinite loop
     while (1)
@@ -155,8 +161,9 @@ ISR(TIMER1_OVF_vect)
         uart_puts(" °C\r\n");
     }
 */
-
+/*
     // Read Time from RTC DS3231; SLA = 0x68
+    // MPU-6050; SLA = 0x68
     sla = 0x68;
     ack = twi_start(sla, TWI_WRITE);
     if (ack == 0) {       // Slave device accessible
@@ -180,5 +187,20 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts("\t");
     }
+*/
+    // Read Temp from BME280; SLA = 0x76
+    sla = 0x76;
+    ack = twi_start(sla, TWI_WRITE);
+    if (ack == 0) {       // Slave device accessible
+        twi_write(0xd0);  // chip_id suppose to be 0x60
+        twi_stop();
+        twi_start(sla, TWI_READ);
+        uint8_t value = twi_read_nack();
+        twi_stop();
 
+        // Send value(s) to UART
+        itoa(value, string, 16);
+        uart_puts(string);
+        uart_puts("\t");
+    }
 }
