@@ -101,7 +101,6 @@ ISR(TIMER1_OVF_vect)
     uint8_t ack;             // ACK response from Slave
     char string[3];          // String for converting numbers by itoa()
 
-/*
     // I2C scanner
     if (sla < 120) {
         ack = twi_start(sla, TWI_WRITE);
@@ -121,6 +120,7 @@ ISR(TIMER1_OVF_vect)
 
         sla++;
         uart_puts("\r\n");
+
         // Known devices:
         // 57 ... EEPROM
         // 5c ... Temp+Humid
@@ -128,7 +128,6 @@ ISR(TIMER1_OVF_vect)
         // 68 ... GY521
         // 76 ... BME280
     }
-*/
 /*
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
@@ -188,6 +187,7 @@ ISR(TIMER1_OVF_vect)
         uart_puts("\t");
     }
 */
+/*
     // Read Temp from BME280; SLA = 0x76
     sla = 0x76;
     ack = twi_start(sla, TWI_WRITE);
@@ -203,4 +203,5 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts("\t");
     }
+*/
 }
