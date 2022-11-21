@@ -22,7 +22,7 @@ The goal of the project is cooperation in pairs, further study of the topic, des
    │   └── main.c
    ├── test            // No need this
    ├── platformio.ini  // Project Configuration File
-   └── README.md       // This project report
+   └── README.md       // Report of this project
    ```
 
 ## Recommended README.md file structure
