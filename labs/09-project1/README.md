@@ -12,7 +12,7 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 * Through the BUT e-learning, students submit a link to the GitHub repository, which contains the complete project in PlatfomIO and a descriptive README file. The submission deadline is the day before the next laboratory, i.e. in 2 weeks.
 
-* The source code for the AVR must be written in C and/or Assembly and must be implementable on Arduino Uno board using toolchains used in the lab during the semester. Any other development tools are not allowed.
+* The source code for the AVR must be written in C and/or Assembly and must be implementable on Arduino Uno board using toolchains from the semester. No other development tools are allowed.
 
 ## Recommended GitHub repository structure
 
