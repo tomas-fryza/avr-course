@@ -100,7 +100,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 3. IMPORTANT: Rename `LAB1-BLINK_ARDUINO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > README` file.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > README.md` file.
 
    The final project structure should look like this:
 
