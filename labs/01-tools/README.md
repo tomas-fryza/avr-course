@@ -98,14 +98,29 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.c) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
-   Rename source file `main.cpp` to `main.c`, ie change the extension to `.c`.
+3. IMPORTANT: Rename `LAB1-BLINK_ARDUINO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-3. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/report.md) to your `LAB1-BLINK_ARDUINO > README` file.
+
+   The final project structure should look like this:
+
+   ```c
+   LAB1-BLINK_ARDUINO  // PlatfomIO project
+   ├── include         // Included files
+   ├── lib             // Libraries
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
+   ```
+
+5. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
    * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-4. Use breadboard, wires, resistor, and a second LED. Connect in to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
+6. Use breadboard, wires, resistor, and a second LED. Connect in to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
 
    * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
    * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
@@ -121,9 +136,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
       > **Note:** Picture was created by [EasyEDA](https://easyeda.com/).
 
-5. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
-
-6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
+7. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
@@ -184,9 +197,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 ## Post-Lab report
 
-*Complete all parts of `LAB1-BLINK_ARDUINO > test > README.md` file (see Part 3.5) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB1-BLINK_ARDUINO > README.md` file (see Part 3.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > test > README.md` (viz Část 3.5) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > README.md` (viz Část 3.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 
