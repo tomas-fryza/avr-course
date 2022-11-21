@@ -20,6 +20,7 @@ The goal of the project is cooperation in pairs, further study of the topic, des
    ├── lib             // Libraries
    ├── src             // Source file(s)
    │   └── main.c
+   ├── test            // No need this
    ├── platformio.ini  // Project Configuration File
    └── README.md       // This project report
    ```
