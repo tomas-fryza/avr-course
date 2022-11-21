@@ -1,7 +1,5 @@
 # Project 1
 
-## Topic
-
 TBA
 
 ## Instructions
