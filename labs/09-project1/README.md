@@ -1,8 +1,8 @@
-# Project 1: INSERT_YOUR_FIRSTNAME INSERT_YOUR_LASTNAME
+# Project 1
 
 ## Topic
 
-TBD
+TBA
 
 ## Instructions
 
