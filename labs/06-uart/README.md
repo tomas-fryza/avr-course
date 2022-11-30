@@ -125,6 +125,8 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
    > **Note:** You have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
+   >
+   > Tutorial about using a logic analyzer is available in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
 
 7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
 
@@ -284,6 +286,8 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 5. Peter Fleury. [UART library](http://www.peterfleury.epizy.com/avr-software.html)
 
-6. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+6. Kolban Technical Tutorials. [ESP32 Technical Tutorials: Using a logic analyzer](https://www.youtube.com/watch?v=CE4-T53Bhu0)
 
-7. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+7. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+
+8. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
