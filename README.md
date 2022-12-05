@@ -13,6 +13,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 7. [Inter-Integrated Circuits (I2C)](labs/07-i2c)
 8. [Combining C and assembly language](labs/08-asm)
 9. [Project 1](labs/09-project1)
+10. [Project 2](labs/10-project2)
 
 ## List of examples
 
