@@ -63,3 +63,4 @@ The following hardware and software components are mainly used in the lab.
 4. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
 5. Wykys, [Tools for development of AVR microcontrollers](https://github.com/wykys/AVR-tools)
 6. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
+7. 4Geeks. [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
