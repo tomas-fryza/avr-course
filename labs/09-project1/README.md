@@ -1,6 +1,6 @@
 # Project 1
 
-Application of analog joy-stick (2 ADC channels, 1 push button), rotary encoder, and Digilent PmodCLP LCD module.
+**Topic:** Description of analog joy-stick (2 ADC channels, 1 push button), rotary encoder, and Digilent PmodCLP LCD module.
 
 ## Instructions
 
@@ -8,9 +8,13 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 
 * Students work on a project in the labs during the 10th and 11th weeks of the semester.
 
-* Through the BUT e-learning, students submit a link to the GitHub repository, which contains the complete project in PlatfomIO and a descriptive README file. The submission deadline is the day before the next laboratory, i.e. in 2 weeks.
+* Through the BUT e-learning, students submit a link to the GitHub repository, which contains the complete project in PlatfomIO and a descriptive README file. The submission deadline is the day before the next lab, i.e. in 2 weeks.
 
-* The source code for the AVR must be written in C and/or Assembly and must be implementable on Arduino Uno board using toolchains from the semester, ie PlatformIO and not in the Arduino-style. No other development tools are allowed.
+* The source code for the AVR must be written in C and/or Assembly and must be implementable on Arduino Uno board using toolchains from the semester, ie in PlatformIO. No Arduino frameworks/libraries or other development tools are allowed.
+
+* Create your own libraries for new components.
+
+* Necessary physical implementation on AVR, not just computer simulation.
 
 ## Recommended GitHub repository structure
 
@@ -32,17 +36,25 @@ The goal of the project is cooperation in pairs, further study of the topic, des
 * Member 1 (responsible for xxx)
 * Member 2 (responsible for xxx)
 
-## Hardware description
+## Theoretical description and explanation
+
+Enter a description of the problem and how to solve it.
+
+## Hardware description of demo application
 
 Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
 
-Put flowchats of your algorithm(s). Write descriptive text of your libraries and source files. Put direct links to these files in `src` or `lib` folders.
+Put flowchats of your algorithm(s) and direct links to source files in `src` or `lib` folders.
 
-## Video
+### Library(ies) and function(s) description
 
-Insert a link to a short video with your practical implementation example (1-3 minutes, e.g. on YouTube).
+Write descriptive text of your libraries and source files.
+
+## Video presentation
+
+Insert a link to a short video (up to 3 minutes, e.g. on YouTube) presenting the problem and demo application.
 
 ## References
 
