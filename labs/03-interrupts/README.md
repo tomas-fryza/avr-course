@@ -60,7 +60,7 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
 
 3. IMPORTANT: Rename `LAB3-INTERRUPTS_TIMER > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/report.md) to your `LAB3-INTERRUPTS_TIMER > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/report.md) to your `LAB3-INTERRUPT_TIMER > README.md` file.
 
 <a name="part2"></a>
 
@@ -89,14 +89,18 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
 4. In PlatformIO project, create a new file `LAB3-INTERRUPTS_TIMER > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
-   ├── include
+   LAB3-INTERRUPTS_TIMER  // PlatfomIO project
+   ├── include         // Included files
    │   └── timer.h
-   ├── lib
+   ├── lib             // Libraries
    │   └── gpio
-   |       ├── gpio.c
-   |       └── gpio.h
-   └── src
-       └── main.c
+   │       ├── gpio.c
+   │       └── gpio.h
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
    For easier setting of control registers, the Timer/Counter1 macros with suitable names were defined in `timer.h`. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
@@ -243,9 +247,9 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 ## Post-Lab report
 
-*Complete all parts of `LAB3-INTERRUPTS_TIMER > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB3-INTERRUPTS_TIMER > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB3-INTERRUPTS_TIMER > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB3-INTERRUPTS_TIMER > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 

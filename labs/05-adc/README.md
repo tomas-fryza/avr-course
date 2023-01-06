@@ -44,7 +44,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 
 3. IMPORTANT: Rename `LAB5-ADC > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-adc/report.md) to your `LAB5-ADC > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-adc/report.md) to your `LAB5-ADC > README.md` file.
 
 <a name="part2"></a>
 
@@ -98,15 +98,19 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
 4. Use your favorite file manager and copy `timer` and `lcd` libraries from the previous lab to the proper locations within the `LAB5-ADC` project. The final project structure should look like this:
 
    ```c
-   ├── include
+   LAB5-ADC            // PlatfomIO project
+   ├── include         // Included files
    │   └── timer.h
-   ├── lib
+   ├── lib             // Libraries
    │   └── lcd
    │       ├── lcd.c
    │       ├── lcd.h
    │       └── lcd_definitions.h
-   └── src
-       └── main.c
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
 5. Go through the `main.c` file and make sure you understand each line. Use ATmega328P datasheet and complete the ADC configuration as follows:
@@ -166,9 +170,9 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
 
 ## Post-Lab report
 
-*Complete all parts of `LAB5-ADC > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB5-ADC > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB5-ADC > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB5-ADC > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 

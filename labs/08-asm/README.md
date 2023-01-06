@@ -58,7 +58,7 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 
 3. IMPORTANT: Rename `LAB8-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/report.md) to your `LAB8-ASM > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/report.md) to your `LAB8-ASM > README.md` file.
 
 <a name="part2"></a>
 
@@ -88,16 +88,20 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    The final project structure should look like this:
 
    ```c
-   ├── include
+   LAB8-ASM            // PlatfomIO project
+   ├── include         // Included files
    │   └── timer.h
-   ├── lib
+   ├── lib             // Libraries
    │   └── uart
    │       ├── uart.c
    │       └── uart.h
-   └── src
-       ├── lfsr.S    // Assembly implementation of LFSR-based generator
-       ├── mac.S     // Assembly example of Multiply-and-Accumulate
-       └── main.c
+   ├── src             // Source file(s)
+   │   ├── lfsr.S      // Assembly implementation of LFSR-based generator
+   │   ├── mac.S       // Assembly example of Multiply-and-Accumulate
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
 4. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/), find the description of instructions used in `mac.S`, and complete the table.
@@ -223,9 +227,9 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
 ## Post-Lab report
 
-*Complete all parts of `LAB8-ASM > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB8-ASM > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB8-ASM > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB8-ASM > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 

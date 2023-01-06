@@ -41,7 +41,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 3. IMPORTANT: Rename `LAB6-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/report.md) to your `LAB6-UART > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/report.md) to your `LAB6-UART > README.md` file.
 
 <a name="part2"></a>
 
@@ -99,14 +99,18 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    The final project structure should look like this:
 
    ```c
-   ├── include
+   LAB6-UART           // PlatfomIO project
+   ├── include         // Included files
    │   └── timer.h
-   ├── lib
+   ├── lib             // Libraries
    │   └── uart
    │       ├── uart.c
    │       └── uart.h
-   └── src
-       └── main.c
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
 5. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
@@ -268,9 +272,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 ## Post-Lab report
 
-*Complete all parts of `LAB6-UART > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB6-UART > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB6-UART > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB6-UART > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 

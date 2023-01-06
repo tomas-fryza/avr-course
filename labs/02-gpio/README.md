@@ -53,7 +53,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
 3. IMPORTANT: Rename `LAB2-GPIO_LIBRARY > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/02-gpio/report.md) to your `LAB2-GPIO_LIBRARY > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/02-gpio/report.md) to your `LAB2-GPIO_LIBRARY > README.md` file.
 
 <a name="part2"></a>
 
@@ -163,12 +163,17 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
    ```c
-   ├── lib
+   LAB2-GPIO_LIBRARY   // PlatfomIO project
+   ├── include         // No need this
+   ├── lib             // Libraries
    │   └── gpio
-   |       ├── gpio.c
-   |       └── gpio.h
-   └── src
-       └── main.c
+   │       ├── gpio.c
+   │       └── gpio.h
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
@@ -268,9 +273,9 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 ## Post-Lab report
 
-*Complete all parts of `LAB2-GPIO_LIBRARY > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB2-GPIO_LIBRARY > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB2-GPIO_LIBRARY > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB2-GPIO_LIBRARY > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 

@@ -68,7 +68,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 
 3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/04-lcd/report.md) to your `LAB4-LCD > test > README` file. Rename this file to `README.md`, ie add the extension `.md`.
+4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/04-lcd/report.md) to your `LAB4-LCD > README.md` file.
 
 <a name="part2"></a>
 
@@ -136,9 +136,10 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
 
    ```c
-   ├── include
+   LAB4-LCD            // PlatfomIO project
+   ├── include         // Included files
    │   └── timer.h
-   ├── lib
+   ├── lib             // Libraries
    │   ├── gpio
    │   │   ├── gpio.c
    │   │   └── gpio.h
@@ -146,8 +147,11 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    │       ├── lcd.c
    │       ├── lcd.h
    │       └── lcd_definitions.h
-   └── src
-       └── main.c
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   ├── platformio.ini  // Project Configuration File
+   └── README.md       // Report of this lab
    ```
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd.h) to `lcd.h`
@@ -322,9 +326,9 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
 ## Post-Lab report
 
-*Complete all parts of `LAB4-LCD > test > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next computer exercise.*
+*Complete all parts of `LAB4-LCD > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
-*Vypracujte všechny části ze souboru `LAB4-LCD > test > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
+*Vypracujte všechny části ze souboru `LAB4-LCD > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
 
 <a name="references"></a>
 
