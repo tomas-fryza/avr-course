@@ -28,20 +28,21 @@
 
 
 /* Global variables --------------------------------------------------*/
-// Declaration of "air" variable with structure "Air_parameters_structure"
-struct Air_parameters_structure {
-    uint8_t humid_int;
-    uint8_t humid_dec;
-    uint8_t temp_int;
-    uint8_t temp_dec;
+// Declaration of "dht12" variable with structure "DHT_values_structure"
+struct DHT_values_structure {
+    uint8_t humidInt;
+    uint8_t humidDec;
+    uint8_t tempInt;
+    uint8_t tempDec;
     uint8_t checksum;
-} air;
+} dht12;
 
-struct Time_structure {
+// Declaration of "rtc" variable with structure "RTC_values_structure"
+struct RTC_values_structure {
     uint8_t secs;
     uint8_t mins;
     uint8_t hours;
-} time;
+} rtc;
 
 
 /* Function definitions ----------------------------------------------*/
@@ -128,7 +129,7 @@ ISR(TIMER1_OVF_vect)
         // 68 ... GY521
         // 76 ... BME280
     }
-/*
+
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
     ack = twi_start(sla, TWI_WRITE);
@@ -137,30 +138,29 @@ ISR(TIMER1_OVF_vect)
         twi_write(0x00);  // 0x00 @ Humidity
         twi_stop();
         twi_start(sla, TWI_READ);
-        air.humid_int = twi_read_ack();
-        air.humid_dec = twi_read_ack();
-        air.temp_int = twi_read_ack();
-        air.temp_dec = twi_read_nack();
+        dht12.humidInt = twi_read_ack();
+        dht12.humidDec = twi_read_ack();
+        dht12.tempInt = twi_read_ack();
+        dht12.tempDec = twi_read_nack();
         twi_stop();
 
         // Print Humidity
-        itoa(air.humid_int, string, 10);
+        itoa(dht12.humidInt, string, 10);
         uart_puts(string);
         uart_puts(".");
-        itoa(air.humid_dec, string, 10);
+        itoa(dht12.humidDec, string, 10);
         uart_puts(string);
         uart_puts(" %\t");
 
         // Print Temperature
-        itoa(air.temp_int, string, 10);
+        itoa(dht12.tempInt, string, 10);
         uart_puts(string);
         uart_puts(".");
-        itoa(air.temp_dec, string, 10);
+        itoa(dht12.tempDec, string, 10);
         uart_puts(string);
         uart_puts(" °C\r\n");
     }
-*/
-/*
+
     // Read Time from RTC DS3231; SLA = 0x68
     // MPU-6050; SLA = 0x68
     sla = 0x68;
@@ -169,24 +169,24 @@ ISR(TIMER1_OVF_vect)
         twi_write(0x00);  // 0x00: Seconds
         twi_stop();
         twi_start(sla, TWI_READ);
-        time.secs = twi_read_ack();
-        time.mins = twi_read_ack();
-        time.hours = twi_read_nack();
+        rtc.secs = twi_read_ack();
+        rtc.mins = twi_read_ack();
+        rtc.hours = twi_read_nack();
         twi_stop();
 
         // Send values to UART
-        time.hours = time.hours & 0x1f;  // Filter Hours
-        itoa(time.hours, string, 16);
+        rtc.hours = rtc.hours & 0x1f;  // Filter Hours
+        itoa(rtc.hours, string, 16);
         uart_puts(string);
         uart_puts(":");
-        itoa(time.mins, string, 16);
+        itoa(rtc.mins, string, 16);
         uart_puts(string);
         uart_puts(":");
-        itoa(time.secs, string, 16);
+        itoa(rtc.secs, string, 16);
         uart_puts(string);
         uart_puts("\t");
     }
-*/
+
 /*
     // Read Temp from BME280; SLA = 0x76
     sla = 0x76;
