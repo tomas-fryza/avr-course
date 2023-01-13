@@ -24,99 +24,84 @@
 void twi_init(void)
 {
     /* Enable internal pull-up resistors */
-    DDR(TWI_PORT) &= ~(_BV(TWI_SDA_PIN) | _BV(TWI_SCL_PIN));
-    TWI_PORT |= _BV(TWI_SDA_PIN) | _BV(TWI_SCL_PIN);
+    DDR(TWI_PORT) &= ~((1<<TWI_SDA_PIN) | (1<<TWI_SCL_PIN));
+    TWI_PORT |= (1<<TWI_SDA_PIN) | (1<<TWI_SCL_PIN);
 
     /* Set SCL frequency */
-    TWSR &= ~(_BV(TWPS1) | _BV(TWPS0));
+    TWSR &= ~((1<<TWPS1) | (1<<TWPS0));
     TWBR = TWI_BIT_RATE_REG;
 }
 
 
 /**********************************************************************
  * Function: twi_start()
- * Purpose:  Start communication on I2C/TWI bus and send address byte.
- * Inputs:   address Slave address
- *           mode TWI_READ or TWI_WRITE
- * Returns:  0 - Slave device accessible
- *           1 - Failed to access Slave device
+ * Purpose:  Start communication on I2C/TWI bus.
+ * Returns:  none
  **********************************************************************/
-uint8_t twi_start(uint8_t address, uint8_t mode)
+void twi_start(void)
 {
-    uint8_t twi_response;
-
-    /* Generate start condition on I2C/TWI bus */
-    TWCR = _BV(TWINT) | _BV(TWSTA) | _BV(TWEN);
-    while ((TWCR & _BV(TWINT)) == 0);
-
-    /* Send SLA+R or SLA+W frame on I2C/TWI bus */
-    TWDR = (address<<1) + mode;
-    TWCR = _BV(TWINT) | _BV(TWEN);
-    while ((TWCR & _BV(TWINT)) == 0);
-
-    /* Check TWI Status Register and mask TWI prescaler bits */
-    twi_response = TWSR & 0xf8;
-
-    /* Status Code 0x18: SLA+W has been transmitted and ACK received
-                   0x40: SLA+R has been transmitted and ACK received */
-    if (twi_response == 0x18 || twi_response == 0x40)
-        return 0;   /* Slave device accessible */
-    else
-        return 1;   /* Failed to access Slave device */
+    /* Send Start condition */
+    TWCR = (1<<TWINT) | (1<<TWSTA) | (1<<TWEN);
+    while ((TWCR & (1<<TWINT)) == 0);
 }
 
 
 /**********************************************************************
  * Function: twi_write()
- * Purpose:  Send one data byte to I2C/TWI Slave device.
+ * Purpose:  Send one byte to I2C/TWI Slave device.
  * Input:    data Byte to be transmitted
  * Returns:  none
  **********************************************************************/
-void twi_write(uint8_t data)
+uint8_t twi_write(uint8_t data)
 {
+    uint8_t twi_status;
+
+    /* Send SLA+R, SLA+W, or data byte on I2C/TWI bus */
     TWDR = data;
-    TWCR = _BV(TWINT) | _BV(TWEN);
+    TWCR = (1<<TWINT) | (1<<TWEN);
+    while ((TWCR & (1<<TWINT)) == 0);
 
-    while ((TWCR & _BV(TWINT)) == 0);
+    /* Check value of TWI status register */
+    twi_status = TWSR & 0xf8;
+
+    /* Status Code:
+          * 0x18: SLA+W has been transmitted and ACK received
+          * 0x28: Data byte has been transmitted and ACK has been received
+          * 0x40: SLA+R has been transmitted and ACK received
+    */
+    if (twi_status == 0x18 || twi_status == 0x28 || twi_status == 0x40)
+        return 0;   /* ACK received */
+    else
+        return 1;   /* NACK received */
 }
 
 
 /**********************************************************************
- * Function: twi_read_ack()
- * Purpose:  Read one byte from the I2C/TWI Slave device and acknowledge
- *           it with ACK, i.e. communication will continue.
+ * Function: twi_read()
+ * Purpose:  Read one byte from I2C/TWI Slave device and acknowledge
+ *           it by ACK or NACK.
+ * Input:    ack ACK/NACK value to be transmitted
  * Returns:  Received data byte
  **********************************************************************/
-uint8_t twi_read_ack(void)
+uint8_t twi_read(uint8_t ack)
 {
-    TWCR = _BV(TWINT) | _BV(TWEN) | _BV(TWEA);
+    if (ack == TWI_ACK)
+        TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWEA);
+    else
+        TWCR = (1<<TWINT) | (1<<TWEN);
+    while ((TWCR & (1<<TWINT)) == 0);
 
-    while ((TWCR & _BV(TWINT)) == 0);
-    return (TWDR);
-}
-
-
-/**********************************************************************
- * Function: twi_read_nack()
- * Purpose:  Read one byte from the I2C/TWI Slave device and acknowledge
- *           it with NACK, i.e. communication will not continue.
- * Returns:  Received data byte
- **********************************************************************/
-uint8_t twi_read_nack(void)
-{
-    TWCR = _BV(TWINT) | _BV(TWEN);
-
-    while ((TWCR & _BV(TWINT)) == 0);
     return (TWDR);
 }
 
 
 /**********************************************************************
  * Function: twi_stop()
- * Purpose:  Generates stop condition on I2C/TWI bus.
+ * Purpose:  Generates Stop condition on I2C/TWI bus.
  * Returns:  none
  **********************************************************************/
 void twi_stop(void)
 {
-    TWCR = _BV(TWINT) | _BV(TWSTO) | _BV(TWEN);
+    /* Generate Stop condition on I2C/TWI bus */
+    TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
 }

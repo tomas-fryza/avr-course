@@ -55,7 +55,7 @@ struct RTC_values_structure {
  **********************************************************************/
 int main(void)
 {
-    // Initialize I2C (TWI)
+    // Initialize TWI (I2C)
     twi_init();
 
     // Initialize USART to asynchronous, 8N1, 9600
@@ -64,7 +64,7 @@ int main(void)
     // Configure 16-bit Timer/Counter1 to test one I2C address
     // Set prescaler to 33 ms and enable interrupt
     TIM1_overflow_33ms();
-    // TIM1_overflow_1s();
+    // TIM1_overflow_262ms();
     TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -74,7 +74,8 @@ int main(void)
     // uart_puts("Scan I2C bus for devices:\r\n");
 
     // MPU-6050 reset
-    // twi_start(0x68, TWI_WRITE);
+    // twi_start();
+    // twi_write((0x68<<1) | TWI_WRITE);
     // twi_write(0x6b);
     // twi_write(0x00);
     // twi_stop();
@@ -104,17 +105,22 @@ ISR(TIMER1_OVF_vect)
 
     // I2C scanner
     if (sla < 120) {
-        ack = twi_start(sla, TWI_WRITE);
+        twi_start();
+        ack = twi_write((sla<<1) | TWI_WRITE);
         twi_stop();
 
         itoa(sla, string, 10);
+        uart_puts(string);
+
+        itoa(sla, string, 2);
+        uart_puts("\tBin: ");
         uart_puts(string);
 
         itoa(sla, string, 16);
         uart_puts("\tHex: ");
         uart_puts(string);
 
-        if (ack == 0) {
+        if (ack == 0) {  // ACK
             uart_puts("\t");
             uart_puts("OK");
         }
@@ -123,25 +129,28 @@ ISR(TIMER1_OVF_vect)
         uart_puts("\r\n");
 
         // Known devices:
-        // 57 ... EEPROM
-        // 5c ... Temp+Humid
-        // 68 ... RTC
-        // 68 ... GY521
-        // 76 ... BME280
+        // 0x57 ... EEPROM
+        // 0x5c ... Temp+Humid
+        // 0x68 ... RTC
+        // 0x68 ... GY521
+        // 0x76 ... BME280
     }
 
+/*
     // Read temperature and humidity from DHT12, SLA = 0x5c
     sla = 0x5c;
-    ack = twi_start(sla, TWI_WRITE);
+    twi_start();
+    ack = twi_write((sla<<1) | TWI_WRITE);
     if (ack == 0) {
         // twi_write(0x02);  // 0x02 @ Temperature
         twi_write(0x00);  // 0x00 @ Humidity
         twi_stop();
-        twi_start(sla, TWI_READ);
-        dht12.humidInt = twi_read_ack();
-        dht12.humidDec = twi_read_ack();
-        dht12.tempInt = twi_read_ack();
-        dht12.tempDec = twi_read_nack();
+        twi_start();
+        twi_write((sla<<1) | TWI_READ);
+        dht12.humidInt = twi_read(TWI_ACK);
+        dht12.humidDec = twi_read(TWI_ACK);
+        dht12.tempInt = twi_read(TWI_ACK);
+        dht12.tempDec = twi_read(TWI_NACK);
         twi_stop();
 
         // Print Humidity
@@ -160,18 +169,21 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts(" °C\r\n");
     }
-
+*/
+/*
     // Read Time from RTC DS3231; SLA = 0x68
-    // MPU-6050; SLA = 0x68
+    // FYI: MPU-6050; SLA = 0x68
     sla = 0x68;
-    ack = twi_start(sla, TWI_WRITE);
+    twi_start();
+    ack = twi_write((sla<<1) | TWI_WRITE);
     if (ack == 0) {       // Slave device accessible
         twi_write(0x00);  // 0x00: Seconds
         twi_stop();
-        twi_start(sla, TWI_READ);
-        rtc.secs = twi_read_ack();
-        rtc.mins = twi_read_ack();
-        rtc.hours = twi_read_nack();
+        twi_start();
+        twi_write((sla<<1) | TWI_READ);
+        rtc.secs = twi_read(TWI_ACK);
+        rtc.mins = twi_read(TWI_ACK);
+        rtc.hours = twi_read(TWI_NACK);
         twi_stop();
 
         // Send values to UART
@@ -186,16 +198,18 @@ ISR(TIMER1_OVF_vect)
         uart_puts(string);
         uart_puts("\t");
     }
-
+*/
 /*
     // Read Temp from BME280; SLA = 0x76
     sla = 0x76;
-    ack = twi_start(sla, TWI_WRITE);
+    twi_start();
+    ack = twi_write((sla<<1) | TWI_WRITE);
     if (ack == 0) {       // Slave device accessible
         twi_write(0xd0);  // chip_id suppose to be 0x60
         twi_stop();
-        twi_start(sla, TWI_READ);
-        uint8_t value = twi_read_nack();
+        twi_start();
+        twi_write((sla<<1) | TWI_READ);
+        uint8_t value = twi_read(TWI_NACK);
         twi_stop();
 
         // Send value(s) to UART
