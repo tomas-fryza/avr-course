@@ -23,7 +23,7 @@
  * This library defines functions for the TWI (I2C) communication between
  * AVR and Slave device(s). Functions use internal TWI module of AVR.
  *
- * @note Based on Microchip Atmel ATmega16 and ATmega328P manuals.
+ * @note Only Master transmitting and Master receiving modes are implemented. Based on Microchip Atmel ATmega16 and ATmega328P manuals.
  * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
  *         of Technology, Czechia
  * @copyright (c) 2018 Tomas Fryza, This work is licensed under 
@@ -58,12 +58,12 @@
 /**
  * @name Other definitions
  */
-#define TWI_READ 1 /**< @brief Mode for reading from I2C/TWI device */
 #define TWI_WRITE 0 /**< @brief Mode for writing to I2C/TWI device */
-/** @brief Define address of Data Direction Register of port _x */
-#define DDR(_x) (*(&_x - 1))
-/** @brief Define address of input register of port _x */
-#define PIN(_x) (*(&_x - 2))
+#define TWI_READ 1 /**< @brief Mode for reading from I2C/TWI device */
+#define TWI_ACK 0 /**< @brief ACK value for writing to I2C/TWI bus */
+#define TWI_NACK 1 /**< @brief NACK value for writing to I2C/TWI bus */
+#define DDR(_x) (*(&_x - 1)) /**< @brief Address of Data Direction Register of port _x */
+#define PIN(_x) (*(&_x - 2)) /**< @brief Address of input register of port _x */
 
 
 /* Function prototypes -----------------------------------------------*/
@@ -80,44 +80,37 @@ void twi_init(void);
 
 
 /**
- * @brief  Start communication on I2C/TWI bus and send address byte.
- * @param  address Slave address
- * @param  mode TWI_READ or TWI_WRITE
- * @retval 0 - Slave device accessible
- * @retval 1 - Failed to access Slave device
- * @note   Function returns 0 only if 0x18 or 0x40 status code is detected\n
- *           0x18: SLA+W has been transmitted and ACK has been received\n
- *           0x40: SLA+R has been transmitted and ACK has been received\n
- */
-uint8_t twi_start(uint8_t address, uint8_t mode);
-
-
-/**
- * @brief  Send one data byte to I2C/TWI Slave device.
- * @param  data Byte to be transmitted
+ * @brief  Start communication on I2C/TWI bus.
  * @return none
  */
-void twi_write(uint8_t data);
+void twi_start(void);
 
 
 /**
- * @brief  Read one byte from the I2C/TWI Slave device and acknowledge
- *         it with ACK, i.e. communication will continue.
+ * @brief  Send one byte to I2C/TWI Slave device.
+ * @param  data Byte to be transmitted
+ * @return ACK/NACK received value
+ * @retval 0 - ACK has been received
+ * @retval 1 - NACK has been received
+ * @note   Function returns 0 if 0x18, 0x28, or 0x40 status code is detected\n
+ *           0x18: SLA+W has been transmitted and ACK has been received\n
+ *           0x28: Data byte has been transmitted and ACK has been received\n
+ *           0x40: SLA+R has been transmitted and ACK has been received\n
+ */
+uint8_t twi_write(uint8_t data);
+
+
+/**
+ * @brief  Read one byte from I2C/TWI Slave device and acknowledge
+ *         it by ACK or NACK.
+ * @param  ack - ACK/NACK value to be transmitted
  * @return Received data byte
  */
-uint8_t twi_read_ack(void);
+uint8_t twi_read(uint8_t ack);
 
 
 /**
- * @brief  Read one byte from the I2C/TWI Slave device and acknowledge
- *         it with NACK, i.e. communication will not continue.
- * @return Received data byte
- */
-uint8_t twi_read_nack(void);
-
-
-/**
- * @brief  Generates stop condition on I2C/TWI bus.
+ * @brief  Generates Stop condition on I2C/TWI bus.
  * @return none
  */
 void twi_stop(void);

@@ -37,7 +37,7 @@
  **********************************************************************/
 int main(void)
 {
-    // Initialize I2C (TWI)
+    // Initialize TWI (I2C)
     twi_init();
 
     // Initialize USART to asynchronous, 8N1, 9600
@@ -79,7 +79,8 @@ ISR(TIMER1_OVF_vect)
 
     // Start communication, transmit I2C Slave address, get result,
     // and Stop communication
-    ack = twi_start(sla, TWI_WRITE);
+    twi_start();
+    ack = twi_write((sla<<1) | TWI_WRITE);
     twi_stop();
 
     // Test ACK/NACK value obtained from I2C bus and send info to UART

@@ -142,10 +142,9 @@ The goal of this task is to create a program that will verify the presence of un
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
-   | `twi_start` |  | <br>&nbsp; | `twi_start(sla, TWI_WRITE);` |
-   | `twi_write` |  | <br>&nbsp; |  |
-   | `twi_read_ack` | <br>&nbsp; |  |  |
-   | `twi_read_nack` | <br>&nbsp; |  |  |
+   | `twi_start` |  | <br>&nbsp; |  |
+   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) | TWI_WRITE);` |
+   | `twi_read` | <br>&nbsp; |  |  |
    | `twi_stop` |  |  | `twi_stop();` |
 
 5. Use breadboard and connect available I2C modules to Arduino Uno board, such as humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor, combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory, or [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor). Instead of external pull-up resistors on the SDA and SCL pins, the internal ones will be used.
@@ -203,17 +202,17 @@ The goal of this task is to create a program that will verify the presence of un
 
    ```c
    /* Global variables --------------------------------------------------*/
-   // Declaration of "air" variable with structure "Air_parameters_structure"
-   struct Air_parameters_structure {
-       uint8_t humid_int;
-       uint8_t humid_dec;
-       uint8_t temp_int;
-       uint8_t temp_dec;
+   // Declaration of "dht12" variable with structure "DHT_values_structure"
+   struct DHT_values_structure {
+       uint8_t humidInt;
+       uint8_t humidDec;
+       uint8_t tempInt;
+       uint8_t tempDec;
        uint8_t checksum;
-   } air;
+   } dht12;
 
    ...
-   air.humid_int = twi_read_ack();  // Store one byte to structured variable
+   dht12.humidInt = twi_read(TWI_ACK);  // Store one byte to structured variable
    ```
 
 2. (Optional) Find out how checksum byte value is calculated.
@@ -308,4 +307,3 @@ The goal of this task is to create a program that will verify the presence of un
 8. LastMinuteEngineers. [Interface DS3231 Precision RTC Module with Arduino](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
 
 8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
-
