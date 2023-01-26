@@ -45,7 +45,9 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
 ## Part 1: Synchronize repositories and create a new project
 
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
+When you start working, always synchronize the contents of your working folder and local repository with remote version at GitHub. This way you are sure that you will not lose any of your changes.
+
+1. Run Git Bash (Windows) of Terminal (Linux) in your working directory, and update local repository.
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
