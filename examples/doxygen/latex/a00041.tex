@@ -1,44 +1,45 @@
-\hypertarget{a00041}{}\doxysubsection{G\+P\+IO Library $<$gpio.\+h$>$}
+\hypertarget{a00041}{}\doxysubsection{GPIO Library $<$gpio.\+h$>$}
 \label{a00041}\index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 
 
-G\+P\+IO library for A\+V\+R-\/\+G\+CC.  
+GPIO library for AVR-\/\+GCC.  
 
 
 \doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{a00041_gae4c211fcf0878fc6617e21dcfe7a4513}{G\+P\+I\+O\+\_\+mode\+\_\+output}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
+void \mbox{\hyperlink{a00041_gae4c211fcf0878fc6617e21dcfe7a4513}{GPIO\+\_\+mode\+\_\+output}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Configure one output pin. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{a00041_ga1ad7cbb1e25a69cd4ec9ecb780a78e88}{G\+P\+I\+O\+\_\+mode\+\_\+input\+\_\+pullup}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
+void \mbox{\hyperlink{a00041_ga1ad7cbb1e25a69cd4ec9ecb780a78e88}{GPIO\+\_\+mode\+\_\+input\+\_\+pullup}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Configure one input pin and enable pull-\/up. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{a00041_gacea0f20416113eb2286b6bd730e22daa}{G\+P\+I\+O\+\_\+write\+\_\+low}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
+void \mbox{\hyperlink{a00041_gacea0f20416113eb2286b6bd730e22daa}{GPIO\+\_\+write\+\_\+low}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Write one pin to low value. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{a00041_gabd54283301ad4e85b31c126f2fc316c7}{G\+P\+I\+O\+\_\+write\+\_\+high}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
+void \mbox{\hyperlink{a00041_gabd54283301ad4e85b31c126f2fc316c7}{GPIO\+\_\+write\+\_\+high}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Write one pin to high value. \end{DoxyCompactList}\item 
-uint8\+\_\+t \mbox{\hyperlink{a00041_gacc9e9839904344a3be4549d8622342f5}{G\+P\+I\+O\+\_\+read}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
+uint8\+\_\+t \mbox{\hyperlink{a00041_gacc9e9839904344a3be4549d8622342f5}{GPIO\+\_\+read}} (volatile uint8\+\_\+t $\ast$reg, uint8\+\_\+t pin)
 \begin{DoxyCompactList}\small\item\em Read a value from input pin. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsubsection{Detailed Description}
-G\+P\+IO library for A\+V\+R-\/\+G\+CC. 
+GPIO library for AVR-\/\+GCC. 
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\textcolor{preprocessor}{\#include <\mbox{\hyperlink{a00005}{gpio.h}}>} }
+
 \end{DoxyCode}
 
 
-The library contains functions for controlling A\+V\+Rs\textquotesingle{} gpio pin(s).
+The library contains functions for controlling AVRs\textquotesingle{} gpio pin(s).
 
 \begin{DoxyNote}{Note}
-Based on A\+VR Libc Reference Manual. Tested on A\+Tmega328P (Arduino Uno), 16 M\+Hz, A\+VR 8-\/bit Toolchain 3.\+6.\+2. 
+Based on AVR Libc Reference Manual. Tested on ATmega328P (Arduino Uno), 16 MHz, AVR 8-\/bit Toolchain 3.\+6.\+2. 
 \end{DoxyNote}
 \begin{DoxyAuthor}{Author}
 Tomas Fryza, Dept. of Radio Electronics, Brno University of Technology, Czechia 
 \end{DoxyAuthor}
 \begin{DoxyCopyright}{Copyright}
-(c) 2019 Tomas Fryza, This work is licensed under the terms of the M\+IT license 
+(c) 2019 Tomas Fryza, This work is licensed under the terms of the MIT license 
 \end{DoxyCopyright}
 
 
@@ -47,7 +48,7 @@ Tomas Fryza, Dept. of Radio Electronics, Brno University of Technology, Czechia
 \index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}!GPIO\_mode\_input\_pullup@{GPIO\_mode\_input\_pullup}}
 \index{GPIO\_mode\_input\_pullup@{GPIO\_mode\_input\_pullup}!GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 \doxyparagraph{\texorpdfstring{GPIO\_mode\_input\_pullup()}{GPIO\_mode\_input\_pullup()}}
-{\footnotesize\ttfamily void G\+P\+I\+O\+\_\+mode\+\_\+input\+\_\+pullup (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GPIO\+\_\+mode\+\_\+input\+\_\+pullup (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
 
 
 
@@ -55,7 +56,7 @@ Configure one input pin and enable pull-\/up.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reg} & Address of Data Direction Register, such as \&D\+D\+RB \\
+{\em reg} & Address of Data Direction Register, such as \&DDRB \\
 \hline
 {\em pin} & Pin designation in the interval 0 to 7 \\
 \hline
@@ -67,7 +68,7 @@ none
 \index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}!GPIO\_mode\_output@{GPIO\_mode\_output}}
 \index{GPIO\_mode\_output@{GPIO\_mode\_output}!GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 \doxyparagraph{\texorpdfstring{GPIO\_mode\_output()}{GPIO\_mode\_output()}}
-{\footnotesize\ttfamily void G\+P\+I\+O\+\_\+mode\+\_\+output (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GPIO\+\_\+mode\+\_\+output (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
 
 
 
@@ -75,7 +76,7 @@ Configure one output pin.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reg} & Address of Data Direction Register, such as \&D\+D\+RB \\
+{\em reg} & Address of Data Direction Register, such as \&DDRB \\
 \hline
 {\em pin} & Pin designation in the interval 0 to 7 \\
 \hline
@@ -87,7 +88,7 @@ none
 \index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}!GPIO\_read@{GPIO\_read}}
 \index{GPIO\_read@{GPIO\_read}!GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 \doxyparagraph{\texorpdfstring{GPIO\_read()}{GPIO\_read()}}
-{\footnotesize\ttfamily uint8\+\_\+t G\+P\+I\+O\+\_\+read (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily uint8\+\_\+t GPIO\+\_\+read (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
 
 
 
@@ -95,7 +96,7 @@ Read a value from input pin.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reg} & Address of Pin Register, such as \&P\+I\+NB \\
+{\em reg} & Address of Pin Register, such as \&PINB \\
 \hline
 {\em pin} & Pin designation in the interval 0 to 7 \\
 \hline
@@ -107,7 +108,7 @@ Pin value
 \index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}!GPIO\_write\_high@{GPIO\_write\_high}}
 \index{GPIO\_write\_high@{GPIO\_write\_high}!GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 \doxyparagraph{\texorpdfstring{GPIO\_write\_high()}{GPIO\_write\_high()}}
-{\footnotesize\ttfamily void G\+P\+I\+O\+\_\+write\+\_\+high (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GPIO\+\_\+write\+\_\+high (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
 
 
 
@@ -115,7 +116,7 @@ Write one pin to high value.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reg} & Address of Port Register, such as \&P\+O\+R\+TB \\
+{\em reg} & Address of Port Register, such as \&PORTB \\
 \hline
 {\em pin} & Pin designation in the interval 0 to 7 \\
 \hline
@@ -127,7 +128,7 @@ none
 \index{GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}!GPIO\_write\_low@{GPIO\_write\_low}}
 \index{GPIO\_write\_low@{GPIO\_write\_low}!GPIO Library $<$gpio.h$>$@{GPIO Library $<$gpio.h$>$}}
 \doxyparagraph{\texorpdfstring{GPIO\_write\_low()}{GPIO\_write\_low()}}
-{\footnotesize\ttfamily void G\+P\+I\+O\+\_\+write\+\_\+low (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void GPIO\+\_\+write\+\_\+low (\begin{DoxyParamCaption}\item[{volatile uint8\+\_\+t $\ast$}]{reg,  }\item[{uint8\+\_\+t}]{pin }\end{DoxyParamCaption})}
 
 
 
@@ -135,7 +136,7 @@ Write one pin to low value.
 
 
 \begin{DoxyParams}{Parameters}
-{\em reg} & Address of Port Register, such as \&P\+O\+R\+TB \\
+{\em reg} & Address of Port Register, such as \&PORTB \\
 \hline
 {\em pin} & Pin designation in the interval 0 to 7 \\
 \hline
