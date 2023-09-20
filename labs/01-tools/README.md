@@ -18,8 +18,8 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
 * [Part 3: Install and test AVR tools](#part3)
-* [Part 4: (Optional) SimulIDE electronic circuit simulator](#part4)
-* [Part 5: (Optional) Logic analyzer](#part5)
+* [(Optional) Part 4: SimulIDE electronic circuit simulator](#part4)
+* [(Optional) Part 5: Logic analyzer](#part5)
 * [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
@@ -149,7 +149,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part4"></a>
 
-## Part 4: (Optional) SimulIDE electronic circuit simulator
+## (Optional) Part 4: SimulIDE electronic circuit simulator
 
 1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
 
@@ -169,7 +169,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part5"></a>
 
-## Part 5: (Optional) Logic analyzer
+## (Optional) Part 5: Logic analyzer
 
 1. Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
 
