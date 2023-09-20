@@ -1,9 +1,5 @@
 # Lab 1: Git version-control system, AVR tools
 
-<!--
-![Atmel Studio 7](images/screenshot_atmel_studio_blink.png)
--->
-
 ### Learning objectives
 
 After completing this lab you will be able to:
@@ -14,7 +10,7 @@ After completing this lab you will be able to:
 * Compile and download firmware to AVR device
 * Use breadboard and connect electronic devices to AVR pins
 
-The purpose of this laboratory exercise is to learn how to use the git versioning system, write the markdown readme file, learn the basic structure of C code, and learn how to use development tools to program ATmega328P microcontroller on the Arduino Uno board.
+The purpose of this laboratory exercise is to learn how to use the `git` versioning system, write the markdown readme file, learn the basic structure of C code, and how to use development tools to program ATmega328P microcontroller on the Arduino Uno board.
 
 ### Table of contents
 
@@ -22,19 +18,18 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 * [Part 1: GitHub](#part1)
 * [Part 2: Local repository](#part2)
 * [Part 3: Install and test AVR tools](#part3)
-* [Part 4: SimulIDE electronic circuit simulator](#part4)
+* [Part 4: (Optional) SimulIDE electronic circuit simulator](#part4)
 * [Part 5: (Optional) Logic analyzer](#part5)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
 <a name="preparation"></a>
 
 ## Pre-Lab preparation
 
-1. If you don't have any, create a free account on [GitHub](https://github.com/signup?source=login).
+1. If you don't have any, create a free account on [GitHub](https://github.com/login).
 
-3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/). Git is free, open source, and available on Windows, Mac, and Linux platforms. Window users will also need to use the Git Bash application (installed automatically with git) for command line operations.
+3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/). Git is free, open source, and available on Windows, Mac, and Linux platforms. Window users may also need to use the Git Bash application (installed automatically with git) for command line operations.
 
 3. (Optional) Download and install [SimulIDE](https://www.simulide.com/p/home.html) electronic circuit simulator.
 
@@ -44,7 +39,7 @@ The purpose of this laboratory exercise is to learn how to use the git versionin
 
 ## Part 1: GitHub
 
-GitHub is a code hosting platform for collaboration and version control. GitHub lets you (and others) work together on projects.
+GitHub is a code hosting platform for collaboration and version control. GitHub lets you and others work together on projects, keep all previous modifications, create different branches, and much more.
 
 1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, C template .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
 
@@ -98,11 +93,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) and install the PlatformIO plugin.
 
-2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.c) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
+2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.c) to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
 3. IMPORTANT: Rename `LAB1-BLINK_ARDUINO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/01-tools/report.md) to your `LAB1-BLINK_ARDUINO > README.md` file.
 
    The final project structure should look like this:
 
@@ -113,8 +106,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
 5. Compile and download the firmware to target ATmega328P microcontroller. Go through all the lines of code and make sure you understand their function. Change the delay duration and observe the behavior of on-board LED.
@@ -122,7 +114,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
    * See Arduino Docs for [GPIO / Pin Management](https://docs.arduino.cc/learn/starting-guide/getting-started-arduino#gpio--pin-management)
 
-6. Use breadboard, wires, resistor, and a second LED. Connect in to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
+6. Use breadboard, wires, resistor, and a second LED. Connect it to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
 
    * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
    * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
@@ -157,7 +149,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="part4"></a>
 
-## Part 4: SimulIDE electronic circuit simulator
+## Part 4: (Optional) SimulIDE electronic circuit simulator
 
 1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
 
@@ -187,21 +179,17 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
 1. Install the AVR development tools on your computer.
 
-2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly displayed the string `PARIS` on a LED in the Morse code. Choose the duration of "dot" and "dash" so that they are visible during the simulation and/or implementation. Note that the proper Morse code timing is explained [here](https://morsecode.world/international/timing.html).
+2. Modify the code from `lab1-blink_arduino` example and build an application that will repeatedly trasnmit the string `PARIS` on a LED in the Morse code. Choose the duration of "dot" and "dash" so that they are visible during the simulation and/or implementation. Note that the proper Morse code timing is explained [here](https://morsecode.world/international/timing.html).
 
 3. Simulate the Morse code application in SimulIDE.
 
-<a name="report"></a>
+4. Draw a schematic of Morse code application, i.e. connection of AVR device, two LEDs (one in active-high, second in active-low way), two resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-## Post-Lab report
-
-*Complete all parts of `LAB1-BLINK_ARDUINO > README.md` file (see Part 3.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
-
-*Vypracujte všechny části ze souboru `LAB1-BLINK_ARDUINO > README.md` (viz Část 3.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+5. Complete all experiments, push them to your GitHub repository, and submit a project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
 
 <a name="references"></a>
 
