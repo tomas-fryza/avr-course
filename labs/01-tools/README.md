@@ -23,6 +23,14 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 * [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
+### Components list
+
+* Arduino Uno board, USB cable
+* Breadboard
+* 2 LEDs
+* 2 resistors
+* Jumper wires
+
 <a name="preparation"></a>
 
 ## Pre-Lab preparation
@@ -116,7 +124,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 6. Use breadboard, wires, resistor, and a second LED. Connect it to a GPIO pin PB0 in active-low way and modify your code to blink both LEDs.
 
-   * See [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746)
+   * See this [breadboard description](https://computers.tutsplus.com/tutorials/how-to-use-a-breadboard-and-build-a-led-circuit--mac-54746) or [that one](https://www.sciencebuddies.org/science-fair-projects/references/how-to-use-a-breadboard)
    * See LED resistor value [calculation](https://electronicsclub.info/leds.htm)
    * Connection of external LED in active-low way:
 
@@ -130,20 +138,22 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
       > **Note:** Picture was created by [EasyEDA](https://easyeda.com/).
 
-7. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
+7. On breadboard, connect two LEDs and control them by a single output pin PB0. Is it possible to get all commbinations, i.e. ON+ON, ON+OFF, OFF+ON, and OFF+OFF?
+
+8. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
-
-   ```bash
-   ## Windows Git Bash or Linux:
-   $ git status
-   $ git add -A
-   $ git status
-   $ git commit -m "Creating lab1-blink program"
-   $ git status
-   $ git push
-   $ git status
-   ```
+   >
+   > ```bash
+   > ## Windows Git Bash or Linux:
+   > $ git status
+   > $ git add -A
+   > $ git status
+   > $ git commit -m "Creating lab1-blink program"
+   > $ git status
+   > $ git push
+   > $ git status
+   > ```
 
    ![git](images/git_basics.png)
 
@@ -189,7 +199,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 4. Draw a schematic of Morse code application, i.e. connection of AVR device, two LEDs (one in active-high, second in active-low way), two resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-5. Complete all experiments, push them to your GitHub repository, and submit a project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
+5. Complete all experiments, push them to your GitHub repository, and submit a project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.
 
 <a name="references"></a>
 
@@ -208,3 +218,5 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 6. Joshua Hibbert. [Git Commands](https://github.com/joshnh/Git-Commands)
 
 7. Stephen C. Phillips. [Morse Code Timing](https://morsecode.world/international/timing.html)
+
+8. Science Buddies. [How to Use a Breadboard for Electronics and Circuits](https://www.sciencebuddies.org/science-fair-projects/references/how-to-use-a-breadboard)
