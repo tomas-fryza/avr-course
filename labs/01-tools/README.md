@@ -30,6 +30,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 * 2 LEDs
 * 2 resistors
 * Jumper wires
+* Logic analyzer
 
 <a name="preparation"></a>
 
