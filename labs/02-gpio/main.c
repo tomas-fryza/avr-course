@@ -15,7 +15,7 @@
 /* Defines -----------------------------------------------------------*/
 #define LED_GREEN PB5   // PB5 is AVR pin where green on-board LED
                         // is connected
-#define LED_RED PB0     // External active-low LED
+#define LED_RED PB0     // Off-board LED
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
 # define F_CPU 16000000 // CPU frequency in Hz required for delay funcs
