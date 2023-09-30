@@ -18,8 +18,7 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 * [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: GPIO control registers](#part2)
 * [Part 3: GPIO library files](#part3)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
 ### Components list
@@ -297,7 +296,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 5. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
-   ![schema od active-low push button](images/schema_button_active-low.png)
+   ![schema of active-low push button](images/schema_button_active-low.png)
 
 6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
 
