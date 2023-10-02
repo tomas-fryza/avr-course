@@ -8,7 +8,7 @@ int main(void)        // Main function with no input parameters
                       // Print formated string to a Terminal
     printf("Print int8 value: %d\n", a);  // Integer `a` will be printed to `%d`
     printf("Print uint8 value: %d\n", b); // Formatting char. `\n` inserts new line
-    printf("Size of int16: %d B\n", sizeof(int16_t));
+    printf("Size of int32_t: %d B\n", sizeof(int32_t));
 
     return 0;         // Return value of main function
 }                     // End of function body
