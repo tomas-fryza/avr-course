@@ -45,43 +45,43 @@ The purpose of this laboratory exercise is to learn how to create your own libra
    | `uint16_t` |  |  |  |
    | `int16_t`  |  |  |  |
    | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-   | `void`     |  |  |  |
+   | `void`     | -- | -- | *Incomplete type that cannot be completed* |
 
 2. Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
-```c
-#include <avr/io.h>
+   ```c
+   #include <avr/io.h>
 
-// Function declaration (prototype)
-uint16_t calculate(uint8_t, ***    );
+   // Function declaration (prototype)
+   uint16_t calculate(uint8_t, ***    );
 
-int main(void)
-{
-    uint8_t a = 210;
-    uint8_t b = 15;
-    uint16_t c;
+   int main(void)
+   {
+      uint8_t a = 210;
+      uint8_t b = 15;
+      uint16_t c;
 
-    // Function call
-    c = ***      (a, b);
+      // Function call
+      c = ***      (a, b);
 
-    // Infinite loop
-    while (1) ;
+      // Infinite loop
+      while (1) ;
 
-    // Will never reach this
-    return 0;
-}
+      // Will never reach this
+      return 0;
+   }
 
-// Function definition (body)
-***      calculate(uint8_t x, uint8_t y)
-{
-    uint16_t result;    // result = x^2 + 2xy + y^2
+   // Function definition (body)
+   ***      calculate(uint8_t x, uint8_t y)
+   {
+      uint16_t result;    // result = x^2 + 2xy + y^2
 
-    result = x*x;
-    ***
-    ***
-    return result;
-}
-```
+      result = x*x;
+      ***
+      ***
+      return result;
+   }
+   ```
 
 3. Find the difference between a variable and pointer in C. What mean notations `*variable` and `&variable`?
 
