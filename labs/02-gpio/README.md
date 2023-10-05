@@ -245,7 +245,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    > **Note:** Suggestions for other features you can add are:
    >
    > * `void GPIO_mode_input_nopull(volatile uint8_t *reg, uint8_t pin)` Configure one input pin without pull-up resistor
-   > * `void GPIO_write_toggle(volatile uint8_t *reg, uint8_t pin)` Toggle one pin value
+   > * `void GPIO_toggle(volatile uint8_t *reg, uint8_t pin)` Toggle one pin value
 
    The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
@@ -306,7 +306,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 ## (Optional) Experiments on your own
 
-1. Complete declarations (`*.h`) and definitions (`*.c`) of GPIO suggested functions `GPIO_mode_input_nopull()` and `GPIO_write_toggle()`.
+1. Complete declarations (`*.h`) and definitions (`*.c`) of GPIO suggested functions `GPIO_mode_input_nopull()` and `GPIO_toggle()`.
 
 2. Connect at least five LEDs and one push button to the microcontroller and program an application in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). When you press and release a push button once, the LEDs starts to switched on and off; ensure that only one of LEDs is switched on at a time. Do not implement the blinking speed changing.
 
