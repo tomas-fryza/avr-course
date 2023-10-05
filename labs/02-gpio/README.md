@@ -292,7 +292,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    }
    ```
 
-4. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistors to pins PB0 and PB1. Develop the code to achieve alternating blinking of two LEDs.
+4. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistors to pins PB2 and PB3. Develop the code to achieve alternating blinking of two LEDs.
 
 5. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
