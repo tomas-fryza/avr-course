@@ -1,6 +1,6 @@
 # Digital electronics 2
 
-The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/258370) at Brno University of Technology, Czechia. [Arduino Uno board and some shields](https://oshwlab.com/tomas.fryza/arduino-shields) are used as the main programming platform.
+The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. [Arduino Uno board and some shields](https://oshwlab.com/tomas.fryza/arduino-shields) are used as the main programming platform.
 
 ## Exercises
 
@@ -11,10 +11,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 5. [Analog-to-Digital Converter (ADC)](labs/05-adc)
 6. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
 7. [Inter-Integrated Circuits (I2C)](labs/07-i2c)
-
-<!--
 8. [Combining C and assembly language](labs/08-asm)
--->
 
 ## List of examples
 

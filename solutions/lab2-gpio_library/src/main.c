@@ -16,6 +16,7 @@
 #define LED_GREEN PB5   // PB5 is AVR pin where green on-board LED
                         // is connected
 #define LED_RED PB0     // Off-board LED
+
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
 # define F_CPU 16000000 // CPU frequency in Hz required for delay funcs
@@ -25,15 +26,15 @@
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>     // AVR device-specific IO definitions
 #include <util/delay.h> // Functions for busy-wait delay loops
-#include <gpio.h>       // GPIO library for AVR-GCC
+// #include <gpio.h>       // GPIO library for AVR-GCC
 
 
 // -----
 // This part is needed to use Arduino functions but also physical pin
 // names. We are using Arduino-style just to simplify the first lab.
-// #include "Arduino.h"
-// #define PB5 13          // In Arduino world, PB5 is called "13"
-// #define PB0 8
+#include "Arduino.h"
+#define PB5 13          // In Arduino world, PB5 is called "13"
+#define PB0 8
 // -----
 
 
@@ -49,8 +50,8 @@ int main(void)
 
     // Set pins where LEDs are connected as output
     // Ver 1: Arduino style
-    // pinMode(LED_GREEN, OUTPUT);
-    // pinMode(LED_RED, OUTPUT);
+    pinMode(LED_GREEN, OUTPUT);
+    pinMode(LED_RED, OUTPUT);
 
     // Ver 2: Low-level (register) style
     // DDRB = DDRB | (1<<LED_GREEN);
@@ -63,8 +64,8 @@ int main(void)
     // DDRB = DDRB | (1<<LED_RED);
 
     // Ver 3: Library function style
-    GPIO_mode_output(&DDRB, LED_GREEN);
-    GPIO_mode_output(&DDRB, LED_RED);
+    // GPIO_mode_output(&DDRB, LED_GREEN);
+    // GPIO_mode_output(&DDRB, LED_RED);
 
     // Infinite loop
     while (1) {
@@ -75,18 +76,18 @@ int main(void)
         if (led_value == 0) {
             led_value = 1;
             // Set pin(s) to HIGH
-            // digitalWrite(LED_GREEN, HIGH);
-            // digitalWrite(LED_RED, HIGH);
+            digitalWrite(LED_GREEN, HIGH);
+            digitalWrite(LED_RED, HIGH);
             // PORTB = PORTB | (1<<LED_GREEN);
             // PORTB = PORTB | (1<<LED_RED);
-            GPIO_write_high(&PORTB, LED_GREEN);
-            GPIO_write_high(&PORTB, LED_RED);
+            // GPIO_write_high(&PORTB, LED_GREEN);
+            // GPIO_write_high(&PORTB, LED_RED);
         }
         else {
             led_value = 0;
             // Clear pin(s) to LOW
-            // digitalWrite(LED_GREEN, LOW);
-            // digitalWrite(LED_RED, LOW);
+            digitalWrite(LED_GREEN, LOW);
+            digitalWrite(LED_RED, LOW);
             // PORTB = PORTB & ~(1<<LED_GREEN);
             //                0000 0001 ... number 1 in binary
             //                0010 0000 ... mask after shift
@@ -96,8 +97,8 @@ int main(void)
             //    -----------
             //      0101 1101
             // PORTB = PORTB & ~(1<<LED_RED);
-            GPIO_write_low(&PORTB, LED_GREEN);
-            GPIO_write_low(&PORTB, LED_RED);
+            // GPIO_write_low(&PORTB, LED_GREEN);
+            // GPIO_write_low(&PORTB, LED_RED);
         }
     }
 
