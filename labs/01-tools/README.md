@@ -16,10 +16,9 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: GitHub](#part1)
-* [Part 2: Local repository](#part2)
-* [Part 3: Install and test AVR tools](#part3)
-* [(Optional) Part 4: SimulIDE electronic circuit simulator](#part4)
-* [(Optional) Part 5: Logic analyzer](#part5)
+* [Part 2: Install and test AVR tools](#part2)
+* [(Optional) Part 3: SimulIDE electronic circuit simulator](#part3)
+* [(Optional) Part 4: Logic analyzer](#part4)
 * [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
@@ -38,7 +37,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 1. If you don't have any, create a free account on [GitHub](https://github.com/login).
 
-3. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/). Git is free, open source, and available on Windows, Mac, and Linux platforms. Window users may also need to use the Git Bash application (installed automatically with git) for command line operations.
+2. For future synchronization of local folders with GitHub, download and install [git](https://git-scm.com/). Git is free, open source, and available on Windows, Mac, and Linux platforms. Window users may also need to use the Git Bash application (installed automatically with git) for command line operations.
 
 3. (Optional) Download and install [SimulIDE](https://www.simulide.com/p/home.html) electronic circuit simulator.
 
@@ -61,13 +60,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    * Table
    * Listing of C source code (with syntax highlighting)
 
-<a name="part2"></a>
+3. Use your favorite file manager and run Git Bash (Windows) or Terminal (Linux) inside your home folder `Documents`.
 
-## Part 2: Local repository
-
-1. Use your favorite file manager and run Git Bash (Windows) or Terminal (Linux) inside your home folder `Documents`.
-
-2. With help of `git` command, clone a local copy of your public repository.
+4. With help of `git` command, clone a local copy of your public repository.
 
    > **Important:** To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.
    >
@@ -83,7 +78,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    .gitignore  LICENSE  README.md
    ```
 
-3. Set username and email for your repository (values will be associated with your later commits):
+5. Set username and email for your repository (values will be associated with your later commits):
 
    ```shell
    $ git config user.name "your-git-user-name"
@@ -96,9 +91,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
    $ git config --list
    ```
 
-<a name="part3"></a>
+<a name="part2"></a>
 
-## Part 3: Install and test AVR tools
+## Part 2: Install and test AVR tools
 
 1. Run Visual Studio Code, follow these [instructions](https://github.com/tomas-fryza/digital-electronics-2/wiki/How-to-use-AVR-template-with-PlatformIO) and install the PlatformIO plugin.
 
@@ -158,9 +153,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
    ![git](images/git_basics.png)
 
-<a name="part4"></a>
+<a name="part3"></a>
 
-## (Optional) Part 4: SimulIDE electronic circuit simulator
+## (Optional) Part 3: SimulIDE electronic circuit simulator
 
 1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
 
@@ -178,9 +173,9 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 7. Properties of individual components can be found/changed by right-clicking on the component and selecting **Properties**.
 
-<a name="part5"></a>
+<a name="part4"></a>
 
-## (Optional) Part 5: Logic analyzer
+## (Optional) Part 4: Logic analyzer
 
 1. Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
 
