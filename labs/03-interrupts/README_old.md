@@ -15,9 +15,6 @@
 
 
 
-
-
-
 ### Version: Atmel Studio 7
 
 1. Create a new GCC C Executable Project for ATmega328P within `04-interrupts` working folder and copy/paste [template code](main.c) to your `main.c` source file.
@@ -40,10 +37,6 @@
 
 
 
-
-
-
-
 <a name="part5"></a>
 
 ## Part 5: PWM (Pulse Width Modulation)
@@ -57,16 +50,6 @@ Pulse Width Modulation or PWM is a common technique used to vary the width of th
 
 ![PWM](images/pwm.png)
 
-Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) board or [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) and in the following table write which Arduino Uno pins can be used to generate the PWM signal by internal timer modules.
-
-| **Module** | **Description** | **MCU pin** | **Arduino pin** |
-| :-: | :-: | :-: | :-: |
-| Timer/Counter0 | OC0A |     |    |
-|                | OC0B |     |    |
-| Timer/Counter1 | OC1A |     |    |
-|                | OC1B | PB2 | 10 |
-| Timer/Counter2 | OC2A |     |    |
-|                | OC2B |     |    |
 
 
 
@@ -88,37 +71,6 @@ Use schematic of [Arduino Uno](https://oshwlab.com/tomas.fryza/arduino-shields) 
 
 
 
-4. Extend the existing application and control four LEDs in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Do not use delay library, but a single Timer/Counter.
-
-   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. For example in code [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the line `static uint16_t i=0;` will only run the first time.
-
-```c
-void IRQHandler()
-{
-    static uint16_t i=0;  // This line only run the first time
-
-    if (i>=500)
-    {
-        i=0;  // Variable is reset when function IRQHandler is executed 500 times
-    }
-    else
-    {
-        i++;  // Static variable is incremented any time function IRQHandler is executed
-    }
-}
-```
-
-
-Consider a push button in the application. If the push button is pressed, let the LEDs blink faster; when the push button is released, the blinking is slower. Note: Do not use an interrupt to check the status of a push button, but a read function from your GPIO library.
 
 
 2. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin. See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **External Interrupts**) and config INT0. When push button is pressed, the Timer0 prescaler setting is changed.
-
-
-
-*Prepare all parts of the assignment in Czech, Slovak or English according to this [template](assignment.md), export formatted output (not Markdown) [from HTML to PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF), and submit a single PDF file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next laboratory exercise.*
-
-> *Vypracujte všechny části úkolu v českém, slovenském, nebo anglickém jazyce podle této [šablony](assignment.md), exportujte formátovaný výstup (nikoli výpis v jazyce Markdown) [z HTML do PDF](https://github.com/tomas-fryza/digital-electronics-2/wiki/Export-README-to-PDF) a odevzdejte jeden PDF soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším počítačovým cvičením.*
->
-
-
