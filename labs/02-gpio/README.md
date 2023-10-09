@@ -89,9 +89,9 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
 ## Part 1: Synchronize repositories and create a new project
 
-When you start working, always synchronize the contents of your working folder and local repository with remote version at GitHub. This way you are sure that you will not lose any of your changes.
+When you begin working, ensure that you synchronize the contents of your working folder and local repository with the remote version on GitHub. This practice ensures that none of your changes are lost.
 
-1. Use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (in Windows or Terminal in Linux) in your working directory, and update local repository.
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
@@ -298,7 +298,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
    ![schema of active-low push button](images/schema_button_active-low.png)
 
-6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+6. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
@@ -314,7 +314,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 4. Draw a schematic of Knight Rider application. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-5. Complete all experiments, push them to your GitHub repository, and submit a project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.
+5. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 

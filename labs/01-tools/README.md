@@ -47,7 +47,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 ## Part 1: GitHub
 
-GitHub is a code hosting platform for collaboration and version control. GitHub lets you and others work together on projects, keep all previous modifications, create different branches, and much more.
+GitHub serves as a platform for hosting code, facilitating collaboration, and managing version control. It enables you and your collaborators to work together on projects, retain a history of all prior changes, create distinct branches, and offers a multitude of additional features.
 
 1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, C template .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
 
@@ -62,7 +62,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 3. Use your favorite file manager and run Git Bash (Windows) or Terminal (Linux) inside your home folder `Documents`.
 
-4. With help of `git` command, clone a local copy of your public repository.
+4. With help of Git command, clone a local copy of your public repository.
 
    > **Important:** To avoid future problems, never use national characters (such as éščřèêö, ...) and spaces in folder- and file-names.
    >
@@ -136,7 +136,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 7. On breadboard, connect two LEDs and control them by a single output pin PB0. Is it possible to get all commbinations, i.e. ON+ON, ON+OFF, OFF+ON, and OFF+OFF?
 
-8. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
+8. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
    >
@@ -195,7 +195,7 @@ GitHub is a code hosting platform for collaboration and version control. GitHub 
 
 4. Draw a schematic of Morse code application, i.e. connection of AVR device, two LEDs (one in active-high, second in active-low way), two resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-5. Complete all experiments, push them to your GitHub repository, and submit a project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.
+5. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 
