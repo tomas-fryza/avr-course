@@ -38,8 +38,8 @@ int main(void)
 
     // Configuration of 16-bit Timer/Counter1 for LED blinking
     // Set the overflow prescaler to 262 ms and enable interrupt
-    TIM1_overflow_262ms();
-    TIM1_overflow_interrupt_enable();
+    TIM1_OVF_262MS
+    TIM1_OVF_ENABLE
 
     // Enables interrupts by setting the global interrupt mask
     sei();

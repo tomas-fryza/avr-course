@@ -150,7 +150,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
    {
        ...
        // Enable overflow interrupt
-       TIM1_overflow_interrupt_enable();
+       TIM1_OVF_ENABLE
        ...
        // Enables interrupts by setting the global interrupt mask
        sei();
