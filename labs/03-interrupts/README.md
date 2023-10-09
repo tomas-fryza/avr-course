@@ -1,9 +1,5 @@
 # Lab 3: Timers
 
-<!--
-![Multi-function shield](images/arduino_uno_multi-shield.jpg)
--->
-
 ### Learning objectives
 
 After completing this lab you will be able to:
@@ -19,18 +15,22 @@ The purpose of the laboratory exercise is to understand the function of the inte
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: Timer overflow](#part2)
-* [Part 3: Polling and interrupts](#part3)
+* [Part 2: Polling and interrupts](#part2)
+* [Part 3: Timer overflow](#part3)
 * [Part 4: Extend the overflow](#part4)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+* Breadboard
 
 <a name="preparation"></a>
 
 ## Pre-Lab preparation
 
-Consider an n-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an **overflow**. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
+Consider an *n*-bit number that we increment based on the clock signal. If we reach its maximum value and try to increase it, the value will be reset. We call this state an **overflow**. The overflow time depends on the frequency of the clock signal, the number of bits, and on the prescaler value:
 
 ![Timer overflow](images/timer_overflow.png)
 
@@ -52,27 +52,58 @@ Consider an n-bit number that we increment based on the clock signal. If we reac
 
 ## Part 1: Synchronize repositories and create a new project
 
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. Run Visual Studio Code and create a new PlatformIO project `lab3-interrupts_timer` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
-3. IMPORTANT: Rename `LAB3-INTERRUPTS_TIMER > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/report.md) to your `LAB3-INTERRUPT_TIMER > README.md` file.
+3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 <a name="part2"></a>
 
-## Part 2: Timer overflow
+## Part 2: Polling and interrupts
 
-A timer (or counter) is a hardware block within an MCU and can be used to measure time events. ATmega328P has three timers, called:
+The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
 
-* Timer/Counter0,
-* Timer/Counter1, and
-* Timer/Counter2.
+While polling is a straightforward method for monitoring state changes, it comes with a trade-off. If the polling interval is too long, there may be a significant delay between the occurrence and detection of a state change, potentially leading to missing the change entirely if the state reverts before the next check. On the other hand, a shorter interval provides quicker and more dependable detection, but it also consumes considerably more processing time and power, as there are more unsuccessful checks.
 
-T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts in synchronization with microcontroller clock from 0 up to 255 (for 8-bit counter) or 65,535 (for 16-bit). If counting continues, the timer value overflows to the default value of zero. Different clock sources can be selected for each timer using a CPU frequency divider with fixed prescaler values, such as 8, 64, 256, 1024, and others.
+An alternative approach is to employ **interrupts**. In this approach, a state change triggers an interrupt signal that prompts the CPU to pause its current operation (while preserving its current state), execute the interrupt-related processing, and subsequently restore its prior state before resuming from where it had been interrupted.
+
+![Interrupts versus polling](images/interrupts_vs_polling.jpg)
+
+An interrupt is a fundamental feature of a microcontroller. It represents a signal sent to the processor by hardware or software, signifying an event that requires immediate attention. When an interrupt is triggered, the controller finishes executing the current instruction and proceeds to execute an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[4]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
+
+Interrupts can be set up for events such as a counter's value, a pin changing state, receiving data through serial communication, or when the Analog-to-Digital Converter has completed the conversion process.
+
+See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
+
+| **Program address** | **Source** | **Vector name** | **Description** |
+| :-: | :-- | :-- | :-- |
+| 0x0000 | RESET | -- | Reset of the system |
+| 0x0002 | INT0  | `INT0_vect`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | External interrupt request number 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+|  | INT1 |  |  |
+|  | PCINT0 |  |  |
+|  | PCINT1 |  |  |
+|  | PCINT2 |  |  |
+|  | WDT |  |  |
+|  | TIMER2_OVF |  |  |
+| 0x0018 | TIMER1_COMPB | `TIMER1_COMPB_vect` | Compare match between Timer/Counter1 value and channel B compare value |
+| 0x001A | TIMER1_OVF | `TIMER1_OVF_vect` | Overflow of Timer/Counter1 value |
+|  | TIMER0_OVF |  |  |
+|  | USART_RX |  |  |
+|  | ADC |  |  |
+|  | TWI |  |  |
+
+All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
+
+<a name="part3"></a>
+
+## Part 3: Timer overflow
+
+A timer (or counter) is an integral hardware component in a microcontroller unit (MCU) designed for measuring time-based events. The ATmega328P MCU features three timers, designated as Timer/Counter0, Timer/Counter1, and Timer/Counter2. Timer0 and Timer2 are 8-bit timers, whereas Timer1 is a 16-bit timer.
+
+The counter increments in alignment with the microcontroller clock, ranging from 0 to 255 for an 8-bit counter or 65,535 for a 16-bit counter. If counting continues, the timer value overflows to the default value of zero. Various clock sources can be designated for each timer by utilizing a CPU frequency divider equipped with predetermined prescaler values, including 8, 64, 256, 1024, and other options.
 
 1. The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
@@ -82,28 +113,27 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
    | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
    | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/main.c) to `LAB3-INTERRUPTS_TIMER > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
 
-3. In PlatformIO project, create a new folder `LAB3-INTERRUPTS_TIMER > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) from the previous lab to this folder.
+3. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) from the previous lab to this folder.
 
-4. In PlatformIO project, create a new file `LAB3-INTERRUPTS_TIMER > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
+4. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
-   LAB3-INTERRUPTS_TIMER  // PlatfomIO project
-   ├── include         // Included files
+   LAB3-TIMERS         // PlatfomIO project
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   └── gpio
+   │   └── gpio        // Your GPIO library
    │       ├── gpio.c
    │       └── gpio.h
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
-   For easier setting of control registers, the Timer/Counter1 macros with suitable names were defined in `timer.h`. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
+   To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h`` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
 5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
@@ -130,46 +160,9 @@ T/C0 and T/C2 are 8-bit timers, where T/C1 is a 16-bit timer. The counter counts
    }
    ```
 
-6. In `timer.h` header file, define similar macros also for Timer/Counter0. Use breadboard, LED, resistor, and wires and connect second LED to PB0 in actve-low way. Modify `main.c` file, and use two interrupts for controlling both LEDs. Let `LED_GREEN` be controlled by overflow from Timer1 and `LED_RED` by overflow from Timer0. Build and upload the code into ATmega328P and verify its functionality.
+6. In `timer.h` header file, define similar macros also for Timer/Counter0 and Timer/Counter2. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) or two LEDs and resistors to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
 
-<a name="part3"></a>
-
-## Part 3: Polling and interrupts
-
-The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
-
-While polling is a simple way to check for state changes, there's a cost. If the checking interval is too long, there can be a long lag between occurrence and detection and you may miss the change completely, if the state changes back before you check. A shorter interval will get faster and more reliable detection, but also consumes much more processing time and power, since many more checks will come back negative.
-
-An alternative approach is to utilize **interrupts**. With this method, the state change generates an interrupt signal that causes the CPU to suspend its current operation (and save its current state), then execute the processing associated with the interrupt, and then restore its previous state and resume where it left off.
-
-![Interrupts versus polling](images/interrupts_vs_polling.jpg)
-
-An interrupt is one of the fundamental features in a microcontroller. It is a signal to the processor emitted by hardware or software indicating an event that needs immediate attention. Whenever an interrupt occurs, the controller completes the execution of the current instruction and starts the execution of an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[4]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
-
-Interrupts can be established for events such as a counter's value, a pin changing state, serial communication receiving of information, or the Analog to Digital Converted has finished the conversion process.
-
-See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
-
-| **Program address** | **Source** | **Vector name** | **Description** |
-| :-: | :-- | :-- | :-- |
-| 0x0000 | RESET | -- | Reset of the system |
-| 0x0002 | INT0  | `INT0_vect`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | External interrupt request number 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-|  | INT1 |  |  |
-|  | PCINT0 |  |  |
-|  | PCINT1 |  |  |
-|  | PCINT2 |  |  |
-|  | WDT |  |  |
-|  | TIMER2_OVF |  |  |
-| 0x0018 | TIMER1_COMPB | `TIMER1_COMPB_vect` | Compare match between Timer/Counter1 value and channel B compare value |
-| 0x001A | TIMER1_OVF | `TIMER1_OVF_vect` | Overflow of Timer/Counter1 value |
-|  | TIMER0_OVF |  |  |
-|  | USART_RX |  |  |
-|  | ADC |  |  |
-|  | TWI |  |  |
-
-All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
-
-1. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+7. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part4"></a>
 
@@ -225,31 +218,25 @@ All interrupts are disabled by default. If you want to use them, you must first 
    }
    ```
 
-3. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
-1. In `timer.h` header file, define macros also for Timer/Counter2.
+1. In `timer.h` header file, complete macros for all three timers.
 
-2. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
+2. Enhance the current application to control four LEDs in the [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). Avoid using the delay library and instead, implement this functionality using a single Timer/Counter.
+
+3. Use the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **8-bit Timer/Counter0 with PWM > Modes of Operation**) to find the main differences between:
    * Normal mode,
    * Clear Timer on Compare mode,
    * Fast PWM mode, and
    * Phase Correct PWM Mode.
 
-3. Use basic [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock) inside the C-code comments and prepare your `timer.h` library for later easy generation of PDF documentation.
-
-<a name="report"></a>
-
-## Post-Lab report
-
-*Complete all parts of `LAB3-INTERRUPTS_TIMER > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
-
-*Vypracujte všechny části ze souboru `LAB3-INTERRUPTS_TIMER > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+4. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 
