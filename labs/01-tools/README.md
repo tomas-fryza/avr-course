@@ -49,9 +49,9 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 GitHub serves as a platform for hosting code, facilitating collaboration, and managing version control. It enables you and your collaborators to work together on projects, retain a history of all prior changes, create distinct branches, and offers a multitude of additional features.
 
-1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, C template .gitignore, and [MIT license](https://choosealicense.com/licenses/mit/).
+1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, C template `.gitignore`, and [MIT license](https://choosealicense.com/licenses/mit/).
 
-2. Use any available git manuals, such as [Markdown Guide, Basic Syntax](https://www.markdownguide.org/basic-syntax/) and add the following sections to your README file.
+2. Use any available Git manuals, such as [Markdown Guide, Basic Syntax](https://www.markdownguide.org/basic-syntax/) and add the following sections to your README file.
 
    * Headers H1, H2, H3
    * Emphasis (*italics*, **bold**)
