@@ -25,6 +25,10 @@ The purpose of the laboratory exercise is to understand the function of the inte
 
 * Arduino Uno board, USB cable
 * Breadboard
+* 2 LEDs or 1 two-color LED
+* 2 resistors
+* 1 push button
+* Jumper wires
 
 <a name="preparation"></a>
 
