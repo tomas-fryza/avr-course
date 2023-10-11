@@ -14,8 +14,8 @@ The purpose of the laboratory exercise is to understand the function of the inte
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: Polling and interrupts](#part2)
+* [Part 1: Polling and interrupts](#part1)
+* [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: Timer overflow](#part3)
 * [Part 4: Extend the overflow](#part4)
 * [(Optional) Experiments on your own](#experiments)
@@ -54,19 +54,7 @@ Consider an *n*-bit number that we increment based on the clock signal. If we re
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new project
-
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
-
-3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-<a name="part2"></a>
-
-## Part 2: Polling and interrupts
+## Part 1: Polling and interrupts
 
 The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
 
@@ -100,6 +88,18 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 |  | TWI |  |  |
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
+
+<a name="part2"></a>
+
+## Part 2: Synchronize repositories and create a new project
+
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 <a name="part3"></a>
 
