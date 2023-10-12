@@ -137,7 +137,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
    └── platformio.ini  // Project Configuration File
    ```
 
-   To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h`` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
+   To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
 5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
