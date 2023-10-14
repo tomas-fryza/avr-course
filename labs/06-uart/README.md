@@ -14,12 +14,16 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new folder](#part1)
-* [Part 2: Basics of UART communication](#part2)
+* [Part 1: Basics of UART communication](#part1)
+* [Part 2: Synchronize repositories and create a new folder](#part2)
 * [Part 3: Communication between Arduino board and computer](#part3)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+* Logic analyzer
 
 <a name="preparation"></a>
 
@@ -31,21 +35,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new project
-
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. Run Visual Studio Code and create a new PlatformIO project `lab6-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
-
-3. IMPORTANT: Rename `LAB6-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/report.md) to your `LAB6-UART > README.md` file.
-
-<a name="part2"></a>
-
-## Part 2: Basics of UART communication
+## Part 1: Basics of UART communication
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
@@ -72,6 +62,18 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 >
 > The figure further shows that the bit period, i.e. the duration of one bit, is 104&nbsp;us. The symbol rate of the communication is thus 1/104e-6 = 9615, i.e. approximately 9600&nbsp;Bd.
 
+<a name="part2"></a>
+
+## Part 2: Synchronize repositories and create a new project
+
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. In Visual Studio Code create a new PlatformIO project `lab6-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB6-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
 <a name="part3"></a>
 
 ## Part 3: Communication between Arduino board and computer
@@ -89,7 +91,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/main.c) to `LAB6-UART > src > main.c` source file.
 
-3. Use your favorite file manager and copy `timer.h` file from the previous lab to `LAB6-UART > include` folder.
+3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB6-UART > include` folder.
 
 4. In PlatformIO project, create a new folder `LAB6-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`.
 
@@ -100,17 +102,16 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    ```c
    LAB6-UART           // PlatfomIO project
-   ├── include         // Included files
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   └── uart
+   │   └── uart        // Peter Fleury's UART library
    │       ├── uart.c
    │       └── uart.h
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
 5. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
@@ -183,13 +184,13 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
 
-9. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
 1. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
@@ -221,9 +222,11 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    ![Flowchart for Even parity](images/flowchart_parity_algo.png)
 
-3. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
+3. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 
-4. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. Let the main screen of the console is as follows:
+4. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
+
+5. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. Let the main screen of the console is as follows:
 
    ```bash
    --- Interactive UART console ---
@@ -268,13 +271,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >#endif
    >```
 
-<a name="report"></a>
-
-## Post-Lab report
-
-*Complete all parts of `LAB6-UART > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
-
-*Vypracujte všechny části ze souboru `LAB6-UART > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+6. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 

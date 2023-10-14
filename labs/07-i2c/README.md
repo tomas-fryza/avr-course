@@ -1,9 +1,5 @@
 # Lab 7: Inter-Integrated Circuits (I2C)
 
-<!--
-![I2C scan](images/arduino_uno_i2c.jpg)
--->
-
 ### Learning objectives
 
 After completing this lab you will be able to:
@@ -17,13 +13,21 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: I2C bus](#part2)
+* [Part 1: I2C bus](#part1)
+* [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: I2C scanner](#part3)
 * [Part 4: Communication with I2C devices](#part4)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+* Breadboard
+* DHT12 humidity/temperature sensor
+* RTC DS3231 and AT24C32 EEPROM memory module
+* GY-521 module with MPU-6050 microelectromechanical systems
+* Jumper wires
 
 <a name="preparation"></a>
 
@@ -35,21 +39,7 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new project
-
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. Run Visual Studio Code and create a new PlatformIO project `lab7-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
-
-3. IMPORTANT: Rename `LAB7-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-i2c/report.md) to your `LAB7-I2C > README.md` file.
-
-<a name="part2"></a>
-
-## Part 2: I2C bus
+## Part 1: I2C bus
 
 I2C (Inter-Integrated Circuit) is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers.
 
@@ -102,6 +92,18 @@ Note that, most I2C devices support repeated start condition. This means that be
 > | 4 | Data frame with integer part of temperature read from Slave |
 > | 5 | Data frame with decimal part of temperature read from Slave |
 
+<a name="part2"></a>
+
+## Part 2: Synchronize repositories and create a new project
+
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. In Visual Studio Code create a new PlatformIO project `lab7-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB7-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
 <a name="part3"></a>
 
 ## Part 3: I2C scanner
@@ -121,20 +123,19 @@ The goal of this task is to create a program that will verify the presence of un
 
    ```c
    LAB7-I2C            // PlatfomIO project
-   ├── include         // Included files
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   ├── twi
+   │   ├── twi         // Tomas Fryza's TWI/I2C library
    │   │   ├── twi.c
    │   │   └── twi.h
-   │   └── uart
+   │   └── uart        // Peter Fleury's UART library
    │       ├── uart.c
    │       └── uart.h
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
 4. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the [`twi.h`](../library/include/twi.h) header file and add input parameters and description of the following functions.
@@ -204,10 +205,10 @@ The goal of this task is to create a program that will verify the presence of un
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
-       uint8_t humidInt;
-       uint8_t humidDec;
-       uint8_t tempInt;
-       uint8_t tempDec;
+       uint8_t humInt;
+       uint8_t humDec;
+       uint8_t temInt;
+       uint8_t temDec;
        uint8_t checksum;
    } dht12;
 
@@ -230,13 +231,13 @@ The goal of this task is to create a program that will verify the presence of un
 
 5. (Optional) Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
 
-6. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
 1. Form the UART output of I2C scanner application to a hexadecimal table such as the following figure. Note that, the designation RA represents I2C addresses that are [reserved](https://www.pololu.com/file/download/UM10204.pdf?file_id=0J435) and cannot be used for slave circuits.
 
@@ -266,25 +267,25 @@ The goal of this task is to create a program that will verify the presence of un
 
 3. Program the functions that will be able to save the current time values to the RTC DS3231.
 
-4. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
+4. Consider an application for temperature and humidity measurements. Use sensor DHT12, real time clock DS3231, LCD, and one LED. Every minute, the temperature, humidity, and time is requested from Slave devices and values are displayed on LCD screen. When the temperature is above the threshold, turn on the LED.
+
+   Draw a flowchart of `TIMER1_OVF_vect` (which overflows every 1&nbsp;sec) for such Meteo station. The image can be drawn on a computer or by hand. Use clear description of individual algorithm steps.
+
+5. Draw a timing diagram of I2C signals when calling function `rtc_read_years()`. Let this function reads one byte-value from RTC DS3231 address `06h` (see RTC datasheet) in the range `00` to `99`. Specify when the SDA line is controlled by the Master device and when by the Slave device. Draw the whole request/receive process, from Start to Stop condition. The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
+
+6. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
    ![I2C LED bar](images/screenshot_simulide_i2c_leds.png)
 
    Create an application that sequentially turns on one of the eight LEDs. ie first LED0, then LED1 and finally LED7, then start again from the beginning. Use Timer/Counter1 and change the value every 262 ms. Send the status of the LEDs to the UART. Try to complement the LED controls according to the Knight Rider style, ie light the LEDs in one direction and then in the opposite one.
 
-5. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a schematic according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the Slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
+7. In the SimulIDE application, use the following components: I2C Ram (**Components > Logic > Memory > I2C Ram**), I2C to Parallel (**Components > Logic > Converters > I2C to Parallel**) and create a schematic according to the following figure. Also, change **Control Code** property of all I2C devices. These codes represent the I2C addresses of the Slave circuits. Pins A2, A1, A0 allow you to specify part of the device address. Thus, up to 8 (2^3 = 8) identical devices can be connected and it will be possible to distinguish them. External pull-up resistors on SDA and SCL signals must be used for correct simulation.
 
    ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
    Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third one. Send the first ten values from each memory module to the UART.
 
-<a name="report"></a>
-
-## Post-Lab report
-
-*Complete all parts of `LAB7-I2C > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
-
-*Vypracujte všechny části ze souboru `LAB7-I2C > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+8. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 

@@ -1,8 +1,4 @@
-# Lab 8: Combining C and assembly language
-
-<!--
-![LFSR generator](images/arduino_uno_lfsr.jpg)
--->
+# Lab 8: Assembly language and project documentation
 
 ### Learning objectives
 
@@ -21,9 +17,12 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 * [Part 2: Assembly language](#part2)
 * [Part 3: LFSR-based pseudo random generator](#part3)
 * [Part 4: Generate documentation from source code](#part4)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
 
 <a name="preparation"></a>
 
@@ -50,15 +49,13 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 
 ## Part 1: Synchronize repositories and create a new project
 
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. Run Visual Studio Code and create a new PlatformIO project `lab8-asm` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab8-asm` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
 3. IMPORTANT: Rename `LAB8-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/report.md) to your `LAB8-ASM > README.md` file.
 
 <a name="part2"></a>
 
@@ -78,7 +75,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/main.c) to `LAB8-ASM > src > main.c` source file.
 
-2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB8-ASM` project.
+2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB8-ASM` project.
 
 3. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB8-ASM > src` source folder.
 
@@ -89,10 +86,10 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
    ```c
    LAB8-ASM            // PlatfomIO project
-   ├── include         // Included files
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   └── uart
+   │   └── uart        // Peter Fleury's UART library
    │       ├── uart.c
    │       └── uart.h
    ├── src             // Source file(s)
@@ -100,8 +97,7 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
    │   ├── mac.S       // Assembly example of Multiply-and-Accumulate
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
 4. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/), find the description of instructions used in `mac.S`, and complete the table.
@@ -196,19 +192,19 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
    > **Note:** Complete guide on using Doxygen to document C source code is [here](https://embeddedinventor.com/guide-to-configure-doxygen-to-document-c-source-code-for-beginners/).
 
-2. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+2. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
 1. In `lfsr.S` file, program the assembly function `uint8_t lfsr8_fibonacci_asm(uint8_t value)`, which generates a 8-bit LFSR sequence with Tap positions 8, 6, 5, 4. What is the sequence length? What is the duration of the function in CPU cycles? Use eight LEDs and display each generated LFSR value. Simulate the application in SimulIDE.
 
    ![4-bit LFSR simulation](images/screenshot_simulide_asm_lfsr4.png)
 
-2. (Optional) In `main.c` file, program the C function `uint8_t lfsr4_fibonacci_c(uint8_t value)`, which generates a 4-bit LFSR sequence with a maximum length. In the `.lst` file compare both functions, in assembly and your C-realization. What is the duration of both functions in CPU cycles?
+2. In `main.c` file, program the C function `uint8_t lfsr4_fibonacci_c(uint8_t value)`, which generates a 4-bit LFSR sequence with a maximum length. In the `.lst` file compare both functions, in assembly and your C-realization. What is the duration of both functions in CPU cycles?
 
    | **Function** | **Number of instructions** | **Total number of CPU cycles** |
    | :-- | :-: | :-: |
@@ -219,17 +215,17 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
 4. In assembly, program a function `void burst_asm(uint8_t length)` to generate a variable number of short pulses at output pin. Let the pulse width be the shortest one. Write the same function `void burst_c(uint8_t length)` in C and compare duration of both functions. Use a logic analyzer, verify the pulse width and calculate the CPU frequency accordingly.
 
-5. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
+5. Draw a flowchart of function `void burst_c(uint8_t number)` which generates a variable `number` of short pulses (ie. combination of high and low levels) at output pin PB5. Let the pulse width be the shortest one without any delay. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 
-6. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
+6. In assembly, program your own delay function with one parameter that specifies the delay time in microseconds. Use a logic analyzer or oscilloscope to verify the correct function when generating pulses on the ATmega328P output pin. Use this function to generate the following acoustic tones: [C2, D2, E2, F2, G2, and A2](https://pages.mtu.edu/~suits/notefreqs.html).
 
-<a name="report"></a>
+7. In assembly, program an interrupt service routine for Timer/Counter1 overflow.
 
-## Post-Lab report
+8. In assembly, program the `uint8_t sop_asm(*uint8_t a, *uint8_t b, uint8_t length)` function to calculate the sum of the products of two integer vectors `a` and `b`, which have the same number of elements `length`. Transmit the SoP result via UART. For simplicity, consider only 8-bit sum and multiplication operations.
 
-*Complete all parts of `LAB8-ASM > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
+   Write the same function `uint8_t sop_c(*uint8_t a, *uint8_t b, uint8_t length)` in C language and compare the duration of both functions using the file `.lss`.
 
-*Vypracujte všechny části ze souboru `LAB8-ASM > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+9. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 

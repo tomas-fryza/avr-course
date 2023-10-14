@@ -1,9 +1,5 @@
 # Lab 5: Analog-to-Digital Converter (ADC)
 
-<!--
-![LCD-keypad shield](images/arduino_uno_adc.jpg)
--->
-
 ### Learning objectives
 
 After completing this lab you will be able to:
@@ -17,12 +13,16 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: Voltage divider](#part2)
+* [Part 1: Voltage divider](#part1)
+* [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: Analog-to-Digital Conversion](#part3)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+* LCD keypad shield
 
 <a name="preparation"></a>
 
@@ -34,21 +34,7 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new project
-
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. Run Visual Studio Code and create a new PlatformIO project `lab5-adc` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
-
-3. IMPORTANT: Rename `LAB5-ADC > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-adc/report.md) to your `LAB5-ADC > README.md` file.
-
-<a name="part2"></a>
-
-## Part 2: Voltage divider
+## Part 1: Voltage divider
 
 1. According to the LCD keypad shield connection, calculate the voltage values on pin PC0 for each pressed buttons. In this case, the voltage on the pin is given by the [voltage divider](https://www.allaboutcircuits.com/tools/voltage-divider-calculator/), where resistors R3, R4, R5 and R6 are applied successively. Write your values to the **PC0 voltage** column in the following table.
 
@@ -64,6 +50,18 @@ The purpose of the laboratory exercise is to understand analog-to-digital conver
    | none   |  |  |  |  |
 
    ![SimulIDE](images/screenshot_simulide_voltage_divider.png)
+
+<a name="part2"></a>
+
+## Part 2: Synchronize repositories and create a new project
+
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. In Visual Studio Code create a new PlatformIO project `lab5-adc` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB5-ADC > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 <a name="part3"></a>
 
@@ -99,18 +97,17 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
 
    ```c
    LAB5-ADC            // PlatfomIO project
-   ├── include         // Included files
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   └── lcd
+   │   └── lcd         // Peter Fleury's LCD library
    │       ├── lcd.c
    │       ├── lcd.h
    │       └── lcd_definitions.h
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
 5. Go through the `main.c` file and make sure you understand each line. Use ATmega328P datasheet and complete the ADC configuration as follows:
@@ -137,8 +134,8 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
        uint16_t value;
        char string[4];  // String for converted numbers by itoa()
 
-       // Read converted value
-       // Note that, register pair ADCH and ADCL can be read as a 16-bit value ADC
+       // Read converted value. Note that, register pair ADCH and ADCL 
+       // can be read as a 16-bit value ADC
        value = ADC;
        // Convert "value" to "string" and display it
    }
@@ -148,31 +145,31 @@ AVR's ADC module has 10-bit resolution with +/-2LSB accuracy. It means it return
 
    ![LCD-keypad shield](images/arduino_uno_adc.jpg)
 
-6. Test all push buttons and write converted values to the **ADC value (measured)** column in the table from Part 2.1.
+6. Test all push buttons and write converted values to the **ADC value (measured)** column in the table from Part 1.1.
 
 7. Apply the "extending" method from past labs and start the ADC conversion not every 33 milliseconds but every 100 milliseconds.
 
 8. Based on the converted values, distinguish which push button was pressed and display the information at LCD position `c`.
 
-9. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
-1. Try to recalculate the input voltage values in mV. *Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.*
+1. In your application, try to recalculate the input voltage values in mV. *Hint: Use integer data types only; the absolute accuracy of the calculation is not important here.*
 
 2. Create a library for Analog-to-Digital Converter. Create new files `adc.h` and `adc.c`, suggest function names, their parameters, and program their bodies.
 
-<a name="report"></a>
+3. Consider an application for temperature measurement. Use analog temperature sensor [TC1046](http://ww1.microchip.com/downloads/en/DeviceDoc/21496C.pdf), LCD, and a LED. Every 30 seconds, the temperature is measured and the value is displayed on LCD screen. When the temperature is above the threshold, turn on the LED.
 
-## Post-Lab report
+   1. Draw a schematic of temperature meter. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-*Complete all parts of `LAB5-ADC > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
+   2. Draw two flowcharts of temperature meter: `TIMER1_OVF_vect` (which overflows every 1&nbsp;sec) and `ADC_vect` interrupt handlers. The image can be drawn on a computer or by hand. Use clear description of individual algorithm steps.
 
-*Vypracujte všechny části ze souboru `LAB5-ADC > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+4. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 

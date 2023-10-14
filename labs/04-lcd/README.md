@@ -1,15 +1,12 @@
 # Lab 4: Liquid crystal display (LCD)
 
-<!--
-![LCD-keypad shield](images/arduino_uno_lcd-shield.jpg)
--->
-
 ### Learning objectives
 
 After completing this lab you will be able to:
 
 * Use alphanumeric LCD
 * Understand the digital communication between MCU and HD44780
+* Understand the ASCII table
 * Use library functions for LCD
 * Generate custom characters on LCD
 
@@ -18,14 +15,18 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: LCD screen module](#part2)
+* [Part 1: LCD screen module](#part1)
+* [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: Library for HD44780 based LCDs](#part3)
 * [Part 4: Stopwatch](#part4)
 * [Part 5: Custom characters](#part5)
-* [Experiments on your own](#experiments)
-* [Post-Lab report](#report)
+* [(Optional) Experiments on your own](#experiments)
 * [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+* LCD keypad shield
 
 <a name="preparation"></a>
 
@@ -56,23 +57,9 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
    | `1` |  |  |
    | ... |  |  |
 
-<a name="part1"></a>
-
-## Part 1: Synchronize repositories and create a new project
-
-1. Run Git Bash (Windows) of Terminal (Linux), navigate to your working directory, and update local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. Run Visual Studio Code and create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
-
-3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-4. Right-click on project name and create a new file `README.md`. Copy/paste [report template](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/04-lcd/report.md) to your `LAB4-LCD > README.md` file.
-
 <a name="part2"></a>
 
-## Part 2: LCD screen module
+## Part 1: LCD screen module
 
 **LCD (Liquid Crystal Display)** is an electronic device which is used for display any ASCII text. There are many different screen sizes e.g. 16x1, 16x2, 16x4, 20x4, 40x4 characters and each character is made of 5x8 matrix pixel dots. LCD displays have different LED back-light in yellow-green, white and blue color. LCD modules are mostly available in COB (Chip-On-Board) type. With this method, the controller IC chip or driver (here: HD44780) is directly mounted on the backside of the LCD module itself.
 
@@ -111,6 +98,18 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 >
 > If you are an advanced programmer and would like to create your own library for interfacing your microcontroller with an LCD module then you have to understand those instructions and commands which can be found its datasheet.
 
+<a name="part2"></a>
+
+## Part 2: Synchronize repositories and create a new project
+
+1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+
+   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+
+2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+
+3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+
 <a name="part3"></a>
 
 ## Part 3: Library for HD44780 based LCDs
@@ -137,21 +136,20 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
    ```c
    LAB4-LCD            // PlatfomIO project
-   ├── include         // Included files
+   ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   ├── gpio
+   │   └── gpio        // Your GPIO library
    │   │   ├── gpio.c
    │   │   └── gpio.h
-   │   └── lcd
+   │   └── lcd         // Peter Fleury's LCD library
    │       ├── lcd.c
    │       ├── lcd.h
    │       └── lcd_definitions.h
    ├── src             // Source file(s)
    │   └── main.c
    ├── test            // No need this
-   ├── platformio.ini  // Project Configuration File
-   └── README.md       // Report of this lab
+   └── platformio.ini  // Project Configuration File
    ```
 
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd.h) to `lcd.h`
@@ -175,6 +173,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again.
 
    ![LCD screenshot](images/screenshot_lcd_tenths.png)
+
+   IMPORTANT: Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
+
 
    ```c
    #include <stdlib.h>         // C library. Needed for number conversions
@@ -204,8 +205,6 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    }
    ```
 
-   IMPORTANT: Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
-
 2. A flowchart is a visual representation of a certain process or flow of instructions of an algorithm that helps to understand it. A flowchart basically uses rectangles, diamonds, ovals and various other shapes to make the problem easier to understand.
 
    ![basic flow charts](images/flowcharts.png)
@@ -234,11 +233,12 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
    ```c
    ...
+   #define N_CHARS 1  // Number of new custom characters
 
    int main(void)
    {
        // Custom character definition using https://omerk.github.io/lcdchargen/
-       uint8_t customChar[8] = {
+       uint8_t customChar[N_CHARS*8] = {
            0b00111,
            0b01110,
            0b11100,
@@ -254,7 +254,7 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
        lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
                                         // ie to individual lines of character patterns
-       for (uint8_t i = 0; i < 8; i++)  // Copy new character patterns line by line to CGRAM
+       for (uint8_t i = 0; i < N_CHARS*8; i++)  // Copy new character patterns line by line to CGRAM
            lcd_data(customChar[i]);
        lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
                                         // ie to character codes
@@ -266,23 +266,25 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
 2. Design at least one more custom character, store it in CGRAM memory according to the previous code, and display all new characters on the LCD screen.
 
-3. When you finish, always synchronize the contents of your working folder with the local and remote versions of your repository. This way you are sure that you will not lose any of your changes. To do that, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or git commands.
+3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="experiments"></a>
 
-## Experiments on your own
+## (Optional) Experiments on your own
 
 1. Complete the `TIMER2_OVF_vect` interrupt routine with stopwatch code and display `minutes:seconds.tenths`.
 
    ![LCD screenshot](images/screenshot_lcd_stopwatch.png)
 
-2. Display the square value of the `seconds` at LCD position "a".
+2. In `lcd.h` and `lcd.c` files create a new library function to turn on/off LCD's backlight.
+
+3. Display the square value of the `seconds` at LCD position "a".
 
    ![LCD screenshot](images/screenshot_lcd_square.png)
 
-3. Use new characters and create a progress bar at LCD position "b". Let the full bar state corresponds to one second.
+4. Use new characters and create a progress bar at LCD position "b". Let the full bar state corresponds to one second.
 
    ![LCD screenshot](images/screenshot_lcd_progress1.png)
 
@@ -318,17 +320,13 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
    }
    ```
 
-4. From LCD position "c", displays running text, ie text that moves characters to the left twice per second. Hint: Use Timer/Counter1 with an 262ms prescaler and every 2nd overflow move the auxiliary variable along the defined string, such as `uint8_t running_text[] = "   I like Digital electronics!\n";`.
+5. From LCD position "c", displays running text, ie text that moves characters to the left twice per second. Hint: Use Timer/Counter1 with an 262ms prescaler and every 2nd overflow move the auxiliary variable along the defined string, such as `uint8_t running_text[] = "   I like Digital electronics!\n";`.
 
    ![Running text](images/running_text.gif)
 
-<a name="report"></a>
+6. Draw a flowchart for `TIMER2_OVF_vect` interrupt service routine which overflows every 16&nbsp;ms but it updates the stopwatch LCD screen approximately every 100&nbsp;ms (6 x 16&nbsp;ms = 100&nbsp;ms). Display tenths of a second, seconds, and minutes and let the stopwatch counts from `00:00.0` to `59:59.9` and then starts again. The image can be drawn on a computer or by hand. Use clear description of individual algorithm steps.
 
-## Post-Lab report
-
-*Complete all parts of `LAB4-LCD > README.md` file (see Part 1.4) in Czech, Slovak, or English, push it to your GitHub repository, and submit a link to this file via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the task is the day before the next lab, i.e. in one week.*
-
-*Vypracujte všechny části ze souboru `LAB4-LCD > README.md` (viz Část 1.4) v českém, slovenském, nebo anglickém jazyce, uložte je na váš GitHub repozitář a odevzdejte link na tento soubor prostřednictvím [e-learningu VUT](https://moodle.vutbr.cz/). Termín odevzdání úkolu je den před dalším laboratorním cvičením, tj. za jeden týden.*
+7. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 
