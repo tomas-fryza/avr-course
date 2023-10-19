@@ -92,11 +92,11 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 >
 > The Hitachi HD44780 has many commands, the most useful for initialization, xy location settings, and print [[1]](https://www.sparkfun.com/datasheets/LCD/HD44780.pdf).
 >
-> ![HD44780 instruction set](images/hd44780_instructions_part1.png)
->
-> ![HD44780 instruction set](images/hd44780_instructions_part2.png)
->
 > If you are an advanced programmer and would like to create your own library for interfacing your microcontroller with an LCD module then you have to understand those instructions and commands which can be found its datasheet.
+
+![HD44780 instruction set](images/hd44780_instructions_part1.png)
+
+![HD44780 instruction set](images/hd44780_instructions_part2.png)
 
 <a name="part2"></a>
 
