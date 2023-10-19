@@ -34,6 +34,8 @@
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
 
+#define N_CHARS 3  // Number of new custom characters
+
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -45,47 +47,45 @@
 int main(void)
 {
     // Custom character definition using https://omerk.github.io/lcdchargen/
-    uint8_t customChar[16] = {
+/*    uint8_t customChar[N_CHARS*8] = {
         // First character
-        0b11100,
         0b01110,
-        0b00111,
-        0b00011,
-        0b00111,
-        0b01110,
-        0b11100,
-        0b11000,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b00000,
         // Second character
-        0b00011,
-        0b00111,
         0b01110,
-        0b11100,
-        0b11100,
+        0b10001,
+        0b10001,
+        0b10001,
+        0b11111,
+        0b11111,
+        0b11111,
+        0b00000,
+        // Third character
         0b01110,
-        0b00111,
-        0b00011
+        0b10001,
+        0b10001,
+        0b10001,
+        0b10001,
+        0b10001,
+        0b11111,
+        0b00000
     };
-
+*/
     // Initialize display
-    lcd_init(LCD_DISP_ON_CURSOR);
-
-    lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
-                                     // ie to individual lines of character patterns
-    for (uint8_t i = 0; i < 16; i++)  // Copy new character patterns line by line to CGRAM
-        lcd_data(customChar[i]);
-    lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
-                                     // ie to character codes
-    // Display two custom characters
-    lcd_gotoxy(13, 1);
-    lcd_putc(0x00);
-    lcd_putc(0x01);
-
+    lcd_init(LCD_DISP_ON);
     // Put string(s) on LCD screen
-    // lcd_gotoxy(6, 1);
-    // lcd_puts("LCD Test");
-    // lcd_putc('!');
+    lcd_gotoxy(6, 1);
+    lcd_puts("LCD Test");
+    lcd_putc('!');
 
-    lcd_gotoxy(1, 0);
+    // Put initial pattern on display
+/*    lcd_gotoxy(1, 0);
     lcd_puts("00:00.0");
 
     lcd_gotoxy(11, 0);
@@ -97,15 +97,28 @@ int main(void)
     lcd_gotoxy(11, 1);
     lcd_puts("c");
 
-    // Set back light at PB2
+    // Set backlight at PB2
     GPIO_mode_output(&DDRB, PB2);
     // GPIO_write_low(&PORTB, PB2);
     GPIO_write_high(&PORTB, PB2);
-
+*/
+    // Custom character(s)
+/*    lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
+                                     // ie to individual lines of character patterns
+    for (uint8_t i = 0; i < N_CHARS*8; i++)  // Copy new character patterns line by line to CGRAM
+        lcd_data(customChar[i]);
+    lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
+                                     // ie to character codes
+    // Display three custom characters
+    lcd_gotoxy(13, 1);
+    lcd_putc(0x00);
+    lcd_putc(0x01);
+    lcd_putc(0x02);
+*/
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
     // Set the overflow prescaler to 16 ms and enable interrupt
-    TIM2_overflow_16ms();
-    TIM2_overflow_interrupt_enable();
+    // TIM2_OVF_16MS
+    // TIM2_OVF_ENABLE
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -132,7 +145,7 @@ ISR(TIMER2_OVF_vect)
 {
     static uint8_t no_of_overflows = 0;
     static uint8_t tenths = 0;  // Tenths of a second
-    static uint8_t secs = 0;    // Seconds
+    // static uint8_t secs = 0;    // Seconds
     char string[2];             // String for converted numbers by itoa()
 
     no_of_overflows++;
@@ -147,7 +160,7 @@ ISR(TIMER2_OVF_vect)
         {
             tenths = 0;
             // Add seconds to stopwatch
-            secs++;
+/*            secs++;
             if (secs > 59)
             {
                 secs = 0;
@@ -158,7 +171,7 @@ ISR(TIMER2_OVF_vect)
             if (secs < 10)
                 lcd_putc('0');
             lcd_puts(string);
-        }
+*/        }
         // Show tenths of a second on LCD screen
         itoa(tenths, string, 10);  // Convert decimal value to string
         // Display "00:00.tenths"

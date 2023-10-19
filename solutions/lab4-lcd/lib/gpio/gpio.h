@@ -82,7 +82,7 @@ void GPIO_write_high(volatile uint8_t *reg, uint8_t pin);
 uint8_t GPIO_read(volatile uint8_t *reg, uint8_t pin);
 
 
-/* GPIO_config_input_nopull */
+/* GPIO_mode_input_nopull */
 
 
 /* GPIO_toggle */
