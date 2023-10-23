@@ -57,7 +57,7 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
    | `1` |  |  |
    | ... |  |  |
 
-<a name="part2"></a>
+<a name="part1"></a>
 
 ## Part 1: LCD screen module
 
