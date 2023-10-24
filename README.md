@@ -10,9 +10,9 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 2. [Control of GPIO pins](labs/02-gpio)
 3. [Timers](labs/03-interrupts)
 4. [Liquid Crystal Display (LCD)](labs/04-lcd)
-5. [Analog-to-Digital Converter (ADC)](labs/05-adc)
-6. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
-7. [Inter-Integrated Circuits (I2C)](labs/07-i2c)
+5. [Universal Asynchronous Receiver-Transmitter (UART)](labs/06-uart)
+6. [Inter-Integrated Circuits (I2C)](labs/07-i2c)
+7. [Analog-to-Digital Converter (ADC)](labs/05-adc)
 8. [Assembly language and project documentation](labs/08-asm)
 
 ## List of examples

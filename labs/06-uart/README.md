@@ -1,4 +1,4 @@
-# Lab 6: Universal Asynchronous Receiver-Transmitter (UART)
+# Lab 5: Universal Asynchronous Receiver-Transmitter (UART)
 
 ### Learning objectives
 
@@ -163,36 +163,8 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `Backspace` |  |  |  |
    | `Enter` |  |  |  |
 
-8. (Optional) Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
 
-   | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
-   | :-: | :-: | :-: | :-: |
-   | U0TXD | Tx (pin 1) | GND | GND |
-   | CHIP_EN | 3.3V | GPIO2 | Not connected |
-   | EXT_RSTB | Not connected | GPIO0 | Not connected |
-   | 3.3V | 3.3V | U0RXD | Rx (pin 0) |
-
-   ![ESP8266 interconnection](images/cv_esp8266_foto_description.jpg)
-
-   In your code, disable interruptions by commenting `// sei();` function. The reason is the micro controller will not affect UART lines and whole communication will be done between Serial Monitor and Wi-Fi module. To use PlatfomIO Serial Monitor, add the following command to `platformio.ini` project configuration file: `monitor_speed = 115200`. Compile and upload the application. Test the following AT commands and see the module's responses. If needed, use Logic analyzer to read the response of Wi-Fi module.
-
-   * `AT` - Check the communication with module
-   * `AT+CWMODE=1` - Set the module mode
-   * `AT+GMR` - Get the module version
-   * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
-   * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
-
-   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
-
-9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
-
-<a name="experiments"></a>
-
-## (Optional) Experiments on your own
-
-1. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
+8. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
    ```c
    /* 
@@ -217,6 +189,35 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    # Enable ANSI color codes in serial monitor
    monitor_raw = yes
    ```
+
+9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
+
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+
+<a name="experiments"></a>
+
+## (Optional) Experiments on your own
+
+1. Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
+
+   | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
+   | :-: | :-: | :-: | :-: |
+   | U0TXD | Tx (pin 1) | GND | GND |
+   | CHIP_EN | 3.3V | GPIO2 | Not connected |
+   | EXT_RSTB | Not connected | GPIO0 | Not connected |
+   | 3.3V | 3.3V | U0RXD | Rx (pin 0) |
+
+   ![ESP8266 interconnection](images/cv_esp8266_foto_description.jpg)
+
+   In your code, disable interruptions by commenting `// sei();` function. The reason is the micro controller will not affect UART lines and whole communication will be done between Serial Monitor and Wi-Fi module. To use PlatfomIO Serial Monitor, add the following command to `platformio.ini` project configuration file: `monitor_speed = 115200`. Compile and upload the application. Test the following AT commands and see the module's responses. If needed, use Logic analyzer to read the response of Wi-Fi module.
+
+   * `AT` - Check the communication with module
+   * `AT+CWMODE=1` - Set the module mode
+   * `AT+GMR` - Get the module version
+   * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
+   * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
+
+   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
 
 2. Program a piece of code to calculate even parity bit from received value.
 
