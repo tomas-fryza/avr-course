@@ -141,9 +141,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
        uint8_t value;
        char string[8];  // String for converted numbers by itoa()
 
+       // Get received data from UART
        value = uart_getc();
-       if (value != '\0') {  // Data available from UART
-           // Display ASCII code of received character
+       if (value != '\0') {  // Data are available
+           // Send received character back
+           uart_putc(value);
+
+           // Send also string with ASCII code in dec, hex, and bin
+
            // WRITE YOUR CODE HERE
        }
    }
