@@ -182,6 +182,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
     *
     * Examples:
     *   \x1b[1;31m  - Set style to bold, red foreground
+    *               - Will send sequence of "Esc [ 1 ; 3 1 m"
     *   \x1b[4;32m  - Set underline style, green foreground
     *   \x1b[0m     - Reset all attributes
     */
