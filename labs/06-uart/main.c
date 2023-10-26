@@ -40,13 +40,16 @@ int main(void)
     // Configure 16-bit Timer/Counter1 to transmit UART data
     // Set prescaler to 262 ms and enable overflow interrupt
 
+    // WRITE YOUR CODE HERE
 
-    // Enables interrupts by setting the global interrupt mask
+
+    // Interrupts must be enabled, bacause of `uart_puts()`
     sei();
 
     // Put strings to ringbuffer for transmitting via UART
-    uart_puts("Print one line... ");
-    uart_puts("done\r\n");
+    uart_puts("\r\n");  // New line only
+    uart_puts("Click to Serial monitor\r\n");
+    uart_puts("and press a key on keyboard...\r\n");
 
     // Infinite loop
     while (1)
@@ -66,5 +69,5 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    // Transmit UART string(s)
+    // WRITE YOUR CODE HERE
 }
