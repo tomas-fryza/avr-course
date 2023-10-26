@@ -156,17 +156,20 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    | **Char** | **Decimal** | **Hexadecimal** | **Binary** |
    | :-: | :-: | :-: | :-: |
-   | `a` | 97 | 0x61 | `0b0110_0001` |
-   | `b` |  |  |  |
-   | `c` |  |  |  |
-   | `0` | 48 | 0x30 | `0b0011_0000` |
-   | `1` |  |  |  |
-   | `2` |  |  |  |
    | `Esc` |  |  |  |
    | `Space` |  |  |  |
    | `Tab` |  |  |  |
    | `Backspace` |  |  |  |
    | `Enter` |  |  |  |
+   | `0` | 48 | 0x30 | `0b0011_0000` |
+   | `1` |  |  |  |
+   | `2` |  |  |  |
+   | `A` | 65 | 0x41 | `0b0100_0001` |
+   | `B` |  |  |  |
+   | `C` |  |  |  |
+   | `a` | 97 | 0x61 | `0b0110_0001` |
+   | `b` |  |  |  |
+   | `c` |  |  |  |
 
 
 8. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
@@ -179,7 +182,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
     *
     * Examples:
     *   \x1b[1;31m  - Set style to bold, red foreground
-    *   \x1b[4,32m  - Set underline style, green foreground
+    *   \x1b[4;32m  - Set underline style, green foreground
     *   \x1b[0m     - Reset all attributes
     */
    uart_puts("\x1b[4;32m");  // 4: underline style; 32: green foreground
