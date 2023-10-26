@@ -42,7 +42,6 @@ int main(void)
 
     // WRITE YOUR CODE HERE
 
-
     // Interrupts must be enabled, bacause of `uart_puts()`
     sei();
 
