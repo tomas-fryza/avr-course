@@ -1,4 +1,4 @@
-# Lab 5: Universal Asynchronous Receiver-Transmitter (UART)
+# Lab 5: UART (Universal Asynchronous Receiver-Transmitter)
 
 ### Learning objectives
 
@@ -125,13 +125,15 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-6. Configure Timer1 to overflow four times per second and transmit UART string `Paris`. Use Logic Analyzer to visualize and decode transmitting strings.
+6. Configure Timer1 to overflow four times per second and transmit UART string `Paris`.
+
+   Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
-   > **Note:** You have to have a [Saleae logic analyzer](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6), and to download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
+   > **Note:** To perform this analysis, you will need a logic analyzer such as [Saleae](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6) device. Additionally, you should download and install the [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
    >
-   > Tutorial about using a logic analyzer is available in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
+   > You can find a comprehensive tutorial on utilizing a logic analyzer in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
 
 7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
 
@@ -170,7 +172,6 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `a` | 97 | 0x61 | `0b0110_0001` |
    | `b` |  |  |  |
    | `c` |  |  |  |
-
 
 8. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
