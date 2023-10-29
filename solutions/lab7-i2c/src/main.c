@@ -32,8 +32,8 @@
 struct DHT_values_structure {
     uint8_t humidInt;
     uint8_t humidDec;
-    uint8_t tempInt;
-    uint8_t tempDec;
+    uint8_t temprInt;
+    uint8_t temprDec;
     uint8_t checksum;
 } dht12;
 
@@ -149,8 +149,8 @@ ISR(TIMER1_OVF_vect)
         twi_write((sla<<1) | TWI_READ);
         dht12.humidInt = twi_read(TWI_ACK);
         dht12.humidDec = twi_read(TWI_ACK);
-        dht12.tempInt = twi_read(TWI_ACK);
-        dht12.tempDec = twi_read(TWI_NACK);
+        dht12.temprInt = twi_read(TWI_ACK);
+        dht12.temprDec = twi_read(TWI_NACK);
         twi_stop();
 
         // Print Humidity
@@ -162,10 +162,10 @@ ISR(TIMER1_OVF_vect)
         uart_puts(" %\t");
 
         // Print Temperature
-        itoa(dht12.tempInt, string, 10);
+        itoa(dht12.temprInt, string, 10);
         uart_puts(string);
         uart_puts(".");
-        itoa(dht12.tempDec, string, 10);
+        itoa(dht12.temprDec, string, 10);
         uart_puts(string);
         uart_puts(" °C\r\n");
     }

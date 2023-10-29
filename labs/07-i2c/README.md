@@ -75,7 +75,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
-> | **Register address** | **Description** |
+> | **Memory location** | **Description** |
 > | :-: | :-- |
 > | 0x00 | Humidity integer part |
 > | 0x01 | Humidity decimal part |
@@ -147,7 +147,7 @@ The goal of this task is to create a program that will verify the presence of un
    | :-- | :-- | :-- | :-- |
    | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
    | `twi_start` |  | <br>&nbsp; |  |
-   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) | TWI_WRITE);` |
+   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) \| TWI_WRITE);` |
    | `twi_read` | <br>&nbsp; |  |  |
    | `twi_stop` |  |  | `twi_stop();` |
 
@@ -194,7 +194,7 @@ The goal of this task is to create a program that will verify the presence of un
 
 1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
-   | **Register address** | **Description** |
+   | **Memory location** | **Description** |
    | :-: | :-- |
    | 0x00 | Humidity integer part |
    | 0x01 | Humidity decimal part |
@@ -208,10 +208,10 @@ The goal of this task is to create a program that will verify the presence of un
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
-       uint8_t humInt;
-       uint8_t humDec;
-       uint8_t temInt;
-       uint8_t temDec;
+       uint8_t humidInt;
+       uint8_t humidDec;
+       uint8_t temprInt;
+       uint8_t temprDec;
        uint8_t checksum;
    } dht12;
 
