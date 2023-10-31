@@ -313,11 +313,11 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   * [font.h](../library/include/font.h)
-   * [oled.c](../library/oled.c)
-   * [oled.h](../library/include/oled.h)
+   * [font.h](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/font.h)
+   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/oled.c)
+   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/oled.h)
 
-   Rename the main source file to `src/main.c` and copy/paste [this code](../../solutions/lab6-i2c-oled/src/main.c)
+   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab6-i2c-oled/src/main.c)
 
    The final project structure should look like this:
 
