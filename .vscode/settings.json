@@ -1,10 +1,7 @@
 {
     "files.associations": {
         "*.S": "avr",
-        "*.lss": "avr",
-        "timer.h": "c",
-        "interrupt.h": "c",
-        "twi.h": "c"
+        "*.lss": "avr"
     },
     "markdownlint.config": {
         "MD001": false,

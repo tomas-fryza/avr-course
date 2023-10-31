@@ -1,11 +1,7 @@
 {"configurations":
     [{  "name": "AVR",
         "includePath": ["${workspaceFolder}/**",
-            "/opt/avr8-gnu-toolchain-linux_x86_64/avr/include/**",
-            "C:/APPZ/Atmel/Studio/7.0/toolchain/avr8/avr8-gnu-toolchain/avr/include/**"],
+            "/opt/avr8-gnu-toolchain-linux_x86_64/avr/include/**"],
         "defines": ["__AVR_ATmega328P__", "F_CPU"],
-        "compilerPath": "C:/APPZ/Atmel/Studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/avr-gcc.exe",
-        "cStandard": "c99",
-        "cppStandard": "c++11",
-        "intelliSenseMode": "gcc-x64"}],
+    }],
 "version": 4}

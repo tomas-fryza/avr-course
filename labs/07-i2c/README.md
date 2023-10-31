@@ -1,4 +1,4 @@
-# Lab 7: Inter-Integrated Circuits (I2C)
+# Lab 7: I2C (Inter-Integrated Circuits)
 
 ### Learning objectives
 
@@ -6,9 +6,9 @@ After completing this lab you will be able to:
 
 * Understand the I2C communication
 * Use functions from I2C library
-* Perform data transfers between I2C devices and MCU
+* Perform data transfers between MCU and I2C devices
 
-The purpose of the laboratory exercise is to understand serial synchronous communication using the I2C (Inter-Integrated Circuit) bus, as well as the structure of the address and data frame and the possibilities of communication using the internal TWI (Two Wire Interface) unit.
+The main goal of this laboratory exercise is to develop a thorough understanding of serial synchronous communication via the I2C (Inter-Integrated Circuit) bus. This involves delving into the structure of address and data frames, investigating the communication capabilities provided by the internal TWI (Two Wire Interface) unit, and utilizing a C code library for I2C communication.
 
 ### Table of contents
 
@@ -25,8 +25,9 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 * Arduino Uno board, USB cable
 * Breadboard
 * DHT12 humidity/temperature sensor
-* RTC DS3231 and AT24C32 EEPROM memory module
-* GY-521 module with MPU-6050 microelectromechanical systems
+  * Optional: RTC DS3231 and AT24C32 EEPROM memory module
+  * Optional: GY-521 module with MPU-6050 microelectromechanical systems
+* Logic analyzer
 * Jumper wires
 
 <a name="preparation"></a>
@@ -41,17 +42,19 @@ The purpose of the laboratory exercise is to understand serial synchronous commu
 
 ## Part 1: I2C bus
 
-I2C (Inter-Integrated Circuit) is a serial protocol for two-wire interface to connect low-speed devices like microcontrollers, EEPROMs, A/D and D/A converters, I/O interfaces and other similar peripherals in embedded systems. It was invented by Philips and now it is used by almost all major IC manufacturers.
+I2C (Inter-Integrated Circuit) is a serial communication protocol designed for a two-wire interface, enabling the connection of low-speed devices such as sensors, EEPROMs, A/D and D/A converters, I/O interfaces, and other similar peripherals within embedded systems. Originally developed by Philips, this protocol has gained widespread adoption and is now utilized by nearly all major IC manufacturers.
 
-I2C uses only two wires: SCL (serial clock) and SDA (serial data). Both need to be pulled up with a resistor to +Vdd. There are also I2C level shifters which can be used to connect to two I2C buses with different voltages. On I2C bus, there is always one Master and one or several Slave devices. Each Slave device has a unique address [[2]](https://i2c.info/).
+I2C utilizes just two wires: **SCL** (Serial Clock) and **SDA** (Serial Data). Both of these wires should be connected to a resistor and pulled up to +Vdd. Additionally, I2C level shifters are available for connecting two I2C buses with different voltage levels.
+
+In an I2C bus configuration, there is always one **Master** device and one or more **Slave** devices. Each Slave device is identified by a [unique address](https://i2c.info/).
 
 ![I2C bus](images/i2c-bus.png)
 
 The initial I2C specifications defined maximum clock frequency of 100 kHz. This was later increased to 400 kHz as Fast mode. There is also a High speed mode which can go up to 3.4 MHz and there is also a 5 MHz ultra-fast mode.
 
-In normal state both lines (SCL and SDA) are high. The communication is initiated by the master device. It generates the Start condition (S) followed by the address of the slave device (SLA). If the bit 0 of the address byte was set to 0 the master device will write to the slave device (SLA+W). Otherwise, the next byte will be read from the slave device (SLA+R). Each byte is supplemented by an ACK (low level) or NACK (high level) acknowledgment bit, which is always transmitted by the device receiving the previous byte.
+In idle state both lines (SCL and SDA) are high. The communication is initiated by the master device. It generates the Start condition (S) followed by the address of the slave device (SLA). If the bit 0 of the address byte was set to 0 the master device will write to the slave device (SLA+W). Otherwise, the next byte will be read from the slave device (SLA+R). Each byte is supplemented by an ACK (low level) or NACK (high level) acknowledgment bit, which is always transmitted by the device receiving the previous byte.
 
-The address byte is followed by one or more data bytes, where each contains 8 bits and is again terminated by ACK/NACK. Once all bytes are read or written the master device generates Stop condition (P). This means that the master device switches the SDA line from low voltage level to high voltage level before the SCL line switches from high to low [[3]](https://www.electronicshub.org/basics-i2c-communication/).
+The address byte is followed by one or more data bytes, where each contains 8 bits and is again terminated by ACK/NACK. Once all bytes are read or written the master device generates Stop condition (P). This means that the master device switches the SDA line from low voltage level to high voltage level before the SCL line switches from [high to low](https://www.electronicshub.org/basics-i2c-communication/).
 
 ![I2C protocol](images/i2c_protocol.jpg)
 
@@ -72,7 +75,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the address of register, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
-> | **Register address** | **Description** |
+> | **Memory location** | **Description** |
 > | :-: | :-- |
 > | 0x00 | Humidity integer part |
 > | 0x01 | Humidity decimal part |
@@ -144,7 +147,7 @@ The goal of this task is to create a program that will verify the presence of un
    | :-- | :-- | :-- | :-- |
    | `twi_init` | None | Initialize TWI unit, enable internal pull-up resistors, and set SCL frequency | `twi_init();` |
    | `twi_start` |  | <br>&nbsp; |  |
-   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) | TWI_WRITE);` |
+   | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) \| TWI_WRITE);` |
    | `twi_read` | <br>&nbsp; |  |  |
    | `twi_stop` |  |  | `twi_stop();` |
 
@@ -191,7 +194,7 @@ The goal of this task is to create a program that will verify the presence of un
 
 1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Use Timer/Counter1 with a suitable overflow time. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
-   | **Register address** | **Description** |
+   | **Memory location** | **Description** |
    | :-: | :-- |
    | 0x00 | Humidity integer part |
    | 0x01 | Humidity decimal part |
@@ -205,10 +208,10 @@ The goal of this task is to create a program that will verify the presence of un
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
-       uint8_t humInt;
-       uint8_t humDec;
-       uint8_t temInt;
-       uint8_t temDec;
+       uint8_t humidInt;
+       uint8_t humidDec;
+       uint8_t temprInt;
+       uint8_t temprDec;
        uint8_t checksum;
    } dht12;
 
@@ -231,7 +234,7 @@ The goal of this task is to create a program that will verify the presence of un
 
 5. (Optional) Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
 
-9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
+6. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 

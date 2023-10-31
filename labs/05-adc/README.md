@@ -1,4 +1,4 @@
-# Lab 5: Analog-to-Digital Converter (ADC)
+# Lab 5: ADC (Analog-to-Digital Converter)
 
 ### Learning objectives
 
