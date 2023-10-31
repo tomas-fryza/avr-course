@@ -315,9 +315,9 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    * [font.h](../library/include/font.h)
    * [oled.c](../library/oled.c)
-   * [oled.h](../library/oled.h)
+   * [oled.h](../library/include/oled.h)
 
-   Rename main source file to `src/main.c` and copy/paste [this code](../../solution/lab6-i2c-oled/src/main.c)
+   Rename the main source file to `src/main.c` and copy/paste [this code](../../solutions/lab6-i2c-oled/src/main.c)
 
    The final project structure should look like this:
 
