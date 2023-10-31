@@ -1,23 +1,29 @@
 // https://github.com/Sylaina/oled-display
 
-#include "lcd.h"
+#include <oled.h>
 
 int main(void)
 {
-    lcd_init(LCD_DISP_ON);
-    lcd_clrscr();
+    oled_init(OLED_DISP_ON);
+    oled_clrscr();
 
-    lcd_charMode(DOUBLESIZE);
-    lcd_puts("OLED display");
-    lcd_gotoxy(0, 2);
-    lcd_charMode(NORMALSIZE);
-    lcd_puts("128x64, SHH1106");
+    oled_charMode(DOUBLESIZE);
+    oled_puts("OLED disp.");
 
-    lcd_drawLine(0, 25, 120, 25, WHITE);
+    oled_charMode(NORMALSIZE);
 
-    lcd_drawRect(20, 35, 100, 40, WHITE);
+    // oled_gotoxy(x, y)
+    oled_gotoxy(0, 2);
+    oled_puts("128x64, SHH1106");
 
-    lcd_display();
+    // oled_drawLine(x1, y1, x2, y2, color)
+    oled_drawLine(0, 25, 120, 25, WHITE);
+
+    oled_gotoxy(0, 4);
+    oled_puts("BPC-DE2, Brno");
+
+    // Copy buffer to display RAM
+    oled_display();
 
     while (1) {
         ;

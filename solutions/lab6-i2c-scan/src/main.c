@@ -23,6 +23,7 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
+#include <stdlib.h>         // C library. Needed for number conversions
 
 
 /* Global variables --------------------------------------------------*/
@@ -31,13 +32,23 @@
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Call scanning function and test all I2C (TWI) combinations.
- *           Detected devices are sent to UART.
- * Note:     UART baud rate must be greater than default, eg. 115200.
+ * Purpose:  Call function to test all I2C (TWI) combinations and send
+ *           detected devices to UART.
  * Returns:  none
+ * 
+ * Some known devices:
+ *     0x3c - OLED display
+ *     0x57 - EEPROM
+ *     0x5c - Temp+Humid
+ *     0x68 - RTC
+ *     0x68 - GY521
+ *     0x76 - BME280
+ *
  **********************************************************************/
 int main(void)
 {
+    char string[2];  // For converting numbers by itoa()
+
     twi_init();
 
     // Initialize USART to asynchronous, 8-N-1, 115200 Bd
@@ -45,7 +56,13 @@ int main(void)
     sei();  // Needed for UART
 
     uart_puts("Scanning I2C... ");
-    twi_scan();
+    for (uint8_t sla = 8; sla < 120; sla++) {
+        if (twi_test_address(sla) == 0) {  // ACK from Slave
+            uart_puts("\r\n");
+            itoa(sla, string, 16);
+            uart_puts(string);
+        }
+    }
 
     while (1) {
         ;

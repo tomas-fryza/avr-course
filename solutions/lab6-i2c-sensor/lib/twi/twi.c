@@ -13,8 +13,6 @@
 
 /* Includes ----------------------------------------------------------*/
 #include <twi.h>
-#include <uart.h>    // Peter Fleury's UART library
-#include <stdlib.h>  // C library. Needed for number conversions
 
 
 /* Functions ---------------------------------------------------------*/
@@ -53,7 +51,7 @@ void twi_start(void)
  * Function: twi_write()
  * Purpose:  Send one byte to I2C/TWI Slave device.
  * Input:    data Byte to be transmitted
- * Returns:  none
+ * Returns:  ACK/NACK received value
  **********************************************************************/
 uint8_t twi_write(uint8_t data)
 {
@@ -111,34 +109,18 @@ void twi_stop(void)
 
 
 /**********************************************************************
- * Function: twi_scan()
- * Purpose:  Scan I2C bus are send addresses of detected devices
- *           to UART.
- * Note:     UART must be initialized to higher baud rate, eg. 115200.
- * Returns:  none
+ * Function: twi_test_address()
+ * Purpose:  Test presence of one I2C device on the bus.
+ * Input:    adr Slave address
+ * Returns:  ACK/NACK received value
  **********************************************************************/
-void twi_scan(void)
+uint8_t twi_test_address(uint8_t adr)
 {
-    uint8_t ack;     // ACK response from Slave
-    char string[2];  // For converting numbers by itoa()
+    uint8_t ack;  // ACK response from Slave
 
-    for (uint8_t sla = 8; sla < 120; sla++) {
-        twi_start();
-        ack = twi_write((sla<<1) | TWI_WRITE);
-        twi_stop();
+    twi_start();
+    ack = twi_write((adr<<1) | TWI_WRITE);
+    twi_stop();
 
-        if (ack == 0) {  // ACK
-            uart_puts("\r\n");
-            itoa(sla, string, 16);
-            uart_puts(string);
-        }
-
-        // Some devices:
-        // 0x3c ... OLED display
-        // 0x57 ... EEPROM
-        // 0x5c ... Temp+Humid
-        // 0x68 ... RTC
-        // 0x68 ... GY521
-        // 0x76 ... BME280
-    }
+    return ack;
 }

@@ -17,7 +17,7 @@ The main goal of this laboratory exercise is to develop a thorough understanding
 * [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: I2C scanner](#part3)
 * [Part 4: Communication with I2C devices](#part4)
-* [Part 5: OLED display](#part5)
+* [Part 5: OLED display 128x64](#part5)
 * [(Optional) Experiments on your own](#experiments)
 * [References](#references)
 
@@ -112,7 +112,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 ## Part 3: I2C scanner
 
-The goal of this task is to create a program that will verify the presence of unknown devices connected to the I2C bus by sequentially trying all address combinations.
+The goal of this task is to create a program that will verify the presence of devices connected to the I2C bus by sequentially trying all address combinations.
 
 1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
 
@@ -151,7 +151,7 @@ The goal of this task is to create a program that will verify the presence of un
    | `twi_write` |  | <br>&nbsp; | `twi_write((sla<<1) \| TWI_WRITE);` |
    | `twi_read` | <br>&nbsp; |  |  |
    | `twi_stop` |  |  | `twi_stop();` |
-   | `twi_scan` | None | Scan I2C bus are send addresses of detected devices to UART | `twi_scan();` |
+   | `twi_test_address` | `sla` Slave address | Test presence of one I2C device on the bus. | `twi_test_address(0x3c);` |
 
 5. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
 
@@ -160,9 +160,9 @@ The goal of this task is to create a program that will verify the presence of un
    * Humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor
 
    * SH1106 I2C [OLED display](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) 128x64
-   
+
    * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory
-   
+
    * Optional: [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
 
 6. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate is set to 115200, therefore you need to add a line to your `platformio.ini` config file:
@@ -171,27 +171,7 @@ The goal of this task is to create a program that will verify the presence of un
    monitor_speed = 115200
    ```
 
-   ```c
-   int main(void)
-   {
-       twi_init();
-
-       // Initialize USART to asynchronous, 8-N-1, 115200 Bd
-       uart_init(UART_BAUD_SELECT(115200, F_CPU));
-       sei();  // Needed for UART
-
-       uart_puts("Scanning I2C... ");
-       twi_scan();
-
-       while (1) {
-           ;
-       }
-
-       return 0;
-   }
-   ```
-
-7. Connect the logic analyzer to the I2C bus wires (SCL and SDA) between the microcontroller and the sensor and to the Tx wire. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
+7. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
 
 <a name="part4"></a>
 
@@ -215,20 +195,20 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
-      uint8_t humi_int;
-      uint8_t humi_frac;
+      uint8_t hum_int;
+      uint8_t hum_dec;
       uint8_t temp_int;
-      uint8_t temp_frac;
+      uint8_t temp_dec;
       uint8_t checksum;
    } dht12;
 
-   // Flag for print new data from sensor
+   // Flag for printing new data from sensor
    volatile uint8_t new_sensor_data = 0;
 
 
    // Slave and internal addresses of temperature/humidity sensor DHT12
-   #define SENSOR_ADDR 0x5c
-   #define SENSOR_HUMI_MEM 0
+   #define SENSOR_ADR 0x5c
+   #define SENSOR_HUM_MEM 0
    #define SENSOR_TEMP_MEM 2
    #define SENSOR_CHECKSUM 4
 
@@ -236,44 +216,52 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    /* Function definitions ----------------------------------------------*/
    /**********************************************************************
    * Function: Main function where the program execution begins
-   * Purpose:  Use Timer/Counter1, and wait for new data from the sensor
-   *           to be sent to UART.
+   * Purpose:  Wait for new data from the sensor and sent them to UART.
    * Returns:  none
    **********************************************************************/
    int main(void)
    {
-      char string[2];  // String for converting numbers by itoa()
+       char string[2];  // String for converting numbers by itoa()
 
-      // TWI
-      twi_init();
+       // TWI
+       twi_init();
 
-      // UART
-      uart_init(UART_BAUD_SELECT(115200, F_CPU));
+       // UART
+       uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
-      // Timer1
-      TIM1_OVF_1SEC
-      TIM1_OVF_ENABLE
+       sei();  // Needed for UART
 
-      sei();
+       // Test if sensor is ready
+       if (twi_test_address(SENSOR_ADR) == 0)
+           uart_puts("I2C sensor detected\r\n");
+       else {
+           uart_puts("[ERROR] I2C device not detected\r\n");
+           while (1);
+       }
 
-      // Infinite loop
-      while (1)
-      {
-         if (new_sensor_data == 1) {
+       // Timer1
+       TIM1_OVF_1SEC
+       TIM1_OVF_ENABLE
+
+       sei();
+
+       // Infinite loop
+       while (1) {
+           if (new_sensor_data == 1) {
                itoa(dht12.temp_int, string, 10);
                uart_puts(string);
                uart_puts(".");
-               itoa(dht12.temp_frac, string, 10);
+               itoa(dht12.temp_dec, string, 10);
                uart_puts(string);
                uart_puts(" °C\r\n");
 
                // Do not print it again and wait for the new data
                new_sensor_data = 0;
-         }
-      }
+           }
+       }
 
-      // Will never reach this
-      return 0;
+       // Will never reach this
+       return 0;
    }
 
 
@@ -284,23 +272,21 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    **********************************************************************/
    ISR(TIMER1_OVF_vect)
    {
-      static uint8_t n_ovfs = 0;
+       // Test ACK from sensor
+       twi_start();
+       if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
+           // Set internal memory location
+           twi_write(SENSOR_TEMP_MEM);
+           twi_stop();
+           // Read data from internal memory
+           twi_start();
+           twi_write((SENSOR_ADR<<1) | TWI_READ);
+           dht12.temp_int = twi_read(TWI_ACK);
+           dht12.temp_dec = twi_read(TWI_NACK);
 
-      // Test ACK from sensor
-      twi_start();
-      if (twi_write((SENSOR_ADDR<<1) | TWI_WRITE) == 0) {
-            // Set internal memory location
-            twi_write(SENSOR_TEMP_MEM);
-            twi_stop();
-            // Read data from internal memory
-            twi_start();
-            twi_write((SENSOR_ADDR<<1) | TWI_READ);
-            dht12.temp_int = twi_read(TWI_ACK);
-            dht12.temp_frac = twi_read(TWI_NACK);
-
-            new_sensor_data = 1;
-      }
-      twi_stop();
+           new_sensor_data = 1;
+       }
+       twi_stop();
    }
    ```
 
@@ -319,20 +305,44 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
 <a name="part5"></a>
 
-## Part 5: OLED display
+## Part 5: OLED display 128x64
 
-TBD
+An OLED I2C display, or OLED I2C screen, is a type of display technology that combines an OLED (Organic Light Emitting Diode) panel with an I2C (Inter-Integrated Circuit) interface for communication. The I2C interface simplifies the connection between the display and a microcontroller, making it easier to control and integrate into various electronic projects.
 
+1. Create a new PlatformIO project `lab6-i2c-oled`, copy `twi` library to `lib/twi` folder, and create a new library `lib/oled` with the following files.
 
+   > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
+   * [font.h](../library/include/font.h)
+   * [oled.c](../library/oled.c)
+   * [oled.h](../library/oled.h)
 
+   Rename main source file to `src/main.c` and copy/paste [this code](../../solution/lab6-i2c-oled/src/main.c)
 
+   The final project structure should look like this:
 
+   ```c
+   LAB6-I2C-OLED       // PlatfomIO project
+   ├── include
+   ├── lib             // Libraries
+   │   ├── oled        // Sylaina's OLED library
+   │   │   ├── font.h
+   │   │   ├── oled.c
+   │   │   └── oled.h
+   │   └── twi         // Tomas Fryza's TWI/I2C library
+   │       ├── twi.c
+   │       └── twi.h
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   └── platformio.ini  // Project Configuration File
+   ```
 
+2. Compile the project and upload it to MCU. Use other functions from `oled.h` library and draw lines and rectangles on the display.
 
+3. Combine temperature and OLED examples and print DHT12 senzor values on OLED display.
 
-
-x. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
+4. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
    > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
@@ -392,4 +402,6 @@ x. After completing your work, ensure that you synchronize the contents of your 
 
 8. LastMinuteEngineers. [Interface DS3231 Precision RTC Module with Arduino](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
 
-8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+
+10. Sylaina. [OLED for AVR mikrocontrollers](https://github.com/Sylaina/oled-display)

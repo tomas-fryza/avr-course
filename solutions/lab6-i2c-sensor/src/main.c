@@ -18,8 +18,8 @@
 #endif
 
 // Slave and internal addresses of temperature/humidity sensor DHT12
-#define SENSOR_ADDR 0x5c
-#define SENSOR_HUMI_MEM 0
+#define SENSOR_ADR 0x5c
+#define SENSOR_HUM_MEM 0
 #define SENSOR_TEMP_MEM 2
 #define SENSOR_CHECKSUM 4
 
@@ -36,44 +36,54 @@
 /* Global variables --------------------------------------------------*/
 // Declaration of "dht12" variable with structure "DHT_values_structure"
 struct DHT_values_structure {
-    uint8_t humi_int;
-    uint8_t humi_frac;
+    uint8_t hum_int;
+    uint8_t hum_dec;
     uint8_t temp_int;
-    uint8_t temp_frac;
+    uint8_t temp_dec;
     uint8_t checksum;
 } dht12;
 
-// Flag for print new data from sensor
+// Flag for printing new data from sensor
 volatile uint8_t new_sensor_data = 0;
 
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Use Timer/Counter1, and wait for new data from the sensor
- *           to be sent to UART.
+ * Purpose:  Wait for new data from the sensor and sent them to UART.
  * Returns:  none
  **********************************************************************/
 int main(void)
 {
     char string[2];  // String for converting numbers by itoa()
 
+    // TWI
     twi_init();
+
+    // UART
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
+    sei();  // Needed for UART
+
+    // Test if sensor is ready
+    if (twi_test_address(SENSOR_ADR) == 0)
+        uart_puts("I2C sensor detected\r\n");
+    else {
+        uart_puts("[ERROR] I2C device not detected\r\n");
+        while (1);
+    }
+
+    // Timer1
     TIM1_OVF_1SEC
     TIM1_OVF_ENABLE
 
-    sei();
-
     // Infinite loop
-    while (1)
-    {
+    while (1) {
         if (new_sensor_data == 1) {
             itoa(dht12.temp_int, string, 10);
             uart_puts(string);
             uart_puts(".");
-            itoa(dht12.temp_frac, string, 10);
+            itoa(dht12.temp_dec, string, 10);
             uart_puts(string);
             uart_puts(" °C\r\n");
 
@@ -103,58 +113,21 @@ ISR(TIMER1_OVF_vect)
 
         // Test ACK from sensor
         twi_start();
-        if (twi_write((SENSOR_ADDR<<1) | TWI_WRITE) == 0) {
+        if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
             // Set internal memory location
             twi_write(SENSOR_TEMP_MEM);
             twi_stop();
             // Read data from internal memory
             twi_start();
-            twi_write((SENSOR_ADDR<<1) | TWI_READ);
+            twi_write((SENSOR_ADR<<1) | TWI_READ);
             dht12.temp_int = twi_read(TWI_ACK);
-            dht12.temp_frac = twi_read(TWI_NACK);
+            dht12.temp_dec = twi_read(TWI_NACK);
 
             new_sensor_data = 1;
         }
         twi_stop();
     }
 }
-
-
-
-/*
-    // Read temperature and humidity from DHT12, SLA = 0x5c
-    sla = 0x5c;
-    twi_start();
-    ack = twi_write((sla<<1) | TWI_WRITE);
-    if (ack == 0) {
-        // twi_write(0x02);  // 0x02 @ Temperature
-        twi_write(0x00);  // 0x00 @ Humidity
-        twi_stop();
-        twi_start();
-        twi_write((sla<<1) | TWI_READ);
-        dht12.humidInt = twi_read(TWI_ACK);
-        dht12.humidDec = twi_read(TWI_ACK);
-        dht12.temprInt = twi_read(TWI_ACK);
-        dht12.temprDec = twi_read(TWI_NACK);
-        twi_stop();
-
-        // Print Humidity
-        itoa(dht12.humidInt, string, 10);
-        uart_puts(string);
-        uart_puts(".");
-        itoa(dht12.humidDec, string, 10);
-        uart_puts(string);
-        uart_puts(" %\t");
-
-        // Print Temperature
-        itoa(dht12.temprInt, string, 10);
-        uart_puts(string);
-        uart_puts(".");
-        itoa(dht12.temprDec, string, 10);
-        uart_puts(string);
-        uart_puts(" °C\r\n");
-    }
-*/
 
 
 
