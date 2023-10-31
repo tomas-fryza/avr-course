@@ -13,12 +13,15 @@
 
 /* Includes ----------------------------------------------------------*/
 #include <twi.h>
+#include <uart.h>    // Peter Fleury's UART library
+#include <stdlib.h>  // C library. Needed for number conversions
 
 
 /* Functions ---------------------------------------------------------*/
 /**********************************************************************
  * Function: twi_init()
- * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL frequency.
+ * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL
+ *           frequency.
  * Returns:  none
  **********************************************************************/
 void twi_init(void)
@@ -104,4 +107,38 @@ void twi_stop(void)
 {
     /* Generate Stop condition on I2C/TWI bus */
     TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
+}
+
+
+/**********************************************************************
+ * Function: twi_scan()
+ * Purpose:  Scan I2C bus are send addresses of detected devices
+ *           to UART.
+ * Note:     UART must be initialized to higher baud rate, eg. 115200.
+ * Returns:  none
+ **********************************************************************/
+void twi_scan(void)
+{
+    uint8_t ack;     // ACK response from Slave
+    char string[2];  // For converting numbers by itoa()
+
+    for (uint8_t sla = 8; sla < 120; sla++) {
+        twi_start();
+        ack = twi_write((sla<<1) | TWI_WRITE);
+        twi_stop();
+
+        if (ack == 0) {  // ACK
+            uart_puts("\r\n");
+            itoa(sla, string, 16);
+            uart_puts(string);
+        }
+
+        // Some devices:
+        // 0x3c ... OLED display
+        // 0x57 ... EEPROM
+        // 0x5c ... Temp+Humid
+        // 0x68 ... RTC
+        // 0x68 ... GY521
+        // 0x76 ... BME280
+    }
 }

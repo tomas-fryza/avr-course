@@ -116,6 +116,14 @@ uint8_t twi_read(uint8_t ack);
 void twi_stop(void);
 
 
+/**
+ * @brief  Scan I2C bus are send addresses of detected devices
+ *         to UART (8-N-1 9600).
+ * @return none
+ */
+void twi_scan(void);
+
+
 /** @} */
 
 #endif
