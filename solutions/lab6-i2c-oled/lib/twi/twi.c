@@ -18,7 +18,8 @@
 /* Functions ---------------------------------------------------------*/
 /**********************************************************************
  * Function: twi_init()
- * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL frequency.
+ * Purpose:  Initialize TWI unit, enable internal pull-ups, and set SCL
+ *           frequency.
  * Returns:  none
  **********************************************************************/
 void twi_init(void)
@@ -50,7 +51,7 @@ void twi_start(void)
  * Function: twi_write()
  * Purpose:  Send one byte to I2C/TWI Slave device.
  * Input:    data Byte to be transmitted
- * Returns:  none
+ * Returns:  ACK/NACK received value
  **********************************************************************/
 uint8_t twi_write(uint8_t data)
 {
@@ -104,4 +105,22 @@ void twi_stop(void)
 {
     /* Generate Stop condition on I2C/TWI bus */
     TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
+}
+
+
+/**********************************************************************
+ * Function: twi_test_address()
+ * Purpose:  Test presence of one I2C device on the bus.
+ * Input:    adr Slave address
+ * Returns:  ACK/NACK received value
+ **********************************************************************/
+uint8_t twi_test_address(uint8_t adr)
+{
+    uint8_t ack;  // ACK response from Slave
+
+    twi_start();
+    ack = twi_write((adr<<1) | TWI_WRITE);
+    twi_stop();
+
+    return ack;
 }

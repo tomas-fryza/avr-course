@@ -43,7 +43,7 @@
 #ifndef F_CPU
 # define F_CPU 16000000 /**< @brief CPU frequency in Hz required TWI_BIT_RATE_REG */
 #endif
-#define F_SCL 50000 /**< @brief I2C/TWI bit rate. Must be greater than 31000 */
+#define F_SCL 100000 /**< @brief I2C/TWI bit rate. Must be greater than 31000 */
 #define TWI_BIT_RATE_REG ((F_CPU/F_SCL - 16) / 2) /**< @brief TWI bit rate register value */
 
 
@@ -114,6 +114,16 @@ uint8_t twi_read(uint8_t ack);
  * @return none
  */
 void twi_stop(void);
+
+
+/**
+ * @brief  Test presence of one I2C device on the bus.
+ * @param  adr Slave address
+ * @return ACK/NACK received value
+ * @retval 0 - ACK has been received
+ * @retval 1 - NACK has been received
+ */
+uint8_t twi_test_address(uint8_t adr);
 
 
 /** @} */
