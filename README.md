@@ -96,14 +96,6 @@ The following hardware and software components are mainly used in the lab.
 | SimulIDE | Real time electronic circuit simulator. With PIC, AVR and Arduino simulation: [web page](https://www.simulide.com/p/home.html)
 | Git | [git](https://git-scm.com/) |
 
-## References
-
-1. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
-
-2. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
-
-3. 4Geeks. [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
-
 > **Tested on operating systems:**
 >
 > | **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
@@ -119,3 +111,11 @@ The following hardware and software components are mainly used in the lab.
 > # Or by Neofetch
 > neofetch
 > ```
+
+## References
+
+1. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
+
+2. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
+
+3. 4Geeks. [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
