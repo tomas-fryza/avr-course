@@ -39,7 +39,7 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 The UART (Universal Asynchronous Receiver-Transmitter) is not a communication protocol like SPI and I2C, but a physical circuit in a microcontroller, or a stand-alone integrated circuit, that translates communicated data between serial and parallel forms. It is one of the simplest and easiest method for implement and understanding.
 
-In UART communication, two UARTs communicate directly with each other. The transmitting UART converts parallel data from a CPU into serial form, transmits it in serial to the receiving UART, which then converts the serial data back into parallel data for the receiving device. Only two wires are needed to transmit data between two UARTs. Data flows from the Tx pin of the transmitting UART to the Rx pin of the receiving UART [[3]](https://www.circuitbasics.com/basics-uart-communication/), [[4]](https://www.analog.com/en/analog-dialogue/articles/uart-a-hardware-communication-protocol.html).
+In UART communication, two UARTs communicate directly with each other. The transmitting UART converts parallel data from a CPU into serial form, transmits it in serial to the receiving UART, which then converts the serial data back into parallel data for the receiving device. Only two wires are needed to transmit data between two UARTs. Data flows from the Tx pin of the transmitting UART to the Rx pin of the receiving UART: [link](https://www.circuitbasics.com/basics-uart-communication/), [link](https://www.analog.com/en/analog-dialogue/articles/uart-a-hardware-communication-protocol.html).
 
 UARTs transmit data asynchronously, which means there is no external clock signal to synchronize the output of bits from the transmitting UART. Instead, timing is agreed upon in advance between both units, and special **Start** (log. 0) and 1 or 2 **Stop** (log. 1) bits are added to each data package. These bits define the beginning and end of the data packet so the receiving UART knows when to start reading the bits. In addition to the start and stop bits, the packet/frame also contains data bits and optional parity.
 
@@ -70,9 +70,9 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab6-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
 
-3. IMPORTANT: Rename `LAB6-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 <a name="part3"></a>
 
@@ -89,11 +89,11 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `uart_putc` |  |  |
    | `uart_puts` |  |  |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-uart/main.c) to `LAB6-UART > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-uart/main.c) to `LAB6-UART > src > main.c` source file.
 
-3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB6-UART > include` folder.
+3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB5-UART > include` folder.
 
-4. In PlatformIO project, create a new folder `LAB6-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`.
+4. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`.
 
    1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/uart.c) to `uart.c`
    2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/uart.h) to `uart.h`
@@ -101,7 +101,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    The final project structure should look like this:
 
    ```c
-   LAB6-UART           // PlatfomIO project
+   LAB5-UART           // PlatfomIO project
    ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
