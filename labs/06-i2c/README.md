@@ -10,6 +10,8 @@ After completing this lab you will be able to:
 
 The main goal of this laboratory exercise is to develop a thorough understanding of serial synchronous communication via the I2C (Inter-Integrated Circuit) bus. This involves delving into the structure of address and data frames, investigating the communication capabilities provided by the internal TWI (Two Wire Interface) unit, and utilizing a C code library for I2C communication.
 
+![I2C bus](images/photo_oled-sensor.jpg)
+
 ### Table of contents
 
 * [Pre-Lab preparation](#preparation)
@@ -157,6 +159,8 @@ The goal of this task is to create a program that will verify the presence of de
 
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones is used.
 
+   ![Arduino_uno_pinout](../../images/Pinout-UNOrev3_latest.png)
+
    * Humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor
 
    * SH1106 I2C [OLED display](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) 128x64
@@ -164,8 +168,6 @@ The goal of this task is to create a program that will verify the presence of de
    * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory
 
    * Optional: [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
-
-   ![Arduino_uno_pinout](../../images/Pinout-UNOrev3_latest.png)
 
 6. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate is set to 115200, therefore you need to add a line to your `platformio.ini` config file:
 
