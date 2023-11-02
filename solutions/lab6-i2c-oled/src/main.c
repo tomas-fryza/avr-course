@@ -20,7 +20,7 @@ int main(void)
     oled_drawLine(0, 25, 120, 25, WHITE);
 
     oled_gotoxy(0, 4);
-    oled_puts("BPC-DE2, Brno");
+    oled_puts("AVR course, Brno");
 
     // Copy buffer to display RAM
     oled_display();

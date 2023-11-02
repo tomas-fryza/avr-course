@@ -23,6 +23,9 @@
 #define SENSOR_TEMP_MEM 2
 #define SENSOR_CHECKSUM 4
 
+#define RTC_ADR 0x68
+#define RTC_SEC_MEM 0
+
 
 /* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions
@@ -80,12 +83,22 @@ int main(void)
     // Infinite loop
     while (1) {
         if (new_sensor_data == 1) {
+            // Display DHT12 data
             itoa(dht12.temp_int, string, 10);
             uart_puts(string);
             uart_puts(".");
             itoa(dht12.temp_dec, string, 10);
             uart_puts(string);
-            uart_puts(" °C\r\n");
+            uart_puts(" °C\t\t");
+            itoa(dht12.hum_int, string, 10);
+            uart_puts(string);
+            uart_puts(".");
+            itoa(dht12.hum_dec, string, 10);
+            uart_puts(string);
+            uart_puts(" \%\t\t");
+            itoa(dht12.checksum, string, 16);
+            uart_puts(string);
+            uart_puts("\r\n");
 
             // Do not print it again and wait for the new data
             new_sensor_data = 0;
@@ -111,17 +124,20 @@ ISR(TIMER1_OVF_vect)
     if (n_ovfs >= 5) {
         n_ovfs = 0;
 
-        // Test ACK from sensor
+        // Test ACK from Temp/Humid sensor
         twi_start();
         if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
             // Set internal memory location
-            twi_write(SENSOR_TEMP_MEM);
+            twi_write(SENSOR_HUM_MEM);
             twi_stop();
             // Read data from internal memory
             twi_start();
             twi_write((SENSOR_ADR<<1) | TWI_READ);
             dht12.temp_int = twi_read(TWI_ACK);
-            dht12.temp_dec = twi_read(TWI_NACK);
+            dht12.temp_dec = twi_read(TWI_ACK);
+            dht12.hum_int = twi_read(TWI_ACK);
+            dht12.hum_dec = twi_read(TWI_ACK);
+            dht12.checksum = twi_read(TWI_NACK);
 
             new_sensor_data = 1;
         }
@@ -140,33 +156,32 @@ struct RTC_values_structure {
 } rtc;
 
 
+            // Display RTC data
+            itoa(rtc.mins, string, 16);
+            uart_puts(string);
+            uart_puts(".");
+            itoa(rtc.secs, string, 16);
+            uart_puts(string);
+            uart_puts(":\t");
+
+
     // Read Time from RTC DS3231; SLA = 0x68
     // FYI: MPU-6050; SLA = 0x68
-    sla = 0x68;
-    twi_start();
-    ack = twi_write((sla<<1) | TWI_WRITE);
-    if (ack == 0) {       // Slave device accessible
-        twi_write(0x00);  // 0x00: Seconds
-        twi_stop();
+        // Test ACK from RTC
         twi_start();
-        twi_write((sla<<1) | TWI_READ);
-        rtc.secs = twi_read(TWI_ACK);
-        rtc.mins = twi_read(TWI_ACK);
-        rtc.hours = twi_read(TWI_NACK);
-        twi_stop();
+        if (twi_write((RTC_ADR<<1) | TWI_WRITE) == 0) {
+            // Set internal memory location
+            twi_write(RTC_SEC_MEM);
+            twi_stop();
+            // Read data from internal memory
+            twi_start();
+            twi_write((RTC_ADR<<1) | TWI_READ);
+            rtc.secs = twi_read(TWI_ACK);
+            rtc.mins = twi_read(TWI_ACK);
+            rtc.hours = twi_read(TWI_NACK);
 
-        // Send values to UART
-        rtc.hours = rtc.hours & 0x1f;  // Filter Hours
-        itoa(rtc.hours, string, 16);
-        uart_puts(string);
-        uart_puts(":");
-        itoa(rtc.mins, string, 16);
-        uart_puts(string);
-        uart_puts(":");
-        itoa(rtc.secs, string, 16);
-        uart_puts(string);
-        uart_puts("\t");
-    }
+        }
+        twi_stop();
 */
 
 
