@@ -1,7 +1,7 @@
 /***********************************************************************
  * 
  * Communication via I2C (TWI) bus with temperature/humidity sensor.
- * Read values every 5 sec and send the to UART.
+ * Read values every 5 sec and send them to UART.
  * 
  * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
  *
@@ -83,19 +83,23 @@ int main(void)
     // Infinite loop
     while (1) {
         if (new_sensor_data == 1) {
-            // Display DHT12 data
+            // Display temperature
             itoa(dht12.temp_int, string, 10);
             uart_puts(string);
             uart_puts(".");
             itoa(dht12.temp_dec, string, 10);
             uart_puts(string);
             uart_puts(" °C\t\t");
+
+            // Display humidity
             itoa(dht12.hum_int, string, 10);
             uart_puts(string);
             uart_puts(".");
             itoa(dht12.hum_dec, string, 10);
             uart_puts(string);
             uart_puts(" \%\t\t");
+
+            // Display checksum
             itoa(dht12.checksum, string, 16);
             uart_puts(string);
             uart_puts("\r\n");
@@ -124,24 +128,28 @@ ISR(TIMER1_OVF_vect)
     if (n_ovfs >= 5) {
         n_ovfs = 0;
 
-        // Test ACK from Temp/Humid sensor
+        // Read values from Temp/Humid sensor
         twi_start();
         if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
             // Set internal memory location
             twi_write(SENSOR_HUM_MEM);
             twi_stop();
+
             // Read data from internal memory
             twi_start();
             twi_write((SENSOR_ADR<<1) | TWI_READ);
-            dht12.temp_int = twi_read(TWI_ACK);
-            dht12.temp_dec = twi_read(TWI_ACK);
             dht12.hum_int = twi_read(TWI_ACK);
             dht12.hum_dec = twi_read(TWI_ACK);
+            dht12.temp_int = twi_read(TWI_ACK);
+            dht12.temp_dec = twi_read(TWI_ACK);
             dht12.checksum = twi_read(TWI_NACK);
+            twi_stop();
 
             new_sensor_data = 1;
         }
-        twi_stop();
+        else {
+            twi_stop();
+        }
     }
 }
 

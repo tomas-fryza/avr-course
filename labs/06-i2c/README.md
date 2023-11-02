@@ -157,7 +157,7 @@ The goal of this task is to create a program that will verify the presence of de
 
 5. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
 
-   > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones is used.
+   > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
 
    ![Arduino_uno_pinout](../../images/Pinout-UNOrev3_latest.png)
 
@@ -196,6 +196,8 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    Note that a structured variable in C can be used for received values.
 
    ```c
+   ...
+   
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
@@ -252,6 +254,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        // Infinite loop
        while (1) {
            if (new_sensor_data == 1) {
+               // Display temperature
                itoa(dht12.temp_int, string, 10);
                uart_puts(string);
                uart_puts(".");
@@ -276,21 +279,25 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    **********************************************************************/
    ISR(TIMER1_OVF_vect)
    {
-       // Test ACK from sensor
+       // Read values from Temp/Humid sensor
        twi_start();
        if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
            // Set internal memory location
            twi_write(SENSOR_TEMP_MEM);
            twi_stop();
+
            // Read data from internal memory
            twi_start();
            twi_write((SENSOR_ADR<<1) | TWI_READ);
            dht12.temp_int = twi_read(TWI_ACK);
            dht12.temp_dec = twi_read(TWI_NACK);
+           twi_stop();
 
            new_sensor_data = 1;
        }
-       twi_stop();
+       else {
+           twi_stop();
+       }
    }
    ```
 
