@@ -4,7 +4,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 ![avr_course](images/arduino_uno_i2c.jpg)
 
-# Installation
+## Installation
 
 *[PlatformIO](https://platformio.org/) is a cross-platform build system that can be used to develop software platforms for Arduino, ESP32, PIC32, and AVR. PlatformIO can be used with VS Code to provide a powerful set of tools to assist you in development [[1]](https://maker.pro/arduino/tutorial/how-to-use-platformio-in-visual-studio-code-to-program-arduino), [[2]](https://dronebotworkshop.com/platformio/).*
 
@@ -20,7 +20,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
    ![Install Arduino framework](images/platformio_atmel.png)
 
-# Usage
+## Usage
 
 1. *Create a new project:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Open > New Project**. Type `lab1-blink_arduino` as project name, select `Arduino Uno` board, keep `Arduino` framework, and select location to your working folder. Click on the **Finish** button.
 
@@ -39,7 +39,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
       * `PlatformIO: Clean`
       * `PlatformIO: Upload and Monitor`
 
-# VS Code shortcuts
+## VS Code shortcuts
 
 Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf) are:
 
@@ -96,6 +96,22 @@ The following hardware and software components are mainly used in the lab.
 | SimulIDE | Real time electronic circuit simulator. With PIC, AVR and Arduino simulation: [web page](https://www.simulide.com/p/home.html)
 | Git | [git](https://git-scm.com/) |
 
+### Tested on operating systems
+
+| **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
+| :------------------------- | :---------------------: | :---------- |
+| Windows 10                 | OK (2022-09-08)         | Lab SC 6.61 |
+| Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop      |
+| Windows 10                 | OK (2021-11-25)         | Office      |
+
+```bash
+# FYI: How to check OS version in Linux
+cat /etc/os-release
+
+# Or by Neofetch
+neofetch
+```
+
 ## References
 
 1. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
@@ -103,19 +119,3 @@ The following hardware and software components are mainly used in the lab.
 2. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
 
 3. 4Geeks. [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
-
-> **Tested on operating systems:**
->
-> | **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
-> | :------------------------- | :---------------------: | :---------- |
-> | Windows 10                 | OK (2022-09-08)         | Lab SC 6.61 |
-> | Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop      |
-> | Windows 10                 | OK (2021-11-25)         | Office      |
->
-> ```bash
-> # FYI: How to check OS version in Linux
-> cat /etc/os-release
->
-> # Or by Neofetch
-> neofetch
-> ```
