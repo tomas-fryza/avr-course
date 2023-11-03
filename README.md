@@ -96,7 +96,7 @@ The following hardware and software components are mainly used in the lab.
 | SimulIDE | Real time electronic circuit simulator. With PIC, AVR and Arduino simulation: [web page](https://www.simulide.com/p/home.html)
 | Git | [git](https://git-scm.com/) |
 
-### Tested on operating systems
+### Tested on
 
 | **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
 | :------------------------- | :---------------------: | :---------- |
