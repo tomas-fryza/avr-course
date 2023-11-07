@@ -1,4 +1,4 @@
-# Lab 8: Assembly language and project documentation
+# Lab 7: Assembly language and project documentation
 
 ### Learning objectives
 
@@ -73,19 +73,19 @@ For time- or memory space-critical applications, it can often be desirable to co
 
 Parameters between C and assembly may be passed via registers and/or the Stack memory. Using the register way, parameters are passed via R25:R8 (18 regs, first function parameter is stored in R25:24, second in R23:22, etc.). If the parameters require more memory, then the Stack is used to pass additional parameters. Return value is placed in the same registers, ie. an 8-bit value gets returned in R24, an 16-bit value in two registers R25:24, an 32-bit value gets returned in four registers R25:22, and an 64-bit value gets returned in R25:18 [[3]](https://msoe.us/taylor/tutorial/ce2810/candasm).
 
-1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/main.c) to `LAB8-ASM > src > main.c` source file.
+1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/main.c) to `LAB7-ASM > src > main.c` source file.
 
-2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB8-ASM` project.
+2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
 
-3. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB8-ASM > src` source folder.
+3. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB7-ASM > src` source folder.
 
-   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/mac.S) file to `mac.S`
-   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/08-asm/lfsr.S) generator to `lfsr.S`
+   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/mac.S) file to `mac.S`
+   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/lfsr.S) generator to `lfsr.S`
 
    The final project structure should look like this:
 
    ```c
-   LAB8-ASM            // PlatfomIO project
+   LAB7-ASM            // PlatfomIO project
    ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
@@ -179,10 +179,10 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 ```
 
 1. Open Doxywizard and set the basic settings as follows:
-   1. Select working directory with your project `Documents\digital-electronics-2\lab8-asm`
+   1. Select working directory with your project `Documents\digital-electronics-2\lab7-asm`
    2. In **Wizard > Project** set **Project name**
    3. In **Wizard > Project** check **Scan recursively**
-   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab8-asm\doxygen`
+   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab7-asm\doxygen`
    5. In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
    6. In **Wizard > Output > HTML** unselect **With search function**
    7. In **Wizard > Output** unselect LaTeX and keep just HTML generation

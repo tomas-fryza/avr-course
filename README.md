@@ -63,9 +63,8 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 4. [Liquid Crystal Display (LCD)](labs/04-lcd)
 5. [Universal Asynchronous Receiver-Transmitter (UART)](labs/05-uart)
 6. [Inter-Integrated Circuits (I2C)](labs/06-i2c)
-7. [Analog-to-Digital Converter (ADC)](labs/05-adc)
-8. [Assembly language and project documentation](labs/08-asm)
-9. [C project](labs/09-project)
+7. [Assembly language and project documentation](labs/07-asm)
+8. [C project](labs/09-project)
 
 ## List of examples
 
