@@ -6,7 +6,7 @@ Topics will be presented one week before the project starts.
 
 ## Instructions
 
-The objective of this group project is to collaborate within small teams, explore a chosen topic, develop innovative solutions, simulate and execute these solutions, generate project documentation, and present the final outcomes. Team members are responsible for organizing and assigning roles and tasks among themselves.
+The objective of this group project is to collaborate within small teams (3-4 students), explore a chosen topic, develop innovative solutions, simulate and execute these solutions, generate project documentation, and present the final outcomes. Team members are responsible for organizing and assigning roles and tasks among themselves.
 
 * Students will work on a project **in the labs** during the 9th to 13th weeks of the semester, with the practical demonstration scheduled for the last week.
 

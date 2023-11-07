@@ -65,6 +65,7 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 6. [Inter-Integrated Circuits (I2C)](labs/06-i2c)
 7. [Analog-to-Digital Converter (ADC)](labs/05-adc)
 8. [Assembly language and project documentation](labs/08-asm)
+9. [C project](labs/09-project)
 
 ## List of examples
 
