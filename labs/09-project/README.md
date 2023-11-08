@@ -25,7 +25,7 @@ Create an engaging and interactive arcade-style video game using an AVR microcon
 Create a comprehensive data logging system using an AVR microcontroller. The system integrates GPS functionality for location tracking and an I2C environment sensor to capture data related to environmental conditions. The project aims to log and display sensor data and provide the capability to export the collected information for analysis.
 
 **Electronically controlled xylophone**
-*Max 2 groups.*
+*Max 1 group.*
 Build an electronic xylophone instrument that can be played using an AVR microcontroller. The project will combine hardware and software components to create an interactive and programmable musical instrument capable of producing different tones and melodies. Incorporating a graphical user interface (GUI) to visualize the notes being played.
 
 ## Instructions
