@@ -13,7 +13,7 @@
 
 ;* Includes ------------------------------------------------------------
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
-#define __SFR_OFFSET    0
+#define __SFR_OFFSET 0
 #include <avr/io.h>
 
 

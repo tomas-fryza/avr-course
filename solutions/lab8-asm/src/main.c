@@ -65,7 +65,7 @@
  * @param  result Current MAC value
  * @param  a Value A
  * @param  b Value B
- * @return New MAC value
+ * @return New MAC result
  * @note   Function programmed in AVR assembly language.
  */
 uint8_t multiply_accumulate_asm(uint8_t result, uint8_t a, uint8_t b);
@@ -87,19 +87,20 @@ uint8_t lfsr4_fibonacci_asm(uint8_t value);
 /**********************************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Use Timer/Counter1 and generate a new pseudo-random value 
- *           using 4- and/or 8-bit LFSR structure every 262 ms. Send 
+ *           using 4- and/or 8-bit LFSR structure every 1 sec. Send 
  *           information about LFSR process to UART.
  * Returns:  none
  **********************************************************************/
 int main(void)
 {
-    // Initialize USART to asynchronous, 8N1, 9600
-    uart_init(UART_BAUD_SELECT(9600, F_CPU));
+    // Initialize USART to asynchronous, 8-N-1, 115200
+    // NOTE: Add `monitor_speed = 115200` to `platformio.ini`
+    uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
     // Configure 16-bit Timer/Counter1 to generate one LFSR state
-    // Set prescaler to 262 ms and enable interrupt
-    TIM1_overflow_262ms();
-    TIM1_overflow_interrupt_enable();
+    // Set prescaler to 1 sec and enable interrupt
+    TIM1_OVF_1SEC
+    TIM1_OVF_ENABLE
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -108,8 +109,7 @@ int main(void)
     uart_puts("LFSR-based pseudo-random generator:\r\n");
 
     // Infinite loop
-    while (1)
-    {
+    while (1) {
         /* Empty loop. All subsequent operations are performed exclusively 
          * inside interrupt service routines ISRs */
     }
@@ -123,39 +123,33 @@ int main(void)
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Generate one pseudo-random value using 4- and/or 8-bit
-             LFSR structure.
+ *           LFSR structure.
+ *
+ * Note: (4,3): 0, 1, 3, 7, 14, 13, 11, 6, 12, 9, 2, 5, 10, 4, 8
+ *       (4,2): 0, 1, 3, 6, 12, 8
+ *       (4,1): 0, 1, 2, 5, 10, 4, 9, 3, 6, 13, 11, 7, 14, 12, 8
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static uint8_t value = 0;  // LFSR value
-    static uint8_t no_of_values = 0;
+    static uint8_t value = 0;  // Initial value
     char string[3];            // String for converting numbers by itoa()
 
     // Multiply-and-accumulate Assembly example
-    uint8_t a = 2;
-    uint8_t b = 3; 
-    value = multiply_accumulate_asm(value, a, b);
+    value = multiply_accumulate_asm(value, 2, 3);
+
+    // Send new `value` to UART
+
+    // WRITE YOUR CODE HERE
+
+}
+
+
+
+/*
+    // Multiply-and-accumulate Assembly example
+    value = multiply_accumulate_asm(value, 2, 3);
+    // Display new `value`
     itoa(value, string, 10);
     uart_puts(string);
     uart_puts("\r\n");
-/*
-    // LFSR generator
-    // Transmit LFSR value via UART in decimal
-    itoa(value, string, 10);
-    uart_puts(string);
-    uart_puts(" ");
-
-    // Generate one LFSR value and increment number of generated LFSR values
-    value = lfsr4_fibonacci_asm(value);
-    no_of_values++;
-
-    // If LFSR value is equal to 0 then print length info and start again
-    if (value == 0) {
-        itoa(no_of_values, string, 10);
-        uart_puts(" Length: ");
-        uart_puts(string);
-        uart_puts("\r\n");
-        no_of_values = 0;
-    }
 */
-}
