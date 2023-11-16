@@ -83,10 +83,23 @@ The following hardware and software components are mainly used in the lab.
 | LCD and keypad shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | Multi-function shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | DHT12 | I2C humidity and temperature sensor: [data sheet](docs/dht12_manual.pdf) |
+| OLED display | I2C OLED display 128x64
 | MPU6050 | I2C gyroscope and accelerometer: [data sheet](docs/dht12_manual.pdf) |
 | DS3231 | I2C real time clock: [data sheet](docs/ds3231_manual.pdf) |
-| HC-SR04 | ultrasonic sensor: [datasheet](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) |
+| AT24C32 | I2C EEPROM memory module: [data sheet](docs/at24c32_manual.pdf)
+| HC-SR04 | Ultrasonic sensor: [datasheet](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) |
 | Joystick PS2 | Analog [joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html)
+| Rotary encoder | [tutorial](https://asset.conrad.com/media10/add/160267/c1/-/en/000151034DS01/list-technickych-udaju-151034-on-semiconductor-2n7000-tranzistor-mosfet-1-n-kanal-400-mw-to-92.pdf)
+| Touch sensor | TTP223 touch sensor module: [tutorial](https://www.instructables.com/Tutorial-for-TTP223-Touch-Sensor-Module-Capacitive/)
+| IR module | HW-201 IR obstacle avoidance module: [tutorial](https://arduinointro.com/articles/projects/detecting-objects-using-the-infrared-ir-obstacle-sensor)
+| GPS module | GPS module NEO-6M GYNEO6MV2
+| Bluetooth modules | HC-05
+| Servos | Micro servo SG90
+| Soil moisture sensor | [tutorial](https://diyprojectslab.com/soil-moisture-sensor-v1-2-with-arduino/)
+| Relays | Modules with 1, 2, and 4 relays
+| Displays | HD44780-based, Nokia displays, 4-digit LED display TM1637, 8x8 LED display MAX7219
+| Keypad | 4x4 keypad: [tutorial](https://www.circuitbasics.com/how-to-set-up-a-keypad-on-an-arduino/)
+| Basic components | Pasive and active components: push buttons, resistors, 10kohm potenciometers, (multicolor) LEDs, LED bargraphs, N-MOSFET transistors 2N7000, [light dependent resistor LDR, photoresistor](Light Dependent Resistor LDR, Photoresistor), IR LED 940 nm, IR receiver, 
 | ESP8266 Wi-Fi module | [AT commands](docs/esp8266_at_instruction_set.pdf)
 | Logic analyzer | 24MHz 8-channel [logic analyzer](https://www.ebay.com/sch/i.html?LH_CAds=&_ex_kw=&_fpos=&_fspt=1&_mPrRngCbx=1&_nkw=24mhz%20logic%20analyzer&_sacat=&_sadis=&_sop=12&_udhi=&_udlo=): [software](https://www.saleae.com/)
 | Osciloscope DSOX3034T | Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng) |
