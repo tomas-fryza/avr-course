@@ -72,7 +72,9 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 * [Project documentation with Doxygen](examples/doxygen)
 * [Autonomous slot car](examples/slot-car)
 
-## Components
+<a name="components"></a>
+
+## Components and tools
 
 The following hardware and software components are mainly used in the lab.
 
