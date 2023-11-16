@@ -99,10 +99,12 @@ The following hardware and software components are mainly used in the lab.
 | Relays | Modules with 1, 2, and 4 relays
 | Displays | HD44780-based, Nokia displays, 4-digit LED display TM1637, 8x8 LED display MAX7219
 | Keypad | 4x4 keypad: [tutorial](https://www.circuitbasics.com/how-to-set-up-a-keypad-on-an-arduino/)
-| Basic components | Pasive and active components: push buttons, resistors, 10kohm potenciometers, (multicolor) LEDs, LED bargraphs, N-MOSFET transistors 2N7000, [light dependent resistor LDR, photoresistor](Light Dependent Resistor LDR, Photoresistor), IR LED 940 nm, IR receiver, 
+| Basic components | Pasive and active components: push buttons, resistors, 10kohm potenciometers, (multicolor) LEDs, LED bargraphs, N-MOSFET transistors 2N7000, [light dependent resistor LDR, photoresistor](Light Dependent Resistor LDR, Photoresistor), IR LED 940 nm, IR receiver
+| Current sensor | Current sensor 5A ACS712
 | ESP8266 Wi-Fi module | [AT commands](docs/esp8266_at_instruction_set.pdf)
 | Logic analyzer | 24MHz 8-channel [logic analyzer](https://www.ebay.com/sch/i.html?LH_CAds=&_ex_kw=&_fpos=&_fspt=1&_mPrRngCbx=1&_nkw=24mhz%20logic%20analyzer&_sacat=&_sadis=&_sop=12&_udhi=&_udlo=): [software](https://www.saleae.com/)
 | Osciloscope DSOX3034T | Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng) |
+| Multimeter | Multimetrix DMM230
 | Visual Studio Code | [web page](https://code.visualstudio.com/) |
 | PlatformIO | [web page](https://platformio.org/)
 | GCC Compilers for AVR | [web page](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
