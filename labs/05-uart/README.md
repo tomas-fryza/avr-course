@@ -194,7 +194,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    ```
 
    To enable ANSI color codes in PlatformOI serial monitor, add the following line to `platformio.ini` project configuration file.
-   
+
    ```bash
    # Enable ANSI color codes in serial monitor
    monitor_raw = yes
