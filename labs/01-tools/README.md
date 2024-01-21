@@ -26,8 +26,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 * Arduino Uno board, USB cable
 * Breadboard
-* 2 LEDs
-* 2 resistors
+* 2 LEDs, 2 resistors
 * Jumper wires
 * Logic analyzer
 
@@ -41,7 +40,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 3. (Optional) Download and install [SimulIDE](https://www.simulide.com/p/home.html) electronic circuit simulator.
 
-4. (Optional) If you have option to use Arduino Uno board and logic analyzer, also download and install [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links).
+4. (Optional) If you have option to use Arduino Uno board and logic analyzer, also download and install [Saleae Logic 2](https://www.saleae.com/downloads/) or [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software.
 
 <a name="part1"></a>
 
@@ -49,7 +48,7 @@ The purpose of this laboratory exercise is to learn how to use the `git` version
 
 GitHub serves as a platform for hosting code, facilitating collaboration, and managing version control. It enables you and your collaborators to work together on projects, retain a history of all prior changes, create distinct branches, and offers a multitude of additional features.
 
-1. In GitHub, create a new public repository titled **digital-electronics-2**. Initialize a README, C template `.gitignore`, and [MIT license](https://choosealicense.com/licenses/mit/).
+1. In GitHub, create a new public repository titled **avr-course**. Initialize a README, C template `.gitignore`, and [MIT license](https://choosealicense.com/licenses/mit/).
 
 2. Use any available Git manuals, such as [Markdown Guide, Basic Syntax](https://www.markdownguide.org/basic-syntax/) and add the following sections to your README file.
 
@@ -72,8 +71,8 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
    ```bash
    ## Windows Git Bash or Linux:
-   $ git clone https://github.com/your-github-account/digital-electronics-2
-   $ cd digital-electronics-2/
+   $ git clone https://github.com/your-github-account/avr-course
+   $ cd avr-course/
    $ ls -a
    .gitignore  LICENSE  README.md
    ```
@@ -97,7 +96,7 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
 1. Run Visual Studio Code, follow [instructions](../../README.md) and install the PlatformIO plugin.
 
-2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/digital-electronics-2`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.c) to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
+2. Create a new project `lab1-blink_arduino`, select `Arduino Uno` board, and change project location to your local repository folder `Documents/avr-course`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink_arduino/main.c) to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
 3. IMPORTANT: Rename `LAB1-BLINK_ARDUINO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -138,7 +137,7 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
 7. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands to add, commit, and push all local changes to your remote repository. Check GitHub web page for changes.
 
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
    >
    > ```bash
    > ## Windows Git Bash or Linux:
@@ -177,11 +176,11 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
 ## (Optional) Part 4: Logic analyzer
 
-1. Run Saleae Logic software, use wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here), and verify the duration of delay function.
+1. To verify the duration of delay function, use jumper wire and connect Channel 0 to Arduino board pin 13 (pin PB5 is connected here). Connect logic analyser to computer via USB cable.
 
-2. To start sampling, press the green button with two arrows, set the sampling rate to 1&nbsp;MS/s and the recording time to 1 second. Click the Start button.
+2. Run Saleae Logic software. In Logic ver. 1 press two green arrows, set the sampling rate to 2&nbsp;MS/s and the recording time to 1 second. Click the **Start** button to start the sampling.
 
-   ![Logic analyzer](images/screenshot_saleae.png "Saleae Logic software")
+   ![Logic analyzer ver1](images/screenshot_saleae.png "Saleae Logic software")
 
 <a name="experiments"></a>
 
@@ -195,8 +194,6 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
 4. Draw a schematic of Morse code application, i.e. connection of AVR device, two LEDs (one in active-high, second in active-low way), two resistors, and supply voltage. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-5. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
-
 <a name="references"></a>
 
 ## References
@@ -207,7 +204,7 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
 3. GitHub, Inc. [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
 
-4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 5. Joshua Hibbert. [Git Commands](https://github.com/joshnh/Git-Commands)
 

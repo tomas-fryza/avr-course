@@ -2,7 +2,7 @@
 # 
 # AVR project Makefile.
 #
-# Copyright (c) 2018-Present Wykys, Tomas Fryza
+# Copyright (c) 2018 Wykys, Tomas Fryza
 # Dept. of Radio Electronics, Brno University of Technology, Czechia
 # This work is licensed under the terms of the MIT license.
 #

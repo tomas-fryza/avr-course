@@ -56,7 +56,7 @@ Consider an *n*-bit number that we increment based on the clock signal. If we re
 
 ## Part 1: Polling and interrupts
 
-The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for monitoring [[3]](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
+The state of continuous monitoring of any parameter is called **polling**. The microcontroller keeps checking the status of other devices; and while doing so, it does no other operation and consumes all its processing time for [monitoring](https://www.renesas.com/us/en/support/technical-resources/engineer-school/mcu-programming-peripherals-04-interrupts.html).
 
 While polling is a straightforward method for monitoring state changes, it comes with a trade-off. If the polling interval is too long, there may be a significant delay between the occurrence and detection of a state change, potentially leading to missing the change entirely if the state reverts before the next check. On the other hand, a shorter interval provides quicker and more dependable detection, but it also consumes considerably more processing time and power, as there are more unsuccessful checks.
 
@@ -64,7 +64,7 @@ An alternative approach is to employ **interrupts**. In this approach, a state c
 
 ![Interrupts versus polling](images/interrupts_vs_polling.jpg)
 
-An interrupt is a fundamental feature of a microcontroller. It represents a signal sent to the processor by hardware or software, signifying an event that requires immediate attention. When an interrupt is triggered, the controller finishes executing the current instruction and proceeds to execute an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the interrupt occurs [[4]](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
+An interrupt is a fundamental feature of a microcontroller. It represents a signal sent to the processor by hardware or software, signifying an event that requires immediate attention. When an interrupt is triggered, the controller finishes executing the current instruction and proceeds to execute an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the [interrupt occurs](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
 Interrupts can be set up for events such as a counter's value, a pin changing state, receiving data through serial communication, or when the Analog-to-Digital Converter has completed the conversion process.
 
@@ -97,7 +97,7 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
 3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -117,11 +117,11 @@ The counter increments in alignment with the microcontroller clock, ranging from
    | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
    | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
 
-3. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) from the previous lab to this folder.
+3. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
 
-4. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
+4. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
@@ -179,13 +179,13 @@ The counter increments in alignment with the microcontroller clock, ranging from
    ```c
    ISR(TIMER0_OVF_vect)
    {
-       static uint8_t no_of_overflows = 0;
+       static uint8_t n_ovfs = 0;
 
-       no_of_overflows++;
-       if (no_of_overflows >= 6)
+       n_ovfs++;
+       if (n_ovfs >= 6)
        {
            // Do this every 6 x 16 ms = 100 ms
-           no_of_overflows = 0;
+           n_ovfs = 0;
            ...
        }
        // Else do nothing and exit the ISR
@@ -197,12 +197,12 @@ The counter increments in alignment with the microcontroller clock, ranging from
    ```c
    ISR(TIMER0_OVF_vect)
    {
-       static uint8_t no_of_overflows = 0;
+       static uint8_t n_ovfs = 0;
 
-       no_of_overflows++;
-       if (no_of_overflows >= 6)
+       n_ovfs++;
+       if (n_ovfs >= 6)
        {
-           no_of_overflows = 0;
+           n_ovfs = 0;
            ...
        }
        // Change 8-bit timer value anytime it overflows
@@ -240,8 +240,6 @@ The counter increments in alignment with the microcontroller clock, ranging from
    * Fast PWM mode, and
    * Phase Correct PWM Mode.
 
-4. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
-
 <a name="references"></a>
 
 ## References
@@ -262,6 +260,6 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 8. Tutorials Point. [Arduino - Pulse Width Modulation](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 10. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)

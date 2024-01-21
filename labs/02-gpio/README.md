@@ -45,9 +45,9 @@ The purpose of this laboratory exercise is to learn how to create your own libra
    | `uint16_t` |  |  |  |
    | `int16_t`  |  |  |  |
    | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-   | `void`     | -- | -- | *Incomplete type that cannot be completed* |
+   | `void`     | -- | -- | Depending on the context, it means *no type*, *no value* or *no parameters* |
 
-2. Any function in C contains a declaration (function prototype), a definition (block of code, body of the function); each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
+2. Any function in C contains a declaration (function prototype) and definition (block of code, body of the function), and each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
    ```c
    #include <avr/io.h>
@@ -57,33 +57,33 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 
    int main(void)
    {
-      uint8_t a = 210;
-      uint8_t b = 15;
-      uint16_t c;
+       uint8_t a = 210;
+       uint8_t b = 15;
+       uint16_t c;
 
-      // Function call
-      c = ***      (a, b);
+       // Function call
+       c = ***      (a, b);
 
-      // Infinite loop
-      while (1) ;
+       // Infinite loop
+       while (1) ;
 
-      // Will never reach this
-      return 0;
+       // Will never reach this
+       return 0;
    }
 
    // Function definition (body)
    ***      calculate(uint8_t x, uint8_t y)
    {
-      uint16_t result;    // result = x^2 + 2xy + y^2
+       uint16_t result;    // result = x^2 + 2xy + y^2
 
-      result = x*x;
-      ***
-      ***
-      return result;
+       result = x*x;
+       ***
+       ***
+       return result;
    }
    ```
 
-3. Find the difference between a variable and pointer in C. What mean notations `*variable` and `&variable`?
+3. Find differences between `variable` and `pointer` in C. What mean notations `*variable` and `&variable`?
 
 <a name="part1"></a>
 
@@ -95,7 +95,7 @@ When you begin working, ensure that you synchronize the contents of your working
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab2-gpio_library` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab2-gpio_library` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
 3. IMPORTANT: Rename `LAB2-GPIO_LIBRARY > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -105,7 +105,7 @@ When you begin working, ensure that you synchronize the contents of your working
 
 AVR microcontroller associates pins into so-called ports, which are marked with the letters A, B, C, etc. Each of the pins is controlled separately and can function as an input (entry) or output (exit) point of the microcontroller. Control is possible exclusively by software via control registers.
 
-There are exactly three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port A these are registers DDRA, PORTA and PINA, for port B registers DDRB, PORTB, PINB, etc.
+There are three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port A these are registers DDRA, PORTA and PINA, for port B registers DDRB, PORTB, PINB, etc.
 
 DDR (Data Direction Register) is used to set the input/output direction of port communication, PORT register is the output data port and PIN register works for reading input values from the port.
 
@@ -128,7 +128,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | 1 | 0 | | | |
    | 1 | 1 | | | |
 
-3. To control individual bits, the following binary operations are used.
+3. To control individual bit(s) within a register, the following binary operations are used.
    1. `|` OR
    2. `&` AND
    3. `^` XOR
@@ -141,6 +141,17 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | 0 | 1 | 1 | 0 | 1 | 1 |
    | 1 | 0 | 1 | 0 | 1 | 0 |
    | 1 | 1 | 1 | 1 | 0 | 0 |
+
+   ```c
+   // Set bit value to 1
+   reg = reg & (1<<bit);
+
+   // Clear bit value to 0
+   reg = reg & ~(1<<bit);
+
+   // Toggle bit value
+   reg = reg ^ (1<<bit);
+   ```
 
    ![binary operations](images/binary_operations.png)
 
@@ -219,11 +230,12 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) to `gpio.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) to `gpio.c`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) to `gpio.h`
+   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) to `gpio.c`
    3. Include header file to `src > main.c`:
 
       ```c
+      // Include the header file of library you are using
       #include <gpio.h>
 
       int main(void)
@@ -250,10 +262,12 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
    ```c
-   #include <gpio.h>  // Do not forget to include GPIO header file
+   // Do not forget to include GPIO header file
+   #include <gpio.h>
 
    int main(void)
    {
+       ...
        // Examples of various function calls
        GPIO_mode_output(&DDRB, LED_GREEN);  // Set output mode in DDRB reg
        ...
@@ -271,6 +285,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation as third-verion. Try to optimize code to the most effective way.
 
    ```c
+   // Do not forget to include GPIO header file
    #include <gpio.h>
 
    int main(void)
@@ -314,8 +329,6 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 4. Draw a schematic of Knight Rider application. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
-5. Finish all experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
-
 <a name="references"></a>
 
 ## References
@@ -326,7 +339,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. avr-libc. [How do I pass an IO port as a parameter to a function?](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass)
 
-4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 5. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
 

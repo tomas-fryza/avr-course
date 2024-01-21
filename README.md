@@ -24,20 +24,21 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 1. *Create a new project:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Open > New Project**. Type `lab1-blink_arduino` as project name, select `Arduino Uno` board, keep `Arduino` framework, and select location to your working folder. Click on the **Finish** button.
 
-2. *Code the application:* Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/examples/blink_arduino/main.c) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
+2. *Code the application:* Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink_arduino/main.c) from this repository to your `LAB1-BLINK_ARDUINO > src > main.cpp` file.
 
    Rename source file `main.cpp` to `main.c`, ie change the extension to `.c`.
 
-3. *Compile and upload the code:* The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. First, compile (build) the project and then upload it to Arduino Uno board. You can clean up generated files as well.
+3. *Compile and upload the code:* The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. First, compile (**Build**) the project and then **Upload** it to Arduino Uno board. You can **Clean** up generated files as well.
 
-   ![Control icons](images/platformio_footer2.png)
+   ![Control icons](images/platformio_navigation.png)
 
-   *Command Palette:* All available commands in VS Code are also accessible by `Ctrl+Shift+P` shortcut and followed by a command. Most useful commands in this course are:
+   *Command Palette:* All available commands in VS Code are also accessible by `F1` or `Ctrl+Shift+P` shortcut and followed by a command. Most useful commands in this course are:
 
       * `PlatformIO: Build`
       * `PlatformIO: Upload`
       * `PlatformIO: Clean`
       * `PlatformIO: Upload and Monitor`
+      * `PlatformIO: PlatfomrIO Home`
 
 ## VS Code shortcuts
 
@@ -45,7 +46,7 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 
 | **Shortcut** | **Usage**
 | :-- | :--
-| `Ctrl+Shift+P` | Command Palette. Access to all of the VS Code functionality
+| `F1` or `Ctrl+Shift+P` | Command Palette. Access to all of the VS Code functionality
 | `Ctrl+K+O` | Open folder
 | `Ctrl+K F` | Close folder
 | `Ctrl+Tab` | Switch between open files
@@ -117,6 +118,7 @@ The following hardware and software components are mainly used in the lab.
 
 | **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
 | :------------------------- | :---------------------: | :---------- |
+| Linux Mint 21.2 (Victoria) | OK (2024-01-20)         | Laptop      |
 | Windows 10                 | OK (2022-09-08)         | Lab SC 6.61 |
 | Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop      |
 | Windows 10                 | OK (2021-11-25)         | Office      |
