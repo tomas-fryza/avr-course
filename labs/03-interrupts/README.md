@@ -1,18 +1,5 @@
 # Lab 3: Timers
 
-### Learning objectives
-
-After completing this lab you will be able to:
-
-* Use `#define` compiler directives
-* Use internal microcontroller timers
-* Understand overflow
-* Combine different interrupts
-
-The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
-
-### Table of contents
-
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Polling and interrupts](#part1)
 * [Part 2: Synchronize repositories and create a new project](#part2)
@@ -29,6 +16,17 @@ The purpose of the laboratory exercise is to understand the function of the inte
 * 2 resistors
 * 1 push button
 * Jumper wires
+
+### Learning objectives
+
+After completing this lab you will be able to:
+
+* Use `#define` compiler directives
+* Use internal microcontroller timers
+* Understand overflow
+* Combine different interrupts
+
+The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
 <a name="preparation"></a>
 

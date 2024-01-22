@@ -1,19 +1,5 @@
 # Lab 2: Control of GPIO pins
 
-### Learning objectives
-
-After completing this lab you will be able to:
-
-* Configure input/output ports of AVR using control registers
-* Use ATmega328P manual and find information
-* Understand the difference between header and source files
-* Create your own library
-* Understand how to call a function with pointer parameters
-
-The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins with help of control registers.
-
-### Table of contents
-
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Synchronize repositories and create a new project](#part1)
 * [Part 2: GPIO control registers](#part2)
@@ -31,6 +17,18 @@ The purpose of this laboratory exercise is to learn how to create your own libra
 * 1 push button
 * Jumper wires
 * Logic analyzer
+
+### Learning objectives
+
+After completing this lab you will be able to:
+
+* Configure input/output ports of AVR using control registers
+* Use ATmega328P manual and find information
+* Understand the difference between header and source files
+* Create your own library
+* Understand how to call a function with pointer parameters
+
+The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins with help of control registers.
 
 <a name="preparation"></a>
 

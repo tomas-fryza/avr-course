@@ -597,3 +597,26 @@ void lcd_init(uint8_t dispAttr)
     lcd_command(LCD_MODE_DEFAULT); /* set entry mode               */
     lcd_command(dispAttr);         /* display/cursor control       */
 }/* lcd_init */
+
+
+// Added by Fryza, 2023
+/*************************************************************************
+*  Write a character to one of the 8 CGRAM locations
+*  Input:     one of the CGRAM address, ie. value between 0 and 7
+*  Input:     array of 8 lines of a new character
+*  Returns:   none
+*************************************************************************/
+void lcd_custom_char(uint8_t addr, uint8_t* charmap)
+{
+    // Set addressing to CGRAM (Character Generator RAM) ie to individual
+    // lines of character patterns
+    lcd_command((1<<LCD_CGRAM) + (addr*8));
+
+    // Copy new character patterns line by line to CGRAM
+    for (uint8_t i = 0; i < 8; i++) {
+        lcd_data(charmap[i]);
+    }
+
+    // Set addressing back to DDRAM (Display Data RAM) ie. to character codes
+    lcd_command(1<<LCD_DDRAM);
+}/* lcd_custom_char */

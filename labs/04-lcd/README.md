@@ -1,19 +1,5 @@
 # Lab 4: LCD (Liquid crystal display)
 
-### Learning objectives
-
-After completing this lab you will be able to:
-
-* Use alphanumeric LCD
-* Understand the digital communication between MCU and HD44780
-* Understand the ASCII table
-* Use library functions for LCD
-* Generate custom characters on LCD
-
-The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display and how to define custom characters. Another goal is to learn how to read documentation for library functions and use them in your own project.
-
-### Table of contents
-
 * [Pre-Lab preparation](#preparation)
 * [Part 1: LCD screen module](#part1)
 * [Part 2: Synchronize repositories and create a new project](#part2)
@@ -27,6 +13,18 @@ The purpose of the laboratory exercise is to understand the serial control of Hi
 
 * Arduino Uno board, USB cable
 * LCD keypad shield
+
+### Learning objectives
+
+After completing this lab you will be able to:
+
+* Use alphanumeric LCD
+* Understand the digital communication between MCU and HD44780
+* Understand the ASCII table
+* Use library functions for LCD
+* Generate custom characters on LCD
+
+The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display and how to define custom characters. Another goal is to learn how to read documentation for library functions and use them in your own project.
 
 <a name="preparation"></a>
 
@@ -106,7 +104,7 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
 3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -125,12 +123,13 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    | `lcd_gotoxy` | | | |
    | `lcd_putc` | | | |
    | `lcd_puts` | | | |
+   | `lcd_custom_char` | | | |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/04-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/04-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
 
-3. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/gpio.h) from the previous lab to this folder.
+3. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
 
-4. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/timer.h) from the previous lab to this file.
+4. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) from the previous lab to this file.
 
 5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
 
@@ -152,9 +151,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd.h) to `lcd.h`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/lcd_definitions.h) to `lcd_definitions.h`
-   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/lcd.c) to `lcd.c`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/lcd.h) to `lcd.h`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/lcd_definitions.h) to `lcd_definitions.h`
+   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/lcd.c) to `lcd.c`
 
 6. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
@@ -170,38 +169,53 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 ## Part 4: Stopwatch
 
-1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again.
+1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again. Update LCD values within the forever loop in `main` function when global flag variable `update_lcd_stopwatch` is equal to `1`.
 
    ![LCD screenshot](images/screenshot_lcd_tenths.png)
 
-   IMPORTANT: Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
+   **IMPORTANT:** Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
 
 
    ```c
    #include <stdlib.h>         // C library. Needed for number conversions
    ...
+   /* Global variables --------------------------------------------------*/
+   // Flag for printing new stopwatch data to LCD
+   volatile uint8_t update_lcd_stopwatch = 0;
+
+   // Stopwatch values
+   // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
+   struct Stopwatch_structure {
+       uint8_t tenths;  // Tenths of a second
+       uint8_t secs;    // Seconds
+       uint8_t mins;    // Minutes
+   } stopwatch;
+
+   int main(void)
+   {
+       char string[2];  // String for converted numbers by itoa()
+       ...
+
+       // Infinite loop
+       while (1) {
+           if (update_lcd_stopwatch == 1) {
+
+               itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
+               // Display "00:00.tenths"
+               lcd_gotoxy(7, 0);
+               lcd_puts(string);
+
+               // WRITE YOUR CODE HERE
+
+               update_lcd_stopwatch = 0;
+           }
+       }
+   }
 
    ISR(TIMER2_OVF_vect)
    {
-       static uint8_t no_of_overflows = 0;
-       static uint8_t tenths = 0;  // Tenths of a second
-       char string[2];             // String for converted numbers by itoa()
-
-       no_of_overflows++;
-       if (no_of_overflows >= 6)
-       {
-           // Do this every 6 x 16 ms = 100 ms
-           no_of_overflows = 0;
-
-           // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
-           ...
-
-           itoa(tenths, string, 10);  // Convert decimal value to string
-           // Display "00:00.tenths"
-           lcd_gotoxy(7, 0);
-           lcd_puts(string);
-       }
-       // Else do nothing and exit the ISR
+       ...
+       update_lcd_stopwatch = 1;
    }
    ```
 
@@ -229,42 +243,24 @@ CGRAM is another memory that can be used for storing user defined characters. Th
 
 A custom character is an array of 8 bytes. Each byte (only 5 bits are considered) in the array defines one row of the character in the 5x8 matrix. Whereas, the zeros and ones in the byte indicate which pixels in the row should be on and which ones should be off.
 
-1. To design a new custom character, store it in CGRAM according to the following code.
+Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and generate two 5 by 8 custom characters. Use the foíllowing structure to display them on the sceen.
 
    ```c
    ...
-   #define N_CHARS 1  // Number of new custom characters
-
    int main(void)
    {
-       // Custom character definition using https://omerk.github.io/lcdchargen/
-       uint8_t customChar[N_CHARS*8] = {
-           0b00111,
-           0b01110,
-           0b11100,
-           0b11000,
-           0b11100,
-           0b01110,
-           0b00111,
-           0b00011
-       };
-
-       // Initialize display
-       lcd_init(LCD_DISP_ON);
-
-       lcd_command(1<<LCD_CGRAM);       // Set addressing to CGRAM (Character Generator RAM)
-                                        // ie to individual lines of character patterns
-       for (uint8_t i = 0; i < N_CHARS*8; i++)  // Copy new character patterns line by line to CGRAM
-           lcd_data(customChar[i]);
-       lcd_command(1<<LCD_DDRAM);       // Set addressing back to DDRAM (Display Data RAM)
-                                        // ie to character codes
-
-       // Display symbol with Character code 0
-       lcd_putc(0x00);
+       // Custom character definition https://www.quinapalus.com/hd44780udg.html
+       uint8_t new_char1[8] = {0x2,0x3,0x2,0x2,0xe,0x1e,0xc,0x0};
        ...
+       // Custom character(s)
+       lcd_custom_char(7, new_char1);
+       lcd_gotoxy(13, 0);
+       lcd_putc(7);
+       ...
+   }
    ```
 
-2. Design at least one more custom character, store it in CGRAM memory according to the previous code, and display all new characters on the LCD screen.
+2. Design at least two more custom character, store it in CGRAM memory according to the previous code, and display all three new characters on the LCD screen.
 
 3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
@@ -292,41 +288,11 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
    Hint: Use Timer/Counter0 with 16ms overflow and change custom characters at specific display position.
 
-   ```c
-   /* Variables ---------------------------------------------------------*/
-   // Custom character definition using https://omerk.github.io/lcdchargen/
-   uint8_t customChar[] = {
-       // addr 0: .....
-       0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000,
-       // addr 1: |....
-       0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000,
-       ...
-   };
-   ...
-   /*--------------------------------------------------------------------*/
-   /**
-    * ISR starts when Timer/Counter0 overflows. Update the progress bar on
-    * LCD display every 16 ms.
-    */
-   ISR(TIMER0_OVF_vect)
-   {
-       static uint8_t symbol = 0;
-       static uint8_t position = 0;
-
-       lcd_gotoxy(1+position, 1);
-       lcd_putc(symbol);
-
-       // WRITE YOUR CODE HERE
-   }
-   ```
-
 5. From LCD position "c", displays running text, ie text that moves characters to the left twice per second. Hint: Use Timer/Counter1 with an 262ms prescaler and every 2nd overflow move the auxiliary variable along the defined string, such as `uint8_t running_text[] = "   I like Digital electronics!\n";`.
 
    ![Running text](images/running_text.gif)
 
 6. Draw a flowchart for `TIMER2_OVF_vect` interrupt service routine which overflows every 16&nbsp;ms but it updates the stopwatch LCD screen approximately every 100&nbsp;ms (6 x 16&nbsp;ms = 100&nbsp;ms). Display tenths of a second, seconds, and minutes and let the stopwatch counts from `00:00.0` to `59:59.9` and then starts again. The image can be drawn on a computer or by hand. Use clear description of individual algorithm steps.
-
-7. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 
@@ -348,7 +314,7 @@ A custom character is an array of 8 bytes. Each byte (only 5 bits are considered
 
 8. [CGRAM display memory](https://www.mikroe.com/ebooks/pic-microcontrollers-programming-in-c/additional-components)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 10. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
 

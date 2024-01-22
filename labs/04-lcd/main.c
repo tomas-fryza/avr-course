@@ -35,6 +35,19 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
+/* Global variables --------------------------------------------------*/
+// Flag for printing new stopwatch data to LCD
+volatile uint8_t update_lcd_stopwatch = 0;
+
+// Stopwatch values
+// Declaration of "stopwatch" variable with structure "Stopwatch_structure"
+struct Stopwatch_structure {
+    uint8_t tenths;  // Tenths of a second
+    uint8_t secs;    // Seconds
+    uint8_t mins;    // Minutes
+} stopwatch;
+
+
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
@@ -44,6 +57,8 @@
  **********************************************************************/
 int main(void)
 {
+    char string[2];  // String for converted numbers by itoa()
+
     // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR_BLINK);
 
@@ -55,15 +70,24 @@ int main(void)
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
     // Set the overflow prescaler to 16 ms and enable interrupt
 
+    // WRITE YOUR CODE HERE
 
     // Enables interrupts by setting the global interrupt mask
     sei();
 
     // Infinite loop
-    while (1)
-    {
-        /* Empty loop. All subsequent operations are performed exclusively 
-         * inside interrupt service routines, ISRs */
+    while (1) {
+        if (update_lcd_stopwatch == 1) {
+
+            itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
+            // Display "00:00.tenths"
+            lcd_gotoxy(7, 0);
+            lcd_puts(string);
+
+            // WRITE YOUR CODE HERE
+
+            update_lcd_stopwatch = 0;
+        }
     }
 
     // Will never reach this
@@ -80,22 +104,18 @@ int main(void)
 ISR(TIMER2_OVF_vect)
 {
     static uint8_t n_ovfs = 0;
-    static uint8_t tenths = 0;  // Tenths of a second
-    char string[2];             // String for converted numbers by itoa()
 
     n_ovfs++;
-    if (n_ovfs >= 6)
-    {
+    if (n_ovfs >= 6) {
         // Do this every 6 x 16 ms = 100 ms
         n_ovfs = 0;
 
         // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
+        stopwatch.tenths++;
 
+        // WRITE YOUR CODE HERE
 
-        itoa(tenths, string, 10);  // Convert decimal value to string
-        // Display "00:00.tenths"
-        lcd_gotoxy(7, 0);
-        lcd_puts(string);
+        update_lcd_stopwatch = 1;
     }
     // Else do nothing and exit the ISR
 }

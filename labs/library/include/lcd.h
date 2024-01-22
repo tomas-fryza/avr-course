@@ -357,6 +357,16 @@ extern void lcd_data(uint8_t data);
  */
 #define lcd_puts_P(__s) lcd_puts_p(PSTR(__s))
 
+
+// Added by Fryza, 2023
+/**
+ * @brief    Write a character to one of the 8 CGRAM locations
+ * @param    addr one of the CGRAM address, ie. value between 0 and 7
+ * @param    charmap array of 8 lines of a new character
+ * @return   none
+ */
+extern void lcd_custom_char(uint8_t addr, uint8_t* charmap);
+
 /**@}*/
 
 #endif // LCD_H
