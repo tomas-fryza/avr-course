@@ -1,5 +1,12 @@
 # AVR course
 
+* [Installation](#installation)
+* [Usage](#usage)
+* [VS Code shortcuts](#vs-code-shortcuts)
+* [Exercises](#exercises)
+* [List of examples](#list-of-examples)
+* [Components and tools](#components-and-tools)
+
 The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
 
 ![avr_course](images/arduino_uno_i2c.jpg)
