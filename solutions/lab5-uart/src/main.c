@@ -39,8 +39,8 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to transmit UART data
     // Set prescaler to 262 ms and enable overflow interrupt
-
-    // WRITE YOUR CODE HERE
+    TIM1_ovf_262ms();
+    TIM1_ovf_enable();
 
     // Interrupts must be enabled, bacause of `uart_puts()`
     sei();
@@ -51,10 +51,7 @@ int main(void)
     uart_puts("and press a key on keyboard...\r\n");
 
     // Infinite loop
-    while (1)
-    {
-        /* Empty loop. All subsequent operations are performed exclusively 
-         * inside interrupt service routines ISRs */
+    while (1) {
     }
 
     // Will never reach this
@@ -69,6 +66,7 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
+    uart_puts("Paris\t");
 }
 
 

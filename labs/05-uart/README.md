@@ -1,18 +1,5 @@
 # Lab 5: UART (Universal Asynchronous Receiver-Transmitter)
 
-### Learning objectives
-
-After completing this lab you will be able to:
-
-* Understand the UART communication
-* Decode UART frames
-* Use functions from UART library
-* Use logic analyzer
-
-The purpose of the laboratory exercise is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
-
-### Table of contents
-
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Basics of UART communication](#part1)
 * [Part 2: Synchronize repositories and create a new folder](#part2)
@@ -24,6 +11,17 @@ The purpose of the laboratory exercise is to understand serial asynchronous comm
 
 * Arduino Uno board, USB cable
 * Logic analyzer
+
+### Learning objectives
+
+After completing this lab you will be able to:
+
+* Understand the UART communication
+* Decode UART frames
+* Use functions from UART library
+* Use logic analyzer
+
+The purpose of the laboratory exercise is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
 
 <a name="preparation"></a>
 
@@ -70,7 +68,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
 3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -89,14 +87,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `uart_putc` |  |  |
    | `uart_puts` |  |  |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/05-uart/main.c) to `LAB6-UART > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/05-uart/main.c) to `LAB6-UART > src > main.c` source file.
 
 3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB5-UART > include` folder.
 
 4. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`.
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/uart.c) to `uart.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/uart.h) to `uart.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/uart.c) to `uart.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/uart.h) to `uart.h`
 
    The final project structure should look like this:
 
@@ -131,7 +129,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
-   > **Note:** To perform this analysis, you will need a logic analyzer such as [Saleae](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6) device. Additionally, you should download and install the [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) software on your computer.
+   > **Note:** To perform this analysis, you will need a logic analyzer such as [Saleae](https://www.saleae.com/) or [similar](https://www.amazon.com/KeeYees-Analyzer-Device-Channel-Arduino/dp/B07K6HXDH1/ref=sr_1_6?keywords=saleae+logic+analyzer&qid=1667214875&qu=eyJxc2MiOiI0LjIyIiwicXNhIjoiMy45NSIsInFzcCI6IjMuMDMifQ%3D%3D&sprefix=saleae+%2Caps%2C169&sr=8-6) device. Additionally, you should download and install the [Saleae Logic 1](https://support.saleae.com/logic-software/legacy-software/older-software-releases#logic-1-x-download-links) or [Saleae Logic 2](https://www.saleae.com/downloads/) software on your computer.
    >
    > You can find a comprehensive tutorial on utilizing a logic analyzer in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
 
@@ -208,57 +206,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 ## (Optional) Experiments on your own
 
-1. Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
+1. Use ATmega328P datasheet and find out how to change the baud rate to `115200`.
 
-   | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
-   | :-: | :-: | :-: | :-: |
-   | U0TXD | Tx (pin 1) | GND | GND |
-   | CHIP_EN | 3.3V | GPIO2 | Not connected |
-   | EXT_RSTB | Not connected | GPIO0 | Not connected |
-   | 3.3V | 3.3V | U0RXD | Rx (pin 0) |
-
-   ![ESP8266 interconnection](images/cv_esp8266_foto_description.jpg)
-
-   In your code, disable interruptions by commenting `// sei();` function. The reason is the micro controller will not affect UART lines and whole communication will be done between Serial Monitor and Wi-Fi module. To use PlatfomIO Serial Monitor, add the following command to `platformio.ini` project configuration file: `monitor_speed = 115200`. Compile and upload the application. Test the following AT commands and see the module's responses. If needed, use Logic analyzer to read the response of Wi-Fi module.
-
-   * `AT` - Check the communication with module
-   * `AT+CWMODE=1` - Set the module mode
-   * `AT+GMR` - Get the module version
-   * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
-   * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
-
-   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
-
-2. Program a piece of code to calculate even parity bit from received value.
-
-   ![Flowchart for Even parity](images/flowchart_parity_algo.png)
-
-3. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
-
-4. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
-
-5. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. Let the main screen of the console is as follows:
-
-   ```bash
-   --- Interactive UART console ---
-   1: read current Timer/counter1 value
-   2: reset Timer/counter1
-   > 
-   ```
-
-   After pressing the '1' key on computer keyboard, ATmega328P receives ASCII code of the key and sends the current Timer1 value back to PuTTY. After pressing the '2' key, ATmega328P resets Timer1 value, etc. Use ANSI escape sequences to highlight information in PuTTY console.
-
-   ```c
-   uint8_t value;
-   ...
-   value = uart_getc();
-   if (value != '\0') {     // Data available from UART
-       if (value == `1`) {  // Key `1` received
-           ...
-       }
-   }
-   ...
-   ```
+2. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. If you send command `timer?` the MCU will return the current Timer1 value back to the computer.
 
    > **Warning:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
    >
@@ -282,7 +232,34 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >#endif
    >```
 
-6. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
+3. Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
+
+   | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
+   | :-: | :-: | :-: | :-: |
+   | U0TXD | Tx (pin 1) | GND | GND |
+   | CHIP_EN | 3.3V | GPIO2 | Not connected |
+   | EXT_RSTB | Not connected | GPIO0 | Not connected |
+   | 3.3V | 3.3V | U0RXD | Rx (pin 0) |
+
+   ![ESP8266 interconnection](images/cv_esp8266_foto_description.jpg)
+
+   In your code, disable interruptions by commenting `// sei();` function. The reason is the micro controller will not affect UART lines and whole communication will be done between Serial Monitor and Wi-Fi module. To use PlatfomIO Serial Monitor, add the following command to `platformio.ini` project configuration file: `monitor_speed = 115200`. Compile and upload the application. Test the following AT commands and see the module's responses. If needed, use Logic analyzer to read the response of Wi-Fi module.
+
+   * `AT` - Check the communication with module
+   * `AT+CWMODE=1` - Set the module mode
+   * `AT+GMR` - Get the module version
+   * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
+   * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
+
+   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-course/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
+
+4. Program a piece of code to calculate even parity bit from received value.
+
+   ![Flowchart for Even parity](images/flowchart_parity_algo.png)
+
+5. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
+
+6. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
 <a name="references"></a>
 
@@ -300,6 +277,6 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 6. Kolban Technical Tutorials. [ESP32 Technical Tutorials: Using a logic analyzer](https://www.youtube.com/watch?v=CE4-T53Bhu0)
 
-7. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+7. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 8. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)

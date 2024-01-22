@@ -36,7 +36,7 @@ int main(void)
 {
     // Initialize USART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
-    
+
     // Configure 16-bit Timer/Counter1 to transmit UART data
     // Set prescaler to 262 ms and enable overflow interrupt
 
@@ -51,10 +51,7 @@ int main(void)
     uart_puts("and press a key on keyboard...\r\n");
 
     // Infinite loop
-    while (1)
-    {
-        /* Empty loop. All subsequent operations are performed exclusively 
-         * inside interrupt service routines ISRs */
+    while (1) {
     }
 
     // Will never reach this
