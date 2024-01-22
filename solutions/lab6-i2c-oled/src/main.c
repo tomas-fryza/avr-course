@@ -14,7 +14,7 @@ int main(void)
 
     // oled_gotoxy(x, y)
     oled_gotoxy(0, 2);
-    oled_puts("128x64, SHH1106");
+    oled_puts("128x64, SH1106");
 
     // oled_drawLine(x1, y1, x2, y2, color)
     oled_drawLine(0, 25, 120, 25, WHITE);

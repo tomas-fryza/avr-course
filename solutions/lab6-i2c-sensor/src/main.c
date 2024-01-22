@@ -77,8 +77,8 @@ int main(void)
     }
 
     // Timer1
-    TIM1_OVF_1SEC
-    TIM1_OVF_ENABLE
+    TIM1_ovf_1sec();
+    TIM1_ovf_enable();
 
     // Infinite loop
     while (1) {

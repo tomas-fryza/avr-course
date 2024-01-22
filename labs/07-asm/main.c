@@ -99,8 +99,8 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to generate one LFSR state
     // Set prescaler to 1 sec and enable interrupt
-    TIM1_OVF_1SEC
-    TIM1_OVF_ENABLE
+    TIM1_ovf_1sec();
+    TIM1_ovf_enable();
 
     // Enables interrupts by setting the global interrupt mask
     sei();

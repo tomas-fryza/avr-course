@@ -79,15 +79,15 @@ int main(void)
  **********************************************************************/
 ISR(TIMER2_OVF_vect)
 {
-    static uint8_t no_of_overflows = 0;
+    static uint8_t n_ovfs = 0;
     static uint8_t tenths = 0;  // Tenths of a second
     char string[2];             // String for converted numbers by itoa()
 
-    no_of_overflows++;
-    if (no_of_overflows >= 6)
+    n_ovfs++;
+    if (n_ovfs >= 6)
     {
         // Do this every 6 x 16 ms = 100 ms
-        no_of_overflows = 0;
+        n_ovfs = 0;
 
         // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
 

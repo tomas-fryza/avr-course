@@ -51,8 +51,8 @@ int main(void)
 
     // Configure 16-bit Timer/Counter1 to start ADC conversion
     // Set prescaler to 33 ms and enable overflow interrupt
-    TIM1_overflow_33ms();
-    TIM1_overflow_interrupt_enable();
+    TIM1_ovf_33ms();
+    TIM1_ovf_enable();
 
     // Enables interrupts by setting the global interrupt mask
     sei();

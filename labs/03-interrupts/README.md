@@ -142,6 +142,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
    ```c
+   #include <avr/io.h>         // AVR device-specific IO definitions
    #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
    #include <gpio.h>           // GPIO library for AVR-GCC
    #include "timer.h"          // Timer library for AVR-GCC
@@ -150,7 +151,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
    {
        ...
        // Enable overflow interrupt
-       TIM1_OVF_ENABLE
+       TIM1_ovf_enable();
        ...
        // Enables interrupts by setting the global interrupt mask
        sei();
@@ -174,7 +175,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 1. Use Timer/Counter0 16-ms overflow and toggle `LED_RED` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
 
-   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t no_of_overflows = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
+   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t n_ovfs = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
 
    ```c
    ISR(TIMER0_OVF_vect)
