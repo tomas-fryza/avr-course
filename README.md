@@ -93,7 +93,6 @@ The following hardware and software components are mainly used in the lab.
 | LCD and keypad shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | Multi-function shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | DHT12 | I2C humidity and temperature sensor: [data sheet](docs/dht12_manual.pdf) |
-| OLED display | I2C OLED display 128x64
 | MPU6050 | I2C gyroscope and accelerometer: [data sheet](docs/dht12_manual.pdf) |
 | DS3231 | I2C real time clock: [data sheet](docs/ds3231_manual.pdf) |
 | AT24C32 | I2C EEPROM memory module: [data sheet](docs/at24c32_manual.pdf)
@@ -108,6 +107,7 @@ The following hardware and software components are mainly used in the lab.
 | Soil moisture sensor | [tutorial](https://diyprojectslab.com/soil-moisture-sensor-v1-2-with-arduino/)
 | Relays | Modules with 1, 2, and 4 relays
 | Displays | HD44780-based, Nokia displays, 4-digit LED display TM1637, 8x8 LED display MAX7219
+| OLED display | I2C OLED display 128x64, driver SH1106
 | Keypad | 4x4 keypad: [tutorial](https://www.circuitbasics.com/how-to-set-up-a-keypad-on-an-arduino/)
 | Basic components | Pasive and active components: push buttons, resistors, 10kohm potenciometers, (multicolor) LEDs, LED bargraphs, N-MOSFET transistors 2N7000, [light dependent resistor LDR, photoresistor](Light Dependent Resistor LDR, Photoresistor), IR LED 940 nm, IR receiver
 | Current sensor | Current sensor 5A ACS712
