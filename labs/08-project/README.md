@@ -30,7 +30,7 @@ Build an electronic xylophone instrument that can be played using an AVR microco
 
 ## Instructions
 
-The objective of this group project is to collaborate within small teams (3-4 students), explore a chosen topic, use [labs's components](https://github.com/tomas-fryza/digital-electronics-2/blob/master/README.md#components), develop innovative solutions, simulate and execute these solutions, generate project documentation, and present the final outcomes. Team members are responsible for organizing and assigning roles and tasks among themselves.
+The objective of this group project is to collaborate within small teams (3-4 students), explore a chosen topic, use [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop innovative solutions, simulate and execute these solutions, generate project documentation, and present the final outcomes. Team members are responsible for organizing and assigning roles and tasks among themselves.
 
 * Students will work on a project **in the labs** during the 9th to 13th weeks of the semester, with the practical demonstration scheduled for the last week.
 
@@ -42,7 +42,7 @@ The objective of this group project is to collaborate within small teams (3-4 st
 
 * Physical implementation on AVR is required, not just computer simulation.
 
-* Make a short video of your app demo. (The video can then be used to promote the course.)
+* Make a short video of your app demo. (The video can then be used to promote the course at LinkedIn.)
 
 ## Help:
 
@@ -72,7 +72,7 @@ Insert descriptive text and schematic(s) of your implementation.
 
 ## Software description
 
-Put flowchats of your algorithm(s) and direct links to source files in `src` or `lib` folders.
+Put flowchats/state diagrams of your algorithm(s) and direct links to source files in `src` or `lib` folders.
 
 ## Instructions
 
@@ -80,5 +80,5 @@ Write an instruction manual for your application, including photos and a link to
 
 ## References
 
-1. Write your text here.
+1. Put here the references you used.
 2. ...
