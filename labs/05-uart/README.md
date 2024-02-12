@@ -4,7 +4,7 @@
 * [Part 1: Basics of UART communication](#part1)
 * [Part 2: Synchronize repositories and create a new folder](#part2)
 * [Part 3: Communication between Arduino board and computer](#part3)
-* [(Optional) Experiments on your own](#experiments)
+* [Challenges](#challenges)
 * [References](#references)
 
 ### Components list
@@ -83,11 +83,11 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | **Function name** | **Function parameter(s)** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600&nbsp;Bd | `uart_init(UART_BAUD_SELECT(9600, F_CPU));` |
-   | `uart_getc` |  |  |
-   | `uart_putc` |  |  |
-   | `uart_puts` |  |  |
+   | `uart_getc` | | | |
+   | `uart_putc` | | | |
+   | `uart_puts` | | | |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/05-uart/main.c) to `LAB6-UART > src > main.c` source file.
+2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/05-uart/main.c) to `LAB5-UART > src > main.c` source file.
 
 3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB5-UART > include` folder.
 
@@ -200,11 +200,11 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
-<a name="experiments"></a>
+<a name="challenges"></a>
 
-## (Optional) Experiments on your own
+## Challenges
 
 1. Use ATmega328P datasheet and find out how to change the baud rate to `115200`.
 

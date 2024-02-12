@@ -5,7 +5,7 @@
 * [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: Timer overflow](#part3)
 * [Part 4: Extend the overflow](#part4)
-* [(Optional) Experiments on your own](#experiments)
+* [Challenges](#challenges)
 * [References](#references)
 
 ### Components list
@@ -223,11 +223,11 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
-<a name="experiments"></a>
+<a name="challenges"></a>
 
-## (Optional) Experiments on your own
+## Challenges
 
 1. In `timer.h` header file, complete macros for all three timers.
 

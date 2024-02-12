@@ -1,5 +1,17 @@
 # Lab 7: Assembly language and project documentation
 
+* [Pre-Lab preparation](#preparation)
+* [Part 1: Synchronize repositories and create a new project](#part1)
+* [Part 2: Assembly language](#part2)
+* [Part 3: LFSR-based pseudo random generator](#part3)
+* [Part 4: Generate documentation from source code](#part4)
+* [Challenges](#challenges)
+* [References](#references)
+
+### Components list
+
+* Arduino Uno board, USB cable
+
 ### Learning objectives
 
 After completing this lab you will be able to:
@@ -9,20 +21,6 @@ After completing this lab you will be able to:
 * Pass parameters from C code to assembly and vice versa
 
 The purpose of the laboratory exercise is to understand the AVR instruction set and how the individual instructions are translated into machine code. The main goal is to learn to combine higher and lower programming language in one project.
-
-### Table of contents
-
-* [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
-* [Part 2: Assembly language](#part2)
-* [Part 3: LFSR-based pseudo random generator](#part3)
-* [Part 4: Generate documentation from source code](#part4)
-* [(Optional) Experiments on your own](#experiments)
-* [References](#references)
-
-### Components list
-
-* Arduino Uno board, USB cable
 
 <a name="preparation"></a>
 
@@ -53,9 +51,9 @@ The purpose of the laboratory exercise is to understand the AVR instruction set 
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab8-asm` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab7-asm` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
-3. IMPORTANT: Rename `LAB8-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+3. IMPORTANT: Rename `LAB7-ASM > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
 <a name="part2"></a>
 
@@ -73,14 +71,14 @@ For time- or memory space-critical applications, it can often be desirable to co
 
 Parameters between C and assembly may be passed via registers and/or the Stack memory. Using the register way, parameters are passed via R25:R8 (18 regs, first function parameter is stored in R25:24, second in R23:22, etc.). If the parameters require more memory, then the Stack is used to pass additional parameters. Return value is placed in the same registers, ie. an 8-bit value gets returned in R24, an 16-bit value in two registers R25:24, an 32-bit value gets returned in four registers R25:22, and an 64-bit value gets returned in R25:18 [[3]](https://msoe.us/taylor/tutorial/ce2810/candasm).
 
-1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/main.c) to `LAB7-ASM > src > main.c` source file.
+1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/07-asm/main.c) to `LAB7-ASM > src > main.c` source file.
 
 2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
 
 3. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB7-ASM > src` source folder.
 
-   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/mac.S) file to `mac.S`
-   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/07-asm/lfsr.S) generator to `lfsr.S`
+   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/07-asm/mac.S) file to `mac.S`
+   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/07-asm/lfsr.S) generator to `lfsr.S`
 
    The final project structure should look like this:
 
@@ -179,10 +177,10 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 ```
 
 1. Open Doxywizard and set the basic settings as follows:
-   1. Select working directory with your project `Documents\digital-electronics-2\lab7-asm`
+   1. Select working directory with your project `Documents\avr-course\lab7-asm`
    2. In **Wizard > Project** set **Project name**
    3. In **Wizard > Project** check **Scan recursively**
-   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\digital-electronics-2\lab7-asm\doxygen`
+   4. In **Wizard > Project** select **Destination directory** to new folder within your project `Documents\avr-course\lab7-asm\doxygen`
    5. In **Wizard > Mode** select programming language to **Optimized for C or PHP output**
    6. In **Wizard > Output > HTML** unselect **With search function**
    7. In **Wizard > Output** unselect LaTeX and keep just HTML generation
@@ -194,11 +192,11 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
 2. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
-<a name="experiments"></a>
+<a name="challenges"></a>
 
-## (Optional) Experiments on your own
+## Challenges
 
 1. In `lfsr.S` file, program the assembly function `uint8_t lfsr8_fibonacci_asm(uint8_t value)`, which generates a 8-bit LFSR sequence with Tap positions 8, 6, 5, 4. What is the sequence length? What is the duration of the function in CPU cycles? Use eight LEDs and display each generated LFSR value. Simulate the application in SimulIDE.
 
@@ -245,6 +243,6 @@ Doxygen uses several keywords that are inserted into your block comments. For C,
 
 7. Embedded Inventor. [Complete Guide On Using Doxygen To Document C Source Code..!!](https://embeddedinventor.com/guide-to-configure-doxygen-to-document-c-source-code-for-beginners/)
 
-8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+8. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 9. B. H. Suits. [Physics of Music - Notes](https://pages.mtu.edu/~suits/notefreqs.html)

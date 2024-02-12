@@ -5,7 +5,7 @@
 * [Part 2: Install and test AVR tools](#part2)
 * [(Optional) Part 3: SimulIDE electronic circuit simulator](#part3)
 * [(Optional) Part 4: Logic analyzer](#part4)
-* [(Optional) Experiments on your own](#experiments)
+* [Challenges](#challenges)
 * [References](#references)
 
 ### Components list
@@ -180,9 +180,9 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
    ![Logic analyzer ver1](images/screenshot_saleae.png "Saleae Logic software")
 
-<a name="experiments"></a>
+<a name="challenges"></a>
 
-## (Optional) Experiments on your own
+## Challenges
 
 1. Install the AVR development tools on your computer.
 

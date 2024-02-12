@@ -6,6 +6,7 @@
 * [Exercises](#exercises)
 * [List of examples](#list-of-examples)
 * [Components and tools](#components-and-tools)
+* [References](#references)
 
 The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
 
@@ -86,17 +87,17 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 
 The following hardware and software components are mainly used in the lab.
 
-| **Component** | **Link(s)** |
-| :-- | :-- |
+| **Component** | **Link(s)**
+| :-- | :--
 | ATmega328P microcontroler | [data sheet](https://www.microchip.com/wwwproducts/en/ATmega328P), [instruction set](https://onlinedocs.microchip.com/pr/GUID-0B644D8F-67E7-49E6-82C9-1B2B9ABE6A0D-en-US-19/index.html)
 | Arduino Uno board | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | LCD and keypad shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
 | Multi-function shield | [schematic](https://oshwlab.com/tomas.fryza/arduino-shields)
-| DHT12 | I2C humidity and temperature sensor: [data sheet](docs/dht12_manual.pdf) |
-| MPU6050 | I2C gyroscope and accelerometer: [data sheet](docs/dht12_manual.pdf) |
-| DS3231 | I2C real time clock: [data sheet](docs/ds3231_manual.pdf) |
+| DHT12 | I2C humidity and temperature sensor: [data sheet](docs/dht12_manual.pdf)
+| MPU6050 | I2C gyroscope and accelerometer: [data sheet](docs/dht12_manual.pdf)
+| DS3231 | I2C real time clock: [data sheet](docs/ds3231_manual.pdf)
 | AT24C32 | I2C EEPROM memory module: [data sheet](docs/at24c32_manual.pdf)
-| HC-SR04 | Ultrasonic sensor: [datasheet](https://components101.com/ultrasonic-sensor-working-pinout-datasheet) |
+| HC-SR04 | Ultrasonic sensor: [datasheet](https://components101.com/ultrasonic-sensor-working-pinout-datasheet)
 | Joystick PS2 | Analog [joystick PS2](https://arduino-shop.cz/arduino/884-arduino-joystick-ps2.html)
 | Rotary encoder | [tutorial](https://asset.conrad.com/media10/add/160267/c1/-/en/000151034DS01/list-technickych-udaju-151034-on-semiconductor-2n7000-tranzistor-mosfet-1-n-kanal-400-mw-to-92.pdf)
 | Touch sensor | TTP223 touch sensor module: [tutorial](https://www.instructables.com/Tutorial-for-TTP223-Touch-Sensor-Module-Capacitive/)
@@ -113,22 +114,22 @@ The following hardware and software components are mainly used in the lab.
 | Current sensor | Current sensor 5A ACS712
 | ESP8266 Wi-Fi module | [AT commands](docs/esp8266_at_instruction_set.pdf)
 | Logic analyzer | 24MHz 8-channel [logic analyzer](https://www.ebay.com/sch/i.html?LH_CAds=&_ex_kw=&_fpos=&_fspt=1&_mPrRngCbx=1&_nkw=24mhz%20logic%20analyzer&_sacat=&_sadis=&_sop=12&_udhi=&_udlo=): [software](https://www.saleae.com/)
-| Osciloscope DSOX3034T | Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng) |
+| Osciloscope DSOX3034T | Oscilloscope Keysight Technologies [DSOX3034T](https://www.keysight.com/en/pdx-x202175-pn-DSOX3034T/oscilloscope-350-mhz-4-analog-channels?&cc=CZ&lc=eng) (350 MHz, 4 analog channels), including 16 logic timing channels [DSOXT3MSO](https://www.keysight.com/en/pdx-x205238-pn-DSOXT3MSO/3000t-x-series-oscilloscope-mso-upgrade?cc=CZ&lc=eng) and serial protocol triggering and decode options [D3000BDLA](https://www.keysight.com/en/pd-2990560-pn-D3000BDLA/ultimate-software-bundle-for-the-3000a-t-x-series?&cc=CZ&lc=eng)
 | Multimeter | Multimetrix DMM230
-| Visual Studio Code | [web page](https://code.visualstudio.com/) |
+| Visual Studio Code | [web page](https://code.visualstudio.com/)
 | PlatformIO | [web page](https://platformio.org/)
 | GCC Compilers for AVR | [web page](https://www.microchip.com/en-us/development-tools-tools-and-software/gcc-compilers-avr-and-arm#)
 | SimulIDE | Real time electronic circuit simulator. With PIC, AVR and Arduino simulation: [web page](https://www.simulide.com/p/home.html)
-| Git | [git](https://git-scm.com/) |
+| Git | [git](https://git-scm.com/)
 
 ### Tested on
 
-| **Version**                | **Result (yyyy-mm-dd)** | **Note**    |
-| :------------------------- | :---------------------: | :---------- |
-| Linux Mint 21.2 (Victoria) | OK (2024-01-20)         | Laptop      |
-| Windows 10                 | OK (2022-09-08)         | Lab SC 6.61 |
-| Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop      |
-| Windows 10                 | OK (2021-11-25)         | Office      |
+| **Version**                | **Result (yyyy-mm-dd)** | **Note**
+| :------------------------- | :---------------------: | :-------
+| Linux Mint 21.2 (Victoria) | OK (2024-01-20)         | Laptop
+| Windows 10                 | OK (2022-09-08)         | Lab SC 6.61
+| Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop
+| Windows 10                 | OK (2021-11-25)         | Office
 
 ```bash
 # FYI: How to check OS version in Linux

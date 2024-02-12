@@ -1,26 +1,12 @@
 # Lab 6: I2C (Inter-Integrated Circuits)
 
-### Learning objectives
-
-After completing this lab you will be able to:
-
-* Understand the I2C communication
-* Use functions from I2C library
-* Perform data transfers between MCU and I2C devices
-
-The main goal of this laboratory exercise is to develop a thorough understanding of serial synchronous communication via the I2C (Inter-Integrated Circuit) bus. This involves delving into the structure of address and data frames, investigating the communication capabilities provided by the internal TWI (Two Wire Interface) unit, and utilizing a C code library for I2C communication.
-
-![I2C bus](images/photo_oled-sensor.jpg)
-
-### Table of contents
-
 * [Pre-Lab preparation](#preparation)
 * [Part 1: I2C bus](#part1)
 * [Part 2: Synchronize repositories and create a new project](#part2)
 * [Part 3: I2C scanner](#part3)
 * [Part 4: Communication with I2C devices](#part4)
 * [Part 5: OLED display 128x64](#part5)
-* [(Optional) Experiments on your own](#experiments)
+* [Challenges](#challenges)
 * [References](#references)
 
 ### Components list
@@ -32,6 +18,18 @@ The main goal of this laboratory exercise is to develop a thorough understanding
   * Optional: GY-521 module with MPU-6050 microelectromechanical systems
 * Logic analyzer
 * Jumper wires
+
+### Learning objectives
+
+After completing this lab you will be able to:
+
+* Understand the I2C communication
+* Use functions from I2C library
+* Perform data transfers between MCU and I2C devices
+
+The main goal of this laboratory exercise is to develop a thorough understanding of serial synchronous communication via the I2C (Inter-Integrated Circuit) bus. This involves delving into the structure of address and data frames, investigating the communication capabilities provided by the internal TWI (Two Wire Interface) unit, and utilizing a C code library for I2C communication.
+
+![I2C bus](images/photo_oled-sensor.jpg)
 
 <a name="preparation"></a>
 
@@ -76,7 +74,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 >
 > According to the list of [I2C addresses](https://learn.adafruit.com/i2c-addresses/the-list) the device could be humidity/temp or pressure sensor. The signals were really recorded when communicating with the humidity and temperature sensor.
 >
-> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf), this is the memory address, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
+> The data frame always follows the address one and contains eight data bits from the MSB to the LSB and is again terminated by an acknowledgment from the receiving side. Here, number `2` was written to the sensor. According to the [DHT12 sensor manual](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf), this is the memory address, to which the integer part of measured temperature is stored. (The following register contains its decimal part.)
 >
 > | **Memory location** | **Description** |
 > | :-: | :-- |
@@ -106,7 +104,7 @@ Note that, most I2C devices support repeated start condition. This means that be
 
    > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
 
-2. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/digital-electronics-2`.
+2. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
 
 3. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
@@ -116,14 +114,14 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 The goal of this task is to create a program that will verify the presence of devices connected to the I2C bus by sequentially trying all address combinations.
 
-1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/06-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
+1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/06-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
 
 2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
 
 3. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`.
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/twi.c) to `twi.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/twi.h) to `twi.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/twi.c) to `twi.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/twi.h) to `twi.h`
 
    The final project structure should look like this:
 
@@ -161,13 +159,13 @@ The goal of this task is to create a program that will verify the presence of de
 
    ![Arduino_uno_pinout](../../images/Pinout-UNOrev3_latest.png)
 
-   * Humidity/temperature [DHT12](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/dht12_manual.pdf) digital sensor
+   * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf) digital sensor
 
    * SH1106 I2C [OLED display](https://randomnerdtutorials.com/esp32-ssd1306-oled-display-arduino-ide/) 128x64
 
-   * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/at24c32_manual.pdf) EEPROM memory
+   * Optional: Combined module with [RTC DS3231](https://github.com/tomas-fryza/avr-course/blob/master/docs/ds3231_manual.pdf) (Real Time Clock) and [AT24C32](https://github.com/tomas-fryza/avr-course/blob/master/docs/at24c32_manual.pdf) EEPROM memory
 
-   * Optional: [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
+   * Optional: [GY-521 module](https://github.com/tomas-fryza/avr-course/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
 
 6. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate is set to 115200, therefore you need to add a line to your `platformio.ini` config file:
 
@@ -324,11 +322,11 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   * [font.h](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/font.h)
-   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/oled.c)
-   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/labs/library/include/oled.h)
+   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/font.h)
+   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/oled.c)
+   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/oled.h)
 
-   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/digital-electronics-2/master/solutions/lab6-i2c-oled/src/main.c).
+   Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/solutions/lab6-i2c-oled/src/main.c).
 
    The final project structure should look like this:
 
@@ -355,11 +353,11 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 4. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
 
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/digital-electronics-1/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
-<a name="experiments"></a>
+<a name="challenges"></a>
 
-## (Optional) Experiments on your own
+## Challenges
 
 1. Program functions that will be able to read only one value from the RTC DS3231 at a time.
 
@@ -377,7 +375,7 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 4. Draw a timing diagram of I2C signals when calling function `rtc_read_years()`. Let this function reads one byte-value from RTC DS3231 address `06h` (see RTC datasheet) in the range `00` to `99`. Specify when the SDA line is controlled by the Master device and when by the Slave device. Draw the whole request/receive process, from Start to Stop condition. The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 
-5. Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/digital-electronics-2/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
+5. Program an application which reads data from [GY-521 module](https://github.com/tomas-fryza/avr-course/blob/master/docs/mpu-6050_datasheet.pdf). It consists of MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor.
 
 6. In the SimulIDE application, create the circuit with eight active-low LEDs connected to I2C to Parallel expander. You can use individual components (ie. 8 resistors and 8 LEDs) or single **Passive > ResistorDip** and **Outputs > LedBar** according to the following figure. Several signals can form a bus **Logic > Other Logic > Bus**, as well.
 
@@ -413,6 +411,6 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 8. LastMinuteEngineers. [Interface DS3231 Precision RTC Module with Arduino](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/digital-electronics-2/wiki/Useful-Git-commands)
+9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
 
 10. Sylaina. [OLED for AVR mikrocontrollers](https://github.com/Sylaina/oled-display)
