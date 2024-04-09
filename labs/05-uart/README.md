@@ -251,7 +251,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    * `AT+CWLAPOPT=1,6` - Limit the list to `rssi` and `ssid` parameters only
    * `AT+CWLAP` - List `ssid` and `rssi` parameters of available Wi-Fi APs (takes few seconds)
 
-   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-course/blob/master/docs/esp8266_at_instruction_set.pdf). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
+   The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-course/blob/master/docs/esp8266_at_instruction_set.pdf) or [here](https://digilent.com/reference/pmod/pmodesp32/reference-manual). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
 
 4. Program a piece of code to calculate even parity bit from received value.
 
