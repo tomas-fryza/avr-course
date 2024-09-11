@@ -3,7 +3,7 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [VS Code shortcuts](#vs-code-shortcuts)
-* [Exercises](#exercises)
+* [Labs](#labs)
 * [List of examples](#list-of-examples)
 * [Components and tools](#components-and-tools)
 * [References](#references)
@@ -64,20 +64,20 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 | `Ctrl+K V` | Open Markdown preview to the side
 | `Ctrl+B` | Toggle Sidebar visibility
 
-## Exercises
+## Labs
 
-1. [Git version-control system, AVR tools](labs/01-tools)
-2. [Control of GPIO pins](labs/02-gpio)
-3. [Timers](labs/03-interrupts)
-4. [Liquid Crystal Display (LCD)](labs/04-lcd)
-5. [Universal Asynchronous Receiver-Transmitter (UART)](labs/05-uart)
-6. [Inter-Integrated Circuits (I2C)](labs/06-i2c)
-7. [Assembly language and project documentation](labs/07-asm)
-8. [Project](labs/08-project)
+1. [Programming in C](lab1-c)
+2. [Control of GPIO pins](lab2-gpio)
+3. [Timers](lab3-interrupts)
+4. [Liquid Crystal Display (LCD)](lab4-lcd)
+5. [Universal Asynchronous Receiver-Transmitter (UART)](lab5-uart)
+6. [Inter-Integrated Circuits (I2C)](lab6-i2c)
+7. [Assembly language and project documentation](lab7-asm)
+8. [Project](lab8-project)
 
 ## List of examples
 
-* [Basic C template, blink a LED](examples/blink_arduino/)
+* [Basic C template, blink a LED](examples/blink)
 * [Project documentation with Doxygen](examples/doxygen)
 * [Autonomous slot car](examples/slot-car)
 
@@ -138,6 +138,8 @@ cat /etc/os-release
 # Or by Neofetch
 neofetch
 ```
+
+<a name="references"></a>
 
 ## References
 

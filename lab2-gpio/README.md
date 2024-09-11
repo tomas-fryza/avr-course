@@ -1,7 +1,7 @@
 # Lab 2: Control of GPIO pins
 
 * [Pre-Lab preparation](#preparation)
-* [Part 1: Synchronize repositories and create a new project](#part1)
+* [Part 1: PlatformIO](#part1)
 * [Part 2: GPIO control registers](#part2)
 * [Part 3: GPIO library files](#part3)
 * [Challenges](#challenges)
@@ -20,32 +20,17 @@
 
 ### Learning objectives
 
-After completing this lab you will be able to:
-
 * Configure input/output ports of AVR using control registers
 * Use ATmega328P manual and find information
 * Understand the difference between header and source files
 * Create your own library
 * Understand how to call a function with pointer parameters
 
-The purpose of this laboratory exercise is to learn how to create your own library in C. Specifically, it will be a library for controlling GPIO (General Purpose Input/Output) pins with help of control registers.
-
 <a name="preparation"></a>
 
 ## Pre-Lab preparation
 
-1. Fill in the following table and enter the number of bits and numeric range for the selected data types defined by C.
-
-   | **Data type** | **Number of bits** | **Range** | **Description** |
-   | :-: | :-: | :-: | :-- |
-   | `uint8_t`  | 8 | 0, 1, ..., 255 | Unsigned 8-bit integer |
-   | `int8_t`   |  |  |  |
-   | `uint16_t` |  |  |  |
-   | `int16_t`  |  |  |  |
-   | `float`    |  | -3.4e+38, ..., 3.4e+38 | Single-precision floating-point |
-   | `void`     | -- | -- | Depending on the context, it means *no type*, *no value* or *no parameters* |
-
-2. Any function in C contains a declaration (function prototype) and definition (block of code, body of the function), and each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
+1. Any function in C contains a declaration (function prototype) and definition (block of code, body of the function), and each declared function can be executed (called). Study [this article](https://www.programiz.com/c-programming/c-user-defined-functions) and complete the missing sections in the following user defined function declaration, definition, and call.
 
    ```c
    #include <avr/io.h>
@@ -81,21 +66,33 @@ The purpose of this laboratory exercise is to learn how to create your own libra
    }
    ```
 
-3. Find differences between `variable` and `pointer` in C. What mean notations `*variable` and `&variable`?
+2. Find differences between `variable` and `pointer` in C. What mean notations `*variable` and `&variable`?
 
 <a name="part1"></a>
 
-## Part 1: Synchronize repositories and create a new project
+## Part 1: PlatformIO
 
-When you begin working, ensure that you synchronize the contents of your working folder and local repository with the remote version on GitHub. This practice ensures that none of your changes are lost.
+1. Run Visual Studio Code, follow [instructions](../README.md) and install the PlatformIO plugin.
 
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
+2. Create a new project `lab2-gpio`, select `Arduino Uno` board, and change project location to your local folder, such as `Documents`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.cpp` file.
 
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
+3. IMPORTANT: Rename `LAB2-GPIO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-2. In Visual Studio Code create a new PlatformIO project `lab2-gpio_library` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
+   The final project structure should look like this:
 
-3. IMPORTANT: Rename `LAB2-GPIO_LIBRARY > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
+   ```c
+   LAB2-GPIO           // PlatfomIO project
+   ├── include         // Included files
+   ├── lib             // Libraries
+   ├── src             // Source file(s)
+   │   └── main.c
+   ├── test            // No need this
+   └── platformio.ini  // Project Configuration File
+   ```
+
+4. Compile and download the firmware to target ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED.
+
+   * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
 
 <a name="part2"></a>
 
@@ -109,15 +106,7 @@ DDR (Data Direction Register) is used to set the input/output direction of port 
 
 A detailed description of working with input/output ports can be found in [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) in section I/O-Ports.
 
-1. Copy/paste [your solution](main.c) with two LEDs from Lab1 to `LAB2-GPIO_LIBRARY > src > main.c` source file. Compile (build) the project and note the first-version size in bytes.
-
-   | **Version** | **Size [B]** |
-   | :-- | :-: |
-   | Ver. 1: Arduino-style |  |
-   | Ver. 2: Registers |  |
-   | Ver. 3: Library functions |  |
-
-2. Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
+1. Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
 
    | **DDRB** | **PORTB** | **Direction** | **Internal pull-up resistor** | **Description** |
    | :-: | :-: | :-: | :-: | :-- |
@@ -126,7 +115,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
    | 1 | 0 | | | |
    | 1 | 1 | | | |
 
-3. To control individual bit(s) within a register, the following binary operations are used.
+2. To control individual bit(s) within a register, the following binary operations are used.
    1. `|` OR
    2. `&` AND
    3. `^` XOR
@@ -152,29 +141,6 @@ A detailed description of working with input/output ports can be found in [ATmeg
    ```
 
    ![binary operations](images/binary_operations.png)
-
-4. Comment Arduino-style defines and functions, use binary operations with control registers DDRB, PORTB and rewrite the application. Note the second-version size after the compilation.
-
-   ```c
-   ...
-   // #include "Arduino.h"
-   // #define PB5 13          // In Arduino world, PB5 is called "13"
-   // #define PB0 8
-
-   int main(void)
-   {
-       uint8_t led_value = 0;  // Local variable to keep LED status
-
-       // Set pins where LEDs are connected as output
-       // Ver 1: Arduino style
-       // pinMode(LED_GREEN, OUTPUT);
-       // pinMode(LED_RED, OUTPUT);
-
-       // Ver 2: Low-level (register) style
-       DDRB = DDRB | (1<<LED_GREEN);
-       ...
-   }
-   ```
 
 <a name="part3"></a>
 
@@ -213,10 +179,10 @@ A header file can be shared between several source files by including it with th
 
 This construct is commonly known as a wrapper `#ifndef`. When the header is included again, the conditional will be false, because `HEADER_FILE_NAME` is already defined. The preprocessor will skip over the entire contents of the file, and the compiler will not see it twice.
 
-1. In PlatformIO project, create a new folder `LAB2-GPIO_LIBRARY > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
+1. In PlatformIO project, create a new folder `LAB2-GPIO > lib > gpio`. Within this folder, create two new files `gpio.c` and `gpio.h`. See the project structure:
 
    ```c
-   LAB2-GPIO_LIBRARY   // PlatfomIO project
+   LAB2-GPIO           // PlatfomIO project
    ├── include         // No need this
    ├── lib             // Libraries
    │   └── gpio        // Our new GPIO library
@@ -228,8 +194,8 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) to `gpio.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) to `gpio.c`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/gpio.h) to `gpio.h`
+   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio.c) to `gpio.c`
    3. Include header file to `src > main.c`:
 
       ```c
@@ -280,40 +246,13 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    >
    > **Note:** Understanding C Pointers: A Beginner's Guide is available [here](https://www.codewithc.com/understanding-c-pointers-beginners-guide/). Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
-3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions. Note its size after the compilation as third-verion. Try to optimize code to the most effective way.
-
-   ```c
-   // Do not forget to include GPIO header file
-   #include <gpio.h>
-
-   int main(void)
-   {
-       uint8_t led_value = 0;  // Local variable to keep LED status
-
-       // Set pins where LEDs are connected as output
-       // Ver 1: Arduino style
-       // pinMode(LED_GREEN, OUTPUT);
-       // pinMode(LED_RED, OUTPUT);
-
-       // Ver 2: Low-level (register) style
-       // DDRB = DDRB | (1<<LED_GREEN);
-       // DDRB = DDRB | (1<<LED_RED);
-
-       // Ver 3: Library function style
-       GPIO_mode_output(&DDRB, LED_GREEN);
-       ...
-   }
-   ```
+3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
 
 4. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistors to pins PB2 and PB3. Develop the code to achieve alternating blinking of two LEDs.
 
 5. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
    ![schema of active-low push button](images/schema_button_active-low.png)
-
-6. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="challenges"></a>
 
