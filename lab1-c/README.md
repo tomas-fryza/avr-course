@@ -1,4 +1,4 @@
-# Lab 2: Programming in C
+# Lab 1: Programming in C
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Hello world](#part1)
