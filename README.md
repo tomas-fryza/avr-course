@@ -30,7 +30,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 ## Usage
 
-1. *Create a new project:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Open > New Project**. Type `lab1-blink_arduino` as project name, select `Arduino Uno` board, keep `Arduino` framework, and select location to your working folder. Click on the **Finish** button.
+1. *Create a new project:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Open > New Project**. Type `blink_arduino` as project name, select `Arduino Uno` board, keep `Arduino` framework, and select location to your working folder. Click on the **Finish** button.
 
 2. *Code the application:* Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink_arduino/main.c) from this repository to your `BLINK_ARDUINO > src > main.cpp` file.
 
