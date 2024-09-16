@@ -1,24 +1,23 @@
-/***********************************************************************
+/***********************************************************
  * 
- * Blink a LED in Arduino-style and use function from the delay library.
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * Blink a LED in Arduino-style using function from the delay
+ * library.
+ * (c) 2022-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2022 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
- **********************************************************************/
+ ***********************************************************/
 
-
-/* Defines -----------------------------------------------------------*/
+/* Defines ------------------------------------------------*/
 #define LED_GREEN PB5   // PB5 is AVR pin where green on-board LED 
                         // is connected
 #define SHORT_DELAY 250 // Delay in milliseconds
 #ifndef F_CPU
-# define F_CPU 16000000 // CPU frequency in Hz required for delay funcs
+# define F_CPU 16000000 // CPU frequency in Hz required for delay
 #endif
 
-/* Includes ----------------------------------------------------------*/
+/* Includes -----------------------------------------------*/
 #include <avr/io.h>     // AVR device-specific IO definitions
 #include <util/delay.h> // Functions for busy-wait delay loops
 
@@ -31,22 +30,20 @@
 // -----
 
 
-/* Function definitions ----------------------------------------------*/
-/**********************************************************************
+/* Function definitions -----------------------------------*/
+/***********************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Toggle one LED and use delay library.
  * Returns:  none
- **********************************************************************/
-int main(void)
-{
+ ***********************************************************/
+int main(void) {
     uint8_t led_value = 0;  // Local variable to keep LED status
 
     // Set pin where on-board LED is connected as output
     pinMode(LED_GREEN, OUTPUT);
 
     // Infinite loop
-    while (1)
-    {
+    while (1) {
         // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
 
