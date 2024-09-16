@@ -10,7 +10,7 @@
 
 The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
 
-![avr_course](images/arduino_uno_i2c.jpg)
+![avr_course](archive/images/arduino_uno_i2c.jpg)
 
 ## Installation
 
@@ -20,13 +20,13 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 2. Run Visual Studio Code, open up the extensions viewer in menu **View > Extensions Ctrl+shift+X**, and then typing `PlatformIO` into the search bar. Press **Install** button on the result `PlatformIO IDE`.
 
-   ![Install PlatformIO IDE](images/platformio_install.png)
+   ![Install PlatformIO IDE](archive/images/platformio_install.png)
 
    It may take a few minutes depending on your connection speed. Do not close any window and do not open other folders until the installing process is completed. After that, restart the Visual Studio Code.
 
 3. *Install Arduino framework:* Click on the PlatformIO icon in the left-hand margin, then in menu **PIO Home > Platforms > Embedded**. Type `AVR` as a platform's filter and select **Atmel AVR**. Click on the **Install** button.
 
-   ![Install Arduino framework](images/platformio_atmel.png)
+   ![Install Arduino framework](archive/images/platformio_atmel.png)
 
 ## Usage
 
@@ -38,7 +38,7 @@ The repository contains AVR lab exercises for bachelor course [*Digital Electron
 
 3. *Compile and upload the code:* The handy shortcuts for building and uploading the code is available on the blue footer taskbar. Hover over the icon to get its functionality. First, compile (**Build**) the project and then **Upload** it to Arduino Uno board. You can **Clean** up generated files as well.
 
-   ![Control icons](images/platformio_navigation.png)
+   ![Control icons](archive/images/platformio_navigation.png)
 
    *Command Palette:* All available commands in VS Code are also accessible by `F1` or `Ctrl+Shift+P` shortcut and followed by a command. Most useful commands in this course are:
 
