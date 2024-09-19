@@ -248,7 +248,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
 
-4. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistors to pins PB2 and PB3. Develop the code to achieve alternating blinking of two LEDs.
+4. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB2 (and PB3). Develop the code to achieve alternating blinking of two LEDs.
 
 5. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
@@ -262,7 +262,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 2. Connect at least five LEDs and one push button to the microcontroller and program an application in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). When you press and release a push button once, the LEDs starts to switched on and off; ensure that only one of LEDs is switched on at a time. Do not implement the blinking speed changing.
 
-3. Simulate the Knight Rider application in SimulIDE.
+3. Simulate the Knight Rider application in [SimulIDE](https://simulide.com/p/).
 
 4. Draw a schematic of Knight Rider application. The image can be drawn on a computer or by hand. Always name all components, their values and pin names!
 
