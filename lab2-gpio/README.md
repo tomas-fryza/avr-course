@@ -7,7 +7,7 @@
 * [Challenges](#challenges)
 * [References](#references)
 
-### Components list
+### Component list
 
 * Arduino Uno board, USB cable
 * Breadboard
