@@ -92,20 +92,33 @@
    }                     // End of function body
    ```
 
-2. Write a program that outputs an arrow shape using asterisks (`*`). You can achieve this by utilizing `for` loops and `if` statements to control the number of symbols printed on each line.
+2. Write a program that calculates the factorial of a given number `n`. The factorial is the product of all positive integers from 1 to `n`. Note that you can use **if** statements and **while** loops.
 
-   The expected output should look like this:
+   For example:
+      * factorial(5) should return 120 because 5! = 5 * 4 * 3 * 2 * 1 = 120.
+      * factorial(0) should return 1, as the factorial of 0 is defined to be 1.
+
+   > Condition syntax:
+   > ```c
+   > if (condition) {
+   >     // Code to execute if condition is true
+   > } else {
+   >     // Code to execute if condition is false (optional)
+   > }
+
+3. Write a program that prints a right-angled triangle made up of asterisks (`*`). The program should take one variable, which specifies the number of lines in the triangle. Each subsequent line should contain one additional asterisk, starting with one asterisk on the first line, two on the second line, and so on. 
+
+   For example, if the parameter is `5`, the output should look like this:
+
    ```shell
    *
    **
    ***
    ****
    *****
-   ****
-   ***
-   **
-   *
    ```
+
+   You can achieve this by utilizing `for` loops and `if` statements to control the number of symbols printed on each line.
 
    > Loop syntax and example:
    > ```c
@@ -118,15 +131,7 @@
    > }
    > ```
 
-   > Condition syntax:
-   > ```c
-   > if (condition) {
-   >     // Code to execute if condition is true
-   > } else {
-   >     // Code to execute if condition is false (optional)
-   > }
-
-3. In C, you can represent and test 8-bit integers in different numeral systems: hexadecimal, decimal, and binary.
+4. In C, you can represent and test 8-bit integers in different numeral systems: hexadecimal, decimal, and binary.
 
    * Decimal: Use the standard number format (base 10).
    * Hexadecimal: Prefix the number with `0x`.
@@ -172,7 +177,7 @@
    > * Hexadecimal: `%x` prints letters in lowercase (e.g., `0x1a`), and `%X` prints them in uppercase (e.g., `0x1A`).
    > * Floating-point precision: You can control the precision of floating-point numbers, e.g., `%.2f` prints two decimal places.
 
-4. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
+5. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
 
    **Common bitwise operators in C:**
    * AND (`&`): Used to clear specific bits (with combination of `~`).
@@ -211,9 +216,17 @@
    Example output:
       ```shell
       [##########..................................] 20%
+      ```
+      ```shell
       [###################.........................] 40%
+      ```
+      ```shell
       [#############################...............] 60%
+      ```
+      ```shell
       [######################################......] 80%
+      ```
+      ```shell
       [############################################] 100%
       ```
 
@@ -239,6 +252,10 @@
        return 0;
    }
    ```
+
+2. Write a program that determines whether a given number is prime or not and generate all prime numbers up to 1000.
+
+3. Implement a program to generate Fibonacci numbers. This is a classic sequence where each number is the sum of the two preceding ones (0, 1, 1, 2, 3, 5, 8, ...).
 
 <a name="references"></a>
 
