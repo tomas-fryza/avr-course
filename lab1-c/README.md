@@ -60,8 +60,9 @@
       >   * Reset (normal): `\x1b[0m`
       >
       > ```c
-      > // Green text
-      > printf("This is \x1b[32mGREEN\x1b[0m text\n");
+      > // Examples
+      > printf("This is \x1b[32;1mGREEN BOLD\x1b[0m text.\n");
+      > printf("This is \x1b[31mRED\x1b[0m text.\n");
       > ```
 
 <a name="part2"></a>
@@ -95,8 +96,8 @@
 2. Write a program that calculates the factorial of a given number `n`. The factorial is the product of all positive integers from 1 to `n`. Note that you can use **if** statements and **while** loops.
 
    For example:
-      * factorial(5) should return 120 because 5! = 5 * 4 * 3 * 2 * 1 = 120.
-      * factorial(0) should return 1, as the factorial of 0 is defined to be 1.
+      * factorial of 5 should return 120 because 5! = 5 * 4 * 3 * 2 * 1 = 120.
+      * factorial of 0 should return 1, as the factorial of 0 is defined to be 1.
 
    > Condition syntax:
    > ```c
@@ -105,6 +106,14 @@
    > } else {
    >     // Code to execute if condition is false (optional)
    > }
+   > ```
+   >
+   > General syntax of a while loop:
+   > ```c
+   > while (condition) {
+   >     // Code to be executed repeatedly
+   > }
+   > ```
 
 3. Write a program that prints a right-angled triangle made up of asterisks (`*`). The program should take one variable, which specifies the number of lines in the triangle. Each subsequent line should contain one additional asterisk, starting with one asterisk on the first line, two on the second line, and so on. 
 
@@ -180,15 +189,15 @@
 5. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
 
    **Common bitwise operators in C:**
-   * AND (`&`): Used to clear specific bits (with combination of `~`).
-      ```c
-      variable &= ~(1 << bit_position);
-      ```
-   * OR (`|`): Used to set specific bits.
+   * OR (`|`): Used to **set** specific bits.
       ```c
       variable |= (1 << bit_position);
       ```
-   * XOR (`^`): Used to toggle (flip) specific bits.
+   * AND (`&`): Used to **clear** specific bits (with combination of `~`).
+      ```c
+      variable &= ~(1 << bit_position);
+      ```
+   * XOR (`^`): Used to **toggle** (flip) specific bits.
       ```c
       variable ^= (1 << bit_position);
       ```
@@ -211,7 +220,7 @@
 
 ## Challenges
 
-1. Write a C program that simulates a simple progress bar using ASCII characters and `printf`. The progress bar should fill up from 0% to 100% using the `#` character and update in real-time.
+1. Write a C program that simulates a simple progress bar using ASCII characters and `printf`. The progress bar should fill up in one line from 0% to 100% using the `#` character and update in real-time.
 
    Example output:
       ```shell
@@ -232,30 +241,34 @@
 
    Hints:
       * Use the loop counter to control how many `#` and `.` characters are printed.
-      * Use `fflush(stdout);` after `printf` to ensure immediate output.
-      * Use `usleep(100000);` delay from `unistd.h` library between updates for visual effect.
+      * Use `fflush(stdout);` after `printf` to ensure the output is displayed immediately.
+      * Use the `usleep(100000);` function from the `unistd.h` library to add a delay between updates for a visual effect.
+      * You can use ANSI escape codes to highlight progress values.
 
    ```c
    #include <stdio.h>
-   #include <unistd.h>  // For sleep function (POSIX)
+   #include <unistd.h>  // For usleep function (POSIX)
+   /* Note: POSIX (Portable Operating System Interface) is an IEEE standard 
+         that ensures compatibility across different operating systems.*/
 
    int main(void) {
        uint8_t total = 50;  // Total width of the progress bar
 
        ...
 
-           printf("] %d%%\r", (i * 100) / total);  // Print percentage
-           fflush(stdout);  // Force output to be shown immediately
-           usleep(100000);  // Delay for 100ms
+           // Print the progress bar percentage
+           printf("] %d%%\r", (i * 100) / total);
+           fflush(stdout);  // Ensure the output is flushed immediately
+           usleep(100000);  // Delay for 100 milliseconds to create a visual effect
 
        printf("\n");
        return 0;
    }
    ```
 
-2. Write a program that determines whether a given number is prime or not and generate all prime numbers up to 1000.
+2. Write a program that determines whether a given number is prime and generates all prime numbers up to 1000. Note that prime numbers are natural numbers greater than 1, having only two distinct positive divisors: 1 and the number itself (e.g., 2, 3, 5, 7, 11, 13, 17, ...).
 
-3. Implement a program to generate Fibonacci numbers. This is a classic sequence where each number is the sum of the two preceding ones (0, 1, 1, 2, 3, 5, 8, ...).
+3. Implement a program to generate Fibonacci numbers. The Fibonacci sequence is a classic series where each number is the sum of the two preceding ones (starting with 0 and 1): 0, 1, 1, 2, 3, 5, 8, ...
 
 <a name="references"></a>
 
