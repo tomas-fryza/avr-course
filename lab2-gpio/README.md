@@ -15,7 +15,7 @@
 * 1 two-color LED
 * 4 resistors
 * 1 push button
-* Jumper wires
+* Male to male jumper wires
 * Logic analyzer
 
 ### Learning objectives
@@ -199,6 +199,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    3. Include header file to `src > main.c`:
 
       ```c
+      #include <avr/io.h>     // AVR device-specific IO definitions
       // Include the header file of library you are using
       #include <gpio.h>
 
@@ -226,7 +227,8 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
    ```c
-   // Do not forget to include GPIO header file
+   #include <avr/io.h>     // AVR device-specific IO definitions
+   // Include the header file of library you are using
    #include <gpio.h>
 
    int main(void)
@@ -250,7 +252,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 4. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB2 (and PB3). Develop the code to achieve alternating blinking of two LEDs.
 
-5. (Optional) On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
+5. On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
    ![schema of active-low push button](images/schema_button_active-low.png)
 
