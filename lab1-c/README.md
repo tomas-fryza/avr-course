@@ -72,24 +72,24 @@
 1. Use the standard C integer library to verify the ranges of integer data types from the Pre-Lab section. Keep in mind that the `sizeof` function returns the number of bytes used by a data type.
 
    ```c
-   #include <stdio.h>    // Standard C input/output library
-   #include <stdint.h>   // Standard C integer library
+   #include <stdio.h>    // Standard C input/output library for `printf`
+   #include <stdint.h>   // Standard C integer library for `int8_t, uint8_t`
+   #include <limits.h>   // Defines ranges of integral types
 
    int main(void)        // Main function with no input parameters
    {                     // Beginning of function body
-       int8_t  a = 200;  // Definition of two local variables
-       uint8_t b = 200;  // Unsigned 8-bit integer variable
+       // Definition of two local variables
+       uint8_t a = 200;
+       int8_t b = 200;   // [!] Signed 8-bit variable can not store 200
 
-       // Integer `a` will be printed using the format specifier `%d`
-       printf("Print int8 value: %d\n", a);
+       // Print formated strings to the Terminal
+       printf("int8 value is %d\n", a);  // Integer `a` will be printed instead of `%d`
+       printf("uint8 value is %d\n", b); // Formatting char. `\n` inserts a new line
 
-       // `%d` is used to print the unsigned integer `b`
-       printf("Print uint8 value: %d\n", b);
+       printf("Size of int16_t: %ld Bytes\n", sizeof(int16_t));
+       printf("int16_t range: %d to %d\n", INT16_MIN, INT16_MAX);
 
-       // Prints the size of the 32-bit integer in bytes
-       printf("Size of int32_t: %d B\n", sizeof(int32_t));
-
-       return 0;         // Main function returns 0 indicating successful execution
+       return 0;         // Return value of main function
    }                     // End of function body
    ```
 
@@ -170,20 +170,14 @@
    > | `%d` or `%i`  | Prints a signed decimal integer (base 10).              | `printf("%d", 42);`          |
    > | `%u`          | Prints an unsigned decimal integer (base 10).           | `printf("%u", 42);`          |
    > | `%x` or `%X`  | Prints an unsigned hexadecimal integer (lower/uppercase)| `printf("%x", 255);`         |
-   > | `%o`          | Prints an unsigned octal integer (base 8).              | `printf("%o", 255);`         |
    > | `%f`          | Prints a floating-point number (decimal notation).      | `printf("%f", 3.14);`        |
-   > | `%e` or `%E`  | Prints a floating-point number in scientific notation.  | `printf("%e", 3.14);`        |
    > | `%c`          | Prints a single character.                              | `printf("%c", 'A');`         |
-   > | `%s`          | Prints a string of characters.                          | `printf("%s", "Hello");`     |
    > | `%p`          | Prints a pointer (memory address).                      | `printf("%p", &variable);`   |
    > | `%lf`         | Prints a double-precision floating-point number.        | `printf("%lf", 3.14159);`    |
    > | `%ld` or `%li`| Prints a long signed integer.                           | `printf("%ld", 123456L);`    |
-   > | `%lu`         | Prints a long unsigned integer.                         | `printf("%lu", 123456UL);`   |
-   > | `%zd`         | Prints a `size_t` type (used for sizes of objects).     | `printf("%zd", sizeof(x));`  |
    > | `%%`          | Prints a literal percent symbol (`%`).                  | `printf("%%");`              |
    > 
    > **Notes:**
-   > * Hexadecimal: `%x` prints letters in lowercase (e.g., `0x1a`), and `%X` prints them in uppercase (e.g., `0x1A`).
    > * Floating-point precision: You can control the precision of floating-point numbers, e.g., `%.2f` prints two decimal places.
 
 5. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
