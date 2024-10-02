@@ -2,13 +2,12 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Polling and interrupts](#part1)
-* [Part 2: Synchronize repositories and create a new project](#part2)
-* [Part 3: Timer overflow](#part3)
-* [Part 4: Extend the overflow](#part4)
+* [Part 2: Timer overflow](#part4)
+* [Part 3: Extend the overflow](#part3)
 * [Challenges](#challenges)
 * [References](#references)
 
-### Components list
+### Component list
 
 * Arduino Uno board, USB cable
 * Breadboard
@@ -19,14 +18,10 @@
 
 ### Learning objectives
 
-After completing this lab you will be able to:
-
 * Use `#define` compiler directives
 * Use internal microcontroller timers
 * Understand overflow
 * Combine different interrupts
-
-The purpose of the laboratory exercise is to understand the function of the interrupt, interrupt service routine, and the functionality of timer units. Another goal is to practice finding information in the MCU manual; specifically setting timer control registers.
 
 <a name="preparation"></a>
 
@@ -89,19 +84,7 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 <a name="part2"></a>
 
-## Part 2: Synchronize repositories and create a new project
-
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
-
-3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-<a name="part3"></a>
-
-## Part 3: Timer overflow
+## Part 2: Timer overflow
 
 A timer (or counter) is an integral hardware component in a microcontroller unit (MCU) designed for measuring time-based events. The ATmega328P MCU features three timers, designated as Timer/Counter0, Timer/Counter1, and Timer/Counter2. Timer0 and Timer2 are 8-bit timers, whereas Timer1 is a 16-bit timer.
 
@@ -115,18 +98,22 @@ The counter increments in alignment with the microcontroller clock, ranging from
    | Timer/Counter1 | Prescaler<br><br>16-bit data value<br>Overflow interrupt enable | TCCR1B<br><br>TCNT1H, TCNT1L<br>TIMSK1 | CS12, CS11, CS10<br>(000: stopped, 001: 1, 010: 8, 011: 64, 100: 256, 101: 1024)<br>TCNT1[15:0]<br>TOIE1 (1: enable, 0: disable) |
    | Timer/Counter2 | Prescaler<br><br>8-bit data value<br>Overflow interrupt enable | <br><br><br> | <br><br><br> |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
+2. In Visual Studio Code create a new PlatformIO project `lab3-timers` for `Arduino Uno` board and change project location to your local folder.
 
-3. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
+3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
+4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
+
+5. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
+
+6. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
    ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
-   │   └── gpio        // Your GPIO library
+   │   └── gpio        // Your GPIO library (from the previous Lab)
    │       ├── gpio.c
    │       └── gpio.h
    ├── src             // Source file(s)
@@ -137,7 +124,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
    To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-5. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
+7. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
    ```c
    #include <avr/io.h>         // AVR device-specific IO definitions
@@ -163,13 +150,13 @@ The counter increments in alignment with the microcontroller clock, ranging from
    }
    ```
 
-6. In `timer.h` header file, define similar macros also for Timer/Counter0 and Timer/Counter2. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) or two LEDs and resistors to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
+8. In `timer.h` header file, define similar macros also for Timer/Counter0 and Timer/Counter2. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) or two LEDs and resistors to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
 
-7. (Optional) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+9. Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
-<a name="part4"></a>
+<a name="part3"></a>
 
-## Part 4: Extend the overflow
+## Part 3: Extend the overflow
 
 1. Use Timer/Counter0 16-ms overflow and toggle `LED_RED` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
 
@@ -220,10 +207,6 @@ The counter increments in alignment with the microcontroller clock, ranging from
        // t_ovf = 1/16e6 * (256-128) * 1024 = 8 ms
    }
    ```
-
-3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="challenges"></a>
 

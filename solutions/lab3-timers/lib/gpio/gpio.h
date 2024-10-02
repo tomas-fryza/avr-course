@@ -1,17 +1,15 @@
 #ifndef GPIO_H
 # define GPIO_H
 
-/***********************************************************************
+/***********************************************************
  * 
  * GPIO library for AVR-GCC.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2019-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2019 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  *
- **********************************************************************/
+ ***********************************************************/
 
 /**
  * @file 
@@ -32,11 +30,11 @@
  */
 
 
-/* Includes ----------------------------------------------------------*/
+/* Includes -----------------------------------------------*/
 #include <avr/io.h>
 
 
-/* Function prototypes -----------------------------------------------*/
+/* Function prototypes ------------------------------------*/
 /**
  * @brief  Configure one output pin.
  * @param  reg Address of Data Direction Register, such as &DDRB
@@ -82,10 +80,10 @@ void GPIO_write_high(volatile uint8_t *reg, uint8_t pin);
 uint8_t GPIO_read(volatile uint8_t *reg, uint8_t pin);
 
 
-/* GPIO_config_input_nopull */
+void GPIO_mode_input_nopull(volatile uint8_t *reg, uint8_t pin);
 
 
-/* GPIO_toggle */
+void GPIO_toggle(volatile uint8_t *reg, uint8_t pin);
 
 
 /** @} */

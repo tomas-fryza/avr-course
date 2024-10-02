@@ -1,6 +1,6 @@
 /***********************************************************
  * 
- * Blink a LED using function from the delay library.
+ * Blink a LED using register approach.
  * (c) 2018-2024 Tomas Fryza, MIT license
  *
  * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.

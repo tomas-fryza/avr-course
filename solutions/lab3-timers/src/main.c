@@ -68,7 +68,7 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    PORTB = PORTB ^ (1<<LED_GREEN);
+    GPIO_toggle(&PORTB, LED_GREEN);
 }
 
 
@@ -78,24 +78,24 @@ ISR(TIMER1_OVF_vect)
  **********************************************************************/
 ISR(TIMER0_OVF_vect)
 {
-    static uint8_t no_of_overflows = 0;
+    static uint8_t n_ovfs = 0;
 
-    no_of_overflows++;
-    if (no_of_overflows >= 6) {
+    n_ovfs++;
+    if (n_ovfs >= 6) {
         // Do this every 6 x 16 ms = 100 ms
-        no_of_overflows = 0;
-        PORTB = PORTB ^ (1<<LED_RED);
+        n_ovfs = 0;
+        GPIO_toggle(&PORTB, LED_GREEN);
     }
     // Else do nothing and exit the ISR
 }
 
 
 /*
-    static uint8_t no_of_overflows = 0;
+    static uint8_t n_ovfs = 0;
 
-    no_of_overflows++;
-    if (no_of_overflows >= 30) {
-        no_of_overflows = 0;
+    n_ovfs++;
+    if (n_ovfs >= 30) {
+        n_ovfs = 0;
     }
 
     // 0, 1, 2, 3, 4, 5, ..., 250, 251, 252, 253, 254, 255, 0 
