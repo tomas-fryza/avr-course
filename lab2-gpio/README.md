@@ -131,7 +131,7 @@ A detailed description of working with input/output ports can be found in [ATmeg
 
    ```c
    // Set bit value to 1
-   reg = reg & (1<<bit);
+   reg = reg | (1<<bit);
 
    // Clear bit value to 0
    reg = reg & ~(1<<bit);
