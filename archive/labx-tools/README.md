@@ -3,7 +3,6 @@
 * [Pre-Lab preparation](#preparation)
 * [Part 1: GitHub](#part1)
 * [Part 2: Install and test AVR tools](#part2)
-* [(Optional) Part 3: SimulIDE electronic circuit simulator](#part3)
 * [(Optional) Part 4: Logic analyzer](#part4)
 * [Challenges](#challenges)
 * [References](#references)
@@ -150,25 +149,6 @@ GitHub serves as a platform for hosting code, facilitating collaboration, and ma
 
    ![git](images/git_basics.png)
 
-<a name="part3"></a>
-
-## (Optional) Part 3: SimulIDE electronic circuit simulator
-
-1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
-
-2. All circuit and control elements are available in the **Components** tab. Use the following components: ATmega328 (**Micro > AVR > atmega > atmega328**), resistor (**Passive > Resistors > Resistor**), LED (**Outputs > Leds > Led**), and GND (**Sources > Ground (0 V)**) and connect them as shown.
-
-   ![SimulIDE](images/screenshot_simulide.png)
-
-3. Right-click on the ATmega package and select **Load firmware**. In your project folder, find the `*.hex` file that was created by the previous compilation process.
-
-4. Right-click on the ATmega package and select **Open Mcu Monitor** to view internal registers and memory contents. Select **Variable** folder. In the **Reg.** column, type `DDRB` on the first line and `PORTB` on the second.
-
-5. Click to **Power Circuit** button at the top of the window to simulate the project and monitor the LED status and register values. The simulation can be paused with the **Pause Simulation** button and stopped by pressing the **Power Circuit** button again.
-
-6. You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope**), a voltmeter (**Meters > Voltimeter**), or a frequency meter (**Meters > Frequencimeter**) to output B5 and observe the signal.
-
-7. Properties of individual components can be found/changed by right-clicking on the component and selecting **Properties**.
 
 <a name="part4"></a>
 

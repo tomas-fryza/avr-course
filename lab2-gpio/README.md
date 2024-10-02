@@ -4,6 +4,7 @@
 * [Part 1: PlatformIO](#part1)
 * [Part 2: GPIO control registers](#part2)
 * [Part 3: GPIO library files](#part3)
+* [Part 4: SimulIDE electronic circuit simulator](#part4)
 * [Challenges](#challenges)
 * [References](#references)
 
@@ -255,6 +256,26 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 5. On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
    ![schema of active-low push button](images/schema_button_active-low.png)
+
+<a name="part4"></a>
+
+## Part 4: SimulIDE electronic circuit simulator
+
+1. Run SimulIDE, use online [tutorials](https://www.simulide.com/p/blog-page.html), and create a circuit with ATmega328 AVR microcontroller.
+
+2. All circuit and control elements are available in the **Components** tab. Use the following components: ATmega328 (**Micro > AVR > atmega > atmega328**), resistor (**Passive > Resistors > Resistor**), LED (**Outputs > Leds > Led**), and GND (**Sources > Ground (0 V)**) and connect them as shown.
+
+   ![SimulIDE](images/screenshot_simulide.png)
+
+3. Right-click on the ATmega package and select **Load firmware**. In your project folder, find the `*.hex` file that was created by the previous compilation process.
+
+4. Right-click on the ATmega package and select **Open Mcu Monitor** to view internal registers and memory contents. Select **Variable** folder. In the **Reg.** column, type `DDRB` on the first line and `PORTB` on the second.
+
+5. Click to **Power Circuit** button at the top of the window to simulate the project and monitor the LED status and register values. The simulation can be paused with the **Pause Simulation** button and stopped by pressing the **Power Circuit** button again.
+
+6. You can connect a probe (**Meters > Probe**), an oscilloscope (**Meters > Oscope**), a voltmeter (**Meters > Voltimeter**), or a frequency meter (**Meters > Frequencimeter**) to output B5 and observe the signal.
+
+7. Properties of individual components can be found/changed by right-clicking on the component and selecting **Properties**.
 
 <a name="challenges"></a>
 
