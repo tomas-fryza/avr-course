@@ -2,7 +2,7 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Polling and interrupts](#part1)
-* [Part 2: Timer overflow](#part4)
+* [Part 2: Timer overflow](#part2)
 * [Part 3: Extend the overflow](#part3)
 * [Challenges](#challenges)
 * [References](#references)
@@ -106,7 +106,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 5. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
 
-6. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://github.com/tomas-fryza/avr-course/tree/master/library/include/timer.h) to `timer.h`. See the final project structure:
+6. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
