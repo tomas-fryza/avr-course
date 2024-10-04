@@ -2,29 +2,24 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: LCD screen module](#part1)
-* [Part 2: Synchronize repositories and create a new project](#part2)
-* [Part 3: Library for HD44780 based LCDs](#part3)
-* [Part 4: Stopwatch](#part4)
-* [Part 5: Custom characters](#part5)
+* [Part 2: Library for HD44780 based LCDs](#part2)
+* [Part 3: Stopwatch](#part3)
+* [Part 4: Custom characters](#part4)
 * [Challenges](#challenges)
 * [References](#references)
 
-### Components list
+### Component list
 
 * Arduino Uno board, USB cable
 * LCD keypad shield
 
 ### Learning objectives
 
-After completing this lab you will be able to:
-
 * Use alphanumeric LCD
 * Understand the digital communication between MCU and HD44780
 * Understand the ASCII table
 * Use library functions for LCD
 * Generate custom characters on LCD
-
-The purpose of the laboratory exercise is to understand the serial control of Hitachi HD44780-based LCD character display and how to define custom characters. Another goal is to learn how to read documentation for library functions and use them in your own project.
 
 <a name="preparation"></a>
 
@@ -98,19 +93,7 @@ When a command is given to LCD, the command register (RS = 0) is selected and wh
 
 <a name="part2"></a>
 
-## Part 2: Synchronize repositories and create a new project
-
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
-
-3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-<a name="part3"></a>
-
-## Part 3: Library for HD44780 based LCDs
+## Part 2: Library for HD44780 based LCDs
 
 In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury.
 
@@ -125,13 +108,15 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    | `lcd_puts` | | | |
    | `lcd_custom_char` | | | |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/04-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
+2. In Visual Studio Code create a new PlatformIO project `lab4-lcd` for `Arduino Uno` board and change project location to your local folder.
 
-3. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
+3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) from the previous lab to this file.
+4. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous labs to this folder.
 
-5. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
+5. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) from the previous lab to this file.
+
+6. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
 
    ```c
    LAB4-LCD            // PlatfomIO project
@@ -151,23 +136,25 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/lcd.h) to `lcd.h`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/lcd_definitions.h) to `lcd_definitions.h`
-   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/lcd.c) to `lcd.c`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd.h) to `lcd.h`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd_definitions.h) to `lcd_definitions.h`
+   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd.c) to `lcd.c`
 
-6. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
+7. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 
-7. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a non-blinking cursor after letter "c".
+8. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab4-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
+
+9. Use library functions `lcd_gotoxy()`, `lcd_puts()`, `lcd_putc()` and display strings/characters on the LCD as shown in the figure bellow. Explanation: You will later display the square of seconds at position "a", the process bar at "b", and the rotating text at position "c". Note, there is a non-blinking cursor after letter "c".
 
    ![LCD screenshot](images/screenshot_lcd_init.png)
 
 > **Note:** The figure above was created by online [LCD Display Screenshot Generator](http://avtanski.net/projects/lcd/).
 
-8. Use the PB2 pin to control the back-light of the LCD screen. (Optionally: Create a new library function for this purpose.)
+10. Use the PB2 pin to control the back-light of the LCD screen. (Optionally: Create a new library function for this purpose.)
 
-<a name="part4"></a>
+<a name="part3"></a>
 
-## Part 4: Stopwatch
+## Part 3: Stopwatch
 
 1. Use Timer/Counter2 16-ms overflow and update the stopwatch LCD value approximately every 100&nbsp;ms (6 x 16 ms = 100 ms) as explained in the previous lab. Display tenths of a second only in the form `00:00.tenths`, ie let the stopwatch counts from `00:00.0` to `00:00.9` and then starts again. Update LCD values within the forever loop in `main` function when global flag variable `update_lcd_stopwatch` is equal to `1`.
 
@@ -196,9 +183,10 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
        ...
 
        // Infinite loop
-       while (1) {
-           if (update_lcd_stopwatch == 1) {
-
+       while (1)
+       {
+           if (update_lcd_stopwatch == 1)
+           {
                itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
                // Display "00:00.tenths"
                lcd_gotoxy(7, 0);
@@ -226,9 +214,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
    ![LCD screenshot](images/screenshot_lcd_seconds.png)
 
-<a name="part5"></a>
+<a name="part4"></a>
 
-## Part 5: Custom characters
+## Part 4: Custom characters
 
 All LCD displays based on the Hitachi HD44780 controller have two types of memory that store defined characters: CGROM and CGRAM (Character Generator ROM & RAM). The CGROM memory is non-volatile and cannot be modified, while the CGRAM memory is volatile and can be modified at any time [[4]](https://lastminuteengineers.com/arduino-1602-character-lcd-tutorial/).
 
@@ -260,10 +248,6 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    ```
 
 2. Design at least two more custom character, store it in CGRAM memory according to the previous code, and display all three new characters on the LCD screen.
-
-3. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="challenges"></a>
 
