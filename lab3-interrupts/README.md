@@ -102,11 +102,9 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/03-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
+4. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
 
-5. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
-
-6. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/include/timer.h) to `timer.h`. See the final project structure:
+5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/include/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
@@ -124,13 +122,15 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
    To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
+6. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs3-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
+
 7. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
 
    ```c
    #include <avr/io.h>         // AVR device-specific IO definitions
    #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
    #include <gpio.h>           // GPIO library for AVR-GCC
-   #include "timer.h"          // Timer library for AVR-GCC
+   #include <timer.h>          // Timer library for AVR-GCC
 
    int main(void)
    {
@@ -150,9 +150,11 @@ The counter increments in alignment with the microcontroller clock, ranging from
    }
    ```
 
-8. In `timer.h` header file, define similar macros also for Timer/Counter0 and Timer/Counter2. On a breadboard, connect a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) or two LEDs and resistors to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
+8. In `timer.h` header file, define similar macros also for Timer/Counter0.
 
-9. Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+9. On a breadboard, connect two LEDs and resistors or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
+
+10. (Optional:) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part3"></a>
 
