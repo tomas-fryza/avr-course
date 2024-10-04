@@ -8,17 +8,17 @@
  * 
  ***********************************************************/
 
+/* Includes -----------------------------------------------*/
+#include <avr/io.h>     // AVR device-specific IO definitions
+#include <util/delay.h> // Functions for busy-wait delay loops
+#include <gpio.h>       // GPIO library for AVR-GCC
+
+
 /* Defines ------------------------------------------------*/
 #define LED_GREEN PB5   // AVR pin where green LED is connected
 #define LED_RED PB0
 #define BTN PD2
 #define SHORT_DELAY 250 // Delay in milliseconds
-
-
-/* Includes -----------------------------------------------*/
-#include <avr/io.h>     // AVR device-specific IO definitions
-#include <util/delay.h> // Functions for busy-wait delay loops
-#include <gpio.h>       // GPIO library for AVR-GCC
 
 
 /* Function definitions -----------------------------------*/
@@ -27,7 +27,8 @@
  * Purpose:  Toggle one LED and use delay library.
  * Returns:  none
  ***********************************************************/
-int main(void) {
+int main(void)
+{
     // Set pin(s) as output in Data Direction Register
     GPIO_mode_output(&DDRB, LED_GREEN);
     GPIO_mode_output(&DDRB, LED_RED);
@@ -37,7 +38,8 @@ int main(void) {
     GPIO_write_low(&PORTB, LED_RED);
 
     // Infinite loop
-    while (1) {
+    while (1)
+    {
         if (GPIO_read(&PIND, BTN))
         {
             // Pause several milliseconds

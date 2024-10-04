@@ -26,14 +26,16 @@
  * Purpose:  Toggle one LED and use delay library.
  * Returns:  none
  ***********************************************************/
-int main(void) {
+int main(void)
+{
     // Set pin as output in Data Direction Register
     DDRB = DDRB | (1 << LED_GREEN);
     // Set pin LOW in Data Register (LED off)
     PORTB = PORTB & ~(1 << LED_GREEN);
 
     // Infinite loop
-    while (1) {
+    while (1)
+    {
         // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
         // Invert LED in Data Register
