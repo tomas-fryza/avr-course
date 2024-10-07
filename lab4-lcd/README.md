@@ -112,9 +112,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 3. IMPORTANT: Rename `LAB4-LCD > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous labs to this folder.
+4. Copy the `timer.h` header file from the previous lab to `LCD4-LCD > include` folder.
 
-5. In PlatformIO project, create a new file `LAB4-LCD > include > timer.h`.  Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/timer.h) from the previous lab to this file.
+5. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files `gpio.c` and `gpio.h` from the previous labs to this folder.
 
 6. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
 
@@ -163,6 +163,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    **IMPORTANT:** Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
 
    ```c
+   ...
    #include <stdlib.h>         // C library. Needed for number conversions
    ...
    /* Global variables --------------------------------------------------*/
@@ -297,8 +298,4 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
 
 8. [CGRAM display memory](https://www.mikroe.com/ebooks/pic-microcontrollers-programming-in-c/additional-components)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
-
-10. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
-
-11. [Goxygen commands](https://www.doxygen.nl/manual/docblocks.html#specialblock)
+9. Tomas Fryza. [Schematic of LCD Keypad shield](https://oshwlab.com/tomas.fryza/arduino-shields)
