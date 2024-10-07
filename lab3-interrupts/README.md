@@ -59,9 +59,10 @@ An alternative approach is to employ **interrupts**. In this approach, a state c
 
 An interrupt is a fundamental feature of a microcontroller. It represents a signal sent to the processor by hardware or software, signifying an event that requires immediate attention. When an interrupt is triggered, the controller finishes executing the current instruction and proceeds to execute an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the [interrupt occurs](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
-Interrupts can be set up for events such as a counter's value, a pin changing state, receiving data through serial communication, or when the Analog-to-Digital Converter has completed the conversion process.
+Interrupts can be set up for events such as a counter's value, a pin changing state, receiving data through serial communication, or when the Analog-to-Digital Converter has completed the conversion process. See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P.
 
-See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P. Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
+ <!--
+Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
 
 | **Program address** | **Source** | **Vector name** | **Description** |
 | :-: | :-- | :-- | :-- |
@@ -79,6 +80,7 @@ See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega32
 |  | USART_RX |  |  |
 |  | ADC |  |  |
 |  | TWI |  |  |
+-->
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
@@ -88,7 +90,9 @@ All interrupts are disabled by default. If you want to use them, you must first 
 
 A timer (or counter) is an integral hardware component in a microcontroller unit (MCU) designed for measuring time-based events. The ATmega328P MCU features three timers, designated as Timer/Counter0, Timer/Counter1, and Timer/Counter2. Timer0 and Timer2 are 8-bit timers, whereas Timer1 is a 16-bit timer.
 
-The counter increments in alignment with the microcontroller clock, ranging from 0 to 255 for an 8-bit counter or 65,535 for a 16-bit counter. If counting continues, the timer value overflows to the default value of zero. Various clock sources can be designated for each timer by utilizing a CPU frequency divider equipped with predetermined prescaler values, including 8, 64, 256, 1024, and other options.
+The counter increments in alignment with the microcontroller clock, ranging from 0 to 255 for an 8-bit counter or 65,535 for a 16-bit counter. If counting continues, the timer value overflows to the default value of zero. Various clock sources can be designated for each timer by utilizing a CPU frequency divider equipped with predetermined prescaler values, including 8, 64, 256, 1024, and [other options](https://www.arxterra.com/12-timer-interrupts/).
+
+![timer1 settings](images/timer1_ref.jpg)
 
 1. The timer modules can be configured with several special purpose registers. According to the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (eg in the **8-bit Timer/Counter0 with PWM > Register Description** section), which I/O registers and which bits configure the timer operations?
 
@@ -122,9 +126,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
    To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-6. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs3-interrupts/main.c) to `LAB3-TIMERS > src > main.c` source file.
-
-7. Go through the files and make sure you understand each line. Build and upload the code to Arduino Uno board. Note that `src > main.c` file contains the following:
+6. Copy/paste the following template to `LAB3-TIMERS > src > main.c` source file and complete the code to blink the LED every 262 ms using Timer1 overflow interrupt.
 
    ```c
    #include <avr/io.h>         // AVR device-specific IO definitions
@@ -150,11 +152,11 @@ The counter increments in alignment with the microcontroller clock, ranging from
    }
    ```
 
-8. In `timer.h` header file, define similar macros also for Timer/Counter0.
+7. In `timer.h` header file, define similar macros also for Timer/Counter0.
 
-9. On a breadboard, connect two LEDs and resistors or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) to pins PB2 and PB3. Modify `main.c` file, and use three interrupts for controlling all three LEDs (one on-board and two off-board). Build and upload the code into ATmega328P and verify its functionality.
+8. On the breadboard, connect an LED and a resistor to pin PB2. Alternatively, you can use a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (a 3-pin LED) and resistors. If you choose the two-color LED, connect its pins to PB2 and PB3. In `main.c` file, modify the code to use Timer0 and Timer1 interrupts to control all the LEDs. Compile the code and upload it to the ATmega328P microcontroller. Ensure that the LEDs operate correctly as per the modified code.
 
-10. (Optional:) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+9. (Optional:) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part3"></a>
 
@@ -210,6 +212,8 @@ The counter increments in alignment with the microcontroller clock, ranging from
    }
    ```
 
+3. (Optional:) Determine the appropriate settings for Timer0 to create a 1-millisecond time base.
+
 <a name="challenges"></a>
 
 ## Challenges
@@ -244,6 +248,4 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 8. Tutorials Point. [Arduino - Pulse Width Modulation](https://www.tutorialspoint.com/arduino/arduino_pulse_width_modulation.htm)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
-
-10. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
+9. [Interrupts and 16-bit Timer/Counter 1: Atmel AVR Timers and Interrupts](https://www.arxterra.com/12-timer-interrupts/)
