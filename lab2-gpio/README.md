@@ -299,8 +299,4 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 3. avr-libc. [How do I pass an IO port as a parameter to a function?](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass)
 
-4. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
-
-5. [Goxygen commands](http://www.doxygen.nl/manual/docblocks.html#specialblock)
-
-6. LEDnique. [LED pinouts - 2, 3, 4-pin and more](http://lednique.com/leds-with-more-than-two-pins/)
+4. LEDnique. [LED pinouts - 2, 3, 4-pin and more](http://lednique.com/leds-with-more-than-two-pins/)
