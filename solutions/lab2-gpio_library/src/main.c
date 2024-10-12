@@ -1,5 +1,5 @@
 /***********************************************************
- * 
+ *
  * Blink a LED using GPIO library.
  * (c) 2019-2024 Tomas Fryza, MIT license
  *
