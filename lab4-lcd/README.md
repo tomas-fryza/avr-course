@@ -70,7 +70,7 @@ In the lab, the LCD1602 display module is used. The display consists of 2 rows o
 * D7:4 - Upper nibble used in 4-bit mode
 * K - Back-light cathode
 
-![LCD 16x2 pinout https://www.circuitbasics.com/](images/lcd_pinout.png)
+  ![LCD 16x2 pinout https://www.circuitbasics.com/](images/lcd_pinout.png)
 
 When a command is given to LCD, the command register (RS = 0) is selected and when data is sent to LCD, the data register (RS = 1) is selected. A **command** is an instruction entered on the LCD in order to perform the required function. In order to display textual information, **data** is send to LCD.
 
@@ -136,9 +136,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd.c) to `lcd.c`
    1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd.h) to `lcd.h`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd_definitions.h) to `lcd_definitions.h`
-   3. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd.c) to `lcd.c`
+   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd_definitions.h) to `lcd_definitions.h`
 
 7. Go through the `lcd_definitions.h` and `main.c` files and make sure you understand each line. Build and upload the code to Arduino Uno board.
 

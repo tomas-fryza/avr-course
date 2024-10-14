@@ -2,26 +2,21 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Basics of UART communication](#part1)
-* [Part 2: Synchronize repositories and create a new folder](#part2)
-* [Part 3: Communication between Arduino board and computer](#part3)
+* [Part 2: Communication between Arduino board and computer](#part2)
 * [Challenges](#challenges)
 * [References](#references)
 
-### Components list
+### Component list
 
 * Arduino Uno board, USB cable
 * Logic analyzer
 
 ### Learning objectives
 
-After completing this lab you will be able to:
-
 * Understand the UART communication
 * Decode UART frames
 * Use functions from UART library
 * Use logic analyzer
-
-The purpose of the laboratory exercise is to understand serial asynchronous communication, data frame structure and communication options using an internal USART unit.
 
 <a name="preparation"></a>
 
@@ -62,19 +57,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 <a name="part2"></a>
 
-## Part 2: Synchronize repositories and create a new project
-
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
-
-3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-<a name="part3"></a>
-
-## Part 3: Communication between Arduino board and computer
+## Part 2: Communication between Arduino board and computer
 
 In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury.
 
@@ -87,16 +70,15 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `uart_putc` | | | |
    | `uart_puts` | | | |
 
-2. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/05-uart/main.c) to `LAB5-UART > src > main.c` source file.
+2. In Visual Studio Code create a new PlatformIO project `lab5-uart` for `Arduino Uno` board and change project location to your local folder.
 
-3. Use your favorite file manager and copy `timer.h` file from the previous labs to `LAB5-UART > include` folder.
+3. IMPORTANT: Rename `LAB5-UART > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`.
+4. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab5-uart/main.c) to `LAB5-UART > src > main.c` source file.
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/uart.c) to `uart.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/uart.h) to `uart.h`
+5. Copy the `timer.h` header file from the previous labs to `LCD5-UART > include` folder.
 
-   The final project structure should look like this:
+6. In PlatformIO project, create a new folder `LAB5-UART > lib > uart`. Within this folder, create two new files `uart.c` and `uart.h`. The final project structure should look like this:
 
    ```c
    LAB5-UART           // PlatfomIO project
@@ -112,7 +94,10 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    └── platformio.ini  // Project Configuration File
    ```
 
-5. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart.c) to `uart.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/uart.h) to `uart.h`
+
+7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
 
    Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board. In PuTTY, set connection type to `Serial` and check that configuration is the same as in the ATmega328P application, ie. 9600 8N1 mode. Note that, **serial line** (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
 
@@ -123,7 +108,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-6. Configure Timer1 to overflow four times per second and transmit UART string `Paris`.
+8. Configure Timer1 to overflow four times per second and transmit UART string `Paris`.
 
    Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
 
@@ -133,7 +118,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >
    > You can find a comprehensive tutorial on utilizing a logic analyzer in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
 
-7. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
+9. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
 
    ```c
    ISR(TIMER1_OVF_vect)
@@ -171,7 +156,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `b` |  |  |  |
    | `c` |  |  |  |
 
-8. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
+10. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
 
    ```c
    /* 
@@ -197,10 +182,6 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    # Enable ANSI color codes in serial monitor
    monitor_raw = yes
    ```
-
-9. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
 
 <a name="challenges"></a>
 
@@ -277,6 +258,4 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 6. Kolban Technical Tutorials. [ESP32 Technical Tutorials: Using a logic analyzer](https://www.youtube.com/watch?v=CE4-T53Bhu0)
 
-7. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
-
-8. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
+7. Christian Petersen. [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)
