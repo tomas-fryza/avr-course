@@ -1,4 +1,4 @@
-/***********************************************************
+/***********************************************************************
  * 
  * Blink a LED using functions from GPIO and Timer libraries.
  * (c) 2018-2024 Tomas Fryza, MIT license
@@ -6,27 +6,27 @@
  * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
- ***********************************************************/
+ **********************************************************************/
 
-/* Includes -----------------------------------------------*/
+/* Includes ----------------------------------------------------------*/
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <gpio.h>           // GPIO library for AVR-GCC
 #include <timer.h>          // Timer library for AVR-GCC
 
 
-/* Defines ------------------------------------------------*/
+/* Defines -----------------------------------------------------------*/
 #define LED_GREEN PB5  // Arduino Uno on-board LED
 #define LED_RED PB0    // External active-low LED
 
 
-/* Function definitions -----------------------------------*/
-/***********************************************************
+/* Function definitions ----------------------------------------------*/
+/**********************************************************************
  * Function: Main function where the program execution begins
  * Purpose:  Toggle two LEDs using the internal 8- and 16-bit 
  *           Timer/Counter.
  * Returns:  none
- ***********************************************************/
+ **********************************************************************/
 int main(void)
 {
     // Set pins where LEDs are connected as output
@@ -57,21 +57,21 @@ int main(void)
 }
 
 
-/* Interrupt service routines -----------------------------*/
-/***********************************************************
+/* Interrupt service routines ----------------------------------------*/
+/**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Toggle on-board LED.
- ***********************************************************/
+ **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     GPIO_toggle(&PORTB, LED_GREEN);
 }
 
 
-/***********************************************************
+/**********************************************************************
  * Function: Timer/Counter0 overflow interrupt
  * Purpose:  Toggle external red LED.
- ***********************************************************/
+ **********************************************************************/
 ISR(TIMER0_OVF_vect)
 {
     static uint8_t n_ovfs = 0;
