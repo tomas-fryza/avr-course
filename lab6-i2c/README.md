@@ -2,14 +2,13 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: I2C bus](#part1)
-* [Part 2: Synchronize repositories and create a new project](#part2)
-* [Part 3: I2C scanner](#part3)
-* [Part 4: Communication with I2C devices](#part4)
-* [Part 5: OLED display 128x64](#part5)
+* [Part 2: I2C scanner](#part2)
+* [Part 3: Communication with I2C devices](#part3)
+* [Part 4: OLED display 128x64](#part4)
 * [Challenges](#challenges)
 * [References](#references)
 
-### Components list
+### Component list
 
 * Arduino Uno board, USB cable
 * Breadboard
@@ -21,15 +20,9 @@
 
 ### Learning objectives
 
-After completing this lab you will be able to:
-
 * Understand the I2C communication
 * Use functions from I2C library
 * Perform data transfers between MCU and I2C devices
-
-The main goal of this laboratory exercise is to develop a thorough understanding of serial synchronous communication via the I2C (Inter-Integrated Circuit) bus. This involves delving into the structure of address and data frames, investigating the communication capabilities provided by the internal TWI (Two Wire Interface) unit, and utilizing a C code library for I2C communication.
-
-![I2C bus](images/photo_oled-sensor.jpg)
 
 <a name="preparation"></a>
 
@@ -98,32 +91,19 @@ Note that, most I2C devices support repeated start condition. This means that be
 
 <a name="part2"></a>
 
-## Part 2: Synchronize repositories and create a new project
-
-1. In your working directory, use **Source Control (Ctrl+Shift+G)** in Visual Studio Code or Git Bash (on Windows) or Terminal (on Linux) to update the local repository.
-
-   > **Help:** Useful bash and git commands are `cd` - Change working directory. `mkdir` - Create directory. `ls` - List information about files in the current directory. `pwd` - Print the name of the current working directory. `git status` - Get state of working directory and staging area. `git pull` - Update local repository and working folder.
-
-2. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local repository folder `Documents/avr-course`.
-
-3. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
-
-<a name="part3"></a>
-
-## Part 3: I2C scanner
+## Part 2: I2C scanner
 
 The goal of this task is to create a program that will verify the presence of devices connected to the I2C bus by sequentially trying all address combinations.
 
-1. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/06-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
+1. In Visual Studio Code create a new PlatformIO project `lab6-i2c` for `Arduino Uno` board and change project location to your local folder.
 
-2. Use your favorite file manager and copy `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
+2. IMPORTANT: Rename `LAB6-I2C > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-3. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`.
+3. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab6-i2c/main.c) to `LAB6-I2C > src > main.c` source file.
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/twi.c) to `twi.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/twi.h) to `twi.h`
+4. Copy the `timer` and `uart` libraries from the previous lab to the proper locations within the `LAB6-IC2` project.
 
-   The final project structure should look like this:
+5. In PlatformIO project, create a new folder `LAB6-I2C > lib > twi`. Within this folder, create two new files `twi.c` and `twi.h`. The final project structure should look like this:
 
    ```c
    LAB6-I2C            // PlatfomIO project
@@ -142,7 +122,10 @@ The goal of this task is to create a program that will verify the presence of de
    └── platformio.ini  // Project Configuration File
    ```
 
-4. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the [`twi.h`](../library/include/twi.h) header file and add input parameters and description of the following functions.
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi.c) to `twi.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/twi.h) to `twi.h`
+
+6. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the [`twi.h`](../library/include/twi.h) header file and complete the following table by input parameters and functions descriptions.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
@@ -153,11 +136,13 @@ The goal of this task is to create a program that will verify the presence of de
    | `twi_stop` |  |  | `twi_stop();` |
    | `twi_test_address` | `sla` Slave address | Test presence of one I2C device on the bus. | `twi_test_address(0x3c);` |
 
-5. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
+7. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
+
+   ![I2C bus](images/photo_oled-sensor.jpg)
 
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
 
-   ![Arduino_uno_pinout](../../images/Pinout-UNOrev3_latest.png)
+   ![Arduino_uno_pinout](../archive/images/Pinout-UNOrev3_latest.png)
 
    * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf) digital sensor
 
@@ -167,21 +152,21 @@ The goal of this task is to create a program that will verify the presence of de
 
    * Optional: [GY-521 module](https://github.com/tomas-fryza/avr-course/blob/master/docs/mpu-6050_datasheet.pdf) (MPU-6050 Microelectromechanical systems that features a 3-axis gyroscope, a 3-axis accelerometer, a digital motion processor (DMP), and a temperature sensor).
 
-6. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate is set to 115200, therefore you need to add a line to your `platformio.ini` config file:
+8. Perform a scan to detect the slave addresses of connected I2C devices. Endeavor to determine the corresponding chip associated with each address. Note that UART baud rate in `main.c` is set to 115200, therefore you need to add a line to your `platformio.ini` config file to make sure the Serial Monitor is using the same. Open the Serial Monitor in PlatformIO after the Upload.
 
    ```shell
    monitor_speed = 115200
    ```
 
-7. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
+9. Connect the logic analyzer to the I2C and Tx wires. Launch the logic analyzer software Logic and Start the capture. Add two protocol analyzers: **I2C** and **Async Serial**.
 
-<a name="part4"></a>
+<a name="part3"></a>
 
-## Part 4: Communication with I2C devices
+## Part 3: Communication with I2C devices
 
 The goal of this task is to communicate with the DHT12 temperature and humidity sensor assigned to the I2C slave address `0x5c`.
 
-1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DHT12 manual](../../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
+1. Program an application which reads data from humidity/temperature DHT12 sensor and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DHT12 manual](../docs/dht12_manual.pdf), the internal DHT12 data registers have the following structure.
 
    | **Memory location** | **Description** |
    | :-: | :-- |
@@ -195,7 +180,9 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
    ```c
    ...
-   
+   #include "timer.h"
+   ...
+
    /* Global variables --------------------------------------------------*/
    // Declaration of "dht12" variable with structure "DHT_values_structure"
    struct DHT_values_structure {
@@ -244,8 +231,8 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        }
 
        // Timer1
-       TIM1_OVF_1SEC
-       TIM1_OVF_ENABLE
+       TIM1_ovf_1sec();
+       TIM1_ovf_enable();
 
        sei();
 
@@ -301,7 +288,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
 2. Modify the code and read values from all DHT12 memory locations, print them, and verify the checksum byte.
 
-   > **Alternation:** Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../../docs/ds3231_manual.pdf), the internal RTC memory have the following structure.
+   > **Alternation:** Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../docs/ds3231_manual.pdf), the internal RTC memory have the following structure.
    >
    > | **Address** | **Bit 7** | **Bits 6:4** | **Bits 3:0** |
    > | :-: | :-: | :-: | :-: |
@@ -312,9 +299,9 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
 3. Verify the I2C communication with logic analyzer.
 
-<a name="part5"></a>
+<a name="part4"></a>
 
-## Part 5: OLED display 128x64
+## Part 4: OLED display 128x64
 
 An OLED I2C display, or OLED I2C screen, is a type of display technology that combines an OLED (Organic Light Emitting Diode) panel with an I2C (Inter-Integrated Circuit) interface for communication. The I2C interface simplifies the connection between the display and a microcontroller, making it easier to control and integrate into various electronic projects.
 
@@ -322,9 +309,9 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/font.h)
-   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/oled.c)
-   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/oled.h)
+   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/font.h)
+   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled.c)
+   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/oled.h)
 
    Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/solutions/lab6-i2c-oled/src/main.c).
 
@@ -349,11 +336,7 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 2. Compile the project and upload it to MCU. Use other functions from `oled.h` library and draw lines and rectangles on the display.
 
-3. Combine temperature and OLED examples and print DHT12 senzor values on OLED display.
-
-4. After completing your work, ensure that you synchronize the contents of your working folder with both the local and remote repository versions. This practice guarantees that none of your changes are lost. You can achieve this by using **Source Control (Ctrl+Shift+G)** in Visual Studio Code or by utilizing Git commands.
-
-   > **Help:** Useful git commands are `git status` - Get state of working directory and staging area. `git add` - Add new and modified files to the staging area. `git commit` - Record changes to the local repository. `git push` - Push changes to remote repository. `git pull` - Update local repository and working folder. Note that, a brief description of useful git commands can be found [here](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands) and detailed description of all commands is [here](https://github.com/joshnh/Git-Commands).
+3. Combine temperature and OLED examples and print DHT12 sensor values on OLED display.
 
 <a name="challenges"></a>
 
@@ -388,8 +371,6 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
    ![I2C scanner circuit](images/screenshot_simulide_i2c_scan.png)
 
    Program an application that communicates with memory modules using the I2C bus. Store random data in the first ten address positions of the first and second memory modules. Then copy 5 values from the first memory to the third and another 5 values from the second memory to the third one. Send the first ten values from each memory module to the UART.
-
-8. Finish all (or several) experiments, upload them to your GitHub repository, and submit the project link via [BUT e-learning](https://moodle.vutbr.cz/). The deadline for submitting the assignment is the day prior to the next lab session, which is one week from now.
 
 <a name="references"></a>
 
