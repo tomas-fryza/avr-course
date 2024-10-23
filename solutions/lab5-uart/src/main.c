@@ -1,15 +1,12 @@
 /***********************************************************************
  * 
  * Use USART unit and transmit data between ATmega328P and computer.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2018-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2018 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
  **********************************************************************/
-
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
