@@ -212,7 +212,7 @@ The counter increments in alignment with the microcontroller clock, ranging from
    }
    ```
 
-3. (Optional:) Determine the appropriate settings for Timer0 to create a 1-millisecond time base.
+3. (Optional:) Use CTC (Clear Timer on Compare Match) mode of Timer0 and create a 1-millisecond time base with `TIMER0_COMPA_vect` interrupt vector. Toggle output pin using this interrupt and verify 1-millisecond duration by a logic analyzer.
 
 <a name="challenges"></a>
 
