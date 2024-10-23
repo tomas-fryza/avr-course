@@ -25,19 +25,23 @@
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Use Timer/Counter1 and transmit UART data four times 
- *           per second.
+ * Purpose:  Use Timer/Counter1 and transmit UART data.
  * Returns:  none
  **********************************************************************/
 int main(void)
 {
+    uint16_t value;
+    char string[8];  // String for converted numbers by itoa()
+
     // Initialize USART to asynchronous, 8N1, 9600
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
 
     // Configure 16-bit Timer/Counter1 to transmit UART data
-    // Set prescaler to 262 ms and enable overflow interrupt
-    TIM1_ovf_262ms();
-    TIM1_ovf_enable();
+    // Set prescaler to 1 sec and enable overflow interrupt
+    TIM1_ovf_1sec();
+    // TIM1_ovf_enable();
+
+    TIM0_ovf_16ms();
 
     // Interrupts must be enabled, bacause of `uart_puts()`
     sei();
@@ -49,6 +53,50 @@ int main(void)
 
     // Infinite loop
     while (1) {
+        // Get received data from UART
+        value = uart_getc();
+        if ((value & 0xff00) == 0)  // If successfully received data from UART
+        {
+            if (value == '1')
+            {
+                value = TCNT1;
+                itoa(value, string, 16);
+                uart_puts("Timer1: 0x");
+                uart_puts(string);
+                uart_puts("\r\n");
+            }
+            else if (value == '0')
+            {
+                value = TCNT0;
+                itoa(value, string, 16);
+                uart_puts("Timer0: 0x");
+                uart_puts(string);
+                uart_puts("\r\n");
+            }
+            else
+            {
+                // Transmit the received character back via UART
+                uart_putc(value);
+
+                // Transmit the ASCII code also in hex, dec, and bin
+                itoa(value, string, 16);
+                uart_puts("\x1b[1;32m");
+                uart_puts("\t0x");
+                uart_puts(string);
+                uart_puts("\x1b[0m");
+
+                itoa(value, string, 10);
+                uart_puts("\t");
+                uart_puts(string);
+
+                itoa(value, string, 2);
+                uart_puts("\t0b");
+                uart_puts(string);
+
+                // New line
+                uart_puts("\r\n");
+            }
+        }
     }
 
     // Will never reach this
@@ -58,57 +106,13 @@ int main(void)
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Transmit UART data four times per second.
+ * Purpose:  Transmit UART data.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
     // WRITE YOUR CODE HERE
     uart_puts("Paris\t");
 }
-
-
-
-/*
-    // WRITE YOUR CODE HERE
-    uart_puts("Paris\t");
-*/
-
-
-
-/*
-    uint8_t value;
-    char string[8];  // String for converted numbers by itoa()
-
-    // Get received data from UART
-    value = uart_getc();
-    if (value != '\0') {  // Data are available
-        // Send received character back
-        uart_puts("\x1b[4;32m");  // Esc [ 4 ; 3 2 m
-        uart_putc(value);
-        uart_puts("\x1b[0m");
-
-        // Send also string with ASCII code in dec, hex, and bin
-
-        // WRITE YOUR CODE HERE
-        uart_puts("\t");
-        itoa(value, string, 10);
-        uart_puts("\x1b[31m");
-        uart_puts(string);
-        uart_puts("\x1b[0m");
-
-        uart_puts("\t0x");
-        itoa(value, string, 16);
-        uart_puts(string);
-        uart_puts("\r\n");
-    }
-*/
-
-
-
-/*
-    uart_puts("Chr \tDec \tHx \tBin \t\tEven \r\n");
-    uart_puts("---------------------------------------------\r\n");
-*/
 
 
 

@@ -2,7 +2,8 @@
 
 * [Pre-Lab preparation](#preparation)
 * [Part 1: Basics of UART communication](#part1)
-* [Part 2: Communication between Arduino board and computer](#part2)
+* [Part 2: UART transmitter](#part2)
+* [Part 3: Bidirectional communication between Arduino board and computer](#part3)
 * [Challenges](#challenges)
 * [References](#references)
 
@@ -57,7 +58,7 @@ One of the most common UART formats is called **9600 8N1**, which means 8 data b
 
 <a name="part2"></a>
 
-## Part 2: Communication between Arduino board and computer
+## Part 2: UART transmitter
 
 In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-software.html) developed by Peter Fleury.
 
@@ -66,7 +67,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | **Function name** | **Function parameter(s)** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
    | `uart_init` | `UART_BAUD_SELECT(9600, F_CPU)` | Initialize UART to 8N1 and set baudrate to 9600&nbsp;Bd | `uart_init(UART_BAUD_SELECT(9600, F_CPU));` |
-   | `uart_getc` | | | |
+   | `uart_getc` | None | Returns in the lower byte the received character and in the higher byte the last receive error | `uint16_t value = uart_getc();` |
    | `uart_putc` | | | |
    | `uart_puts` | | | |
 
@@ -99,18 +100,20 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
 
-   Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board. In PuTTY, set connection type to `Serial` and check that configuration is the same as in the ATmega328P application, ie. 9600 8N1 mode. Note that, **serial line** (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
-
-   ![PuTTY](images/screenshot_putty_type.png)
-   ![PuTTY](images/screenshot_putty_config.png)
-
+   Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
+   
+   > In PuTTY, set connection type to `Serial` and check that configuration is the same as in the ATmega328P application, ie. 9600 8N1 mode. Note that, **serial line** (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
+   >
+   >   ![PuTTY](images/screenshot_putty_type.png)
+   >   ![PuTTY](images/screenshot_putty_config.png)
+   >
    > **Warning:** Before Arduino board re-programming process, PuTTY app must be closed!
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
 
-8. Configure Timer1 to overflow four times per second and transmit UART string `Paris`.
+8. Configure Timer1 to overflow once per second and transmit UART string `Paris`.
 
-   Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
+9. Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
@@ -118,30 +121,49 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >
    > You can find a comprehensive tutorial on utilizing a logic analyzer in this [video](https://www.youtube.com/watch?v=CE4-T53Bhu0).
 
-9. Use `uart_getc` function and display the ASCII code of received character in decimal, hexadecimal, and binary. You can use Timer1 overflow handler to perform such receiver. Fill the table with selected keys.
+<a name="part3"></a>
+
+## Part 3: Bidirectional communication between Arduino board and computer
+
+In this part, you will establish communication between a PC and an Arduino board. Each key press on the computer keyboard will be transmitted via UART to the microcontroller. The Arduino will convert the received key code into several numeric systems and then send these codes back to the PC.
+
+1. Use the `uart_getc` function to receive characters. Display the ASCII code of each received character in hexadecimal, decimal, and binary formats. Disable the Timer1 overflow interrupt and continuously read received characters in the main loop.
 
    ```c
-   ISR(TIMER1_OVF_vect)
+   ...
+   int main(void)
    {
-       uint8_t value;
+       uint16_t value;
        char string[8];  // String for converted numbers by itoa()
 
-       // Get received data from UART
-       value = uart_getc();
-       if (value != '\0') {  // Data are available
-           // Send received character back
-           uart_putc(value);
+       ...
+       while (1)
+       {
+           // Get received data from UART
+           value = uart_getc();
+           if ((value & 0xff00) == 0)  // If successfully received data from UART
+           {
+               // Transmit the received character back via UART
+               uart_putc(value);
 
-           // Send also string with ASCII code in dec, hex, and bin
+               // Transmit the ASCII code also in hex, dec, and bin
+               itoa(value, string, 16)
 
-           // WRITE YOUR CODE HERE
+               // WRITE YOUR CODE HERE
+
+               // New line
+               uart_puts("\r\n");
+           }
        }
+       return 0;
    }
    ```
 
+   Complete the table.
+
    | **Char** | **Decimal** | **Hexadecimal** | **Binary** |
    | :-: | :-: | :-: | :-: |
-   | `Esc` |  |  |  |
+   | `Esc` | 27 | 0x1b | `0b0001_1011` |
    | `Space` |  |  |  |
    | `Tab` |  |  |  |
    | `Backspace` |  |  |  |
@@ -156,7 +178,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    | `b` |  |  |  |
    | `c` |  |  |  |
 
-10. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of transmitted strings according to the following code. Try other formatting styles.
+2. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of one column from the previous table. Try other formatting styles as well.
 
    ```c
    /* 
@@ -165,13 +187,13 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
     * semi colon `;` and ended by `m` character.
     *
     * Examples:
-    *   \x1b[1;31m  - Set style to bold, red foreground
-    *               - Will send sequence of "Esc [ 1 ; 3 1 m"
-    *   \x1b[4;32m  - Set underline style, green foreground
+    *   \x1b[1;32m  - Set style to bold, green foreground
+    *               - Will send sequence of "Esc [ 1 ; 3 2 m"
+    *   \x1b[4;31m  - Set underline style, red foreground
     *   \x1b[0m     - Reset all attributes
     */
-   uart_puts("\x1b[4;32m");  // 4: underline style; 32: green foreground
-   uart_puts("This is all Green and Underlined\r\n");
+   uart_puts("\x1b[1;32m");  // 1: bold style; 32: green foreground
+   uart_puts("This is all Green and Bold\r\n");
    uart_puts("\x1b[0m");     // 0: reset all attributes
    uart_puts("This is Normal text again\r\n");
    ```
@@ -183,13 +205,7 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    monitor_raw = yes
    ```
 
-<a name="challenges"></a>
-
-## Challenges
-
-1. Use ATmega328P datasheet and find out how to change the baud rate to `115200`.
-
-2. Program an interactive console that communicates between ATmega328P and the computer (PuTTY application) via UART. If you send command `timer?` the MCU will return the current Timer1 value back to the computer.
+3. Enhance the code from the previous task and read the contents of the Timer 1 data register and send it via UART to the computer when the key code `1` is received. In all other cases, the functionality of the code will remain the same as in the previous example.
 
    > **Warning:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
    >
@@ -213,7 +229,15 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    >#endif
    >```
 
-3. Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
+<a name="challenges"></a>
+
+## Challenges
+
+1. Program a loop to calculate even parity bit from received character value.
+
+   ![Flowchart for Even parity](images/flowchart_parity_algo.png)
+
+2. Verify basic AT commands of Wi-Fi module ESP8266 ESP-01. Connect Wi-Fi module to Arduino Uno board according to the following instructions.
 
    | **ESP-01 pin** | **Arduino Uno pin** | **ESP-01 pin** | **Arduino Uno pin** |
    | :-: | :-: | :-: | :-: |
@@ -234,13 +258,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
    The complete list and description of all AT commands are available [here](https://github.com/tomas-fryza/avr-course/blob/master/docs/esp8266_at_instruction_set.pdf) or [here](https://digilent.com/reference/pmod/pmodesp32/reference-manual). To avoid a conflict with Wi-Fi module, remove the Tx and Rx wires when uploading the firmware and put them back after the upload is complete.
 
-4. Program a piece of code to calculate even parity bit from received value.
+3. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
 
-   ![Flowchart for Even parity](images/flowchart_parity_algo.png)
-
-5. Draw a timing diagram of the output from UART/USART when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd). The image can be drawn on a computer (by [WaveDrom](https://wavedrom.com/) for example) or by hand. Name all parts of timing diagram.
-
-6. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
+4. Program a software UART transmitter (emulated UART) that will be able to generate UART data on any output pin of the ATmega328P microcontroller. Let the bit rate be approximately 9600&nbsp;Bd and do not use the delay library. Also consider the possibility of calculating the parity bit. Verify the UART communication with logic analyzer or oscilloscope.
 
 <a name="references"></a>
 

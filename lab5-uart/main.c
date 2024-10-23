@@ -1,15 +1,12 @@
 /***********************************************************************
  * 
  * Use USART unit and transmit data between ATmega328P and computer.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2018-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2018 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
  **********************************************************************/
-
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
@@ -28,8 +25,7 @@
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
  * Function: Main function where the program execution begins
- * Purpose:  Use Timer/Counter1 and transmit UART data four times 
- *           per second.
+ * Purpose:  Use Timer/Counter1 and transmit UART data.
  * Returns:  none
  **********************************************************************/
 int main(void)
@@ -38,7 +34,7 @@ int main(void)
     uart_init(UART_BAUD_SELECT(9600, F_CPU));
 
     // Configure 16-bit Timer/Counter1 to transmit UART data
-    // Set prescaler to 262 ms and enable overflow interrupt
+    // Set prescaler to 1 sec and enable overflow interrupt
 
     // WRITE YOUR CODE HERE
 
@@ -61,7 +57,7 @@ int main(void)
 /* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Transmit UART data four times per second.
+ * Purpose:  Transmit UART data.
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
