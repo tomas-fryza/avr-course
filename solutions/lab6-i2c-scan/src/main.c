@@ -60,10 +60,14 @@ int main(void)
         }
     }
 
-    while (1) {
-        ;
+    // Infinite loop
+    while (1)
+    {
+        /* Empty loop. All subsequent operations are performed exclusively 
+         * inside interrupt service routines ISRs */
     }
 
+    // Will never reach this
     return 0;
 }
 

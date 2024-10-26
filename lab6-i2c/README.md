@@ -392,6 +392,4 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
 8. LastMinuteEngineers. [Interface DS3231 Precision RTC Module with Arduino](https://lastminuteengineers.com/ds3231-rtc-arduino-tutorial/)
 
-9. Tomas Fryza. [Useful Git commands](https://github.com/tomas-fryza/avr-course/wiki/Useful-Git-commands)
-
-10. Sylaina. [OLED for AVR mikrocontrollers](https://github.com/Sylaina/oled-display)
+9. Sylaina. [OLED for AVR mikrocontrollers](https://github.com/Sylaina/oled-display)
