@@ -2,12 +2,10 @@
 ;*
 ;* Assembly implementation of 4- and 8-bit pseudo-random generators based
 ;* on LFSR (Linear Feedback Shift Register) with Fibonacci architecture.
+;* (c) 2017-2024 Tomas Fryza, MIT license
 ;*
-;* ATmega328P (Arduino Uno), 16 MHz, PlatformIO
-;*
-;* Copyright (c) 2017 Tomas Fryza
-;* Dept. of Radio Electronics, Brno University of Technology, Czechia
-;* This work is licensed under the terms of the MIT license.
+;* Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+;* Tested on Arduino Uno board and ATmega328P, 16 MHz.
 ;*
 ;* Inspired by:
 ;*   http://www.physics.otago.ac.nz/reports/electronics/ETR2012-1.pdf
@@ -88,7 +86,6 @@ lfsr4_fibonacci_asm:
     pop temp1              ; Restore used registers from Stack
     pop temp0
     ret                    ; Return from subroutine
-
 
 
 

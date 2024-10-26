@@ -2,28 +2,25 @@
  * 
  * Implementation of LFSR-based (Linear Feedback Shift Register) 
  * pseudo-random generator in AVR assembly.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2017-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2017 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  * 
  * NOTE:
  *   To see assembly listing, run the following command in Terminal
  *   after the compilation.
  * 
  *   Windows:
- *   avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
+ *   C:\Users\YOUR-LOGIN\.platformio\packages\toolchain-atmelavr\bin\avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
  * 
- *   Linux:
+ *   Linux, Mac:
  *   ~/.platformio/packages/toolchain-atmelavr/bin/avr-objdump -S -d -m avr .pio/build/uno/firmware.elf > firmware.lst
  * 
  * SEE ALSO:
  *   https://five-embeddev.com/baremetal/platformio/
  *
  **********************************************************************/
-
 
 // Settings for main page of Doxygen manual
 /**
@@ -33,10 +30,8 @@
  * Electronics 2 at Brno University of Technology, Czechia.
  * 
  * @author Tomas Fryza, Peter Fleury
- * @copyright (c) 2018 Tomas Fryza, This work is licensed under 
- *                the terms of the MIT license
+ * @copyright (c) 2017-2024 Tomas Fryza, MIT license
  */
-
 
 /* Defines -----------------------------------------------------------*/
 #ifndef F_CPU
@@ -52,6 +47,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
+/* Function prototypes -----------------------------------------------*/
 // Goxygen module with assembly functions starts here
 /**
  * @defgroup fryza_asm Assembly functions
@@ -59,7 +55,6 @@
  * @{
  */
 
-/* Function prototypes -----------------------------------------------*/
 /**
  * @brief  Multiply-and-Accumulate operation, ie. result = result + (a*b).
  * @param  result Current MAC value
@@ -97,16 +92,11 @@ int main(void)
     // NOTE: Add `monitor_speed = 115200` to `platformio.ini`
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
-    // Configure 16-bit Timer/Counter1 to generate one LFSR state
-    // Set prescaler to 1 sec and enable interrupt
+    // Configure 16-bit Timer/Counter1
     TIM1_ovf_1sec();
     TIM1_ovf_enable();
 
-    // Enables interrupts by setting the global interrupt mask
     sei();
-
-    // Put strings to ringbuffer for transmitting via UART
-    uart_puts("LFSR-based pseudo-random generator:\r\n");
 
     // Infinite loop
     while (1)
@@ -132,13 +122,17 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static uint8_t value = 0;  // Initial value
-    char string[3];            // String for converting numbers by itoa()
+    static uint8_t value = 0;
+    char string[3];  // String for converting numbers by itoa()
 
     // Multiply-and-accumulate Assembly example
-    value = multiply_accumulate_asm(value, 2, 3);
+    //                                 c + (a*b)
+    value = multiply_accumulate_asm(value, 3, 7);
 
-    // Send new `value` to UART
+    // Send value to UART
+    itoa(value, string, 10);
+    uart_puts(string);
+    uart_puts(", ");
 
     // WRITE YOUR CODE HERE
 

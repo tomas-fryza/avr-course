@@ -1,15 +1,12 @@
 ;* ---------------------------------------------------------------------
 ;*
-;* Assembly example of 8-bit unsigned Multiply-and-Accumulate.
+;* 8-bit unsigned Multiply-and-Accumulate in assembly.
+;* (c) 2022-2024 Tomas Fryza, MIT license
 ;*
-;* ATmega328P (Arduino Uno), 16 MHz, PlatformIO
-;*
-;* Copyright (c) 2022 Tomas Fryza
-;* Dept. of Radio Electronics, Brno University of Technology, Czechia
-;* This work is licensed under the terms of the MIT license.
+;* Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+;* Tested on Arduino Uno board and ATmega328P, 16 MHz.
 ;*
 ;* ---------------------------------------------------------------------
-
 
 ;* Includes ------------------------------------------------------------
 ; Set offset for control register addresses (NEEDED FOR I/O REGISTERS)
