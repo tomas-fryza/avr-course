@@ -1,6 +1,6 @@
 # C project
 
-### Topics
+### Topics 2023/24
 
 *Topics will be presented one week before the project starts.*
 
