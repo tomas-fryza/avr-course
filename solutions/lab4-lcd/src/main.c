@@ -116,11 +116,13 @@ ISR(TIMER2_OVF_vect)
         n_ovfs = 0;
         stopwatch.tenths++;
         // Count tenth of seconds 0, 1, ..., 9, 0, 1, ...
-        if (stopwatch.tenths > 9) {
+        if (stopwatch.tenths > 9)
+        {
             stopwatch.tenths = 0;
             // Seconds
             stopwatch.secs++;
-            if (stopwatch.secs > 59) {
+            if (stopwatch.secs > 59)
+            {
                 stopwatch.secs = 0;
             }
         }
