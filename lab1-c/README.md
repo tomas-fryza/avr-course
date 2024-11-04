@@ -101,16 +101,20 @@
 
    > Condition syntax:
    > ```c
-   > if (condition) {
+   > if (condition)
+   > {
    >     // Code to execute if condition is true
-   > } else {
+   > }
+   > else
+   > {
    >     // Code to execute if condition is false (optional)
    > }
    > ```
    >
    > General syntax of a while loop:
    > ```c
-   > while (condition) {
+   > while (condition)
+   > {
    >     // Code to be executed repeatedly
    > }
    > ```
@@ -131,11 +135,13 @@
 
    > Loop syntax and example:
    > ```c
-   > for (initialization; condition; increment/decrement) {
+   > for (initialization; condition; increment/decrement)
+   > {
    >     // Code to be executed in each iteration
    > }
    >
-   > for (uint8_t i = 0; i < 5; i++) {
+   > for (uint8_t i = 0; i < 5; i++)
+   > {
    >     printf("*");
    > }
    > ```
@@ -150,7 +156,8 @@
    #include <stdio.h>
    #include <stdint.h>
 
-   int main(void) {
+   int main(void)
+   {
        uint8_t hex_value = 0x1F;  // Hexadecimal value
        uint8_t dec_value = 31;    // Decimal value
        uint8_t bin_value = 0b00011111;  // Binary value
@@ -165,8 +172,8 @@
 
    Try declaring several variables in different number formats and display their values ​​using `printf` and the correct format specifiers.
 
-   > | **Specifier** | **Description**                                        | **Example**                  |
-   > |:-------------:|--------------------------------------------------------|------------------------------|
+   > | **Specifier** | **Description** | **Example** |
+   > | :-- | -- | -- |
    > | `%d` or `%i`  | Prints a signed decimal integer (base 10).              | `printf("%d", 42);`          |
    > | `%u`          | Prints an unsigned decimal integer (base 10).           | `printf("%u", 42);`          |
    > | `%x` or `%X`  | Prints an unsigned hexadecimal integer (lower/uppercase)| `printf("%x", 255);`         |
@@ -216,7 +223,7 @@
 
 1. Write a C program that simulates a simple progress bar using ASCII characters and `printf`. The progress bar should fill up in one line from 0% to 100% using the `#` character and update in real-time.
 
-   Example output:
+   Example outputs:
       ```shell
       [##########..................................] 20%
       ```
@@ -245,7 +252,8 @@
    /* Note: POSIX (Portable Operating System Interface) is an IEEE standard 
          that ensures compatibility across different operating systems.*/
 
-   int main(void) {
+   int main(void)
+   {
        uint8_t total = 50;  // Total width of the progress bar
 
        ...
