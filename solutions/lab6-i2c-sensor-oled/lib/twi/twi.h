@@ -1,17 +1,13 @@
 #ifndef TWI_H
 # define TWI_H
 
-/***********************************************************************
- * 
+/*
  * I2C/TWI library for AVR-GCC.
- * 
- * ATmega328P (Arduino Uno), 16 MHz, PlatformIO
+ * (c) 2018-2024 Tomas Fryza, MIT license
  *
- * Copyright (c) 2018 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
- *
- **********************************************************************/
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
+ */
 
 /**
  * @file 
@@ -24,19 +20,15 @@
  * AVR and Slave device(s). Functions use internal TWI module of AVR.
  *
  * @note Only Master transmitting and Master receiving modes are implemented. Based on Microchip Atmel ATmega16 and ATmega328P manuals.
- * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
- *         of Technology, Czechia
- * @copyright (c) 2018 Tomas Fryza, This work is licensed under 
- *                the terms of the MIT license
+ * @copyright (c) 2018-2024 Tomas Fryza, MIT license
  * @{
  */
 
-
-/* Includes ----------------------------------------------------------*/
+// -- Includes -------------------------------------------------------
  #include <avr/io.h>
 
 
-/* Defines -----------------------------------------------------------*/
+// -- Defines --------------------------------------------------------
 /**
  * @name Definition of frequencies 
  */
@@ -66,7 +58,7 @@
 #define PIN(_x) (*(&_x - 2)) /**< @brief Address of input register of port _x */
 
 
-/* Function prototypes -----------------------------------------------*/
+// -- Function prototypes --------------------------------------------
 /**
  * @brief  Initialize TWI unit, enable internal pull-ups, and set SCL frequency.
  * @par    Implementation notes:

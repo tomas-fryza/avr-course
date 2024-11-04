@@ -18,7 +18,7 @@
 
 
 /* Global variables ---------------------------------------*/
-// Flag for printing new data to LCD
+// Flag for printing the new data to LCD
 volatile uint8_t update_lcd = 0;
 
 // Stopwatch values

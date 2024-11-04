@@ -122,10 +122,10 @@ The goal of this task is to create a program that will verify the presence of de
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi.c) to `twi.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/twi.h) to `twi.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi/twi.c) to `twi.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/twi/twi.h) to `twi.h`
 
-6. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the [`twi.h`](../library/include/twi.h) header file and complete the following table by input parameters and functions descriptions.
+6. In the lab, we are using I2C/TWI library developed by Tomas Fryza according to Microchip Atmel ATmega16 and ATmega328P manuals. Use the `twi.h` header file and complete the following table by input parameters and functions descriptions.
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
@@ -179,53 +179,39 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    Note that a structured variable in C can be used for received values.
 
    ```c
-   ...
+   // -- Includes -------------------------------------------------------
    #include "timer.h"
    ...
 
-   /* Global variables --------------------------------------------------*/
-   // Declaration of "dht12" variable with structure "DHT_values_structure"
-   struct DHT_values_structure {
-      uint8_t hum_int;
-      uint8_t hum_dec;
-      uint8_t temp_int;
-      uint8_t temp_dec;
-      uint8_t checksum;
-   } dht12;
-
-   // Flag for printing new data from sensor
-   volatile uint8_t new_sensor_data = 0;
+   // -- Defines --------------------------------------------------------
+   #define DHT_ADR 0x5c
+   #define DHT_HUM_MEM 0
+   #define DHT_TEMP_MEM 2
 
 
-   // Slave and internal addresses of temperature/humidity sensor DHT12
-   #define SENSOR_ADR 0x5c
-   #define SENSOR_HUM_MEM 0
-   #define SENSOR_TEMP_MEM 2
-   #define SENSOR_CHECKSUM 4
+   // -- Global variables -----------------------------------------------
+   volatile uint8_t update_uart = 0;
+   volatile uint8_t dht12_values[5];
 
 
-   /* Function definitions ----------------------------------------------*/
-   /**********************************************************************
-   * Function: Main function where the program execution begins
-   * Purpose:  Wait for new data from the sensor and sent them to UART.
-   * Returns:  none
-   **********************************************************************/
+   // -- Function definitions -------------------------------------------
+   /*
+    * Function: Main function where the program execution begins
+    * Purpose:  Wait for new data from the sensor and sent them to UART.
+    * Returns:  none
+    */
    int main(void)
    {
        char string[2];  // String for converting numbers by itoa()
 
-       // TWI
        twi_init();
-
-       // UART
        uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
        sei();  // Needed for UART
 
        // Test if sensor is ready
-       if (twi_test_address(SENSOR_ADR) == 0)
-           uart_puts("I2C sensor detected\r\n");
-       else {
+       if (twi_test_address(DHT_ADR) != 0)
+       {
            uart_puts("[ERROR] I2C device not detected\r\n");
            while (1);
        }
@@ -237,18 +223,19 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        sei();
 
        // Infinite loop
-       while (1) {
-           if (new_sensor_data == 1) {
-               // Display temperature
-               itoa(dht12.temp_int, string, 10);
+       while (1)
+       {
+           if (update_uart == 1)
+           {
+               itoa(dht12_values[0], string, 10);
                uart_puts(string);
                uart_puts(".");
-               itoa(dht12.temp_dec, string, 10);
+               itoa(dht12_values[1]_, string, 10);
                uart_puts(string);
                uart_puts(" °C\r\n");
 
                // Do not print it again and wait for the new data
-               new_sensor_data = 0;
+               update_uart = 0;
            }
        }
 
@@ -257,30 +244,32 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    }
 
 
-   /* Interrupt service routines ----------------------------------------*/
-   /**********************************************************************
-   * Function: Timer/Counter1 overflow interrupt
-   * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
-   **********************************************************************/
+   // -- Interrupt service routines -------------------------------------
+   /*
+    * Function: Timer/Counter1 overflow interrupt
+    * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
+    */
    ISR(TIMER1_OVF_vect)
    {
        // Read values from Temp/Humid sensor
        twi_start();
-       if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
+       if (twi_write((DHT_ADR<<1) | TWI_WRITE) == 0)
+       {
            // Set internal memory location
            twi_write(SENSOR_TEMP_MEM);
            twi_stop();
 
            // Read data from internal memory
            twi_start();
-           twi_write((SENSOR_ADR<<1) | TWI_READ);
-           dht12.temp_int = twi_read(TWI_ACK);
-           dht12.temp_dec = twi_read(TWI_NACK);
+           twi_write((DHT_ADR<<1) | TWI_READ);
+           dht12_values[0] = twi_read(TWI_ACK);
+           dht12_values[1] = twi_read(TWI_NACK);
            twi_stop();
 
-           new_sensor_data = 1;
+           update_uart = 1;
        }
-       else {
+       else
+       {
            twi_stop();
        }
    }
@@ -309,9 +298,9 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    > **Note:** The library for OLED displays with SSD1306 or SH1106 controler was created by [Sylaina](https://github.com/Sylaina/oled-display) and slightly modified by Tomas Fryza for the purpose of this course.
 
-   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/font.h)
-   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled.c)
-   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/oled.h)
+   * [font.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/font.h)
+   * [oled.c](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/oled.c)
+   * [oled.h](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/oled/oled.h)
 
    Rename the main source file to `src/main.c` and copy/paste [this code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/solutions/lab6-i2c-oled/src/main.c).
 
