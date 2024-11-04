@@ -37,7 +37,9 @@ Consider an *n*-bit number that we increment based on the clock signal. If we re
 > t_{OVF} = \frac{1}{f_{CPU}}\cdot 2^{nbit}\cdot prescaler
 > ```
 
-1. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128 and other timers have only 5 prescaler values.
+1. Complete the `GPIO_toggle` function in `gpio.h` library from the previous lab.
+
+2. Calculate the overflow times for three Timer/Counter modules that contain ATmega328P if CPU clock frequency is 16&nbsp;MHz. Complete the following table for given prescaler values. Note that, Timer/Counter2 is able to set 7 prescaler values, including 32 and 128 and other timers have only 5 prescaler values.
 
    | **Module** | **Number of bits** | **1** | **8** | **32** | **64** | **128** | **256** | **1024** |
    | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
@@ -60,27 +62,6 @@ An alternative approach is to employ **interrupts**. In this approach, a state c
 An interrupt is a fundamental feature of a microcontroller. It represents a signal sent to the processor by hardware or software, signifying an event that requires immediate attention. When an interrupt is triggered, the controller finishes executing the current instruction and proceeds to execute an **Interrupt Service Routine (ISR)** or Interrupt Handler. ISR tells the processor or controller what to do when the [interrupt occurs](https://www.tutorialspoint.com/embedded_systems/es_interrupts.htm). After the interrupt code is executed, the program continues exactly where it left off.
 
 Interrupts can be set up for events such as a counter's value, a pin changing state, receiving data through serial communication, or when the Analog-to-Digital Converter has completed the conversion process. See the [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) (section **Interrupts > Interrupt Vectors in ATmega328 and ATmega328P**) for sources of interruptions that can occur on ATmega328P.
-
- <!--
-Complete the selected interrupt sources in the following table. The names of the interrupt vectors in C can be found in [C library manual](https://www.nongnu.org/avr-libc/user-manual/group__avr__interrupts.html).
-
-| **Program address** | **Source** | **Vector name** | **Description** |
-| :-: | :-- | :-- | :-- |
-| 0x0000 | RESET | -- | Reset of the system |
-| 0x0002 | INT0  | `INT0_vect`&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | External interrupt request number 0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
-|  | INT1 |  |  |
-|  | PCINT0 |  |  |
-|  | PCINT1 |  |  |
-|  | PCINT2 |  |  |
-|  | WDT |  |  |
-|  | TIMER2_OVF |  |  |
-| 0x0018 | TIMER1_COMPB | `TIMER1_COMPB_vect` | Compare match between Timer/Counter1 value and channel B compare value |
-| 0x001A | TIMER1_OVF | `TIMER1_OVF_vect` | Overflow of Timer/Counter1 value |
-|  | TIMER0_OVF |  |  |
-|  | USART_RX |  |  |
-|  | ADC |  |  |
-|  | TWI |  |  |
--->
 
 All interrupts are disabled by default. If you want to use them, you must first enable them individually in specific control registers and then enable them centrally with the `sei()` command (Set interrupt). You can also centrally disable all interrupts with the `cli()` command (Clear interrupt).
 
@@ -106,9 +87,9 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 3. IMPORTANT: Rename `LAB3-TIMERS > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-4. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files [`gpio.c`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/gpio.c) and [`gpio.h`](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/labs/library/include/gpio.h) from the previous lab to this folder.
+4. In PlatformIO project, create a new folder `LAB3-TIMERS > lib > gpio`. Copy your GPIO library files `gpio.c` and `gpio.h` from the previous lab to this folder.
 
-5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/include/timer.h) to `timer.h`. See the final project structure:
+5. In PlatformIO project, create a new file `LAB3-TIMERS > include > timer.h`. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/refs/heads/master/library/timer/timer.h) to `timer.h`. See the final project structure:
 
    ```c
    LAB3-TIMERS         // PlatfomIO project
@@ -126,13 +107,14 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
    To simplify the configuration of control registers, we defined Timer/Counter1 macros with meaningful names in the `timer.h` file. Because we only define macros and not function bodies, the `timer.c` source file is **not needed** this time!
 
-6. Copy/paste the following template to `LAB3-TIMERS > src > main.c` source file and complete the code to blink the LED every 262 ms using Timer1 overflow interrupt.
+6. Copy/paste the following template to `LAB3-TIMERS > src > main.c` source file and complete the code to blink the on-board LED every 262 ms using Timer1 overflow interrupt.
 
    ```c
+   // -- Includes -------------------------------------------------------
    #include <avr/io.h>         // AVR device-specific IO definitions
    #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
    #include <gpio.h>           // GPIO library for AVR-GCC
-   #include <timer.h>          // Timer library for AVR-GCC
+   #include "timer.h"          // Timer library for AVR-GCC
 
    int main(void)
    {
@@ -154,17 +136,17 @@ The counter increments in alignment with the microcontroller clock, ranging from
 
 7. In `timer.h` header file, define similar macros also for Timer/Counter0.
 
-8. On the breadboard, connect an LED and a resistor to pin PB2. Alternatively, you can use a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (a 3-pin LED) and resistors. If you choose the two-color LED, connect its pins to PB2 and PB3. In `main.c` file, modify the code to use Timer0 and Timer1 interrupts to control all the LEDs. Compile the code and upload it to the ATmega328P microcontroller. Ensure that the LEDs operate correctly as per the modified code.
+8. On the breadboard, connect an LED and a resistor to pin PB0. Alternatively, you can use a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (a 3-pin LED) and resistors. If you choose the two-color LED, connect its pins to PB0 and PB1. In `main.c` file, modify the code to use Timer0 and Timer1 interrupts to control all the LEDs. Compile the code and upload it to the ATmega328P microcontroller. Ensure that the LEDs operate correctly as per the modified code.
 
-9. (Optional:) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on `LED_RED`; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
+9. (Optional:) Consider an active-low push button with internal pull-up resistor on the PD2 pin.  Use Timer0 4-ms overflow to read button status. If the push button is pressed, turn on the on-board LED; turn the LED off after releasing the button. Note: Within the Timer0 interrupt service routine, use a read function from your GPIO library to get the button status.
 
 <a name="part3"></a>
 
 ## Part 3: Extend the overflow
 
-1. Use Timer/Counter0 16-ms overflow and toggle `LED_RED` value approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
+1. Use Timer/Counter0 16-ms overflow and toggle external LED approximately every 100&nbsp;ms (6 overflows x 16 ms = 100 ms).
 
-   FYI: Use static variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t n_ovfs = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
+   **Note:** Use **static** variables declared in functions that use them for even better isolation or use volatile for all variables used in both Interrupt routines and main code loop. According to [[7]](https://stackoverflow.com/questions/52996693/static-variables-inside-interrupts) the declaration line `static uint8_t n_ovfs = 0;` is only executed the first time, but the variable value is updated/stored each time the ISR is called.
 
    ```c
    ISR(TIMER0_OVF_vect)
@@ -189,14 +171,16 @@ The counter increments in alignment with the microcontroller clock, ranging from
    {
        static uint8_t n_ovfs = 0;
 
+       // Change 8-bit timer value anytime it overflows
+       TCNT0 = 128;
+
        n_ovfs++;
        if (n_ovfs >= 6)
        {
            n_ovfs = 0;
            ...
        }
-       // Change 8-bit timer value anytime it overflows
-       TCNT0 = 128;
+
        // Overflow time: t_ovf = 1/f_cpu * (2^bit-init) * prescaler
        // Normal counting:
        // TCNT0 = 0, 1, 2, ...., 128, 129, ...., 254, 255, 0, 1
