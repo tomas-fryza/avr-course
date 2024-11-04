@@ -95,8 +95,8 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart.c) to `uart.c`
-   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/uart.h) to `uart.h`
+   1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.c) to `uart.c`
+   2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.h) to `uart.h`
 
 7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
 
@@ -127,7 +127,14 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
 
 In this part, you will establish communication between a PC and an Arduino board. Each key press on the computer keyboard will be transmitted via UART to the microcontroller. The Arduino will convert the received key code into several numeric systems and then send these codes back to the PC.
 
-1. Use the `uart_getc` function to receive characters. Display the ASCII code of each received character in hexadecimal, decimal, and binary formats. Disable the Timer1 overflow interrupt and continuously read received characters in the main loop.
+1. In main function, disable the overflow interrupts of Timer 1 but let it counts.
+
+   ```c
+   TIM1_ovf_1se();
+   // TIM1_ovf_enable()
+   ```
+
+2. Use the `uart_getc` function to receive characters. Display the ASCII code of each received character in hexadecimal, decimal, and binary formats. Disable the Timer1 overflow interrupt and continuously read received characters in the main loop.
 
    ```c
    ...
@@ -178,7 +185,7 @@ In this part, you will establish communication between a PC and an Arduino board
    | `b` |  |  |  |
    | `c` |  |  |  |
 
-2. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of one column from the previous table. Try other formatting styles as well.
+3. Use [ANSI Escape Sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797) and modify color and format of one column from the previous table. Try other formatting styles as well.
 
    ```c
    /* 
@@ -205,7 +212,36 @@ In this part, you will establish communication between a PC and an Arduino board
    monitor_raw = yes
    ```
 
-3. Enhance the code from the previous task and read the contents of the Timer 1 data register and send it via UART to the computer when the key code `1` is received. In all other cases, the functionality of the code will remain the same as in the previous example.
+4. Enhance the code from the previous task and read the contents of the Timer 1 data register and send it via UART to the computer when the key code `1` is received. In all other cases, the functionality of the code will remain the same as in the previous example.
+
+   ```c
+   while (1)
+   {
+       // Get received data from UART
+       value = uart_getc();
+       if ((value & 0xff00) == 0)  // If successfully received data from UART
+       {
+           if (value == '1')
+           {
+               ...
+           }
+           else
+           {
+               // Transmit the received character back via UART
+               uart_putc(value);
+
+               // Transmit the ASCII code also in hex, dec, and bin
+               itoa(value, string, 16)
+               ...
+               // New line
+               uart_puts("\r\n");
+           }
+       }
+   }
+   ...
+   ```
+
+   Extend the application, and key code `0` to display the contents of the Timer 0 data register.
 
    > **Warning:** Keep UART strings as short as possible. But if you need to transmit a larger amount of data, it is necessary to increase the size of the transmit/receive buffer in the `uart.h` file, eg to 128.
    >
