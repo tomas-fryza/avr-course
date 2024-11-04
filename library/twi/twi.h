@@ -79,21 +79,21 @@ void twi_start(void);
 
 
 /**
- * @brief  Send one byte to I2C/TWI Slave device.
+ * @brief  Write one byte to the I2C/TWI bus.
  * @param  data Byte to be transmitted
  * @return ACK/NACK received value
  * @retval 0 - ACK has been received
  * @retval 1 - NACK has been received
  * @note   Function returns 0 if 0x18, 0x28, or 0x40 status code is detected\n
- *           0x18: SLA+W has been transmitted and ACK has been received\n
- *           0x28: Data byte has been transmitted and ACK has been received\n
- *           0x40: SLA+R has been transmitted and ACK has been received\n
+ *           - 0x18: SLA+W has been transmitted and ACK has been received\n
+ *           - 0x28: Data byte has been transmitted and ACK has been received\n
+ *           - 0x40: SLA+R has been transmitted and ACK has been received\n
  */
 uint8_t twi_write(uint8_t data);
 
 
 /**
- * @brief  Read one byte from I2C/TWI Slave device and acknowledge
+ * @brief  Read one byte from the I2C/TWI bus and acknowledge
  *         it by ACK or NACK.
  * @param  ack - ACK/NACK value to be transmitted
  * @return Received data byte
@@ -110,13 +110,23 @@ void twi_stop(void);
 
 /**
  * @brief  Test presence of one I2C device on the bus.
- * @param  adr Slave address
+ * @param  addr Slave address
  * @return ACK/NACK received value
  * @retval 0 - ACK has been received
  * @retval 1 - NACK has been received
  */
-uint8_t twi_test_address(uint8_t adr);
+uint8_t twi_test_address(uint8_t addr);
 
+
+/**
+ * @brief  Read into buf from the peripheral, starting from the memory address.
+ * @param  addr Slave address
+ * @param  memaddr Starting address
+ * @param  buf Buffer to be read into
+ * @param  nbytes Number of bytes
+ * @return none
+ */
+void twi_readfrom_mem_into(uint8_t addr, uint8_t memaddr, volatile uint8_t *buf, uint8_t nbytes);
 
 /** @} */
 

@@ -38,7 +38,7 @@ volatile uint8_t dht12_values[5];
  */
 int main(void)
 {
-    char string[2];  // String for converting numbers by itoa()
+    char string[3];  // String for converting numbers by itoa()
 
     twi_init();
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
@@ -95,7 +95,7 @@ int main(void)
 // -- Interrupt service routines -------------------------------------
 /*
  * Function: Timer/Counter1 overflow interrupt
- * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
+ * Purpose:  Read data from DHT12 sensor, SLA = 0x5c.
  */
 ISR(TIMER1_OVF_vect)
 {
@@ -106,31 +106,8 @@ ISR(TIMER1_OVF_vect)
     if (n_ovfs >= 5)
     {
         n_ovfs = 0;
-
-        // Read values from Temp/Humid sensor
-        twi_start();
-        if (twi_write((DHT_ADR<<1) | TWI_WRITE) == 0)
-        {
-            // Set internal memory location
-            twi_write(DHT_HUM_MEM);
-            twi_stop();
-
-            // Read data from internal memory
-            twi_start();
-            twi_write((DHT_ADR<<1) | TWI_READ);
-            dht12_values[0] = twi_read(TWI_ACK);
-            dht12_values[1] = twi_read(TWI_ACK);
-            dht12_values[2] = twi_read(TWI_ACK);
-            dht12_values[3] = twi_read(TWI_ACK);
-            dht12_values[4] = twi_read(TWI_NACK);
-            twi_stop();
-
-            update_uart = 1;
-        }
-        else
-        {
-            twi_stop();
-        }
+        twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
+        update_uart = 1;
     }
 }
 

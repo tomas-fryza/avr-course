@@ -135,6 +135,7 @@ The goal of this task is to create a program that will verify the presence of de
    | `twi_read` | <br>&nbsp; |  |  |
    | `twi_stop` |  |  | `twi_stop();` |
    | `twi_test_address` | `sla` Slave address | Test presence of one I2C device on the bus. | `twi_test_address(0x3c);` |
+   | `twi_readfrom_mem_into` | | | |
 
 7. Use breadboard, jumper wires, and connect I2C devices to Arduino Uno board as follows: SDA - SDA, SCL - SCL, VCC - 5V, GND - GND.
 
@@ -202,7 +203,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
     */
    int main(void)
    {
-       char string[2];  // String for converting numbers by itoa()
+       char string[3];  // String for converting numbers by itoa()
 
        twi_init();
        uart_init(UART_BAUD_SELECT(115200, F_CPU));
@@ -220,8 +221,6 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        TIM1_ovf_1sec();
        TIM1_ovf_enable();
 
-       sei();
-
        // Infinite loop
        while (1)
        {
@@ -230,7 +229,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
                itoa(dht12_values[0], string, 10);
                uart_puts(string);
                uart_puts(".");
-               itoa(dht12_values[1]_, string, 10);
+               itoa(dht12_values[1], string, 10);
                uart_puts(string);
                uart_puts(" °C\r\n");
 
@@ -247,35 +246,16 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    // -- Interrupt service routines -------------------------------------
    /*
     * Function: Timer/Counter1 overflow interrupt
-    * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
+    * Purpose:  Read data from DHT12 sensor, SLA = 0x5c.
     */
    ISR(TIMER1_OVF_vect)
    {
-       // Read values from Temp/Humid sensor
-       twi_start();
-       if (twi_write((DHT_ADR<<1) | TWI_WRITE) == 0)
-       {
-           // Set internal memory location
-           twi_write(SENSOR_TEMP_MEM);
-           twi_stop();
-
-           // Read data from internal memory
-           twi_start();
-           twi_write((DHT_ADR<<1) | TWI_READ);
-           dht12_values[0] = twi_read(TWI_ACK);
-           dht12_values[1] = twi_read(TWI_NACK);
-           twi_stop();
-
-           update_uart = 1;
-       }
-       else
-       {
-           twi_stop();
-       }
+       twi_readfrom_mem_into(DHT_ADR, DHT_TEMP_MEM, dht12_values, 2);
+       update_uart = 1;
    }
    ```
 
-2. Modify the code and read values from all DHT12 memory locations, print them, and verify the checksum byte.
+2. Modify the code and read values from all DHT12 memory locations every 5 seconds, print them to UART, and verify the checksum byte.
 
    > **Alternation:** Program an application which reads data from RTC DS3231 chip and sends them periodically via UART to Serial Monitor or PuTTY SSH Client. Note that, according to the [DS3231 manual](../docs/ds3231_manual.pdf), the internal RTC memory have the following structure.
    >

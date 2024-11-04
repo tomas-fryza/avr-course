@@ -44,7 +44,7 @@ void twi_start(void)
 
 /*
  * Function: twi_write()
- * Purpose:  Send one byte to I2C/TWI Slave device.
+ * Purpose:  Write one byte to the I2C/TWI bus.
  * Input:    data Byte to be transmitted
  * Returns:  ACK/NACK received value
  */
@@ -74,7 +74,7 @@ uint8_t twi_write(uint8_t data)
 
 /*
  * Function: twi_read()
- * Purpose:  Read one byte from I2C/TWI Slave device and acknowledge
+ * Purpose:  Read one byte from the I2C/TWI bus and acknowledge
  *           it by ACK or NACK.
  * Input:    ack ACK/NACK value to be transmitted
  * Returns:  Received data byte
@@ -98,7 +98,6 @@ uint8_t twi_read(uint8_t ack)
  */
 void twi_stop(void)
 {
-    /* Generate Stop condition on I2C/TWI bus */
     TWCR = (1<<TWINT) | (1<<TWSTO) | (1<<TWEN);
 }
 
@@ -106,16 +105,54 @@ void twi_stop(void)
 /*
  * Function: twi_test_address()
  * Purpose:  Test presence of one I2C device on the bus.
- * Input:    adr Slave address
+ * Input:    addr Slave address
  * Returns:  ACK/NACK received value
  */
-uint8_t twi_test_address(uint8_t adr)
+uint8_t twi_test_address(uint8_t addr)
 {
     uint8_t ack;  // ACK response from Slave
 
     twi_start();
-    ack = twi_write((adr<<1) | TWI_WRITE);
+    ack = twi_write((addr<<1) | TWI_WRITE);
     twi_stop();
 
     return ack;
+}
+
+
+/*
+ * Function: twi_readfrom_mem_into()
+ * Purpose:  Read into buf from the peripheral starting from the memory address.
+ * Input:    addr Slave address
+ *           memaddr Starting address
+ *           buf Buffer to be read into
+ *           nbytes Number of bytes
+ * Returns:  None
+ */
+void twi_readfrom_mem_into(uint8_t addr, uint8_t memaddr, volatile uint8_t *buf, uint8_t nbytes)
+{
+    twi_start();
+    if (twi_write((addr<<1) | TWI_WRITE) == 0)
+    {
+        // Set starting address
+        twi_write(memaddr);
+        twi_stop();
+
+        // Read data into the buffer
+        twi_start();
+        twi_write((addr<<1) | TWI_READ);
+        if (nbytes >= 2)
+        {
+            for (uint8_t i=0; i<(nbytes-1); i++)
+            {
+                *buf++ = twi_read(TWI_ACK);
+            }
+        }
+        *buf = twi_read(TWI_NACK);
+        twi_stop();
+    }
+    else
+    {
+        twi_stop();
+    }
 }
