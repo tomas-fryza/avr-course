@@ -1,5 +1,13 @@
+/* 
+ * Read values from I2C (TWI) temperature/humidity sensor and send
+ * them to OLED screen.
+ * (c) 2023-2024 Tomas Fryza, MIT license
+ *
+ * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Tested on Arduino Uno board and ATmega328P, 16 MHz.
+ */
 
-/* Includes ----------------------------------------------------------*/
+// -- Includes -------------------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
@@ -7,31 +15,29 @@
 #include <oled.h>
 #include <stdlib.h>         // C library. Needed for number conversions
 
-// Slave and internal addresses of temperature/humidity sensor DHT12
-#define SENSOR_ADR 0x5c
-#define SENSOR_HUM_MEM 0
-#define SENSOR_TEMP_MEM 2
-#define SENSOR_CHECKSUM 4
+
+// -- Defines --------------------------------------------------------
+#define DHT_ADR 0x5c
+#define DHT_HUM_MEM 0
+#define DHT_TEMP_MEM 2
 
 
-/* Global variables --------------------------------------------------*/
-// Declaration of "dht12" variable with structure "DHT_values_structure"
-struct DHT_values_structure {
-    uint8_t hum_int;
-    uint8_t hum_dec;
-    uint8_t temp_int;
-    uint8_t temp_dec;
-    uint8_t checksum;
-} dht12;
-
-// Flag for printing new data from sensor
-volatile uint8_t new_sensor_data = 0;
+// -- Global variables -----------------------------------------------
+volatile uint8_t update_oled = 0;
+volatile uint8_t dht12_values[5];
 
 
-/* Function definitions ----------------------------------------------*/
+// -- Function definitions -------------------------------------------
+/*
+ * Function: Main function where the program execution begins
+ * Purpose:  Wait for new data from the sensor and sent them to OLED.
+ * Returns:  none
+ */
 int main(void)
 {
     char string[2];  // String for converting numbers by itoa()
+
+    twi_init();
 
     // Init OLED
     oled_init(OLED_DISP_ON);
@@ -42,7 +48,6 @@ int main(void)
 
     oled_charMode(NORMALSIZE);
 
-    // oled_gotoxy(x, y)
     oled_gotoxy(0, 2);
     oled_puts("128x64, SH1106");
 
@@ -67,36 +72,38 @@ int main(void)
     sei();
 
     // Infinite loop
-    while (1) {
-        if (new_sensor_data == 1) {
-            // Clear previous value
+    while (1)
+    {
+        if (update_oled == 1)
+        {
+            // Clear previous temperature value on OLED
             oled_gotoxy(17, 6);
             oled_puts("    ");
 
-            // Display DHT12 temp data
+            // Display new temperature data
             oled_gotoxy(17, 6);
-            itoa(dht12.temp_int, string, 10);
+            itoa(dht12_values[2], string, 10);
             oled_puts(string);
             oled_puts(".");
-            itoa(dht12.temp_dec, string, 10);
+            itoa(dht12_values[3], string, 10);
             oled_puts(string);
 
-            // Clear previous value
+            // Clear previous humidity values on OLED
             oled_gotoxy(17, 7);
             oled_puts("    ");
 
-            // Display DHT12 temp data
+            // Display new humidity data
             oled_gotoxy(17, 7);
-            itoa(dht12.hum_int, string, 10);
+            itoa(dht12_values[0], string, 10);
             oled_puts(string);
             oled_puts(".");
-            itoa(dht12.hum_dec, string, 10);
+            itoa(dht12_values[1], string, 10);
             oled_puts(string);
 
             oled_display();
 
             // Do not print it again and wait for the new data
-            new_sensor_data = 0;
+            update_oled = 0;
         }
     }
 
@@ -105,35 +112,36 @@ int main(void)
 }
 
 
-/* Interrupt service routines ----------------------------------------*/
-/**********************************************************************
+// -- Interrupt service routines -------------------------------------
+/*
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Read temperature and humidity from DHT12, SLA = 0x5c.
- **********************************************************************/
+ */
 ISR(TIMER1_OVF_vect)
 {
     static uint8_t n_ovfs = 0;
 
     n_ovfs++;
     // Read the data every 5 secs
-    if (n_ovfs >= 5) {
+    if (n_ovfs >= 5)
+    {
         n_ovfs = 0;
 
         // Test ACK from Temp/Humid sensor
         twi_start();
-        if (twi_write((SENSOR_ADR<<1) | TWI_WRITE) == 0) {
+        if (twi_write((DHT_ADR<<1) | TWI_WRITE) == 0) {
             // Set internal memory location
-            twi_write(SENSOR_HUM_MEM);
+            twi_write(DHT_HUM_MEM);
             twi_stop();
             // Read data from internal memory
             twi_start();
-            twi_write((SENSOR_ADR<<1) | TWI_READ);
-            dht12.hum_int = twi_read(TWI_ACK);
-            dht12.hum_dec = twi_read(TWI_ACK);
-            dht12.temp_int = twi_read(TWI_ACK);
-            dht12.temp_dec = twi_read(TWI_NACK);
+            twi_write((DHT_ADR<<1) | TWI_READ);
+            dht12_values[0] = twi_read(TWI_ACK);
+            dht12_values[1] = twi_read(TWI_ACK);
+            dht12_values[2] = twi_read(TWI_ACK);
+            dht12_values[3] = twi_read(TWI_NACK);
 
-            new_sensor_data = 1;
+            update_oled = 1;
         }
         twi_stop();
     }
