@@ -1,14 +1,12 @@
-/***********************************************************
- * 
+/* 
  * Stopwatch on Liquid Crystal Display (LCD).
  * (c) 2017-2024 Tomas Fryza, MIT license
  *
  * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
- *
- ***********************************************************/
+ */
 
-/* Includes -----------------------------------------------*/
+// -- Includes -------------------------------------------------------
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <gpio.h>           // GPIO library for AVR-GCC
@@ -17,7 +15,7 @@
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
-/* Global variables ---------------------------------------*/
+// -- Global variables -----------------------------------------------
 // Flag for printing the new data to LCD
 volatile uint8_t update_lcd = 0;
 
@@ -30,13 +28,13 @@ struct Stopwatch_structure {
 } stopwatch;
 
 
-/* Function definitions -----------------------------------*/
-/***********************************************************
+// -- Function definitions -------------------------------------------
+/*
  * Function: Main function where the program execution begins
- * Purpose:  Update stopwatch value on LCD screen when 8-bit 
- *           Timer/Counter2 overflows.
+ * Purpose:  Update stopwatch value on LCD screen when 8-bit Timer/Counter2
+ *           overflows.
  * Returns:  none
- ***********************************************************/
+ */
 int main(void)
 {
     char string[2];  // String for converted numbers by itoa()
@@ -100,12 +98,12 @@ int main(void)
 }
 
 
-/* Interrupt service routines -----------------------------*/
-/***********************************************************
+// -- Interrupt service routines -------------------------------------
+/*
  * Function: Timer/Counter2 overflow interrupt
  * Purpose:  Update the stopwatch on LCD screen every sixth overflow,
  *           ie approximately every 100 ms (6 x 16 ms = 100 ms).
- ***********************************************************/
+ */
 ISR(TIMER2_OVF_vect)
 {
     static uint8_t n_ovfs = 0;

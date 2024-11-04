@@ -1,15 +1,13 @@
 #ifndef GPIO_H
 # define GPIO_H
 
-/***********************************************************
- * 
+/* 
  * GPIO library for AVR-GCC.
  * (c) 2019-2024 Tomas Fryza, MIT license
  *
  * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
- *
- ***********************************************************/
+ */
 
 /**
  * @file 
@@ -20,21 +18,16 @@
  *
  * The library contains functions for controlling AVRs' gpio pin(s).
  *
- * @note Based on AVR Libc Reference Manual. Tested on ATmega328P 
- *       (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2.
- * @author Tomas Fryza, Dept. of Radio Electronics, Brno University 
- *         of Technology, Czechia
- * @copyright (c) 2019 Tomas Fryza, This work is licensed under 
- *                the terms of the MIT license
+ * @note Based on AVR Libc Reference Manual.
+ * @copyright (c) 2019-2024 Tomas Fryza, MIT license
  * @{
  */
 
-
-/* Includes -----------------------------------------------*/
+// -- Includes -------------------------------------------------------
 #include <avr/io.h>
 
 
-/* Function prototypes ------------------------------------*/
+// -- Function prototypes --------------------------------------------
 /**
  * @brief  Configure one output pin.
  * @param  reg Address of Data Direction Register, such as &DDRB

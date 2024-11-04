@@ -118,7 +118,7 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
 
 5. In PlatformIO project, create a new folder `LAB4-LCD > lib > gpio`. Copy your GPIO library files `gpio.c` and `gpio.h` from the previous labs to this folder.
 
-6. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd.c`, `lcd.h`, and `lcd_definitions.h`. The final project structure should look like this:
+6. In PlatformIO project, create a new folder `LAB4-LCD > lib > lcd`. Within this folder, create three new files `lcd_definitions.h`, `lcd.c`, and `lcd.h`. The final project structure should look like this:
 
    ```c
    LAB4-LCD            // PlatfomIO project
@@ -138,9 +138,9 @@ In the lab, we are using [LCD library for HD44780 based LCDs](http://www.peterfl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd_definitions.h) to `lcd_definitions.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd.c) to `lcd.c`
-   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/lcd.h) to `lcd.h`
+   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd_definitions.h) to `lcd_definitions.h`
+   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd.c) to `lcd.c`
+   3. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lcd/lcd.h) to `lcd.h`
 
 7. Copy/paste [template code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab4-lcd/main.c) to `LAB4-LCD > src > main.c` source file.
 
@@ -201,10 +201,11 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    **IMPORTANT:** Because library functions only allow to display a string (`lcd_puts`) or individual characters (`lcd_putc`), the variables' number values need to be converted to such strings. To do this, use the `itoa(number, string, num_base)` function from the standard `stdlib.h` library. The `num_base` parameter allows you to display the `number` in decimal, hexadecimal, or binary.
 
    ```c
-   ...
+   // -- Includes -------------------------------------------------------
    #include <stdlib.h>         // C library. Needed for number conversions
    ...
-   /* Global variables --------------------------------------------------*/
+
+   // -- Global variables -----------------------------------------------
    // Flag for printing new data to LCD
    volatile uint8_t update_lcd = 0;
 
@@ -216,6 +217,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        uint8_t mins;    // Minutes
    } stopwatch;
 
+   // -- Function definitions -------------------------------------------
    int main(void)
    {
        char string[2];  // String for converted numbers by itoa()
@@ -237,6 +239,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        ...
    }
 
+   // -- Interrupt service routines -------------------------------------
    ISR(TIMER2_OVF_vect)
    {
        ...
