@@ -62,28 +62,29 @@ Parameters between C and assembly may be passed via registers and/or the Stack m
 
 4. Copy `timer` and `uart` libraries from the previous labs to the proper locations within the `LAB7-ASM` project.
 
-5. In PlatformIO project, create two new files `lfsr.S` and `mac.S` within `LAB7-ASM > src` source folder. The final project structure should look like this:
+5. In PlatformIO project, create a new folder `LAB7-ASM > lib > lfsr`. Within this folder, create two new files `lfsr.h` and `lfsr.S`. The final project structure should look like this:
 
    ```c
    LAB7-ASM            // PlatfomIO project
    ├── include         // Included file(s)
    │   └── timer.h
    ├── lib             // Libraries
+   │   ├── lfsr        // Assembly implementation of LFSR-based generator
+   │   │   ├── lfsr.h
+   │   │   └── lfsr.S
    │   └── uart        // Peter Fleury's UART library
    │       ├── uart.c
    │       └── uart.h
    ├── src             // Source file(s)
-   │   ├── lfsr.S      // Assembly implementation of LFSR-based generator
-   │   ├── mac.S       // Assembly example of Multiply-and-Accumulate
    │   └── main.c
    ├── test            // No need this
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste assembly [Multiply–and-Accumulate](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab7-asm/mac.S) file to `mac.S`
-   2. Copy/paste assembly [LFSR](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/lab7-asm/lfsr.S) generator to `lfsr.S`
+   1. Copy/paste assembly [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lfsr/lfsr.h) to `lfsr.h`
+   2. Copy/paste assembly [source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/lfsr/lfsr.S) to `lfsr.S`
 
-6. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/), find the description of instructions used in `mac.S`, and complete the table.
+6. Go through the `main.c` file and make sure you understand each line. Use **AVR® Instruction Set Manual** from Microchip [Online Technical Documentation](https://onlinedocs.microchip.com/) and find the description of following instructions.
 
    | **Instruction** | **Operation** | **Description** | **Cycles** |
    | :-- | :-: | :-- | :-: |
@@ -152,12 +153,12 @@ A maximum-length LFSR produces an m-sequence i.e. it cycles through all possible
 Doxygen uses several keywords that are inserted into your block comments. For C, these comments must begin with a triple character with two asterisks:
 
 ```c
-/**
- * Doxygen will search this block
- */
-
 /* 
  * Classic C block comment; Doxygen will not search it
+ */
+
+/**
+ * Doxygen will search this block
  */
 ```
 
