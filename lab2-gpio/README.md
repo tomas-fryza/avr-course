@@ -75,23 +75,13 @@
 
 1. Run Visual Studio Code, follow [instructions](../README.md) and install the PlatformIO plugin.
 
-2. Create a new project `lab2-gpio`, select `Arduino Uno` board, and change project location to your local folder, such as `Documents`. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.cpp` file.
+2. Create a new project `lab2-gpio`, select `Arduino Uno` board, and change project location to your local folder, such as `Documents`.
 
 3. IMPORTANT: Rename `LAB2-GPIO > src > main.cpp` file to `main.c`, ie change the extension to `.c`.
 
-   The final project structure should look like this:
+4. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.c` file.
 
-   ```c
-   LAB2-GPIO           // PlatfomIO project
-   ├── include         // Included files
-   ├── lib             // Libraries
-   ├── src             // Source file(s)
-   │   └── main.c
-   ├── test            // No need this
-   └── platformio.ini  // Project Configuration File
-   ```
-
-4. Compile and download the firmware to target ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED.
+5. Compile and upload the firmware to ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED.
 
    * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
 
@@ -195,14 +185,14 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    └── platformio.ini  // Project Configuration File
    ```
 
-   1. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/include/gpio.h) to `gpio.h`
-   2. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio.c) to `gpio.c`
+   1. Copy/paste the [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio/gpio.c) to `gpio.c`
+   2. Copy/paste the [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/gpio/gpio.h) to `gpio.h`
    3. Include header file to `src > main.c`:
 
       ```c
-      #include <avr/io.h>     // AVR device-specific IO definitions
-      // Include the header file of library you are using
-      #include <gpio.h>
+      // -- Includes -------------------------------------------------------
+      #include <gpio.h>       // GPIO library for AVR-GCC
+      ...
 
       int main(void)
       {
@@ -228,19 +218,15 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    The register name parameter must be `volatile` to avoid a compiler warning. Note that the C notation `*variable` representing a pointer to memory location where the variable's **value** is stored. Notation `&variable` is address-of-operator and gives an **address** reference of variable.
 
    ```c
-   #include <avr/io.h>     // AVR device-specific IO definitions
-   // Include the header file of library you are using
-   #include <gpio.h>
-
    int main(void)
    {
        ...
        // Examples of various function calls
-       GPIO_mode_output(&DDRB, LED_GREEN);  // Set output mode in DDRB reg
+       GPIO_mode_output(&DDRB, LED_BUILTIN);  // Set output mode in DDRB reg
        ...
-       GPIO_write_low(&PORTB, LED_GREEN);   // Set output low in PORTB reg
+       GPIO_write_low(&PORTB, LED_BUILTIN);   // Set output low in PORTB reg
        ....
-       temp = GPIO_read(&PIND, BTN);        // Read input value from PIND reg
+       temp = GPIO_read(&PIND, BTN);          // Read input value from PIND reg
        ...
    }
    ```
@@ -249,9 +235,9 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
    >
    > **Note:** Understanding C Pointers: A Beginner's Guide is available [here](https://www.codewithc.com/understanding-c-pointers-beginners-guide/). Explanation of how to pass an IO port as a parameter to a function is given [here](https://www.eit.lth.se/fileadmin/eit/courses/eita15/avr-libc-user-manual-2.0.0/FAQ.html#faq_port_pass).
 
-3. In `main.c` comment binary operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
+3. In `main.c` comment bitwise operations with control registers (DDRB, PORTB) and rewrite the application with library functions.
 
-4. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB2 (and PB3). Develop the code to achieve alternating blinking of two LEDs.
+4. On a breadboard, connect a LED or a [two-color LED](http://lednique.com/leds-with-more-than-two-pins/) (3-pin LED) and resistor(s) to pin(s) PB0 (and PB1). Develop the code to achieve alternating blinking of two LEDs.
 
 5. On a breadboard, connect an active-low push button to pin PD2. In your code, activate the internal pull-up resistor on this pin. Make the LEDs blink only when the button is pressed.
 
@@ -281,7 +267,7 @@ This construct is commonly known as a wrapper `#ifndef`. When the header is incl
 
 ## Challenges
 
-1. Complete declarations (`*.h`) and definitions (`*.c`) of GPIO suggested functions `GPIO_mode_input_nopull()` and `GPIO_toggle()`.
+1. Complete declarations (`*.h`) and definitions (`*.c`) of GPIO suggested functions `GPIO_mode_input_nopull` and `GPIO_toggle`.
 
 2. Connect at least five LEDs and one push button to the microcontroller and program an application in [Knight Rider style](https://www.youtube.com/watch?v=w-P-2LdS6zk). When you press and release a push button once, the LEDs starts to switched on and off; ensure that only one of LEDs is switched on at a time. Do not implement the blinking speed changing.
 
