@@ -8,14 +8,16 @@ int main(void)
     uint8_t values[SIZE] = {0};  // {0, 0, 0, 0, 0}
 
     // Modify elements of the array
-    for (uint8_t i = 0; i < SIZE; i++) {
+    for (uint8_t i = 0; i < SIZE; i++)
+    {
         values[i] = i*i + 1;  // {1, 2, 5, 10, 17}
     }
 
     // Print the modified array
     printf("Modified array:\n");
-    for (uint8_t i = 0; i < SIZE; i++) {
-        printf("[%d] %d\n", i,values[i]);
+    for (uint8_t i = 0; i < SIZE; i++)
+    {
+        printf("[%d] %d\n", i, values[i]);
     }
 
     return 0;
