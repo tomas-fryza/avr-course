@@ -98,10 +98,9 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    1. Copy/paste [library source file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.c) to `uart.c`
    2. Copy/paste [header file](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/library/uart/uart.h) to `uart.h`
 
-7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`?
+7. Go through the `main.c` file and make sure you understand each line. Build and upload the code to Arduino Uno board. What is the meaning of ASCII control characters `\r`, `\n`, and `\t`? Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
 
-   Use **PlatformIO: Serial Monitor** or **PuTTY application** to receive values from Arduino board.
-   
+<!--   
    > In PuTTY, set connection type to `Serial` and check that configuration is the same as in the ATmega328P application, ie. 9600 8N1 mode. Note that, **serial line** (here COM3 on Windows) could be different. In Linux, use `dmesg` command to verify your port (such as `/dev/ttyUSB0`).
    >
    >   ![PuTTY](images/screenshot_putty_type.png)
@@ -110,10 +109,12 @@ In the lab, we are using [UART library](http://www.peterfleury.epizy.com/avr-sof
    > **Warning:** Before Arduino board re-programming process, PuTTY app must be closed!
    >
    > In SimulIDE, right click to ATmega328 package and select **Open Serial Monitor**. In this window you can receive data from the microcontroller, but also send them back.
-
+-->
 8. Configure Timer1 to overflow once per second and transmit UART string `Paris`.
 
 9. Connect the logic analyzer to the `Tx` wire. Launch the logic analyzer software Logic and **Start** the capture. Saleae Logic software offers a decoding feature to transform the captured signals into meaningful UART messages. Click to **+ button** in **Analyzers** part and setup **Async Serial** decoder.
+
+   ![logic analyzer-photo](images/logic_photo.jpg)
 
    ![Logic analyzer -- Paris](images/analyzer_paris.png)
 
