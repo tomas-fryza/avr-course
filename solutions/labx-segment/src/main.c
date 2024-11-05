@@ -30,9 +30,8 @@ struct Counter_structure {
 int main(void)
 {
     // Initialize SSD signals
-    SEG_init();
-    SEG_clrsrc();
-    SEG_putc(7, 0);
+    seg_init();
+    seg_show_digit(9, 3);
 
     // Decimal counter main clock
     TIM2_ovf_16ms();
@@ -85,16 +84,16 @@ ISR(TIMER2_OVF_vect)
 
 
 /*
- * Function: Timer/Counter1 overflow interrupt
+ * Function: Timer/Counter0 overflow interrupt
  * Purpose:  Multiplex display positions.
  */
-ISR(TIMER2_OVF_vect)
+ISR(TIMER0_OVF_vect)
 {
     static uint8_t pos = 0;
 
     if ((pos % 2) == 0)
-        SEG_update_shift_regs(cnt.units, 0);
+        seg_show_digit(cnt.units, 0);
     else
-        SEG_update_shift_regs(cnt.tens, 1);
+        seg_show_digit(cnt.tens, 1);
     pos++;
 }

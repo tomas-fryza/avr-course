@@ -42,16 +42,29 @@ void seg_init(void)
  *                      be displayed (p3 p2 p1 p0 xxxx, active high)
  * Returns:  none
  */
-void seg_putc(uint8_t value, uint8_t position)
+void seg_show_digit(uint8_t value, uint8_t position)
 {
-    char string[1];
-    itoa(value, string, 10);
-    // TODO
+    // Segment values (abcdefgDP, active low) for numbers
+    uint8_t seg_map[10] = {
+    // 0     1     2     3     4     5     6     7     8     9
+    0x03, 0x9f, 0x25, 0x0d, 0x99, 0x49, 0x41, 0x1f, 0x01, 0x09};
+
+    // Digit position 3:0 (p3 p2 p1 p0 xxxx, active high)
+    uint8_t seg_position[4] = {
+    0x10, 0x20, 0x40, 0x80};
+
+    // Map values 0..9
+    value = seg_map[value];
+    // Map positions 0..3
     position = seg_position[position];
 
     // Pull LATCH, CLK, and DATA low
+    PORTD &= ~_BV(SEG_LATCH);
+    PORTD &= ~_BV(SEG_CLK);
+    PORTB &= ~_BV(SEG_DATA);
 
     // Wait 1 us
+    _delay_us(1);
 
     // Loop through the 1st byte (value)
     // a b c d e f g DP (active low values)
@@ -74,8 +87,11 @@ void seg_putc(uint8_t value, uint8_t position)
     // p3 p2 p1 p0 . . . . (active high values)
     for (uint8_t i = 0; i < 8; i++)
     {
-        // Test LSB of "position" by & (faster) or % (slower) and... 
-        // ...output DATA value
+        // Test the LSB of "position" and output DATA value
+        if ((position & 0x01) == 1)
+            PORTB |= _BV(SEG_DATA);
+        else
+            PORTB &= ~_BV(SEG_DATA);
 
         // One clock period
         clk_pulse_2us();
@@ -85,19 +101,16 @@ void seg_putc(uint8_t value, uint8_t position)
     }
 
     // Pull LATCH high
+    PORTD |= _BV(SEG_LATCH);
 
     // Wait 1 us
-
+    _delay_us(1);
 }
 
 
 /*
- * Function: seg_clrscr()
- */
-
-
-/*
- * Function: clk_pulse_2us()
+ * Function: seg_pulse_2us()
+ * Purpose:  Generate one clock pulse at SEG_CLK pin with length of 2 microsecs.
  */
 void clk_pulse_2us()
 {
@@ -105,4 +118,14 @@ void clk_pulse_2us()
     PORTD |= _BV(SEG_CLK);
     _delay_us(1);
     PORTD &= ~_BV(SEG_CLK);
+}
+
+
+/*
+ * Function: seg_clrscr()
+ * Purpose:  Turn off all segments.
+ */
+void seg_clrscr(void)
+{
+    // TODO
 }
