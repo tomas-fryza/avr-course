@@ -2,7 +2,7 @@
 #include <avr/io.h>         // AVR device-specific IO definitions
 
 
-// -- Function declarations -------------------------------------------
+// -- Function prototypes --------------------------------------------
 // Goxygen module with assembly functions starts here
 /**
  * @defgroup func_asm Assembly functions
