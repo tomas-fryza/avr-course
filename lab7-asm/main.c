@@ -25,6 +25,7 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
+#include <lfsr.h>           // Assembly implementation of LFSR
 #include <stdlib.h>         // C library. Needed for number conversions
 
 
