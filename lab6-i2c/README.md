@@ -315,9 +315,9 @@ An OLED I2C display, or OLED I2C screen, is a type of display technology that co
 
    | **Function name** | **Function parameters** | **Description** | **Example** |
    | :-- | :-- | :-- | :-- |
-   | `rtc_read_seconds` | None | Read seconds from RTC | `rtc.secs = rtc_read_seconds();` |
-   | `rtc_read_minutes` | None | Read minutes from RTC | `rtc.mins = rtc_read_minutes();` |
-   | `rtc_read_hours` | None | Read hours from RTC | `rtc.hours = rtc_read_hours();` |
+   | `rtc_read_seconds` | None | Read seconds from RTC | `secs = rtc_read_seconds();` |
+   | `rtc_read_minutes` | None | Read minutes from RTC | `mins = rtc_read_minutes();` |
+   | `rtc_read_hours` | None | Read hours from RTC | `hours = rtc_read_hours();` |
 
 2. Program the functions that will be able to save the current time values to the RTC DS3231.
 
