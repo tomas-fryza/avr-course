@@ -44,6 +44,7 @@ int main(void)
             uart_puts(string);
         }
     }
+    uart_puts("\r\nDone");
 
     // Infinite empty loop
     while (1)

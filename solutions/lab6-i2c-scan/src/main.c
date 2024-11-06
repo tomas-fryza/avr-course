@@ -13,6 +13,7 @@
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
 #include <stdlib.h>         // C library. Needed for number conversions
+#include <util/delay.h>     // !!! Just for the simulation !!!
 
 
 // -- Function definitions -------------------------------------------
@@ -50,7 +51,9 @@ int main(void)
             itoa(sla, string, 16);
             uart_puts(string);
         }
+        _delay_ms(1);  // !!! Just for the simulation !!!
     }
+    uart_puts("\r\nDone");
 
     // Infinite empty loop
     while (1)
