@@ -2,7 +2,7 @@
 
 ### Topics 2023/24
 
-*Topics will be presented one week before the project starts.*
+*New topics will be presented one week before the project starts.*
 
 **Smart plant watering system and data logger**
 *Max 3 groups.*
@@ -28,31 +28,37 @@ Create a comprehensive data logging system using an AVR microcontroller. The sys
 *Max 1 group.*
 Build an electronic xylophone instrument that can be played using an AVR microcontroller. The project will combine hardware and software components to create an interactive and programmable musical instrument capable of producing different tones and melodies. Incorporating a graphical user interface (GUI) to visualize the notes being played.
 
+**Another topis related to, for example, your bachelor's thesis.**
+
 ## Instructions
 
-The objective of this group project is to collaborate within small teams (3-4 students), explore a chosen topic, use [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop innovative solutions, simulate and execute these solutions, generate project documentation, and present the final outcomes. Team members are responsible for organizing and assigning roles and tasks among themselves.
+*The goal of this project is for small teams of 3-4 students to explore a chosen topic, use the [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop solutions, simulate and implement them, create documentation, and present the results. Team members will organize and divide tasks among themselves.*
 
-* Students will work on a project **in the labs** during the 9th to 13th weeks of the semester, with the practical demonstration scheduled for the last week.
+* The students will work on the project for five weeks, ending with a presentation and a practical demonstration (simulations alone are not enough).
 
-* Using BUT e-learning, students should submit a link to the GitHub repository containing the C project, required images, documents, and a descriptive README file. **The submission deadline is the day before the demonstration.**
+* The AVR code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided by PlatformIO (exceptions by agreement).
 
-* The AVR code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided during the semester, specifically PlatformIO. The use of Arduino frameworks/libraries or any other development tools is not permitted!
+* The use of Arduino frameworks/libraries is strictly prohibited!
 
-* Create own library for each component.
+* Design a block diagram or circuit diagram of your application (KiCAD, Eagle, ...).
 
-* Physical implementation on AVR is required, not just computer simulation.
+* Create own library (and documentation) for the new components.
 
-* Make a short video of your app demo. (The video can then be used to promote the course at LinkedIn.)
-
-## Help:
-
-* Create a block diagram and ciruit diagram (schematic) of your application.
-
-* Optionally design a PCB layout and/or 3D box.
+* Use simulation tools, such as [SimulIDE](https://simulide.com/p/), [Falstad](https://www.falstad.com/circuit/circuitjs.html), etc.
 
 * Draw illustrative flowcharts for all important functions/interrupt routines.
 
+* Optionally, design a PCB and/or 3D-printable enclosure for your solution.
+
+* Create a public GitHub repository for your project and publish all files here.
+
+* Provide a list of all (online) tools used during the project, including Machine Learning.
+
 * Strictly follow licenses for third-party libraries !
+
+* A PowerPoint presentation is not required; a good README on GitHub is sufficient.
+
+* In the presentation, you can show a short video (max 1 minute) with subtitles or explanatory captions.
 
 # Recommended README.md file structure
 
@@ -62,23 +68,19 @@ The objective of this group project is to collaborate within small teams (3-4 st
 * Member 2 (responsible for ...)
 * Member 3 (responsible for ...)
 
-## Theoretical description and explanation
+## Hardware description
 
-Enter a description of the problem and how to solve it.
-
-## Hardware description of demo application
-
-Insert descriptive text and schematic(s) of your implementation.
+Describe your implementation and include block or circuit diagram(s).
 
 ## Software description
 
-Put flowchats/state diagrams of your algorithm(s) and direct links to source files in `src` or `lib` folders.
+Put flowchats/state diagrams of your algorithm(s) and direct links to source files in `src` or `lib` folders. Present the libraries you used in the project.
 
-## Instructions
+## Instructions and photos
 
-Write an instruction manual for your application, including photos and a link to a short app video.
+Describe how to use the application. Add photos or videos of your application.
 
-## References
+## References and tools
 
-1. Put here the references you used.
+1. Put here the references and online tools you used.
 2. ...
