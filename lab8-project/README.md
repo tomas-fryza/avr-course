@@ -57,32 +57,66 @@ Describe how to use the application. Add photos or videos of your application.
 1. Put here the references and online tools you used.
 2. ...
 
-### Topics 2024/25
+# Topics 2024/25
 
-**Measurement/Control/Visualization of the environment for tropical plants**
+### Measurement/Control/Visualization of the environment for tropical plants
+
 The goal of the project would be to create a system that measures key environmental parameters (such as temperature, humidity, light levels, soil moisture) for tropical plants. This system should also allow the user to control or adjust environmental conditions and visualize the data.
 
-Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/climate-chamber-system-c545de)
+Inspiration:
+* [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/climate-chamber-system-c545de)
 
-**Concept of an autonomous vehicle**
-*Max 2 teams per group.*
-The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks. The MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
+Possible components:
+* I2C temperature and humidity sensor
+* Soil moisture sensor
+* Photoresistor
+* OLED display
+* RGB LED strip Neopixel WS2812B
+* Relays
+* Ventilator
+* ESP8266 Wi-Fi module
 
-Inspiration: [NXP Cup 2025](https://nxpcup.nxp.com/)
+### Concept of an autonomous vehicle
 
-**Solar panel monitoring and optimization**
-*Max 2 teams per group.*
+(*Max 2 teams per lab group.*)
+
+The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks.
+
+Inspiration:
+* [NXP Cup](https://nxpcup.nxp.com/)
+
+Possible components:
+* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis)
+* ESC (Electronic Speed Controller)
+* Servo motor for steering
+* LiPol battery
+* Proximity sensor HC-SR04
+* Line tracking sensor
+* I2C accelerometers and gyroscopes
+* MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board
+
+### Solar panel monitoring and optimization
+
+(*Max 2 teams per lab group.*)
+
 The goal of this project is to design and implement an embedded system that leverages solar panels for power generation while monitoring solar radiation, energy output, and efficiency. The system will collect real-time data using sensors to analyze the performance of solar panels and provide insights for optimizing energy production.
 
-Inspiration: [Simple Arduino Solar Radiation Meter for Solar Panels](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531), [Photovoltaic battery charger with sun tracking](https://www.vut.cz/en/students/final-thesis/detail/151699)
+Inspiration:
+* [Simple Arduino Solar Radiation Meter for Solar Panels](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
+* [Photovoltaic battery charger with sun tracking](https://www.vut.cz/en/students/final-thesis/detail/151699)
 
-**Electronically controlled xylophone**
-*Max 1 team per group.*
+### Electronically controlled xylophone
+
+(*Max 1 team per lab group.*)
+
 Build an electronic xylophone instrument that can be played using an AVR microcontroller. The project will combine hardware and software components to create an interactive and programmable musical instrument capable of producing different tones and melodies. Incorporating a graphical user interface (GUI) to visualize the notes being played.
 
-**Usage of CubeSat Space Protocol (CSP)**
-*Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*
-Test of multiprocessor communication. MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
+### Usage of CubeSat Space Protocol (CSP)
 
-**Another topic related to, for example, your bachelor's thesis.**
-(Must be arranged in advance.)
+(*Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*)
+
+Test of multiprocessor communication. The MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
+
+### Another topic related to, for example, your bachelor's thesis
+
+(*Must be arranged in advance.*)
