@@ -68,7 +68,7 @@ Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/cli
 *Max 2 team per group.*
 The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks.
 
-Inspiration: [NCP Cup 2025](https://nxpcup.nxp.com/)
+Inspiration: [NXP Cup 2025](https://nxpcup.nxp.com/)
 
 **Solar panel monitoring and optimization**
 *Max 2 teams per group.*
