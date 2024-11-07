@@ -10,7 +10,7 @@
 
 * The use of Arduino frameworks/libraries is strictly prohibited!
 
-* Use simulation tools, such as [SimulIDE](https://simulide.com/p/), [Falstad](https://www.falstad.com/circuit/circuitjs.html), etc.
+* If needed, use the simulation tools, such as [SimulIDE](https://simulide.com/p/), [wokwi](https://wokwi.com/), [Falstad](https://www.falstad.com/circuit/circuitjs.html), etc.
 
 * Draw illustrative flowcharts for all important functions/interrupt routines.
 
@@ -66,7 +66,7 @@ Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/cli
 
 **Concept of an autonomous vehicle**
 *Max 2 teams per group.*
-The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks.
+The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks. The MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
 
 Inspiration: [NXP Cup 2025](https://nxpcup.nxp.com/)
 
@@ -82,7 +82,7 @@ Build an electronic xylophone instrument that can be played using an AVR microco
 
 **Usage of CubeSat Space Protocol (CSP)**
 *Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*
-Test of multiprocessor communication.
+Test of multiprocessor communication. MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
 
 **Another topic related to, for example, your bachelor's thesis.**
 (Must be arranged in advance.)
