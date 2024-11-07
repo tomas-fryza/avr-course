@@ -65,7 +65,7 @@ The goal of the project would be to create a system that measures key environmen
 Inspiration: [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/climate-chamber-system-c545de)
 
 **Concept of an autonomous vehicle**
-*Max 2 team per group.*
+*Max 2 teams per group.*
 The aim of the project would be to design and build an autonomous vehicle capable of performing line following, obstacle detection, and possibly other basic navigation tasks.
 
 Inspiration: [NXP Cup 2025](https://nxpcup.nxp.com/)
