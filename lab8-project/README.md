@@ -2,8 +2,6 @@
 
 ### Topics 2023/24
 
-*New topics will be presented one week before the project starts.*
-
 **Smart plant watering system and data logger**
 *Max 3 groups.*
 Propose and develop an intelligent plant watering system using soil moisture sensors, temperature sensors, a relay, and a Microcontroller Unit (MCU). The project should aim to automate the plant watering process based on soil moisture conditions, provide visual feedback, record and export data logs, and, optionally, incorporate a notification feature for relevant updates.
@@ -40,25 +38,27 @@ Build an electronic xylophone instrument that can be played using an AVR microco
 
 * The use of Arduino frameworks/libraries is strictly prohibited!
 
-* Design a block diagram or circuit diagram of your application (KiCAD, Eagle, ...).
-
-* Create own library (and documentation) for the new components.
-
 * Use simulation tools, such as [SimulIDE](https://simulide.com/p/), [Falstad](https://www.falstad.com/circuit/circuitjs.html), etc.
 
 * Draw illustrative flowcharts for all important functions/interrupt routines.
 
+* Design a block diagram or circuit diagram of your application (EasyEDA, KiCAD, Eagle, ...).
+
 * Optionally, design a PCB and/or 3D-printable enclosure for your solution.
 
-* Create a public GitHub repository for your project and publish all files here.
+* Use libraries from the labs. Create own libraries (and documentation) for the new components.
 
-* Provide a list of all (online) tools used during the project, including Machine Learning.
+* Follow coding standards in your codes.
 
 * Strictly follow licenses for third-party libraries !
 
-* A PowerPoint presentation is not required; a good README on GitHub is sufficient.
+* Create a public [GitHub](https://github.com/) (or other online software development platform) repository for your project and publish all files here.
 
-* In the presentation, you can show a short video (max 1 minute) with subtitles or explanatory captions.
+* Provide a list of all tools used during the project, including Machine Learning (some are listed [here](https://github.com/tomas-fryza/avr-course/wiki)).
+
+* A PowerPoint-style presentation is not required; a good README on GitHub is sufficient.
+
+* During the presentation, you can play a short video (max 1 minute) with subtitles or explanatory captions.
 
 # Recommended README.md file structure
 
@@ -74,7 +74,7 @@ Describe your implementation and include block or circuit diagram(s).
 
 ## Software description
 
-Put flowchats/state diagrams of your algorithm(s) and direct links to source files in `src` or `lib` folders. Present the libraries you used in the project.
+Put flowchats/state diagrams of your algorithm(s) and direct links to source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
 
 ## Instructions and photos
 
