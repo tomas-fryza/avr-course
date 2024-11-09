@@ -67,13 +67,14 @@ Inspiration:
 * [Climate Chamber System](https://projecthub.arduino.cc/ms_peach/climate-chamber-system-c545de)
 
 Possible components:
+* Plant terrarium
 * I2C temperature and humidity sensor
 * Soil moisture sensor
 * Photoresistor
 * OLED display
 * RGB LED strip Neopixel WS2812B
 * Relays
-* Ventilator
+* Brushless DC fan, NMOS transistor
 * ESP8266 Wi-Fi module
 
 ### Concept of an autonomous vehicle
@@ -86,14 +87,14 @@ Inspiration:
 * [NXP Cup](https://nxpcup.nxp.com/)
 
 Possible components:
-* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis)
-* ESC (Electronic Speed Controller)
-* Servo motor for steering
+* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis), including ESCs (Electronic Speed Controllers) and servo motor for steering
 * LiPol battery
 * Proximity sensor HC-SR04
-* Line tracking sensor
+* Digital [line tracking sensor](https://www.dfrobot.com/product-85.html)
 * I2C accelerometers and gyroscopes
-* MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board
+* Platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board
+
+   ![dfrobot chassis](images/nxp_chassis.jpg)
 
 ### Solar panel monitoring and optimization
 
@@ -115,7 +116,7 @@ Build an electronic xylophone instrument that can be played using an AVR microco
 
 (*Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*)
 
-Test of multiprocessor communication. The MCU platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
+Test of multiprocessor communication. The MCU platform will be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board.
 
 ### Another topic related to, for example, your bachelor's thesis
 
