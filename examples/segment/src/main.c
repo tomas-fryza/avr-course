@@ -2,7 +2,7 @@
  * Decimal counter using 7-segment displays.
  * (c) 2018-2024 Tomas Fryza, MIT license
  *
- * Developed using PlatformIO and AVR 8-bit Toolchain 3.6.2.
+ * Developed using PlatformIO v3.3.3 and Atmel AVR platform 5.0.0
  * Tested on Arduino Uno board and ATmega328P, 16 MHz.
  */
 
@@ -15,13 +15,23 @@
 
 
 // -- Global variables -----------------------------------------------
-struct Counter_structure {
-    uint8_t units;
-    uint8_t tens;
-} cnt;
+volatile uint16_t cnt;
 
 
 // -- Function definitions -------------------------------------------
+void timer1_init()
+{
+    TIM2_ovf_16ms();
+    TIM2_ovf_enable();
+}
+
+void timer0_init()
+{
+    TIM0_ovf_4ms();
+    TIM0_ovf_enable();
+}
+
+
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Use 7-segment displays for decimal counter.
@@ -31,22 +41,19 @@ int main(void)
 {
     // Initialize SSD signals
     seg_init();
-    seg_show_digit(9, 3);
 
     // Decimal counter main clock
-    TIM2_ovf_16ms();
-    TIM2_ovf_enable();
-
+    timer1_init();
     // SSD multiplexing
-    TIM0_ovf_4ms();
-    TIM0_ovf_enable();
+    timer0_init();
+
+    // Init counter value
+    cnt = 950;
 
     sei();
 
     // Infinite loop
-    while (1)
-    {
-    }
+    while (1);
 
     // Will never reach this
     return 0;
@@ -56,7 +63,7 @@ int main(void)
 // -- Interrupt service routines -------------------------------------
 /*
  * Function: Timer/Counter2 overflow interrupt
- * Purpose:  Increment counter every 100 ms.
+ * Purpose:  Increment counter value every 100 ms.
  */
 ISR(TIMER2_OVF_vect)
 {
@@ -68,16 +75,9 @@ ISR(TIMER2_OVF_vect)
     if (n_ovfs >= 6)
     {
         n_ovfs = 0;
-        cnt.units++;
-        if (cnt.units > 9)
-        {
-            cnt.units = 0;
-            cnt.tens++;
-            if (cnt.tens > 9)
-            {
-                cnt.tens = 0;
-            }
-        }
+        cnt++;
+        if (cnt > 9999)
+            cnt = 0;
     }
     // Else do nothing and exit the ISR
 }
@@ -90,10 +90,35 @@ ISR(TIMER2_OVF_vect)
 ISR(TIMER0_OVF_vect)
 {
     static uint8_t pos = 0;
+    uint8_t digits[4];  // Array to hold up to 4 digits
 
-    if ((pos % 2) == 0)
-        seg_show_digit(cnt.units, 0);
-    else
-        seg_show_digit(cnt.tens, 1);
+    // Select one digit position
     pos++;
+    if (pos > 3)
+        pos = 0;
+
+    // Extract up to 4 digits from the counter
+    switch (pos)
+    {
+        case 0:
+            // Extract units digit (1's place)
+            digits[0] = cnt % 10;
+            break;
+
+        case 1:
+            // Extract tens digit (10's place)
+            digits[1] = (cnt / 10) % 10;
+            break;
+
+        case 2:
+            // Extract hundreds digit (100's place)
+            digits[2] = (cnt / 100) % 10;
+            break;
+
+        default:
+            // Extract thousands digit (1000's place)
+            digits[3] = (cnt / 1000) % 10;
+    }
+
+    seg_show_digit(digits[pos], pos);
 }
