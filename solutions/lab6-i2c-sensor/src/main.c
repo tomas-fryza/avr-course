@@ -26,11 +26,18 @@
 
 
 // -- Global variables -----------------------------------------------
-volatile uint8_t update_uart = 0;
+volatile uint8_t flag_update_uart = 0;
 volatile uint8_t dht12_values[5];
 
 
 // -- Function definitions -------------------------------------------
+void timer1_init(void)
+{
+    TIM1_ovf_1sec();
+    TIM1_ovf_enable();
+}
+
+
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Wait for new data from the sensor and sent them to UART.
@@ -52,14 +59,11 @@ int main(void)
         while (1);
     }
 
-    // Timer1
-    TIM1_ovf_1sec();
-    TIM1_ovf_enable();
+    timer1_init();
 
-    // Infinite loop
     while (1)
     {
-        if (update_uart == 1)
+        if (flag_update_uart == 1)
         {
             // Display temperature
             itoa(dht12_values[2], string, 10);
@@ -83,7 +87,7 @@ int main(void)
             uart_puts("\r\n");
 
             // Do not print it again and wait for the new data
-            update_uart = 0;
+            flag_update_uart = 0;
         }
     }
 
@@ -107,7 +111,7 @@ ISR(TIMER1_OVF_vect)
     {
         n_ovfs = 0;
         twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
-        update_uart = 1;
+        flag_update_uart = 1;
     }
 }
 

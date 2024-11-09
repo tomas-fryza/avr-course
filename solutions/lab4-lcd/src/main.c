@@ -16,12 +16,12 @@
 
 
 // -- Global variables -----------------------------------------------
-// Flag for printing the new data to LCD
-volatile uint8_t update_lcd = 0;
+volatile uint8_t flag_update_lcd = 0;
 
 // Stopwatch values
 // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
-struct Stopwatch_structure {
+struct Stopwatch_structure
+{
     uint8_t tenths;  // Tenths of a second
     uint8_t secs;    // Seconds
     uint8_t mins;    // Minutes
@@ -29,16 +29,8 @@ struct Stopwatch_structure {
 
 
 // -- Function definitions -------------------------------------------
-/*
- * Function: Main function where the program execution begins
- * Purpose:  Update stopwatch value on LCD screen when 8-bit Timer/Counter2
- *           overflows.
- * Returns:  none
- */
-int main(void)
+void lcd_setup(void)
 {
-    char string[2];  // String for converted numbers by itoa()
-
     // Initialize display
     lcd_init(LCD_DISP_ON);
 
@@ -64,11 +56,28 @@ int main(void)
     lcd_gotoxy(13, 1);
     lcd_putc(7);
     lcd_putc(3);
+}
 
+void timer2_init(void)
+{
     // Configuration of 8-bit Timer/Counter2 for Stopwatch update
-    // Set the overflow prescaler to 16 ms and enable interrupt
     TIM2_ovf_16ms();
     TIM2_ovf_enable();
+}
+
+
+/*
+ * Function: Main function where the program execution begins
+ * Purpose:  Update stopwatch value on LCD screen when 8-bit Timer/Counter2
+ *           overflows.
+ * Returns:  none
+ */
+int main(void)
+{
+    char string[2];  // String for converted numbers by itoa()
+
+    lcd_setup();
+    timer2_init();
 
     // Enable global interrupts
     sei();
@@ -76,7 +85,7 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        if (update_lcd == 1)
+        if (flag_update_lcd == 1)
         {
             // Display "00:00.tenths"
             itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
@@ -89,7 +98,7 @@ int main(void)
                 lcd_puts("0");
             lcd_puts(string);
 
-            update_lcd = 0;
+            flag_update_lcd = 0;
         }
     }
 
@@ -126,7 +135,7 @@ ISR(TIMER2_OVF_vect)
                 stopwatch.secs = 0;
             }
         }
-        update_lcd = 1;
+        flag_update_lcd = 1;
     }
     // Else do nothing and exit the ISR
 }

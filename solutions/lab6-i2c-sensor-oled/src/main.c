@@ -23,23 +23,13 @@
 
 
 // -- Global variables -----------------------------------------------
-volatile uint8_t update_oled = 0;
+volatile uint8_t flag_update_oled = 0;
 volatile uint8_t dht12_values[5];
 
 
 // -- Function definitions -------------------------------------------
-/*
- * Function: Main function where the program execution begins
- * Purpose:  Wait for new data from the sensor and sent them to OLED.
- * Returns:  none
- */
-int main(void)
+void oled_setup(void)
 {
-    char string[2];  // String for converting numbers by itoa()
-
-    twi_init();
-
-    // Init OLED
     oled_init(OLED_DISP_ON);
     oled_clrscr();
 
@@ -64,17 +54,35 @@ int main(void)
 
     // Copy buffer to display RAM
     oled_display();
+}
 
-    // Timer1
+
+void timer1_init(void)
+{
     TIM1_ovf_1sec();
     TIM1_ovf_enable();
+}
+
+
+/*
+ * Function: Main function where the program execution begins
+ * Purpose:  Wait for new data from the sensor and sent them to OLED.
+ * Returns:  none
+ */
+int main(void)
+{
+    char string[2];  // String for converting numbers by itoa()
+
+    twi_init();
+    oled_setup();
+    timer1_init();
 
     sei();
 
     // Infinite loop
     while (1)
     {
-        if (update_oled == 1)
+        if (flag_update_oled == 1)
         {
             // Clear previous temperature value on OLED
             oled_gotoxy(17, 6);
@@ -103,7 +111,7 @@ int main(void)
             oled_display();
 
             // Do not print it again and wait for the new data
-            update_oled = 0;
+            flag_update_oled = 0;
         }
     }
 
@@ -126,23 +134,7 @@ ISR(TIMER1_OVF_vect)
     if (n_ovfs >= 5)
     {
         n_ovfs = 0;
-
-        // Test ACK from Temp/Humid sensor
-        twi_start();
-        if (twi_write((DHT_ADR<<1) | TWI_WRITE) == 0) {
-            // Set internal memory location
-            twi_write(DHT_HUM_MEM);
-            twi_stop();
-            // Read data from internal memory
-            twi_start();
-            twi_write((DHT_ADR<<1) | TWI_READ);
-            dht12_values[0] = twi_read(TWI_ACK);
-            dht12_values[1] = twi_read(TWI_ACK);
-            dht12_values[2] = twi_read(TWI_ACK);
-            dht12_values[3] = twi_read(TWI_NACK);
-
-            update_oled = 1;
-        }
-        twi_stop();
+        twi_readfrom_mem_into(DHT_ADR, DHT_HUM_MEM, dht12_values, 5);
+        flag_update_oled = 1;
     }
 }

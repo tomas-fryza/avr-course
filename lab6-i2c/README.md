@@ -191,7 +191,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
 
 
    // -- Global variables -----------------------------------------------
-   volatile uint8_t update_uart = 0;
+   volatile uint8_t flag_update_uart = 0;
    volatile uint8_t dht12_values[5];
 
 
@@ -224,7 +224,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        // Infinite loop
        while (1)
        {
-           if (update_uart == 1)
+           if (flag_update_uart == 1)
            {
                itoa(dht12_values[0], string, 10);
                uart_puts(string);
@@ -234,7 +234,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
                uart_puts(" °C\r\n");
 
                // Do not print it again and wait for the new data
-               update_uart = 0;
+               flag_update_uart = 0;
            }
        }
 
@@ -251,7 +251,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
    ISR(TIMER1_OVF_vect)
    {
        twi_readfrom_mem_into(DHT_ADR, DHT_TEMP_MEM, dht12_values, 2);
-       update_uart = 1;
+       flag_update_uart = 1;
    }
    ```
 

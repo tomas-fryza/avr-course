@@ -206,12 +206,12 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    ...
 
    // -- Global variables -----------------------------------------------
-   // Flag for printing new data to LCD
-   volatile uint8_t update_lcd = 0;
+   volatile uint8_t flag_update_lcd = 0;
 
    // Stopwatch values
    // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
-   struct Stopwatch_structure {
+   struct Stopwatch_structure
+   {
        uint8_t tenths;  // Tenths of a second
        uint8_t secs;    // Seconds
        uint8_t mins;    // Minutes
@@ -226,14 +226,14 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
        // Infinite loop
        while (1)
        {
-           if (update_lcd == 1)
+           if (flag_update_lcd == 1)
            {
                // Display "00:00.tenths"
                itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
                lcd_gotoxy(7, 0);
                lcd_puts(string);
 
-               update_lcd = 0;
+               flag_update_lcd = 0;
            }
        }
        ...
@@ -243,7 +243,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    ISR(TIMER2_OVF_vect)
    {
        ...
-       update_lcd = 1;
+       flag_update_lcd = 1;
    }
    ```
 
