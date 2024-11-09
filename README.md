@@ -78,6 +78,7 @@ Other common [shortcuts in VS Code](https://code.visualstudio.com/shortcuts/keyb
 ## List of examples
 
 * [Basic C template, blink a LED](examples/blink)
+* [7-segment display](examples/segment)
 * [Project documentation with Doxygen](examples/doxygen)
 * [Autonomous slot car](examples/slot-car)
 
