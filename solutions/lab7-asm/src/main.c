@@ -40,7 +40,18 @@
 #include <lfsr.h>
 
 
+// -- Defines --------------------------------------------------------
+#define LFSR_SEED 7  // Starting value of the shift register
+
+
 // -- Function definitions -------------------------------------------
+void timer1_init(void)
+{
+    TIM1_ovf_33ms();
+    TIM1_ovf_enable();
+}
+
+
 /*
  * Function: Main function where the program execution begins
  * Purpose:  Generate a new pseudo-random value using 4- and/or 8-bit
@@ -49,12 +60,9 @@
  */
 int main(void)
 {
-    // Initialize USART to asynchronous, 8-N-1, 115200
     // NOTE: Add `monitor_speed = 115200` to `platformio.ini`
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
-
-    TIM1_ovf_262ms();
-    TIM1_ovf_enable();
+    timer1_init();
 
     sei();
 
@@ -81,7 +89,7 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     static uint8_t n_vals = 0;
-    static uint8_t value = 0;
+    static uint8_t value = LFSR_SEED;
     char string[3];  // String for converting numbers by itoa()
 
     // Multiply-and-accumulate in Assembly
@@ -99,10 +107,11 @@ ISR(TIMER1_OVF_vect)
     n_vals++;
     if (value == 0)
     {
-        uart_puts("Length = ");
+        // NOTE: Add `monitor_raw = 1` to `platformio.ini`
+        uart_puts("\r\n\x1b[32;1mLength = ");
         itoa(n_vals, string, 10);
         uart_puts(string);
-        uart_puts("\r\n");
+        uart_puts("\x1b[0m\r\n");
         n_vals = 0;
     }
 }
