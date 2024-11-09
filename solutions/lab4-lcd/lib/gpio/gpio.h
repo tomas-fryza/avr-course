@@ -66,7 +66,7 @@ void GPIO_write_high(volatile uint8_t *reg, uint8_t pin);
 
 /**
  * @brief  Read a value from input pin.
- * @param  reg Address of Pin Register, such as &PINB
+ * @param  reg Address of Pin Register, such as &PIND
  * @param  pin Pin designation in the interval 0 to 7
  * @return Pin value
  */
