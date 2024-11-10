@@ -4,7 +4,7 @@
 
 *The goal of this project is for small teams of 3-4 students to explore a chosen topic, use the [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop solutions, simulate and implement them, create documentation, and present the results. Team members will organize and divide tasks among themselves.*
 
-* The students will work on the project for five weeks, ending with a presentation and a practical demonstration (simulations alone are not enough).
+* The students will work on the project for five weeks, ending with a presentation and a practical demonstration (simulations alone are not enough), see the course schedule in e-learning.
 
 * The AVR code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided by PlatformIO (exceptions by agreement).
 
@@ -24,11 +24,11 @@
 
 * Strictly follow licenses for third-party libraries !
 
-* Create a public [GitHub](https://github.com/) (or other online software development platform) repository for your project and publish all files here.
+* Create a public [GitHub](https://github.com/) (or any other online software development platform) repository for your project and publish all files here.
 
 * Provide a list of all tools used during the project, including Machine Learning (some are listed [here](https://github.com/tomas-fryza/avr-course/wiki)).
 
-* A PowerPoint-style presentation is not required; a good README on GitHub is sufficient.
+* A PowerPoint-style presentation is not required; a good `README.md` on GitHub is sufficient.
 
 * During the presentation, you can play a short video (max 1 minute) with subtitles or explanatory captions.
 
@@ -46,7 +46,7 @@ Describe your implementation and include block or circuit diagram(s).
 
 ## Software description
 
-Put flowchats/state diagrams of your algorithm(s) and direct links to source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
+Include flowcharts/state diagrams of your algorithm(s) and direct links to the source files in PlatformIO `src` or `lib` folders. Present the libraries you used in the project.
 
 ## Instructions and photos
 
@@ -69,8 +69,8 @@ Inspiration:
 Possible components:
 * Plant terrarium
 * I2C temperature and humidity sensor
-* Soil moisture sensor
 * Photoresistor
+* Soil moisture sensor
 * OLED display
 * RGB LED strip Neopixel WS2812B
 * Relays
@@ -92,6 +92,7 @@ Possible components:
 * Proximity sensor HC-SR04
 * Digital [line tracking sensor](https://www.dfrobot.com/product-85.html)
 * I2C accelerometers and gyroscopes
+* OLED display
 * Platform can be changed to [FRDM-MCXN947](https://www.nxp.com/document/guide/getting-started-with-frdm-mcxn947:GS-FRDM-MCXNXX) board
 
    ![dfrobot chassis](images/nxp_chassis.jpg)
@@ -100,17 +101,34 @@ Possible components:
 
 (*Max 2 teams per lab group.*)
 
-The goal of this project is to design and implement an embedded system that leverages solar panels for power generation while monitoring solar radiation, energy output, and efficiency. The system will collect real-time data using sensors to analyze the performance of solar panels and provide insights for optimizing energy production.
+The goal of this project is to design and implement an embedded system that monitors and optimizes the performance of solar panels. The system will use a range of sensors to collect real-time data on solar radiation, energy output, and panel efficiency. Data are displayed or logged. The project will involve hardware integration, data collection, and the development of algorithms to monitor panel health and efficiency.
 
 Inspiration:
 * [Simple Arduino Solar Radiation Meter for Solar Panels](https://projecthub.arduino.cc/mircemk/simple-arduino-solar-radiation-meter-for-solar-panels-ae1531)
 * [Photovoltaic battery charger with sun tracking](https://www.vut.cz/en/students/final-thesis/detail/151699)
+
+Possible components:
+* Solar panel(s)
+* Battery charger
+* Photoresistor
+* Current sensor
+* OLED display
+* EEPROM
+* Rotary encoder or buttons or joystick
+* Servo motors
+* ESP8266 Wi-Fi module
 
 ### Electronically controlled xylophone
 
 (*Max 1 team per lab group.*)
 
 Build an electronic xylophone instrument that can be played using an AVR microcontroller. The project will combine hardware and software components to create an interactive and programmable musical instrument capable of producing different tones and melodies. Incorporating a graphical user interface (GUI) to visualize the notes being played.
+
+Possible components:
+* Xylophone
+* OLED display
+* Rotary encoder or buttons or joystick
+* EEPROM memory
 
 ### Usage of CubeSat Space Protocol (CSP)
 
