@@ -130,6 +130,65 @@ Possible components:
 * Rotary encoder or buttons or joystick
 * EEPROM memory
 
+### Simulace a implementace FDIR algoritmu pro mikrokontroléry AVR v aerospace aplikacích
+
+Cílem projektu je simulovat na mikrokontrolerech AVR funkcionalitu Fault Detection, Isolation, and Recovery (FDIR) algoritmu / subsystému
+dle vlastního výběru využívaných v aerospace aplikacích.
+Součástí hodnocení bude kvalita zpracování zvoleného simulovaného scénáře.
+
+## Požadavky na projekt:
+1. **Výběr FDIR algoritmu**:
+- Prostudujte různé typy FDIR algoritmů používaných v aerospace průmyslu.
+- Vyberte jeden algoritmus, který bude implementován a simulován.
+
+2. **Návrh a implementace**:
+- Navrhněte architekturu systému, který bude využívat mikrokontrolér AVR (např. ATmega328).
+- Implementujte vybraný FDIR algoritmus v jazyce C nebo C++.
+- Zajistěte, aby systém byl schopen detekovat, izolovat a obnovit se z chyb.
+- Je zakázano využívat jakékoliv knihovny Arduino. Je možné využít vlastní implementace anebo řešení z laboratorních cvičení.
+
+3. **Simulace a testování**:
+- Vytvořte simulaci systému, která bude demonstrovat funkčnost FDIR algoritmu.
+- Proveďte testování a validaci algoritmu pomocí simulace různých chybových scénářů.
+
+4. **Závěrečná zpráva**:
+- Vypracujte podrobnou zprávu, která bude obsahovat:
+- Úvod do problematiky FDIR v aerospace aplikacích.
+- Popis vybraného FDIR algoritmu a důvody jeho výběru.
+- Návrh a implementaci systému.
+- Výsledky simulace a testování.
+- Diskuzi o výhodách a nevýhodách implementovaného řešení.
+- Závěry a doporučení pro další vývoj.
+
+## Hodnocení:
+Projekt bude hodnocen na základě:
+- Kvality a funkčnosti implementovaného FDIR algoritmu.
+- Úrovně simulace a testování.
+- Kvality a detailnosti závěrečné zprávy.
+- Spolupráce a rozdělení úkolů v týmu.
+
+
+## Doporučené zdroje:
+1. **An Integrated Process for FDIR Design in Aerospace (FAME)**:
+
+https://es-static.fbk.eu/people/bozzano/publications/imbsa2014b.pdf
+
+
+2. **FDIR Development and Verification and Validation Process (FAME)**:
+
+https://indico.esa.int/event/85/contributions/3387/attachments/2727/3152/1710-FDIR_7_An_Integrated_Process_for_FDIR_Design_in_Aerospace_FAME_-_ESA-ESTEC.pdf
+
+
+3. **FDIR in Aerospace Applications**:
+- Kapitola v knize, která se zabývá návrhem a implementací FDIR systémů v aerospace aplikacích. Obsahuje podrobné informace o různých typech FDIR algoritmů a jejich použití.
+- FDIR in Aerospace Applications
+
+https://link.springer.com/chapter/10.1007/978-3-319-12214-4_7
+
+
+
+
+
 ### Usage of CubeSat Space Protocol (CSP)
 
 (*Topic provided by [YSpace](https://www.vut.cz/en/yspace) group.*)
