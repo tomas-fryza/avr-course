@@ -4,6 +4,8 @@
 
 *The goal of this project is for small teams of 3-4 students to explore a chosen topic, use the [labs's components](https://github.com/tomas-fryza/avr-course/blob/master/README.md#components), develop solutions, simulate and implement them, create documentation, and present the results. Team members will organize and divide tasks among themselves.*
 
+   ![components](images/components.jpg)
+
 * The students will work on the project for five weeks, ending with a presentation and a practical demonstration (simulations alone are not enough), see the course schedule in e-learning.
 
 * The AVR code must be written in C and/or Assembly and must be implementable on an Arduino Uno board using the toolchains provided by PlatformIO (exceptions by agreement).
@@ -129,6 +131,10 @@ Possible components:
 * OLED display
 * Rotary encoder or buttons or joystick
 * EEPROM memory
+
+   ![xylophone photo](images/xylofon.jpg)
+
+   ![xylophone schematic](images/xylophone_board.svg)
 
 ### Simulace a implementace FDIR algoritmu pro mikrokontroléry AVR v aerospace aplikacích
 
