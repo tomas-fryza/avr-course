@@ -12,6 +12,7 @@
 #include <avr/io.h>         // AVR device-specific IO definitions
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
+#include <uart.h>           // Peter Fleury's UART library
 #include <lcd.h>            // Peter Fleury's LCD library
 #include <stdlib.h>         // C library. Needed for number conversions
 
@@ -80,6 +81,7 @@ int main(void)
 
     adc_init();
     timer1_init();
+    uart_init(UART_BAUD_SELECT(115200, F_CPU));
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -97,6 +99,8 @@ int main(void)
             lcd_puts("    ");  // Clear previous value
             lcd_gotoxy(8, 0);
             lcd_puts(string);
+            uart_puts(string);
+            uart_puts("\r\n");
 
             // Hexa
             itoa(value, string, 16);
