@@ -89,7 +89,7 @@ Inspiration:
 * [NXP Cup](https://nxpcup.nxp.com/)
 
 Possible components:
-* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis), including ESCs (Electronic Speed Controllers) and servo motor for steering
+* [DFRobot chassis](https://nxp.gitbook.io/nxp-cup/2019-dfrobot-chassis-developer-guide/assembly/dfrobot-chassis), including Hobbywing 30A ESCs (Electronic Speed Controllers) and servo motor for steering
 * LiPol battery
 * Proximity sensor HC-SR04
 * Digital [line tracking sensor](https://www.dfrobot.com/product-85.html)
