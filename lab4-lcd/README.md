@@ -13,6 +13,8 @@
 * Arduino Uno board, USB cable
 * LCD keypad shield
 
+   ![lcd keypad shield](images/lcd_keypad.jpg)
+
 ### Learning objectives
 
 * Use alphanumeric LCD
