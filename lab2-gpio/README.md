@@ -81,9 +81,9 @@
 
 4. Copy/paste [blink example code](https://raw.githubusercontent.com/tomas-fryza/avr-course/master/examples/blink/main.c) to your `LAB2-GPIO > src > main.c` file.
 
-5. Compile and upload the firmware to ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED.
+5. Compile and upload the firmware to ATmega328P microcontroller. Change the delay duration and observe the behavior of on-board LED. See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png):
 
-   * See Arduino Uno [pinout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/2f891/Pinout-UNOrev3_latest.png)
+   ![arduino uno pinout](images/arduino_uno-pinout.png)
 
 <a name="part2"></a>
 
