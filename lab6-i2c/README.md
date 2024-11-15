@@ -143,7 +143,7 @@ The goal of this task is to create a program that will verify the presence of de
 
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
 
-   ![Arduino_uno_pinout](../archive/images/Pinout-UNOrev3_latest.png)
+   ![Arduino_uno_pinout](../lab2-gpio/images/arduino_uno-pinout.png)
 
    * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf) digital sensor
 
