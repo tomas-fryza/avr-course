@@ -13,7 +13,7 @@
 #include "timer.h"          // Timer library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
-#include <stdlib.h>         // C library. Needed for number conversions
+#include <stdio.h>          // C library for `sprintf`
 
 
 // -- Defines --------------------------------------------------------
@@ -45,7 +45,7 @@ void timer1_init(void)
  */
 int main(void)
 {
-    char string[3];  // String for converting numbers by itoa()
+    char uart_msg[10];
 
     twi_init();
     uart_init(UART_BAUD_SELECT(115200, F_CPU));
@@ -55,7 +55,7 @@ int main(void)
     // Test if sensor is ready
     if (twi_test_address(DHT_ADR) != 0)
     {
-        uart_puts("[ERROR] I2C device not detected\r\n");
+        uart_puts("[\x1b[31;1mERROR\x1b[0m] I2C device not detected\r\n");
         while (1);
     }
 
@@ -66,25 +66,16 @@ int main(void)
         if (flag_update_uart == 1)
         {
             // Display temperature
-            itoa(dht12_values[2], string, 10);
-            uart_puts(string);
-            uart_puts(".");
-            itoa(dht12_values[3], string, 10);
-            uart_puts(string);
-            uart_puts(" °C\t\t");
+            sprintf(uart_msg, "%u.%u °C\t\t", dht12_values[2], dht12_values[3]);
+            uart_puts(uart_msg);
 
             // Display humidity
-            itoa(dht12_values[0], string, 10);
-            uart_puts(string);
-            uart_puts(".");
-            itoa(dht12_values[1], string, 10);
-            uart_puts(string);
-            uart_puts(" \%\t\t");
+            sprintf(uart_msg, "%u.%u %%\t\t", dht12_values[0], dht12_values[1]);
+            uart_puts(uart_msg);
 
             // Display checksum
-            itoa(dht12_values[4], string, 10);
-            uart_puts(string);
-            uart_puts("\r\n");
+            sprintf(uart_msg, "%u\r\n", dht12_values[4]);
+            uart_puts(uart_msg);
 
             // Do not print it again and wait for the new data
             flag_update_uart = 0;

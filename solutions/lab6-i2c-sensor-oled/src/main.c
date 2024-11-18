@@ -13,7 +13,7 @@
 #include "timer.h"          // Timer library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <oled.h>
-#include <stdlib.h>         // C library. Needed for number conversions
+#include <stdio.h>          // C library for `sprintf`
 
 
 // -- Defines --------------------------------------------------------
@@ -71,7 +71,7 @@ void timer1_init(void)
  */
 int main(void)
 {
-    char string[2];  // String for converting numbers by itoa()
+    char oled_msg[5];
 
     twi_init();
     oled_setup();
@@ -90,11 +90,8 @@ int main(void)
 
             // Display new temperature data
             oled_gotoxy(17, 6);
-            itoa(dht12_values[2], string, 10);
-            oled_puts(string);
-            oled_puts(".");
-            itoa(dht12_values[3], string, 10);
-            oled_puts(string);
+            sprintf(oled_msg, "%u.%u", dht12_values[2], dht12_values[3]);
+            oled_puts(oled_msg);
 
             // Clear previous humidity values on OLED
             oled_gotoxy(17, 7);
@@ -102,11 +99,8 @@ int main(void)
 
             // Display new humidity data
             oled_gotoxy(17, 7);
-            itoa(dht12_values[0], string, 10);
-            oled_puts(string);
-            oled_puts(".");
-            itoa(dht12_values[1], string, 10);
-            oled_puts(string);
+            sprintf(oled_msg, "%u.%u", dht12_values[0], dht12_values[1]);
+            oled_puts(oled_msg);
 
             oled_display();
 

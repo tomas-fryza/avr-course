@@ -12,8 +12,8 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
-#include <stdlib.h>         // C library. Needed for number conversions
-#include <util/delay.h>     // !!! Just for the simulation !!!
+#include <stdio.h>          // C library. Needed for `sprintf`
+#include <util/delay.h>     // !!! Just for the simulation in SimulIDE !!!
 
 
 // -- Function definitions -------------------------------------------
@@ -33,7 +33,8 @@
  */
 int main(void)
 {
-    char string[2];  // For converting numbers by itoa()
+    char uart_msg[10];
+    uint8_t n_devices = 0;
 
     twi_init();
 
@@ -47,13 +48,14 @@ int main(void)
     {
         if (twi_test_address(sla) == 0)  // If ACK from Slave
         {
-            uart_puts("\r\n0x");
-            itoa(sla, string, 16);
-            uart_puts(string);
+            sprintf(uart_msg, "\r\n0x%x", sla);
+            uart_puts(uart_msg);
+            n_devices++;
         }
         _delay_ms(1);  // !!! Just for the simulation !!!
     }
-    uart_puts("\r\nDone");
+    sprintf(uart_msg, "\r\n%u devices detected\r\n", n_devices);
+    uart_puts(uart_msg);
 
     // Infinite empty loop
     while (1)
