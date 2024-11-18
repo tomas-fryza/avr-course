@@ -16,12 +16,12 @@
 
 
 // -- Global variables -----------------------------------------------
-// Flag for printing new data to LCD
-volatile uint8_t update_lcd = 0;
+volatile uint8_t flag_update_lcd = 0;
 
 // Stopwatch values
 // Declaration of "stopwatch" variable with structure "Stopwatch_structure"
-struct Stopwatch_structure {
+struct Stopwatch_structure
+{
     uint8_t tenths;  // Tenths of a second
     uint8_t secs;    // Seconds
     uint8_t mins;    // Minutes
@@ -37,7 +37,7 @@ struct Stopwatch_structure {
  */
 int main(void)
 {
-    char string[2];  // String for converted numbers by itoa()
+    char lcd_msg[5];  // String for converted numbers by itoa()
 
     // Initialize display
     lcd_init(LCD_DISP_ON_CURSOR_BLINK);
@@ -66,14 +66,14 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        if (update_lcd == 1)
+        if (flag_update_lcd == 1)
         {
             // Display "00:00.tenths"
-            itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
+            itoa(stopwatch.tenths, lcd_msg, 10);  // Convert decimal value to string
             lcd_gotoxy(7, 0);
-            lcd_puts(string);
+            lcd_puts(lcd_msg);
 
-            update_lcd = 0;
+            flag_update_lcd = 0;
         }
     }
 
@@ -103,7 +103,7 @@ ISR(TIMER2_OVF_vect)
         // WRITE YOUR CODE HERE
 
 
-        update_lcd = 1;
+        flag_update_lcd = 1;
     }
     // Else do nothing and exit the ISR
 }
