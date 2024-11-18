@@ -48,13 +48,13 @@ int main(void)
     {
         if (twi_test_address(sla) == 0)  // If ACK from Slave
         {
-            sprintf(uart_msg, "\r\n0x%x", sla);
+            sprintf(uart_msg, "\r\n0x%02x", sla);
             uart_puts(uart_msg);
             n_devices++;
         }
-        _delay_ms(1);  // !!! Just for the simulation !!!
+        // _delay_ms(1);  // !!! Just for the simulation !!!
     }
-    sprintf(uart_msg, "\r\n%u devices detected\r\n", n_devices);
+    sprintf(uart_msg, "\r\n%u device(s) detected\r\n", n_devices);
     uart_puts(uart_msg);
 
     // Infinite empty loop
