@@ -140,6 +140,9 @@ cat /etc/os-release
 
 # Or by Neofetch
 neofetch
+
+# For Windows with CMD
+WINVER
 ```
 
 <a name="references"></a>
