@@ -36,7 +36,7 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include "timer.h"          // Timer library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
-#include <stdlib.h>         // C library. Needed for number conversions
+#include <stdio.h>          // C library for `sprintf`
 #include <lfsr.h>
 
 
@@ -90,28 +90,25 @@ ISR(TIMER1_OVF_vect)
 {
     static uint8_t n_vals = 0;
     static uint8_t value = LFSR_SEED;
-    char string[3];  // String for converting numbers by itoa()
+    char uart_msg[30];
 
     // Multiply-and-accumulate in Assembly
     //                                 c + (a*b)
     // value = multiply_accumulate_asm(value, 3, 7);
 
     // Send value to UART
-    itoa(value, string, 10);
-    uart_puts(string);
-    uart_puts(", ");
+    sprintf(uart_msg, "%d, ", value);
+    uart_puts(uart_msg);
 
     // WRITE YOUR CODE HERE
     // value = lfsr4_fibonacci_asm(value);
-    value = lfsr8_fibonacci_asm(value);
+    value = lfsr4_fibonacci_asm(value);
     n_vals++;
     if (value == 0)
     {
         // NOTE: Add `monitor_raw = 1` to `platformio.ini`
-        uart_puts("\r\n\x1b[32;1mLength = ");
-        itoa(n_vals, string, 10);
-        uart_puts(string);
-        uart_puts("\x1b[0m\r\n");
+        sprintf(uart_msg, "\r\n\x1b[32;1mLength = %d\x1b[0m\r\n", n_vals);
+        uart_puts(uart_msg);
         n_vals = 0;
     }
 }

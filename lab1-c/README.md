@@ -152,25 +152,25 @@
    * Hexadecimal: Prefix the number with `0x`.
    * Binary: Prefix the number with `0b`.
 
-   ```c
-   #include <stdio.h>
-   #include <stdint.h>
+      ```c
+      #include <stdio.h>
+      #include <stdint.h>
 
-   int main(void)
-   {
-       uint8_t hex_value = 0x1F;  // Hexadecimal value
-       uint8_t dec_value = 31;    // Decimal value
-       uint8_t bin_value = 0b00011111;  // Binary value
+      int main(void)
+      {
+          uint8_t hex_value = 0x1F;  // Hexadecimal value
+          uint8_t dec_value = 31;    // Decimal value
+          uint8_t bin_value = 0b00011111;  // Binary value
 
-       printf("Hexadecimal: 0x%X\n", hex_value);
-       printf("Decimal: %d\n", dec_value);
-       printf("Convert binary to decimal: %d\n", bin_value);
+          printf("Hexadecimal: 0x%X\n", hex_value);
+          printf("Decimal: %d\n", dec_value);
+          printf("Convert binary to decimal: %d\n", bin_value);
 
-       return 0;
-   }
-   ```
+          return 0;
+      }
+      ```
 
-   Try declaring several variables in different number formats and display their values ​​using `printf` and the correct format specifiers.
+   Try declaring several variables in different number formats and display their values ​​using `printf` and the correct **format specifiers**.
 
    > | **Specifier** | **Description** | **Example** |
    > | :-- | -- | -- |
@@ -186,6 +186,7 @@
    > 
    > **Notes:**
    > * Floating-point precision: You can control the precision of floating-point numbers, e.g., `%.2f` prints two decimal places.
+   > * Hexadecimal with the minimum width of the output: `%04x` ensures that the output has at least 3 characters; if shorter, leading zeros are added to make it exactly four characters long.
 
 5. In C, binary (bitwise) operators allow you to directly manipulate individual bits in a variable. These operators are very useful for tasks like setting, clearing, toggling, or checking specific bits, especially useful in embedded systems programming, hardware control, or low-level optimizations.
 

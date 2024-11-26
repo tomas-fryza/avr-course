@@ -13,6 +13,8 @@
 * Arduino Uno board, USB cable
 * LCD keypad shield
 
+   ![lcd keypad shield](images/lcd_keypad.jpg)
+
 ### Learning objectives
 
 * Use alphanumeric LCD
@@ -220,7 +222,7 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
    // -- Function definitions -------------------------------------------
    int main(void)
    {
-       char string[2];  // String for converted numbers by itoa()
+       char lcd_msg[5];  // String for converted numbers by itoa()
        ...
 
        // Infinite loop
@@ -229,9 +231,9 @@ Use [LCD pattern library](https://www.quinapalus.com/hd44780udg.html) and genera
            if (flag_update_lcd == 1)
            {
                // Display "00:00.tenths"
-               itoa(stopwatch.tenths, string, 10);  // Convert decimal value to string
+               itoa(stopwatch.tenths, lcd_msg, 10);  // Convert decimal value to string
                lcd_gotoxy(7, 0);
-               lcd_puts(string);
+               lcd_puts(lcd_msg);
 
                flag_update_lcd = 0;
            }

@@ -142,7 +142,7 @@ In this part, you will establish communication between a PC and an Arduino board
    int main(void)
    {
        uint16_t value;
-       char string[8];  // String for converted numbers by itoa()
+       char uart_msg[8];
 
        ...
        while (1)
@@ -155,7 +155,7 @@ In this part, you will establish communication between a PC and an Arduino board
                uart_putc(value);
 
                // Transmit the ASCII code also in hex, dec, and bin
-               itoa(value, string, 16)
+               itoa(value, uart_msg, 16)
 
                // WRITE YOUR CODE HERE
 
@@ -232,7 +232,7 @@ In this part, you will establish communication between a PC and an Arduino board
                uart_putc(value);
 
                // Transmit the ASCII code also in hex, dec, and bin
-               itoa(value, string, 16)
+               itoa(value, uart_msg, 16)
                ...
                // New line
                uart_puts("\r\n");

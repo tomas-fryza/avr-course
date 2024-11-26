@@ -143,7 +143,7 @@ The goal of this task is to create a program that will verify the presence of de
 
    > **Note:** Connect the components on the breadboard only when the supply voltage/USB is disconnected! There is no need to connect external pull-up resistors on the SDA and SCL pins, because the internal ones are used.
 
-   ![Arduino_uno_pinout](../archive/images/Pinout-UNOrev3_latest.png)
+   ![Arduino_uno_pinout](../lab2-gpio/images/arduino_uno-pinout.png)
 
    * Humidity/temperature [DHT12](https://github.com/tomas-fryza/avr-course/blob/master/docs/dht12_manual.pdf) digital sensor
 
@@ -203,7 +203,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
     */
    int main(void)
    {
-       char string[3];  // String for converting numbers by itoa()
+       char uart_msg[10];
 
        twi_init();
        uart_init(UART_BAUD_SELECT(115200, F_CPU));
@@ -213,7 +213,7 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        // Test if sensor is ready
        if (twi_test_address(DHT_ADR) != 0)
        {
-           uart_puts("[ERROR] I2C device not detected\r\n");
+           uart_puts("[\x1b[31;1mERROR\x1b[0m] I2C device not detected\r\n");
            while (1);
        }
 
@@ -226,12 +226,9 @@ The goal of this task is to communicate with the DHT12 temperature and humidity 
        {
            if (flag_update_uart == 1)
            {
-               itoa(dht12_values[0], string, 10);
-               uart_puts(string);
-               uart_puts(".");
-               itoa(dht12_values[1], string, 10);
-               uart_puts(string);
-               uart_puts(" °C\r\n");
+               // Display temperature
+               sprintf(uart_msg, "%u.%u °C\r\n", dht12_values[0], dht12_values[1]);
+               uart_puts(uart_msg);
 
                // Do not print it again and wait for the new data
                flag_update_uart = 0;

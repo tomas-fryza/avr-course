@@ -26,7 +26,7 @@
 #include "timer.h"          // Timer library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
 #include <lfsr.h>           // Assembly implementation of LFSR
-#include <stdlib.h>         // C library. Needed for number conversions
+#include <stdio.h>          // C library for `sprintf`
 
 
 // -- Function definitions -------------------------------------------
@@ -70,16 +70,15 @@ int main(void)
 ISR(TIMER1_OVF_vect)
 {
     static uint8_t value = 0;
-    char string[3];  // String for converting numbers by itoa()
+    char uart_msg[10];
 
     // Multiply-and-accumulate in Assembly
     //                                 c + (a*b)
     value = multiply_accumulate_asm(value, 3, 7);
 
     // Send value to UART
-    itoa(value, string, 10);
-    uart_puts(string);
-    uart_puts(", ");
+    sprintf(uart_msg, "%d, ", value);
+    uart_puts(uart_msg);
 
     // WRITE YOUR CODE HERE
 

@@ -12,7 +12,7 @@
 #include <avr/interrupt.h>  // Interrupts standard C library for AVR-GCC
 #include <twi.h>            // I2C/TWI library for AVR-GCC
 #include <uart.h>           // Peter Fleury's UART library
-#include <stdlib.h>         // C library. Needed for number conversions
+#include <stdio.h>          // C library. Needed for `sprintf`
 
 
 // -- Function definitions -------------------------------------------
@@ -24,7 +24,7 @@
  */
 int main(void)
 {
-    char string[2];  // For converting numbers by itoa()
+    char uart_msg[10];
 
     twi_init();
 
@@ -39,9 +39,8 @@ int main(void)
     {
         if (twi_test_address(sla) == 0)  // If ACK from Slave
         {
-            uart_puts("\r\n0x");
-            itoa(sla, string, 16);
-            uart_puts(string);
+            sprintf(uart_msg, "\r\n0x%x", sla);
+            uart_puts(uart_msg);
         }
     }
     uart_puts("\r\nDone");
