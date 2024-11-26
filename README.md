@@ -6,7 +6,7 @@
 * [Labs](#labs)
 * [List of examples](#list-of-examples)
 * [Components and tools](#components-and-tools)
-* [References](#references)
+* [Links](#links)
 
 The repository contains AVR lab exercises for bachelor course [*Digital Electronics 2*](https://www.vut.cz/en/students/courses/detail/268611) at Brno University of Technology, Czechia. The course focuses on digital circuits, microprocessor technology, embedded systems and uses the C and ASM languages for programming 8-bit Arduino microcontrollers in PlatformIO and Visual Studio Code IDE.
 
@@ -134,20 +134,29 @@ The following hardware and software components are mainly used in the lab.
 | Linux Mint 20.3 (Una)      | OK (2022-02-23)         | Laptop
 | Windows 10                 | OK (2021-11-25)         | Office
 
-```bash
-# FYI: How to check OS version in Linux
-cat /etc/os-release
+> **FYI**: How to identify the version of the operating system from the command line.
+>
+> ```bash
+> # Linux:
+> cat /etc/os-release
+> # or
+> neofetch
+>
+> # macOS:
+> sw_vers
+>
+> # Windows:
+> WINVER
+> ```
 
-# Or by Neofetch
-neofetch
-```
+## Links
 
-<a name="references"></a>
+* [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
 
-## References
+* [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
 
-1. Peter Fleury, [AVR-GCC libraries](http://www.peterfleury.epizy.com/avr-software.html?i=1)
+* [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
 
-2. Barr Group, [Embedded C Coding Standard](https://barrgroup.com/Embedded-Systems/Books/Embedded-C-Coding-Standard)
+## License
 
-3. 4Geeks. [How to use Gitpod](https://4geeks.com/lesson/how-to-use-gitpod)
+Licensed under the [MIT License](http://opensource.org/licenses/MIT).
