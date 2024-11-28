@@ -9,6 +9,9 @@
 // -- Defines --------------------------------------------------------
 #define LED_BUILTIN PB5  // On-board LED
 #define SHORT_DELAY 250  // Delay in milliseconds
+#ifndef F_CPU
+#define F_CPU 16000000   // For delay
+#endif
 
 
 // -- Includes -------------------------------------------------------
@@ -25,9 +28,9 @@
 int main(void)
 {
     // Set output pin in Data Direction Register
-    DDRB = DDRB | (1 << LED_GREEN);
+    DDRB = DDRB | (1 << LED_BUILTIN);
     // Set pin LOW in Data Register (LED off)
-    PORTB = PORTB & ~(1 << LED_GREEN);
+    PORTB = PORTB & ~(1 << LED_BUILTIN);
 
     // Infinite loop
     while (1)
@@ -35,7 +38,7 @@ int main(void)
         // Pause several milliseconds
         _delay_ms(SHORT_DELAY);
         // Invert LED in Data Register
-        PORTB = PORTB ^ (1 << LED_GREEN);
+        PORTB = PORTB ^ (1 << LED_BUILTIN);
     }
 
     // Will never reach this

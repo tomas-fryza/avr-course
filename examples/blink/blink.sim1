@@ -1,0 +1,33 @@
+<circuit version="1.1.0-SR1" rev="2005" stepSize="1000000" stepsPS="1000000" NLsteps="100000" reaStep="1000000" animate="0" >
+
+<item itemtype="MCU" CircId="m328 TQFP-3" mainComp="false" Show_id="true" Show_Val="false" Pos="-100,-40" rotation="0" hflip="1" vflip="1" label="m328 TQFP-3" idLabPos="0,-20" labelrot="0" valLabPos="-16,20" valLabRot="0" Frequency="16 MHz" Program="../../../../bin/SimulIDE_1.1.0-SR1_Lin64/build_blink/blink.hex" Auto_Load="false" saveEepr="true" Rst_enabled="false" Ext_Osc="false" Wdt_enabled="false" Clk_Out="false" varList="PORTB,DDRB" MainMcu="true" SerialMon="-1" />
+
+<item itemtype="Resistor" CircId="Resistor-4" mainComp="false" ShowProp="Resistance" Show_id="false" Show_Val="true" Pos="32,32" rotation="0" hflip="1" vflip="1" label="Resistor-4" idLabPos="-16,-24" labelrot="0" valLabPos="-16,6" valLabRot="0" Resistance="200 Ω" />
+
+<item itemtype="Ground" CircId="Ground-6" mainComp="false" Show_id="false" Show_Val="false" Pos="96,60" rotation="0" hflip="1" vflip="1" label="Ground-6" idLabPos="-16,8" labelrot="0" valLabPos="-16,20" valLabRot="0" />
+
+<item itemtype="Led" CircId="Led-14" mainComp="false" Show_id="false" Show_Val="false" Pos="72,32" rotation="0" hflip="1" vflip="1" label="Led-14" idLabPos="-16,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Color="Yellow" Grounded="false" Threshold="2.4 V" MaxCurrent="30 mA" Resistance="0.6 Ω" />
+
+<item itemtype="LAnalizer" CircId="LAnalizer-18" mainComp="false" Show_id="false" Show_Val="false" Pos="112,152" rotation="0" hflip="1" vflip="1" label="LAnalizer-18" idLabPos="-90,-100" labelrot="0" valLabPos="-16,20" valLabRot="0" Basic_X="135 _px" Basic_Y="135 _px" BufferSize="100000" connectGnd="true" InputImped="10 MΩ" TimDiv="1000000000" TimPos="0" VolDiv="0.15" Tunnels=",,,,,,,," Trigger="9" TimeStep="1000 _ps" AutoExport="false" TresholdR="2.5 V" Bus="false,false,false,false,false,false,false,false," TresholdF="2.5 V" />
+
+<item itemtype="FreqMeter" CircId="FreqMeter-22" mainComp="false" Show_id="false" Show_Val="false" Pos="92,-32" rotation="0" hflip="1" vflip="1" label="FreqMeter-22" idLabPos="-32,-24" labelrot="0" valLabPos="-16,20" valLabRot="0" Filter="0.1 V" />
+
+<item itemtype="Node" CircId="Node-21" mainComp="false" Pos="4,32" />
+
+<item itemtype="Node" CircId="Node-23" mainComp="false" Pos="12,32" />
+
+<item itemtype="Connector" uid="Connector-28" startpinid="Led-14-rPin" endpinid="Ground-6-Gnd" pointList="88,32,96,32,96,44" />
+
+<item itemtype="Connector" uid="Connector-29" startpinid="Led-14-lPin" endpinid="Resistor-4-rPin" pointList="56,32,48,32" />
+
+<item itemtype="Connector" uid="Connector-38" startpinid="LAnalizer-18-Pin0" endpinid="Node-21-1" pointList="24,88,4,88,4,32" />
+
+<item itemtype="Connector" uid="Connector-40" startpinid="Node-21-2" endpinid="m328 TQFP-3-PORTB5" pointList="4,32,-4,32" />
+
+<item itemtype="Connector" uid="Connector-41" startpinid="FreqMeter-22-lPin" endpinid="Node-23-1" pointList="52,-32,12,-32,12,32" />
+
+<item itemtype="Connector" uid="Connector-42" startpinid="Resistor-4-lPin" endpinid="Node-23-0" pointList="16,32,12,32" />
+
+<item itemtype="Connector" uid="Connector-43" startpinid="Node-23-2" endpinid="Node-21-0" pointList="12,32,4,32" />
+
+</circuit>
