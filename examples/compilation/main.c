@@ -1,18 +1,17 @@
 #include <stdio.h>
-#include "compute.h"
+#include "utils.h"
 
-int main(void)
+#define N 30
+
+int main()
 {
-    float a = 10.25;
-    float result;
+    int result = square(N);
+    printf("square: \%d\n", result);
 
-    printf("a: \t%7.2f\n", a);
+    for (int i = 0; i < N; i++) {
+        result = add(i*N, 50);
+        printf("addition: \%d\n", result);
+    }
 
-    result = square(a);
-    printf("square: %7.3f\n", result);
-
-    result = square_root(a);
-    printf("sqrt: \t%7.2f\n", result);
-	
     return 0;
 }

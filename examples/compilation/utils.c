@@ -1,12 +1,11 @@
-#include "compute.h"
-#include <math.h>
+#include "utils.h"
 
-float square(float a)
+int square(int x)
 {
-	return (a*a);
+	return (x*x);
 }
 
-float square_root(float a)
+int add(int a, int b)
 {
-	return sqrt(a);
+	return a+b;
 }

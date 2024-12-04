@@ -1,3 +1,7 @@
-float square(float);
+#ifndef UTILS_H
+#define UTILS_H
 
-float square_root(float);
+int square(int x);
+int add(int a, int b);
+
+#endif
